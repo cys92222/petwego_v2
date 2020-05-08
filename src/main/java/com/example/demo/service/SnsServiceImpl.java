@@ -18,10 +18,17 @@ public class SnsServiceImpl implements SnsService {
 	private SnsDao snsdao;
 	
 	@Override
-	public List<Pic_Board_FileVo> listAll() {
+	public List<Pic_Board_FileVo> listFile() {
 		// TODO Auto-generated method stub
-		List<Pic_Board_FileVo> list = snsdao.listAll();
+		List<Pic_Board_FileVo> list = snsdao.listFile();
 		return list;
+	}
+	
+	@Override
+	public List<Pic_BoardVo> listBoard() {
+		// TODO Auto-generated method stub
+		List<Pic_BoardVo> list = snsdao.listBoard();
+		return null;
 	}
 
 	@Override
@@ -63,5 +70,50 @@ public class SnsServiceImpl implements SnsService {
 		re = snsdao.deletesns(pb);
 		return re;
 	}
+
+	@Override
+	public Pic_BoardVo detailsns_board(Pic_BoardVo p) {
+		// TODO Auto-generated method stub
+		Pic_BoardVo pb = snsdao.detailsns_board(p);
+		
+		return pb;
+	}
+
+	@Override
+	public Pic_Board_FileVo detailsns_file(Pic_Board_FileVo p) {
+		// TODO Auto-generated method stub
+		Pic_Board_FileVo pbf = snsdao.detailsns_file(p);
+		
+		return pbf;
+	}
+
+	@Override
+	public Pic_BoardVo detailBoard(int photo_no) {
+		// TODO Auto-generated method stub
+		Pic_BoardVo pb = snsdao.detailBoard(photo_no);
+		return pb;
+	}
+
+	@Override
+	public Pic_Board_FileVo detailFile(int photo_no) {
+		// TODO Auto-generated method stub
+		Pic_Board_FileVo pbf = snsdao.detailFile(photo_no);
+		return pbf;
+	}
+
+	
+	//마지막 글번호
+	@Override
+	public int photo_no() {
+		// TODO Auto-generated method stub
+		int re = snsdao.photo_no();
+		return re;
+	}
+	
+	
+
+
+
+	
 
 }

@@ -90,7 +90,7 @@
 			</li>
 			<li><span id="together">함께가요</span>
 				<ul class="dept01">
-					<li>소제목1</li>
+					<li><a href="/together/listTogether">함께가요</a></li>
 				</ul>
 			</li>
 			<li><span id="customer_service">고객지원</span>

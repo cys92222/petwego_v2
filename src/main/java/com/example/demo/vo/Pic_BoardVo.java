@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Pic_BoardVo extends Pic_Board_FileVo {
+public class Pic_BoardVo {
 	private int photo_no;
 	private Date photo_date;
 	private String photo_detail;
