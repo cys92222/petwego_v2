@@ -7,14 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+		<form>
 		<h2>상세보기</h2>
 		<hr>
-		<img src="img/${photo.no }"><br>
-		<textarea rows="10" cols="80">${photo_detail}</textarea>
+		<img src="img/${file.photo_file_name}"><br>
+		<textarea rows="10" cols="80">${board.photo_detail}</textarea>
 		</form>
 		
-		<a href="update.do?no=${photo.no }">수정</a>
-		<a href="delete.do?no=${photo.no }">삭제</a>
-	
+		<a href="updatesns.do?no=${board.photo_no }">수정</a>
+		<a href="deletesns.do?no=${board.photo_no }">삭제</a>
 </body>
 </html>
