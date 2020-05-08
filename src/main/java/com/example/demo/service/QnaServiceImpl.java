@@ -23,4 +23,56 @@ public class QnaServiceImpl implements QnaService {
 		return list;
 	}
 
+	@Override
+	public int insertQna(QnaVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = qnaDao.insertQna(q);
+		return re;
+	}
+
+	@Override
+	public int deleteQna(QnaVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = qnaDao.deleteQna(q);
+		return re;
+	}
+
+	@Override
+	public QnaVo detailQna(QnaVo q) {
+		// TODO Auto-generated method stub
+		QnaVo detail = qnaDao.detailQna(q);
+		return detail;
+	}
+
+	@Override
+	public int getQnAListCount(QnaVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = qnaDao.getQnAListCount(q);
+	
+		return re;
+	}
+
+	@Override
+	public List<QnaVo> getQnAList(QnaVo q) {
+		// TODO Auto-generated method stub
+		List<QnaVo> list = qnaDao.getQnAList(q);
+		
+		return list;
+	}
+
+	@Override
+	public int totalrecord() {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = qnaDao.totalrecord();
+		
+		return re;
+	}
+	
+	
+	
+
 }

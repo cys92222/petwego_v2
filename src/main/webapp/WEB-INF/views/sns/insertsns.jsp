@@ -10,18 +10,15 @@
 
 	<h2>사진 등록</h2>
 	<hr>
-	<form action="insert" method="post">
-	<input type="hidden" name="photo_no" value="${no }">
-	<table border="1" width="80%">
-		<tr>
-			<td>내용</td>
-			<td><textarea rows="30%" cols="80%" name="photo_detail" required="required"></textarea></td>
-    		<td><input type="file" name="fileName"></td>
-		</tr>
-	</table>
-
+	<form action="/sns/insertsns" method="post" enctype="multipart/form-data">
+		작성자 <br>
+		<input type="text" name="user_id"><br>
+		내용 <br>
+		<textarea rows="8" cols="100" name="photo_detail"></textarea><br>
+		사진<br>
+		<input type="file" name="uploadFile"><br>
 		<input type="submit" value="등록">
-		<input type="reset" value="취소">
 	</form>
+	
 </body>
 </html>

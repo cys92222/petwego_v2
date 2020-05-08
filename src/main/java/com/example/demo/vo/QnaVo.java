@@ -2,6 +2,8 @@ package com.example.demo.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QnaVo {
+public class QnaVo extends PageVo{
 	
 	private int inq_no;
 	private int cs_no;
@@ -18,4 +20,6 @@ public class QnaVo {
 	private Date inq_date;
 	private String user_id;
 	private String inq_file;
+	
+	private MultipartFile uploadFile;
 }

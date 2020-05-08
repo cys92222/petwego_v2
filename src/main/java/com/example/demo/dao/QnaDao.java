@@ -9,4 +9,16 @@ import com.example.demo.vo.QnaVo;
 public interface QnaDao {
 	
 	List<QnaVo> listQna();
+	
+	int insertQna(QnaVo q);
+	
+	int deleteQna(QnaVo q);
+	
+	QnaVo detailQna(QnaVo q);
+	
+	int getQnAListCount(QnaVo q);
+	
+	List<QnaVo> getQnAList(QnaVo q);
+	
+	int totalrecord();
 }
