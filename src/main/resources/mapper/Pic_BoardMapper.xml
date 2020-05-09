@@ -4,22 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.SnsDao">
   
-  <!-- 모든 사진 리스트 -->
-  <select id="listAll" resultType="com.example.demo.vo.Pic_BoardVo">
+  <!-- 모든 파일 -->
+  <select id="listFile" resultType="com.example.demo.vo.Pic_Board_FileVo">
    	select * from pic_board_file
+  </select>
+  
+  <!-- 모든 글 -->
+  <select id="listBoard" resultType="com.example.demo.vo.Pic_BoardVo">
+   	select * from pic_board
+  </select>
+  
+  <!-- 상세보기 파일 -->
+  <select id="detailFile" resultType="com.example.demo.vo.Pic_Board_FileVo">
+  	select * from pic_board_file where photo_no = #{photo_no}
+  </select>
+  
+  <!-- 상세보기 글 -->
+  <select id="detailBoard" resultType="com.example.demo.vo.Pic_BoardVo">
+  select * from pic_board where photo_no = #{photo_no}
+  </select>
+  
+  <!-- 마지막글번호 -->
+  <select id="photo_no" resultType="java.lang.Integer">
+  	select max(photo_no) from pic_board
   </select>
   
 <!--   sns 글 등록 -->
   <insert id="insertsns">
+  	
+  	insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail}, #{user_id})
   	<selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="AFTER">
 	  		select seq_photo_no.nextval from dual
 	  </selectKey>
-  	insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail}, #{user_id})
   </insert>
   
 <!--   sns 파일등록 -->
   <insert id="insertfile">
-	  
+<!-- 	  <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="BEFORE"> -->
+<!-- 	  		select seq_photo_no.nextval from dual -->
+<!-- 	  </selectKey> -->
   insert into pic_board_file values (seq_pic_board_no.nextval, #{photo_file_name}, #{photo_no})
   </insert>
   
@@ -38,4 +61,14 @@
   <delete id="deletesns">
   delete pic_board where photo_no = #{photo_no} and user_id = #{user_id}
   </delete>
+  
+  <!-- 상세보기 글-->
+  <select id="detailsns_board" resultType="com.example.demo.vo.Pic_BoardVo">
+  	select * from pic_board
+  </select>
+  
+  <!-- 상세보기 사진 -->
+  <select id="detailsns_file" resultType="com.example.demo.vo.Pic_Board_FileVo">
+  	select * from pic_board_file
+  </select>
 </mapper>
