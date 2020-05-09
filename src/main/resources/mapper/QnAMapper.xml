@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.QnADao">
+ 	
+ 	<!-- 모든 qna리스트 -->
+ 	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo">
+ 		select * from qna order by inq_no desc, ref, ref_step, ref_level
+ 	</select>
+
+	<!-- qna등록 -->
+	<insert id="insertQnA">
+		insert into qna values (seq_inq_no.nextval, #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, #{inq_file}, 0, 0, 0)
+	</insert>
+	
+	<!-- qna상세보기 -->
+	<select id="detailQnA" resultType="com.example.demo.vo.QnAVo">
+		select * from qna where inq_no = #{inq_no}
+	</select>
+	
+	<!-- qna삭제 -->
+	<delete id="deleteQnA">
+		delete qna where inq_no = #{inq_no}
+	</delete>
+	
+	<!-- qna수정 -->
+	
+	<!-- 답변등록 -->
+</mapper>
