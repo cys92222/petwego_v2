@@ -20,4 +20,8 @@ public interface QnADao {
 	//qna수정
 	
 	//답변등록
+	public int insertRe(QnAVo q);
+	
+	//마지막 글번호
+	public Integer lastNo();
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-#AddQnA,#DetailQnA,#UpdateQnA,#insertRe{
+#AddQnA,#DetailQnA,#UpdateQnA,#AddRe{
 	display: none;
 }
 </style>
@@ -115,7 +115,34 @@ $(function(){
 					$("#re").click(function(){
 // 						alert(qna.inq_no + "번글에 답변등록");
 						$("#rebutton").css("display","none");
-						$("#insertRe").css({"display":"block","border":"1px solid"});
+						$("#AddRe").css({"display":"block","border":"1px solid"});
+
+						$("#re_inq_no").val(qna.inq_no);
+						$("#re_user_id").val(qna.user_id);
+						
+						$('#re_inq_content').summernote({
+							height: 300,                 // 에디터 높이
+							minHeight: null,             // 최소 높이
+							maxHeight: null,             // 최대 높이
+							focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+							lang: "ko-KR",					// 한글 설정
+							placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+							callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+								onImageUpload : function(files) {
+									uploadSummernoteImageFile(files[0],this);
+								}
+							}
+						});
+
+						$("#submitRe").click(function(){
+							var r = $("#insertRe").serialize();
+							$.ajax("/admin/insertRe",{data:r,success:function(){
+								window.location.reload(true)
+								$("#ListQnA").css("display","block");
+								$("#AddRe").css("display","none");
+								}});
+							});
+						
 						});
 					});
 
@@ -187,16 +214,30 @@ $(function(){
 내용		<div id="detail_inq_content"></div><br>
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
-<section id="rebutton">
-	<button id="del">삭제하기</button><br>
-	<button id="re">답변달기</button><br>
+	<section id="rebutton">
+		<button id="del">삭제하기</button><br>
+		<button id="re">답변달기</button><br>
+	</section>
 </section>
 
-<section id="insertRe">
+<section id="AddRe">
 	<h3>답변등록</h3>
 	<hr>
-</section>
-<a href="/admin/List">QnA리스트 돌아가기</a>
+	<form id="insertRe">
+	<!-- 원본글 번호 저장 -->
+	<input type="text" id="re_inq_no" name="inq_no"><br>
+		카테고리<br>
+		<select name="cs_no">
+			<option value="1">홈페이지 이용 관련</option>
+			<option value="2">계정 관련</option>
+		</select><br>
+		작성자 아이디<br>
+		<input type="text" id="re_user_id" name="user_id"><br>
+		내용<br>
+		<input type="text" id="re_inq_content" name="inq_content" readonly="readonly"><br>
+	</form>
+	<button id="submitRe">답변등록</button><br>
+	<a href="/admin/List">QnA리스트 돌아가기</a>
 </section>
 
 <section id="UpdateQnA">

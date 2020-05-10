@@ -6,12 +6,18 @@
  	
  	<!-- 모든 qna리스트 -->
  	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo">
- 		select * from qna order by inq_no desc, ref, ref_step, ref_level
+ 								<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
+ 		select * from qna order by ref, ref_level, ref_step
  	</select>
 
-	<!-- qna등록 -->
+		<!-- qna등록 시퀀스 이용 -->
+<!-- 	<insert id="insertQnA"> -->
+<!-- 		insert into qna values (seq_inq_no.nextval, #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, #{inq_file}, #{ref}, 0, 0) -->
+<!-- 	</insert> -->
+
+	<!-- qna등록 nvl 이용 -->
 	<insert id="insertQnA">
-		insert into qna values (seq_inq_no.nextval, #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, #{inq_file}, 0, 0, 0)
+		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, #{inq_file}, #{ref}, 0, 0)
 	</insert>
 	
 	<!-- qna상세보기 -->
@@ -27,4 +33,13 @@
 	<!-- qna수정 -->
 	
 	<!-- 답변등록 -->
+	<insert id="insertRe">
+		<!-- 답변은 사진은 태그로 올라가고 파일 저장은 안함 -->
+		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, '답변 입니다', #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
+	</insert>
+	
+	<!-- 마지막 글번호 -->
+	<select id="lastNo" resultType="java.lang.Integer">
+		select max(inq_no) from qna
+	</select>
 </mapper>

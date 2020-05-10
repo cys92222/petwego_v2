@@ -53,6 +53,15 @@ public class QnAController {
 	//qna등록
 	@RequestMapping("/admin/insertQnA")
 	public void insertQnA(QnAVo q) {
+		
+		if( service.allQnAList() == null ) {
+			q.setRef(1);
+		}else if( service.lastNo() == null){
+			q.setRef(1);
+		}else {
+			q.setRef(service.lastNo()+1);
+		}
+		
 		service.insertQnA(q);
 	}
 	
@@ -97,5 +106,17 @@ public class QnAController {
 	@RequestMapping("/admin/deleteQnA")
 	public void deleteQnA(QnAVo q) {
 		service.deleteQnA(q);
+	}
+	
+	//답변등록
+	@RequestMapping("/admin/insertRe")
+	public void insertRe(QnAVo q) {
+		//부모글 번호로 묶음
+		q.setRef(q.getInq_no());
+		//정렬순서
+		q.setRef_step(q.getRef_step()+1);
+		//들여쓰기
+		q.setRef_level(q.getRef_level()+1);
+		service.insertRe(q);
 	}
 }

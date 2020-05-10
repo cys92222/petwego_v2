@@ -19,8 +19,8 @@ public class QnAVo {
 	private String user_id;
 	private String inq_file;
 	private int ref;				//부모글 그룹
-	private int ref_step;			//부모글 그룹안에서 정렬 순서
-	private int ref_level;			//답변의 답변일 경우 순서
+	private int ref_step;			//부모글 그룹안에서 정렬 순서,답변의 답변
+	private int ref_level;			//들여쓰기
 }
 
 

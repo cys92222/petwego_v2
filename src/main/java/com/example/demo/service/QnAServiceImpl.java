@@ -47,5 +47,23 @@ public class QnAServiceImpl implements QnAService {
 		re = dao.deleteQnA(q);
 		return re;
 	}
+	
+	//답변등록
+	@Override
+	public int insertRe(QnAVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.insertRe(q);
+		return re;
+	}
+	
+	//마지막 글번호
+	@Override
+	public Integer lastNo() {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.lastNo();
+		return re;
+	}
 
 }
