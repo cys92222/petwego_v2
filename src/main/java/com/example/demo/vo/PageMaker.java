@@ -7,13 +7,13 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 public class PageMaker {
-	private int totalCount;
-	private int startPage;
-	private int endPage;
-	private boolean prev;
-	private boolean next;
-	private int displayPageNum = 5;
-	private Criteria cri;
+	private int totalCount;			// 실제 게시물의 수
+	private int startPage;			// 현재 페이지 기준 시작 페이지 번호
+	private int endPage;			// 현재 페이지 기준 끝 페이지 번호
+	private boolean prev;			// 이전 버튼 활성화 여부
+	private boolean next;			// 다음 버튼 활성화 여부
+	private int displayPageNum = 5; // 이전 1 2 3 4 5 다음 
+	private Criteria cri;			// page 현재페이지, PerPageNum 페이지당 보여질 게시물 수
 	
 	public void setCri(Criteria cri) {
 		this.cri = cri;
@@ -53,7 +53,7 @@ public class PageMaker {
 	}
 	 
 	private void calcData() {
-		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
+		endPage = (int)(Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
 		startPage = (endPage - displayPageNum) + 1;
 	  
 		int tempEndPage = (int) (Math.ceil(totalCount / (double)cri.getPerPageNum()));
