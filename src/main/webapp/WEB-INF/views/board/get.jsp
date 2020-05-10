@@ -19,6 +19,7 @@
 			self.location = "/board/update?board_no="+board_no;
 		})
 		
+		
 		// 삭제버튼 누르면...
 		$("#btnDelete").click(function(){
 			var check = confirm("게시글을 삭제하시겠습니까?")
