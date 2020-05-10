@@ -3,12 +3,11 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.service.Board_CommentService;
@@ -37,12 +36,12 @@ public class Board_CommentController {
 	}
 	
 	// 댓글작성
-	@RequestMapping(value = "/insertComment", method = RequestMethod.POST)
-	public String insertComment(Board_CommentVo bc, RedirectAttributes rttr) {
-		//System.out.println("댓글작성 컨트롤러 동작함");
+	@PostMapping(value = "/insertComment")
+	public ModelAndView insertComment(Board_CommentVo bc) {
+		System.out.println("댓글작성 컨트롤러 동작함");
+		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
 		comm_service.insertComment(bc);
-		rttr.addAttribute("board_no", bc.getBoard_no()); // 댓글이 달린 게시글의 번호 받아와야함
-		return "redirect:/board/get";
+		return mav;
 	}
 
 	// 댓글만 삭제

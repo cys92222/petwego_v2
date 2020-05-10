@@ -54,7 +54,7 @@ public class BoardController {
 	public void setService(BoardService service) {
 		this.service = service;
 	}
-	
+
 	Board_fileService bfservice;
 
 	@Autowired
@@ -94,13 +94,13 @@ public class BoardController {
 	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 		service.insertBoard(b);
-		
-		//게시물 등록시 이미지파일은 따로 파일 테이블에 저장 ... 하는중
-		bf.setBoard_no(service.board_no());
-		bf.setFile_name("a");
-		bf.setFile_path("b");
-		bf.setUuid("c");
-		System.out.println("마지막 글번호"+ service.board_no());
+
+		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장 ... 하는중
+//		bf.setBoard_no(service.board_no());
+//		bf.setFile_name("a");
+//		bf.setFile_path("b");
+//		bf.setUuid("c");
+//		System.out.println("마지막 글번호"+ service.board_no());
 //		service.insert(bf);
 		return mav;
 	}
@@ -111,7 +111,7 @@ public class BoardController {
 		service.updateHit(b.getBoard_no()); // 게시물 조회수 증가
 		model.addAttribute("detail", service.getBoard(b));
 
-		// 댓글목록, 컨트롤러 따로 만들었음 
+		// 댓글목록, 컨트롤러 따로 만들었음
 //		List<Board_CommentVo> listComment = comm_service.listComment(b.getBoard_no());
 //		model.addAttribute("listComment", listComment);
 	}
@@ -133,12 +133,12 @@ public class BoardController {
 	@GetMapping("/delete")
 	public ModelAndView deleteSubmit(BoardVo b, Board_CommentVo bc) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
-		
+
 		// 댓글달린 글이라면 댓글 먼저 지우고 게시글을 지워줘!
-		comm_service.deleteComment(bc);		// where comm_num = #{comm_num}
-		comm_service.deleteCommBoard(bc);  // where board_no = #{board_no}
+		comm_service.deleteComment(bc); // where comm_num = #{comm_num}
+		comm_service.deleteCommBoard(bc); // where board_no = #{board_no}
 		service.deleteBoard(b);
-		
+
 		return mav;
 	}
 
@@ -172,6 +172,5 @@ public class BoardController {
 
 		return jsonObject;
 	}
-
 
 }

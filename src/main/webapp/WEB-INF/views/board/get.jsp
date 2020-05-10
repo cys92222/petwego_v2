@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 상세보기화면 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.3/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		var board_no = $("#board_no").val();
@@ -29,7 +29,19 @@
 			}
 		});
 
-		// 댓글 목록, 댓글 작성은 되는데 이 목록 왜 안뜸 
+		
+		// 댓글작성버튼을 누르면!
+		$("#comment").click(function(){
+
+			var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
+			if(commCheck == true){
+				var commSubmit = $("form[name='commentForm']");
+				commSubmit.attr("action","/comment/insertComment");
+				commSubmit.submit();
+			}
+		})
+		
+		// 댓글 목록
 		$.ajax("/comment/listComment",{type:"GET",data:{board_no:board_no},success:function(comm){
 			comm = JSON.parse(comm);
 			$.each(comm, function(idx,c){						
@@ -55,19 +67,7 @@
 				})
 			})
 		}})
-		
-		// 댓글작성버튼을 누르면!
-		$("#comment").click(function(){
 
-			var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
-
-			if(commCheck == true){
-				var commSubmit = $("form[name='commentForm']");
-				commSubmit.attr("action","/comment/insertComment");
-				commSubmit.submit();
-				location.href = "/board/get?board_no="+board_no;
-			}
-		})
 
 // 		// 댓글 삭제, 이 방식은 댓글 컨트롤러 따로 없이 board컨트롤러에서 상세보기 부분에 댓글목록 처리했을때 쓴 방식
 // 		$("#delComment").click(function(){
@@ -125,8 +125,9 @@
 		<input type="hidden" id="board_no" name="board_no" value="${detail.board_no}">
 		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
 		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>
+		<button type="submit" id="comment">댓글 등록</button>
 	</form>
-	<button type="submit" id="comment">댓글 등록</button>
+	
 	<hr>
 	<!-- 댓글 목록-->
 	<table id="comm_list" border="1">
