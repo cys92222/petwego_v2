@@ -83,15 +83,17 @@ $(function(){
 
 				var a = qna.inq_title;
 				
-// 				if(qna.ref_level > 0){
-// 					a =  +a;
-// 					}
+				var reimg = $("<img src='../adminImg/re.jpg'>");
+				if(qna.ref_level > 0){
+					var inq_title = $("<td></td>").append(reimg,a);
+					}else {
+						var inq_title = $("<td></td>").append(a);
+						}
 				
-				var inq_title = $("<td></td>").append($("<img src=../adminImg/re.jpg>"));
-				var inq_title = $("<td></td>").append(a);
+				
 				var inq_date = $("<td></td>").append(moment(qna.inq_date).format('YYYY년 MM월 DD일 HH시 mm분 ss초'));
 				
-				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title,inq_date);
+				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title);
 				
 				$("#list").append(tr);
 
@@ -228,7 +230,6 @@ $(function(){
 		<button id="re">답변달기</button><br>
 	</section>
 </section>
-
 <section id="AddRe">
 	<h3>답변등록</h3>
 	<hr>
