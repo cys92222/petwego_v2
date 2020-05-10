@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//민아 5/10
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

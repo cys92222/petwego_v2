@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+//민아 5/10
 public class Board_fileVo {
 	private String uuid;		// uuid로 저장되는 파일이름
 	private String file_path;	// 파일 경로

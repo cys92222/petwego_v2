@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+// 민아 5/10
 public class BoardVo {
 	private int board_no;
 	private String category;
