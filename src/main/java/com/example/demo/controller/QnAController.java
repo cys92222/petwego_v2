@@ -56,10 +56,10 @@ public class QnAController {
 		
 		if( service.allQnAList() == null ) {
 			q.setRef(1);
-		}else if( service.lastNo() == null){
+		}else if(service.lastNo() == -1){
 			q.setRef(1);
 		}else {
-			q.setRef(service.lastNo()+1);
+			q.setRef(service.lastNo() + 1);
 		}
 		
 		service.insertQnA(q);

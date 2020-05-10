@@ -7,7 +7,7 @@
  	<!-- 모든 qna리스트 -->
  	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo">
  								<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
- 		select * from qna order by ref, ref_level, ref_step
+ 		select * from qna order by ref desc, ref_level, ref_step
  	</select>
 
 		<!-- qna등록 시퀀스 이용 -->

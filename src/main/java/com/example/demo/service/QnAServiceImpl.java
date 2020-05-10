@@ -62,7 +62,9 @@ public class QnAServiceImpl implements QnAService {
 	public Integer lastNo() {
 		// TODO Auto-generated method stub
 		int re = -1;
-		re = dao.lastNo();
+		if(dao.lastNo() != null) {
+			re = dao.lastNo();
+		}
 		return re;
 	}
 
