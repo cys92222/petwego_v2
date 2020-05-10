@@ -101,7 +101,7 @@ public class BoardController {
 		bf.setFile_path("b");
 		bf.setUuid("c");
 		System.out.println("마지막 글번호"+ service.board_no());
-		service.insert(bf);
+//		service.insert(bf);
 		return mav;
 	}
 
