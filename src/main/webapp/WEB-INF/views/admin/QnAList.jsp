@@ -12,6 +12,8 @@
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
 <!-- 썸머노트 설정 -->
 <script src="../summernote/js/summernote-lite.js"></script>
 <script src="../summernote/js/lang/summernote-ko-KR.js"></script>
@@ -78,9 +80,17 @@ $(function(){
 					cs_no.append("계정 관련");
 					}
 				var user_id = $("<td></td>").append(qna.user_id);
-				var inq_title = $("<td></td>").append(qna.inq_title);
-				var inq_date = $("<td></td>").append(qna.inq_date);
-	
+
+				var a = qna.inq_title;
+				
+// 				if(qna.ref_level > 0){
+// 					a =  +a;
+// 					}
+				
+				var inq_title = $("<td></td>").append($("<img src=../adminImg/re.jpg>"));
+				var inq_title = $("<td></td>").append(a);
+				var inq_date = $("<td></td>").append(moment(qna.inq_date).format('YYYY년 MM월 DD일 HH시 mm분 ss초'));
+				
 				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title,inq_date);
 				
 				$("#list").append(tr);
@@ -94,8 +104,7 @@ $(function(){
 						$("#detail_inq_no").val(detail.inq_no);
 						$("#detail_cs_no").val(detail.cs_no);
 						$("#detail_user_id").val(detail.user_id);
-						$("#detail_inq_title").val(detail.inq_title);
-						
+						$("#detail_inq_title").val(detail.inq_title);						
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
 						
 						$("#detail_inq_date").val(detail.inq_date);
