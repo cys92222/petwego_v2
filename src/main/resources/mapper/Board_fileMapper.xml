@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.Board_fileDao">
+<!-- 민아 5/10 -->
 <!-- 	private String uuid;		// uuid로 저장되는 파일이름 -->
 <!-- 	private String file_path;	// 파일 경로 -->
 <!-- 	private String file_name;	// 파일의 오리지널 이름  -->

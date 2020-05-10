@@ -3,6 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.BoardDao">
+<!-- 민아 5/10 -->
 <!-- 	private int board_no; -->
 <!-- 	private String category; -->
 <!-- 	private String board_title; -->
