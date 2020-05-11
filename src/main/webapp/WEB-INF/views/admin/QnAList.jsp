@@ -303,5 +303,6 @@ $(function(){
 
 <a href="/admin/List">QnA리스트 돌아가기</a>
 </section>
+
 </body>
 </html>
