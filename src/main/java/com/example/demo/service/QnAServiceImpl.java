@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.QnADao;
 import com.example.demo.vo.Criteria;
 import com.example.demo.vo.QnAVo;
+import com.example.demo.vo.SearchCriteria;
 
 @Service
 public class QnAServiceImpl implements QnAService {
@@ -17,9 +18,9 @@ public class QnAServiceImpl implements QnAService {
 	
 	//모든 qna리스트
 	@Override
-	public List<QnAVo> allQnAList(Criteria cri) {
+	public List<QnAVo> allQnAList(SearchCriteria scri) {
 		// TODO Auto-generated method stub
-		List<QnAVo> list = dao.allQnAList(cri);
+		List<QnAVo> list = dao.allQnAList(scri);
 		return list;
 	}
 	
@@ -71,10 +72,10 @@ public class QnAServiceImpl implements QnAService {
 	
 	//qna 전체글 수
 	@Override
-	public int listCount() {
+	public int listCount(SearchCriteria scri) {
 		// TODO Auto-generated method stub
 		int re = -1;
-		re = dao.listCount();
+		re = dao.listCount(scri);
 		return re;
 	}
 	

@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import com.example.demo.service.QnAService;
 import com.example.demo.vo.Criteria;
 import com.example.demo.vo.PageMaker;
 import com.example.demo.vo.QnAVo;
+import com.example.demo.vo.SearchCriteria;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -39,17 +41,17 @@ public class QnAController {
 	
 	//모든 qna리스트
 	@RequestMapping("/admin/List")
-	public ModelAndView allQnAList(Criteria cri){
+	public ModelAndView allQnAList(Criteria cri,@ModelAttribute("scri") SearchCriteria scri){
 		ModelAndView mav = new ModelAndView();
 		
 		
 		
 		Gson gson = new Gson();
-		mav.addObject("list", gson.toJson(service.allQnAList(cri)));
+		mav.addObject("list", gson.toJson(service.allQnAList(scri)));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCount());
+		pageMaker.setTotalCount(service.listCount(scri));
 		mav.addObject("pageMaker", pageMaker);
 		
 //		mav.addObject("list", service.allQnAList());
@@ -61,15 +63,15 @@ public class QnAController {
 	
 	//qna등록
 	@RequestMapping("/admin/insertQnA")
-	public void insertQnA(QnAVo q, Criteria cri) {
+	public void insertQnA(QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {
 		
 		ModelAndView mav = new ModelAndView();
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(service.listCount());
+		pageMaker.setTotalCount(service.listCount(scri));
 		mav.addObject("pageMaker", pageMaker);
 		
-		if( service.allQnAList(cri) == null ) {
+		if( service.allQnAList(scri) == null ) {
 			q.setRef(1);
 		}else if(service.lastNo() == -1){
 			q.setRef(1);

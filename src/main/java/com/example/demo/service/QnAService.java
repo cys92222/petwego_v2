@@ -4,11 +4,12 @@ import java.util.List;
 
 import com.example.demo.vo.Criteria;
 import com.example.demo.vo.QnAVo;
+import com.example.demo.vo.SearchCriteria;
 
 public interface QnAService {
 
 	//모든 qna리스트
-	public List<QnAVo> allQnAList(Criteria cri);
+	public List<QnAVo> allQnAList(SearchCriteria scri);
 		
 	//qna등록
 	public int insertQnA(QnAVo q);
@@ -27,5 +28,5 @@ public interface QnAService {
 	public Integer lastNo();
 	
 	//qna 전체글 수
-	public int listCount();
+	public int listCount(SearchCriteria scri);
 }
