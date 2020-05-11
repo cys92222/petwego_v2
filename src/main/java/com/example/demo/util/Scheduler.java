@@ -10,6 +10,6 @@ public class Scheduler {
 	
 	@Scheduled(cron = "* * * * * *")
 	public void SchedulerService() {
-		System.out.println("스케쥴러 동작함");
+//		System.out.println("스케쥴러 동작함");
 	}
 }

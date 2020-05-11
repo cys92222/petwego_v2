@@ -63,9 +63,9 @@
 	<sql id="search">
 		<if test="searchType != null">
 			<if test="searchType == 't'.toString()">AND inq_title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
+			<if test="searchType == 'c'.toString()">AND inq_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND user_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (inq_title LIKE '%' || #{keyword} || '%') or (inq_content LIKE '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
 </mapper>
