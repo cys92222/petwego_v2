@@ -43,4 +43,10 @@ public class Board_fileServiceImpl implements Board_fileService{
 		return null;
 	}
 
+	@Override
+	public int updateFile(Board_fileVo bf) {
+		int re= bfDao.updateFile(bf);
+		return re;
+	}
+
 }

@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.BoardVo;
-import com.example.demo.vo.Board_fileVo;
 
 // 민아) 5/10
 public interface BoardDao {
@@ -32,8 +31,6 @@ public interface BoardDao {
 	int deleteBoard(BoardVo b);
 	
 	//마지막 글번호
-	int board_no();
+	int lastBoard();
 	
-	//파일등록
-	int insert(Board_fileVo bf);
 }

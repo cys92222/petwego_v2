@@ -74,13 +74,8 @@
 	</delete>
 	
 	<!-- 마지막글번호 -->
-  <select id="board_no" resultType="java.lang.Integer">
+  <select id="lastBoard" resultType="java.lang.Integer">
   	select max(board_no) from board
   </select>
-  
-  <!-- 자유게시판 파일 등록 -->
-	<insert id="insert">
-		insert into board_file(uuid, file_path, file_name, board_no)
-			values(#{uuid}, #{file_path}, #{file_name}, #{board_no})
-	</insert>
+
 </mapper>

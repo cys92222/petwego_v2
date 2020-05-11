@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 글 등록 -->
+<!-- 민아) 5/11, 서머노트 파일 확장자가 이미지파일인것만 등록되게 & 용량 20mb 제한 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script src="../summernote/js/summernote-lite.js"></script>
 <script src="../summernote/js/lang/summernote-ko-KR.js"></script>

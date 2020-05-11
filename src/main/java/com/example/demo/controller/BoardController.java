@@ -47,9 +47,8 @@ import lombok.AllArgsConstructor;
 public class BoardController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BoardController.class);
 
-	
 	String savedFile;
-	
+
 	// dao대신 서비스와 의존관계 설정, setter를 만들어야 하는건지는 잘 모르겠음.
 	@Autowired
 	private BoardService service;
@@ -97,28 +96,13 @@ public class BoardController {
 	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 		service.insertBoard(b);
-//		String fileRoot = "C:\\summernote_image\\";
-//		
-//		if(!bf.getUuid().equals(savedFile)) {
-//			File file = new File(fileRoot+"/"+savedFile);
-//			
-//			System.out.println(bf.getUuid());
-//			System.out.println(savedFile);
-//			file.delete();
-//			bf.setFile_name("");
-//			bf.setFile_path("");
-//			bf.setUuid("");
-//		}else {
-//			bf.setBoard_no(service.board_no());
-//			service.insert(bf);
-//		}
-		
 		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
 		// 이미지파일이 없으면 파일테이블에 저장 안됨!
 		if (!bf.getFile_name().equals("")) {
-			bf.setBoard_no(service.board_no());
-			System.out.println("마지막 글번호" + service.board_no());
-			service.insert(bf);
+			bf.setBoard_no(service.lastBoard());
+			System.out.println("마지막 글번호" + service.lastBoard());
+			// service.insert(bf);
+			bf_service.insert(bf);
 		}
 		return mav;
 	}
@@ -141,16 +125,37 @@ public class BoardController {
 	}
 
 	@PostMapping(value = "/update")
-	public ModelAndView updateSubmit(BoardVo b) {
+	public ModelAndView updateSubmit(BoardVo b, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
+
 		service.updateBoard(b);
+		System.out.println(bf.getFile_name());
+
+		// 글만 있는데 수정시 사진을 추가할때, 추가한 사진이 board_file에 insert 되도록! 
+		if (!b.getBoard_content().equals("")) {
+			if (!bf.getFile_name().equals("")) {
+				bf_service.insert(bf);
+			}
+		}
+
+		// 게시글 수정시, 원래는 이미지가 있었는데 사진을 변경하거나 사진을 지우고 텍스트로만 글을쓰면
+		// board_file테이블에 있던 사진정보를 update해줌
+		if (bf.getFile_name().equals("")) {
+			bf_service.delbord_no(bf.getBoard_no());
+		} else {
+			bf_service.updateFile(bf);
+		}
+
 		return mav;
 	}
 
 	// 게시글 삭제
 	@GetMapping("/delete")
-	public ModelAndView deleteSubmit(BoardVo b, Board_CommentVo bc) {
+	public ModelAndView deleteSubmit(BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
+
+		// 첨부파일이 있는 글이라면, 첨부파일 먼저 지워줘!
+		bf_service.delbord_no(bf.getBoard_no());
 
 		// 댓글달린 글이라면 댓글 먼저 지우고 게시글을 지워줘!
 		comm_service.deleteComment(bc); // where comm_num = #{comm_num}
@@ -173,7 +178,7 @@ public class BoardController {
 
 		// UUID란 데이터를 고유하게 식별하는데 사용되는 16바이트 길이의 랜덤한 숫자
 		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-		
+
 		savedFile = savedFileName;
 		File targetFile = new File(fileRoot + savedFileName);
 

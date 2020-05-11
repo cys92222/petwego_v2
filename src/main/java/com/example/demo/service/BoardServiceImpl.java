@@ -55,16 +55,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public int board_no() {
+	public int lastBoard() {
 		// TODO Auto-generated method stub
-		return boardDao.board_no();
+		return boardDao.lastBoard();
 	}
 
-	@Override
-	public int insert(Board_fileVo bf) {
-		// TODO Auto-generated method stub
-		return boardDao.insert(bf);
-	}
-	
-	
 }

@@ -20,6 +20,12 @@
 		select * from board_file where board_no = #{board_no}
 	</select>
 	
+	<!-- 게시물 수정시에 파일이 바뀌면 그 파일의uuid, filename도 변경되도록  -->
+	<update id="updateFile">
+		update board_file set uuid = #{uuid}, file_name = #{file_name}  where board_no = #{board_no}
+	</update>
+	
+	
 	<!-- 파일지우기, 파일만 지울때는 uuid기준, 게시글이 지워질때도 파일은 지워짐 -->
 	<delete id="delete">
 		delete board_file where uuid = #{uuid}

@@ -19,4 +19,7 @@ public interface Board_fileDao {
 	//실제로 db에 들어있는 파일 목록
 	public List<Board_fileVo> realFile();
 	
+	//수정
+	int updateFile(Board_fileVo bf);
+	
 }

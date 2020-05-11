@@ -19,5 +19,7 @@ public interface Board_fileService {
 		//실제로 db에 들어있는 파일 목록
 		public List<Board_fileVo> realFile();
 		
+		//수정
+		public int updateFile(Board_fileVo bf);
 	
 }
