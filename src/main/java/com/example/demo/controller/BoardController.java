@@ -30,12 +30,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.Board_CommentService;
 import com.example.demo.service.Board_fileService;
-import com.example.demo.util.Criteria;
-import com.example.demo.util.PageMaker;
-import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.PageMaker;
+import com.example.demo.util.SearchCriteria;
 import com.google.gson.JsonObject;
 
 import lombok.AllArgsConstructor;
@@ -47,6 +47,9 @@ import lombok.AllArgsConstructor;
 public class BoardController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(BoardController.class);
 
+	
+	String savedFile;
+	
 	// dao대신 서비스와 의존관계 설정, setter를 만들어야 하는건지는 잘 모르겠음.
 	@Autowired
 	private BoardService service;
@@ -94,14 +97,29 @@ public class BoardController {
 	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 		service.insertBoard(b);
-
-		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장 ... 하는중
-//		bf.setBoard_no(service.board_no());
-//		bf.setFile_name("a");
-//		bf.setFile_path("b");
-//		bf.setUuid("c");
-//		System.out.println("마지막 글번호"+ service.board_no());
-//		service.insert(bf);
+//		String fileRoot = "C:\\summernote_image\\";
+//		
+//		if(!bf.getUuid().equals(savedFile)) {
+//			File file = new File(fileRoot+"/"+savedFile);
+//			
+//			System.out.println(bf.getUuid());
+//			System.out.println(savedFile);
+//			file.delete();
+//			bf.setFile_name("");
+//			bf.setFile_path("");
+//			bf.setUuid("");
+//		}else {
+//			bf.setBoard_no(service.board_no());
+//			service.insert(bf);
+//		}
+		
+		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
+		// 이미지파일이 없으면 파일테이블에 저장 안됨!
+		if (!bf.getFile_name().equals("")) {
+			bf.setBoard_no(service.board_no());
+			System.out.println("마지막 글번호" + service.board_no());
+			service.insert(bf);
+		}
 		return mav;
 	}
 
@@ -155,7 +173,8 @@ public class BoardController {
 
 		// UUID란 데이터를 고유하게 식별하는데 사용되는 16바이트 길이의 랜덤한 숫자
 		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
-
+		
+		savedFile = savedFileName;
 		File targetFile = new File(fileRoot + savedFileName);
 
 		try {
@@ -163,6 +182,11 @@ public class BoardController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
 			jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
 			jsonObject.addProperty("responseCode", "success");
+
+			// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
+			jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
+			jsonObject.addProperty("fileRoot", fileRoot); // 파일 저장 경로
+			jsonObject.addProperty("savedFileName", savedFileName); // uuid
 
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
