@@ -5,7 +5,7 @@
 <mapper namespace="com.example.demo.dao.TogetherDao">
  
  	
- 	<select id="listTogether" resultType="com.example.demo.vo.TogetherVo" parameterType="com.example.demo.vo.SearchCriteria">
+ 	<select id="listTogether" resultType="com.example.demo.vo.TogetherVo" parameterType="com.example.demo.util.SearchCriteria">
  		select t_num,
  		t_thumbnail,
  		t_title,
@@ -64,7 +64,7 @@
 <!-- 		order by t_num desc -->
 <!--  	</select> -->
  	
- 	<select id="listCount" parameterType="com.example.demo.vo.SearchCriteria" resultType="int">
+ 	<select id="listCount" parameterType="com.example.demo.util.SearchCriteria" resultType="int">
 		SELECT COUNT(t_num)
 		 FROM together
 		 WHERE 1=1 

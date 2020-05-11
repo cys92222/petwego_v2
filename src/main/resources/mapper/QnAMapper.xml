@@ -5,7 +5,7 @@
 <mapper namespace="com.example.demo.dao.QnADao">
  	
  	<!-- 모든 qna리스트 -->
- 	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo" parameterType="com.example.demo.vo.Criteria">
+ 	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo" parameterType="com.example.demo.util.Criteria">
  		<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
  		SELECT  *
 		 FROM ( 
@@ -52,17 +52,17 @@
 	</select>
 	
 	<!-- qna게시물 수 -->
-	<select id="listCount" resultType="int" parameterType="com.example.demo.vo.SearchCriteria">
+	<select id="listCount" resultType="int" parameterType="com.example.demo.util.SearchCriteria">
 		SELECT COUNT(inq_no)
 		  FROM qna
 		   WHERE 1=1
 		<include refid="search"></include>
-		 WHERE inq_no > 0
+		 and inq_no > 0
 	</select>
 	
 	<sql id="search">
 		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 't'.toString()">AND inq_title LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'c'.toString()">AND CONTENT LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'w'.toString()">AND WRITER LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'tc'.toString()">AND (TITLE LIKE '%' || #{keyword} || '%') or (CONTENT LIKE '%' || #{keyword} || '%')</if>
