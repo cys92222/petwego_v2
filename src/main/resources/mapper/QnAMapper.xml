@@ -5,9 +5,15 @@
 <mapper namespace="com.example.demo.dao.QnADao">
  	
  	<!-- 모든 qna리스트 -->
- 	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo">
- 								<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
- 		select * from qna order by ref desc, ref_level, ref_step
+ 	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo" parameterType="com.example.demo.vo.Criteria">
+ 		<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
+ 		SELECT  *
+		 FROM ( 
+		        select inq_no, cs_no, inq_title, inq_content, inq_date, user_id, inq_file, ref, ref_step, ref_level, ROW_NUMBER() OVER(ORDER BY inq_no DESC) AS RNUM
+		         FROM qna
+		                       ) q
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		order by ref desc, ref_level, ref_step
  	</select>
 
 		<!-- qna등록 시퀀스 이용 -->
@@ -41,5 +47,12 @@
 	<!-- 마지막 글번호 -->
 	<select id="lastNo" resultType="java.lang.Integer">
 		select max(inq_no) from qna
+	</select>
+	
+	<!-- qna게시물 수 -->
+	<select id="listCount" resultType="int">
+		SELECT COUNT(inq_no)
+		  FROM qna
+		 WHERE inq_no > 0
 	</select>
 </mapper>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +11,11 @@
 
 #AddQnA,#DetailQnA,#UpdateQnA,#AddRe{
 	display: none;
+	
+}
+
+li {
+	list-style: none; float: left; padding: 6px;
 }
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
@@ -45,6 +52,7 @@ $(function(){
 	function uploadSummernoteImageFile(file, editor) {
 	data = new FormData();
 	data.append("inq_file", file);
+	console.log(file); //파일 정보
 	$.ajax({
 		data : data,
 		type : "POST",
@@ -55,6 +63,7 @@ $(function(){
 	    	//항상 업로드된 파일의 url이 있어야 한다.
 			$(editor).summernote('insertImage', data.url);
 // 			alert(data.url);
+			alert(data);
 			var data_url = data.url;
 			var n = data_url.split('/');
 			$("#inq_file").val(n[2]);
@@ -71,7 +80,10 @@ $(function(){
 	function All(){
 		$.each(arr,function(idx,qna){
 				var inq_no = $("<td></td>").append(qna.inq_no);
+				
 				var category = qna.cs_no;
+
+				
 				var cs_no = $("<td></td>");
 				if(category == 1){
 					cs_no.append("홈페이지 이용 관련");
@@ -86,14 +98,17 @@ $(function(){
 				var reimg = $("<img src='../adminImg/re.jpg'>");
 				if(qna.ref_level > 0){
 					var inq_title = $("<td></td>").append(reimg,a);
+					var user_id = $("<td></td>").append("관리자");
 					}else {
 						var inq_title = $("<td></td>").append(a);
+						var user_id = $("<td></td>").append(qna.user_id);
 						}
 				
 				
-				var inq_date = $("<td></td>").append(moment(qna.inq_date).format('YYYY년 MM월 DD일 HH시 mm분 ss초'));
+				var inq_date = $("<td></td>").append(moment(qna.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
 				
-				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title);
+//  				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title,inq_date);
+				var tr = $("<tr></tr>").append(cs_no,user_id,inq_title,inq_date); //글번호 지움
 				
 				$("#list").append(tr);
 
@@ -105,24 +120,33 @@ $(function(){
 					$.ajax("/admin/detailQnA",{data:d_no,success:function(detail){
 						$("#detail_inq_no").val(detail.inq_no);
 						$("#detail_cs_no").val(detail.cs_no);
-						$("#detail_user_id").val(detail.user_id);
+
+						if(qna.ref_level > 0){
+							$("#detail_user_id").val("관리자");
+							}else {
+								$("#detail_user_id").val(detail.user_id);
+								}
+						
 						$("#detail_inq_title").val(detail.inq_title);						
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
-						
-						$("#detail_inq_date").val(detail.inq_date);
+						$("#detail_inq_date").val(moment(detail.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
 						}});
 
 					//삭제
 					$("#del").click(function(){
 // 						alert(qna.inq_no);
-						$.ajax("/admin/deleteQnA",{data:d_no,success:function(){
-							window.location.reload(true)
-							$("#ListQnA").css("display","block");
-							$("#DetailQnA").css("display","none");
-							}});
+						var con = confirm("삭제할까요?");
+
+						if(con == true){
+							$.ajax("/admin/deleteQnA",{data:d_no,success:function(){
+								window.location.reload(true);
+								$("#ListQnA").css("display","block");
+								$("#DetailQnA").css("display","none");
+								}});
+							}
 						});
 
-					//답변
+					//답변등록 폼
 					$("#re").click(function(){
 // 						alert(qna.inq_no + "번글에 답변등록");
 						$("#rebutton").css("display","none");
@@ -130,25 +154,13 @@ $(function(){
 
 						$("#re_inq_no").val(qna.inq_no);
 						$("#re_user_id").val(qna.user_id);
-						
-						$('#re_inq_content').summernote({
-							height: 300,                 // 에디터 높이
-							minHeight: null,             // 최소 높이
-							maxHeight: null,             // 최대 높이
-							focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-							lang: "ko-KR",					// 한글 설정
-							placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-							callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-								onImageUpload : function(files) {
-									uploadSummernoteImageFile(files[0],this);
-								}
-							}
-						});
+					
 
+						//답변등록
 						$("#submitRe").click(function(){
 							var r = $("#insertRe").serialize();
 							$.ajax("/admin/insertRe",{data:r,success:function(){
-								window.location.reload(true)
+								window.location.reload(true);
 								$("#ListQnA").css("display","block");
 								$("#AddRe").css("display","none");
 								}});
@@ -170,7 +182,7 @@ $(function(){
 	$("#btn").click(function(){	
 		var i = $("#insertQnA").serialize();	
 		$.ajax("/admin/insertQnA",{data:i,success:function(){
-			window.location.reload(true)
+			window.location.reload(true);
 			$("#ListQnA").css("display","block");
 			$("#AddQnA").css("display","none");
 			}});
@@ -187,10 +199,25 @@ $(function(){
 <h2>QnA리스트</h2>
 <hr>
 <table id="list" border="1" width="60%">
-	<tr><th>문의번호</th><th>카테고리</th><th>작성자</th><th>제목</th><th>작성일자</th></tr>
+	<tr><th>카테고리</th><th>작성자</th><th>제목</th><th>작성일자</th></tr>
 </table>
 
-<button id="add">QnA등록하기</button>
+<button id="add">QnA등록하기</button><br>
+<div>
+  <ul>
+    <c:if test="${pageMaker.prev}">
+    	<li><a href="/admin/List${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+    </c:if> 
+
+    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+    	<li><a href="/admin/List${pageMaker.makeQuery(idx)}">${idx}</a></li>
+    </c:forEach>
+
+    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+    	<li><a href="/admin/List${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+    </c:if> 
+  </ul>
+</div>
 </section>
 
 
@@ -244,7 +271,7 @@ $(function(){
 		작성자 아이디<br>
 		<input type="text" id="re_user_id" name="user_id"><br>
 		내용<br>
-		<input type="text" id="re_inq_content" name="inq_content" readonly="readonly"><br>
+		<textarea rows="8" cols="100" id="re_inq_content" name="re_inq_content" required="required"></textarea><br>
 	</form>
 	<button id="submitRe">답변등록</button><br>
 	<a href="/admin/List">QnA리스트 돌아가기</a>

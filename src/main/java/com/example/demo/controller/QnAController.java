@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.QnAService;
+import com.example.demo.vo.Criteria;
+import com.example.demo.vo.PageMaker;
 import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -37,11 +39,18 @@ public class QnAController {
 	
 	//모든 qna리스트
 	@RequestMapping("/admin/List")
-	public ModelAndView allQnAList(){
+	public ModelAndView allQnAList(Criteria cri){
 		ModelAndView mav = new ModelAndView();
 		
+		
+		
 		Gson gson = new Gson();
-		mav.addObject("list", gson.toJson(service.allQnAList()));
+		mav.addObject("list", gson.toJson(service.allQnAList(cri)));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCount());
+		mav.addObject("pageMaker", pageMaker);
 		
 //		mav.addObject("list", service.allQnAList());
 		
@@ -52,9 +61,15 @@ public class QnAController {
 	
 	//qna등록
 	@RequestMapping("/admin/insertQnA")
-	public void insertQnA(QnAVo q) {
+	public void insertQnA(QnAVo q, Criteria cri) {
 		
-		if( service.allQnAList() == null ) {
+		ModelAndView mav = new ModelAndView();
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(service.listCount());
+		mav.addObject("pageMaker", pageMaker);
+		
+		if( service.allQnAList(cri) == null ) {
 			q.setRef(1);
 		}else if(service.lastNo() == -1){
 			q.setRef(1);
@@ -110,13 +125,15 @@ public class QnAController {
 	
 	//답변등록
 	@RequestMapping("/admin/insertRe")
-	public void insertRe(QnAVo q) {
+	public void insertRe(QnAVo q, String re_inq_content) {
 		//부모글 번호로 묶음
 		q.setRef(q.getInq_no());
 		//정렬순서
 		q.setRef_step(q.getRef_step()+1);
 		//들여쓰기
 		q.setRef_level(q.getRef_level()+1);
+
+		q.setInq_content(re_inq_content);
 		service.insertRe(q);
 	}
 }
