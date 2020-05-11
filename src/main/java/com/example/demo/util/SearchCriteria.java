@@ -1,4 +1,4 @@
-package com.example.demo.vo;
+package com.example.demo.util;
 
 public class SearchCriteria extends Criteria {
 	private String searchType="";

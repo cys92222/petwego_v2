@@ -2,9 +2,9 @@ package com.example.demo.dao;
 
 import java.util.List;
 
-import com.example.demo.vo.Criteria;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.QnAVo;
-import com.example.demo.vo.SearchCriteria;
 
 public interface QnADao {
 	

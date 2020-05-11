@@ -84,6 +84,7 @@
 </script>
 </head>
 <body>
+<header></header>
 	<h2>자유게시판 상세보기</h2>
 	<hr>
 	<a href="list">게시글 목록</a><br><br>
@@ -132,5 +133,6 @@
 	<!-- 댓글 목록-->
 	<table id="comm_list" border="1">
 	</table>
+	<footer></footer>
 </body>
 </html>

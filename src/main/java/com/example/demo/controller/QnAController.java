@@ -17,10 +17,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.QnAService;
-import com.example.demo.vo.Criteria;
-import com.example.demo.vo.PageMaker;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.PageMaker;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.QnAVo;
-import com.example.demo.vo.SearchCriteria;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 

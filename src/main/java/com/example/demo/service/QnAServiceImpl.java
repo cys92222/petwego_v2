@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.QnADao;
-import com.example.demo.vo.Criteria;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.QnAVo;
-import com.example.demo.vo.SearchCriteria;
 
 @Service
 public class QnAServiceImpl implements QnAService {

@@ -2,8 +2,8 @@ package com.example.demo.dao;
 
 import java.util.List;
 
+import com.example.demo.util.Criteria;
 import com.example.demo.vo.Board_CommentVo;
-import com.example.demo.vo.Criteria;
 
 //민아) 5/10
 public interface Board_CommentDao {

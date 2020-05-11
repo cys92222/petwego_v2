@@ -2,10 +2,10 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.util.Criteria;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_fileVo;
-import com.example.demo.vo.Criteria;
-import com.example.demo.vo.SearchCriteria;
 
 //민아) 5/10
 public interface BoardService {

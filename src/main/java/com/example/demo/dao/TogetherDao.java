@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import com.example.demo.vo.Criteria;
-import com.example.demo.vo.SearchCriteria;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.TogetherVo;
 
 

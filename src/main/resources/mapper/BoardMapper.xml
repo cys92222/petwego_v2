@@ -12,7 +12,7 @@
 <!-- 	private int board_hit; -->
 <!-- 	private String user_id; -->
 	<!-- 자유게시판 목록 -->
-	<select id="listBoard" resultType="com.example.demo.vo.BoardVo" parameterType="com.example.demo.vo.Criteria">
+	<select id="listBoard" resultType="com.example.demo.vo.BoardVo" parameterType="com.example.demo.util.Criteria">
 		select board_no ,category ,board_title,board_content ,board_date, board_hit, user_id
 			from (select board_no, category ,board_title, board_content, board_date, board_hit, user_id
 					,row_number() over(order by board_no desc) as rNum 

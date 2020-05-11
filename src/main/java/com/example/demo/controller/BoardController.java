@@ -30,12 +30,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.Board_CommentService;
 import com.example.demo.service.Board_fileService;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.PageMaker;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
-import com.example.demo.vo.Criteria;
-import com.example.demo.vo.PageMaker;
-import com.example.demo.vo.SearchCriteria;
 import com.google.gson.JsonObject;
 
 import lombok.AllArgsConstructor;

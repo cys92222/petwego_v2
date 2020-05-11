@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.service.TogetherService;
-import com.example.demo.vo.Criteria;
-import com.example.demo.vo.PageMaker;
-import com.example.demo.vo.SearchCriteria;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.PageMaker;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.TogetherVo;
 import com.google.gson.Gson;
 

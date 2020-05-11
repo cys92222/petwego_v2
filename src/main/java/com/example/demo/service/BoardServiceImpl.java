@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.BoardDao;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_fileVo;
-import com.example.demo.vo.Criteria;
-import com.example.demo.vo.SearchCriteria;
 
 //민아) 5/10
 @Service
