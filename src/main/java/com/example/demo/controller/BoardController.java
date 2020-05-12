@@ -91,19 +91,27 @@ public class BoardController {
 	public void insertForm(Model model, @RequestParam(value = "board_no", defaultValue = "0") int board_no) {
 		model.addAttribute("no", board_no);
 	}
-
+	
+	//@ModelAttribute
 	@PostMapping(value = "/insert")
-	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf) {
+	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf, @RequestParam List<Board_fileVo> listImg) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 		service.insertBoard(b);
-		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
-		// 이미지파일이 없으면 파일테이블에 저장 안됨!
-		if (!bf.getFile_name().equals("")) {
-			bf.setBoard_no(service.lastBoard());
-			System.out.println("마지막 글번호" + service.lastBoard());
-			// service.insert(bf);
-			bf_service.insert(bf);
-		}
+		
+//		for(Board_fileVo bf2 : listImg) {
+//			bf.setBoard_no(service.lastBoard());
+//			System.out.println("마지막 글번호" + service.lastBoard());
+//			bf_service.insert(bf);
+//			System.out.println(bf2);
+//		}
+	
+//		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
+//		// 이미지파일이 없으면 파일테이블에 저장 안됨!
+//		if (!bf.getFile_name().equals("")) {
+//			bf.setBoard_no(service.lastBoard());
+//			System.out.println("마지막 글번호" + service.lastBoard());
+//			bf_service.insert(bf);
+//		}
 		return mav;
 	}
 
@@ -190,8 +198,8 @@ public class BoardController {
 
 			// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
 			jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
-			jsonObject.addProperty("fileRoot", fileRoot); // 파일 저장 경로
-			jsonObject.addProperty("savedFileName", savedFileName); // uuid
+			jsonObject.addProperty("fileRoot", fileRoot); 				// 파일 저장 경로
+			jsonObject.addProperty("savedFileName", savedFileName); 	// uuid
 
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
@@ -201,5 +209,15 @@ public class BoardController {
 
 		return jsonObject;
 	}
+
+		@PostMapping(value="ImgUpload")
+		@ResponseBody
+		public String ImgUpload(@RequestBody List<Board_fileVo> listImg) {
+			System.out.println(listImg);
+			for( Board_fileVo bf : listImg ) {
+				bf_service.insert(bf);
+			}
+			return "msg";
+		}
 
 }
