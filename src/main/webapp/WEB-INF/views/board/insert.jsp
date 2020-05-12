@@ -15,7 +15,8 @@
 <script type="text/javascript">
 
 var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
-
+var listuuid = [];
+var listfilename = [];
 $(function(){
 	
 	//썸머노트
@@ -47,6 +48,7 @@ $(function(){
 		$.ajax({
 			data : data,
 			type : "POST",
+			enctype: 'multipart/form-data',
 			url : "/board/boardUpload",	// 이 url을 컨트롤러 @PostMapping(value="/boardUpload", 와 동일해야함 
 			contentType : false,
 			processData : false,
@@ -76,9 +78,20 @@ $(function(){
 				$(editor).summernote('insertImage', data.url);		
 				
 				// 컨트롤러에서 보낸 데이터를 실제 테이블에 저장한다.
-				$("#uuid").val(data.savedFileName);
-				$("#file_path").val(data.fileRoot);
-				$("#file_name").val(data.originalFileName);
+				var uuid = $("#uuid").val(data.savedFileName);
+				var file_path = $("#file_path").val(data.fileRoot);
+				var file_name = $("#file_name").val(data.originalFileName);
+
+				listuuid.push(data.savedFileName);
+				listfilename.push(data.originalFileName);
+
+				var ff = {"uuid":listuuid,"file_name":listfilename};
+
+// 				alert(ff);
+				
+				$.ajax("/board/insertFile",{data:uuid,type : "POST",success:function(){
+					alert("파일등록");
+					}});
 			}
 		});
 	}
@@ -113,9 +126,9 @@ $(function(){
 			<td><textarea name="board_content" id="summernote"></textarea></td>
 		</tr>
 		<tr>
-			<td><input type="hidden" id="uuid" name="uuid" ></td>
-			<td><input type="hidden" id="file_path" name="file_path" ></td>
-			<td><input type="hidden" id="file_name" name="file_name" ></td>
+			<td><input type="text" id="uuid" name="uuid" ></td>
+			<td><input type="text" id="file_path" name="file_path" ></td>
+			<td><input type="text" id="file_name" name="file_name" ></td>
 		</tr>
 	</table>
 		<input type="submit" value="등록" id="save">

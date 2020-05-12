@@ -115,6 +115,18 @@ public class SnsServiceImpl implements SnsService {
 	public int listCount(SearchCriteria scri) throws Exception{
 		return snsdao.listCount(scri);
 	}
+
+	@Override
+	public int updatePic_Board(Pic_BoardVo pb) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deletePic_Board(Pic_BoardVo pb) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 
 

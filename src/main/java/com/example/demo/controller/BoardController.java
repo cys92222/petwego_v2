@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Time;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -91,10 +93,11 @@ public class BoardController {
 	public void insertForm(Model model, @RequestParam(value = "board_no", defaultValue = "0") int board_no) {
 		model.addAttribute("no", board_no);
 	}
+
 	
 	//@ModelAttribute
 	@PostMapping(value = "/insert")
-	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf, @RequestParam List<Board_fileVo> listImg) {
+	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 		service.insertBoard(b);
 		
@@ -105,8 +108,8 @@ public class BoardController {
 //			System.out.println(bf2);
 //		}
 	
-//		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
-//		// 이미지파일이 없으면 파일테이블에 저장 안됨!
+		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
+		// 이미지파일이 없으면 파일테이블에 저장 안됨!
 //		if (!bf.getFile_name().equals("")) {
 //			bf.setBoard_no(service.lastBoard());
 //			System.out.println("마지막 글번호" + service.lastBoard());
@@ -114,6 +117,25 @@ public class BoardController {
 //		}
 		return mav;
 	}
+	
+	
+	
+	//@ModelAttribute
+		@RequestMapping("/insertFile")
+		public ModelAndView insertFile(Board_fileVo bf,String uuid) {
+			ModelAndView mav = new ModelAndView("redirect:/board/list");
+				bf.setUuid(uuid);
+				bf.setFile_path("C:\\summernote_image\\");
+				bf.setFile_name("asd");
+				bf.setBoard_no(service.lastBoard());
+				
+				bf_service.insert(bf);
+		
+			return mav;
+		}
+		
+		
+	
 
 	// 게시물 상세보기
 	@GetMapping("/get")
@@ -176,48 +198,47 @@ public class BoardController {
 	// summernote 사진업로드
 	@PostMapping(value = "/boardUpload", produces = "application/json;charset=utf-8")
 	@ResponseBody
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
+	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,MultipartHttpServletRequest request) {
 
 		JsonObject jsonObject = new JsonObject();
+		List<MultipartFile> fileList = request.getFiles("file");
+		
+		for (MultipartFile mf : fileList) {
+				String originFileName = mf.getOriginalFilename(); // 원본 파일 명 String 
+				System.out.println(originFileName);
+				
+				
+				String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
+				String originalFileName = mf.getOriginalFilename(); // 오리지날 파일명
+				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 
-		String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
-		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
+				// UUID란 데이터를 고유하게 식별하는데 사용되는 16바이트 길이의 랜덤한 숫자
+				String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
 
-		// UUID란 데이터를 고유하게 식별하는데 사용되는 16바이트 길이의 랜덤한 숫자
-		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+				savedFile = savedFileName;
+				File targetFile = new File(fileRoot + savedFileName);
 
-		savedFile = savedFileName;
-		File targetFile = new File(fileRoot + savedFileName);
+				try {
+					InputStream fileStream = mf.getInputStream();
+					FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+					jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
+					jsonObject.addProperty("responseCode", "success");
 
-		try {
-			InputStream fileStream = multipartFile.getInputStream();
-			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-			jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
-			jsonObject.addProperty("responseCode", "success");
+					// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
+					jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
+					jsonObject.addProperty("fileRoot", fileRoot); 				// 파일 저장 경로
+					jsonObject.addProperty("savedFileName", savedFileName); 	// uuid
 
-			// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
-			jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
-			jsonObject.addProperty("fileRoot", fileRoot); 				// 파일 저장 경로
-			jsonObject.addProperty("savedFileName", savedFileName); 	// uuid
-
-		} catch (IOException e) {
-			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
-		}
-
+				} catch (IOException e) {
+					FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+					jsonObject.addProperty("responseCode", "error");
+					e.printStackTrace();
+				}
+			}
 		return jsonObject;
 	}
 
-		@PostMapping(value="ImgUpload")
-		@ResponseBody
-		public String ImgUpload(@RequestBody List<Board_fileVo> listImg) {
-			System.out.println(listImg);
-			for( Board_fileVo bf : listImg ) {
-				bf_service.insert(bf);
-			}
-			return "msg";
-		}
+	
+	
 
 }
