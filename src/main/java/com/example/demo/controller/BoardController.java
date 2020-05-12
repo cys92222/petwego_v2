@@ -122,13 +122,13 @@ public class BoardController {
 	
 	//@ModelAttribute
 		@RequestMapping("/insertFile")
-		public ModelAndView insertFile(Board_fileVo bf,String uuid) {
+		public ModelAndView insertFile(Board_fileVo bf) {
 			ModelAndView mav = new ModelAndView("redirect:/board/list");
-				bf.setUuid(uuid);
-				bf.setFile_path("C:\\summernote_image\\");
-				bf.setFile_name("asd");
+//				bf.setUuid(uuid);
+//				bf.setFile_path("C:\\summernote_image\\");
+//				bf.setFile_name("asd");
 				bf.setBoard_no(service.lastBoard());
-				
+
 				bf_service.insert(bf);
 		
 			return mav;

@@ -17,6 +17,7 @@
 var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 var listuuid = [];
 var listfilename = [];
+var listfilepath = [];
 $(function(){
 	
 	//썸머노트
@@ -84,12 +85,13 @@ $(function(){
 
 				listuuid.push(data.savedFileName);
 				listfilename.push(data.originalFileName);
-
-				var ff = {"uuid":listuuid,"file_name":listfilename};
+				listfilepath.push(data.fileRoot);
+				
+				var ff = {uuid:data.savedFileName,file_name:originalFileName,file_path:data.fileRoot};
 
 // 				alert(ff);
 				
-				$.ajax("/board/insertFile",{data:uuid,type : "POST",success:function(){
+				$.ajax("/board/insertFile",{data:ff,type : "POST",success:function(){
 					alert("파일등록");
 					}});
 			}
