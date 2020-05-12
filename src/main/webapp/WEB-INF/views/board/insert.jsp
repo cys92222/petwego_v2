@@ -87,7 +87,7 @@ $(function(){
 				listfilename.push(data.originalFileName);
 				listfilepath.push(data.fileRoot);
 				
-				var ff = {uuid:data.savedFileName,file_name:originalFileName,file_path:data.fileRoot};
+				var ff = {uuid:data.savedFileName,file_name:data.originalFileName,file_path:data.fileRoot};
 
 // 				alert(ff);
 				

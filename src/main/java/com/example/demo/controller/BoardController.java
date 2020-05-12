@@ -94,32 +94,18 @@ public class BoardController {
 		model.addAttribute("no", board_no);
 	}
 
-	
+	//자유게시판 등록하는 메소드
 	//@ModelAttribute
 	@PostMapping(value = "/insert")
-	public ModelAndView insertSubmit(BoardVo b, Board_fileVo bf) {
+	public ModelAndView insertSubmit(BoardVo b) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 		service.insertBoard(b);
 		
-//		for(Board_fileVo bf2 : listImg) {
-//			bf.setBoard_no(service.lastBoard());
-//			System.out.println("마지막 글번호" + service.lastBoard());
-//			bf_service.insert(bf);
-//			System.out.println(bf2);
-//		}
-	
-		// 게시물 등록시 이미지파일은 따로 파일 테이블에 저장
-		// 이미지파일이 없으면 파일테이블에 저장 안됨!
-//		if (!bf.getFile_name().equals("")) {
-//			bf.setBoard_no(service.lastBoard());
-//			System.out.println("마지막 글번호" + service.lastBoard());
-//			bf_service.insert(bf);
-//		}
 		return mav;
 	}
 	
 	
-	
+	//파일등록하는 메소드
 	//@ModelAttribute
 		@RequestMapping("/insertFile")
 		public ModelAndView insertFile(Board_fileVo bf) {
