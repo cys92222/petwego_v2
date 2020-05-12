@@ -6,7 +6,7 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
-
+//영수) 5월12일 QnADao
 public interface QnADao {
 	
 	//모든 qna리스트
