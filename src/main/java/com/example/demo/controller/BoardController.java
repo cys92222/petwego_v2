@@ -90,48 +90,36 @@ public class BoardController {
 
 	// 게시물 등록
 	@GetMapping(value = "/insert")
-	public void insertForm(Model model, @RequestParam(value = "board_no", defaultValue = "0") int board_no) {
-		model.addAttribute("no", board_no);
+	public void insertForm() {
+		 //model.addAttribute("no", board_no);
 	}
 
-	//자유게시판 등록하는 메소드
-	//@ModelAttribute
 	@PostMapping(value = "/insert")
-	public ModelAndView insertSubmit(BoardVo b) {
-		ModelAndView mav = new ModelAndView("redirect:/board/list");
+	@ResponseBody
+	public String insertSubmit(BoardVo b, Model model) {
 		service.insertBoard(b);
-		
-		return mav;
+		//rttr.addFlashAttribute("board_no", b.getBoard_no());
+		model.addAttribute("board_no", service.lastBoard());
+		System.out.println(service.lastBoard());
+		return service.lastBoard() + "";
 	}
-	
-	
-	//파일등록하는 메소드
-	//@ModelAttribute
-		@RequestMapping("/insertFile")
-		public ModelAndView insertFile(Board_fileVo bf) {
-			ModelAndView mav = new ModelAndView("redirect:/board/list");
-//				bf.setUuid(uuid);
-//				bf.setFile_path("C:\\summernote_image\\");
-//				bf.setFile_name("asd");
-				bf.setBoard_no(service.lastBoard());
 
-				bf_service.insert(bf);
-		
-			return mav;
+	// 이미지 등록
+	@ResponseBody
+	@PostMapping(value ="imgsDB")
+	public String imgsDB(@RequestBody List<Board_fileVo> listImg) {
+		System.out.println(listImg);
+		for(Board_fileVo bf : listImg) {
+			bf_service.insert(bf);
 		}
-		
-		
-	
+		return "ok";
+	}
 
 	// 게시물 상세보기
 	@GetMapping("/get")
 	public void getBoard(BoardVo b, Model model) {
 		service.updateHit(b.getBoard_no()); // 게시물 조회수 증가
 		model.addAttribute("detail", service.getBoard(b));
-
-		// 댓글목록, 컨트롤러 따로 만들었음
-//		List<Board_CommentVo> listComment = comm_service.listComment(b.getBoard_no());
-//		model.addAttribute("listComment", listComment);
 	}
 
 	// 게시글 수정
@@ -141,28 +129,38 @@ public class BoardController {
 	}
 
 	@PostMapping(value = "/update")
-	public ModelAndView updateSubmit(BoardVo b, Board_fileVo bf) {
-		ModelAndView mav = new ModelAndView("redirect:/board/list");
-
+	@ResponseBody
+	public String updateSubmit(BoardVo b, Board_fileVo bf, Model model) {
+		System.out.println("수정글번호"+b.getBoard_no());
 		service.updateBoard(b);
-		System.out.println(bf.getFile_name());
+		
+		// 수정할 글의 번호가 넘어가야함 
+		
+		model.addAttribute("board_no", b.getBoard_no());
 
-		// 글만 있는데 수정시 사진을 추가할때, 추가한 사진이 board_file에 insert 되도록! 
+		// 글만 있는데 수정시 사진을 추가할때, 추가한 사진이 board_file에 insert 되도록!
 		if (!b.getBoard_content().equals("")) {
 			if (!bf.getFile_name().equals("")) {
 				bf_service.insert(bf);
 			}
+			System.out.println("1번 실행");
 		}
 
-		// 게시글 수정시, 원래는 이미지가 있었는데 사진을 변경하거나 사진을 지우고 텍스트로만 글을쓰면
-		// board_file테이블에 있던 사진정보를 update해줌
-		if (bf.getFile_name().equals("")) {
-			bf_service.delbord_no(bf.getBoard_no());
-		} else {
-			bf_service.updateFile(bf);
-		}
-
-		return mav;
+		//게시글 수정시, 이미지 장수가 달라지면 파일테이블에서도 달라져야 하는데 안달라지는 문제 해결해야함
+		
+//		// 게시글 수정시, 원래는 이미지가 있었는데 사진을 변경하거나 사진을 지우고 텍스트로만 글을쓰면
+//		// board_file테이블에 있던 사진정보를 update해줌
+//		if (bf.getFile_name().equals("")) {
+//			System.out.println(bf.getUuid());
+//			bf_service.delete(bf.getUuid());
+//			System.out.println("2번 실행");
+//		} else {
+//			bf_service.updateFile(bf);
+//			System.out.println("3번 실행");
+//		}		
+		
+		
+		return service.lastBoard() + "";
 	}
 
 	// 게시글 삭제
@@ -182,49 +180,37 @@ public class BoardController {
 	}
 
 	// summernote 사진업로드
-	@PostMapping(value = "/boardUpload", produces = "application/json;charset=utf-8")
+	@PostMapping(value = "/boardUpload", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile,MultipartHttpServletRequest request) {
+	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
 
 		JsonObject jsonObject = new JsonObject();
-		List<MultipartFile> fileList = request.getFiles("file");
-		
-		for (MultipartFile mf : fileList) {
-				String originFileName = mf.getOriginalFilename(); // 원본 파일 명 String 
-				System.out.println(originFileName);
-				
-				
-				String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
-				String originalFileName = mf.getOriginalFilename(); // 오리지날 파일명
-				String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 
-				// UUID란 데이터를 고유하게 식별하는데 사용되는 16바이트 길이의 랜덤한 숫자
-				String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+		String fileRoot = "C:\\summernote_image\\"; // 저장될 외부 파일 경로
+		String originalFileName = multipartFile.getOriginalFilename(); // 오리지날 파일명
+		String extension = originalFileName.substring(originalFileName.lastIndexOf(".")); // 파일 확장자
 
-				savedFile = savedFileName;
-				File targetFile = new File(fileRoot + savedFileName);
+		// UUID란 데이터를 고유하게 식별하는데 사용되는 16바이트 길이의 랜덤한 숫자
+		String savedFileName = UUID.randomUUID() + extension; // 저장될 파일 명
+		File targetFile = new File(fileRoot + savedFileName);
 
-				try {
-					InputStream fileStream = mf.getInputStream();
-					FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
-					jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
-					jsonObject.addProperty("responseCode", "success");
+		try {
+			InputStream fileStream = multipartFile.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile); // 파일 저장
+			jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
+			jsonObject.addProperty("responseCode", "success");
 
-					// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
-					jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
-					jsonObject.addProperty("fileRoot", fileRoot); 				// 파일 저장 경로
-					jsonObject.addProperty("savedFileName", savedFileName); 	// uuid
+//			// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
+			jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
+			jsonObject.addProperty("fileRoot", fileRoot); // 파일 저장 경로
+			jsonObject.addProperty("savedFileName", savedFileName); // uuid
 
-				} catch (IOException e) {
-					FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
-					jsonObject.addProperty("responseCode", "error");
-					e.printStackTrace();
-				}
-			}
+		} catch (IOException e) {
+			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
+			jsonObject.addProperty("responseCode", "error");
+			e.printStackTrace();
+		}
 		return jsonObject;
 	}
-
-	
-	
 
 }

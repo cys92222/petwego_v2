@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.BoardDao;
+import com.example.demo.dao.Board_fileDao;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.BoardVo;
@@ -17,6 +18,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private Board_fileDao bfDao;
 	
 	@Override
 	public List<BoardVo> listBoard(SearchCriteria scri){
