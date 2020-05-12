@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.QnADao;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
 
 @Service
@@ -78,5 +79,15 @@ public class QnAServiceImpl implements QnAService {
 		re = dao.listCount(scri);
 		return re;
 	}
+	
+	//qna 수정
+	@Override
+	public int updateQnA(QnAUpdateVo qu) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.updateQnA(qu);
+		return re;
+	}
+	
 	
 }

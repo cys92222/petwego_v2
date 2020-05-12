@@ -39,6 +39,9 @@
 	</delete>
 	
 	<!-- qna수정 -->
+	<update id="updateQnA">
+		update qna set inq_title=#{up_inq_title}, inq_content=#{up_inq_content}, inq_file=#{up_inq_file} where inq_no=#{up_inq_no} and user_id = #{up_user_id} 
+	</update>
 	
 	<!-- 답변등록 -->
 	<insert id="insertRe">

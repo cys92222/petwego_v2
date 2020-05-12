@@ -20,6 +20,7 @@ import com.example.demo.service.QnAService;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -86,9 +87,9 @@ public class QnAController {
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("inq_file") MultipartFile multipartFile) {
-			
+		
 		JsonObject jsonObject = new JsonObject();
-			
+		
 		String fileRoot = "C:\\summernote_image\\";	//저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
@@ -108,7 +109,7 @@ public class QnAController {
 			jsonObject.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
-			
+		System.out.println(multipartFile);
 		return jsonObject;
 	}
 	
@@ -137,5 +138,12 @@ public class QnAController {
 
 		q.setInq_content(re_inq_content);
 		service.insertRe(q);
+	}
+	
+	//수정
+	@RequestMapping("/admin/updateQnA")
+	public void updateQnA(QnAUpdateVo qu, String up_inq_file) {
+		qu.setUp_inq_file(up_inq_file);
+		service.updateQnA(qu);
 	}
 }
