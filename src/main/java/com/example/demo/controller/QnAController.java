@@ -20,6 +20,7 @@ import com.example.demo.service.QnAService;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -137,5 +138,12 @@ public class QnAController {
 
 		q.setInq_content(re_inq_content);
 		service.insertRe(q);
+	}
+	
+	//수정
+	@RequestMapping("/admin/updateQnA")
+	public void updateQnA(QnAUpdateVo qu, String up_inq_file) {
+		qu.setUp_inq_file(up_inq_file);
+		service.updateQnA(qu);
 	}
 }

@@ -47,7 +47,7 @@ $(function(){
 
 
 	/**
-	* 이미지 파일 업로드
+	* 이미지 파일 업로드 , qna 등록할때
 	*/
 	function uploadSummernoteImageFile(file, editor) {
 	data = new FormData();
@@ -67,6 +67,32 @@ $(function(){
 			var data_url = data.url;
 			var n = data_url.split('/');
 			$("#inq_file").val(n[2]);
+			}
+		});
+	}
+
+
+	/**
+	* 이미지 파일 업로드 , qna 수정할때
+	*/
+	function uploadSummernoteImageFile2(file, editor) {
+	data = new FormData();
+	data.append("up_inq_file", file);
+	console.log(file); //파일 정보
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "/uploadSummernoteImageFile",
+		contentType : false,
+		processData : false,
+		success : function(data) {
+	    	//항상 업로드된 파일의 url이 있어야 한다.
+			$(editor).summernote('insertImage', data.url);
+// 			alert(data.url);
+			alert(data);
+			var data_url = data.url;
+			var n = data_url.split('/');
+			$("#up_inq_file").val(n[2]);
 			}
 		});
 	}
@@ -130,7 +156,51 @@ $(function(){
 						$("#detail_inq_title").val(detail.inq_title);						
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
 						$("#detail_inq_date").val(moment(detail.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
-						}});
+
+						//수정 폼
+						$("#up").click(function(){
+//	 						alert("수정버튼 누름");
+							$("#DetailQnA").css("display","none");
+							$("#UpdateQnA").css("display","block");
+							$("#up_inq_no").val(detail.inq_no);
+							$("#up_cs_no").html(detail.inq_cs_no);	
+							$("#up_user_id").val(detail.user_id);					
+							$("#up_inq_title").val(detail.inq_title);	
+							
+							$('#up_inq_content').summernote({
+								height: 300,                 // 에디터 높이
+								minHeight: null,             // 최소 높이
+								maxHeight: null,             // 최대 높이
+								focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+								lang: "ko-KR",					// 한글 설정
+								placeholder: "",	//placeholder 설정
+								callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+									onImageUpload : function(files) {
+										uploadSummernoteImageFile2(files[0],this);
+									}
+								}
+							});
+
+							//썸머노트에서 append 기능
+							$('#up_inq_content').summernote('code', detail.inq_content);
+											
+							$("#up_inq_date").val(detail.inq_date);
+							$("#up_ref").val(detail.ref);							
+							$("#up_ref_step").val(detail.ref_step);							
+							$("#up_ref_level").val(detail.ref_level);
+							
+							$("#up_btn").click(function(){
+								var u = $("#upQnA").serialize();
+								$.ajax("/admin/updateQnA",{data:u,success:function(){
+									window.location.reload(true);
+									$("#ListQnA").css("display","block");
+									$("#UpdateQnA").css("display","none");
+									}});
+								}) //수정 ajax end
+								
+							}); //수정폼 end
+						
+						}}); //상세보기 ajax end
 
 					//삭제
 					$("#del").click(function(){
@@ -144,14 +214,15 @@ $(function(){
 								$("#DetailQnA").css("display","none");
 								}});
 							}
-						});
+						
+						}); //삭제 end
 
 					//답변등록 폼
 					$("#re").click(function(){
 // 						alert(qna.inq_no + "번글에 답변등록");
 						$("#rebutton").css("display","none");
 						$("#AddRe").css({"display":"block","border":"1px solid"});
-
+						$("#ListQnA").css("display","none");
 						$("#re_inq_no").val(qna.inq_no);
 						$("#re_user_id").val(qna.user_id);
 					
@@ -163,15 +234,19 @@ $(function(){
 								window.location.reload(true);
 								$("#ListQnA").css("display","block");
 								$("#AddRe").css("display","none");
-								}});
-							});
+								}});//insertRe ajax end
+							
+							}); //답변등록 end
 						
-						});
-					});
+						}); //답변등록폼 end
 
-				
-			})
-	}
+						
+					
+					}); //상세보기 end
+		
+			}) //each end
+			
+	}//list end
 	//등록폼
 	$("#add").click(function(){
 		$("#ListQnA").css("display","none");
@@ -275,6 +350,7 @@ $(function(){
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
 	<section id="rebutton">
+		<button id="up">수정하기</button><br>
 		<button id="del">삭제하기</button><br>
 		<button id="re">답변달기</button><br>
 	</section>
@@ -300,6 +376,33 @@ $(function(){
 </section>
 
 <section id="UpdateQnA">
+	<h2>QnA수정</h2>
+	<hr>
+	<form id="upQnA">
+		<input type="text" id="up_inq_no" name="up_inq_no"><br>
+		카테고리<br>
+		<select id="up_cs_no" name="up_cs_no"><br>
+			<option value="1">홈페이지 이용 관련</option>
+			<option value="2">계정 관련</option>
+		</select><br>
+		작성자<br>
+		<input type="text" id="up_user_id" name="up_user_id" readonly="readonly"><br>
+		제목<br>
+		<input type="text" id="up_inq_title" name="up_inq_title"><br>
+		
+		내용<br>
+		<div id="up_content">
+		
+		</div>
+		<textarea rows="8" cols="100" id="up_inq_content" name="up_inq_content"></textarea><br>
+		작성일<br>
+		<input type="text" id="up_inq_date" name="up_inq_date" readonly="readonly"><br>
+		<input type="text" id="up_ref" name="up_ref"><br>
+		<input type="text" id="up_ref_step" name="up_ref_step"><br>
+		<input type="text" id="up_ref_level" name="up_ref_level"><br>
+		<input type="hidden" name="up_inq_file" id="up_inq_file"><br>
+	</form>
+	<button id="up_btn">수정</button><br>
 
 <a href="/admin/List">QnA리스트 돌아가기</a>
 </section>

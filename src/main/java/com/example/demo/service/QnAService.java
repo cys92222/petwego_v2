@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
 
 public interface QnAService {
@@ -19,7 +20,9 @@ public interface QnAService {
 		
 	//qna삭제
 	public int deleteQnA(QnAVo q);
+
 	//qna수정
+	public int updateQnA(QnAUpdateVo qu);
 		
 	//답변등록
 	public int insertRe(QnAVo q);
