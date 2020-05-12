@@ -24,6 +24,7 @@ import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+//영수) 5월12일 QnA컨트롤러 
 
 @RestController
 public class QnAController {

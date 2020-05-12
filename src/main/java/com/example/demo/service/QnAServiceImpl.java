@@ -1,5 +1,5 @@
 package com.example.demo.service;
-
+//영수) 5월12일 QnA서비스임플리먼츠
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

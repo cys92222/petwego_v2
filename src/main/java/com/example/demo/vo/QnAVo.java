@@ -1,5 +1,5 @@
 package com.example.demo.vo;
-
+//영수) 5월12일 QnAVo
 import java.util.Date;
 
 import lombok.AllArgsConstructor;

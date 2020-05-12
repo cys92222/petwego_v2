@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- //영수) 5월12일 QnA맵퍼 -->
 <mapper namespace="com.example.demo.dao.QnADao">
  	
  	<!-- 모든 qna리스트 -->

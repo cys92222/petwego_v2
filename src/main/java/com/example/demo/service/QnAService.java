@@ -1,5 +1,5 @@
 package com.example.demo.service;
-
+//영수) 5월12일 QnA서비스
 import java.util.List;
 
 import com.example.demo.util.Criteria;
