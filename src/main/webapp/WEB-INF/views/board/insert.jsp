@@ -27,10 +27,11 @@ $(function(){
 		maxHeight: null,             		// 최대 높이
 		focus: true,                  		// 에디터 로딩후 포커스를 맞출지 여부
 		lang: "ko-KR",						// 한글 설정
-		placeholder: '본문 내용을 입력해주세요.',	//placeholder 설정
+		placeholder: '본문 내용을 입력해주세요!',	//placeholder 설정
 		callbacks: {						// 이미지를 첨부하는 부분
 			onImageUpload : function(files) {
 				uploadSummernoteImageFile(files[0],this);
+				console.log(files);
 			}
 		}
 });
