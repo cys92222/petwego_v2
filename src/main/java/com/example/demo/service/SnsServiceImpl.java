@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.SnsDao;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.LikeItVo;
 import com.example.demo.vo.Pic_BoardVo;
 import com.example.demo.vo.Pic_Board_CommentVo;
@@ -95,9 +96,9 @@ public class SnsServiceImpl implements SnsService {
 	}
 
 	@Override
-	public Pic_Board_FileVo detailFile(int photo_no) {
+	public Pic_Board_FileVo detailFile(Pic_Board_FileVo p) {
 		// TODO Auto-generated method stub
-		Pic_Board_FileVo pbf = snsdao.detailFile(photo_no);
+		Pic_Board_FileVo pbf = snsdao.detailFile(p);
 		return pbf;
 	}
 
@@ -110,6 +111,10 @@ public class SnsServiceImpl implements SnsService {
 		return re;
 	}
 	
+	//페이징처리
+	public int listCount(SearchCriteria scri) throws Exception{
+		return snsdao.listCount(scri);
+	}
 	
 
 

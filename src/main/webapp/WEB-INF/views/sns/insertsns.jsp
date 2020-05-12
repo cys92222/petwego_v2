@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<h2>사진 등록</h2>
 	<hr>
 	<form action="/sns/insertsns" method="post" enctype="multipart/form-data">
@@ -18,6 +17,7 @@
 		사진<br>
 		<input type="file" name="uploadFile"><br>
 		<input type="submit" value="등록">
+		<input type="submit" value="취소">
 	</form>
 	
 </body>
