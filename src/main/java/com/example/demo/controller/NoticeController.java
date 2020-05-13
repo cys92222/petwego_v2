@@ -20,6 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.NoticeService;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.PageMaker;
+import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.NoticeUpdateVo;
 import com.example.demo.vo.NoticeVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -62,14 +66,17 @@ public class NoticeController {
 	
 	
 	//공지사항 리스트
-	@RequestMapping(value = "/admin/allNotice", method = RequestMethod.GET)
-	public ModelAndView allNotice(){
-		List<NoticeVo> list = service.allNoticeList();
+	@RequestMapping("/admin/allNotice")
+	public ModelAndView allNotice(SearchCriteria scri){
+		List<NoticeVo> list = service.allNoticeList(scri);
+		PageMaker pageMaker = new PageMaker();
 		ModelAndView mav = new ModelAndView();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.countNotice(scri));
 		mav.setViewName("/admin/NoticeList");
 			
 		Gson gson = new Gson();
-	
+		mav.addObject("pageMaker", pageMaker);
 		mav.addObject("list", gson.toJson(list));
 		
 		return mav;
@@ -83,22 +90,39 @@ public class NoticeController {
 	}
 	
 	//공지사항 삭제
-	@RequestMapping(value = "/admin/deleteNotice", method = RequestMethod.GET)
-	public void deleteNotice(NoticeVo n) {
+	@RequestMapping("/admin/deleteNotice")
+	@ResponseBody
+	public String deleteNotice(NoticeVo n) {
 		service.deleteNotice(n);
 		
+		return "a";
 	}
 	
 	//공지사항 수정
-	@RequestMapping(value = "/admin/updateNotice", method = RequestMethod.GET)
-	public void updateNotice(NoticeVo n) {
-		service.updateNotice(n);
+	@RequestMapping("/admin/updateNotice")
+	@ResponseBody
+	public String updateNotice(NoticeUpdateVo nu) {
+		System.out.println(nu);
+		service.updateNotice(nu);
+		
+		return "a";
 	}
 	
 	//공지사항 상세보기
-	@RequestMapping("/admin/detailNotice")
+	@RequestMapping(value = "/admin/detailNotice", method = RequestMethod.GET)
+	@ResponseBody
 	public NoticeVo detailNotice(NoticeVo n) {
 		NoticeVo dn = service.detailNotice(n);
+		service.hit(n);
+		System.out.println(dn);
 		return dn;
 	}
+	
+	//조회수
+	@RequestMapping("/admin/hit")
+	@ResponseBody
+	public void hit(NoticeVo n) {
+		service.hit(n);
+	}
+	
 }
