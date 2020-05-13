@@ -67,7 +67,7 @@ $(function(){
 				//파일 확장자
 				var fname = data.originalFileName;	//파일 테이블에 저장되는 오리지널 파일명
 				var fnameArr = fname.split(".");	// . 을 기준으로 잘라서
-				var ext = fnameArr[1].toLowerCase();// 그중 [1], 2번째 확장자 부분
+				var ext = fnameArr[1].toLowerCase();// 그중 [1], 2번째 확장자(extension) 부분, 소문자로 바꿔서!
 				//console.log(ext);
 				//alert(typeof ext)
 				
@@ -90,7 +90,7 @@ $(function(){
 		}
 				
 		$("#save").click(function(e){
-		// 고유 동작을 중단시킴.
+		// 폼태그 기본속성(action은 디폴트)을 동작중단시키지 않으면 글이 두개씩 등록되버림 
 		// e.preventDefault는 고유 동작을 중단시키고, e.stopPropagation 는 상위 엘리먼트들로의 이벤트 전파를 중단시킨다.
 			e.preventDefault();
 			var insertBoard = $("#insertForm").serialize();
@@ -118,7 +118,16 @@ $(function(){
 						})		
 						console.log(JSON.stringify(uploadImgs));
 						$.ajax({
-							//stringify 메소드는 json 객체를 String 객체로 변환시켜 줍니다.
+// 						.ajax로 서버에 데이터를 보낼때, header 중 Content-Type 이 존재하는데
+// 						이를 설정하지 않았을 땐 default 값으로 
+// 						application/x-www-form-urlencoded; charset=UTF-8 타입으로 지정됩니다.
+// 						따라서 json 형태의 데이터를 주고 싶을 땐,
+// 						header:{"Content-Type":"application/json"} 을 지정해 주어야 합니다.
+// 						그런데 여기서 또 한가지 문제점이 발생하는데,
+// 						request 안에 포함된 json 형태의 데이터를 받았을 때, 이것을 보통 VO(혹은 DTO)에 다시 담아 사용하는데,
+// 						.ajax는 데이터를 문자열화 해주지 않기 때문에 보낼 데이터를 JSON.stringify()로 감싸주어야 합니다.
+// 						그렇지 않을 시,,
+// 						json데이터의 "key":"value" 형태의 패턴을 인식하지 못합니다.
 							data : JSON.stringify(uploadImgs),
 							contentType:"application/json; charset=utf-8",
 							dataType : "JSON",	

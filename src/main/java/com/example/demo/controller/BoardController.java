@@ -43,13 +43,11 @@ import com.google.gson.JsonObject;
 import lombok.AllArgsConstructor;
 
 // 민아) 5월9일, service 방식으로 새로 시작
-
+// 민아) 5월13일, board & board_file관련 컨트롤러 완료
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(BoardController.class);
-
-	String savedFile;
+	//private static final Logger LOGGER = LoggerFactory.getLogger(BoardController.class);
 
 	// dao대신 서비스와 의존관계 설정, setter를 만들어야 하는건지는 잘 모르겠음.
 	@Autowired
@@ -79,7 +77,6 @@ public class BoardController {
 	@GetMapping("/list")
 	public void listBoard(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
-		LOGGER.info("list");
 		model.addAttribute("listBoard", service.listBoard(scri));
 
 		PageMaker pageMaker = new PageMaker();
@@ -91,25 +88,25 @@ public class BoardController {
 	// 게시물 등록
 	@GetMapping(value = "/insert")
 	public void insertForm() {
-		 //model.addAttribute("no", board_no);
+		// model.addAttribute("no", board_no);
 	}
 
 	@PostMapping(value = "/insert")
 	@ResponseBody
 	public String insertSubmit(BoardVo b, Model model) {
 		service.insertBoard(b);
-		//rttr.addFlashAttribute("board_no", b.getBoard_no());
+		// rttr.addFlashAttribute("board_no", b.getBoard_no());
 		model.addAttribute("board_no", service.lastBoard());
-		System.out.println(service.lastBoard());
+		System.out.println("마지막 글번호" + service.lastBoard());
 		return service.lastBoard() + "";
 	}
 
 	// 이미지 등록
 	@ResponseBody
-	@PostMapping(value ="imgsDB")
+	@PostMapping(value = "imgsDB")
 	public String imgsDB(@RequestBody List<Board_fileVo> listImg) {
-		System.out.println(listImg);
-		for(Board_fileVo bf : listImg) {
+		// System.out.println(listImg);
+		for (Board_fileVo bf : listImg) {
 			bf_service.insert(bf);
 		}
 		return "ok";
@@ -131,36 +128,38 @@ public class BoardController {
 	@PostMapping(value = "/update")
 	@ResponseBody
 	public String updateSubmit(BoardVo b, Board_fileVo bf, Model model) {
-		System.out.println("수정글번호"+b.getBoard_no());
+
+		System.out.println("수정한 글번호" + b.getBoard_no());
 		service.updateBoard(b);
-		
-		// 수정할 글의 번호가 넘어가야함 
-		
+
+		// 수정할 글의 번호가 넘어가야함
 		model.addAttribute("board_no", b.getBoard_no());
 
-		// 글만 있는데 수정시 사진을 추가할때, 추가한 사진이 board_file에 insert 되도록!
+		// 글만 있었는데 수정시 사진을 추가할때, 추가한 사진이 board_file에 insert 되도록!
 		if (!b.getBoard_content().equals("")) {
 			if (!bf.getFile_name().equals("")) {
 				bf_service.insert(bf);
 			}
-			System.out.println("1번 실행");
 		}
+		
+		// 수정시 원래 있던 사진중 하나 혹은 여러개를 지우거나, 교체할때 board_file 테이블 데이터 정보도 바뀌도록!
+		List<Board_fileVo> listImg = bf_service.selectFile(b.getBoard_no());
 
-		//게시글 수정시, 이미지 장수가 달라지면 파일테이블에서도 달라져야 하는데 안달라지는 문제 해결해야함
-		
-//		// 게시글 수정시, 원래는 이미지가 있었는데 사진을 변경하거나 사진을 지우고 텍스트로만 글을쓰면
-//		// board_file테이블에 있던 사진정보를 update해줌
-//		if (bf.getFile_name().equals("")) {
-//			System.out.println(bf.getUuid());
-//			bf_service.delete(bf.getUuid());
-//			System.out.println("2번 실행");
-//		} else {
-//			bf_service.updateFile(bf);
-//			System.out.println("3번 실행");
-//		}		
-		
-		
-		return service.lastBoard() + "";
+		for (Board_fileVo bf1 : listImg) {
+			String board_content = b.getBoard_content();
+			// contains() 함수는 대상 문자열에 특정 문자열이 포함되어 있는지 확인하는 함수
+			// 대소문자를 구분하고, true/false를 반환함
+			if (!board_content.contains(bf1.getUuid())) {
+				// System.out.println("내용: "+board_content);
+				// <p><img src="/summernoteImage/1c2d8936-672f-4fb5-8e6a-f1a91c5e5714.png"
+				// style="width: 20px;"><br></p>
+				// System.out.println("uuid: "+bf1.getUuid());
+				// uuid 4d69095d-6ca8-4510-84cb-ca210e12c6c7.png
+				bf_service.delete(bf1.getUuid());
+				//System.out.println("사진테이블에서 데이터 지움");
+			}
+		}
+		return b.getBoard_no() + "";
 	}
 
 	// 게시글 삭제
@@ -200,10 +199,10 @@ public class BoardController {
 			jsonObject.addProperty("url", "/summernoteImage/" + savedFileName);
 			jsonObject.addProperty("responseCode", "success");
 
-//			// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
-			jsonObject.addProperty("originalFileName", originalFileName); // 실제 파일 이름
-			jsonObject.addProperty("fileRoot", fileRoot); // 파일 저장 경로
-			jsonObject.addProperty("savedFileName", savedFileName); // uuid
+			// 서머노트에서 이미지업로드시, 파일테이블에 저장되도록 데이터를 전송한다.
+			jsonObject.addProperty("originalFileName", originalFileName); 	// 실제 파일 이름
+			jsonObject.addProperty("fileRoot", fileRoot); 					// 파일 저장 경로
+			jsonObject.addProperty("savedFileName", savedFileName); 		// uuid
 
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile); // 저장된 파일 삭제
