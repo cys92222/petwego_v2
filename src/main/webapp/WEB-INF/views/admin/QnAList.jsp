@@ -83,7 +83,7 @@ $(function(){
 	$.ajax({
 		data : data,
 		type : "POST",
-		url : "/uploadSummernoteImageFile",
+		url : "/uploadSummernoteImageFile2",
 		contentType : false,
 		processData : false,
 		success : function(data) {

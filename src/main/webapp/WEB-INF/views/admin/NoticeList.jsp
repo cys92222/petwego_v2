@@ -250,7 +250,7 @@ $(function(){
 <select name="cs_no">
 	<option value="1">홈페이이지 관련</option>
 	<option value="2">계정 관련</option>
-</select>
+</select><br>
 제목<br>
 <input type="text" id="notice_title" name="notice_title" required="required"><br>
 내용<br>
