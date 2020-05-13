@@ -33,5 +33,6 @@ public interface QnADao {
 	//qna 전체글 수
 	public int listCount(SearchCriteria scri);
 	
-	
+	//답변있는 글은 삭제 못하게
+	public int no_delete(QnAVo q);
 }

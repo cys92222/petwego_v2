@@ -154,7 +154,13 @@ $(function(){
 								$("#detail_user_id").val(detail.user_id);
 								}
 						
-						$("#detail_inq_title").val(detail.inq_title);						
+						$("#detail_inq_title").val(detail.inq_title);
+						var dit = detail.inq_title;
+						//답변 이면 답변 버튼 지움
+						if(dit === "답변 입니다"){
+							$("#re").css({"display":"none"});
+						}
+												
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
 						$("#detail_inq_date").val(moment(detail.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
 
@@ -200,23 +206,39 @@ $(function(){
 								}) //수정 ajax end
 								
 							}); //수정폼 end
-						
+
+							//삭제
+							$("#del").click(function(){
+//		 						alert(qna.inq_no);
+								var con = confirm("삭제할까요?");
+
+								if(con == true){
+									var dd_no = {inq_no:detail.inq_no,ref:detail.ref}
+									console.log(dd_no);
+									
+									//답변 있는지 확인
+									$.ajax("/admin/checkQnA",{data:dd_no,success:function(r){
+// 											alert(r);
+											console.log(typeof r);
+											if(r === "o"){
+												alert("답변이 있는 문의글은 수정,삭제 불가능합니다");
+													window.location.href="/admin/List";
+													$("#ListQnA").css("display","block");
+													$("#DetailQnA").css("display","none");
+												}else{
+													//답변 없으면 삭제
+													$.ajax("/admin/deleteQnA",{data:d_no,success:function(){
+														window.location.reload(true);
+														$("#ListQnA").css("display","block");
+														$("#DetailQnA").css("display","none");
+														}});							
+												}
+										}}); //checkQnA end
+									}					
+								}); //삭제 end
+
 						}}); //상세보기 ajax end
 
-					//삭제
-					$("#del").click(function(){
-// 						alert(qna.inq_no);
-						var con = confirm("삭제할까요?");
-
-						if(con == true){
-							$.ajax("/admin/deleteQnA",{data:d_no,success:function(){
-								window.location.reload(true);
-								$("#ListQnA").css("display","block");
-								$("#DetailQnA").css("display","none");
-								}});
-							}
-						
-						}); //삭제 end
 
 					//답변등록 폼
 					$("#re").click(function(){
@@ -231,6 +253,7 @@ $(function(){
 						//답변등록
 						$("#submitRe").click(function(){
 							var r = $("#insertRe").serialize();
+							
 							$.ajax("/admin/insertRe",{data:r,success:function(){
 								window.location.reload(true);
 								$("#ListQnA").css("display","block");
@@ -353,7 +376,7 @@ $(function(){
 	<section id="rebutton">
 		<button id="up">수정하기</button><br>
 		<button id="del">삭제하기</button><br>
-		<button id="re">답변달기</button><br>
+   		<button id="re">답변달기</button><br>
 	</section>
 </section>
 <section id="AddRe">
@@ -397,10 +420,10 @@ $(function(){
 		</div>
 		<textarea rows="8" cols="100" id="up_inq_content" name="up_inq_content"></textarea><br>
 		작성일<br>
-		<input type="text" id="up_inq_date" name="up_inq_date" readonly="readonly"><br>
-		<input type="text" id="up_ref" name="up_ref"><br>
-		<input type="text" id="up_ref_step" name="up_ref_step"><br>
-		<input type="text" id="up_ref_level" name="up_ref_level"><br>
+		<input type="hidden" id="up_inq_date" name="up_inq_date" readonly="readonly"><br>
+		<input type="hidden" id="up_ref" name="up_ref"><br>
+		<input type="hidden" id="up_ref_step" name="up_ref_step"><br>
+		<input type="hidden" id="up_ref_level" name="up_ref_level"><br>
 		<input type="hidden" name="up_inq_file" id="up_inq_file"><br>
 	</form>
 	<button id="up_btn">수정</button><br>
