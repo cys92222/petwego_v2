@@ -20,6 +20,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.NoticeService;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.PageMaker;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.NoticeUpdateVo;
 import com.example.demo.vo.NoticeVo;
 import com.google.gson.Gson;
@@ -64,13 +67,16 @@ public class NoticeController {
 	
 	//공지사항 리스트
 	@RequestMapping("/admin/allNotice")
-	public ModelAndView allNotice(){
-		List<NoticeVo> list = service.allNoticeList();
+	public ModelAndView allNotice(SearchCriteria scri){
+		List<NoticeVo> list = service.allNoticeList(scri);
+		PageMaker pageMaker = new PageMaker();
 		ModelAndView mav = new ModelAndView();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(service.countNotice(scri));
 		mav.setViewName("/admin/NoticeList");
 			
 		Gson gson = new Gson();
-	
+		mav.addObject("pageMaker", pageMaker);
 		mav.addObject("list", gson.toJson(list));
 		
 		return mav;
@@ -103,7 +109,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 상세보기
-	@RequestMapping("/admin/detailNotice")
+	@RequestMapping(value = "/admin/detailNotice", method = RequestMethod.GET)
 	@ResponseBody
 	public NoticeVo detailNotice(NoticeVo n) {
 		NoticeVo dn = service.detailNotice(n);

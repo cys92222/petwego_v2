@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.NoticeDao;
+import com.example.demo.util.Criteria;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.NoticeUpdateVo;
 import com.example.demo.vo.NoticeVo;
 
@@ -17,9 +19,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	//공지사항 리스트
 	@Override
-	public List<NoticeVo> allNoticeList() {
+	public List<NoticeVo> allNoticeList(SearchCriteria scri) {
 		// TODO Auto-generated method stub
-		List<NoticeVo> list = dao.allNoticeList();
+		List<NoticeVo> list = dao.allNoticeList(scri);
 		return list;
 	}
 
@@ -64,6 +66,15 @@ public class NoticeServiceImpl implements NoticeService {
 		// TODO Auto-generated method stub
 		int re = -1;
 		re = dao.hit(n);
+		return re;
+	}
+	
+	//전체 게시물수
+	@Override
+	public int countNotice(SearchCriteria scri) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.countNotice(scri);
 		return re;
 	}
 

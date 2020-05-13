@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +45,7 @@ public class QnAController {
 	
 	//모든 qna리스트
 	@RequestMapping("/admin/List")
-	public ModelAndView allQnAList(Criteria cri,@ModelAttribute("scri") SearchCriteria scri){
+	public ModelAndView allQnAList(@ModelAttribute("scri") SearchCriteria scri){
 		ModelAndView mav = new ModelAndView();
 		
 		
@@ -53,7 +54,7 @@ public class QnAController {
 		mav.addObject("list", gson.toJson(service.allQnAList(scri)));
 		
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
+		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
 		mav.addObject("pageMaker", pageMaker);
 		
