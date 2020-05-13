@@ -20,4 +20,7 @@ public interface NoticeService {
 	
 	//공지사항 상세보기
 	public NoticeVo detailNotice(NoticeVo n);
+	
+	//조회수
+	public int hit(NoticeVo n);
 }

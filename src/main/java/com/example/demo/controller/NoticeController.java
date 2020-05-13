@@ -97,8 +97,18 @@ public class NoticeController {
 	
 	//공지사항 상세보기
 	@RequestMapping("/admin/detailNotice")
+	@ResponseBody
 	public NoticeVo detailNotice(NoticeVo n) {
 		NoticeVo dn = service.detailNotice(n);
+		service.hit(n);
+		System.out.println(dn);
 		return dn;
+	}
+	
+	//조회수
+	@RequestMapping("/admin/hit")
+	@ResponseBody
+	public void hit(NoticeVo n) {
+		service.hit(n);
 	}
 }

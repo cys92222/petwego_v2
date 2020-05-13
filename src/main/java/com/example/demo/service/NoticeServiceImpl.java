@@ -56,5 +56,14 @@ public class NoticeServiceImpl implements NoticeService {
 		NoticeVo dn = dao.detailNotice(n);
 		return dn;
 	}
+	
+	//조회수
+	@Override
+	public int hit(NoticeVo n) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.hit(n);
+		return re;
+	}
 
 }

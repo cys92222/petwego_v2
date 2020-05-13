@@ -66,10 +66,27 @@ $(function(){
 
 		$("#listNotie").append(tr);
 
+		//상세보기
 		$(tr).on("click",function(){
-			var ino = notice.notice_no;
-			$.ajax("/admin/detailNotice",{data:ino,  success:function(){
-				
+			var ino = {notice_no:notice.notice_no};
+			$("#detailSection").css({"display":"block"});
+			$("#listSection").css({"display":"none"});
+			$.ajax("/admin/detailNotice",{data:ino, success:function(detail){
+// 					console.log(detail);
+					$("#d_notice_no").val(detail.notice_no);
+					$("#d_notice_title").val(detail.notice_title);
+					$("#d_notice_content").append(detail.notice_content).css({"border":"1px solid"});
+					$("#d_notice_hit").val(detail.notice_hit);
+					$("#d_notice_date").val(moment(detail.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+					
+					var d_ca = detail.cs_no;
+					console.log(d_ca);
+					if(d_ca = 1){
+						$("#d_cs_no").val("홈페이지 이용 관련");
+						}
+					else if(d_ca = 2){
+						$("#d_cs_no").val("계정 관련");
+						}
 				}});
 			});
 		
@@ -145,7 +162,13 @@ $(function(){
 <h2>공지사항 상세보기</h2>
 <hr>
 카테고리<br>
-<input type="text" id="d_notice_no"><br>
+<input type="text" id="d_cs_no" readonly="readonly"><br>
+공지사항 번호 : <input type="text" id="d_notice_no" readonly="readonly"><br>
+제목 : <input type="text" id="d_notice_title" readonly="readonly"><br>
+내용<br>
+<div id="d_notice_content"></div><br>
+조회수 : <input type="text" id="d_notice_hit" readonly="readonly"><br>
+작성일 : <input type="text" id="d_notice_date" readonly="readonly"><br>
 
 
 </section>
