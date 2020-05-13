@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.Board_fileDao;
 import com.example.demo.vo.Board_fileVo;
 //민아) 5/10
+
 @Service
 public class Board_fileServiceImpl implements Board_fileService{
 	@Autowired
@@ -40,7 +41,7 @@ public class Board_fileServiceImpl implements Board_fileService{
 	@Override
 	public List<Board_fileVo> realFile() {
 		List<Board_fileVo> list = bfDao.realFile();
-		return null;
+		return list;
 	}
 
 	@Override
