@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -125,6 +126,42 @@ public class QnAController {
 	@RequestMapping("/admin/deleteQnA")
 	public void deleteQnA(QnAVo q) {
 		service.deleteQnA(q);
+	}
+	
+//	답변있는 글은 삭제 못하게
+//	@RequestMapping("/admin/checkQnA")
+//	public ModelAndView no_delete(QnAVo q) {
+//		ModelAndView mav = new ModelAndView();
+//		System.out.println("답변유무 :" + service.no_delete(q));
+//		
+//		//답변이 있는경우
+//		if(service.no_delete(q) > 0) {
+//			System.out.println("답변 있음");
+//			mav.addObject("r", 2);
+//		//답변이 없는 경우
+//		}else {
+//			System.out.println("답변 없음");
+//			mav.addObject("r", 1);
+//		}
+//		
+//		return mav;
+//	}
+	
+	//답변있는 경우 삭제 못하게
+	@RequestMapping("/admin/checkQnA")
+	public String no_delete(QnAVo q) {
+		String str = "";
+		System.out.println("답변유무 :" + service.no_delete(q));
+		//답변이 있는경우
+		if(service.no_delete(q) > 0) {
+			System.out.println("답변 있음");
+			str = "o";
+		//답변이 없는 경우
+		}else {
+			System.out.println("답변 없음");
+			str = "x";
+		}
+		return str;
 	}
 	
 	//답변등록

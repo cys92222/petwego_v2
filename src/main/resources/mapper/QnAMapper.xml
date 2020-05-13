@@ -72,4 +72,9 @@
 			<if test="searchType == 'tc'.toString()">AND (inq_title LIKE '%' || #{keyword} || '%') or (inq_content LIKE '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
+	
+	<!-- 답변있는 글은 삭제 못하게 -->
+	<select id="no_delete" resultType="java.lang.Integer">
+		select count(*) from qna where ref = #{ref} and ref_step>0
+	</select>
 </mapper>

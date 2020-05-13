@@ -89,5 +89,14 @@ public class QnAServiceImpl implements QnAService {
 		return re;
 	}
 	
+	//답변있는 글은 삭제 못하게
+	@Override
+	public int no_delete(QnAVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.no_delete(q);
+		return re;
+	}
+	
 	
 }
