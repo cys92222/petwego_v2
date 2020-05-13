@@ -155,12 +155,14 @@ $(function(){
 								}
 						
 						$("#detail_inq_title").val(detail.inq_title);
-						var dit = detail.inq_title;
+						
+	/*	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	
+						var dit = detail.inq_title;			
 						//답변 이면 답변 버튼 지움
 						if(dit === "답변 입니다"){
 							$("#re").css({"display":"none"});
 						}
-												
+	*/  // 	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa									
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
 						$("#detail_inq_date").val(moment(detail.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
 
@@ -239,7 +241,22 @@ $(function(){
 
 						}}); //상세보기 ajax end
 
-
+					//답변 이면 답변 버튼 지움
+					var dit = qna.inq_title;
+					if(dit === "답변 입니다"){
+// 						$("#re").css({"display":"none"});
+						var df = qna.inq_ref;
+// 						console.log(df);
+// 						alert(typeof df);
+						var rdf = df -1;
+						console.log("ref"+rdf);
+						$("#re_inq_ref").val(rdf);
+						
+					}else{
+						$("#re_inq_ref").val(qna.ref);
+						
+					}
+					
 					//답변등록 폼
 					$("#re").click(function(){
 // 						alert(qna.inq_no + "번글에 답변등록");
@@ -248,8 +265,9 @@ $(function(){
 						$("#ListQnA").css("display","none");
 						$("#re_inq_no").val(qna.inq_no);
 						$("#re_user_id").val(qna.user_id);
-					
-
+						$("#re_inq_title").val(qna.inq_title+"의 답변입니다");
+						$("#re_inq_ref_step").val(qna.ref_step);
+						$("#re_inq_ref_level").val(qna.ref_level);
 						//답변등록
 						$("#submitRe").click(function(){
 							var r = $("#insertRe").serialize();
@@ -361,6 +379,7 @@ $(function(){
 <input type="hidden" name="inq_file" id="inq_file"><br>
 </form>
 <input type="button" id="btn" value="문의등록"><br>
+<a href="/admin/List">QnA리스트 돌아가기</a>
 </section>
 
 <section id="DetailQnA">
@@ -378,6 +397,7 @@ $(function(){
 		<button id="del">삭제하기</button><br>
    		<button id="re">답변달기</button><br>
 	</section>
+	<a href="/admin/List">QnA리스트 돌아가기</a>
 </section>
 <section id="AddRe">
 	<h3>답변등록</h3>
@@ -392,8 +412,13 @@ $(function(){
 		</select><br>
 		작성자 아이디<br>
 		<input type="text" id="re_user_id" name="user_id"><br>
+		제목<br>
+		<input type="text" id="re_inq_title" name="re_inq_title"><br>
 		내용<br>
 		<textarea rows="8" cols="100" id="re_inq_content" name="re_inq_content" required="required"></textarea><br>
+		<input type="text" id="re_inq_ref" name="re_ref">
+		<input type="text" id="re_inq_ref_step" name="re_ref_setp">
+		<input type="text" id="re_inq_ref_level" name="re_ref_level">
 	</form>
 	<button id="submitRe">답변등록</button><br>
 	<a href="/admin/List">QnA리스트 돌아가기</a>

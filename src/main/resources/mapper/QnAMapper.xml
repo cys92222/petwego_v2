@@ -47,7 +47,8 @@
 	<!-- 답변등록 -->
 	<insert id="insertRe">
 		<!-- 답변은 사진은 태그로 올라가고 파일 저장은 안함 -->
-		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, '답변 입니다', #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
+<!-- 		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, '답변 입니다', #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level}) -->
+		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
 	</insert>
 	
 	<!-- 마지막 글번호 -->

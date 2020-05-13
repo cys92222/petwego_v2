@@ -20,4 +20,10 @@ public class QnAUpdateVo {
 	private int up_ref;				//부모글 그룹
 	private int up_ref_step;			//부모글 그룹안에서 정렬 순서,답변의 답변
 	private int up_ref_level;			//들여쓰기
+	
+	private String re_inq_title;
+	
+	private int re_ref;
+	private int re_ref_step;
+	private int re_ref_level;
 }

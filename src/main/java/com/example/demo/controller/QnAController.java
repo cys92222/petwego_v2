@@ -197,13 +197,22 @@ public class QnAController {
 	
 	//답변등록
 	@RequestMapping("/admin/insertRe")
-	public void insertRe(QnAVo q, String re_inq_content) {
+	public void insertRe(QnAVo q, String re_inq_content, QnAUpdateVo qu) {
 		//부모글 번호로 묶음
-		q.setRef(q.getInq_no());
+//		q.setRef(q.getInq_no());
 		//정렬순서
-		q.setRef_step(q.getRef_step()+1);
+//		q.setRef_step(q.getRef_step()+1);
 		//들여쓰기
-		q.setRef_level(q.getRef_level()+1);
+//		q.setRef_level(q.getRef_level()+1);
+		
+		q.setInq_title(qu.getRe_inq_title());
+		
+		//부모글 번호로 묶음
+		q.setRef(qu.getRe_ref());
+		//정렬순서
+		q.setRef_step(qu.getRe_ref_step()+1);
+		//들여쓰기
+		q.setRef_level(qu.getRe_ref_level()+1);
 
 		q.setInq_content(re_inq_content);
 		service.insertRe(q);
