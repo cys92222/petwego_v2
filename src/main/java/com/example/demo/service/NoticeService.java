@@ -1,6 +1,8 @@
 package com.example.demo.service;
 //영수) 5월12일 공지사항 서비스
 import java.util.List;
+
+import com.example.demo.vo.NoticeUpdateVo;
 //영수) 5월12일 공지사항 서비스
 import com.example.demo.vo.NoticeVo;
 
@@ -16,7 +18,7 @@ public interface NoticeService {
 	public int deleteNotice(NoticeVo n);
 
 	//공지사항 수정
-	public int updateNotice(NoticeVo n);
+	public int updateNotice(NoticeUpdateVo nu);
 	
 	//공지사항 상세보기
 	public NoticeVo detailNotice(NoticeVo n);

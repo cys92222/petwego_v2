@@ -1,5 +1,5 @@
 package com.example.demo.vo;
-//영수) 5월12일 NoticeVo
+//영수) 5월12일 NoticeUpdateVo
 import java.util.Date;
 //영수) 5월12일 NoticeVo
 import lombok.AllArgsConstructor;
@@ -10,13 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class NoticeVo {
-	private int notice_no;
-	private String notice_title;
-	private String notice_content;
-	private int notice_hit;
-	private Date notice_date;
-	private int cs_no;
+public class NoticeUpdateVo {
+	private int u_notice_no;
+	private String u_notice_title;
+	private String u_notice_content;
+	private int u_notice_hit;
+	private Date u_notice_date;
+	private int u_cs_no;
 }
 
 

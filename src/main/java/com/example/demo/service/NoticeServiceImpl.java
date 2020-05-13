@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.NoticeDao;
+import com.example.demo.vo.NoticeUpdateVo;
 import com.example.demo.vo.NoticeVo;
 
 @Service
@@ -42,10 +43,10 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	//공지사항 수정
 	@Override
-	public int updateNotice(NoticeVo n) {
+	public int updateNotice(NoticeUpdateVo nu) {
 		// TODO Auto-generated method stub
 		int re = -1;
-		re = dao.updateNotice(n);
+		re = dao.updateNotice(nu);
 		return re;
 	}
 	

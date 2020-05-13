@@ -73,6 +73,8 @@ $(function(){
 			$("#listSection").css({"display":"none"});
 			$.ajax("/admin/detailNotice",{data:ino, success:function(detail){
 // 					console.log(detail);
+// 					alert(detail.cs_no);
+					//상세보기
 					$("#d_notice_no").val(detail.notice_no);
 					$("#d_notice_title").val(detail.notice_title);
 					$("#d_notice_content").append(detail.notice_content).css({"border":"1px solid"});
@@ -81,14 +83,71 @@ $(function(){
 					
 					var d_ca = detail.cs_no;
 					console.log(d_ca);
-					if(d_ca = 1){
+					if(d_ca == 1){
 						$("#d_cs_no").val("홈페이지 이용 관련");
 						}
-					else if(d_ca = 2){
+					else if(d_ca == 2){
 						$("#d_cs_no").val("계정 관련");
 						}
-				}});
-			});
+
+
+					//입력된값 불러서 수정폼에 셋팅
+					$("#u_notice_no").val(detail.notice_no);
+					$("#u_notice_title").val(detail.notice_title);
+
+					$('#u_notice_content').summernote('code', detail.notice_content);
+					
+					$("#u_notice_hit").val(detail.notice_hit);
+					$("#u_notice_date").val(moment(detail.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+
+					$("#u_cs_no").val(detail.cs_no);
+					
+					//수정 버튼 누르면
+					$("#upNotice").click(function(){
+						
+						var updata = $("#updateForm").serialize();
+						$.ajax("/admin/updateNotice",{data:updata,success:function(){
+							window.location.href="/admin/allNotice";
+							}});
+						});
+					
+					//삭제
+					$("#del").click(function(){
+						var dc = confirm("삭제할까요?");
+						var dn = {"notice_no":detail.notice_no};
+						if(dc == 1 ){
+							$.ajax("/admin/deleteNotice",{data:dn,success:function(){
+								alert("삭제했습니다");
+								window.location.href="/admin/allNotice";
+								}});
+						}
+
+					}); //삭제 end
+					
+				}}); //detail ajax end
+			
+			//수정폼
+			$("#up").click(function(){
+				$("#updateSection").css({"display":"block"});
+				$("#detailSection").css({"display":"none"});
+				//썸머노트
+				$('#u_notice_content').summernote({
+					height: 300,                 // 에디터 높이
+					minHeight: null,             // 최소 높이
+					maxHeight: null,             // 최대 높이
+					focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+					lang: "ko-KR",					// 한글 설정
+					placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+					callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+						onImageUpload : function(files) {
+							uploadSummernoteImageFile(files[0],this);
+						}
+					}
+				}); //썸머노트 폼 end
+				
+				}); //수정봄 end
+			
+			}); //상세보기 end
 		
 		}); //each end
 
@@ -130,7 +189,7 @@ $(function(){
 </script>
 </head>
 <body>
-
+<a href="/MainPage">메인화면</a>
 <section id="listSection">
 <h2>공지사항 리스트</h2>
 <hr>
@@ -155,7 +214,8 @@ $(function(){
 내용<br>
 <textarea rows="8" cols="100" id="notice_content" name="notice_content"></textarea>
 </form>
-<button id="addNotice">등록하기</button>
+<button id="addNotice">등록하기</button><br>
+<a href="/admin/allNotice">리스트로 돌아가기</a>
 </section>
 
 <section id="detailSection">
@@ -170,13 +230,34 @@ $(function(){
 조회수 : <input type="text" id="d_notice_hit" readonly="readonly"><br>
 작성일 : <input type="text" id="d_notice_date" readonly="readonly"><br>
 
-
+<section id="btnSection">
+	<button id="up">수정</button><br>
+	<button id="del">삭제</button><br>
+	<a href="/admin/allNotice">리스트로 돌아가기</a>
+</section>
 </section>
 
 <section id="updateSection">
 <h2>공지사항 수정</h2>
 <hr>
+<form id="updateForm">
+카테고리<br>
+<select id="u_cs_no" name="u_cs_no"><br>
+	<option value="1">홈페이지 이용 관련</option>
+	<option value="2">계정 관련</option>
+</select><br>
+공지사항 번호 : <input type="text" id="u_notice_no" name="u_notice_no" readonly="readonly"><br>
+제목 : <input type="text" id="u_notice_title" name="u_notice_title"><br>
+내용<br>
+<textarea rows="8" cols="100" id="u_notice_content" name="u_notice_content"></textarea>
+조회수 : <input type="text" id="u_notice_hit" readonly="readonly"><br>
+작성일 : <input type="text" id="u_notice_date" readonly="readonly"><br>
+</form>
 
+<section id="btnSection">
+	<button id="upNotice">수정하기</button><br>
+	<a href="/admin/allNotice">리스트로 돌아가기</a>
+</section>
 </section>
 </body>
 </html>

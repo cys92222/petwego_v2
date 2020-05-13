@@ -21,7 +21,7 @@
 	
 <!-- 	공지사항 수정 -->
 	<update id="updateNotice">
-		update notice set notice_title = #{notice_title}, notice_content = #{notice_content} where notice_no = #{notice_no} ande cs_no = {cs_no} )
+		update notice set notice_title = #{u_notice_title}, notice_content = #{u_notice_content}, cs_no = #{u_cs_no} where notice_no = #{u_notice_no}
 	</update>
 	
 <!-- 	조회수 -->
