@@ -30,7 +30,7 @@ public class Scheduler {
 	//  @Scheduled 를 적용할 메소드에는 매개변수가 있으면 안됨!!!!!! public void deleteImg(board_fileVo bf){} 
 	// 이렇게 썻더니 에러나면서 서버 안켜짐... 삽질만 2시간.... ㅎ 
 	// org.springframework.beans.factory.BeanCreationException: Error creating bean with name  defined in file~~~~~~~~
-	@Scheduled(cron = "0 0 4 * * * ")
+	@Scheduled(cron = "0 0/1 * * * * ")
 	public void deleteImg() {
 		System.out.println("파일 지우는 스케쥴러 동작함");
 		List<Board_fileVo> realFile = bf_service.realFile();
@@ -64,8 +64,8 @@ public class Scheduler {
 
 	}
 
-	@Scheduled(cron = "* * * * * *")
-	public void SchedulerService() {
-		System.out.println("스케쥴러 동작함");
-	}
+//	@Scheduled(cron = "* * * * * *")
+//	public void SchedulerService() {
+//		System.out.println("스케쥴러 동작함");
+//	}
 }
