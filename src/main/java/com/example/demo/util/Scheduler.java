@@ -18,6 +18,7 @@ import com.example.demo.vo.QnAVo;
 // 민아) 5/11 , 스케쥴러 테스트 
 // 민아) 5/13, 서머노트 실제업로드된것이 아닌 사진 스케쥴러로 지우기 완료 
 
+
 @Controller
 public class Scheduler {
 
@@ -37,9 +38,9 @@ public class Scheduler {
 	// org.springframework.beans.factory.BeanCreationException: Error creating bean with name  defined in file~~~~~~~~
 	
 //	// 새벽4시마다 지움 	
-	@Scheduled(cron = "0 0 4 * * * ")
+	@Scheduled(cron = "* * * * * * ")
 	public void deleteImg() {
-		System.out.println("파일 지우는 스케쥴러 동작함");
+		//System.out.println("파일 지우는 스케쥴러 동작함");
 		List<Board_fileVo> realFile = bf_service.realFile();
 
 		File path = new File("C:\\summernote_image"); // c드라이브에 파일이 저장되는곳 경로
@@ -63,7 +64,7 @@ public class Scheduler {
 
 				// System.out.println("리얼uuid: "+ realFname);
 				// 리얼uuid: 151a052a-3f50-46fa-805a-aa567ecea91a.png
-				if (!allFname.equals(realUuid)) {
+				if ( !allFname.equals(realUuid) && ImgList[j].exists() ) {
 					ImgList[j].delete();
 				}
 			}
