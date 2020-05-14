@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+//봉현) 5/12
 public class Pic_BoardVo {
 	private int photo_no;
 	private Date photo_date;
