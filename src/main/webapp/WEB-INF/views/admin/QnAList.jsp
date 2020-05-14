@@ -122,7 +122,8 @@ $(function(){
 
 				var a = qna.inq_title;
 				
-				var reimg = $("<img src='../adminImg/re.jpg'>");
+// 				var reimg = $("<img src='../adminImg/re.jpg'>");
+ 				var reimg = $("<img src='../adminImg/re2.png'>");
 				if(qna.ref_level > 0){
 					var inq_title = $("<td></td>");
 					//들여쓰기

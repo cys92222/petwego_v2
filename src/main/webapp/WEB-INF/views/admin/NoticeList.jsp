@@ -248,7 +248,7 @@ $(function(){
 <hr>
 <form id="insertForm">
 <select name="cs_no">
-	<option value="1">홈페이이지 관련</option>
+	<option value="1">홈페이지 관련</option>
 	<option value="2">계정 관련</option>
 </select><br>
 제목<br>
