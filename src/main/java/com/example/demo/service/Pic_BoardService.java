@@ -11,7 +11,7 @@ import com.google.gson.JsonElement;
 //봉현) 5/12
 public interface Pic_BoardService {
 	
-public List<Pic_Board_FileVo> listFile();
+public List<Pic_Board_FileVo> listFile(Criteria cri)throws Exception;
 	
 	public List<Pic_BoardVo> listPic_Board(Criteria cri) throws Exception;
 	
@@ -31,7 +31,7 @@ public List<Pic_Board_FileVo> listFile();
 	public int likecnt(LikeItVo l);
 	
 	//상세보기 
-	public Pic_BoardVo detailBoard(int photo_no);
+	public Pic_BoardVo detailPic_Board(int photo_no);
 		
 	//상세보기 사진
 	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf);

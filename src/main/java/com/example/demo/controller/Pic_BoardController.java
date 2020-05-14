@@ -30,7 +30,7 @@ public class Pic_BoardController {
 	@RequestMapping(value="/pic_board/list",method = RequestMethod.GET)
 	public ModelAndView listAll(Criteria cri) throws Exception {	
 		ModelAndView mav = new ModelAndView();
-		List<Pic_Board_FileVo> list_file = pic_boardService.listFile();
+		List<Pic_Board_FileVo> list_file = pic_boardService.listFile(cri);
 		
 		List<Pic_BoardVo> list_board = pic_boardService.listPic_Board(cri);
 		
@@ -38,12 +38,14 @@ public class Pic_BoardController {
 		String str_board = "";
 		
 		Gson gson = new Gson();
-		mav.addObject("listAll",gson.toJson(pic_boardService.listPic_Board(cri)));
+		str_board = gson.toJson(list_board);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(pic_boardService.listCount());
 		mav.addObject("pageMaker",pageMaker);
+		mav.addObject("listAll",str_board);
+		mav.addObject("file", gson.toJson(list_file));
 		mav.setViewName("/pic_board/list");
 		return mav;
 	}
@@ -101,7 +103,7 @@ public class Pic_BoardController {
 	
 		Gson gson = new Gson();
 		String str_file = "";
-		str_file = gson.toJson(pic_boardService.listFile());
+		str_file = gson.toJson(pic_boardService.listFile(cri));
 		
 		String str_board = "";
 		
@@ -143,7 +145,7 @@ public class Pic_BoardController {
 	@GetMapping("/pic_board/detail")
 	public ModelAndView detail(Pic_BoardVo pb,Pic_Board_FileVo pbf) {		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("Board", pic_boardService.detailBoard(pb.getPhoto_no()));
+		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
 		mav.addObject("file", pic_boardService.detailFile(pbf));
 		mav.setViewName("/pic_board/detail");
 		

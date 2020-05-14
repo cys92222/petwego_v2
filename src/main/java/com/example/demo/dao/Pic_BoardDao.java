@@ -3,20 +3,19 @@ import java.util.List;
 import com.example.demo.util.Criteria;
 import com.example.demo.vo.LikeItVo;
 import com.example.demo.vo.Pic_BoardVo;
-import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 
 public interface Pic_BoardDao {
 	
-	public List<Pic_Board_FileVo> listFile();
+	public List<Pic_Board_FileVo> listFile(Criteria cri) throws Exception;
 	
-	public List<Pic_BoardVo> listBoard(Criteria cri) throws Exception;
+	public List<Pic_BoardVo> listPic_Board(Criteria cri) throws Exception;
 	
 	//페이징
 	 int listCount() throws Exception;
 		
 	//게시물등록
-	 int insert(Pic_BoardVo pb);	
+	 int insertPic_Board(Pic_BoardVo pb);	
 	
 	//사진파일
 	 int insertfile(Pic_Board_FileVo pbf);

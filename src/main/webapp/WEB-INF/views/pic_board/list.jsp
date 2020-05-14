@@ -9,12 +9,13 @@
 <title>sns게시판</title>
 <style type="text/css">
 li{list-style:none; float:left; padding: 6px;}
+
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
 	var arr_file = ${file};
-	var arr_board = ${board};
+	var arr_board = ${listAll};
 	$.each(arr_file,function(idx,data){
 		var a = $('<a href="/pic_board/detail"></a>');
 		var img = $("<img/>").attr({"src":"/img/"+data.photo_file_name,"photo_no":data.photo_no})
@@ -35,6 +36,7 @@ $(function(){
 
 </div>
 <a href="/pic_board/insert">sns 등록</a>
+
 	<div>
   		<ul>
 		    <c:if test="${pageMaker.prev}">

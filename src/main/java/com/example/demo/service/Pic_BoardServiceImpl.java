@@ -19,14 +19,14 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 	private Pic_BoardDao pic_boardDao;
 	
 	@Override
-	public List<Pic_Board_FileVo> listFile() {
-		List<Pic_Board_FileVo> list = pic_boardDao.listFile();
+	public List<Pic_Board_FileVo> listFile(Criteria cri) throws Exception{
+		List<Pic_Board_FileVo> list = pic_boardDao.listFile(cri);
 		return list;
 	}
-	//리스트
+	//리스트	
 	@Override
 	public List<Pic_BoardVo> listPic_Board(Criteria cri) throws Exception{
-		return pic_boardDao.listBoard(cri);
+		return pic_boardDao.listPic_Board(cri);
 
 	}
 	
@@ -41,7 +41,7 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 	@Override
 	public int insertPic_Board(Pic_BoardVo pb) {
 		int re = -1;
-		re = pic_boardDao.insert(pb);
+		re = pic_boardDao.insertPic_Board(pb);
 		return re;
 	}
 	
@@ -68,7 +68,7 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 	}
 	//상세
 	@Override
-	public Pic_BoardVo detailBoard(int photo_no) {
+	public Pic_BoardVo detailPic_Board(int photo_no) {
 		return pic_boardDao.detailPic_Board(photo_no);
 	}
 	//사진
