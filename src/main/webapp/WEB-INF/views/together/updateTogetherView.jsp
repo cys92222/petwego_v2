@@ -12,7 +12,7 @@ $(document).ready(function(){
 	
 	$(".cancel_btn").on("click",function(){
 		event.preventDefault();
-		location.href = "detailTogether?t_num=${updateTogether.t_num}"
+		location.href = "/together/detailTogether?t_num=${updateTogether.t_num}"
 			   + "&page=${scri.page}"
 			   + "&perPageNum=${scri.perPageNum}"
 			   + "&searchType=${scri.searchType}"
@@ -51,13 +51,15 @@ $(document).ready(function(){
 		<hr />
 		
 		<section id="container">
-				<form name="updateForm" role="form" method="post" action="updateTogether">
+				<form name="updateForm" role="form" method="post" action="updateTogether" enctype="multipart/form-data">
 					<input type="hidden" name="t_num" value="${updateTogether.t_num}" readonly="readonly"/>
 					<table>
 						<tbody>
 							<tr>
 								<td>
-									<label for="t_thumbnail">썸네일</label><input type="text" id="t_thumbnail" name="t_thumbnail" value="${updateTogether.t_thumbnail }" class="chk" title="썸네일을 등록하세요."/>
+<%-- 									<label for="t_thumbnail">썸네일</label><input type="file" id="t_thumbnail" name="thumbnailFile" value="${updateTogether.t_thumbnail }"/><br> --%>
+									<img src="../t_thumbnailUpload/${updateTogether.t_thumbnail}">
+									<input type="text" id="thumbnailFile" name="thumbnailFile" value="${updateTogether.t_thumbnail}">
 								</td>
 							</tr>
 							

@@ -47,7 +47,7 @@ $(function(){
 						</tr>
 						<c:forEach var="c" items="${listTogether}">
 							<tr>
-								<td>${c.t_thumbnail}</td>
+								<td><img src="../t_thumbnailUpload/${c.t_thumbnail}" width="100" height="100"></td>
 								<td><a href="detailTogether?t_num=${c.t_num}&
 															page=${scri.page}&
 															perPageNum=${scri.perPageNum}&

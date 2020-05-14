@@ -3,29 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.dao.TogetherDao">
- 
  	
  	<select id="listTogether" resultType="com.example.demo.vo.TogetherVo" parameterType="com.example.demo.util.SearchCriteria">
  		select t_num,
- 		t_thumbnail,
  		t_title,
  		t_intro,
  		user_id,
  		t_size,
  		t_attendee_cnt,
  		t_date,
+ 		t_thumbnail,
  		t_place,
  		t_hit
  		from
  		(
  		select t_num,
- 		t_thumbnail,
  		t_title,
  		t_intro,
  		user_id,
  		t_size,
  		t_attendee_cnt,
- 		t_date,t_place,
+ 		t_date,
+ 		t_thumbnail,
+ 		t_place,
  		t_hit,
  		row_number() over(order by t_num desc) as rNum
  		from together
@@ -81,22 +81,50 @@
 		</if>
 	</sql>
 	
-<!-- 	<select id="listCount" resultType="int"> -->
-<!-- 		<![CDATA[ -->
-<!-- 			SELECT COUNT(t_num) -->
-<!-- 			  FROM together -->
-<!-- 			WHERE t_num > 0 -->
-<!-- 		]]> -->
-<!-- 	</select> -->
 
 	<insert id="writeTogether">
 		insert into together(t_num,t_title,t_intro,t_detail,t_open_date,t_thumbnail,t_place,t_date,t_size,t_attendee_cnt,t_fname,user_id,t_hit)
-		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,'w.jpg',#{t_place},#{t_date},10,5,'fname.jpg','wonwoo',0)
+		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,#{t_thumbnail},#{t_place},#{t_date},#{t_size},0,#{t_fname},'wonwoo',0)
+	</insert>
+
+	
+	<!-- 함께가요 글 작성 -->
+	<!-- useGeneratedKeys는 자동적으로 증가되는 키를 받는 getGeneratedKeys()를 사용할 수 있게 true로 설정  -->
+	<!-- keyProperty는 selectKey에의해 선택된 키(keyProperty="t_num")가 무엇인지 설정 -->
+	<!-- order="BEFORE"는 insert를 실행하기전에 실행한다는 설정 -->
+<!-- 	<insert id="writeTogether" parameterType="com.example.demo.vo.TogetherVo" useGeneratedKeys="true" keyProperty="t_num"> -->
+<!-- 		<selectKey keyProperty="t_num" resultType="int" order="BEFORE"> -->
+<!-- 			select seq_together.nextval from dual -->
+<!-- 		</selectKey> -->
+<!-- 		insert into together(t_num,t_title,t_intro,t_detail,t_open_date,t_place,t_date,t_size,t_attendee_cnt,t_fname,user_id,t_hit) -->
+<!-- 		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,#{t_place},#{t_date},#{t_size},0,'fname.jpg','wonwoo',0) -->
+<!-- 	</insert> -->
+	
+	
+	<!-- 썸네일 파일 첨부 -->
+	<insert id="insertFile" parameterType="hashMap">
+		insert into together_thumbnail_file(
+			thumbnail_file_no,
+			t_num,
+			thumbnail_org_file_name,
+			thumbnail_stored_file_name,
+			thumbnail_file_size
+		)values(
+			seq_thumbnail_file_no.nextval,
+			#{t_num},
+			#{thumbnail_org_file_name},
+			#{thumbnail_stored_file_name},
+			#{thumbnail_file_size}
+		)
 	</insert>
 	
-<!-- 	<select id="listTogether" resultType="com.example.demo.vo.TogetherVo"> -->
-<!-- 		select * from together order by t_num desc -->
-<!-- 	</select> -->
+	
+	<!-- 조회수  -->
+	<update id="togetherHit" parameterType="int">
+		update together set t_hit = t_hit + 1 where t_num = #{t_num}
+	</update>
+	
+
 	
 	<select id="detailTogether" parameterType="int" resultType="com.example.demo.vo.TogetherVo">
 		select * from together where t_num = #{t_num}

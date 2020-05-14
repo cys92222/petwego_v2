@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,12 +33,51 @@ $(document).ready(function(){
 
 	//검색 유지한 목록으로 돌아가기
 	//5월8일 현재 동작 안되고 있음 주소창에 입력값은 가져와지는데 페이지가 넘어가지지 않음
-	$(".list_btn").on("click",function(){
-		location.href = "listTogether?page=${scri.page}"
-						+"&perPageNum=${scri.perPageNum}"
-						+"&searchType=${scri.searchType}&keyword=${scri.keyword}";
-		
+	$(".list_btn").on("click", function(){
+		event.preventDefault();
+		location.href = "/together/listTogether?page=${scri.page}"
+		+"&perPageNum=${scri.perPageNum}"
+		+"&searchType=${scri.searchType}&keyword=${scri.keyword}";
+	})
+	$(".replyWriteBtn").on("click", function(){
+		var formObj = $("form[name='replyForm']");
+		formObj.attr("action", "/together/writeReply");
+		formObj.submit();
 	});
+
+	//댓글 수정 View
+	$(".replyUpdateBtn").on("click", function(){
+		location.href = "/together/updateReplyView?t_num=${detailTogether.t_num}"
+						+ "&page=${scri.page}"
+						+ "&perPageNum=${scri.perPageNum}"
+						+ "&searchType=${scri.searchType}"
+						+ "&keyword=${scri.keyword}"
+						//클릭이벤트가 발생한 수정버튼의 data-t_r_num을 가져오겠다.
+						+ "&t_r_num="+$(this).attr("data-t_r_num");
+	});
+			
+	//댓글 삭제 View
+	$(".replyDeleteBtn").on("click", function(){
+		location.href = "/together/deleteReplyView?t_num=${detailTogether.t_num}"
+						+ "&page=${scri.page}"
+						+ "&perPageNum=${scri.perPageNum}"
+						+ "&searchType=${scri.searchType}"
+						+ "&keyword=${scri.keyword}"
+						+ "&t_r_num="+$(this).attr("data-t_r_num");
+	});
+
+
+// 	$(".replyDeleteBtn").on("click",function(){
+// 		var formObj = $("form[name='replyForm']");
+// 		var deleteYN = confirm("삭제하시겠습니까?");
+		
+// 		if(deleteYN==true){
+// 			formObj.attr("action","deleteReply");
+// 			formObj.attr("method","post");
+// 			formObj.submit();
+// 		}
+// 	});
+
 });
 </script>
 </head>
@@ -72,6 +113,13 @@ $(document).ready(function(){
 							
 							<tr>
 								<td>
+									<label for="t_thumbnail">썸네일</label><input type="text" id="t_thumbnail" name="t_thumbnail" value="${detailTogether.t_thumbnail }"/><br>
+									<img src="../t_thumbnailUpload/${detailTogether.t_thumbnail}">
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
 									<label for="t_title">제목</label><input type="text" id="t_title" name="t_title" value="${detailTogether.t_title }"/>
 								</td>
 							</tr>
@@ -84,7 +132,7 @@ $(document).ready(function(){
 							
 							<tr>
 								<td>
-									<label for="t_detail">내용</label><textarea id="t_detail" name="t_detail">${detailTogether.t_detail }</textarea>
+									<label for="t_detail">내용</label><div id="t_detail" name="t_detail">${detailTogether.t_detail }</div>
 								</td>
 							</tr>
 							
@@ -93,7 +141,13 @@ $(document).ready(function(){
 									<label for="t_place">모임장소</label><input type="text" id="t_place" name="t_place" value="${detailTogether.t_place }"/>
 								</td>
 							<tr>
-					
+							
+							<tr>
+								<td>
+									<label for="t_size">총참가 인원</label><input type="text" id="t_size" name="t_size" value="${detailTogether.t_size }"/>
+								</td>
+							</tr>
+							
 							<tr>
 								<td>
 									<label for="t_date">모임일</label><input type="text" id="t_date" name="t_date" value="${detailTogether.t_date }"/>
@@ -101,11 +155,56 @@ $(document).ready(function(){
 							</tr>		
 						</tbody>			
 					</table>
+					<hr>
+					<a href="/chat">채팅하기</a>
+					
+					<hr>
 					<button type="submit" class="update_btn">수정</button>
 					<button type="submit" class="delete_btn">삭제</button>
 					<button type="submit" class="list_btn">목록</button>
+
+				</form>
+				<button class="btn btn-primary btn-sm" id="btn-add-t_num-${togetherVo.t_num}">신청</button>
+				<hr>
+				<form name="replyForm" method="post">
+					<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
+					<input type="hidden" id="page" name="page" value="${scri.page }"/>
+					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum }"/>
+					<input type="hidden" id="searchType" name="searchType" value="${scri.searchType }"/>
+					<input type="hidden" id="keyword" name="keyword" value="${scri.keyword }"/>
+					
+					
+					<div>
+						<label for="user_id">댓글 작성자</label><input type="text" id="user_id" name="user_id" />
+						<br/>
+						<label for="t_r_content">댓글 내용</label><input type="text" id="t_r_content" name="t_r_content" />
+					</div>
+					<div>
+				 		<button type="button" class="replyWriteBtn">작성</button>
+				  	</div>
+					
+					<div id="reply">
+					  <ol class="replyList">
+					    <c:forEach items="${replyList}" var="replyList">
+					      <li>
+					        <p>
+					        작성자 : ${replyList.user_id}<br />
+					        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+					        </p>
+					
+					        <p>${replyList.t_r_content}</p>
+					        <div>
+							  <button type="button" class="replyUpdateBtn" data-t_r_num="${replyList.t_r_num}">수정</button>
+							  <button type="button" class="replyDeleteBtn" data-t_r_num="${replyList.t_r_num}">삭제</button>
+							</div>
+					      </li>
+					    </c:forEach>
+					  </ol>
+					</div>
 				</form>
 			</section>
+			<input type="button" value="맨위로" onClick="javascript:window.scrollTo(0,0)" />
+			<input type="image" src="/top.png" onClick="javascript:window.scrollTo(0,0)" alt="맨위로" />
 			<hr />
 		</div>
 	</body>
