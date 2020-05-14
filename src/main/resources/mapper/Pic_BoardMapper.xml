@@ -2,16 +2,19 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.demo.dao.SnsDao">
+<mapper namespace="com.example.demo.dao.Pic_BoardDao">
   
   <!-- 모든 파일 -->
   <select id="listFile" resultType="com.example.demo.vo.Pic_Board_FileVo">
    	select * from pic_board_file
   </select>
   
-  <!-- 모든 글 -->
-  <select id="listBoard" resultType="com.example.demo.vo.Pic_BoardVo">
-   	select * from pic_board
+<!--    모든 글  -->
+  <select id="listBoard" resultType="com.example.demo.vo.Pic_BoardVo" parameterType="com.example.demo.util.Criteria">
+	select photo_no,photo_date,photo_detail,user_id
+	from(select photo_no,photo_date,photo_detail,user_id, row_number() over (order by photo_no desc)as rNum 
+	from Pic_board) mp
+	where rnum between #{rowStart}and#{rowEnd} 
   </select>
   
   <!-- 상세보기 파일 -->
@@ -30,8 +33,7 @@
   </select>
   
 <!--   sns 글 등록 -->
-  <insert id="insertsns">
-  	
+  <insert id="insert">
   	insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail}, #{user_id})
   	<selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="AFTER">
 	  		select seq_photo_no.nextval from dual
@@ -56,16 +58,16 @@
   <select id="likecnt" resultType="java.lang.Integer">
   select count(*) from likeit where photo_no = #{photo_no} and user_id = #{user_id}
   </select>
-  
-<!--   sns 글 삭제 -->
-  <delete id="deletesns">
-  delete pic_board where photo_no = #{photo_no} <!--and user_id = #{user_id}-->
-  </delete>
-  
+ 
  <!-- sns수정  ???-->
- <update id="updatesns" >
+ <update id="update" >
  	update pic_board set photo_detail = #{photo_detail},pic_board_file = #{pic_board_file} where photo_no = #{photo_no}
  </update> 
+ 
+ <!--   sns 글 삭제 -->
+  <delete id="delete">
+  delete pic_board where photo_no = #{photo_no}
+  </delete>
   
   <!-- 상세보기 글-->
   <select id="detailsns_board" resultType="com.example.demo.vo.Pic_BoardVo">
@@ -79,12 +81,9 @@
   
   
   <!-- 게시물 수 -->
-	<select id="listCount" resultType="int" parameterType="com.example.demo.util.SearchCriteria">
-		SELECT COUNT(pic_board)
-		  FROM photo_no
-		   WHERE 1=1
-		<include refid="search"></include>
-		 and pic_board > 0
+	<select id="listCount" resultType="int" parameterType="com.example.demo.util.Criteria">
+		SELECT COUNT(photo_no)
+		  FROM Pic_board
+		   WHERE photo_no > 0
 	</select>
-  
 </mapper>

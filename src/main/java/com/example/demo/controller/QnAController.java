@@ -62,6 +62,7 @@ public class QnAController {
 		return mav;
 	}
 	
+	
 	//qna등록
 	@RequestMapping("/admin/insertQnA")
 	public void insertQnA(QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {

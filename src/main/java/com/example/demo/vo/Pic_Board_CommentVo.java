@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+//봉현) 5/12
 public class Pic_Board_CommentVo {
 	private int photo_comm_no;
 	private Date photo_comm_date;

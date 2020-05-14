@@ -73,9 +73,8 @@
 		<ul class="menu01">
 			<li><span id="mypet">마이펫</span>
 				<ul class="dept01">
-				
-					<a href="/sns/listAll"><li>sns리스트</li></a>
-					<a href="/sns/insertsnsform"><li>sns글등록</li></a>
+					<li><a href="/pic_board/list">sns리스트</a></li>
+					<li><a href="/pic_board/insert">sns글등록</a></li>
 				</ul>
 			</li>
 			<li><span id="facility">숙소찾기</span>
