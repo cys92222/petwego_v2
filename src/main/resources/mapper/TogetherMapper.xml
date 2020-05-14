@@ -131,11 +131,16 @@
 	</select>
 	
 	<update id="updateTogether" parameterType="com.example.demo.vo.TogetherVo">
-		update together set t_thumbnail=#{t_thumbnail,jdbcType = VARCHAR},t_title=#{t_title},t_intro=#{t_intro},t_detail=#{t_detail},t_place=#{t_place},t_open_date=sysdate,t_date=#{t_date,jdbcType = VARCHAR},t_size=#{t_size},t_fname=#{t_fname,jdbcType = VARCHAR} where t_num=#{t_num}
+		update together set t_thumbnail=#{t_thumbnail},t_title=#{t_title},t_intro=#{t_intro},t_detail=#{t_detail},t_place=#{t_place},t_open_date=sysdate,t_date=#{t_date},t_size=#{t_size},t_fname=#{t_fname} where t_num=#{t_num}
 	</update>
 	
 	<delete id="deleteTogether" parameterType="int">
 		delete from together where t_num =#{t_num}
 	</delete>
 	
+	
+	<!-- 썸네일 수정 -->
+	<update id="upthum">
+		update together set t_thumbnail=#{t_thumbnail} where t_num=#{t_num}
+	</update>
 </mapper>

@@ -64,6 +64,13 @@ public class TogetherServiceImpl implements TogetherService {
 		return dao.detailTogether(t_num);
 	}
 	
+	//썸네일 수정
+	@Override
+	public void upthum(TogetherVo t) {
+		// TODO Auto-generated method stub
+		dao.upthum(t);
+	}
+	
 	
 	
 }

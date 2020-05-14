@@ -292,4 +292,35 @@ public class TogeteherController {
 		
 		return jsonObject;
 	}
+	
+	//썸네일 수정
+		@RequestMapping("/together/upthum")
+		@ResponseBody
+		public String upthum(TogetherVo t,HttpServletRequest request) {
+			
+			String path = request.getRealPath("t_thumbnailUpload");
+			System.out.println("path : " + path);
+			String thumbnailoldFname = t.getT_thumbnail();
+			MultipartFile thumbnailFile = t.getThumbnailFile();
+			String t_thumbnail = thumbnailoldFname;
+			
+			if (thumbnailFile != null) {
+				t_thumbnail = thumbnailFile.getOriginalFilename();
+				if (t_thumbnail != null && !t_thumbnail.equals("")) {
+					t.setT_thumbnail(t_thumbnail);
+					try {
+						byte[] data = thumbnailFile.getBytes();
+						FileOutputStream thumnailfos = new FileOutputStream(path + "/" + t_thumbnail);
+						thumnailfos.write(data);
+						thumnailfos.close();
+					} catch (Exception e) {
+						System.out.println("예외발생 : " + e.getMessage());
+					}
+				}
+			}
+			
+			service.upthum(t);
+			
+			return "o";
+		}
 }

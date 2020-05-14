@@ -29,4 +29,7 @@ public interface TogetherService {
 		
 	//함께가요 삭제
 	public void deleteTogether(int t_num) throws Exception;	
+	
+	//썸네일 수정
+	public void upthum(TogetherVo t);
 }

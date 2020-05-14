@@ -37,4 +37,6 @@ public interface TogetherDao {
 	//첨부파일 업로드
 	public void insertFile(Map<String, Object> map) throws Exception;
 
+	//썸네일 수정
+	public void upthum(TogetherVo t);
 }
