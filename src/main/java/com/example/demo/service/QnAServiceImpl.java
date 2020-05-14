@@ -98,5 +98,13 @@ public class QnAServiceImpl implements QnAService {
 		return re;
 	}
 	
+	//파일 이름
+	@Override
+	public List<QnAVo> fime_name() {
+		// TODO Auto-generated method stub
+		List<QnAVo> list = dao.fime_name();
+		return list;
+	}
+	
 	
 }

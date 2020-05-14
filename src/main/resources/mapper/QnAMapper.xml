@@ -78,4 +78,9 @@
 	<select id="no_delete" resultType="java.lang.Integer">
 		select count(*) from qna where ref = #{ref} and ref_step>0
 	</select>
+	
+	<!-- 	파일이름 -->
+	<select id="fime_name" resultType="com.example.demo.vo.QnAVo">
+		select * from qna
+	</select>
 </mapper>

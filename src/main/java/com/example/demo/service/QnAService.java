@@ -35,4 +35,7 @@ public interface QnAService {
 	
 	//답변있는 글은 삭제 못하게
 	public int no_delete(QnAVo q);
+	
+	//파일 이름
+	public List<QnAVo> fime_name();
 }

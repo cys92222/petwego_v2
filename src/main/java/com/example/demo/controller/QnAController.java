@@ -93,7 +93,7 @@ public class QnAController {
 		
 		JsonObject jsonObject = new JsonObject();
 		
-		String fileRoot = "C:\\summernote_image\\";	//저장될 외부 파일 경로
+		String fileRoot = "C:\\summernote_image_QnA\\";	//저장될 외부 파일 경로
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 					
@@ -123,7 +123,7 @@ public class QnAController {
 			
 			JsonObject jsonObject = new JsonObject();
 			
-			String fileRoot = "C:\\summernote_image\\";	//저장될 외부 파일 경로
+			String fileRoot = "C:\\summernote_image_QnA\\";	//저장될 외부 파일 경로
 			String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 			String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 						

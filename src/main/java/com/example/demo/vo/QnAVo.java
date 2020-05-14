@@ -1,6 +1,7 @@
 package com.example.demo.vo;
 //영수) 5월12일 QnAVo
 import java.util.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class QnAVo {
 	private int ref;				//부모글 그룹
 	private int ref_step;			//부모글 그룹안에서 정렬 순서,답변의 답변
 	private int ref_level;			//들여쓰기
+
 }
 
 
