@@ -124,7 +124,12 @@ $(function(){
 				
 				var reimg = $("<img src='../adminImg/re.jpg'>");
 				if(qna.ref_level > 0){
-					var inq_title = $("<td></td>").append(reimg,a);
+					var inq_title = $("<td></td>");
+					//들여쓰기
+					for(var g = 0; g<=qna.ref_level; g++){
+							inq_title.append("&nbsp;","&nbsp;");
+						}
+					inq_title.append(reimg,a);
 					var user_id = $("<td></td>").append("관리자");
 					}else {
 						var inq_title = $("<td></td>").append(a);
