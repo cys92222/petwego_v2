@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,10 +53,16 @@ public class Pic_BoardController {
 	
 	//상세보기
 	@GetMapping("/pic_board/detail")
-	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {		
+
+	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
+		System.out.println("pic_board      "+pb.getPhoto_no());
+		System.out.println("pic_board_file    "+ pbf.getPhoto_no());
+//		System.out.println("photo_no    " + photo_no);
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
-		mav.addObject("file", pic_boardService.detailFile(pbf));
+		System.out.println(pic_boardService.detailPic_Board(pb.getPhoto_no()));
+		System.out.println(pic_boardService.detailFile(pbf));
+//		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
+//		mav.addObject("file", pic_boardService.detailFile(pbf));
 		mav.setViewName("/pic_board/detail");
 		
 		return mav;
@@ -101,7 +108,6 @@ public class Pic_BoardController {
 			}
 		}
 			
-	
 		
 		//파일 업로드
 		uploadFile = pbf.getUploadFile();
@@ -116,8 +122,8 @@ public class Pic_BoardController {
 		String str_file = "";
 		str_file = gson.toJson(pic_boardService.listFile(cri));
 		
-		String str_board = "";
 		
+		String str_board = "";
 		str_board = gson.toJson(pic_boardService.listPic_Board(cri));
 		
 		mav.addObject("file", str_file);
@@ -125,7 +131,6 @@ public class Pic_BoardController {
 		mav.setViewName("/pic_board/list");
 		return mav;
 	}
-	
 	//좋아요
 	
 	//좋아요 수
@@ -142,15 +147,4 @@ public class Pic_BoardController {
 	public void deletePic_Board(Pic_BoardVo pb) {
 		pic_boardService.deletePic_Board(pb);
 	}
-	
-	
-		//첨부파일 먼저 삭제
-	
-		
-		//댓글 먼저 삭제 
-	
-	
-	
-	
-
 }

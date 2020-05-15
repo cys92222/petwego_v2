@@ -12,7 +12,7 @@ import com.example.demo.dao.Pic_BoardDao;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Pic_Board_CommentVo;
 
-
+//봉현) 5/13
 @Service
 public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	

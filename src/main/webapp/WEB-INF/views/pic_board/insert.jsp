@@ -9,7 +9,7 @@
 <body>
 	<h2>사진 등록</h2>
 	<hr>
-	<form action="/pic_board/insertform" method="post" enctype="multipart/form-data">
+	<form action="/pic_board/insert" method="post" enctype="multipart/form-data">
 		작성자 <br>
 		<input type="text" name="user_id"><br>
 		내용 <br>

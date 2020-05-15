@@ -16,7 +16,7 @@ import com.google.gson.Gson;
 
 // 봉현) 5/13, Pic_board 목록,삭제,입력 완료 
 @RestController
-@RequestMapping("/comment/*")
+@RequestMapping("/pcomment/*")
 public class Pic_Board_CommentController {
 	@Autowired
 	private Pic_Board_CommentService pcomm_service;
@@ -38,6 +38,8 @@ public class Pic_Board_CommentController {
 	@PostMapping(value = "/pinsertComment")
 	public ModelAndView pinsertComment(Pic_Board_CommentVo pbc) {
 		ModelAndView mav = new ModelAndView("redirect:/pic_board/detail?photo_no="+pbc.getPhoto_no());
+		//System.out.println(pbc.getPhoto_comm_cont() + "\t" + pbc.getUser_id() + "\t" +  pbc.getPhoto_no());
+		System.out.println("게시물 번호"+pbc.getPhoto_no());
 		pcomm_service.pinsertComment(pbc);
 		return mav;
 	}

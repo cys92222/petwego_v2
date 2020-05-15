@@ -25,38 +25,35 @@ order by photo_no desc
   <!-- sns 총 게시물 수 -->
    <select id="listCount" resultType="int" parameterType="com.example.demo.util.Criteria">
       SELECT COUNT(*)
-        FROM pic_board
+        FROM pic_board 
          WHERE 1=1
        and photo_no> 0
    </select>
-  
+   
   <!-- 상세보기 파일 -->
-  <select id="detailFile" resultType="com.example.demo.vo.Pic_Board_FileVo">
+  <select id="detailFile" resultType="com.example.demo.vo.Pic_Board_FileVo" parameterType="map">
      select * from pic_board_file where photo_no = #{photo_no}
   </select>
   
   <!-- 상세보기 글 -->
-  <select id="detailPic_Board" resultType="com.example.demo.vo.Pic_BoardVo">
+  <select id="detailPic_Board" resultType="com.example.demo.vo.Pic_BoardVo" parameterType="map">
   	select * from pic_board where photo_no = #{photo_no}
   </select>
   
   <!--   sns 글 등록 -->
   <insert id="insertPic_Board">
-     insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail}, #{user_id})
+     insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail,jdbcType=VARCHAR}, #{user_id})
      <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="AFTER">
            select seq_photo_no.nextval from dual
      </selectKey>
   </insert>
-<!--   <insert id="insertQnA"> -->
-<!-- 		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, #{inq_file}, #{ref}, 0, 0) -->
-<!-- 	</insert> -->
   
   
-<!--   sns 파일등록 -->  <!-- 수정 -->
+<!--   sns 파일등록 -->  <!--  selectkey 사용하면 오류뜸-->
   <insert id="insertfile">
-     <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="BEFORE">
-           select seq_photo_no.nextval from dual
-     </selectKey>
+<!--      <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="BEFORE"> -->
+<!--            select seq_photo_no.nextval from dual -->
+<!--      </selectKey> -->
   insert into pic_board_file values (seq_pic_board_no.nextval, #{photo_file_name}, #{photo_no})
   </insert>
   
