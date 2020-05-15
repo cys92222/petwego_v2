@@ -63,6 +63,7 @@ $(function(){
 		success : function(data) {
 	    	//항상 업로드된 파일의 url이 있어야 한다.
 			$(editor).summernote('insertImage', data.url);
+			console.log(data.url);
 // 			alert(data.url);
 // 			alert(data);
 			var data_url = data.url;

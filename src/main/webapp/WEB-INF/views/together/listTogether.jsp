@@ -45,9 +45,10 @@ $(function(){
 							<th>모임장소</th>
 							<th>조회수</th>
 						</tr>
-						<c:forEach var="c" items="${listTogether}">
+						<c:forEach var="c" items="${listTogether}" varStatus="status">
 							<tr>
-								<td><img src="../t_thumbnailUpload/${c.t_thumbnail}" width="100" height="100"></td>
+								<td><img src="../t_thumbnailUpload/${c.thumbnail}" width="100" height="100"></td>
+								
 								<td><a href="detailTogether?t_num=${c.t_num}&
 															page=${scri.page}&
 															perPageNum=${scri.perPageNum}&
@@ -63,6 +64,8 @@ $(function(){
 								<td>${c.t_hit}</td>	
 							</tr>
 						</c:forEach>
+
+
 					</table>
 					<hr>
 					

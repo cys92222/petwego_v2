@@ -17,6 +17,7 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 
 import com.example.demo.vo.ReplyVo;
+import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
 
 @Service
@@ -64,13 +65,31 @@ public class TogetherServiceImpl implements TogetherService {
 		return dao.detailTogether(t_num);
 	}
 	
-	//썸네일 수정
+	//썸네일 등록
 	@Override
-	public void upthum(TogetherVo t) {
+	public int insertThumbnail(ThumbnailVo t) {
 		// TODO Auto-generated method stub
-		dao.upthum(t);
+		int re = -1;
+		re = dao.insertThumbnail(t);
+		return re;
+	}
+
+	//마지막 글번호
+	@Override
+	public int last_no() {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.last_no();
+		return re;
 	}
 	
+	//썸네일 리스트
+	@Override
+	public List<ThumbnailVo> listThumbnail(SearchCriteria scri) {
+		// TODO Auto-generated method stub
+		List<ThumbnailVo> list = dao.listThumbnail(scri);
+		return list;
+	}
 	
 	
 }

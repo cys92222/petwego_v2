@@ -31,6 +31,7 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.ReplyVo;
+import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
 import com.google.gson.JsonObject;
 
@@ -133,42 +134,97 @@ public class TogeteherController {
 		LOGGER.info("writeTogetherView");
 	}
 	
-	//함께가요 글 작성
+////	함께가요 글 작성
+//	@RequestMapping(value="/together/writeTogether",method = RequestMethod.POST)
+////	@RequestMapping(value="writeTogether",method = {RequestMethod.GET,RequestMethod.POST})
+//	public String write(TogetherVo togetherVo,ThumbnailVo t ,HttpSession session, HttpServletRequest request) throws Exception{
+//		LOGGER.info("writeTogether");
+//		
+//		//첨부한 파일 불러옴
+//		MultipartFile thumbnailFile = t.getThumbnailFile();
+//		String t_thumbnail = thumbnailFile.getOriginalFilename();
+//		t.setFile_name(t_thumbnail);
+//		
+//		//함께가요 등록
+//		int re = service.writeTogether(togetherVo);
+//	
+//		//마지막 글번호
+//		int no = service.last_no();
+//		
+//		//썸네일 등록
+//		//썸네일이랑 글연결을 위해 t_num을 마지막 글번호(새로등록한 게시물 번호)로 설정
+//		t.setT_num(no);
+//		int tr = service.insertThumbnail(t);
+//		
+//		//썸네일 파일 업로드
+//		if(tr>0) {
+//			try {
+//				
+//				String path = request.getRealPath("t_thumbnailUpload");
+//				System.out.println("path : " + path);
+//				
+//				byte[] data = thumbnailFile.getBytes();
+//				FileOutputStream thumnailfos = new FileOutputStream(path + "/" + t_thumbnail);
+//				thumnailfos.write(data);
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//				System.out.println("예외발생:" + e.getMessage());
+//			}
+//			
+//		}
+//		
+//		return "redirect:/together/listTogether";
+//	}
+	
+	//함께가요 등록
 	@RequestMapping(value="/together/writeTogether",method = RequestMethod.POST)
-//	@RequestMapping(value="writeTogether",method = {RequestMethod.GET,RequestMethod.POST})
-	public String write(TogetherVo togetherVo, HttpSession session, HttpServletRequest request) throws Exception{
-		LOGGER.info("writeTogether");
-		String path = request.getRealPath("t_thumbnailUpload");
-		System.out.println("path : " + path);
-		
-		MultipartFile thumbnailFile = togetherVo.getThumbnailFile();
-		String t_thumbnail = thumbnailFile.getOriginalFilename();
-		togetherVo.setT_thumbnail(t_thumbnail);
-		
-		int re = service.writeTogether(togetherVo);
-		String msg = "게시물 등록되었습니다.";
-		if (re <= 0) {
-			msg = "게시물 등록에 실패하였습니다.";
-		} else {
-			try {
-				byte[] data = thumbnailFile.getBytes();
-				FileOutputStream thumnailfos = new FileOutputStream(path + "/" + t_thumbnail);
-				thumnailfos.write(data);
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("예외발생:" + e.getMessage());
-			}
+//@RequestMapping(value="writeTogether",method = {RequestMethod.GET,RequestMethod.POST})
+	public String write(TogetherVo togetherVo ,HttpSession session, HttpServletRequest request) throws Exception{
+	LOGGER.info("writeTogether");
+	
+	//첨부한 파일 불러옴
+	MultipartFile thumbnailFile = togetherVo.getThumbnailFile();
+	System.out.println("thumbnailFile  " + thumbnailFile);
+	String t_thumbnail = thumbnailFile.getOriginalFilename();
+	System.out.println("t_thumbnail   " + t_thumbnail);
+	togetherVo.setThumbnail(t_thumbnail);
+	System.out.println("togetherVo.setThumbnail   "+togetherVo.getThumbnail());
+	//함께가요 등록
+	int re = service.writeTogether(togetherVo);
+
+
+	
+	//썸네일 파일 업로드
+	if(re>0) {
+		try {
+			
+			String path = request.getRealPath("t_thumbnailUpload");
+			System.out.println("path : " + path);
+			
+			byte[] data = thumbnailFile.getBytes();
+			FileOutputStream thumnailfos = new FileOutputStream(path + "/" + t_thumbnail);
+			thumnailfos.write(data);
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("예외발생:" + e.getMessage());
 		}
 		
-		return "redirect:/together/listTogether";
 	}
+	
+	return "redirect:/together/listTogether";
+}
 	
 	//함께가요 목록
 	@RequestMapping(value="/together/listTogether", method = RequestMethod.GET)
 	public String listTogether(Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		LOGGER.info("listTogether");
+		//썸네일
+//		model.addAttribute("listTogether", service.listThumbnail(scri));
+//		model.addAttribute("listTogether", service.listThumbnail(scri));
+//		System.out.println("썸네일" + service.listThumbnail(scri));
 		
 		model.addAttribute("listTogether",service.listTogether(scri));
+		System.out.println("함께가요" + service.listTogether(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
@@ -184,7 +240,6 @@ public class TogeteherController {
 	@RequestMapping(value="/together/detailTogether",method = RequestMethod.GET)
 	public String detailTogether(TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
 		LOGGER.info("detailTogether");
-		
 		model.addAttribute("detailTogether",service.detailTogether(togetherVo.getT_num()));
 		//값이 안가져와서 테스트해봄
 		System.out.println(togetherVo.getT_num());
@@ -208,42 +263,55 @@ public class TogeteherController {
 	
 	//함께가요 수정
 	@RequestMapping(value="/together/updateTogether",method = RequestMethod.POST)
-	public String updateTogether(TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri,RedirectAttributes rttr,HttpServletRequest request) throws Exception{
+	public String updateTogether(TogetherVo togetherVo,ThumbnailVo t,@ModelAttribute("scri") SearchCriteria scri,RedirectAttributes rttr,HttpServletRequest request) throws Exception{
 		LOGGER.info("updateTogether");
-		service.updateTogether(togetherVo);
-		rttr.addAttribute("page",scri.getPage());
-		rttr.addAttribute("perPageNum",scri.getPerPageNum());
-		rttr.addAttribute("searchType",scri.getSearchType());
-		rttr.addAttribute("keyword",scri.getKeyword());
+		System.out.println("AAAAAAAAAAAAAAAAAAAAA" +t.getUp_thumbnailFile());
 		
-		String path = request.getRealPath("t_thumbnailUpload");
-		System.out.println("path : " + path);
-		String thumbnailoldFname = togetherVo.getT_thumbnail();
-		MultipartFile thumbnailFile = togetherVo.getThumbnailFile();
-		String t_thumbnail = thumbnailoldFname;
-
-		if (thumbnailFile != null) {
-			t_thumbnail = thumbnailFile.getOriginalFilename();
-			if (t_thumbnail != null && !t_thumbnail.equals("")) {
-				togetherVo.setT_thumbnail(t_thumbnail);
+		//썸네일 파일을 수정할경우
+		if(t.getUp_thumbnailFile() != null) {
+			//첨부한 파일 불러옴
+			System.out.println("썸네일 수정 함");
+			MultipartFile thumbnailFile = t.getUp_thumbnailFile();
+//			System.out.println("thumbnailFile  " + thumbnailFile);
+			String t_thumbnail = thumbnailFile.getOriginalFilename();
+//			System.out.println("t_thumbnail   " + t_thumbnail);
+			togetherVo.setThumbnail(t_thumbnail);
+//			System.out.println("togetherVo.setThumbnail   "+togetherVo.getThumbnail());
+			
+			int re = service.updateTogether(togetherVo);
+			
+			//썸네일 파일 업로드
+			if(re>0) {
 				try {
+					
+					String path = request.getRealPath("t_thumbnailUpload");
+					System.out.println("path : " + path);
+					
 					byte[] data = thumbnailFile.getBytes();
 					FileOutputStream thumnailfos = new FileOutputStream(path + "/" + t_thumbnail);
 					thumnailfos.write(data);
-					thumnailfos.close();
 				} catch (Exception e) {
-					System.out.println("예외발생 : " + e.getMessage());
+					// TODO: handle exception
+					System.out.println("예외발생:" + e.getMessage());
 				}
+				
 			}
 		}
-		
-		int re = service.updateTogether(togetherVo);
-		
-		if (re > 0 && t_thumbnail != null && !t_thumbnail.equals("") && thumbnailoldFname != null
-				&& !thumbnailoldFname.equals("")) {
-			File file = new File(path + "/" + thumbnailoldFname);
-			file.delete();
+		//썸네일 수정하지 않을경우
+		else {
+			System.out.println("원본 썸네일 " + togetherVo.getThumbnail());
+			System.out.println("썸네일 수정 안함");
 		}
+		
+		
+		
+		
+		
+		
+		rttr.addAttribute("page",scri.getPage());
+		rttr.addAttribute("perPageNum",scri.getPerPageNum());
+		rttr.addAttribute("searchType",scri.getSearchType());
+		rttr.addAttribute("keyword",scri.getKeyword());	
 		
 		return "redirect:/together/listTogether";
 	}
@@ -283,7 +351,7 @@ public class TogeteherController {
 			jsonObject.addProperty("responseCode", "success");
 			jsonObject.addProperty("t_fname", savedFileName);
 			jsonObject.addProperty("t_org_fname", originalFileName);
-				
+			
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
 			jsonObject.addProperty("responseCode", "error");
@@ -293,34 +361,9 @@ public class TogeteherController {
 		return jsonObject;
 	}
 	
+	
+	//썸네일 삭제
+	
 	//썸네일 수정
-		@RequestMapping("/together/upthum")
-		@ResponseBody
-		public String upthum(TogetherVo t,HttpServletRequest request) {
-			
-			String path = request.getRealPath("t_thumbnailUpload");
-			System.out.println("path : " + path);
-			String thumbnailoldFname = t.getT_thumbnail();
-			MultipartFile thumbnailFile = t.getThumbnailFile();
-			String t_thumbnail = thumbnailoldFname;
-			
-			if (thumbnailFile != null) {
-				t_thumbnail = thumbnailFile.getOriginalFilename();
-				if (t_thumbnail != null && !t_thumbnail.equals("")) {
-					t.setT_thumbnail(t_thumbnail);
-					try {
-						byte[] data = thumbnailFile.getBytes();
-						FileOutputStream thumnailfos = new FileOutputStream(path + "/" + t_thumbnail);
-						thumnailfos.write(data);
-						thumnailfos.close();
-					} catch (Exception e) {
-						System.out.println("예외발생 : " + e.getMessage());
-					}
-				}
-			}
-			
-			service.upthum(t);
-			
-			return "o";
-		}
+	
 }

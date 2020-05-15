@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.ReplyVo;
+import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
 
 public interface TogetherService {
@@ -30,6 +31,12 @@ public interface TogetherService {
 	//함께가요 삭제
 	public void deleteTogether(int t_num) throws Exception;	
 	
-	//썸네일 수정
-	public void upthum(TogetherVo t);
+	//썸네일 등록
+	public int insertThumbnail(ThumbnailVo t);
+	
+	//함께가요 마지막 글번호
+	public int last_no();
+	
+	//썸네일 리스트
+	public List<ThumbnailVo> listThumbnail(SearchCriteria scri);
 }

@@ -12,9 +12,9 @@
  		t_size,
  		t_attendee_cnt,
  		t_date,
- 		t_thumbnail,
  		t_place,
- 		t_hit
+ 		t_hit,
+ 		thumbnail
  		from
  		(
  		select t_num,
@@ -24,9 +24,9 @@
  		t_size,
  		t_attendee_cnt,
  		t_date,
- 		t_thumbnail,
  		t_place,
  		t_hit,
+ 		thumbnail,
  		row_number() over(order by t_num desc) as rNum
  		from together
  		where 1=1
@@ -35,6 +35,45 @@
 		where rNum between #{rowStart} and #{rowEnd}
 		order by t_num desc
  	</select>
+	
+	
+<!-- 		투게더 조인 썸네일 리스트 -->
+<!-- 		<select id="listTogether" resultType="com.example.demo.vo.TogetherVo" parameterType="com.example.demo.util.SearchCriteria"> -->
+<!-- 		select t.t_num, -->
+<!-- 		 		t_title, -->
+<!-- 		 		t_intro, -->
+<!-- 		 		user_id, -->
+<!-- 		 		t_size, -->
+<!-- 		 		t_attendee_cnt, -->
+<!-- 		 		t_date, -->
+<!-- 		 		t_place, -->
+<!-- 		 		t_hit, -->
+				
+<!-- 				file_name, -->
+<!-- 				t_no		 -->
+		
+<!-- 		 		from -->
+<!-- 		 		( -->
+<!-- 		 		select t.t_num, -->
+<!-- 		 		t_title, -->
+<!-- 		 		t_intro, -->
+<!-- 		 		user_id, -->
+<!-- 		 		t_size, -->
+<!-- 		 		t_attendee_cnt, -->
+<!-- 		 		t_date, -->
+<!-- 		 		t_place, -->
+<!-- 		 		t_hit, -->
+		
+<!-- 				file_name, -->
+<!-- 				t_no, -->
+		
+<!-- 		 		row_number() over(order by t.t_num desc) as rNum -->
+<!-- 		 		from together t, thumbnail tn -->
+<!-- 		 		where 1=1 -->
+<!-- 		 		)MP -->
+<!-- 				where rNum between #{rowStart} and #{rowEnd} -->
+<!-- 				order by t_num desc -->
+<!-- 		</select> -->
  	
 <!--  	<select id="listTogether" resultType="com.example.demo.vo.TogetherVo" parameterType="com.example.demo.vo.Criteria"> -->
 <!--  		select t_num, -->
@@ -83,8 +122,8 @@
 	
 
 	<insert id="writeTogether">
-		insert into together(t_num,t_title,t_intro,t_detail,t_open_date,t_thumbnail,t_place,t_date,t_size,t_attendee_cnt,t_fname,user_id,t_hit)
-		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,#{t_thumbnail},#{t_place},#{t_date},#{t_size},0,#{t_fname},'wonwoo',0)
+		insert into together(t_num,t_title,t_intro,t_detail,t_open_date,t_place,t_date,t_size,t_attendee_cnt,t_fname,user_id,t_hit,thumbnail)
+		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,#{t_place},#{t_date},#{t_size},0,#{t_fname},'wonwoo',0,#{thumbnail})
 	</insert>
 
 	
@@ -102,20 +141,8 @@
 	
 	
 	<!-- 썸네일 파일 첨부 -->
-	<insert id="insertFile" parameterType="hashMap">
-		insert into together_thumbnail_file(
-			thumbnail_file_no,
-			t_num,
-			thumbnail_org_file_name,
-			thumbnail_stored_file_name,
-			thumbnail_file_size
-		)values(
-			seq_thumbnail_file_no.nextval,
-			#{t_num},
-			#{thumbnail_org_file_name},
-			#{thumbnail_stored_file_name},
-			#{thumbnail_file_size}
-		)
+	<insert id="insertThumbnail" >
+		insert into thumbnail values (seq_thumbnail.nextval, #{file_name}, #{t_num})
 	</insert>
 	
 	
@@ -131,16 +158,34 @@
 	</select>
 	
 	<update id="updateTogether" parameterType="com.example.demo.vo.TogetherVo">
-		update together set t_thumbnail=#{t_thumbnail},t_title=#{t_title},t_intro=#{t_intro},t_detail=#{t_detail},t_place=#{t_place},t_open_date=sysdate,t_date=#{t_date},t_size=#{t_size},t_fname=#{t_fname} where t_num=#{t_num}
+		update together set thumbnail=#{thumbnail},t_title=#{t_title},t_intro=#{t_intro},t_detail=#{t_detail},t_place=#{t_place},t_size=#{t_size},t_fname=#{t_fname} where t_num=#{t_num}
 	</update>
 	
 	<delete id="deleteTogether" parameterType="int">
 		delete from together where t_num =#{t_num}
 	</delete>
 	
+<!-- 	마지막 글번호 -->
+	<select id="last_no" resultType="java.lang.Integer">
+		select max(t_num) from together
+	</select>
 	
-	<!-- 썸네일 수정 -->
-	<update id="upthum">
-		update together set t_thumbnail=#{t_thumbnail} where t_num=#{t_num}
-	</update>
+<!-- 	썸네일 목록 -->
+		<select id="listThumbnail" resultType="com.example.demo.vo.ThumbnailVo" parameterType="com.example.demo.util.SearchCriteria">
+ 		select t_num,
+ 				t_no,
+				file_name
+ 		from
+ 				(select 
+ 					t_num,
+ 					t_no,
+					file_name,
+ 					row_number() over(order by t_num desc) as rNum
+ 				from thumbnail
+ 				where 1=1
+ 				<include refid="search"></include>
+ 				)MP
+		where rNum between #{rowStart} and #{rowEnd}
+		order by t_num desc
+ 	</select>
 </mapper>
