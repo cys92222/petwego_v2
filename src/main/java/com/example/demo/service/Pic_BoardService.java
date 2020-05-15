@@ -24,17 +24,17 @@ public List<Pic_Board_FileVo> listFile(Criteria cri)throws Exception;
 	//사진파일
 	public int insertfile(Pic_Board_FileVo pbf);
 	
+	//상세보기 
+	public Pic_BoardVo detailPic_Board(int photo_no);
+			
+	//상세보기 사진
+	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf);
+		
 	//좋아요
 	public int insertlikeit(LikeItVo l);
 	
 	//좋아요수
 	public int likecnt(LikeItVo l);
-	
-	//상세보기 
-	public Pic_BoardVo detailPic_Board(int photo_no);
-		
-	//상세보기 사진
-	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf);
 	
 	//마지막 글번호
 	public int photo_no();
@@ -45,9 +45,4 @@ public List<Pic_Board_FileVo> listFile(Criteria cri)throws Exception;
 	//게시글 수정
 	public int updatePic_Board(Pic_BoardVo pb);
 		
-	//모든 글
-	//	public Pic_BoardVo detailsns_board(Pic_BoardVo pb);
-	
-	//모든 사진
-	//public Pic_Board_FileVo detailsns_file(Pic_Board_FileVo pbf);	
 }

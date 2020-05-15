@@ -50,8 +50,19 @@ public class Pic_BoardController {
 		return mav;
 	}
 	
+	//상세보기
+	@GetMapping("/pic_board/detail")
+	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
+		mav.addObject("file", pic_boardService.detailFile(pbf));
+		mav.setViewName("/pic_board/detail");
+		
+		return mav;
+	}
+	
 	//sns 글 등록 폼
-	@RequestMapping("/pic_board/insertsnsform")
+	@RequestMapping("/pic_board/insertForm")
 	public ModelAndView insertform() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/pic_board/insert");
@@ -60,7 +71,7 @@ public class Pic_BoardController {
 	
 
 	@RequestMapping("/pic_board/insert")
-	public ModelAndView insertsns(Pic_BoardVo pb, Pic_Board_FileVo pbf,MultipartFile multipartFile, HttpServletRequest request, Criteria cri) throws Exception {
+	public ModelAndView insertPic_Board(Pic_BoardVo pb, Pic_Board_FileVo pbf,MultipartFile multipartFile, HttpServletRequest request, Criteria cri) throws Exception {
 		int re = -1;
 		re = pic_boardService.insertPic_Board(pb); //sns글등록
 		System.out.println("마지막 글번호:" + pic_boardService.photo_no());
@@ -141,14 +152,5 @@ public class Pic_BoardController {
 	
 	
 	
-	//상세보기
-	@GetMapping("/pic_board/detail")
-	public ModelAndView detail(Pic_BoardVo pb,Pic_Board_FileVo pbf) {		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
-		mav.addObject("file", pic_boardService.detailFile(pbf));
-		mav.setViewName("/pic_board/detail");
-		
-		return mav;
-	}
+
 }

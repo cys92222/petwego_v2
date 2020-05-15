@@ -37,6 +37,17 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 		
 	}
 	
+	//상세
+	@Override
+	public Pic_BoardVo detailPic_Board(int photo_no) {
+		return pic_boardDao.detailPic_Board(photo_no);
+	}
+	//상세사진
+	@Override
+	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf) {
+		return pic_boardDao.detailFile(pbf);
+	}
+	
 	//게시입력
 	@Override
 	public int insertPic_Board(Pic_BoardVo pb) {
@@ -66,16 +77,7 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 		return pic_boardDao.deletePic_Board(pb);
 
 	}
-	//상세
-	@Override
-	public Pic_BoardVo detailPic_Board(int photo_no) {
-		return pic_boardDao.detailPic_Board(photo_no);
-	}
-	//사진
-	@Override
-	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf) {
-		return pbf;
-	}
+
 	
 //	//파일 상세
 //	@Override
@@ -99,7 +101,6 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 		re = pic_boardDao.insertlikeit(l);
 		return re;
 	}
-	
 	
 	//좋아요 총개수
 	@Override

@@ -32,18 +32,18 @@
 			
 			
 			// 댓글작성버튼을 누르면!
-			$("#comment").click(function(){
+			$("#pcomment").click(function(){
 
 				var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
 				if(commCheck == true){
-					var commSubmit = $("form[name='commentForm']");
-					commSubmit.attr("action","/comment/insertComment");
+					var commSubmit = $("form[name='pcommentForm']");
+					commSubmit.attr("action","/pcomment/insertpComment");
 					commSubmit.submit();
 				}
 			})
 			
 			// 댓글 목록
-			$.ajax("/comment/listComment",{type:"GET",data:{photo_no:photo_no},success:function(comm){
+			$.ajax("/pcomment/listpComment",{type:"GET",data:{photo_no:photo_no},success:function(comm){
 				comm = JSON.parse(comm);
 				$.each(comm, function(idx,c){						
 					var tr = $("<tr></tr>");
@@ -61,7 +61,7 @@
 			 				//alert("버튼 누름");
 							var delCheck = confirm("댓글을 삭제하시겠습니까?");
 							if(delCheck == true){
-								self.location = "/comment/commDeleteSubmit?photo_comm_no="+c.photo_comm_no;
+								self.location = "/pcomment/pcommDeleteSubmit?photo_comm_no="+c.photo_comm_no;
 								alert("댓글을 삭제했습니다!");
 								location.reload();
 							}
@@ -96,12 +96,12 @@
 	<button id="btnDelete">글 삭제</button>
 	<hr>
 	댓글입력
-	<form name="commentForm" method="post">
+	<form name="pcommentForm" method="post">
 		<input type="hidden" id="photo_no" name="photo_no" value="${photo_detail}">
 		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
 		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>
 	</form>
-	<button type="submit" id="comment">댓글 등록</button>
+	<button type="submit" id="pcomment">댓글 등록</button>
 	<hr>
 		 댓글 목록
 	<table id="comm_list" border="1">
