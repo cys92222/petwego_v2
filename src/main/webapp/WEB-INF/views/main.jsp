@@ -99,7 +99,9 @@
 			</li>
 			<li><span id="login">로그인</span>
 				<ul class="dept01"></ul>
+				<ul class="dept01"><a href="/mypage/mypage">마이페이지</a></ul>
 			</li>
+
 		</ul>
 	</div>
 	 <div class="none">
