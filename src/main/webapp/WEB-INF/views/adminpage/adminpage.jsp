@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+})
+</script>
 </head>
 <body>
 <h1>관리자페이지</h1>

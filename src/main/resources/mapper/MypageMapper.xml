@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- //영수) 5월16일 Mypage맵퍼 -->
+<mapper namespace="com.example.demo.dao.MypageDao">
+<!--  	내 정보 -->
+ 	<select id="select_myinfo" resultType="com.example.demo.vo.MemberInfoVo">
+ 		select * from member_info where user_id = #{user_id}
+ 	</select>
+ 	
+<!--  	내 정보 수정 -->
+ 	<update id="update_myinfo">
+ 		update member_info set pwd=#{pwd}, tel=#{tel}, birth=#{birth}, name=#{name},
+ 		address=#{address}, gender=#{gender}, fname=#{fname}, intro=#{intro}, '', sysdate,
+ 		nick_name=#{nick_name}
+ 		 where user_id = #{user_id}
+ 	</update>
+ 	
+<!--  	반려동물 등록 -->
+ 	<insert id="insert_pet">
+ 		insert into animal_info values(seq_pet_no.nextval,#{user_id},#{pet_date},,#{pet_type})
+ 	</insert>
+ 	
+<!--  	회원탈퇴 -->
+ 	<delete id="delete_myinfo">
+ 		delete member_info where user_id = #{user_id}
+ 	</delete>
+ 	
+<!--  	내가 쓴 자유게시판 글 -->
+	<select id="search_my_board" resultType="com.example.demo.vo.BoardVo">
+		select * from board where user_id = #{user_id}
+	</select>
+	
+<!-- 	내가 쓴 sns -->
+	<select id="search_my_sns" resultType="com.example.demo.vo.Pic_BoardVo">
+		select * from pic_board user_id = #{user_id}
+	</select>
+</mapper>

@@ -1,35 +1,54 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.service.MypageService;
+import com.example.demo.vo.Animal_info;
+import com.example.demo.vo.MemberInfoVo;
+
 @Controller
 public class MyPageController {
+	
+	@Autowired
+	MypageService mypageservice;
 	
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
 	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/mypage");
-		
+//		mav.addObject("myinfo", mypageservice.select_myinfo(m));
 		return mav;
 	}
 	
+	//반려동물 등록
+	@RequestMapping("/mypage/insert_animal")
+	public ModelAndView insert_animal(Animal_info a) {
+		ModelAndView mav = new ModelAndView();
+		mypageservice.insert_pet(a);
+		mav.setViewName("/mypage/mypage");
+		return mav;
+	}
 	
 	//사람 정보 수정
 	@RequestMapping("/mypage/people_info_up")
-	public ModelAndView people_info_up() {
+	public ModelAndView people_info_up(MemberInfoVo m) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/people_info");
+		mypageservice.update_myinfo(m);
 		return mav;
 	}
 	
 	//사람 사진 수정
 	@RequestMapping("/mypage/people_pic_up")
-	public ModelAndView people_pic_up() {
+	public ModelAndView people_pic_up(MemberInfoVo m) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/people_pic");
+		m.setFname(m.getFname());
+		mypageservice.update_myinfo(m);
 		return mav;
 	}
 	

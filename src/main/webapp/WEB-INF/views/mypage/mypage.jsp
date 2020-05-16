@@ -63,6 +63,9 @@ $(function(){
 		</tr>
 		
 	<tr><td>동물 리스트</td></tr>
+		<tr>
+			<td><button>반려동물 등록</button></td>
+		</tr>
 	
 		<tr>
 			<td>	
