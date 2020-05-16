@@ -37,6 +37,11 @@ $(function(){
 			
 			}
 		});
+
+	//반려동물 등록
+	$("#insert_animal").click(function(){
+		window.location.href="/mypage/insert_animal";
+		});
 });
 </script>
 </head>
@@ -64,7 +69,7 @@ $(function(){
 		
 	<tr><td>동물 리스트</td></tr>
 		<tr>
-			<td><button>반려동물 등록</button></td>
+			<td><button id="insert_animal">반려동물 등록</button></td>
 		</tr>
 	
 		<tr>

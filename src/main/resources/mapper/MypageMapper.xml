@@ -19,8 +19,11 @@
  	
 <!--  	반려동물 등록 -->
  	<insert id="insert_pet">
- 		insert into animal_info values(seq_pet_no.nextval,#{user_id},#{pet_date},,#{pet_type})
+ 		insert into animal_info values(seq_pet_no.nextval,#{user_id},#{pet_date},'',#{pet_type})
  	</insert>
+ 	
+<!--  	insert into animal_info values(seq_pet_no.nextval,'user1',round((select sysdate - to_date('2020-05-10','yyyy-mm-dd') from dual),0),'','강아지') -->
+<!-- 	alter table animal_info modify(pet_date number) -->
  	
 <!--  	회원탈퇴 -->
  	<delete id="delete_myinfo">

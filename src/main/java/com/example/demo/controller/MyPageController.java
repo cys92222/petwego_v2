@@ -26,10 +26,10 @@ public class MyPageController {
 	
 	//반려동물 등록
 	@RequestMapping("/mypage/insert_animal")
-	public ModelAndView insert_animal(Animal_info a) {
+	public ModelAndView insert_animal() {
 		ModelAndView mav = new ModelAndView();
-		mypageservice.insert_pet(a);
-		mav.setViewName("/mypage/mypage");
+//		mypageservice.insert_pet(a);
+		mav.setViewName("/mypage/insert_animal");
 		return mav;
 	}
 	
