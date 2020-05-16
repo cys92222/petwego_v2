@@ -91,5 +91,15 @@ public class TogetherServiceImpl implements TogetherService {
 		return list;
 	}
 	
+	//신청하기
+	@Override
+	public int cnt(TogetherVo t) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.cnt(t);
+		return re;
+	}
+	
+	
 	
 }

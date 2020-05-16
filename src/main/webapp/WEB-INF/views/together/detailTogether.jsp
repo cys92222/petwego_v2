@@ -144,7 +144,8 @@ $(document).ready(function(){
 							
 							<tr>
 								<td>
-									<label for="t_size">총참가 인원</label><input type="text" id="t_size" name="t_size" value="${detailTogether.t_size }"/>
+<%-- 									<label for="t_size">총참가 인원</label><input type="text" id="t_size" name="t_size" value="${detailTogether.t_size }"/> --%>
+									<label for="t_size">총참가 인원</label><input type="text" id="t_size" name="t_size" value="${detailTogether.t_attendee_cnt }"/>
 								</td>
 							</tr>
 							
@@ -165,6 +166,7 @@ $(document).ready(function(){
 
 				</form>
 				<button class="btn btn-primary btn-sm" id="btn-add-t_num-${togetherVo.t_num}">신청</button>
+				<a href="/together/cnt?t_num=${togetherVo.t_num}">신청하기</a>
 				<hr>
 				<form name="replyForm" method="post">
 					<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>

@@ -46,5 +46,8 @@ public interface TogetherDao {
 	
 	//썸네일 리스트
 	public List<ThumbnailVo> listThumbnail(SearchCriteria scri);
+	
+	//신청하기
+	public int cnt(TogetherVo t);
 
 }
