@@ -45,7 +45,8 @@ public class Pic_BoardController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(pic_boardService.listCount());
 		mav.addObject("pageMaker",pageMaker);
-		mav.addObject("listAll",str_board);
+//		mav.addObject("listAll",str_board);
+		mav.addObject("board", gson.toJson(list_board)); //오류시 삭제
 		mav.addObject("file", gson.toJson(list_file));
 		mav.setViewName("/pic_board/list");
 		return mav;
@@ -55,14 +56,12 @@ public class Pic_BoardController {
 	@GetMapping("/pic_board/detail")
 
 	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
-		System.out.println("pic_board      "+pb.getPhoto_no());
-		System.out.println("pic_board_file    "+ pbf.getPhoto_no());
-//		System.out.println("photo_no    " + photo_no);
 		ModelAndView mav = new ModelAndView();
 		System.out.println(pic_boardService.detailPic_Board(pb.getPhoto_no()));
 		System.out.println(pic_boardService.detailFile(pbf));
-//		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
-//		mav.addObject("file", pic_boardService.detailFile(pbf));
+		
+		mav.addObject("Board", pic_boardService.detailPic_Board(pb.getPhoto_no()));
+		mav.addObject("file", pic_boardService.detailFile(pbf));
 		mav.setViewName("/pic_board/detail");
 		
 		return mav;

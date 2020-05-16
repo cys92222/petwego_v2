@@ -12,20 +12,20 @@ li{list-style:none; float:left; padding: 6px;}
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
-$(function(){
+$(function() {
+	temp();
+})
+
+var temp = function(){
 	var arr_file = ${file};
 	var arr_board = ${board};
 	$.each(arr_file,function(idx,data){
-		var a = $('<a href="/pic_board/detail"></a>');
-		var img = $("<img/>").attr({"src":"/img/"+data.photo_file_name,"photo_no":data.photo_no})
+		var a = $('<a href="/pic_board/detail?photo_no=' + data.photo_no + '"></a>');
+		var img = $("<img/>").attr({"src":"/img/"+data.photo_file_name,"photo_no":data.photo_no});
 		a.append(img);
 		$("#sns").append(a);
-		$(a).on("click",function(){
-			alert(data.photo_no);
-			window.location.href='pic_board/detail?photo_no=data.photo_no';				
-			});
-		});
-})
+	});
+}
 </script>
 </head>
 <body>

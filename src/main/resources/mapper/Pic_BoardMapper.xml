@@ -42,18 +42,18 @@ order by photo_no desc
   
   <!--   sns 글 등록 -->
   <insert id="insertPic_Board">
-     insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail,jdbcType=VARCHAR}, #{user_id})
+     insert into pic_board values (seq_photo_no.nextval, sysdate, #{photo_detail,jdbcType=VARCHAR}, #{user_id, jdbcType=VARCHAR})
      <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="AFTER">
            select seq_photo_no.nextval from dual
      </selectKey>
   </insert>
   
   
-<!--   sns 파일등록 -->  <!--  selectkey 사용하면 오류뜸-->
+<!--   sns 파일등록 -->  
   <insert id="insertfile">
-<!--      <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="BEFORE"> -->
-<!--            select seq_photo_no.nextval from dual -->
-<!--      </selectKey> -->
+     <selectKey keyProperty="photo_no" resultType="java.lang.Integer" order="BEFORE">
+           select seq_photo_no.nextval from dual
+     </selectKey>
   insert into pic_board_file values (seq_pic_board_no.nextval, #{photo_file_name}, #{photo_no})
   </insert>
   

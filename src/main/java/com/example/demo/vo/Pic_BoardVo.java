@@ -17,4 +17,10 @@ public class Pic_BoardVo {
 	private String photo_detail;
 	private String user_id;
 	
+	
+	public String getphoto_date()
+	{
+		return "2020-01-01";
+	}
+	
 }
