@@ -21,6 +21,7 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	@Autowired
 	private Pic_BoardDao pDao;
 
+	
 	//댓글목록
 	@Override
 	public List<Pic_Board_CommentVo> plistComment(int photo_no) {

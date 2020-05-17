@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 
 //봉현) 5/12
 //민아) 5/17, 좋아요기능 추가
+
 @RestController
 public class Pic_BoardController {
 	@Autowired

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 //봉현) 5/12
 //민아) 5/17, 좋아요 기능 추가중 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

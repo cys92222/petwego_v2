@@ -11,6 +11,7 @@ import com.example.demo.vo.LikeItVo;
 //민아) 5/17, 좋아요기능 추가
 //나도 컨트롤러에서 다 처리하게 했지만... 원래는 컨트롤러에선 사용자 요청에 관한 일들만 처리하고 
 //여기 서비스임플리먼츠단에서 운영에 관한 일들을 처리하는게 맞다고 함.
+
 @Service
 public class LikeItServiceImpl implements LikeItService {
 

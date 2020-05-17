@@ -6,6 +6,7 @@ import com.example.demo.util.Criteria;
 import com.example.demo.vo.Board_CommentVo;
 //민아) 5/10
 public interface Board_CommentService {
+	
 	// 댓글목록
 	List<Board_CommentVo> listComment(int board_no);
 

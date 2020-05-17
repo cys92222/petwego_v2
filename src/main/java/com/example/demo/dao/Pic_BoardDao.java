@@ -12,6 +12,7 @@ public interface Pic_BoardDao {
 
 	public List<Pic_BoardVo> listPic_Board(Criteria cri) throws Exception;
 
+	
 	//민아) 5/17, 좋아요기능 추가
 	int upcntLike(int photo_no);
 	
