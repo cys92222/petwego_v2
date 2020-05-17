@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class MyPageController {
 	@RequestMapping("/mypage/mypage")
 	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/mypage");
+		mav.setViewName("/mypage/main");
 		MemberInfoVo m = new MemberInfoVo();
 		//아이디 임의로 설정
 		m.setUser_id("user1");
@@ -34,7 +35,7 @@ public class MyPageController {
 		
 		//내가 쓴 함께가요
 		mav.addObject("mytogether", mypageservice.search_my_together(m));
-		System.out.println(mypageservice.select_myinfo(m));
+//		System.out.println(mypageservice.select_myinfo(m));
 		
 		return mav;
 	}
@@ -48,36 +49,46 @@ public class MyPageController {
 		return mav;
 	}
 	
+	//사람 정보 수정 폼
+	@RequestMapping("/mypage/people_info_up_form")
+	public ModelAndView people_info_up_form() {
+		ModelAndView mav = new ModelAndView();
+		MemberInfoVo m = new MemberInfoVo();
+		m.setUser_id("user1");
+		mav.setViewName("/mypage/people_info");
+		mav.addObject("m", mypageservice.select_myinfo(m));
+		return mav;
+	}
+	
 	//사람 정보 수정
 	@RequestMapping("/mypage/people_info_up")
-	public ModelAndView people_info_up(MemberInfoVo m) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/people_info");
+	public String people_info_up(MemberInfoVo m) {
+			
 		mypageservice.update_myinfo(m);
-		return mav;
+		
+		//수정 끝나고 리스트 컨트롤러 호출
+		return "redirect:/mypage/mypage";
 	}
 	
-	//사람 사진 수정
-	@RequestMapping("/mypage/people_pic_up")
-	public ModelAndView people_pic_up(MemberInfoVo m) {
+	//사람 사진 수정 폼
+	@RequestMapping("/mypage/people_pic_up_form")
+	public ModelAndView people_pic_up_form() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/people_pic");
-		m.setFname(m.getFname());
-		mypageservice.update_myinfo(m);
 		return mav;
 	}
 	
-	//동물 정보 수정
-	@RequestMapping("/mypage/animal_indo_up")
-	public ModelAndView animal_info_up() {
+	//동물 정보 수정 폼
+	@RequestMapping("/mypage/animal_indo_up_form")
+	public ModelAndView animal_info_up_form() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/animal_info");
 		return mav;
 	}
 	
-	//동물 사진 수정
-	@RequestMapping("/mypage/animal_pic_up")
-	public ModelAndView animal_pic_up() {
+	//동물 사진 수정 폼
+	@RequestMapping("/mypage/animal_pic_up_form")
+	public ModelAndView animal_pic_up_form() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/animal_pic");
 		return mav;

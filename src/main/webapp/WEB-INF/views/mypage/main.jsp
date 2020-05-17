@@ -11,22 +11,22 @@
 $(function(){
 	//사람 사진 수정
 	$("#people_pic_up_btn").click(function(){
-		window.location.href="/mypage/people_pic_up";
+		window.location.href="/mypage/people_pic_up_form";
 		});
 
 	//사람 정보 수정
 	$("#people_info_up_btn").click(function(){
-		window.location.href="/mypage/people_info_up";
+		window.location.href="/mypage/people_info_up_form";
 		});
 
 	//동물 사진 수정
 	$("#animal_pic_up_btn").click(function(){
-		window.location.href="/mypage/animal_pic_up";
+		window.location.href="/mypage/animal_pic_up_form";
 		});
 	
 	//동물 정보 수정
 	$("#animal_info_up_btn").click(function(){
-		window.location.href="/mypage/animal_info_up";
+		window.location.href="/mypage/animal_info_up_form";
 		});
 	
 	//회원탈퇴
@@ -50,7 +50,7 @@ $(function(){
 	<h1>마이페이지</h1>
 <hr>
 <section id="info">
-	<h2>${myinfo.user_id }님의 정보입니다</h2>
+	<h2>${myinfo.user_id }(${myinfo.nick_name })님의 정보입니다</h2>
 	<table>
 		<tr>
 			<td>
@@ -92,7 +92,7 @@ $(function(){
 </section>
 
 <section id="board_list">	
-	<h2>${myinfo.user_id }님이 작성한 글 입니다</h2>
+	<h2>${myinfo.user_id }(${myinfo.nick_name })님이 작성한 글 입니다</h2>
 	<a href="/mypage/board_list?user_id=${myinfo.user_id }">더보기</a><br>
 	
 	<ul>
@@ -105,7 +105,7 @@ $(function(){
 </section>	
 
 <section id="together_list">
-	<h2>${myinfo.user_id }님이 작성한 함께가요 글 입니다</h2> 
+	<h2>${myinfo.user_id }(${myinfo.nick_name })님이 작성한 함께가요 글 입니다</h2> 
 	<a href="/mypage/together_list?user_id=${myinfo.user_id }">더보기</a><br>
 	<ul>
 		<c:forEach var="to" items="${mytogether }" begin="0" end="5">
@@ -117,7 +117,7 @@ $(function(){
 </section>
 
 <section id="sns_list">
-	<h2>${myinfo.user_id }님이 작성한 sns 글 입니다</h2> 
+	<h2>${myinfo.user_id }(${myinfo.nick_name })님이 작성한 sns 글 입니다</h2> 
 	<a href="/mypage/sns_list?user_id=${myinfo.user_id }">더보기</a><br>
 	<ul>
 		<c:forEach var="sns" items="${mysns }" begin="0" end="5">
@@ -129,7 +129,7 @@ $(function(){
 </section>
 
 <section id="pay_list">
-	<h2>${myinfo.user_id }님의 결제내역입니다</h2>  
+	<h2>${myinfo.user_id }(${myinfo.nick_name })님의 결제내역입니다</h2>  
 	<a href="/mypage/pay_list">더보기</a><br>
 	<ul>
 		<li>1</li>

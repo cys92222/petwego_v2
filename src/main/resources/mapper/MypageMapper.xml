@@ -11,10 +11,10 @@
  	
 <!--  	내 정보 수정 -->
  	<update id="update_myinfo">
- 		update member_info set pwd=#{pwd}, tel=#{tel}, birth=#{birth}, name=#{name},
- 		address=#{address}, gender=#{gender}, fname=#{fname}, intro=#{intro}, '', sysdate,
+ 		update member_info set tel=#{tel}, name=#{name},
+ 		address=#{address}, gender=#{gender}, intro=#{intro}, info_update_date = sysdate,
  		nick_name=#{nick_name}
- 		 where user_id = #{user_id}
+ 		 where user_id = #{user_id} and pwd = #{pwd}
  	</update>
  	
 <!--  	반려동물 등록 -->

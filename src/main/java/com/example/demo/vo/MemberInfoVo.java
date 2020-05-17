@@ -21,8 +21,8 @@ public class MemberInfoVo {
 	private String gender;
 	private String fname;
 	private String intro;
-	private Date info_createdate;
-	private Date info_updatedate;
+	private Date info_create_date;
+	private Date info_update_date;
 	private String nick_name;
 	private int role;
 	
