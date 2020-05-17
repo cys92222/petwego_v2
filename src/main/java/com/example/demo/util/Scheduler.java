@@ -16,8 +16,8 @@ import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.QnAVo;
 
 // 민아) 5/11 , 스케쥴러 테스트 
-// 민아) 5/13, 서머노트 실제업로드된것이 아닌 사진 스케쥴러로 지우기 완료 
-
+// 민아) 5/13, 서머노트 실제업로드된것이 아닌 사진 스케쥴러로 지우기 
+// 민아) 수정해야함 ㅠㅠㅠ 
 @Controller
 public class Scheduler {
 
@@ -73,7 +73,8 @@ public class Scheduler {
       }
 
    }
-
+  // !allFname.equals(realUuid)
+  
 //   @Scheduled(cron = "* * * * * *")
 //   public void SchedulerService() {
 //      System.out.println("스케쥴러 동작함");

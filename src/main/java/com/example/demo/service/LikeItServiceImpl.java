@@ -20,8 +20,6 @@ public class LikeItServiceImpl implements LikeItService {
 	@Autowired
 	private Pic_BoardDao picDao;
 
-	// 특정 예외가 발생시 강제로 Rollback 참고 - https://goddaehee.tistory.com/167
-	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insertLike(LikeItVo vo) {
 		int re = 0;
