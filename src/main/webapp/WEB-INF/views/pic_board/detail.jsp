@@ -7,73 +7,61 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script> -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-		var arr_file = ${file};
-		var arr_board = ${board};
-		//console.log = ${Board};
-		//console.log = ${file};
-			var photo_no = $("#photo_no").val;
 			
 			//수정
 		$("#btnUpdate").click(function(){
-				self.location ="/pic_board/update?photo_no="+photo_no;	
-				})
-				
+				self.location ="/pic_board/update?photo_no=${file.photo_no}";	
+				});
+			
 			//삭제	
 		$("#btnDelete").click(function(){
 			var check = confirm("게시글을 삭제하시겠습니까?")
 			if(check == true){
-				self.location = "/pic_board/delete?photo_no="+photo_no;
+				self.location = "/pic_board/delete?photo_no=${file.photo_no}";
 				alert("게시글이 삭제되었습니다.")
 				}
-			})	
-			
-			
-			
-			
+			});
 			
 			// 댓글작성버튼을 누르면!
 			$("#comment").click(function(){
-
 				var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
 				if(commCheck == true){
 					var pcommSubmit = $("form[name='commentForm']");
-					pcommSubmit.attr("action","/pcomment/pinsertComment");
+					pcommSubmit.attr("action","/pcomment/PinsertComment");
 					pcommSubmit.submit();
 				}
-			})
+			});	
+					
+			//댓글 목록
+			$.ajax("/pcomment/listComment",{type:"GET",data:{photo_no:'${file.photo_no}'},success:function(comm){
+				comm = JSON.parse(comm);
+				$.each(comm, function(idx,c){						
+					var tr = $("<tr></tr>");
+					var td1 = $("<td></td>").html(c.photo_comm_cont);
+					var td2 = $("<td></td>").html( moment(c.photo_comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
+					var td3 = $("<td></td>").html(c.user_id);
+					var delBtn = $("<button></button>").text("댓글삭제").attr(" photo_comm_no	",c.photo_comm_no);
+					var td4 = $("<td></td>");
+					td4.append(delBtn);
+					tr.append(td1, td2, td3, td4);
+					$("#comm_list").append(tr);
 			
-// 			댓글 목록
-// 			$.ajax("/comment/listComment",{type:"GET",data:{photo_no:photo_no},success:function(comm){
-// 				comm = JSON.parse(comm);
-// 				$.each(comm, function(idx,c){						
-// 					var tr = $("<tr></tr>");
-// 					var td1 = $("<td></td>").html(c.photo_comm_cont);
-// 					var td2 = $("<td></td>").html( moment(c.photo_comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
-// 					var td3 = $("<td></td>").html(c.user_id);
-// 					var delBtn = $("<button></button>").text("댓글삭제").attr(" photo_comm_no	",c. photo_comm_no);
-// 					var td4 = $("<td></td>");
-// 					td4.append(delBtn);
-// 					tr.append(td1, td2, td3, td4);
-// 					$("#comm_list").append(tr);
-
-// 					댓글 삭제
-// 					$(delBtn).click(function(){
-// 			 				alert("버튼 누름");
-// 							var delCheck = confirm("댓글을 삭제하시겠습니까?");
-// 							if(delCheck == true){
-// 								self.location = "/comment/commDeleteSubmit?photo_comm_no="+c.photo_comm_no;
-// 								alert("댓글을 삭제했습니다!");
-// 								location.reload();
-// 							}
-// 					})
-// 				})
-// 			}});
-
-
+			 //댓글 삭제
+					$(delBtn).click(function(){
+			 				alert("버튼 누름");
+							var delCheck = confirm("댓글을 삭제하시겠습니까?");
+							if(delCheck == true){
+								self.location = "/comment/commDeleteSubmit?photo_comm_no="+c.photo_comm_no;
+								alert("댓글을 삭제했습니다!");
+								location.reload();
+							}
+					})
+				})
+			}});
 		});
 
 </script>
@@ -85,9 +73,10 @@
 	<form id="f">
 	<input type="hidden" id="photo_no" value="${Board.photo_no }">
 	<table border="1" width="80%">
-		<tr>
+	<tr>
 			<td>사진</td>
-			<td>${Board.photo_no}</td>
+			<!-- <td>${Board.photo_no}</td> -->
+			<img width="200" height="200" src="/img/${file.photo_file_name}"/>
 		</tr>
 		<tr>
 			<td>글 내용</td>
@@ -99,7 +88,7 @@
 	<button id="btnDelete">글 삭제</button>
 	<hr>
 	
-	<!--댓글입력-->
+	<!--댓글입력폼-->
 	<form name="commentForm" method="post">
 		<input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
 		댓글 작성자 : <input type="text" name="user_id" required="required"><br>

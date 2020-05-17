@@ -35,7 +35,7 @@ var temp = function(){
 <div id="sns">
 
 </div>
-<a href="/pic_board/insert">sns 등록</a>
+<a href="/pic_board/insertForm">sns 등록</a>
 
 	<div>
   		<ul>

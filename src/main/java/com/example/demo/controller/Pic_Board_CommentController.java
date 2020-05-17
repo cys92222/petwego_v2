@@ -24,7 +24,6 @@ public class Pic_Board_CommentController {
 	public void setComm_service(Pic_Board_CommentService pcomm_service) {
 		this.pcomm_service = pcomm_service;
 	}
-
 	// 댓글목록
 	@GetMapping(value = "/plistComment", produces = "application/json; charset=utf-8")
 	public String plistComment(Pic_Board_CommentVo pbc) {
@@ -32,10 +31,8 @@ public class Pic_Board_CommentController {
 		Gson gson = new Gson();
 		return gson.toJson(plistComment);
 	}
-	
-	
 	// 댓글작성
-	@PostMapping(value = "/pinsertComment")
+	@RequestMapping(value = "/pinsertComment")
 	public ModelAndView pinsertComment(Pic_Board_CommentVo pbc) {
 		ModelAndView mav = new ModelAndView("redirect:/pic_board/detail?photo_no="+pbc.getPhoto_no());
 		//System.out.println(pbc.getPhoto_comm_cont() + "\t" + pbc.getUser_id() + "\t" +  pbc.getPhoto_no());
@@ -43,7 +40,6 @@ public class Pic_Board_CommentController {
 		pcomm_service.pinsertComment(pbc);
 		return mav;
 	}
-
 	// 댓글만 삭제
 	@GetMapping(value = "/pcommDeleteSubmit")
 	public String pcommDeleteSubmit(Pic_Board_CommentVo pbc) {	

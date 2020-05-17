@@ -45,6 +45,7 @@ public class Pic_BoardController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(pic_boardService.listCount());
 		mav.addObject("pageMaker",pageMaker);
+		System.out.println("ddddd :  " + pageMaker);
 //		mav.addObject("listAll",str_board);
 		mav.addObject("board", gson.toJson(list_board)); //오류시 삭제
 		mav.addObject("file", gson.toJson(list_file));
@@ -69,7 +70,7 @@ public class Pic_BoardController {
 	
 	//sns 글 등록 폼
 	@RequestMapping("/pic_board/insertForm")
-	public ModelAndView insertform() {
+	public ModelAndView insertform(Criteria cri) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/pic_board/insert");
 		return mav;
@@ -127,7 +128,7 @@ public class Pic_BoardController {
 		
 		mav.addObject("file", str_file);
 		mav.addObject("board", str_board);
-		mav.setViewName("/pic_board/list");
+		mav.setViewName("redirect:/pic_board/list");
 		return mav;
 	}
 	//좋아요

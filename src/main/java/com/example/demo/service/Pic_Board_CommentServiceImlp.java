@@ -11,7 +11,6 @@ import com.example.demo.dao.Pic_Board_CommentDao;
 import com.example.demo.dao.Pic_BoardDao;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Pic_Board_CommentVo;
-
 //봉현) 5/13
 @Service
 public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
@@ -38,12 +37,10 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 		return pbcDao.pdeleteComment(pbc);
 	}
 	
-	
 	@Override
 	public int pdeleteCommBoard(Pic_Board_CommentVo pbc) {
 		return pbcDao.pdeleteCommBoard(pbc);
 	}
-	
 	//선택한 댓글보기
 	@Override
 	public Pic_Board_CommentVo pselectComment(int photo_comm_no) {
