@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,7 +50,7 @@ $(function(){
 	<h1>마이페이지</h1>
 <hr>
 <section id="info">
-	<h2>~~님의 정보입니다</h2>
+	<h2>${myinfo.user_id }님의 정보입니다</h2>
 	<table>
 		<tr>
 			<td>
@@ -91,32 +92,45 @@ $(function(){
 </section>
 
 <section id="board_list">	
-	<h2>~~님이 작성한 게시물 리스트</h2>  
-	<a href="/mypage/board_list">더보기</a><br>
+	<h2>${myinfo.user_id }님이 작성한 글 입니다</h2>
+	<a href="/mypage/board_list?user_id=${myinfo.user_id }">더보기</a><br>
+	
 	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>4</li>
+		<c:forEach var="b" items="${myboard }" begin="0" end="5">
+			<li>
+				<a href="/board/get?board_no=${b.board_no}">${b.board_title }</a>
+			</li>
+		</c:forEach>
 	</ul>
 </section>	
 
-<section id="pay_list">
-	<h2>~~님의 결제 내역</h2>  
-	<a href="/mypage/pay_list">더보기</a><br>
+<section id="together_list">
+	<h2>${myinfo.user_id }님이 작성한 함께가요 글 입니다</h2> 
+	<a href="/mypage/together_list?user_id=${myinfo.user_id }">더보기</a><br>
 	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>4</li>
+		<c:forEach var="to" items="${mytogether }" begin="0" end="5">
+			<li>
+				<a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a>
+			</li>
+		</c:forEach>
 	</ul>
 </section>
 
-<section id="together_list">
-	<h2>~~님의 함께가요 목록</h2>  
-	<a href="/mypage/together_list">더보기</a><br>
+<section id="sns_list">
+	<h2>${myinfo.user_id }님이 작성한 sns 글 입니다</h2> 
+	<a href="/mypage/sns_list?user_id=${myinfo.user_id }">더보기</a><br>
+	<ul>
+		<c:forEach var="sns" items="${mysns }" begin="0" end="5">
+			<li>
+				${sns.photo_no }
+			</li>
+		</c:forEach>
+	</ul>
+</section>
+
+<section id="pay_list">
+	<h2>${myinfo.user_id }님의 결제내역입니다</h2>  
+	<a href="/mypage/pay_list">더보기</a><br>
 	<ul>
 		<li>1</li>
 		<li>2</li>

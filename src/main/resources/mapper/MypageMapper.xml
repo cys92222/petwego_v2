@@ -37,6 +37,11 @@
 	
 <!-- 	내가 쓴 sns -->
 	<select id="search_my_sns" resultType="com.example.demo.vo.Pic_BoardVo">
-		select * from pic_board user_id = #{user_id}
+		select * from pic_board where user_id = #{user_id}
+	</select>
+	
+<!-- 	내가 쓴 함께가요 글 -->
+	<select id="search_my_together" resultType="com.example.demo.vo.TogetherVo">
+		select * from together where user_id = #{user_id}
 	</select>
 </mapper>

@@ -7,6 +7,7 @@ import com.example.demo.vo.Animal_info;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.TogetherVo;
 
 public interface MypageDao {
 	//내 정보
@@ -27,4 +28,6 @@ public interface MypageDao {
 	//내가 쓴 sns
 	public List<Pic_BoardVo> search_my_sns(MemberInfoVo m);
 	
+	//내가 쓴 함께가요 글
+	public List<TogetherVo> search_my_together(MemberInfoVo m);
 }

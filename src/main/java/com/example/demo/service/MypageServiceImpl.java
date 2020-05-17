@@ -1,18 +1,21 @@
 package com.example.demo.service;
-
+//영수 5월16일 mypage서비스임플리먼츠
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.MypageDao;
 import com.example.demo.vo.Animal_info;
-//영수 5월16일 mypage서비스임플리먼츠
+
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.TogetherVo;
 @Service
 public class MypageServiceImpl implements MypageService {
-
+	
+	@Autowired
 	private MypageDao mypagedao;
 	
 	//내 정보
@@ -63,6 +66,14 @@ public class MypageServiceImpl implements MypageService {
 	public List<Pic_BoardVo> search_my_sns(MemberInfoVo m) {
 		// TODO Auto-generated method stub
 		List<Pic_BoardVo> list = mypagedao.search_my_sns(m);
+		return list;
+	}
+	
+	//내가 쓴 함께가요 글
+	@Override
+	public List<TogetherVo> search_my_together(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		List<TogetherVo> list = mypagedao.search_my_together(m);
 		return list;
 	}
 	
