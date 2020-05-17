@@ -26,7 +26,7 @@ $(function(){
 	
 	//동물 정보 수정
 	$("#animal_info_up_btn").click(function(){
-		window.location.href="/mypage/animal_indo_up";
+		window.location.href="/mypage/animal_info_up";
 		});
 	
 	//회원탈퇴
@@ -141,5 +141,6 @@ $(function(){
 </section>
 
 <button id="widthdraw_btn">회원탈퇴</button>
+
 </body>
 </html>
