@@ -16,7 +16,7 @@
 		<tr>
 			<td>${to.t_num }</td>
 			<td><a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a></td>
-			<td>${to.t_attendee_cnt_date }</td>
+			<td>${to.t_attendee_cnt }</td>
 			<td>${to.t_hit }</td>
 			<td>${t.t_date }</td>
 		</tr>
