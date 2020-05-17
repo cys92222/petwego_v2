@@ -7,12 +7,52 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-			
-			//수정
+
+		// 민아) 5/17, 좋아요기능 추가, user_id 는 임의로 멤버인포에 추가한 user1으로 해둠 
+		var photo_no = $("#photo_no").val();
+		var user_id = "user1";
+		$("#clickLike").hide();
+		
+		//이 사진에 좋아요를 눌렀는지 체크 
+		var okLike = function(user_id, photo_no){
+			$.ajax("/pic_board/okLike",{data: {user_id:user_id, photo_no:photo_no}, success:function(re){
+				if( re == 1 ){				//좋아요를 눌렀다면
+					$("#clickLike").show();	//좋아요 눌러서 바뀐 사진을 보여주고
+					$("#like").hide();		//안눌린상태의 좋아요사진은 숨겨줘 
+				}
+			}})
+		}
+
+		okLike(user_id, photo_no);
+
+		// 좋아요 insert
+		$(document).on("click","#like",function(){	// 좋아요를 클릭했을때
+			$.ajax("/pic_board/insertLike",{data: {user_id:user_id, photo_no:photo_no}, success:function(re){
+				if(re == 1){
+					$("#clickLike").show();		//좋아요 눌러서 바뀐 사진을 보여주고
+					$("#like").hide();			//안눌린상태의 좋아요사진은 숨겨줘 
+					$("#cntLike").html(eval($("#cntLike").html())+1);	// 좋아요 수가 보이는 창의 데이터에 + 1 해줘
+				}
+			}})
+				
+		})
+		
+		// 좋아요 delete 좋아요를 한번 더 누르면 취소 
+		$(document).on("click","#clickLike",function(){
+			$.ajax("/pic_board/deleteLike",{data: {user_id:user_id, photo_no:photo_no},success: function(re){
+				if( re == 1 ){
+					$("#clickLike").hide();		//좋아요 눌러서 바뀐 사진을 숨기고
+					$("#like").show();			//안눌린상태의 좋아요사진을 보여줘
+					$("#cntLike").html(eval($("#cntLike").html())-1);	// 좋아요 수가 보이는 창의 데이터에 - 1 해줘
+				}
+			}})
+		})
+
+		//수정
 		$("#btnUpdate").click(function(){
 				self.location ="/pic_board/update?photo_no=${file.photo_no}";	
 				});
@@ -81,6 +121,15 @@
 		<tr>
 			<td>글 내용</td>
 			<td><div>${Board.photo_detail }</div></td>
+		</tr>
+		<tr>
+			<td>
+				<img id="like" src="/img/like.png">
+				<img id="clickLike" src="/img/clickLike.png">
+			</td>
+			<!-- escapeXml="false" 없으면 화면에 <p id='cntLike'>0</p> 태그가 다 보임  -->
+			<!-- https://needjarvis.tistory.com/51 참고  -->
+			<td>좋아요 <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> </td>
 		</tr>
 	</table>
 	</form>

@@ -39,8 +39,9 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 	
 	//상세
 	@Override
-	public Pic_BoardVo detailPic_Board(int photo_no) {
-		return pic_boardDao.detailPic_Board(photo_no);
+	public Pic_BoardVo detailPic_Board(Pic_BoardVo pb) {
+		pic_boardDao.upcntLike(pb.getPhoto_no());
+		return pic_boardDao.detailPic_Board(pb);
 	}
 	//상세사진
 	@Override
@@ -93,22 +94,21 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 		return re;
 	}
 	
-	
-	//좋아요 
-	@Override
-	public int insertlikeit(LikeItVo l) {
-		int re = -1;
-		re = pic_boardDao.insertlikeit(l);
-		return re;
-	}
-	
-	//좋아요 총개수
-	@Override
-	public int likecnt(LikeItVo l) {
-		int re = -1;
-		re = pic_boardDao.likecnt(l);
-		return re;
-	}
-
+	// 민아) 5/17, 이 두개 필요없음 
+//	// 좋아요
+//	@Override
+//	public int insertlikeit(LikeItVo l) {
+//		int re = -1;
+//		re = pic_boardDao.insertlikeit(l);
+//		return re;
+//	}
+//
+//	// 좋아요 총개수
+//	@Override
+//	public int likecnt(LikeItVo l) {
+//		int re = -1;
+//		re = pic_boardDao.likecnt(l);
+//		return re;
+//	}
 
 }

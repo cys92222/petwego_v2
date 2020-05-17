@@ -25,16 +25,17 @@ public List<Pic_Board_FileVo> listFile(Criteria cri)throws Exception;
 	public int insertfile(Pic_Board_FileVo pbf);
 	
 	//상세보기 
-	public Pic_BoardVo detailPic_Board(int photo_no);
+	public Pic_BoardVo detailPic_Board(Pic_BoardVo pb);
 			
 	//상세보기 사진
 	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf);
-		
-	//좋아요
-	public int insertlikeit(LikeItVo l);
 	
-	//좋아요수
-	public int likecnt(LikeItVo l);
+	// 민아) 5/17, 이 두개 필요없음 		
+//	//좋아요
+//	public int insertlikeit(LikeItVo l);
+//	
+//	//좋아요수
+//	public int likecnt(LikeItVo l);
 	
 	//마지막 글번호
 	public int photo_no();
