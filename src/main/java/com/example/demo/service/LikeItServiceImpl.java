@@ -26,6 +26,7 @@ public class LikeItServiceImpl implements LikeItService {
 		int re = 0;
 
 		// 좋아요 수가 늘어나면, pic_board에서도 좋아요수가 같이 증가해야함
+		//asd
 		int re_likeit = likeDao.insertLike(vo);
 		int re_pic = picDao.upcntLike(vo.getPhoto_no());
 
