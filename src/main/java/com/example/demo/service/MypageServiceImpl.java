@@ -85,7 +85,5 @@ public class MypageServiceImpl implements MypageService {
 		List<Pic_Board_FileVo> list = mypagedao.search_my_sns_file(m);
 		return list;
 	}
-	
-	
 
 }

@@ -32,6 +32,7 @@ $(function(){
 	//회원탈퇴
 	$("#widthdraw_btn").click(function(){
 		var ck = confirm("탈퇴하시겠습니까?");
+// 		window.location.href="/mypage/delete_member?user_id=${}"
 		if(ck == true){
 			alert("탈퇴");
 		}else{

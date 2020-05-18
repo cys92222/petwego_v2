@@ -142,4 +142,11 @@ public class MyPageController {
 		mav.addObject("mysns", mypageservice.search_my_sns(m));
 		return mav;
 	}
+	
+	//회원탈퇴
+	@RequestMapping("/mypage/delete_member")
+	public String delete_member(MemberInfoVo m) {
+		mypageservice.delete_myinfo(m);
+		return "redirect:/MainPage";
+	}
 }

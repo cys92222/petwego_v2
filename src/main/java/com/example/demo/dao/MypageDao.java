@@ -34,4 +34,5 @@ public interface MypageDao {
 	
 	//내가 쓴 sns글 파일
 	public List<Pic_Board_FileVo> search_my_sns_file(MemberInfoVo m);
+	
 }
