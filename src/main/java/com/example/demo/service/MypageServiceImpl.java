@@ -85,5 +85,14 @@ public class MypageServiceImpl implements MypageService {
 		List<Pic_Board_FileVo> list = mypagedao.search_my_sns_file(m);
 		return list;
 	}
+	
+	//비밀번호 변경
+	@Override
+	public int update_pwd(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		int re =-1;
+		re = mypagedao.update_pwd(m);
+		return re;
+	}
 
 }

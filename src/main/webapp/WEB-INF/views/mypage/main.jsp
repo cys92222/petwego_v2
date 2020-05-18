@@ -32,7 +32,6 @@ $(function(){
 	//회원탈퇴
 	$("#widthdraw_btn").click(function(){
 		var ck = confirm("탈퇴하시겠습니까?");
-// 		window.location.href="/mypage/delete_member?user_id=${}"
 		if(ck == true){
 			alert("탈퇴");
 		}else{
@@ -77,7 +76,7 @@ $(function(){
 		<tr>
 			<td>	
 				<div>
-					<img alt="사진이 없습니다" src="/animalImg/" width="100" height="100"><br>
+					<img alt="사진이 없습니다" src="" width="100" height="100"><br>
 					<button id="animal_pic_up_btn">사진 수정</button>
 				</div>
 			</td>
@@ -124,7 +123,6 @@ $(function(){
 		<c:forEach var="sns" items="${mysns }" begin="0" end="5">
 			<li>
 			글번호 ${sns.photo_no }<br>
-<%-- 			<img alt="등록한 sns글이 없습니다" src="/img/${sns.photo_file_name }">	 --%>
 			</li>
 		</c:forEach>
 	</ul>

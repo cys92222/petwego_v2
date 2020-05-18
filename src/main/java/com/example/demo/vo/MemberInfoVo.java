@@ -25,6 +25,7 @@ public class MemberInfoVo {
 	private Date info_update_date;
 	private String nick_name;
 	private int role;
+	private String pwd2;//수정한 암호
 	
 	MultipartFile uploadfile;
 }

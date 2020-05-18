@@ -35,4 +35,7 @@ public interface MypageDao {
 	//내가 쓴 sns글 파일
 	public List<Pic_Board_FileVo> search_my_sns_file(MemberInfoVo m);
 	
+	//비밀번호 변경
+	public int update_pwd(MemberInfoVo m);
+	
 }

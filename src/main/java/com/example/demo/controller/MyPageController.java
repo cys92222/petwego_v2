@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.MypageService;
@@ -24,6 +25,7 @@ public class MyPageController {
 	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/main");
+//		mav.setViewName("/mypage/MypageMain");
 		MemberInfoVo m = new MemberInfoVo();
 		//아이디 임의로 설정
 		m.setUser_id("user1");
@@ -37,11 +39,11 @@ public class MyPageController {
 		mav.addObject("mysns", mypageservice.search_my_sns(m));
 		
 		//내가 작성한 sns글파일
-//		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
+		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
 		
 		//내가 쓴 함께가요
 		mav.addObject("mytogether", mypageservice.search_my_together(m));
-//		System.out.println(mypageservice.select_myinfo(m));
+		System.out.println(mypageservice.select_myinfo(m));
 		
 		return mav;
 	}
@@ -148,5 +150,16 @@ public class MyPageController {
 	public String delete_member(MemberInfoVo m) {
 		mypageservice.delete_myinfo(m);
 		return "redirect:/MainPage";
+	}
+	
+	//비밀번호 변경
+	@RequestMapping("/mypage/update_pwd")
+	@ResponseBody
+	public String update_pwd(MemberInfoVo m,String o_pwd,String o_user_id) {
+//		System.out.println("AAAAAAAAAAAAAAAAA");
+		m.setPwd(o_pwd);
+		m.setUser_id(o_user_id);
+		mypageservice.update_pwd(m);
+		return "ok";
 	}
 }
