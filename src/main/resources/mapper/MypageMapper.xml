@@ -49,4 +49,5 @@
 	<select id="search_my_sns_file" resultType="com.example.demo.vo.Pic_Board_FileVo">
 		select * from pic_board_file
 	</select>
+	
 </mapper>
