@@ -19,7 +19,7 @@
  	
 <!--  	반려동물 등록 -->
  	<insert id="insert_pet">
- 		insert into animal_info values(seq_pet_no.nextval,#{user_id},#{pet_date},'',#{pet_type})
+ 		insert into animal_info values(seq_pet_no.nextval,#{user_id},#{pet_date},#{pet_type},#{pet_pic})
  	</insert>
  	
 <!--  	insert into animal_info values(seq_pet_no.nextval,'user1',round((select sysdate - to_date('2020-05-10','yyyy-mm-dd') from dual),0),'','강아지') -->
@@ -54,4 +54,8 @@
 	<update id="update_pwd">
 		update member_info set pwd=#{pwd2} where user_id = #{user_id} and pwd = #{pwd} 
 	</update>
+<!-- 	나의 반려동물 리스트  -->
+	<select id="search_my_animal" resultType="com.example.demo.vo.Animal_infoVo">
+		select * from animal_info where user_id = #{user_id}
+	</select>
 </mapper>

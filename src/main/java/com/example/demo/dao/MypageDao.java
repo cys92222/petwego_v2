@@ -3,7 +3,7 @@ package com.example.demo.dao;
 
 import java.util.List;
 
-import com.example.demo.vo.Animal_info;
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
@@ -18,7 +18,7 @@ public interface MypageDao {
 	public int update_myinfo(MemberInfoVo m);
 	
 	//반려동물 등록
-	public int insert_pet(Animal_info a);
+	public int insert_pet(Animal_infoVo a);
 	
 	//회원탈퇴
 	public int delete_myinfo(MemberInfoVo m);
@@ -37,5 +37,8 @@ public interface MypageDao {
 	
 	//비밀번호 변경
 	public int update_pwd(MemberInfoVo m);
+	
+	//나의 반려동물 리스트
+	public List<Animal_infoVo> search_my_animal(MemberInfoVo m);
 	
 }

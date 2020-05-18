@@ -11,22 +11,22 @@
 $(function(){
 	//사람 사진 수정
 	$("#people_pic_up_btn").click(function(){
-		window.location.href="/mypage/people_pic_up_form";
+		window.location.href="/mypage/people_pic_up_form?user_id=${myinfo.user_id }";
 		});
 
 	//사람 정보 수정
 	$("#people_info_up_btn").click(function(){
-		window.location.href="/mypage/people_info_up_form";
+		window.location.href="/mypage/people_info_up_form?user_id=${myinfo.user_id }";
 		});
 
 	//동물 사진 수정
 	$("#animal_pic_up_btn").click(function(){
-		window.location.href="/mypage/animal_pic_up_form";
+		window.location.href="/mypage/animal_pic_up_form?user_id=${myinfo.user_id }";
 		});
 	
 	//동물 정보 수정
 	$("#animal_info_up_btn").click(function(){
-		window.location.href="/mypage/animal_info_up_form";
+		window.location.href="/mypage/animal_info_up_form?user_id=${myinfo.user_id }";
 		});
 	
 	//회원탈퇴
@@ -41,7 +41,7 @@ $(function(){
 
 	//반려동물 등록
 	$("#insert_animal").click(function(){
-		window.location.href="/mypage/insert_animal";
+		window.location.href="/mypage/insert_animal_form?user_id=${myinfo.user_id }";
 		});
 });
 </script>

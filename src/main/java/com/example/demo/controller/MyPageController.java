@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.MypageService;
-import com.example.demo.vo.Animal_info;
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
 
@@ -43,18 +44,46 @@ public class MyPageController {
 		
 		//내가 쓴 함께가요
 		mav.addObject("mytogether", mypageservice.search_my_together(m));
-		System.out.println(mypageservice.select_myinfo(m));
+//		System.out.println(mypageservice.select_myinfo(m));
+		
+		return mav;
+	}
+	
+	//반려동물 수정폼
+	@RequestMapping("/mypage/animal_info_up_form")
+	public ModelAndView update_animal_info_form(MemberInfoVo m) {
+//		System.out.println(m.getUser_id());
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/animal_info");
+		
+		//나의 반려동물 리스트
+		mav.addObject("animal_list", mypageservice.search_my_animal(m));
+		System.out.println("동물 리스트 "+mypageservice.search_my_animal(m));
 		
 		return mav;
 	}
 	
 	//반려동물 등록
-	@RequestMapping("/mypage/insert_animal")
-	public ModelAndView insert_animal() {
+	@RequestMapping("/mypage/animal_info_up")
+	@ResponseBody
+	public String update_animal_info(Animal_infoVo a,MemberInfoVo m,MultipartFile pic) {
+
+		if(pic != null) {
+			a.setPet_pic(pic.getOriginalFilename());
+		}else {
+			a.setPet_pic("사진없음");
+		}
+		System.out.println("동물등록");
+		
+		System.out.println(a.getPet_date());
+		
+		
 		ModelAndView mav = new ModelAndView();
-//		mypageservice.insert_pet(a);
-		mav.setViewName("/mypage/insert_animal");
-		return mav;
+		mypageservice.insert_pet(a);
+		//나의 반려동물 리스트
+		mav.addObject("animal_list", mypageservice.search_my_animal(m));
+		
+		return "redirect:/mypage/animal_info_up_form";
 	}
 	
 	//사람 정보 수정 폼
@@ -86,21 +115,6 @@ public class MyPageController {
 		return mav;
 	}
 	
-	//동물 정보 수정 폼
-	@RequestMapping("/mypage/animal_indo_up_form")
-	public ModelAndView animal_info_up_form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/animal_info");
-		return mav;
-	}
-	
-	//동물 사진 수정 폼
-	@RequestMapping("/mypage/animal_pic_up_form")
-	public ModelAndView animal_pic_up_form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/animal_pic");
-		return mav;
-	}
 	
 	//내가 작성한 글
 	@RequestMapping("/mypage/board_list")
