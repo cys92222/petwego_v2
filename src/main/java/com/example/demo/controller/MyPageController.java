@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.service.MypageService;
 import com.example.demo.vo.Animal_info;
 import com.example.demo.vo.MemberInfoVo;
+import com.example.demo.vo.Pic_BoardVo;
 
 @Controller
 public class MyPageController {
@@ -30,8 +33,11 @@ public class MyPageController {
 		//내가 작성한 글
 		mav.addObject("myboard", mypageservice.search_my_board(m));
 		
-		//내가 작성한 sns
+		//내가 작성한 sns글
 		mav.addObject("mysns", mypageservice.search_my_sns(m));
+		
+		//내가 작성한 sns글파일
+//		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
 		
 		//내가 쓴 함께가요
 		mav.addObject("mytogether", mypageservice.search_my_together(m));

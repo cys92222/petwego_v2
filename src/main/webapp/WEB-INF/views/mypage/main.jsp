@@ -55,7 +55,7 @@ $(function(){
 		<tr>
 			<td>
 				<div>
-					<img alt="사진이 없습니다" src="" width="100" height="100"><br>
+					<img alt="사진이 없습니다" src="/peopleImg/${myinfo.fname }" width="100" height="100"><br>
 					<button id="people_pic_up_btn">사진 수정</button>
 				</div>
 			</td>
@@ -76,7 +76,7 @@ $(function(){
 		<tr>
 			<td>	
 				<div>
-					<img alt="사진이 없습니다" src="" width="100" height="100"><br>
+					<img alt="사진이 없습니다" src="/animalImg/" width="100" height="100"><br>
 					<button id="animal_pic_up_btn">사진 수정</button>
 				</div>
 			</td>
@@ -122,7 +122,8 @@ $(function(){
 	<ul>
 		<c:forEach var="sns" items="${mysns }" begin="0" end="5">
 			<li>
-				${sns.photo_no }
+			글번호 ${sns.photo_no }<br>
+<%-- 			<img alt="등록한 sns글이 없습니다" src="/img/${sns.photo_file_name }">	 --%>
 			</li>
 		</c:forEach>
 	</ul>

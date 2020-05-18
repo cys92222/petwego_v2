@@ -11,6 +11,7 @@ import com.example.demo.vo.Animal_info;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_FileVo;
 import com.example.demo.vo.TogetherVo;
 @Service
 public class MypageServiceImpl implements MypageService {
@@ -74,6 +75,14 @@ public class MypageServiceImpl implements MypageService {
 	public List<TogetherVo> search_my_together(MemberInfoVo m) {
 		// TODO Auto-generated method stub
 		List<TogetherVo> list = mypagedao.search_my_together(m);
+		return list;
+	}
+	
+	//내가 쓴 sns 파일
+	@Override
+	public List<Pic_Board_FileVo> search_my_sns_file(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		List<Pic_Board_FileVo> list = mypagedao.search_my_sns_file(m);
 		return list;
 	}
 	

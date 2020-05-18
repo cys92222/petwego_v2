@@ -44,4 +44,9 @@
 	<select id="search_my_together" resultType="com.example.demo.vo.TogetherVo">
 		select * from together where user_id = #{user_id}
 	</select>
+	
+<!-- 내가 쓴 sns 글 파일 -->
+	<select id="search_my_sns_file" resultType="com.example.demo.vo.Pic_Board_FileVo">
+		select * from pic_board_file
+	</select>
 </mapper>
