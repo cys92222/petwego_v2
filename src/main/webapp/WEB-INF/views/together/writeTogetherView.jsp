@@ -17,37 +17,35 @@
 	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
 <!-- include summernote css/js-->
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	var formObj = $("form[name='writeForm']");
-	$(".write_btn").on("click", function(){
-		if(fn_valiChk()){
-			return false;
-		}
-		formObj.attr("action", "writeTogether");
-		formObj.attr("method", "post");
-		formObj.submit();
-	});
-	$('#summernote').summernote({
-		height: 300,                 // 에디터 높이
-		minHeight: null,             // 최소 높이
-		maxHeight: null,             // 최대 높이
-		focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-		lang: "ko-KR",					// 한글 설정
-		placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-		callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-			onImageUpload : function(files) {
-				uploadSummernoteImageFile(files[0],this);
-			}
-		}
-});
+<script src="../summernote/js/summernote-lite.js"></script>
+<script src="../summernote/js/lang/summernote-ko-KR.js"></script>
 
-	/**
+<link rel="stylesheet" href="../summernote/css/summernote-lite.css">
+<script type="text/javascript">
+	$(document).ready(function() {
+		var formObj = $("form[name='writeForm']");
+		$(".write_btn").on("click", function() {
+			if (fn_valiChk()) {
+				return false;
+			}
+			formObj.attr("action", "writeTogether");
+			formObj.attr("method", "post");
+			formObj.submit();
+		});
+		$('#summernote').summernote({
+			height : 300, // 에디터 높이
+			minHeight : null, // 최소 높이
+			maxHeight : null, // 최대 높이
+			focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+			lang : "ko-KR", // 한글 설정
+			placeholder : '최대 2048자까지 쓸 수 있습니다', //placeholder 설정
+			callbacks : { //여기 부분이 이미지를 첨부하는 부분
+				onImageUpload : function(files) {
+					uploadSummernoteImageFile(files[0], this);
+				}
+			}
+		});
+		/**
 		 * 이미지 파일 업로드
 		 */
 		function uploadSummernoteImageFile(file, editor) {
@@ -91,7 +89,8 @@ $(document).ready(function(){
 		<hr />
 
 		<section id="container">
-			<form method="post" action="writeTogether" name="writeForm" enctype="multipart/form-data">
+			<form method="post" action="writeTogether" name="writeForm"
+				enctype="multipart/form-data">
 				<table>
 					<tbody>
 						<tr>
@@ -114,8 +113,8 @@ $(document).ready(function(){
 									id="summernote" name="t_detail" class="chk" title="내용을 입력하세요."></textarea></td>
 						</tr>
 						<tr>
-							<td><label for="t_fname">파일첨부</label><br><input type="text"
-									id="t_fname_input" name="t_fname"></td>
+							<td><label for="t_fname">파일첨부</label><br>
+							<input type="text" id="t_fname_input" name="t_fname"></td>
 						</tr>
 
 						<tr>
@@ -144,3 +143,4 @@ $(document).ready(function(){
 	</div>
 </body>
 </html>
+
