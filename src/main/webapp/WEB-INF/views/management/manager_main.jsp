@@ -18,7 +18,11 @@
 		$("#member").click(function(){
 			self.location="/management/manager_member";
 		})
-
+		
+		$("#log").click(function(){
+			self.location="/management/listLog";
+		})
+		
 		//게시물관리에서 각각의 li를 누르면.... 각게시판 목록보기, 상세보기, 삭제로 이어져야함 
 		
 		// 공지사항

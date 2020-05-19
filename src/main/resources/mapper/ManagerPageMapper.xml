@@ -3,9 +3,27 @@
   <!-- 민아) 5/19, 관리자페이지  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 
+	<!-- 로그 등록 -->
+	<insert id="insertLog">
+		insert into aop_log values(seq_log_num.nextval, #{url}, #{ip}, #{time}, #{user_id} )
+	</insert>
+
 	<!-- 로그 목록 -->
 	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo" parameterType="com.example.demo.util.Criteria">
-		select * from log
+		select log_num, url, ip, time, user_id
+			from(select log_num, url, ip, time, user_id , row_number() over (order by log_num desc) as rNum
+				from aop_log
+			)
+				MP									
+			where rNum between #{rowStart} and #{rowEnd}
+			order by log_num desc
+	</select>
+	
+	<!-- 총 로그 수 -->
+	<select id="countLog" resultType="int">
+		select count (log_num) 
+			from aop_log
+				where log_num > 0
 	</select>
 
 	<!-- 회원 목록 -->

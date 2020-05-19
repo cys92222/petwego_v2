@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class Aop_LogVo {
 	private int log_num;
 	private String url;
-	private String op;
+	private String ip;
 	private String time;
 	private String user_id;
 }
