@@ -7,7 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>동물 사진 수정</h2>
+<h2>동물정보 수정</h2>
 <hr>
+반려동물 번호
+반려동물 이름
+반려시작일
+
+
 </body>
 </html>

@@ -31,6 +31,7 @@ $(function(){
 			window.location.reload(true);
 			}});
 		});
+
 });
 </script>
 </head>
@@ -40,10 +41,16 @@ $(function(){
 
 <section id="animail_list">
 	 <table>
-	 <th>동물번호</th><th>반려시작일</th><th>반려일수</th><th>동물종류</th><th>동물사진</th>
+	 <th>동물번호</th><th>반려동물 이름</th><th>반려시작일</th><th>반려일수</th><th>동물종류</th><th>동물사진</th>
 		 <c:forEach items="${animal_list }" var="al">
 		 	<tr>
-		 		<td>${al.pet_no }</td><td>${al.pet_date }</td><td>${al.day }</td><td>${al.pet_type }</td><td><img alt="사진이 없습니다" src=""></td>
+		 		<td>${al.pet_no }</td>
+		 		<td>${al.pet_name }</td>
+		 		<td>${al.pet_date }</td>
+		 		<td>${al.day }</td>
+		 		<td>${al.pet_type }</td>
+		 		<td><img alt="사진이 없습니다" src="${al.pet_pic }"></td>
+		 		<a href="">반려동물 정보 수정</a>
 		 	</tr>
 		 </c:forEach>
 	 </table>

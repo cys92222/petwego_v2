@@ -41,4 +41,9 @@ public interface MypageService {
 	//나의 반려동물 리스트
 	public List<Animal_infoVo> search_my_animal(MemberInfoVo m);	
 	
+	//반려동물정보수정
+	public int update_animal(Animal_infoVo a);
+	
+	//반려동물 상세보기
+	public Animal_infoVo detail_animal(Animal_infoVo a);	
 }

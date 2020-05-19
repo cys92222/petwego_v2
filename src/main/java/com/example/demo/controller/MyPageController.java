@@ -46,6 +46,9 @@ public class MyPageController {
 		mav.addObject("mytogether", mypageservice.search_my_together(m));
 //		System.out.println(mypageservice.select_myinfo(m));
 		
+		//반려동물 리스트
+		mav.addObject("animal_list", mypageservice.search_my_animal(m));
+		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
 		return mav;
 	}
 	
@@ -176,4 +179,27 @@ public class MyPageController {
 		mypageservice.update_pwd(m);
 		return "ok";
 	}
+	
+	//반려동물 정보 수정폼
+	@RequestMapping("/mypage/update_animal_form")
+	public ModelAndView update_animal_form(Animal_infoVo a) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/update_animal");
+		mav.addObject("animal_info", mypageservice.detail_animal(a));
+		
+		return mav;
+	}
+	
+	/*
+	 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+	//반려동물 정보 수정
+	@RequestMapping("/mypage/update_animal")
+	public ModelAndView update_animal(Animal_infoVo a) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/update_animal");
+		mav.addObject("animal_info", mypageservice.update_animal(a));
+		
+		return mav;
+	}
+	*/
 }

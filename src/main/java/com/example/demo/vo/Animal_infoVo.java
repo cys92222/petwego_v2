@@ -18,6 +18,7 @@ public class Animal_infoVo {
 	private String pet_date;
 	private String pet_type;
 	private String pet_pic;
+	private String pet_name;
 	
 	private String day;
 	

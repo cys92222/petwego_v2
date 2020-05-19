@@ -103,4 +103,21 @@ public class MypageServiceImpl implements MypageService {
 		return list;
 	}
 
+	//반려동물정보수정
+	@Override
+	public int update_animal(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.update_animal(a);
+		return re;
+	}
+	
+	//반려동물 상세보기
+	@Override
+	public Animal_infoVo detail_animal(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		Animal_infoVo ai = mypagedao.detail_animal(a);
+		return ai;
+	}
+
 }

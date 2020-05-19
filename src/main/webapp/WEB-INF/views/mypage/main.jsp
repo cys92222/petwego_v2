@@ -39,10 +39,6 @@ $(function(){
 			}
 		});
 
-	//반려동물 등록
-	$("#insert_animal").click(function(){
-		window.location.href="/mypage/insert_animal_form?user_id=${myinfo.user_id }";
-		});
 });
 </script>
 </head>
@@ -68,26 +64,21 @@ $(function(){
 			</td>
 		</tr>
 		
-	<tr><td>동물 리스트</td></tr>
+	<tr><td>동물 리스트</td></tr>	
 		<tr>
-			<td><button id="insert_animal">반려동물 등록</button></td>
+			<th>동물번호</th><th>반려동물 이름</th><th>반려일</th><th>동물종류</th><th>동물사진</th>
 		</tr>
-	
-		<tr>
-			<td>	
-				<div>
-					<img alt="사진이 없습니다" src="" width="100" height="100"><br>
-					<button id="animal_pic_up_btn">사진 수정</button>
-				</div>
-			</td>
-
+			<c:forEach items="${animal_list }" var="a" begin="0" end="3">
+				<tr>
+					<td>${a.pet_no }</td><td>${a.pet_name }</td><td>${a.pet_date }</td><td>${a.pet_type }</td>
+					<td><img alt="사진이 없습니다" src="${a.pet_type }" width="100" height="100"><br></td>
+				</tr>
+			</c:forEach>
 			<td>
 				<div>
-					동물 정보<br>
 					<button id="animal_info_up_btn">정보 수정</button>
 				</div>
 			</td>
-		</tr>
 	</table>
 </section>
 
