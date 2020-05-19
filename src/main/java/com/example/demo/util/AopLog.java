@@ -27,6 +27,7 @@ public class AopLog {
 		this.mDao = mDao;
 	}
 
+	
 	// 컨트롤러에 있는 모든 public 메소드 포함 인데 이거 지금 살려놓으면 에러나서 막아둠 
 	//@Pointcut("execution(public *  com.example.demo.controller..*(..))")
 	private void loggg() {

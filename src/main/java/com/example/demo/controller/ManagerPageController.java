@@ -31,6 +31,7 @@ public class ManagerPageController {
 
 	}
 
+	
 	// 회원 목록, 검색, 페이징
 	@GetMapping("/management/manager_member")
 	public void listMember(HttpServletRequest request,Model model, @ModelAttribute("scri") SearchCriteria scri) {
