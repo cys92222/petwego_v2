@@ -17,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.LikeItService;
 import com.example.demo.service.Pic_BoardService;
+import com.example.demo.service.Pic_Board_CommentService;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.vo.LikeItVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 import com.google.gson.Gson;
 
@@ -33,7 +35,8 @@ public class Pic_BoardController {
 	private Pic_BoardService pic_boardService;
 
 	@Autowired
-	private LikeItService likeService;
+	private LikeItService likeService;	
+		
 
 	// 사진에 좋아요를 누른적이 있는지 판단
 	@GetMapping("/pic_board/okLike")
@@ -46,7 +49,6 @@ public class Pic_BoardController {
 		}
 		return re;
 	}
-
 	// 좋아요 추가
 	@GetMapping("/pic_board/insertLike")
 	@ResponseBody
@@ -58,7 +60,6 @@ public class Pic_BoardController {
 		}
 		return re;
 	}
-
 	// 좋아요 삭제
 	@GetMapping("/pic_board/deleteLike")
 	@ResponseBody
@@ -70,7 +71,6 @@ public class Pic_BoardController {
 		}
 		return re;
 	}
-
 	// 자신이 등록한 모든사진
 	@RequestMapping(value = "/pic_board/list", method = RequestMethod.GET)
 	public ModelAndView listAll(Criteria cri) throws Exception {
@@ -96,7 +96,6 @@ public class Pic_BoardController {
 		mav.setViewName("/pic_board/list");
 		return mav;
 	}
-
 	// 상세보기
 	@GetMapping("/pic_board/detail")
 	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
@@ -110,7 +109,6 @@ public class Pic_BoardController {
 		
 		return mav;
 	}
-
 	// sns 글 등록 폼
 	@RequestMapping("/pic_board/insertForm")
 	public ModelAndView insertform(Criteria cri) {
@@ -118,7 +116,6 @@ public class Pic_BoardController {
 		mav.setViewName("/pic_board/insert");
 		return mav;
 	}
-
 	@RequestMapping("/pic_board/insert")
 	public ModelAndView insertPic_Board(Pic_BoardVo pb, Pic_Board_FileVo pbf, MultipartFile multipartFile,
 			HttpServletRequest request, Criteria cri) throws Exception {
@@ -149,7 +146,6 @@ public class Pic_BoardController {
 				}
 			}
 		}
-
 		// 파일 업로드
 		uploadFile = pbf.getUploadFile();
 		fname = uploadFile.getOriginalFilename();
@@ -171,19 +167,32 @@ public class Pic_BoardController {
 		mav.setViewName("redirect:/pic_board/list");
 		return mav;
 	}
-	// 좋아요
 
-	// 좋아요 수
+		//삭제   -삭제경고창까지 뜨고 삭제는 안됨  list로 돌아감
+	@GetMapping("/pic_board/delete")
+	public ModelAndView deletePic_Board(Pic_BoardVo pb, Pic_Board_CommentVo pbc, Pic_Board_FileVo pbf) {
+		ModelAndView mav = new ModelAndView("redirect:/pic_board/list");
+		System.out.println("삭제 컨트롤로 1");
+		pic_boardService.deletePic_Board(pb);
+		System.out.println("삭제 컨트롤로 2");
+		return mav;
+	}
+		
+		//삭제2 -삭제경고창까지 뜨고 삭제는 안됨  흰색 창뜸
+//		@RequestMapping("/pic_board/delete")
+//		public void deletePic_Board(Pic_BoardVo pb) {
+//		pic_boardService.deletePic_Board(pb);
+//	}
+		
 
-	// sns수정
-//	@GetMapping("/sns/updatesns")
-//	public void updateForm(Pic_BoardVo pb ) {
-//		model.addAttribute("up",snsService.detailBoard());
+	
+	
+	
+		//수정
+//		@GetMapping("/pic_board/update")
+//		public void updateForm(Pic_BoardVo pb model) {
+//		model.addAttribute("up",pic_boardService.());
 //	}
 
-	// sns 글 삭제
-	@RequestMapping("/pic_board/delete")
-	public void deletePic_Board(Pic_BoardVo pb) {
-		pic_boardService.deletePic_Board(pb);
-	}
+
 }
