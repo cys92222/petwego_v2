@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 민아) 5/19, 관리자페이지  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
+		
+	<!-- 로그를 구글 차트로 나타내보기 위한 카운트 -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	<select id="chartLog" resultType="com.example.demo.vo.ChartVo">
+		select count(*) count, url from aop_log group by url
+	</select>
 
 	<!-- 로그 등록 -->
 	<insert id="insertLog">

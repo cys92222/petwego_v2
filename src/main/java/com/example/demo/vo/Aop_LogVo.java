@@ -14,4 +14,7 @@ public class Aop_LogVo {
 	private String ip;
 	private String time;
 	private String user_id;
+	
+	// 구글 차트용 카운트 
+	private int count;
 }

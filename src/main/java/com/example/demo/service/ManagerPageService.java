@@ -5,11 +5,15 @@ import java.util.List;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
-
+	
+	// 로그 차트 
+	List<ChartVo> chartLog();
+	
 	// 로그 기록(등록)
 	int insertLog(Aop_LogVo al);
 

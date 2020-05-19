@@ -9,6 +9,7 @@ import com.example.demo.dao.ManagerPageDao;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 
 //민아) 5/19, 관리자페이지
@@ -17,7 +18,13 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 
 	@Autowired
 	private ManagerPageDao mDao;
-
+	
+	// 로그 차트 
+	@Override
+	public List<ChartVo> chartLog() {
+		return mDao.chartLog();
+	}
+	
 	// 로그 기록(등록)
 	@Override
 	public int insertLog(Aop_LogVo al) {
@@ -59,6 +66,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int deleteMember(MemberInfoVo m) {
 		return mDao.deleteMember(m);
 	}
+
+
 
 
 }
