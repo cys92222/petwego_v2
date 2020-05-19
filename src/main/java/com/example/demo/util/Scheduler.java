@@ -37,7 +37,7 @@ public class Scheduler {
    // with name defined in file~~~~~~~~
 
 //   // 새벽4시마다 지움    cron = "0 0 4 * * * "
-   @Scheduled(cron = "* * * * * * ")
+   @Scheduled(cron = "0 0 4 * * *")
    public void deleteImg() {
       // System.out.println("파일 지우는 스케쥴러 동작함");
       List<Board_fileVo> realFile = bf_service.realFile();

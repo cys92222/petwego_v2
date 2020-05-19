@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,13 @@ import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.util.AopLog.NoLogging;
 import com.google.gson.JsonObject;
 
 
 // 민아) 5월9일, service 방식으로 새로 시작
 // 민아) 5월13일, board & board_file관련 컨트롤러 완료
+// 민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
@@ -67,7 +70,7 @@ public class BoardController {
 
 	// 게시물 목록, 검색, 페이징
 	@GetMapping("/list")
-	public void listBoard(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public void listBoard(HttpServletRequest request,Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
 		model.addAttribute("listBoard", service.listBoard(scri));
 
@@ -85,7 +88,7 @@ public class BoardController {
 
 	@PostMapping(value = "/insert")
 	@ResponseBody
-	public String insertSubmit(BoardVo b, Model model) {
+	public String insertSubmit(HttpServletRequest request,BoardVo b, Model model) {
 		service.insertBoard(b);
 		// rttr.addFlashAttribute("board_no", b.getBoard_no());
 		model.addAttribute("board_no", service.lastBoard());
@@ -94,6 +97,7 @@ public class BoardController {
 	}
 
 	// 이미지 등록
+	@NoLogging
 	@ResponseBody
 	@PostMapping(value = "imgsDB")
 	public String imgsDB(@RequestBody List<Board_fileVo> listImg) {
@@ -106,14 +110,14 @@ public class BoardController {
 
 	// 게시물 상세보기
 	@GetMapping("/get")
-	public void getBoard(BoardVo b, Model model) {
+	public void getBoard(HttpServletRequest request,BoardVo b, Model model) {
 		service.updateHit(b.getBoard_no()); // 게시물 조회수 증가
 		model.addAttribute("detail", service.getBoard(b));
 	}
 
 	// 게시글 수정
 	@GetMapping(value = "/update")
-	public void updateForm(BoardVo b, Model model) {
+	public void updateForm(HttpServletRequest request,BoardVo b, Model model) {
 		model.addAttribute("up", service.getBoard(b));
 	}
 
@@ -156,7 +160,7 @@ public class BoardController {
 
 	// 게시글 삭제
 	@GetMapping("/delete")
-	public ModelAndView deleteSubmit(BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
+	public ModelAndView deleteSubmit(HttpServletRequest request,BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
 
 		// 첨부파일이 있는 글이라면, 첨부파일 먼저 지워줘!
@@ -173,6 +177,7 @@ public class BoardController {
 	}
 
 	// summernote 사진업로드
+	@NoLogging
 	@PostMapping(value = "/boardUpload", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
