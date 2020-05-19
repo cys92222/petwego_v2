@@ -2,7 +2,7 @@ package com.example.demo.service;
 //영수 5월16일 mypage서비스
 import java.util.List;
 
-import com.example.demo.vo.Animal_info;
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
@@ -18,7 +18,7 @@ public interface MypageService {
 	public int update_myinfo(MemberInfoVo m);
 		
 	//반려동물 등록
-	public int insert_pet(Animal_info a);
+	public int insert_pet(Animal_infoVo a);
 	
 	//회원탈퇴
 	public int delete_myinfo(MemberInfoVo m);
@@ -34,5 +34,19 @@ public interface MypageService {
 	
 	//내가 쓴 sns글 파일
 	public List<Pic_Board_FileVo> search_my_sns_file(MemberInfoVo m);
+	
+	//비밀번호 변경
+	public int update_pwd(MemberInfoVo m);	
+	
+	//나의 반려동물 리스트
+	public List<Animal_infoVo> search_my_animal(MemberInfoVo m);	
+	
+	//반려동물정보수정
+	public int update_animal(Animal_infoVo a);
+	
+	//반려동물 상세보기
+	public Animal_infoVo detail_animal(Animal_infoVo a);	
+	//반려동물 정보 삭제
+	public int delete_animal(Animal_infoVo a);
 	
 }

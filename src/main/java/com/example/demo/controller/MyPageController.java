@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.MypageService;
-import com.example.demo.vo.Animal_info;
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
 
@@ -24,6 +27,7 @@ public class MyPageController {
 	public ModelAndView mypage() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/main");
+//		mav.setViewName("/mypage/MypageMain");
 		MemberInfoVo m = new MemberInfoVo();
 		//아이디 임의로 설정
 		m.setUser_id("user1");
@@ -37,22 +41,59 @@ public class MyPageController {
 		mav.addObject("mysns", mypageservice.search_my_sns(m));
 		
 		//내가 작성한 sns글파일
-//		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
+		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
 		
 		//내가 쓴 함께가요
 		mav.addObject("mytogether", mypageservice.search_my_together(m));
 //		System.out.println(mypageservice.select_myinfo(m));
 		
+		//반려동물 리스트
+		mav.addObject("animal_list", mypageservice.search_my_animal(m));
+//		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
+		return mav;
+	}
+	
+	//반려동물 관리폼
+	@RequestMapping("/mypage/animal_info_up_form")
+	public ModelAndView update_animal_info_form(MemberInfoVo m) {
+//		System.out.println(m.getUser_id());
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/animal_info");
+		
+		//나의 반려동물 리스트
+		mav.addObject("animal_list", mypageservice.search_my_animal(m));
+		mav.addObject("user_id", mypageservice.select_myinfo(m));
+//		System.out.println("동물 리스트 "+mypageservice.search_my_animal(m));
+		
 		return mav;
 	}
 	
 	//반려동물 등록
-	@RequestMapping("/mypage/insert_animal")
-	public ModelAndView insert_animal() {
+	@RequestMapping(value = "/mypage/animal_info_up", method = RequestMethod.POST)
+	public String update_animal_info(Animal_infoVo a,MemberInfoVo m, MultipartFile aa) {
+//		System.out.println("반려동물 등록 컨트롤러");
+		String str = aa.getOriginalFilename();
+//		System.out.println("업로드 파일 이름"+str);
+		
+		if(str != null && !str.equals("")) {
+			System.out.println("사진  첨부함");
+			System.out.println("업로드 파일 이름"+str);
+			a.setPet_pic(str);
+		}else {
+			System.out.println("사진 첨부 안함");
+			a.setPet_pic("사진없음");
+		}
+//		System.out.println("동물등록");
+		
+//		System.out.println(a.getPet_date());
+		
+		
 		ModelAndView mav = new ModelAndView();
-//		mypageservice.insert_pet(a);
-		mav.setViewName("/mypage/insert_animal");
-		return mav;
+		mypageservice.insert_pet(a);
+		//나의 반려동물 리스트
+		mav.addObject("animal_list", mypageservice.search_my_animal(m));
+		
+		return "redirect:/mypage/animal_info_up_form?user_id="+m.getUser_id();
 	}
 	
 	//사람 정보 수정 폼
@@ -67,38 +108,24 @@ public class MyPageController {
 	}
 	
 	//사람 정보 수정
-	@RequestMapping("/mypage/people_info_up")
-	public String people_info_up(MemberInfoVo m) {
-			
+	@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
+	public String people_info_up(MemberInfoVo m, MultipartFile aa) {
+		String str = aa.getOriginalFilename();
+		
+		if(str != null && !str.equals("")) {
+			System.out.println("사진첨부함");
+			m.setFname(str);
+		}else {
+			System.out.println("사진첨부안함");
+			m.setFname("사진없음");
+		}
+		
 		mypageservice.update_myinfo(m);
 		
 		//수정 끝나고 리스트 컨트롤러 호출
 		return "redirect:/mypage/mypage";
 	}
 	
-	//사람 사진 수정 폼
-	@RequestMapping("/mypage/people_pic_up_form")
-	public ModelAndView people_pic_up_form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/people_pic");
-		return mav;
-	}
-	
-	//동물 정보 수정 폼
-	@RequestMapping("/mypage/animal_indo_up_form")
-	public ModelAndView animal_info_up_form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/animal_info");
-		return mav;
-	}
-	
-	//동물 사진 수정 폼
-	@RequestMapping("/mypage/animal_pic_up_form")
-	public ModelAndView animal_pic_up_form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/animal_pic");
-		return mav;
-	}
 	
 	//내가 작성한 글
 	@RequestMapping("/mypage/board_list")
@@ -148,5 +175,52 @@ public class MyPageController {
 	public String delete_member(MemberInfoVo m) {
 		mypageservice.delete_myinfo(m);
 		return "redirect:/MainPage";
+	}
+	
+	//비밀번호 변경
+	@RequestMapping("/mypage/update_pwd")
+	@ResponseBody
+	public String update_pwd(MemberInfoVo m,String o_pwd,String o_user_id) {
+//		System.out.println("AAAAAAAAAAAAAAAAA");
+		m.setPwd(o_pwd);
+		m.setUser_id(o_user_id);
+		mypageservice.update_pwd(m);
+		return "ok";
+	}
+	
+	//반려동물 정보 수정폼
+	@RequestMapping("/mypage/update_animal_form")
+	public ModelAndView update_animal_form(Animal_infoVo a) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/mypage/animal_update");
+		mav.addObject("animal_info", mypageservice.detail_animal(a));
+		
+		return mav;
+	}
+	
+
+	//반려동물 정보 수정
+	@RequestMapping(value = "/mypage/update_animal", method = RequestMethod.POST)
+	public String update_animal(Animal_infoVo a, MultipartFile aa) {
+		System.out.println(aa);
+		
+		if(aa.getOriginalFilename() != null && !"".equals(aa.getOriginalFilename())) {
+			a.setPet_pic(aa.getOriginalFilename());
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.setViewName("/mypage/animal_info");
+		mypageservice.update_animal(a);
+		
+		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
+	}
+	
+	//반려동물 삭제
+	@RequestMapping(value = "/mypage/delete_animal", method = RequestMethod.GET)
+	public String delete_animal(Animal_infoVo a) {
+		mypageservice.delete_animal(a);
+		
+		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
 	}
 }

@@ -19,7 +19,7 @@
 	<h2>자유 게시판</h2>
 	<hr>
 	
-	<a href="pic_board/insert">게시글 등록</a><br>
+	<a href="/board/insert">게시글 등록</a><br>
 	<form action="/board/list">
 		<div class="search">
    			<select name="searchType">

@@ -89,7 +89,7 @@ public class Pic_BoardController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(pic_boardService.listCount());
 		mav.addObject("pageMaker", pageMaker);
-		System.out.println("ddddd :  " + pageMaker);
+//		System.out.println("ddddd :  " + pageMaker);
 //		mav.addObject("listAll",str_board);
 		mav.addObject("board", gson.toJson(list_board)); // 오류시 삭제
 		mav.addObject("file", gson.toJson(list_file));
@@ -101,7 +101,7 @@ public class Pic_BoardController {
 	@GetMapping("/pic_board/detail")
 	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
 		ModelAndView mav = new ModelAndView();
-		System.out.println(pic_boardService.detailPic_Board(pb));
+//		System.out.println(pic_boardService.detailPic_Board(pb));
 		//System.out.println(pic_boardService.detailFile(pbf));
 		
 		mav.addObject("Board", pic_boardService.detailPic_Board(pb));

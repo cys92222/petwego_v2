@@ -1,19 +1,17 @@
 package com.example.demo.vo;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+// 민아) 5/19, log 남기기 작업중 
 @AllArgsConstructor
 @NoArgsConstructor
-public class Animal_info {
-
-	private int pet_no;
+@Data
+public class Aop_LogVo {
+	private int log_num;
+	private String url;
+	private String op;
+	private String time;
 	private String user_id;
-	private Date pet_date;
-	private int pet_number;
-	private String pet_type;
 }

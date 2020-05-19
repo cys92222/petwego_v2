@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.MypageDao;
-import com.example.demo.vo.Animal_info;
+import com.example.demo.vo.Animal_infoVo;
 
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
@@ -38,7 +38,7 @@ public class MypageServiceImpl implements MypageService {
 	
 	//반려동물 등록
 	@Override
-	public int insert_pet(Animal_info a) {
+	public int insert_pet(Animal_infoVo a) {
 		// TODO Auto-generated method stub
 		int re = -1;
 		re = mypagedao.insert_pet(a);
@@ -84,6 +84,49 @@ public class MypageServiceImpl implements MypageService {
 		// TODO Auto-generated method stub
 		List<Pic_Board_FileVo> list = mypagedao.search_my_sns_file(m);
 		return list;
+	}
+	
+	//비밀번호 변경
+	@Override
+	public int update_pwd(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		int re =-1;
+		re = mypagedao.update_pwd(m);
+		return re;
+	}
+	
+	//나의 반려동물 리스트
+	@Override
+	public List<Animal_infoVo> search_my_animal(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		List<Animal_infoVo> list = mypagedao.search_my_animal(m);
+		return list;
+	}
+
+	//반려동물정보수정
+	@Override
+	public int update_animal(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.update_animal(a);
+		return re;
+	}
+	
+	//반려동물 상세보기
+	@Override
+	public Animal_infoVo detail_animal(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		Animal_infoVo ai = mypagedao.detail_animal(a);
+		return ai;
+	}
+	
+	//반려동물 정보 삭제
+	@Override
+	public int delete_animal(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.delete_animal(a);
+		return re;
 	}
 
 }
