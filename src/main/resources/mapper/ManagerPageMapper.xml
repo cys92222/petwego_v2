@@ -5,7 +5,7 @@
 
 	<!-- 로그 목록 -->
 	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo" parameterType="com.example.demo.util.Criteria">
-	
+		select * from log
 	</select>
 
 	<!-- 회원 목록 -->
