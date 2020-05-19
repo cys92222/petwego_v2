@@ -3,6 +3,8 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,10 +14,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.MypageService;
+import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
 
+//민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
 @Controller
 public class MyPageController {
 	
@@ -24,7 +28,7 @@ public class MyPageController {
 	
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
-	public ModelAndView mypage() {
+	public ModelAndView mypage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/main");
 //		mav.setViewName("/mypage/MypageMain");
@@ -55,7 +59,7 @@ public class MyPageController {
 	
 	//반려동물 관리폼
 	@RequestMapping("/mypage/animal_info_up_form")
-	public ModelAndView update_animal_info_form(MemberInfoVo m) {
+	public ModelAndView update_animal_info_form(HttpServletRequest request,MemberInfoVo m) {
 //		System.out.println(m.getUser_id());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/animal_info");
@@ -70,7 +74,7 @@ public class MyPageController {
 	
 	//반려동물 등록
 	@RequestMapping(value = "/mypage/animal_info_up", method = RequestMethod.POST)
-	public String update_animal_info(Animal_infoVo a,MemberInfoVo m, MultipartFile aa) {
+	public String update_animal_info(HttpServletRequest request,Animal_infoVo a,MemberInfoVo m, MultipartFile aa) {
 //		System.out.println("반려동물 등록 컨트롤러");
 		String str = aa.getOriginalFilename();
 //		System.out.println("업로드 파일 이름"+str);
@@ -98,6 +102,7 @@ public class MyPageController {
 	}
 	
 	//사람 정보 수정 폼
+	@NoLogging
 	@RequestMapping("/mypage/people_info_up_form")
 	public ModelAndView people_info_up_form() {
 		ModelAndView mav = new ModelAndView();
@@ -110,7 +115,7 @@ public class MyPageController {
 	
 	//사람 정보 수정
 	@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
-	public String people_info_up(MemberInfoVo m, MultipartFile aa) {
+	public String people_info_up(HttpServletRequest request,MemberInfoVo m, MultipartFile aa) {
 		String str = aa.getOriginalFilename();
 		
 		if(str != null && !str.equals("")) {
@@ -130,7 +135,7 @@ public class MyPageController {
 	
 	//내가 작성한 글
 	@RequestMapping("/mypage/board_list")
-	public ModelAndView board_list() {
+	public ModelAndView board_list(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id("user1");
@@ -141,7 +146,7 @@ public class MyPageController {
 	
 	//내 결제 내역
 	@RequestMapping("/mypage/pay_list")
-	public ModelAndView pay_list() {
+	public ModelAndView pay_list(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id("user1");
@@ -151,7 +156,7 @@ public class MyPageController {
 	
 	//내가 쓴 함께가요 리스트
 	@RequestMapping("/mypage/together_list")
-	public ModelAndView together_list() {
+	public ModelAndView together_list(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id("user1");
@@ -162,7 +167,7 @@ public class MyPageController {
 	
 	//내가 쓴 sns리스트
 	@RequestMapping("/mypage/sns_list")
-	public ModelAndView sns_list() {
+	public ModelAndView sns_list(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id("user1");
@@ -173,12 +178,13 @@ public class MyPageController {
 	
 	//회원탈퇴
 	@RequestMapping("/mypage/delete_member")
-	public String delete_member(MemberInfoVo m) {
+	public String delete_member(HttpServletRequest request,MemberInfoVo m) {
 		mypageservice.delete_myinfo(m);
 		return "redirect:/MainPage";
 	}
 	
 	//비밀번호 변경
+	@NoLogging
 	@RequestMapping("/mypage/update_pwd")
 	@ResponseBody
 	public String update_pwd(MemberInfoVo m,String o_pwd,String o_user_id) {
@@ -190,6 +196,7 @@ public class MyPageController {
 	}
 	
 	//반려동물 정보 수정폼
+	@NoLogging
 	@RequestMapping("/mypage/update_animal_form")
 	public ModelAndView update_animal_form(Animal_infoVo a) {
 		ModelAndView mav = new ModelAndView();
@@ -202,7 +209,7 @@ public class MyPageController {
 
 	//반려동물 정보 수정
 	@RequestMapping(value = "/mypage/update_animal", method = RequestMethod.POST)
-	public String update_animal(Animal_infoVo a, MultipartFile aa) {
+	public String update_animal(HttpServletRequest request,Animal_infoVo a, MultipartFile aa) {
 		System.out.println(aa);
 		
 		if(aa.getOriginalFilename() != null && !"".equals(aa.getOriginalFilename())) {
@@ -217,9 +224,9 @@ public class MyPageController {
 		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
 	}
 	
-	//반려동물 삭제
+	//반려동물 정보 삭제
 	@RequestMapping(value = "/mypage/delete_animal", method = RequestMethod.GET)
-	public String delete_animal(Animal_infoVo a) {
+	public String delete_animal(HttpServletRequest request,Animal_infoVo a) {
 		mypageservice.delete_animal(a);
 		
 		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();

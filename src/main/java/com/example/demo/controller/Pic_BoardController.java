@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.LikeItService;
 import com.example.demo.service.Pic_BoardService;
+import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.vo.LikeItVo;
@@ -26,7 +27,7 @@ import com.google.gson.Gson;
 
 //봉현) 5/12
 //민아) 5/17, 좋아요기능 추가
-
+//민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
 @RestController
 public class Pic_BoardController {
 	@Autowired
@@ -36,6 +37,7 @@ public class Pic_BoardController {
 	private LikeItService likeService;
 
 	// 사진에 좋아요를 누른적이 있는지 판단
+	@NoLogging
 	@GetMapping("/pic_board/okLike")
 	@ResponseBody
 	public String checkLike(LikeItVo vo) {
@@ -50,7 +52,7 @@ public class Pic_BoardController {
 	// 좋아요 추가
 	@GetMapping("/pic_board/insertLike")
 	@ResponseBody
-	public String insertLike(LikeItVo vo) {
+	public String insertLike(HttpServletRequest request,LikeItVo vo) {
 		String re = "0";
 		int r = likeService.insertLike(vo);
 		if (r > 0) {
@@ -62,7 +64,7 @@ public class Pic_BoardController {
 	// 좋아요 삭제
 	@GetMapping("/pic_board/deleteLike")
 	@ResponseBody
-	public String deleteLike(LikeItVo vo) {
+	public String deleteLike(HttpServletRequest request,LikeItVo vo) {
 		String re = "0";
 		int r = likeService.deleteLike(vo);
 		if (r > 0) {
@@ -73,7 +75,7 @@ public class Pic_BoardController {
 
 	// 자신이 등록한 모든사진
 	@RequestMapping(value = "/pic_board/list", method = RequestMethod.GET)
-	public ModelAndView listAll(Criteria cri) throws Exception {
+	public ModelAndView listAll(HttpServletRequest request,Criteria cri) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		List<Pic_Board_FileVo> list_file = pic_boardService.listFile(cri);
 
@@ -99,7 +101,7 @@ public class Pic_BoardController {
 
 	// 상세보기
 	@GetMapping("/pic_board/detail")
-	public ModelAndView detailPic_Board(Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
+	public ModelAndView detailPic_Board(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
 		ModelAndView mav = new ModelAndView();
 //		System.out.println(pic_boardService.detailPic_Board(pb));
 		//System.out.println(pic_boardService.detailFile(pbf));
@@ -112,6 +114,7 @@ public class Pic_BoardController {
 	}
 
 	// sns 글 등록 폼
+	@NoLogging
 	@RequestMapping("/pic_board/insertForm")
 	public ModelAndView insertform(Criteria cri) {
 		ModelAndView mav = new ModelAndView();
@@ -120,8 +123,8 @@ public class Pic_BoardController {
 	}
 
 	@RequestMapping("/pic_board/insert")
-	public ModelAndView insertPic_Board(Pic_BoardVo pb, Pic_Board_FileVo pbf, MultipartFile multipartFile,
-			HttpServletRequest request, Criteria cri) throws Exception {
+	public ModelAndView insertPic_Board(HttpServletRequest request,Pic_BoardVo pb, Pic_Board_FileVo pbf, MultipartFile multipartFile,
+			 Criteria cri) throws Exception {
 		int re = -1;
 		re = pic_boardService.insertPic_Board(pb); // sns글등록
 		System.out.println("마지막 글번호:" + pic_boardService.photo_no());
@@ -183,7 +186,7 @@ public class Pic_BoardController {
 
 	// sns 글 삭제
 	@RequestMapping("/pic_board/delete")
-	public void deletePic_Board(Pic_BoardVo pb) {
+	public void deletePic_Board(HttpServletRequest request,Pic_BoardVo pb) {
 		pic_boardService.deletePic_Board(pb);
 	}
 }

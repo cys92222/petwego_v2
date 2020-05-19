@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -19,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.QnAService;
+import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
@@ -27,7 +30,7 @@ import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 //영수) 5월12일 QnA컨트롤러 
-
+//민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리
 @RestController
 public class QnAController {
 	
@@ -35,6 +38,7 @@ public class QnAController {
 	QnAService service;
 	
 	//고객센터 메인
+	@NoLogging
 	@RequestMapping("/admin/index")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
@@ -45,7 +49,7 @@ public class QnAController {
 	
 	//모든 qna리스트
 	@RequestMapping("/admin/List")
-	public ModelAndView allQnAList(@ModelAttribute("scri") SearchCriteria scri){
+	public ModelAndView allQnAList(HttpServletRequest request, @ModelAttribute("scri") SearchCriteria scri){
 		ModelAndView mav = new ModelAndView();
 		
 		
@@ -68,7 +72,7 @@ public class QnAController {
 	
 	//qna등록
 	@RequestMapping("/admin/insertQnA")
-	public void insertQnA(QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {
+	public void insertQnA(HttpServletRequest request, QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {
 		
 		ModelAndView mav = new ModelAndView();
 		PageMaker pageMaker = new PageMaker();
@@ -88,6 +92,7 @@ public class QnAController {
 	}
 	
 	//섬머노트 사진업로드
+	@NoLogging
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("inq_file") MultipartFile multipartFile) {
@@ -118,6 +123,7 @@ public class QnAController {
 	}
 	
 	//섬머노트 사진업로드
+		@NoLogging
 		@PostMapping(value="/uploadSummernoteImageFile2", produces = "application/json")
 		@ResponseBody
 		public JsonObject uploadSummernoteImageFile2(@RequestParam("up_inq_file") MultipartFile multipartFile) {
@@ -149,14 +155,14 @@ public class QnAController {
 	
 	//qna상세보기
 	@RequestMapping("/admin/detailQnA")
-	public QnAVo detailQnA(QnAVo q) {
+	public QnAVo detailQnA(HttpServletRequest request,QnAVo q) {
 		QnAVo detail = service.detailQnA(q);
 		return detail;
 	}
 	
 	//qna삭제
 	@RequestMapping("/admin/deleteQnA")
-	public void deleteQnA(QnAVo q) {
+	public void deleteQnA(HttpServletRequest request,QnAVo q) {
 		service.deleteQnA(q);
 	}
 	
@@ -180,6 +186,7 @@ public class QnAController {
 //	}
 	
 	//답변있는 경우 삭제 못하게
+	@NoLogging
 	@RequestMapping("/admin/checkQnA")
 	public String no_delete(QnAVo q) {
 		String str = "";
@@ -198,7 +205,7 @@ public class QnAController {
 	
 	//답변등록
 	@RequestMapping("/admin/insertRe")
-	public void insertRe(QnAVo q, String re_inq_content, QnAUpdateVo qu) {
+	public void insertRe(HttpServletRequest request,QnAVo q, String re_inq_content, QnAUpdateVo qu) {
 		//부모글 번호로 묶음
 //		q.setRef(q.getInq_no());
 		//정렬순서
@@ -221,7 +228,7 @@ public class QnAController {
 	
 	//수정
 	@RequestMapping("/admin/updateQnA")
-	public void updateQnA(QnAUpdateVo qu, String up_inq_file) {
+	public void updateQnA(HttpServletRequest request,QnAUpdateVo qu, String up_inq_file) {
 		qu.setUp_inq_file(up_inq_file);
 		service.updateQnA(qu);
 	}
