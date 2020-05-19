@@ -19,7 +19,7 @@ import com.example.demo.vo.Aop_LogVo;
 @Aspect		// AOP어노테이션
 public class AopLog {
 
-	// 여기서 dao나 service를 의존해야하는데 어떤걸해야할까
+	// 여기서 dao나 service를 의존해야하는데 어떤걸해야할까 고민 일단 되긴하네 
 	@Autowired
 	private ManagerPageDao mDao;
 
@@ -27,8 +27,8 @@ public class AopLog {
 		this.mDao = mDao;
 	}
 
-	// 컨트롤러에 있는 모든 메소드 포함
-	@Pointcut("execution(public *  com.example.demo.controller..*(..))")
+	// 컨트롤러에 있는 모든 public 메소드 포함 인데 이거 지금 살려놓으면 에러나서 막아둠 
+	//@Pointcut("execution(public *  com.example.demo.controller..*(..))")
 	private void loggg() {
 	
 	}
@@ -38,24 +38,25 @@ public class AopLog {
 //	@AfterReturning (정상적 반환 이후)타겟 메소드가 성공적으로 결과값을 반환 후에 어드바이스 기능을 수행
 //	@AfterThrowing (예외 발생 이후) : 타겟 메소드가 수행 중 예외를 던지게 되면 어드바이스 기능을 수행
 //	@Around (메소드 실행 전후) : 어드바이스가 타겟 메소드를 감싸서 타겟 메소드 호출전과 후에 어드바이스 기능을 수행
+
+	
+//	@After("loggg()")
+//	public void afterLog(JoinPoint j) {
 //
-	@After("loggg()")
-	public void afterLog(JoinPoint j) {
-
-		String methodName = j.getSignature().toShortString();
-		HttpServletRequest request = (HttpServletRequest) j.getArgs()[0];
-
-		String url = request.getRequestURI();
-		String ip = request.getRemoteAddr();
-		String time = new Date().toLocaleString();
-		String user_id = "user1";
-
-		Aop_LogVo al = new Aop_LogVo();
-		al.setUrl(url);
-		al.setIp(ip);
-		al.setTime(time);
-		al.setUser_id(user_id);
-
-		mDao.insertLog(al);
-	}
+//		String methodName = j.getSignature().toShortString();
+//		HttpServletRequest request = (HttpServletRequest) j.getArgs()[0];
+//
+//		String url = request.getRequestURI();
+//		String ip = request.getRemoteAddr();
+//		String time = new Date().toLocaleString();
+//		String user_id = "user1";
+//
+//		Aop_LogVo al = new Aop_LogVo();
+//		al.setUrl(url);
+//		al.setIp(ip);
+//		al.setTime(time);
+//		al.setUser_id(user_id);
+//
+//		mDao.insertLog(al);
+//	}
 }
