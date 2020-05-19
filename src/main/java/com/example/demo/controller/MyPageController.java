@@ -88,6 +88,7 @@ public class MyPageController {
 //		System.out.println(a.getPet_date());
 		
 		
+		
 		ModelAndView mav = new ModelAndView();
 		mypageservice.insert_pet(a);
 		//나의 반려동물 리스트
