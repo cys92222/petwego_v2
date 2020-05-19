@@ -47,7 +47,7 @@ public class Board_CommentController {
 	// 댓글만 삭제
 	@GetMapping(value = "/commDeleteSubmit")
 	public String commDeleteSubmit(Board_CommentVo bc) {	
-		comm_service.deleteComment(bc);
+		comm_service.deleteComment(bc);	// where comm_num = #{comm_num}
 		// System.out.println("댓글삭제 컨트롤러 동작");
 		return "redirect:/board/get";
 	}

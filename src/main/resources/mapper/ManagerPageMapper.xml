@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 민아) 5/19, 관리자페이지  -->
+<mapper namespace="com.example.demo.dao.ManagerPageDao">
+	<!-- 회원 목록 -->
+	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo" parameterType="com.example.demo.util.Criteria">
+		select user_id, tel, name, nick_name, info_create_date, info_update_date
+			from (select user_id, tel, name, nick_name, info_create_date, info_update_date
+					,row_number() over(order by info_create_date desc) as rNum 
+						from member_info 
+							where 1 = 1
+							<include refid="search"></include>
+						)
+								MP
+									
+						where rNum between #{rowStart} and #{rowEnd}
+						order by info_create_date desc
+	</select>
+	
+	<!-- 총 회원 수  -->
+	<select id="countMember" resultType="int">
+		select count (user_id) 
+			from member_info  
+				where 1 = 1
+				<include refid="search"></include>
+	</select>
+	
+	<!-- 회원검색을 위한 동적쿼리  -->
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND user_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND nick_name LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
+	
+	<!-- 회원 상세보기 -->
+	<select id="getMember" resultType="com.example.demo.vo.MemberInfoVo">
+  		select * from member_info where user_id = #{user_id}
+  	</select>
+  	
+  	<!-- 회원 삭제(강퇴) //  -->
+	<delete id="deleteMember">
+		delete member_info where user_id = #{user_id}
+	</delete>
+</mapper>
