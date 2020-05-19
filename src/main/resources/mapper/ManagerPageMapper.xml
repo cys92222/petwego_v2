@@ -43,4 +43,5 @@
 	<delete id="deleteMember">
 		delete member_info where user_id = #{user_id}
 	</delete>
+	
 </mapper>

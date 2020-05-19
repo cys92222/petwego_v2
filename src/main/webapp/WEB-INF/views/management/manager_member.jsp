@@ -7,7 +7,7 @@
 <head>
 <!-- 민아) 5/19, 관리자페이지_회원관리 -->
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자페이지-회원목록</title>
 <style type="text/css">
 	li {list-style: none; float: left; padding: 6px;}	<!--페이징 가로정렬 스타일 -->
 </style>
@@ -43,6 +43,7 @@
 	<table border="1" width="70%">
 		<thead>
 			<tr>
+				<!-- 회원 권한이 추가되면 그 권한도 보이도록 수정할것 -->
 				<th>아이디</th>
 				<th>전화번호</th>
 				<th>이름</th>
@@ -57,7 +58,7 @@
 			<tr>
 				<td><c:out value="${member.user_id }"/></td>
 				<td><c:out value="${member.tel }"/></td>
-				<td><a href="/management/manager_getMember=${member.user_id }"><c:out value="${member.name }"/></a></td>
+				<td><a href="/management/manager_getMember?user_id=${member.user_id }"><c:out value="${member.name }"/></a></td>
 				<td><c:out value="${member.nick_name }"/></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.info_create_date }"/></td>
 				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.info_update_date }"/></td>
@@ -69,15 +70,15 @@
 	<div>
   		<ul>
 		    <c:if test="${pageMaker.prev}">
-		    	<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+		    	<li><a href="manager_member${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 		    </c:if> 
 		
 		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-		    	<li><a href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+		    	<li><a href="manager_member${pageMaker.makeSearch(idx)}">${idx}</a></li>
 		    </c:forEach>
 		
 		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		    	<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+		    	<li><a href="manager_member${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 		    </c:if> 
  		 </ul>
 	</div>

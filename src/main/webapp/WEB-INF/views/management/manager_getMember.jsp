@@ -5,26 +5,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- 민아) 5/19, 관리자페이지_회원관리 -->
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자페이지-회원상세</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-
+		var user_id = $("#user_id").val();
+		
 		//회원 강퇴를 누르면
 		$("#btnDelete").click(function(){
 			var check = confirm("회원을 강퇴시키시겠습니까?")
 			if(check == true){
-				self.location = "/management/manager_member";
-				alert("회원을 강퇴시켰습니다!");
+				var check2 = confirm("돌이킬 수 없습니다. 정말 강퇴하시겠습니까?")
+				if(check2 == true){
+					self.location = "/management/manager_deleteMember?user_id="+user_id;
+					alert("회원을 강퇴시켰습니다!");
+				}
 			}
 		});
 	})
-	
+
 </script>
 </head>
 <body>
-<h2>회원정보 상세보기</h2>
+	<h2>회원정보 상세보기</h2>
 	<hr>
 	<a href="/management/manager_member">회원 목록</a><br><br>
 	<input type="hidden" id="user_id" value="${detail_Info.user_id }">
