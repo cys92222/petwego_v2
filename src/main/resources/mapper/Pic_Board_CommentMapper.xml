@@ -28,15 +28,19 @@
 		delete pic_board_comment where photo_no = #{photo_no}
 	</delete>
 	
+<<<<<<< HEAD
 	<!-- 댓글수정  -->	
 	<update id="pupdateComment">
 		update pic_board_comment set photo_comm_cont = #{photo_comm_cont}
 			where photo_comm_no = #{photo_comm_no}
 	</update>
+=======
+>>>>>>> branch '봉현' of https://github.com/cys92222/petwego_v2.git
 	
-<!-- 	private int photo_comm_no;		//댓글번호 -->
-<!-- 	private Date photo_comm_date;		//댓글등록일시 -->
-<!-- 	private String photo_comm_cont;	//댓글내용 -->
-<!-- 	private int photo_no;		//게시물번호 -->
-<!-- 	private String user_id;		//아이디	 -->
+	<!-- 댓글수정  -->	
+<!-- 	<update id="PupdateComment"> -->
+<!-- 		update pic_board_comment set photo_comm_cont = #{photo_comm_cont} -->
+<!-- 			where photo_comm_no = #{photo_comm_no} -->
+<!-- 	</update> -->
+	
 </mapper>

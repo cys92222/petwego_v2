@@ -47,5 +47,5 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	public Pic_Board_CommentVo pselectComment(int photo_comm_no) {
 		return pbcDao.pselectComment(photo_comm_no);
 	}
-	
+
 }

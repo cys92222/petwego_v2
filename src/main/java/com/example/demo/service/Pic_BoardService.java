@@ -31,7 +31,6 @@ public interface Pic_BoardService {
 	// 상세보기 사진
 	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf);
 
-
 	// 마지막 글번호
 	public int photo_no();
 

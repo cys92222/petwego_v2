@@ -79,7 +79,6 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 
 	}
 
-	
 	//마지막 글번호
 	@Override
 	public int photo_no() {
