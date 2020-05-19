@@ -46,4 +46,7 @@ public interface MypageService {
 	
 	//반려동물 상세보기
 	public Animal_infoVo detail_animal(Animal_infoVo a);	
+	//반려동물 정보 삭제
+	public int delete_animal(Animal_infoVo a);
+	
 }

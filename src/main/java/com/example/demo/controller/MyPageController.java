@@ -49,11 +49,11 @@ public class MyPageController {
 		
 		//반려동물 리스트
 		mav.addObject("animal_list", mypageservice.search_my_animal(m));
-		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
+//		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
 		return mav;
 	}
 	
-	//반려동물 수정폼
+	//반려동물 관리폼
 	@RequestMapping("/mypage/animal_info_up_form")
 	public ModelAndView update_animal_info_form(MemberInfoVo m) {
 //		System.out.println(m.getUser_id());
@@ -62,27 +62,30 @@ public class MyPageController {
 		
 		//나의 반려동물 리스트
 		mav.addObject("animal_list", mypageservice.search_my_animal(m));
-		System.out.println("동물 리스트 "+mypageservice.search_my_animal(m));
+		mav.addObject("user_id", mypageservice.select_myinfo(m));
+//		System.out.println("동물 리스트 "+mypageservice.search_my_animal(m));
 		
 		return mav;
 	}
 	
 	//반려동물 등록
-	@RequestMapping("/mypage/animal_info_up")
-	@ResponseBody
-	public String update_animal_info(Animal_infoVo a,MemberInfoVo m) {
+	@RequestMapping(value = "/mypage/animal_info_up", method = RequestMethod.POST)
+	public String update_animal_info(Animal_infoVo a,MemberInfoVo m, MultipartFile aa) {
+//		System.out.println("반려동물 등록 컨트롤러");
+		String str = aa.getOriginalFilename();
+//		System.out.println("업로드 파일 이름"+str);
 		
-		MultipartFile str = a.getPic();
-		System.out.println(str.getOriginalFilename());
-		
-		if(str.getOriginalFilename() != null && "".equals(str.getOriginalFilename())) {
-			a.setPet_pic(str.getOriginalFilename());
+		if(str != null && !str.equals("")) {
+			System.out.println("사진  첨부함");
+			System.out.println("업로드 파일 이름"+str);
+			a.setPet_pic(str);
 		}else {
+			System.out.println("사진 첨부 안함");
 			a.setPet_pic("사진없음");
 		}
-		System.out.println("동물등록");
+//		System.out.println("동물등록");
 		
-		System.out.println(a.getPet_date());
+//		System.out.println(a.getPet_date());
 		
 		
 		ModelAndView mav = new ModelAndView();
@@ -90,7 +93,7 @@ public class MyPageController {
 		//나의 반려동물 리스트
 		mav.addObject("animal_list", mypageservice.search_my_animal(m));
 		
-		return "redirect:/mypage/animal_info_up_form";
+		return "redirect:/mypage/animal_info_up_form?user_id="+m.getUser_id();
 	}
 	
 	//사람 정보 수정 폼
@@ -105,21 +108,22 @@ public class MyPageController {
 	}
 	
 	//사람 정보 수정
-	@RequestMapping("/mypage/people_info_up")
-	public String people_info_up(MemberInfoVo m) {
-			
+	@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
+	public String people_info_up(MemberInfoVo m, MultipartFile aa) {
+		String str = aa.getOriginalFilename();
+		
+		if(str != null && !str.equals("")) {
+			System.out.println("사진첨부함");
+			m.setFname(str);
+		}else {
+			System.out.println("사진첨부안함");
+			m.setFname("사진없음");
+		}
+		
 		mypageservice.update_myinfo(m);
 		
 		//수정 끝나고 리스트 컨트롤러 호출
 		return "redirect:/mypage/mypage";
-	}
-	
-	//사람 사진 수정 폼
-	@RequestMapping("/mypage/people_pic_up_form")
-	public ModelAndView people_pic_up_form() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/people_pic");
-		return mav;
 	}
 	
 	
@@ -197,10 +201,10 @@ public class MyPageController {
 
 	//반려동물 정보 수정
 	@RequestMapping(value = "/mypage/update_animal", method = RequestMethod.POST)
-	public ModelAndView update_animal(Animal_infoVo a, MultipartFile aa) {
+	public String update_animal(Animal_infoVo a, MultipartFile aa) {
 		System.out.println(aa);
 		
-		if(aa.getOriginalFilename() != null && "".equals(aa.getOriginalFilename())) {
+		if(aa.getOriginalFilename() != null && !"".equals(aa.getOriginalFilename())) {
 			a.setPet_pic(aa.getOriginalFilename());
 		}
 		
@@ -209,6 +213,14 @@ public class MyPageController {
 		mav.setViewName("/mypage/animal_info");
 		mypageservice.update_animal(a);
 		
-		return mav;
+		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
+	}
+	
+	//반려동물 삭제
+	@RequestMapping(value = "/mypage/delete_animal", method = RequestMethod.GET)
+	public String delete_animal(Animal_infoVo a) {
+		mypageservice.delete_animal(a);
+		
+		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
 	}
 }

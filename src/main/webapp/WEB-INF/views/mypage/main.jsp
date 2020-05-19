@@ -9,19 +9,9 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	//사람 사진 수정
-	$("#people_pic_up_btn").click(function(){
-		window.location.href="/mypage/people_pic_up_form?user_id=${myinfo.user_id }";
-		});
-
 	//사람 정보 수정
 	$("#people_info_up_btn").click(function(){
 		window.location.href="/mypage/people_info_up_form?user_id=${myinfo.user_id }";
-		});
-
-	//동물 사진 수정
-	$("#animal_pic_up_btn").click(function(){
-		window.location.href="/mypage/animal_pic_up_form?user_id=${myinfo.user_id }";
 		});
 	
 	//동물 정보 수정

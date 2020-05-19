@@ -119,5 +119,14 @@ public class MypageServiceImpl implements MypageService {
 		Animal_infoVo ai = mypagedao.detail_animal(a);
 		return ai;
 	}
+	
+	//반려동물 정보 삭제
+	@Override
+	public int delete_animal(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.delete_animal(a);
+		return re;
+	}
 
 }

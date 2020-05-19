@@ -13,7 +13,7 @@
  	<update id="update_myinfo">
  		update member_info set tel=#{tel}, name=#{name},
  		address=#{address}, gender=#{gender}, intro=#{intro}, info_update_date = sysdate,
- 		nick_name=#{nick_name}
+ 		nick_name=#{nick_name}, fname=#{fname}
  		 where user_id = #{user_id} and pwd = #{pwd}
  	</update>
  	
@@ -68,4 +68,9 @@
 	<select id="detail_animal" resultType="com.example.demo.vo.Animal_infoVo">
 		select * from animal_info where user_id = #{user_id} and pet_no = #{pet_no}
 	</select>
+	
+<!-- 	반려동물 정보 삭제 -->
+	<delete id="delete_animal">
+		delete animal_info where user_id = #{user_id} and pet_no = #{pet_no}
+	</delete>
 </mapper>

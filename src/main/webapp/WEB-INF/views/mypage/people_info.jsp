@@ -36,7 +36,7 @@ $(function(){
 <h2>사람 정보 수정</h2>
 <hr>
 <section id="o_from">
-	<form action="/mypage/people_info_up" method="post">
+	<form action="/mypage/people_info_up" method="post" enctype="multipart/form-data">
 		아이디 <input type="text" value="${m.user_id }" readonly="readonly" name="user_id"><br>
 		닉네임 <input type="text" value="${m.nick_name }" name="nick_name"><br>
 		비밀번호를 입력하셔야 정보를 수정할수있습니다<br>
@@ -47,7 +47,9 @@ $(function(){
 		이름 <input type="text" value="${m.name }" name="name"><br>
 		주소 <input type="text" value="${m.address }" name="address"><br>
 		성별 <input type="text" value="${m.gender }" name="gender"><br>
-		사진 <br>
+		사진 <img alt="사진이 없습니다" src="${m.fname }"><br>
+		<input type="hidden" value="${m.fname }" name="fname"> <br>
+		<input type="file" name="aa"><br>
 		소개 <input type="text" value="${m.intro }" name="intro"><br>
 		가입일 <input type="text" value="${m.info_create_date }" readonly="readonly"><br>
 	<button>수정</button>

@@ -26,10 +26,11 @@ $(function(){
 		$("#animal_insert").css({"display":"none"});
 		$("#animail_list").css({"display":"block"});
 		
-		var data = $("#insert_animal").serialize();
-		$.ajax("/mypage/animal_info_up",{data:data,success:function(){
-			window.location.reload(true);
-			}});
+// 		var data = $("#insert_animal").serialize();
+// 		$.ajax("/mypage/animal_info_up",{data:data,success:function(re){
+// 			alert("동물등록 성공");
+// 			window.location.reload(true);
+// 			}});
 		});
 
 });
@@ -53,6 +54,7 @@ $(function(){
 		 		<td>${al.pet_type }</td>
 		 		<td><img alt="사진이 없습니다" src="${al.pet_pic }"></td>
 		 		<td><a href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 수정</a></td>
+		 		<td><a href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 삭제</a>
 		 	</tr>
 		 </c:forEach>
 	 </table>
@@ -64,14 +66,15 @@ $(function(){
 <section id="animal_insert">
 <h2>동물 추가</h2>
 <hr>
-	<form id="insert_animal" enctype="multipart/form-data">
-		<input type="text" name="user_id" value="${animal_list[0].user_id}" readonly="readonly"><br>
+	<form action="/mypage/animal_info_up" id="insert_animal" enctype="multipart/form-data" method="post">
+<%-- 		<input type="text" name="user_id" value="${animal_list[0].user_id}" readonly="readonly"><br> --%>
+		반려인 <input type="text" name="user_id" value="${user_id.user_id }" readonly="readonly"><br>
 		동물이름 <input type="text" name="pet_name"><br>
 		반려일수 <input type="date" id="pet_date" name="pet_date"><br>
 		동물종류 <input type="text" name="pet_type"><br>
-		사진 <input type="file" name="pic"><br>
-	</form>
+		사진 <input type="file" name="aa"><br>
 	<button id="insert_btn">반려동물 등록</button>
+	</form>
 </section>
 </body>
 </html>
