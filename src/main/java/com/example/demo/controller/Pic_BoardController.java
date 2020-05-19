@@ -182,7 +182,7 @@ public class Pic_BoardController {
 	@RequestMapping("/pic_board/delete")
 	public String deletePic_Board(Pic_BoardVo pb) {
 		Pic_Board_CommentVo c = new Pic_Board_CommentVo();
-		c.setPhoto_no(pb.getPhoto_no());
+		c.setPhoto_no(pb.getPhoto_no()); 
 		 
 		LikeItVo l = new LikeItVo();
 		l.setPhoto_no(pb.getPhoto_no());
