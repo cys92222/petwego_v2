@@ -7,12 +7,13 @@ import javax.annotation.Resource;
 
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.ApplicationVo;
 import com.example.demo.vo.ReplyVo;
-import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
 
 
 public interface TogetherDao {
+	
 
 	//함께가요 작성
 	public int writeTogether(TogetherVo togetherVo) throws Exception;
@@ -37,17 +38,12 @@ public interface TogetherDao {
 	
 	//첨부파일 업로드
 	public void insertFile(Map<String, Object> map) throws Exception;
-
-	//썸네일 등록
-	public int insertThumbnail(ThumbnailVo t);
-	
-	//함께가요 마지막 글번호
-	public int last_no();
-	
-	//썸네일 리스트
-	public List<ThumbnailVo> listThumbnail(SearchCriteria scri);
 	
 	//신청하기
-	public int cnt(TogetherVo t);
-
+	public int insertApplication(ApplicationVo av) throws Exception;
+	
+	//신청자 수
+	public int t_attendee_cnt(ApplicationVo av) throws Exception;
+	
+	public int upcntApplication(int t_num);
 }

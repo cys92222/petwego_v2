@@ -6,13 +6,14 @@
 
 	<!-- 댓글 작성 -->
 	<insert id="writeReply">
-		insert into together_comment(t_num,t_r_num,t_r_content,user_id)
-		values(#{t_num},seq_together_reply.nextval,#{t_r_content},#{user_id})
+		insert into together_comment(t_num,t_r_num,t_r_content,user_id,secret_reply)
+		values(#{t_num},seq_together_comment.nextval,#{t_r_content},#{user_id},#{secret_reply})
 	</insert>
 	
+	<!-- 비밀댓글 쿼리 바꾸기 -->
 	<!-- 댓글 조회  -->
 	<select id="togetherReply" resultType="com.example.demo.vo.ReplyVo">
-		select t_r_num, t_r_content,user_id,regdate from together_comment where t_num=#{t_num}
+		select t_r_num, t_r_content,user_id,regdate,secret_reply from together_comment where t_num=#{t_num}
 	</select>
 	
 	<!-- 댓글 수정 -->
