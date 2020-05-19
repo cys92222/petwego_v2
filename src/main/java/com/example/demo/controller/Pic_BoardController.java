@@ -192,6 +192,7 @@ public class Pic_BoardController {
 		pic_boardService.deletePic_Board(pb);
 
 		
+		
 		return "redirect:/pic_board/list";
 	}
 	
