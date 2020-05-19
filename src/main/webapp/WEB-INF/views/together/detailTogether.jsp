@@ -254,7 +254,7 @@ $(document).ready(function(){
 					</div>
 					<div>
 						<input type="checkbox" id="secretReply_chk">비밀댓글 
-						<input type="text" id="secretReply" name="secret_reply">
+						<input type="hidden" id="secretReply" name="secret_reply">
 						<button type="button" class="replyWriteBtn">작성</button>
 					</div>
 				</form>
