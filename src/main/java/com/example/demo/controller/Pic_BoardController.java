@@ -177,21 +177,6 @@ public class Pic_BoardController {
 		mav.setViewName("redirect:/pic_board/list");
 		return mav;
 	}
-	// 좋아요
-
-	// 좋아요 수
-
-	// sns수정
-	@GetMapping("/pic_board/update")
-	public String updateForm(Pic_BoardVo pb, Model model ) {
-		model.addAttribute("up",pic_boardService.detailPic_Board(pb));
-		
-		Pic_Board_FileVo pbf = new Pic_Board_FileVo();
-		pbf.setPhoto_no(pb.getPhoto_no());
-		
-		model.addAttribute("pic", pic_boardService.detailFile(pbf));
-		return "/pic_board/update";
-	}
 
 	// sns 글 삭제
 	@RequestMapping("/pic_board/delete")
@@ -209,4 +194,17 @@ public class Pic_BoardController {
 		
 		return "redirect:/pic_board/list";
 	}
+	
+	// sns수정
+	@GetMapping("/pic_board/update")
+	public String updateForm(Pic_BoardVo pb, Model model ) {
+		model.addAttribute("up",pic_boardService.detailPic_Board(pb));
+		
+		Pic_Board_FileVo pbf = new Pic_Board_FileVo();
+		pbf.setPhoto_no(pb.getPhoto_no());
+		
+		model.addAttribute("pic", pic_boardService.detailFile(pbf));
+		return "/pic_board/update";
+	}
+	
 }
