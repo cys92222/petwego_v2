@@ -36,10 +36,12 @@ $(function(){
 </script>
 </head>
 <body>
-<h2>동물 정보 수정</h2>
+<h2>동물 정보</h2>
 <hr>
 
 <section id="animail_list">
+<h2>동물 리스트</h2>
+<hr>
 	 <table>
 	 <th>동물번호</th><th>반려동물 이름</th><th>반려시작일</th><th>반려일수</th><th>동물종류</th><th>동물사진</th>
 		 <c:forEach items="${animal_list }" var="al">
@@ -50,7 +52,7 @@ $(function(){
 		 		<td>${al.day }</td>
 		 		<td>${al.pet_type }</td>
 		 		<td><img alt="사진이 없습니다" src="${al.pet_pic }"></td>
-		 		<a href="">반려동물 정보 수정</a>
+		 		<td><a href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 수정</a></td>
 		 	</tr>
 		 </c:forEach>
 	 </table>
@@ -60,8 +62,11 @@ $(function(){
 
 
 <section id="animal_insert">
-	<form id="insert_animal">
-		<input type="text" name="user_id" value="${animal_list[0].user_id}"><br>
+<h2>동물 추가</h2>
+<hr>
+	<form id="insert_animal" enctype="multipart/form-data">
+		<input type="text" name="user_id" value="${animal_list[0].user_id}" readonly="readonly"><br>
+		동물이름 <input type="text" name="pet_name"><br>
 		반려일수 <input type="date" id="pet_date" name="pet_date"><br>
 		동물종류 <input type="text" name="pet_type"><br>
 		사진 <input type="file" name="pic"><br>

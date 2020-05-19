@@ -69,10 +69,13 @@ public class MyPageController {
 	//반려동물 등록
 	@RequestMapping("/mypage/animal_info_up")
 	@ResponseBody
-	public String update_animal_info(Animal_infoVo a,MemberInfoVo m,MultipartFile pic) {
-
-		if(pic != null) {
-			a.setPet_pic(pic.getOriginalFilename());
+	public String update_animal_info(Animal_infoVo a,MemberInfoVo m) {
+		
+		MultipartFile str = a.getPic();
+		System.out.println(str.getOriginalFilename());
+		
+		if(str.getOriginalFilename() != null && "".equals(str.getOriginalFilename())) {
+			a.setPet_pic(str.getOriginalFilename());
 		}else {
 			a.setPet_pic("사진없음");
 		}
@@ -184,22 +187,26 @@ public class MyPageController {
 	@RequestMapping("/mypage/update_animal_form")
 	public ModelAndView update_animal_form(Animal_infoVo a) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/update_animal");
+		mav.setViewName("/mypage/animal_update");
 		mav.addObject("animal_info", mypageservice.detail_animal(a));
 		
 		return mav;
 	}
 	
-	/*
-	 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
 	//반려동물 정보 수정
 	@RequestMapping("/mypage/update_animal")
-	public ModelAndView update_animal(Animal_infoVo a) {
+	public ModelAndView update_animal(Animal_infoVo a, MultipartFile aa) {
+		System.out.println(aa);
+		
+		if(aa.getOriginalFilename() != null && "".equals(aa.getOriginalFilename())) {
+			a.setPet_pic(aa.getOriginalFilename());
+		}
+		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/mypage/update_animal");
-		mav.addObject("animal_info", mypageservice.update_animal(a));
+		mav.setViewName("/mypage/animal_info");
+		mypageservice.update_animal(a);
 		
 		return mav;
 	}
-	*/
 }
