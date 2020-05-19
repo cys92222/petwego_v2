@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -195,7 +196,7 @@ public class MyPageController {
 	
 
 	//반려동물 정보 수정
-	@RequestMapping("/mypage/update_animal")
+	@RequestMapping(value = "/mypage/update_animal", method = RequestMethod.POST)
 	public ModelAndView update_animal(Animal_infoVo a, MultipartFile aa) {
 		System.out.println(aa);
 		
@@ -204,6 +205,7 @@ public class MyPageController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
+		
 		mav.setViewName("/mypage/animal_info");
 		mypageservice.update_animal(a);
 		

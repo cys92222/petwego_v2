@@ -16,10 +16,12 @@ $(function(){
 <body>
 <h2>동물정보 수정</h2>
 <hr>
-<form action="/mypage/update_animal" enctype="multipart/form-data">
+<form action="/mypage/update_animal" enctype="multipart/form-data" method="post">
+		반려인 : <input type="text" name="user_id" value="${animal_info.user_id }" readonly="readonly"><br>
 		반려동물 번호 : <input type="text" name="pet_no" value="${animal_info.pet_no }" readonly="readonly"> <br>
 		반려동물 이름 :<input type="text" name="pet_name" value="${animal_info.pet_name }"> <br>
 		반려시작일 : <input type="text" name="pet_date" value="${animal_info.pet_date }"> <br>
+		동물종류 : <input type="text" name="pet_type" value="${animal_info.pet_type }"><br>
 		반려동물 사진 : <img alt="사진이 없습니다" src="${animal_info.pet_pic }"><br>
 					<input type="hidden" name="pet_pic" value="${animal_info.pet_pic }"><br>
 		<input type="file" name="aa"><br>
