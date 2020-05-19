@@ -74,20 +74,20 @@
 				var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
 				if(commCheck == true){
 					var pcommSubmit = $("form[name='commentForm']");
-					pcommSubmit.attr("action","/pcomment/PinsertComment");
+					pcommSubmit.attr("action","/pcomment/pinsertComment");
 					pcommSubmit.submit();
 				}
 			});	
 					
 			//댓글 목록
-			$.ajax("/pcomment/listComment",{type:"GET",data:{photo_no:'${file.photo_no}'},success:function(comm){
+			$.ajax("/pcomment/plistComment",{type:"GET",data:{photo_no:'${file.photo_no}'},success:function(comm){
 				comm = JSON.parse(comm);
 				$.each(comm, function(idx,c){						
 					var tr = $("<tr></tr>");
 					var td1 = $("<td></td>").html(c.photo_comm_cont);
 					var td2 = $("<td></td>").html( moment(c.photo_comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
 					var td3 = $("<td></td>").html(c.user_id);
-					var delBtn = $("<button></button>").text("댓글삭제").attr(" photo_comm_no	",c.photo_comm_no);
+					var delBtn = $("<button></button>").text("댓글삭제").attr("photo_comm_no",c.photo_comm_no);
 					var td4 = $("<td></td>");
 					td4.append(delBtn);
 					tr.append(td1, td2, td3, td4);
@@ -98,7 +98,7 @@
 			 				alert("버튼 누름");
 							var delCheck = confirm("댓글을 삭제하시겠습니까?");
 							if(delCheck == true){
-								self.location = "/comment/commDeleteSubmit?photo_comm_no="+c.photo_comm_no;
+								self.location = "/pcomment/pcommDeleteSubmit?photo_comm_no="+c.photo_comm_no;
 								alert("댓글을 삭제했습니다!");
 								location.reload();
 							}

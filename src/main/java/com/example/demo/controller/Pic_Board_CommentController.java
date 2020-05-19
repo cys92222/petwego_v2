@@ -34,9 +34,7 @@ public class Pic_Board_CommentController {
 	// 댓글작성
 	@RequestMapping(value = "/pinsertComment")
 	public ModelAndView pinsertComment(Pic_Board_CommentVo pbc) {
-		ModelAndView mav = new ModelAndView("redirect:/pic_board/detail?photo_no="+pbc.getPhoto_no());
-		//System.out.println(pbc.getPhoto_comm_cont() + "\t" + pbc.getUser_id() + "\t" +  pbc.getPhoto_no());
-		System.out.println("게시물 번호"+pbc.getPhoto_no());
+		ModelAndView mav = new ModelAndView("redirect:/pic_board/detail?photo_no="+pbc.getPhoto_no());		
 		pcomm_service.pinsertComment(pbc);
 		return mav;
 	}

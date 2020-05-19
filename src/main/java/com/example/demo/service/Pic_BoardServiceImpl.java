@@ -80,13 +80,6 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 	}
 
 	
-//	//파일 상세
-//	@Override
-//	public Pic_Board_FileVo detailsns_file(Pic_Board_FileVo p) {
-//		Pic_Board_FileVo pbf = pic_boardDao.detail(photo_no)_file(p);
-//		return pbf;
-//	}
-	
 	//마지막 글번호
 	@Override
 	public int photo_no() {
@@ -94,21 +87,14 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 		return re;
 	}
 	
-	// 민아) 5/17, 이 두개 필요없음 
-//	// 좋아요
-//	@Override
-//	public int insertlikeit(LikeItVo l) {
-//		int re = -1;
-//		re = pic_boardDao.insertlikeit(l);
-//		return re;
-//	}
-//
-//	// 좋아요 총개수
-//	@Override
-//	public int likecnt(LikeItVo l) {
-//		int re = -1;
-//		re = pic_boardDao.likecnt(l);
-//		return re;
-//	}
+	//파일삭제
+	@Override
+	public int deleteFile(Pic_BoardVo pb) {
+		// TODO Auto-generated method stub
+		int re=-1;
+		re = pic_boardDao.deleteFile(pb);
+		return re;
+	}
+	
 
 }

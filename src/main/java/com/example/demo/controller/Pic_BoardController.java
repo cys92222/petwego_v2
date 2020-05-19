@@ -6,7 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,23 +18,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.LikeItService;
 import com.example.demo.service.Pic_BoardService;
+import com.example.demo.service.Pic_Board_CommentService;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.vo.LikeItVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 import com.google.gson.Gson;
 
 //봉현) 5/12
 //민아) 5/17, 좋아요기능 추가
 
-@RestController
+@Controller
 public class Pic_BoardController {
 	@Autowired
 	private Pic_BoardService pic_boardService;
 
 	@Autowired
 	private LikeItService likeService;
+	
+	@Autowired
+	private Pic_Board_CommentService pbc;
 
 	// 사진에 좋아요를 누른적이 있는지 판단
 	@GetMapping("/pic_board/okLike")
@@ -176,14 +182,31 @@ public class Pic_BoardController {
 	// 좋아요 수
 
 	// sns수정
-//	@GetMapping("/sns/updatesns")
-//	public void updateForm(Pic_BoardVo pb ) {
-//		model.addAttribute("up",snsService.detailBoard());
-//	}
+	@GetMapping("/pic_board/update")
+	public String updateForm(Pic_BoardVo pb, Model model ) {
+		model.addAttribute("up",pic_boardService.detailPic_Board(pb));
+		
+		Pic_Board_FileVo pbf = new Pic_Board_FileVo();
+		pbf.setPhoto_no(pb.getPhoto_no());
+		
+		model.addAttribute("pic", pic_boardService.detailFile(pbf));
+		return "/pic_board/update";
+	}
 
 	// sns 글 삭제
 	@RequestMapping("/pic_board/delete")
-	public void deletePic_Board(Pic_BoardVo pb) {
+	public String deletePic_Board(Pic_BoardVo pb) {
+		Pic_Board_CommentVo c = new Pic_Board_CommentVo();
+		c.setPhoto_no(pb.getPhoto_no());
+		
+		LikeItVo l = new LikeItVo();
+		l.setPhoto_no(pb.getPhoto_no());
+		likeService.deleteLike(l);
+		pbc.pdeleteCommBoard(c);
+		pic_boardService.deleteFile(pb);
 		pic_boardService.deletePic_Board(pb);
+
+		
+		return "redirect:/pic_board/list";
 	}
 }

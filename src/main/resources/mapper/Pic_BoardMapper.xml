@@ -75,12 +75,16 @@
 	</select>
 
 	<!-- sns 글 삭제 -->
-	<delete id="delete">
+	<delete id="deletePic_Board">
 		delete pic_board where photo_no = #{photo_no} <!--and user_id = #{user_id} -->
 	</delete>
-
+ 
+ 	<delete id="deleteFile">
+ 		delete pic_board_file where photo_no = #{photo_no}
+ 	</delete>
+ 
 	<!-- sns수정 ??? -->
-	<update id="update">
+	<update id="updatePic_Board">
 		update pic_board set photo_detail = #{photo_detail},pic_board_file = #{pic_board_file} where photo_no = #{photo_no}
 	</update>
 

@@ -31,12 +31,6 @@ public interface Pic_BoardService {
 	// 상세보기 사진
 	public Pic_Board_FileVo detailFile(Pic_Board_FileVo pbf);
 
-	// 민아) 5/17, 이 두개 필요없음
-//	//좋아요
-//	public int insertlikeit(LikeItVo l);
-//	
-//	//좋아요수
-//	public int likecnt(LikeItVo l);
 
 	// 마지막 글번호
 	public int photo_no();
@@ -46,5 +40,8 @@ public interface Pic_BoardService {
 
 	// 게시글 수정
 	public int updatePic_Board(Pic_BoardVo pb);
+	
+	//파일삭제
+	int deleteFile(Pic_BoardVo pb);
 
 }
