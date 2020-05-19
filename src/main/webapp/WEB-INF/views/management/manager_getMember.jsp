@@ -12,6 +12,7 @@
 <script type="text/javascript">
 	$(function(){
 		var user_id = $("#user_id").val();
+
 		
 		//회원 강퇴를 누르면
 		$("#btnDelete").click(function(){

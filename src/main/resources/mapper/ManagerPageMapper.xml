@@ -2,6 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 민아) 5/19, 관리자페이지  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
+
+	<!-- 로그 목록 -->
+	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo" parameterType="com.example.demo.util.Criteria">
+	
+	</select>
+
 	<!-- 회원 목록 -->
 	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo" parameterType="com.example.demo.util.Criteria">
 		select user_id, tel, name, nick_name, info_create_date, info_update_date

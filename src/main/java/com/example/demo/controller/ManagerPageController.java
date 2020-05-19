@@ -25,21 +25,6 @@ public class ManagerPageController {
 	@Autowired
 	private ManagerPageService mp_service;
 
-	@Autowired
-	private NoticeService notice_service;
-	
-	@Autowired
-	private QnAService qna_service;
-	
-	@Autowired
-	private BoardService board_service;
-	
-	@Autowired
-	private TogetherService to_service;
-	
-	@Autowired
-	private Pic_BoardService pic_service;
-
 	// 관리자페이지메인
 	@RequestMapping("/management/manager_main")
 	public void managerPage() {

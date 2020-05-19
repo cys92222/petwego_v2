@@ -14,7 +14,6 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
-
 		// 회원관리 div를 누르면 회원관리페이지로 이동
 		$("#member").click(function(){
 			self.location="/management/manager_member";
