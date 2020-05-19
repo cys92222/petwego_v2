@@ -18,25 +18,30 @@ import com.example.demo.service.ManagerPageService;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
-import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.google.gson.Gson;
 
+// 민아) 5/19, 관리자페이지 하는중 
+// log 기록이 필요없는 관리자 페이지 등은 매개변수로 HttpServletRequest request 을 가질필요가 없고
+// 제외 처리를 위해 @NoLogging을 꼭 적어야 함! 
 @Controller
 @RequestMapping("/management/*")
-public class ManagerPageController {
+public class ManagerPageController  {
 
 	@Autowired
 	private ManagerPageService mp_service;
 
 	// 관리자페이지메인
 	@RequestMapping("manager_main")
-	public void managerPage(HttpServletRequest request) {
+	@NoLogging
+	public void managerPage() {
 
 	}
 	
 	// 로그 차트 (구글차트 이용해서)
+	@NoLogging
 	@ResponseBody
 	@GetMapping(value = "chartLog", produces = "application/json; charset=utf-8")
 	public String chartLog() {
@@ -48,8 +53,9 @@ public class ManagerPageController {
 	}
 	
 	// 회원 목록, 검색, 페이징
+	@NoLogging
 	@GetMapping("manager_member")
-	public void listMember(HttpServletRequest request,Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public void listMember(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
 		model.addAttribute("listMember", mp_service.listMember(scri));
 		PageMaker pageMaker = new PageMaker();
@@ -59,22 +65,25 @@ public class ManagerPageController {
 	}
 
 	// 회원정보 상세보기
+	@NoLogging
 	@GetMapping("manager_getMember")
-	public void getMember(HttpServletRequest request,MemberInfoVo m, Model model) {
+	public void getMember(MemberInfoVo m, Model model) {
 		model.addAttribute("detail_Info", mp_service.getMember(m));
 	}
 
 	// 회원정보 삭제(강퇴)
+	@NoLogging
 	@GetMapping("manager_deleteMember")
-	public String deleteMember(HttpServletRequest request,MemberInfoVo m) {
+	public String deleteMember(MemberInfoVo m) {
 		
 		mp_service.deleteMember(m);
 		return "redirect:/management/manager_member";
 	}
 	
 	// aopLog 목록
+	@NoLogging
 	@GetMapping("listLog")
-	public void listLog(HttpServletRequest request, Model model, Criteria cri) {
+	public void listLog( Model model, Criteria cri) {
 		model.addAttribute("listLog", mp_service.listLog(cri));
 		
 		PageMaker pageMaker = new PageMaker();
