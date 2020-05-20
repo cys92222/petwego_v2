@@ -128,5 +128,23 @@ public class MypageServiceImpl implements MypageService {
 		re = mypagedao.delete_animal(a);
 		return re;
 	}
+	
+	//반려동물 사진 삭제
+	@Override
+	public int delete_animal_pic(Animal_infoVo a) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.delete_animal_pic(a);
+		return re;
+	}
+
+	//사람 사진 삭제
+	@Override
+	public int delete_people_pic(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.delete_people_pic(m);
+		return re;
+	}
 
 }

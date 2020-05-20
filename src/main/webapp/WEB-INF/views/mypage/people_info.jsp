@@ -47,7 +47,8 @@ $(function(){
 		이름 <input type="text" value="${m.name }" name="name"><br>
 		주소 <input type="text" value="${m.address }" name="address"><br>
 		성별 <input type="text" value="${m.gender }" name="gender"><br>
-		사진 <img alt="사진이 없습니다" src="${m.fname }"><br>
+		사진 <img alt="사진이 없습니다" src="/img/peopleImg/${m.fname }"><br>
+		<a href="/mypage/delete_people_pic?user_id=${m.user_id }">사진 삭제</a><br>
 		<input type="hidden" value="${m.fname }" name="fname"> <br>
 		<input type="file" name="aa"><br>
 		소개 <input type="text" value="${m.intro }" name="intro"><br>

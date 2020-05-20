@@ -73,4 +73,15 @@
 	<delete id="delete_animal">
 		delete animal_info where user_id = #{user_id} and pet_no = #{pet_no}
 	</delete>
+	
+<!-- 	동물사진 삭제 -->
+	<update id="delete_animal_pic">
+		update animal_info set pet_pic = '' where user_id = #{user_id} and pet_no = #{pet_no}
+	</update>
+	
+<!-- 	사람사진 삭제 -->
+	<update id="delete_people_pic">
+		update member_info set fname = '' where user_id = #{user_id}
+	</update>
+
 </mapper>

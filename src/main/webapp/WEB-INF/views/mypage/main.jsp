@@ -41,8 +41,7 @@ $(function(){
 		<tr>
 			<td>
 				<div>
-					<img alt="사진이 없습니다" src="/peopleImg/${myinfo.fname }" width="100" height="100"><br>
-					<button id="people_pic_up_btn">사진 수정</button>
+					<img alt="사진이 없습니다" src="/img/peopleImg/${myinfo.fname }" width="100" height="100"><br>
 				</div>
 			</td>
 
@@ -61,7 +60,7 @@ $(function(){
 			<c:forEach items="${animal_list }" var="a" begin="0" end="3">
 				<tr>
 					<td>${a.pet_no }</td><td>${a.pet_name }</td><td>${a.pet_date }</td><td>${a.pet_type }</td>
-					<td><img alt="사진이 없습니다" src="${a.pet_type }" width="100" height="100"><br></td>
+					<td><img alt="사진이 없습니다" src="/img/animalImg/${a.pet_pic }" width="100" height="100"><br></td>
 				</tr>
 			</c:forEach>
 			<td>

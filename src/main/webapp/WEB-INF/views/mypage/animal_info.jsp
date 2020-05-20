@@ -52,7 +52,7 @@ $(function(){
 		 		<td>${al.pet_date }</td>
 		 		<td>${al.day }</td>
 		 		<td>${al.pet_type }</td>
-		 		<td><img alt="사진이 없습니다" src="${al.pet_pic }"></td>
+		 		<td><img alt="사진이 없습니다" src="/img/animalImg/${al.pet_pic }"></td>
 		 		<td><a href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 수정</a></td>
 		 		<td><a href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 삭제</a>
 		 	</tr>

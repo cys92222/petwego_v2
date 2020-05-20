@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,10 +81,23 @@ public class MyPageController {
 		String str = aa.getOriginalFilename();
 //		System.out.println("업로드 파일 이름"+str);
 		
+		String path = request.getRealPath("/img/animalImg");
+		System.out.println(path);
+		
 		if(str != null && !str.equals("")) {
 			System.out.println("사진  첨부함");
 			System.out.println("업로드 파일 이름"+str);
 			a.setPet_pic(str);
+			
+			try {
+				byte []data = aa.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+str);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e.getMessage());
+			}
 		}else {
 			System.out.println("사진 첨부 안함");
 			a.setPet_pic("사진없음");
@@ -117,10 +132,31 @@ public class MyPageController {
 	@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
 	public String people_info_up(HttpServletRequest request,MemberInfoVo m, MultipartFile aa) {
 		String str = aa.getOriginalFilename();
+		String o_str = m.getFname();
+		String path = request.getRealPath("/img/peopleImg");
+		System.out.println(path);
 		
 		if(str != null && !str.equals("")) {
 			System.out.println("사진첨부함");
 			m.setFname(str);
+			
+			try {
+				byte []data = aa.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+str);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e.getMessage());
+			}
+			int re = -1;
+			re = mypageservice.update_myinfo(m);
+			
+			if(re > 0 && str != null && !str.equals("") && o_str != null && !o_str.equals("")) {
+				File file = new File(path + "/" + o_str);
+				file.delete();
+			}
+			
 		}else {
 			System.out.println("사진첨부안함");
 			m.setFname("사진없음");
@@ -212,8 +248,34 @@ public class MyPageController {
 	public String update_animal(HttpServletRequest request,Animal_infoVo a, MultipartFile aa) {
 		System.out.println(aa);
 		
+		String path = request.getRealPath("/img/animalImg");
+		System.out.println(path);
+		
+		String str = aa.getOriginalFilename();
+		String o_str = a.getPet_pic();
+		
 		if(aa.getOriginalFilename() != null && !"".equals(aa.getOriginalFilename())) {
+			System.out.println("사진 첨부함");
 			a.setPet_pic(aa.getOriginalFilename());
+			
+			try {
+				byte []data = aa.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+str);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e.getMessage());
+			}
+			int re = -1;
+			re = mypageservice.update_animal(a);
+			
+			if(re > 0 && str != null && !str.equals("") && o_str != null && !o_str.equals("")) {
+				File file = new File(path + "/" + o_str);
+				file.delete();
+			}
+		}else {
+			System.out.println("사진 첨부안함");
 		}
 		
 		ModelAndView mav = new ModelAndView();
@@ -231,4 +293,32 @@ public class MyPageController {
 		
 		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
 	}
+	
+	//동물사진 삭제
+	@RequestMapping(value = "/mypage/delete_animal_pic", method = RequestMethod.GET)
+	public String delete_animal_pic(HttpServletRequest request, Animal_infoVo a) {
+		String path = request.getRealPath("/img/animalImg");
+		
+		String o_str = a.getPet_pic();
+		File file = new File(path + "/" + o_str);
+		file.delete();
+		
+		mypageservice.delete_animal_pic(a);
+		return "redirect:/mypage/animal_info_up_form?user_id="+a.getUser_id();
+	}
+	
+	//사람사진 삭제
+	@RequestMapping(value = "/mypage/delete_people_pic", method = RequestMethod.GET)
+	public String delete_people_pic(HttpServletRequest request, MemberInfoVo m) {
+		String path = request.getRealPath("/img/peopleImg");
+		
+		String o_str = m.getFname();
+		System.out.println(o_str);
+		File file = new File(path + "/" + o_str);
+		file.delete();
+		
+		mypageservice.delete_people_pic(m);
+		return "redirect:/mypage/mypage?user_id"+m.getUser_id();
+	}
+	
 }
