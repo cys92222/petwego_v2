@@ -3,11 +3,14 @@
   <!-- 민아) 5/19, 관리자페이지  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 		
-	<!-- 로그를 구글 차트로 나타내보기 위한 카운트 -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+	<!-- 로그를 구글 차트로 나타내보기 위한 카운트 상위 10개만뽑는다면? -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	<select id="chartLog" resultType="com.example.demo.vo.ChartVo">
-		select count(*) count, url from aop_log group by url
+		select cnt as count, url
+			from (select count(*) cnt, url from aop_log group by url  having count(*) >1 order by cnt desc)
+				where rownum<![CDATA[  <=    ]]>10              
 	</select>
-
+		<!-- select count(*) count, url from aop_log group by url -->
+		
 	<!-- 로그 등록 -->
 	<insert id="insertLog">
 		insert into aop_log values(seq_log_num.nextval, #{url}, #{ip}, #{time}, #{user_id} )
