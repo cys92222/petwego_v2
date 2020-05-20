@@ -1,11 +1,15 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.ApplicationDao;
 import com.example.demo.dao.TogetherDao;
+import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.ApplicationVo;
+import com.example.demo.vo.TogetherVo;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
@@ -49,5 +53,11 @@ public class ApplicationServiceImpl implements ApplicationService {
 			re = 1;
 		}
 		return re;
+	}
+	
+	//신청자 목록
+	@Override
+	public List<ApplicationVo> userApplication(int t_num) throws Exception{
+		return Adao.userApplication(t_num);
 	}
 }

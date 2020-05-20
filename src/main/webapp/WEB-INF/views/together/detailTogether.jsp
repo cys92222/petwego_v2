@@ -288,8 +288,24 @@ $(document).ready(function(){
 					    </c:forEach>
 					  </ol>
 					</div>
-				</form>
-			</section>
+					
+					<!-- 신청자 목록 -->
+					<div id="userApplication">
+						<form role="form">
+							<table width="30%">
+								<tr>
+									<td>현재 참여자</td>
+								</tr>
+							
+							<c:forEach var="userList" items="${userList}" varStatus="status">
+								<tr>
+									<td>${userList.user_id}</td>
+								</tr>
+							</c:forEach>
+							</table>
+						</form>
+					</div>
+		</section>
 			<input type="button" value="맨위로" onClick="javascript:window.scrollTo(0,0)" />
 			<input type="image" src="/top.png" onClick="javascript:window.scrollTo(0,0)" alt="맨위로" />
 			<hr />

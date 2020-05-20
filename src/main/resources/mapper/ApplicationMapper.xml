@@ -18,4 +18,10 @@
 	<select id="checkApplication" resultType="java.lang.Integer">
 		select count(*) from together_application where t_num = #{t_num} and user_id = #{user_id}
 	</select>
+	
+	<!-- 신청자 id 조회 -->
+	<select id="userApplication" parameterType="int" resultType="com.example.demo.vo.ApplicationVo">
+<!-- 			select t.user_id from together t , together_application ta where t.t_num = ta.t_num -->
+		select user_id from together_application where t_num=#{t_num}
+	</select>
 </mapper>
