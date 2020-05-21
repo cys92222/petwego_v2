@@ -27,12 +27,12 @@
 		
 		// 공지사항
 		$("#notice").click(function(){
-			self.location="/admin/allNotice";
+			self.location="/customerservice/NoticeList";
 		})
 
 		// 문의사항
 		$("#qna").click(function(){
-			self.location="/admin/List";
+			self.location="/customerservice/QnAList";
 		})
 
 		// 자유게시판
