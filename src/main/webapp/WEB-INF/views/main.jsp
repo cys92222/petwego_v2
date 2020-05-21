@@ -94,7 +94,7 @@
 			</li>
 			<li><span id="customer_service">고객지원</span>
 				<ul class="dept01">
-					<li><a href="/admin/index">고객센터</a></li>
+					<li><a href="/customerservice/index">고객센터</a></li>
 				</ul>
 			</li>
 			<li><span id="login">로그인</span>

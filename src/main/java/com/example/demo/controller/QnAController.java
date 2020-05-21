@@ -39,16 +39,16 @@ public class QnAController {
 	
 	//고객센터 메인
 	@NoLogging
-	@RequestMapping("/admin/index")
+	@RequestMapping("/customerservice/index")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/admin/index");
+		mav.setViewName("/customerservice/index");
 		
 		return mav;
 	}
 	
 	//모든 qna리스트
-	@RequestMapping("/admin/List")
+	@RequestMapping("/customerservice/List")
 	public ModelAndView allQnAList(HttpServletRequest request, @ModelAttribute("scri") SearchCriteria scri){
 		ModelAndView mav = new ModelAndView();
 		
@@ -64,14 +64,14 @@ public class QnAController {
 		
 //		mav.addObject("list", service.allQnAList());
 		
-		mav.setViewName("/admin/QnAList");
+		mav.setViewName("/customerservice/QnAList");
 		
 		return mav;
 	}
 	
 	
 	//qna등록
-	@RequestMapping("/admin/insertQnA")
+	@RequestMapping("/customerservice/insertQnA")
 	public void insertQnA(HttpServletRequest request, QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -154,20 +154,20 @@ public class QnAController {
 		}
 	
 	//qna상세보기
-	@RequestMapping("/admin/detailQnA")
+	@RequestMapping("/customerservice/detailQnA")
 	public QnAVo detailQnA(HttpServletRequest request,QnAVo q) {
 		QnAVo detail = service.detailQnA(q);
 		return detail;
 	}
 	
 	//qna삭제
-	@RequestMapping("/admin/deleteQnA")
+	@RequestMapping("/customerservice/deleteQnA")
 	public void deleteQnA(HttpServletRequest request,QnAVo q) {
 		service.deleteQnA(q);
 	}
 	
 //	답변있는 글은 삭제 못하게
-//	@RequestMapping("/admin/checkQnA")
+//	@RequestMapping("/customerservice/checkQnA")
 //	public ModelAndView no_delete(QnAVo q) {
 //		ModelAndView mav = new ModelAndView();
 //		System.out.println("답변유무 :" + service.no_delete(q));
@@ -187,7 +187,7 @@ public class QnAController {
 	
 	//답변있는 경우 삭제 못하게
 	@NoLogging
-	@RequestMapping("/admin/checkQnA")
+	@RequestMapping("/customerservice/checkQnA")
 	public String no_delete(QnAVo q) {
 		String str = "";
 		System.out.println("답변유무 :" + service.no_delete(q));
@@ -204,7 +204,7 @@ public class QnAController {
 	}
 	
 	//답변등록
-	@RequestMapping("/admin/insertRe")
+	@RequestMapping("/customerservice/insertRe")
 	public void insertRe(HttpServletRequest request,QnAVo q, String re_inq_content, QnAUpdateVo qu) {
 		//부모글 번호로 묶음
 //		q.setRef(q.getInq_no());
@@ -227,7 +227,7 @@ public class QnAController {
 	}
 	
 	//수정
-	@RequestMapping("/admin/updateQnA")
+	@RequestMapping("/customerservice/updateQnA")
 	public void updateQnA(HttpServletRequest request,QnAUpdateVo qu, String up_inq_file) {
 		qu.setUp_inq_file(up_inq_file);
 		service.updateQnA(qu);

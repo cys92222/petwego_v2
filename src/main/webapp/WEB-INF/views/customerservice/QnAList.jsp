@@ -151,7 +151,7 @@ $(function(){
 					$("#ListQnA").css("display","none");
 					$("#DetailQnA").css("display","block");
 					var d_no = {inq_no:qna.inq_no};
-					$.ajax("/admin/detailQnA",{data:d_no,success:function(detail){
+					$.ajax("/customerservice/detailQnA",{data:d_no,success:function(detail){
 						$("#detail_inq_no").val(detail.inq_no);
 						$("#detail_cs_no").val(detail.cs_no);
 
@@ -207,7 +207,7 @@ $(function(){
 							
 							$("#up_btn").click(function(){
 								var u = $("#upQnA").serialize();
-								$.ajax("/admin/updateQnA",{data:u,success:function(){
+								$.ajax("/customerservice/updateQnA",{data:u,success:function(){
 									window.location.reload(true);
 									$("#ListQnA").css("display","block");
 									$("#UpdateQnA").css("display","none");
@@ -226,17 +226,17 @@ $(function(){
 									console.log(dd_no);
 									
 									//답변 있는지 확인
-									$.ajax("/admin/checkQnA",{data:dd_no,success:function(r){
+									$.ajax("/customerservice/checkQnA",{data:dd_no,success:function(r){
 // 											alert(r);
 											console.log(typeof r);
 											if(r === "o"){
 												alert("답변이 있는 문의글은 수정,삭제 불가능합니다");
-													window.location.href="/admin/List";
+													window.location.href="/customerservice/List";
 													$("#ListQnA").css("display","block");
 													$("#DetailQnA").css("display","none");
 												}else{
 													//답변 없으면 삭제
-													$.ajax("/admin/deleteQnA",{data:d_no,success:function(){
+													$.ajax("/customerservice/deleteQnA",{data:d_no,success:function(){
 														window.location.reload(true);
 														$("#ListQnA").css("display","block");
 														$("#DetailQnA").css("display","none");
@@ -279,7 +279,7 @@ $(function(){
 						$("#submitRe").click(function(){
 							var r = $("#insertRe").serialize();
 							
-							$.ajax("/admin/insertRe",{data:r,success:function(){
+							$.ajax("/customerservice/insertRe",{data:r,success:function(){
 								window.location.reload(true);
 								$("#ListQnA").css("display","block");
 								$("#AddRe").css("display","none");
@@ -305,7 +305,7 @@ $(function(){
 	//버트 누르면 등록
 	$("#btn").click(function(){	
 		var i = $("#insertQnA").serialize();	
-		$.ajax("/admin/insertQnA",{data:i,success:function(){
+		$.ajax("/customerservice/insertQnA",{data:i,success:function(){
 			window.location.reload(true);
 			$("#ListQnA").css("display","block");
 			$("#AddQnA").css("display","none");
@@ -338,7 +338,7 @@ $(function(){
     <script>
       $(function(){
         $('#searchBtn').click(function() {
-          self.location = "/admin/List" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+          self.location = "/customerservice/List" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
         });
       });   
     </script>
@@ -352,15 +352,15 @@ $(function(){
 <div>
   <ul>
     <c:if test="${pageMaker.prev}">
-    	<li><a href="/admin/List${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+    	<li><a href="/customerservice/List${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-    	<li><a href="/admin/List${pageMaker.makeSearch(idx)}">${idx}</a></li>
+    	<li><a href="/customerservice/List${pageMaker.makeSearch(idx)}">${idx}</a></li>
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li><a href="/admin/List${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+    	<li><a href="/customerservice/List${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
 </div>
@@ -382,11 +382,11 @@ $(function(){
 <input type="text" name="inq_title" required="required"><br>
 내용<br>
 <textarea rows="8" cols="100" id="summernote" name="inq_content"></textarea><br>
-<a href="/admin/List">뒤로가기</a>
+<a href="/customerservice/List">뒤로가기</a>
 <input type="hidden" name="inq_file" id="inq_file"><br>
 </form>
 <input type="button" id="btn" value="문의등록"><br>
-<a href="/admin/List">QnA리스트 돌아가기</a>
+<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
 
 <section id="DetailQnA">
@@ -404,7 +404,7 @@ $(function(){
 		<button id="del">삭제하기</button><br>
    		<button id="re">답변달기</button><br>
 	</section>
-	<a href="/admin/List">QnA리스트 돌아가기</a>
+	<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
 <section id="AddRe">
 	<h3>답변등록</h3>
@@ -428,7 +428,7 @@ $(function(){
 		<input type="text" id="re_inq_ref_level" name="re_ref_level">
 	</form>
 	<button id="submitRe">답변등록</button><br>
-	<a href="/admin/List">QnA리스트 돌아가기</a>
+	<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
 
 <section id="UpdateQnA">
@@ -460,7 +460,7 @@ $(function(){
 	</form>
 	<button id="up_btn">수정</button><br>
 
-<a href="/admin/List">QnA리스트 돌아가기</a>
+<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
 
 </body>

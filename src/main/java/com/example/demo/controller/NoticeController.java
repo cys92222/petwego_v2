@@ -40,7 +40,7 @@ public class NoticeController {
 	NoticeService service;
 	
 	@NoLogging
-	@PostMapping(value="/admin/uploadSummernoteImageFile", produces = "application/json")
+	@PostMapping(value="/customerservice/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
 		
@@ -71,14 +71,14 @@ public class NoticeController {
 	
 	
 	//공지사항 리스트
-	@RequestMapping("/admin/allNotice")
+	@RequestMapping("/customerservice/allNotice")
 	public ModelAndView allNotice(HttpServletRequest request,SearchCriteria scri){
 		List<NoticeVo> list = service.allNoticeList(scri);
 		PageMaker pageMaker = new PageMaker();
 		ModelAndView mav = new ModelAndView();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.countNotice(scri));
-		mav.setViewName("/admin/NoticeList");
+		mav.setViewName("/customerservice/NoticeList");
 			
 		Gson gson = new Gson();
 		mav.addObject("pageMaker", pageMaker);
@@ -90,7 +90,7 @@ public class NoticeController {
 	
 	//공지사항 등록
 	@NoLogging
-	@RequestMapping("/admin/insertNotice")
+	@RequestMapping("/customerservice/insertNotice")
 	@ResponseBody
 	public void insertNotice(NoticeVo n) {
 		service.insertNotice(n);
@@ -99,7 +99,7 @@ public class NoticeController {
 	
 	//공지사항 삭제
 	@NoLogging
-	@RequestMapping("/admin/deleteNotice")
+	@RequestMapping("/customerservice/deleteNotice")
 	@ResponseBody
 	public String deleteNotice(NoticeVo n) {
 		service.deleteNotice(n);
@@ -109,7 +109,7 @@ public class NoticeController {
 	
 	//공지사항 수정
 	@NoLogging
-	@RequestMapping("/admin/updateNotice")
+	@RequestMapping("/customerservice/updateNotice")
 	@ResponseBody
 	public String updateNotice(NoticeUpdateVo nu) {
 		System.out.println(nu);
@@ -119,7 +119,7 @@ public class NoticeController {
 	}
 	
 	//공지사항 상세보기
-	@RequestMapping(value = "/admin/detailNotice", method = RequestMethod.GET)
+	@RequestMapping(value = "/customerservice/detailNotice", method = RequestMethod.GET)
 	@ResponseBody
 	public NoticeVo detailNotice(HttpServletRequest request,NoticeVo n) {
 		NoticeVo dn = service.detailNotice(n);
@@ -130,7 +130,7 @@ public class NoticeController {
 	
 	//조회수
 	@NoLogging
-	@RequestMapping("/admin/hit")
+	@RequestMapping("/customerservice/hit")
 	@ResponseBody
 	public void hit(NoticeVo n) {
 		service.hit(n);
