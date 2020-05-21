@@ -30,6 +30,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.service.ApplicationService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.TogetherService;
+import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
@@ -39,6 +40,7 @@ import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
 import com.google.gson.JsonObject;
 
+// 민아) 5/21, 로그 처리 
 @Controller
 @RequestMapping("/together/*")
 public class TogeteherController {
@@ -58,6 +60,7 @@ public class TogeteherController {
 //	  return "together/test";
 //	}
 	//댓글삭제 GET
+	@NoLogging
 	@RequestMapping(value="/deleteReplyView",method = RequestMethod.GET)
 	public String replyDeleteView(ReplyVo rv,SearchCriteria scri, Model model) throws Exception {
 		LOGGER.info("writeReply");
@@ -70,7 +73,7 @@ public class TogeteherController {
 	
 	//댓글삭제 POST
 	@RequestMapping(value="/deleteReply",method = RequestMethod.POST)
-	public String replyDelete(ReplyVo rv,SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+	public String replyDelete(HttpServletRequest request, ReplyVo rv,SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		LOGGER.info("writeReply");
 			
 		Rservice.deleteReply(rv);
@@ -86,6 +89,7 @@ public class TogeteherController {
 	
 	
 	//댓글수정 GET
+	@NoLogging
 	@RequestMapping(value="/updateReplyView",method = RequestMethod.GET)
 	public String updateReplyView(ReplyVo rv, SearchCriteria scri, Model model) throws Exception {
 		LOGGER.info("writeReply");
@@ -100,7 +104,7 @@ public class TogeteherController {
 	//댓글수정 POST
 	//댓글 수정 페이지에 접근하기 위한 컨트롤러와 수정한 값을 전송할 수 있는 컨트롤러를 작성
 	@RequestMapping(value="/updateReply",method = RequestMethod.POST)
-	public String updateReply(ReplyVo rv, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+	public String updateReply(HttpServletRequest request,ReplyVo rv, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		LOGGER.info("writeReply");
 		
 		Rservice.updateReply(rv);
@@ -122,7 +126,7 @@ public class TogeteherController {
 	//RedirectAttributes는 redirect했을때 값들을 물고 이동.
 	//그래서 SearchCriteria의 값을
 	//넣어서 댓글을 저장 한 뒤 원래 페이지로 redirect하여 이동
-	public String writeReply(ReplyVo rv, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+	public String writeReply(HttpServletRequest request,ReplyVo rv, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		LOGGER.info("writeReply");
 		
 		Rservice.writeReply(rv);
@@ -136,6 +140,7 @@ public class TogeteherController {
 	}
 	
 	//함께가요 글 작성 화면
+	@NoLogging
 	@RequestMapping(value="/together/writeTogetherView",method = RequestMethod.GET)
 //	@RequestMapping(value="writeTogetherView",method = RequestMethod.GET)
 	public void writeTogetherView() throws Exception{
@@ -146,7 +151,7 @@ public class TogeteherController {
 	//함께가요 등록
 	@RequestMapping(value="/together/writeTogether",method = RequestMethod.POST)
 //@RequestMapping(value="writeTogether",method = {RequestMethod.GET,RequestMethod.POST})
-	public String write(TogetherVo togetherVo ,HttpSession session, HttpServletRequest request) throws Exception{
+	public String write(HttpServletRequest request,TogetherVo togetherVo ,HttpSession session) throws Exception{
 	LOGGER.info("writeTogether");
 	
 	//첨부한 파일 불러옴
@@ -183,7 +188,7 @@ public class TogeteherController {
 	
 	//함께가요 목록
 	@RequestMapping(value="/together/listTogether", method = RequestMethod.GET)
-	public String listTogether(Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
+	public String listTogether(HttpServletRequest request, Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		LOGGER.info("listTogether");
 		//썸네일
 //		model.addAttribute("listTogether", service.listThumbnail(scri));
@@ -205,7 +210,7 @@ public class TogeteherController {
 	   //함께가요 상세
 //  @RequestMapping(value="detailTogether",method = {RequestMethod.GET , RequestMethod.POST})
   @RequestMapping(value="/together/detailTogether",method = RequestMethod.GET)
-  public String detailTogether(TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
+  public String detailTogether(HttpServletRequest request, TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
      LOGGER.info("detailTogether");
      
      model.addAttribute("detailTogether",service.detailTogether(togetherVo.getT_num()));
@@ -242,6 +247,7 @@ public class TogeteherController {
   }
 	
 	//함께가요 수정 뷰
+  	@NoLogging
 	@RequestMapping(value="/together/updateTogetherView", method = RequestMethod.GET)
 	public String updateTogetherView(TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri,Model model) throws Exception{
 		LOGGER.info("updateTogether");
@@ -253,7 +259,7 @@ public class TogeteherController {
 	
 	//함께가요 수정
 	@RequestMapping(value="/together/updateTogether",method = RequestMethod.POST)
-	public String updateTogether(TogetherVo togetherVo,ThumbnailVo t,@ModelAttribute("scri") SearchCriteria scri,RedirectAttributes rttr,HttpServletRequest request) throws Exception{
+	public String updateTogether(HttpServletRequest request,TogetherVo togetherVo,ThumbnailVo t,@ModelAttribute("scri") SearchCriteria scri,RedirectAttributes rttr) throws Exception{
 		LOGGER.info("updateTogether");
 		System.out.println("bbbbbbbbbbbbbbbbbbb" +t.getUp_thumbnailFile());
 		
@@ -310,7 +316,7 @@ public class TogeteherController {
 	
 	//함께가요 삭제
 	@RequestMapping(value="/together/deleteTogether",method = RequestMethod.POST)
-	public String deleteTogether(TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri , RedirectAttributes rttr) throws Exception{
+	public String deleteTogether(HttpServletRequest request, TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri , RedirectAttributes rttr) throws Exception{
 		LOGGER.info("deleteTogether");
 		Rservice.deleteAll(togetherVo);
 		service.deleteTogether(togetherVo.getT_num());
@@ -354,6 +360,7 @@ public class TogeteherController {
 	}
 	
 	//신청하기 누른적이 있는지 판단
+	@NoLogging
 	@GetMapping("/together/okApplication")
 	@ResponseBody
 	public String checkApplication(ApplicationVo av) {
@@ -368,7 +375,7 @@ public class TogeteherController {
 	//신청하기 
 	@GetMapping("/together/insertApplication")
 	@ResponseBody
-	public String insertApplication(ApplicationVo av, TogetherVo togetherVo) {
+	public String insertApplication(HttpServletRequest request,ApplicationVo av, TogetherVo togetherVo) {
 		int re = Aservice.checkApplication(av);
 		
 		
@@ -396,7 +403,7 @@ public class TogeteherController {
 	//신청하기 취소
 	@GetMapping("/together/deleteApplication")
 	@ResponseBody
-	public String deleteApplication(ApplicationVo av) {
+	public String deleteApplication(HttpServletRequest request,ApplicationVo av) {
 				
 		String re = "0";
 		int r = Aservice.deleteApplication(av);
