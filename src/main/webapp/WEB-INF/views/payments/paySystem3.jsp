@@ -12,7 +12,7 @@ $(function(){
 	 var IMP = window.IMP; 		// 생략가능
 	 IMP.init('imp32514763');   // 내정보에 있는 "가맹점 식별코드"를 사용
 	 var msg;
-		var info = [];
+
 	 $("#okay").click(function(){
 			var imp_uid = $("#imp_uid").val();
 			var merchant_uid = $("#merchant_uid").val();
@@ -36,20 +36,6 @@ $(function(){
 			    buyer_addr : '서울시 서대문구'
 				    
 			}, function(rsp) {
-
-				var payInfo = {
-						imp_uid : rsp.imp_uid,
-						merchant_uid : rsp.merchant_uid,
-	                    paid_amount : rsp.paid_amount,
-	                    pay_method : rsp.pay_method,
-	                   	apply_num : rsp.apply_num,
-	                    paid_time : rsp.paid_time,
-	                    status : rsp.status,
-	                    rsv_no : 1,
-	                    user_id : rsp.buyer_name  
-						}
-				info.push(payInfo);
-				
 			    if ( rsp.success ) {
 			        var msg = '결제가 완료되었습니다.';
 			        msg += '고유ID : ' + rsp.imp_uid;
@@ -62,14 +48,23 @@ $(function(){
 // 					$.ajax("/payments/insertPay",{data:insertPay,success:function(re){
 // 							alert(re);
 // 						}});
-					console.log(JSON.stringify(info));
 					
 					$.ajax({
 						type : "POST",
 						url : "/payments/insertPay",
 						dataType : "JSON",
 	    	            contentType:"application/json; charset=utf-8",
-	    	            data : JSON.stringify(info),
+						data : {
+							imp_uid : rsp.imp_uid,
+							merchant_uid : rsp.merchant_uid,
+    	                    paid_amount : rsp.paid_amount,
+    	                    pay_method : rsp.pay_method,
+    	                   	apply_num : rsp.apply_num,
+    	                    paid_time : rsp.paid_time,
+    	                    status : rsp.status,
+    	                    rsv_no : 1,
+    	                    user_id : rsp.buyer_name  
+							},
 						success : function(ww){
 							console.log(ww);
 							alert("결제정보 저장했음")
