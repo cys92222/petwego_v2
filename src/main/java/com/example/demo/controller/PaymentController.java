@@ -32,17 +32,20 @@ public class PaymentController {
 	}
 
 	// 결제정보 등록
-	@NoLogging
-	@RequestMapping(value = "/insertPay")
-	public void insertForm(HttpServletRequest request,PaymentVo p) {
-		System.out.println("결제 폼 동작함");
-		
-	}
+//	@NoLogging
+//	@RequestMapping(value = "/insertPay")
+//	public void insertForm(HttpServletRequest request,PaymentVo p) {
+//		System.out.println("결제 폼 동작함");
+//		
+//	}
 	
-	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
+//	@RequestMapping(value = "/insertPay")
+	@RequestMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String insertSubmit(HttpServletRequest request, PaymentVo p) {
-		pay_service.insertPay(p);
+		System.out.println(p);
+		System.out.println(p.getImp_uid());
+		//		pay_service.insertPay(p);
 		System.out.println("결제컨트롤러 동작함");
 		//return pay_service.insertPay(p) + "";
 		return "등록ok";
@@ -54,5 +57,12 @@ public class PaymentController {
 		return "결제가 성공하였습니다.";
 	}
 	
+//	@NoLogging
+//	@RequestMapping("aaaaa")
+//	public String aaaa(HttpServletRequest request, PaymentVo p) {
+//		System.out.println("aaaaaaaaaaaaaaaaaaaa");
+//		
+//		return "등록";
+//	}
 
 }

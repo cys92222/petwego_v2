@@ -140,9 +140,10 @@ $(function(){
 				
 				
 				var inq_date = $("<td></td>").append(moment(qna.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 				var inq_date = $("<td></td>").append(qna.inq_date);
 				
-//  				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title,inq_date);
-				var tr = $("<tr></tr>").append(cs_no,user_id,inq_title,inq_date); //글번호 지움
+ 				var tr = $("<tr></tr>").append(inq_no,cs_no,user_id,inq_title,inq_date);
+// 				var tr = $("<tr></tr>").append(cs_no,user_id,inq_title,inq_date); //글번호 지움
 				
 				$("#list").append(tr);
 
@@ -172,6 +173,7 @@ $(function(){
 	*/  // 	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa									
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
 						$("#detail_inq_date").val(moment(detail.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 						$("#detail_inq_date").val(detail.inq_date);
 
 						//수정 폼
 						$("#up").click(function(){

@@ -53,6 +53,7 @@ $(function(){
 		var notice_content = $("<td></td>").append(notice.notice_content);
 		var notice_hit = $("<td></td>").html(notice.notice_hit);
 		var notice_date = $("<td></td>").append(moment(notice.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 		var notice_date = $("<td></td>").append(notice.notice_date);
 
 		var cs_no = $("<td></td>");
 		
@@ -81,6 +82,7 @@ $(function(){
 					$("#d_notice_content").append(detail.notice_content).css({"border":"1px solid"});
 					$("#d_notice_hit").val(detail.notice_hit);
 					$("#d_notice_date").val(moment(detail.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 					$("#d_notice_date").val(detail.notice_date);
 					
 					var d_ca = detail.cs_no;
 					console.log(d_ca);
@@ -100,6 +102,7 @@ $(function(){
 					
 					$("#u_notice_hit").val(detail.notice_hit);
 					$("#u_notice_date").val(moment(detail.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 					$("#u_notice_date").val(detail.notice_date);
 
 					$("#u_cs_no").val(detail.cs_no);
 					

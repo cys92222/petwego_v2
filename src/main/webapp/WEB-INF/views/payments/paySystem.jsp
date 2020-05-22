@@ -44,7 +44,11 @@ $(function(){
 			        msg += '카드 승인번호 : ' + rsp.apply_num;
 
 			        var insertPay = $("#asd").serialize();
-
+// 					console.log(insertPay);
+// 					$.ajax("/payments/insertPay",{data:insertPay,success:function(re){
+// 							alert(re);
+// 						}});
+					
 					$.ajax({
 						type : "POST",
 						url : "/payments/insertPay",
@@ -72,7 +76,7 @@ $(function(){
 			        msg += '에러내용 : ' + rsp.error_msg;
 			    }
 
-			    alert(msg);
+// 			    alert(msg);
 			});
 	})
 })
@@ -85,16 +89,17 @@ $(function(){
 	<button id='okay'>결제하기</button>
 	
 	<!-- 결제정보 전달을 위한 폼  -->
-	<form id="asd" method="post">
-		<input type="hidden" id="imp_uid" name="imp_uid"  />
-		<input type="hidden" id="merchant_uid" name="merchant_uid"  />
-		<input type="hidden" id="paid_amount" name="paid_amount"  />
-		<input type="hidden" id="pay_method" name="pay_method"  />
-		<input type="hidden" id="apply_num" name="apply_num"  />
-		<input type="hidden" id="paid_time" name="paid_time"  />
-		<input type="hidden" id="status" name="status"  />
-		<input type="hidden" id="rsv_no" name="rsv_no"  />
-		<input type="hidden" id="user_id" name="user_id"  />
+	<form action="/payments/insertPay" id="asd" method="post">
+		<input type="text" id="imp_uid" name="imp_uid"  />
+		<input type="text" id="merchant_uid" name="merchant_uid"  />
+		<input type="text" id="paid_amount" name="paid_amount"  />
+		<input type="text" id="pay_method" name="pay_method"  />
+		<input type="text" id="apply_num" name="apply_num"  />
+		<input type="text" id="paid_time" name="paid_time"  />
+		<input type="text" id="status" name="status"  />
+		<input type="text" id="rsv_no" name="rsv_no"  />
+		<input type="text" id="user_id" name="user_id"  />
+		<input type="submit" value="액션 테스트용 버튼">
 	</form>
 
 </body>
