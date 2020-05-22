@@ -10,7 +10,6 @@ import com.example.demo.vo.RoomVo;
 public interface FacilityService {
 	//숙소 리스트
 	public List<FacilityVo> listFacility(SearchCriteria scri) throws Exception;
-	
 	//검색조건과 일치하는 숙소 총 개수
 	public int listCount(SearchCriteria scri) throws Exception;
 	

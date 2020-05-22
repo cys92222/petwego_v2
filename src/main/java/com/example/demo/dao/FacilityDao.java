@@ -23,5 +23,4 @@ public interface FacilityDao {
 	//리뷰 작성
 	public int postReview(ReviewVo reviewVo) throws Exception;
 	
-
 }

@@ -49,7 +49,7 @@ $(function(){
 			</header>
 
 			<h5>총 ${pageMaker.getTotalCount()}개의 애견펜션이 검색되었습니다.</h5>
-			<%-- <button id="sortBtn">단추${sortString}</button>  --%>
+			<%-- <button id="sortBtn">${sortString}</button>  --%>
 			<section id="container">
 				<form role="form" method="get">
 					<table width="100%">

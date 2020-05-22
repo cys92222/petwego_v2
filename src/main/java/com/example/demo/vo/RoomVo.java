@@ -22,3 +22,4 @@ public class RoomVo {
 	private int rm_sn;
 }
 
+

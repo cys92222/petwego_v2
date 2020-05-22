@@ -24,8 +24,6 @@ public class FacilityServiceImpl implements FacilityService {
 		return dao.listCount(scri);
 	}
 	
-	
-
 	//숙소 상세뷰 
 	public FacilityVo getFacility(int facility_no) throws Exception {
 		return dao.getFacility(facility_no);

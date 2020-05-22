@@ -20,3 +20,4 @@ public class ReviewVo {
 	private int facility_no;
 	private String user_id;
 }
+

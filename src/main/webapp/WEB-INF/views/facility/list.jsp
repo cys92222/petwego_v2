@@ -547,13 +547,6 @@ select{
                     <div class="input-group">
                        	<label for="keywordInput" class="input-label">Destination</label>
                         <input type="text" class="input" id="keywordInput" name="keyword" value="${scri.keyword}" />
-                        <!--  주석 -->
-<%-- 			    		<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}"/>
-			    		<c:out value="${scri.searchType eq 'nafi' ? 'selected' : ''}"/> --%>
-                        <!--  주석 -->
-                        
-                        
-                        
                     </div>
                     <div class="input-group">
                         <label for="check-in" class="input-label">Check in</label>

@@ -20,3 +20,4 @@ public class FacilityVo {
 	private String f_checkout;
 }
 
+

@@ -40,10 +40,9 @@ public class FacilityController{
 		model.addAttribute("listFacility",service.listFacility(scri));
 		model.addAttribute("keyword",scri);
 		return "facility/list";
-	}
-		
-	//검색결과
+	}		
 	
+	//검색결과	
 	@RequestMapping(value="/facility/search",method = RequestMethod.GET)
 	public String get(HttpServletRequest request,Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		LOGGER.info("search");

@@ -77,7 +77,7 @@
                     <textarea rows="20" cols="100" title="내용" id="CONTENTS" name="CONTENTS"></textarea>
                     <a href="#" class="btn" id="write">작성하기</a>
           </div>
-          <!-- <button type="submit">리뷰 전송</button> -->
+ 
      </form>
           <script>
                     const stars = document.querySelector('.ratings').children;
