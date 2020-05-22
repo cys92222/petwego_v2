@@ -65,7 +65,7 @@ $(function(){
 	                paid_amount : rsp.paid_amount,
 	                pay_method : rsp.pay_method,
 	                apply_num : rsp.apply_num,
-	                paid_time : rsp.paid_at,
+	                //paid_time : rsp.paid_at,
 	                status : rsp.status,
 	                rsv_no : 1,
 	                user_id : rsp.buyer_name  
@@ -121,7 +121,7 @@ $(function(){
 		<input type="text" id="paid_amount" name="paid_amount"  />
 		<input type="text" id="pay_method" name="pay_method"  />
 		<input type="text" id="apply_num" name="apply_num"  />
-		<input type="text" id="paid_time" name="paid_time"  />
+	
 		<input type="text" id="status" name="status"  />
 		<input type="text" id="rsv_no" name="rsv_no"  />
 		<input type="text" id="user_id" name="user_id"  />
