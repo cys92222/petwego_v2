@@ -27,12 +27,12 @@
 		
 		// 공지사항
 		$("#notice").click(function(){
-			self.location="/admin/allNotice";
+			self.location="/customerservice/allNotice";
 		})
 
 		// 문의사항
 		$("#qna").click(function(){
-			self.location="/admin/List";
+			self.location="/customerservice/List";
 		})
 
 		// 자유게시판
@@ -54,6 +54,7 @@
 </script>
 </head>
 <body>
+	
 	<div id="member"><div>회원 관리</div></div>
 	<div id="allBoard">게시판 관리	
 		<ul>
@@ -65,5 +66,7 @@
 		</ul>
 	</div>
 	<div id="log">Aop 로그</div>
+	<br><br>
+
 </body>
 </html>

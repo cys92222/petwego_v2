@@ -9,7 +9,7 @@
 <body>
 <h2>고객센터</h2>
 <hr>
-<a href="/admin/listNotice">공지사항</a><br>
-<a href="/admin/listQnA">문의사항</a><br>
+<a href="/customerservice/listNotice">공지사항</a><br>
+<a href="/customerservice/listQnA">문의사항</a><br>
 </body>
 </html>

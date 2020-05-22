@@ -33,7 +33,7 @@ $(function(){
 		$.ajax({
 			data : data,
 			type : "POST",
-			url : "/admin/uploadSummernoteImageFile",
+			url : "/customerservice/uploadSummernoteImageFile",
 			contentType : false,
 			processData : false,
 			success : function(data) {
@@ -53,6 +53,7 @@ $(function(){
 		var notice_content = $("<td></td>").append(notice.notice_content);
 		var notice_hit = $("<td></td>").html(notice.notice_hit);
 		var notice_date = $("<td></td>").append(moment(notice.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 		var notice_date = $("<td></td>").append(notice.notice_date);
 
 		var cs_no = $("<td></td>");
 		
@@ -72,7 +73,7 @@ $(function(){
 			var ino = {notice_no:notice.notice_no};
 			$("#detailSection").css({"display":"block"});
 			$("#listSection").css({"display":"none"});
-			$.ajax("/admin/detailNotice",{data:ino, success:function(detail){
+			$.ajax("/customerservice/detailNotice",{data:ino, success:function(detail){
 // 					console.log(detail);
 // 					alert(detail.cs_no);
 					//상세보기
@@ -81,6 +82,7 @@ $(function(){
 					$("#d_notice_content").append(detail.notice_content).css({"border":"1px solid"});
 					$("#d_notice_hit").val(detail.notice_hit);
 					$("#d_notice_date").val(moment(detail.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 					$("#d_notice_date").val(detail.notice_date);
 					
 					var d_ca = detail.cs_no;
 					console.log(d_ca);
@@ -100,6 +102,7 @@ $(function(){
 					
 					$("#u_notice_hit").val(detail.notice_hit);
 					$("#u_notice_date").val(moment(detail.notice_date).format('YYYY년 MM월 DD일 HH시 mm분'));
+// 					$("#u_notice_date").val(detail.notice_date);
 
 					$("#u_cs_no").val(detail.cs_no);
 					
@@ -107,8 +110,8 @@ $(function(){
 					$("#upNotice").click(function(){
 						
 						var updata = $("#updateForm").serialize();
-						$.ajax("/admin/updateNotice",{data:updata,success:function(){
-							window.location.href="/admin/allNotice";
+						$.ajax("/customerservice/updateNotice",{data:updata,success:function(){
+							window.location.href="/customerservice/allNotice";
 							}});
 						});
 					
@@ -117,9 +120,9 @@ $(function(){
 						var dc = confirm("삭제할까요?");
 						var dn = {"notice_no":detail.notice_no};
 						if(dc == 1 ){
-							$.ajax("/admin/deleteNotice",{data:dn,success:function(){
+							$.ajax("/customerservice/deleteNotice",{data:dn,success:function(){
 								alert("삭제했습니다");
-								window.location.href="/admin/allNotice";
+								window.location.href="/customerservice/allNotice";
 								}});
 						}
 
@@ -177,7 +180,7 @@ $(function(){
 		//공지사항 등록 
 		$("#addNotice").click(function(){
 			var data = $("#insertForm").serialize();
-			$.ajax("/admin/insertNotice",{data:data,success:function(){
+			$.ajax("/customerservice/insertNotice",{data:data,success:function(){
 // 				alert("공지사항 등록");
 				$("#listSection").css({"display":"block"});
 				$("#addSection").css({"display":"none"});
@@ -208,7 +211,7 @@ $(function(){
     <script>
       $(function(){
         $('#searchBtn').click(function() {
-          self.location = "/admin/allNotice" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+          self.location = "/customerservice/allNotice" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
         });
       });   
     </script>
@@ -227,15 +230,15 @@ $(function(){
 <div>
   <ul>
     <c:if test="${pageMaker.prev}">
-    	<li><a href="/admin/allNotice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+    	<li><a href="/customerservice/allNotice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
     </c:if> 
 
     <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-    	<li><a href="/admin/allNotice${pageMaker.makeSearch(idx)}">${idx}</a></li>
+    	<li><a href="/customerservice/allNotice${pageMaker.makeSearch(idx)}">${idx}</a></li>
     </c:forEach>
 
     <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-    	<li><a href="/admin/allNotice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+    	<li><a href="/customerservice/allNotice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
 </div>
@@ -257,7 +260,7 @@ $(function(){
 <textarea rows="8" cols="100" id="notice_content" name="notice_content"></textarea>
 </form>
 <button id="addNotice">등록하기</button><br>
-<a href="/admin/allNotice">리스트로 돌아가기</a>
+<a href="/customerservice/allNotice">리스트로 돌아가기</a>
 </section>
 
 <section id="detailSection">
@@ -275,7 +278,7 @@ $(function(){
 <section id="btnSection">
 	<button id="up">수정</button><br>
 	<button id="del">삭제</button><br>
-	<a href="/admin/allNotice">리스트로 돌아가기</a>
+	<a href="/customerservice/allNotice">리스트로 돌아가기</a>
 </section>
 </section>
 
@@ -298,7 +301,7 @@ $(function(){
 
 <section id="btnSection">
 	<button id="upNotice">수정하기</button><br>
-	<a href="/admin/allNotice">리스트로 돌아가기</a>
+	<a href="/customerservice/allNotice">리스트로 돌아가기</a>
 </section>
 </section>
 </body>

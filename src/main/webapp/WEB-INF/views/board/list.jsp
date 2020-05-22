@@ -18,7 +18,7 @@
 <body>
 	<h2>자유 게시판</h2>
 	<hr>
-	
+	<a href="/MainPage">메인페이지</a><br>
 	<a href="/board/insert">게시글 등록</a><br>
 	<form action="/board/list">
 		<div class="search">

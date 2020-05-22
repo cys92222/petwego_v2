@@ -101,7 +101,7 @@ $.ajax({
 	var insert_result = ${insert_result};
 	
 	if(insert_result > -1){
-		window.location.href = "/admin/listQnA";
+		window.location.href = "/customerservice/listQnA";
 		}
 	
 	var arr = ${resultList};
@@ -135,7 +135,7 @@ $.ajax({
 			$("#list").css({"display":"none"});
 			$("#detail").css({"display":"block"});		
 	        
-			$.ajax("/admin/detail_qna",{data:data,success:function(detail){
+			$.ajax("/customerservice/detail_qna",{data:data,success:function(detail){
 					$("#d_inq_no").val(detail.inq_no);
 					$("#d_user_id").val(detail.user_id);
 					$("#d_cs_no").val(detail.cs_no);
@@ -194,7 +194,7 @@ $.ajax({
 		if(c == true){
 			var data = $("#detail_f").serialize();
 			console.log(data);
-			$.ajax("/admin/detele_qna",{data:data,success:function(){
+			$.ajax("/customerservice/detele_qna",{data:data,success:function(){
 				$("#list").css({"display":"block"});
 				$("#detail").css({"display":"none"});
 				window.location.reload(true);
@@ -206,14 +206,14 @@ $.ajax({
 </script>
 
 <body>
-<a href="/admin/index">고객센터</a>
+<a href="/customerservice/index">고객센터</a>
 
 
 <section id="insert">
 <h2>QnA등록</h2>
 <hr>
 
-	<form action="/admin/insert_qna" id="insert_f"  enctype="multipart/form-data" method="post">
+	<form action="/customerservice/insert_qna" id="insert_f"  enctype="multipart/form-data" method="post">
 		작성자<br>
 		<input type="text" name="user_id" required="required"><br>
 		
@@ -267,7 +267,7 @@ $.ajax({
 	<br>
 	<div id="delete_qna">삭제</div>
 	<br>
-	<a href="/admin/listQnA">리스트</a>
+	<a href="/customerservice/listQnA">리스트</a>
 </section>
 
 
