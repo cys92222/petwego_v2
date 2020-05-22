@@ -75,7 +75,8 @@ $(function(){
 							alert("결제정보 저장했음")
 						}
 					})
-			        
+			        //성공시 이동할 페이지
+    	           location.href='http://localhost:8088/payments/okayPay';
 			    } else {
 			        var msg = '결제에 실패하였습니다.';
 			        msg += '에러내용 : ' + rsp.error_msg;

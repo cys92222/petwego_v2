@@ -1,5 +1,7 @@
 package com.example.demo.vo;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,4 +20,6 @@ public class PaymentVo {
 	private String status;			// 결제상태
 	private int rsv_no; 			// 예약번호
 	private String user_id; 		// 아이디
+	
+	private List<PaymentVo> listPay;
 }

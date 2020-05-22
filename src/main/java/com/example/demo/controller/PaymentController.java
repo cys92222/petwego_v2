@@ -1,16 +1,20 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.service.PaymentService;
 import com.example.demo.util.AopLog.NoLogging;
+import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.PaymentVo;
 
 @Controller
@@ -40,14 +44,18 @@ public class PaymentController {
 //	}
 	
 //	@RequestMapping(value = "/insertPay")
-	@RequestMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
+	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String insertSubmit(HttpServletRequest request, PaymentVo p) {
+	public String insertSubmit(HttpServletRequest request, PaymentVo p, @RequestBody List<PaymentVo> listPay) {
+		
+		for (PaymentVo pv : listPay) {
+			pay_service.insertPay(pv);
+		}
+
 		System.out.println(p);
 		System.out.println(p.getImp_uid());
-		//		pay_service.insertPay(p);
 		System.out.println("결제컨트롤러 동작함");
-		//return pay_service.insertPay(p) + "";
+		
 		return "등록ok";
 	}
 	
