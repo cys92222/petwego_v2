@@ -73,7 +73,7 @@ $(function(){
     	                    paid_amount : rsp.paid_amount,
     	                    pay_method : rsp.pay_method,
     	                   // apply_num : rsp.apply_num,
-    	                    paid_time : rsp.paid_time,
+    	                    paid_time : rsp.paid_at,
     	                    status : rsp.status,
     	                    rsv_no : 1,
     	                    user_id : rsp.buyer_name   
