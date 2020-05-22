@@ -7,6 +7,6 @@
 	<insert id="insertPay">
 		insert into payment(imp_uid, merchant_uid, paid_amount, pay_method, apply_num, paid_time, status, rsv_no, user_id)
 			values(#{imp_uid}, #{merchant_uid}, #{paid_amount}, #{pay_method}, #{apply_num},
-					#{paid_time}, #{status}, #{rsv_no}, #{user_id})
+					sysdate, #{status}, #{rsv_no}, #{user_id})
 	</insert>
 </mapper>
