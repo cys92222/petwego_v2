@@ -54,6 +54,7 @@
 </script>
 </head>
 <body>
+	
 	<div id="member"><div>회원 관리</div></div>
 	<div id="allBoard">게시판 관리	
 		<ul>
@@ -65,5 +66,7 @@
 		</ul>
 	</div>
 	<div id="log">Aop 로그</div>
+	<br><br>
+
 </body>
 </html>

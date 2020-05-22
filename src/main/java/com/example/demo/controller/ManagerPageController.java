@@ -39,6 +39,12 @@ public class ManagerPageController  {
 	public void managerPage() {
 
 	}
+//	@RequestMapping("kakaopay")
+//	@NoLogging
+//	public void test() {
+//		
+//	}
+	
 	
 	// 로그 차트 (구글차트 이용해서)
 	@NoLogging
