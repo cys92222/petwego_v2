@@ -80,7 +80,7 @@
    </delete>
    
    <delete id="deleteFile">
-         delete pic_board_file where photo_no = #{photo_no}<!--and user_id = #{user_id}--> 
+   		delete pic_board_file where photo_no = #{photo_no}<!--and user_id = #{user_id}--> 
    </delete>
 
    <!-- sns수정 ??? -->
