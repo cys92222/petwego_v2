@@ -30,11 +30,13 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	//댓글등록
 	@Override
 	public int pinsertComment(Pic_Board_CommentVo pbc) {
+		
 		return pbcDao.pinsertComment(pbc);
 	}
 	//댓글삭제
 	@Override
 	public int pdeleteComment(Pic_Board_CommentVo pbc) {
+		System.out.println("댓글삭제aaaaaaaaaaaaaaaaa");
 		return pbcDao.pdeleteComment(pbc);
 	}
 	
@@ -47,5 +49,5 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	public Pic_Board_CommentVo pselectComment(int photo_comm_no) {
 		return pbcDao.pselectComment(photo_comm_no);
 	}
-	
+
 }

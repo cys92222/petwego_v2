@@ -11,7 +11,7 @@
 	
 	<!-- 좋아요 delete, 좋아요 눌렀다가 한번 더 누르면 숫자 1빠져야함  -->
 	<delete id="deleteLike">
-		delete likeit where photo_no = #{photo_no} and user_id = #{user_id}
+		delete likeit where photo_no = #{photo_no}  <!--  and user_id = #{user_id} -->
 	</delete>
 	
 	
