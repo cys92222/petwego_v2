@@ -16,7 +16,7 @@ $(function(){
 
 	var IMP = window.IMP; 		// 생략가능
 	IMP.init('imp32514763');   // 내정보에 있는 "가맹점 식별코드"를 사용	
-
+	
 	var info = [];	//결제 정보를 담기 위한 전역변수 
 
 	$("#okay").click(function(){
@@ -38,10 +38,10 @@ $(function(){
  */
 			
 		IMP.request_pay({
-			pg : 'html5_inicis',
+			pg : 'html5_inicis.PetWeGo',
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : '주문명:결제테스트',
+			name : '주문명:뫄뫄 애견 펜션',
 			amount : 100,
 			buyer_email : 'acs@petwego.kr',
 			buyer_name : 'user1',
@@ -59,7 +59,8 @@ $(function(){
 				paid_at/number/결제승인시각	UNIX timestamp
 				apply_num/string/카드사 승인번호	신용카드결제에 한하여 제공
 				*/
-	
+
+			// payment 테이블에 들어갈 내용들 
 			var payInfo = {
 					imp_uid : rsp.imp_uid,
 					merchant_uid : rsp.merchant_uid,
@@ -92,18 +93,21 @@ $(function(){
 						}				        
 					}) //ajax 통신끝 
 					
-					 var msg = '결제가 완료되었습니다.';
-				         msg += '주문자명 : ' + rsp.buyer_name;
-				         msg += '주문자 연락처 : ' + rsp.buyer_tel;
-				         msg += '결제수단 : ' + rsp.pay_method;
-				         msg += '결제 금액 : ' + rsp.paid_amount;
-				         msg += '카드 승인번호 : ' + rsp.apply_num;
+					var msg = '결제가 완료되었습니다.'+"\n";
+                    	msg += '주문자명 : ' + rsp.buyer_name +"\n";
+                    	msg += '주문자 연락처 : ' + rsp.buyer_tel+"\n";
+                    	msg += '결제수단 : ' + rsp.pay_method+"\n";
+                    	msg += '결제 금액 : ' + rsp.paid_amount+"\n";
+                    	msg += '카드 승인번호 : ' + rsp.apply_num+"\n";
 
 				// 결제성공시 이동할 페이지
     	       // location.href='http://localhost:8088/MainPage';
 			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
+			        var msg = '결제에 실패하였습니다.'+"\n";
+			        msg += '에러내용 : '+"\n";	
+			        msg +=  '[[' + rsp.error_msg + ']]';
+			        // rsp.error_msg 결제처리에 실패한 경우 상세메세지
+			        // 잔액부족이라던지 비밀번호 입력횟수 초과 등등 
 			    }
 
  			    alert(msg);
