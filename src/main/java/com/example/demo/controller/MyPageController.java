@@ -67,35 +67,35 @@ public class MyPageController {
 		
 		//신청알림수
 		mav.addObject("search_insert_together_count", alarmSerivce.search_insert_together_count(alarm));
-		System.out.println("search_insert_together_count" + alarmSerivce.search_insert_together_count(alarm));
+//		System.out.println("search_insert_together_count" + alarmSerivce.search_insert_together_count(alarm));
 		
 		//신청알림 있는지 조회
 		mav.addObject("search_insert_together_alarm", alarmSerivce.search_insert_together_alarm(alarm));
-		System.out.println("search_insert_together_alarm" + alarmSerivce.search_insert_together_alarm(alarm));
+//		System.out.println("search_insert_together_alarm" + alarmSerivce.search_insert_together_alarm(alarm));
 		
 		//취소알림수
 		mav.addObject("search_cancle_together_count", alarmSerivce.search_cancle_together_count(alarm));
-		System.out.println("search_cancle_together_count" + alarmSerivce.search_cancle_together_count(alarm));
+//		System.out.println("search_cancle_together_count" + alarmSerivce.search_cancle_together_count(alarm));
 		
 		//취소알림 있는지 조회
 		mav.addObject("search_cancle_together_alarm", alarmSerivce.search_cancle_together_alarm(alarm));
-		System.out.println("search_cancle_together_alarm" + alarmSerivce.search_cancle_together_alarm(alarm));
+//		System.out.println("search_cancle_together_alarm" + alarmSerivce.search_cancle_together_alarm(alarm));
 		
 		//자유게시판 댓글 등록 알람 조회
 		mav.addObject("search_insert_board_alarm", alarmSerivce.search_insert_board_alarm(alarm));
-		System.out.println("search_insert_board_alarm" + alarmSerivce.search_insert_board_alarm(alarm));
+//		System.out.println("search_insert_board_alarm" + alarmSerivce.search_insert_board_alarm(alarm));
 		
 		//자유게시판 댓글 삭제 알람 조회
 		mav.addObject("search_cancle_board_alarm", alarmSerivce.search_cancle_board_alarm(alarm));
-		System.out.println("search_cancle_board_alarm" + alarmSerivce.search_cancle_board_alarm(alarm));
+//		System.out.println("search_cancle_board_alarm" + alarmSerivce.search_cancle_board_alarm(alarm));
 		
 		//자유게시판 댓글 등록  수
 		mav.addObject("search_insert_board_alarm_count", alarmSerivce.search_insert_board_alarm_count(alarm));
-		System.out.println("search_insert_board_alarm_count" + alarmSerivce.search_insert_board_alarm_count(alarm));
+//		System.out.println("search_insert_board_alarm_count" + alarmSerivce.search_insert_board_alarm_count(alarm));
 		
 		//자유게시판  댓글 취소 수
 		mav.addObject("search_cancle_board_alarm_count", alarmSerivce.search_cancle_board_alarm_count(alarm));
-		System.out.println("search_cancle_board_alarm_count" + alarmSerivce.search_cancle_board_alarm_count(alarm));
+//		System.out.println("search_cancle_board_alarm_count" + alarmSerivce.search_cancle_board_alarm_count(alarm));
 		
 		//결제 정보
 		mav.addObject("search_pay", mypageservice.search_pay(m));
