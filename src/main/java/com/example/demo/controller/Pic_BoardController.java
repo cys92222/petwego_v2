@@ -16,12 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.service.FollowService;
 import com.example.demo.service.LikeItService;
 import com.example.demo.service.Pic_BoardService;
 import com.example.demo.service.Pic_Board_CommentService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
+import com.example.demo.vo.FollowVo;
 import com.example.demo.vo.LikeItVo;
 import com.example.demo.vo.Pic_BoardVo;
 import com.example.demo.vo.Pic_Board_CommentVo;
@@ -41,6 +43,9 @@ public class Pic_BoardController extends HttpServlet {
 	
 	@Autowired
 	private Pic_Board_CommentService pbc;
+	
+	@Autowired
+	FollowService followService;
 
 	// 사진에 좋아요를 누른적이 있는지 판단
 	@NoLogging
@@ -112,6 +117,24 @@ public class Pic_BoardController extends HttpServlet {
 			ModelAndView mav = new ModelAndView();
 //			System.out.println(pic_boardService.detailPic_Board(pb));
 			//System.out.println(pic_boardService.detailFile(pbf));
+			System.out.println("pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
+			System.out.println("pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
+			
+			
+			
+			//팔로우 관련
+			FollowVo f = new FollowVo();
+			f.setUser_id(pb.getUser_id());
+			f.setUser_id2("로그인한 아이디로 변경해야됨");
+			//팔로잉수
+			mav.addObject("search_follow_count", followService.search_follow_count(f));
+			System.out.println("search_follow_count" + followService.search_follow_count(f));
+			//팔로잉한 유저 정보
+			mav.addObject("search_follow", followService.search_follow(f));
+			System.out.println("search_follow" + followService.search_follow(f));
+			//팔로잉 확인
+			mav.addObject("follow_chk", followService.follow_chk(f));
+			System.out.println("follow_chk" + followService.follow_chk(f));
 			
 			mav.addObject("Board", pic_boardService.detailPic_Board(pb));
 			mav.addObject("file", pic_boardService.detailFile(pbf));

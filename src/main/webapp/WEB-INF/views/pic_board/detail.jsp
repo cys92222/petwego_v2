@@ -105,6 +105,26 @@
 					})
 				})
 			}});
+
+		//팔로우하기
+		$("#follow").click(function(){
+			var follow_user_id = $("#follow_user_id").val();
+			$.ajax("/follow/insert_follow",{data:{user_id:follow_user_id},success:function(re){
+				alert(re);
+				window.location.reload(true);
+				}});
+			});
+		
+		//팔로우취소하기
+		$("#delete_follow").click(function(){
+			var follow_user_id = $("#follow_user_id").val();
+			$.ajax("/follow/delete_follow",{data:{user_id:follow_user_id},success:function(re){
+				alert(re);
+				window.location.reload(true);
+				}});
+			});
+
+		
 		});
 
 </script>
@@ -117,10 +137,26 @@
 	<input type="hidden" id="photo_no" value="${Board.photo_no }">
 	<table border="1" width="80%">
 	<tr>
+		<td>아이디 : <input type="text" value="${Board.user_id }" id="follow_user_id" readonly="readonly"> / 팔로잉수 : ${search_follow_count } 명 </td>
+		<c:if test="${follow_chk ==0 }">
+			<input type="button" value="팔로잉하기" id="follow"><br>
+		</c:if>
+		<c:if test="${follow_chk !=0 }">
+			<input type="button" value="팔로잉취소하기" id="delete_follow"><br>
+			나를 팔로잉한 유저 리스트<br>
+			<c:forEach items="${search_follow }" var="search_follow" begin="0" end="5">
+				${search_follow.user_id2 }님 
+			</c:forEach>
+			<a href="#">더보기</a>
+		</c:if>
+	</tr>
+	 <tr>
 			<td>사진</td>
-			<!-- <td>${Board.photo_no}</td> -->
-			<img width="200" height="200" src="/img/${file.photo_file_name}"/>
-		</tr>
+			<!-- <td>${Board.photo_no}</td> -->		
+	</tr>
+	<tr>
+			<td><img width="200" height="200" src="/img/${file.photo_file_name}"/></td>
+	</tr>
 		<tr>
 			<td>글 내용</td>
 			<td><div>${Board.photo_detail }</div></td>
