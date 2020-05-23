@@ -34,6 +34,39 @@ $(function(){
 </head>
 <body>
 	<h1>마이페이지</h1>
+	알림 리스트<br>
+	<!-- 자유게시판 -->
+	<c:if test="${search_insert_board_alarm_count>0 }">
+		자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
+		<c:forEach items="${search_insert_board_alarm }" var="search_insert_board_alarm">
+			${search_insert_board_alarm.in_user_id } 님이 댓글을 등록했습니다 <a href="/board/get?board_no=${search_insert_board_alarm.t_num }">게시물로 이동</a>
+		</c:forEach>
+	</c:if>
+	<br>
+	<c:if test="${search_cancle_board_alarm_count>0 }">
+		자유게시판 취소 댓글 수 : ${search_cancle_board_alarm_count } 개 입니다<br>
+		<c:forEach items="${search_cancle_board_alarm }" var="search_cancle_board_alarm">
+			${search_cancle_board_alarm.in_user_id } 님이 댓글을 삭제했습니다 <a>확인</a>
+		</c:forEach>
+	</c:if>
+	<br>
+	
+	<!-- 함께가요 -->
+	<c:if test="${search_insert_together_count>0 }">
+		함께가요 신청자 수 : ${search_insert_together_count } 명 입니다<br>
+		<c:forEach items="${search_insert_together_alarm }" var="search_insert_together_alarm">
+			${search_insert_together_alarm.in_user_id } 님 <a href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a><br>
+		</c:forEach>
+	</c:if>
+	<br>
+	<c:if test="${search_cancle_together_count>0 }">
+		함께가요 취소자 수 : ${search_cancle_together_count } 명 입니다<br>
+		<c:forEach items="${search_cancle_together_alarm }" var="cancle_together_alarm">
+			${cancle_together_alarm.in_user_id } 님 <a href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a><br>
+		</c:forEach>
+	</c:if>
+	<br>
+
 <hr>
 <section id="info">
 	<h2>${myinfo.user_id }(${myinfo.nick_name })님의 정보입니다</h2>
@@ -111,13 +144,24 @@ $(function(){
 <section id="pay_list">
 	<h2>${myinfo.user_id }(${myinfo.nick_name })님의 결제내역입니다</h2>  
 	<a href="/mypage/pay_list">더보기</a><br>
-	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>4</li>
-	</ul>
+	<table border="1">
+	<tr>
+		<th>고유결제번호</th><th>상점거래id</th><th>결제금액</th><th>결제수단</th><th>카드승인번호</th><th>결제승인시각</th><th>결제상태</th><th>예약번호</th><th>아이디</th>
+	</tr>
+	<c:forEach items="${search_pay }" var="search_pay" begin="0" end="5">
+		<tr>
+			<td>${search_pay.imp_uid }</td>
+			<td>${search_pay.merchant_uid }</td>
+			<td>${search_pay.paid_amount }</td>
+			<td>${search_pay.pay_method }</td>
+			<td>${search_pay.apply_num }</td>
+			<td>${search_pay.paid_time }</td>
+			<td>${search_pay.status }</td>
+			<td>${search_pay.rsv_no }</td>
+			<td>${search_pay.user_id }</td>
+		</tr>	
+	</c:forEach>
+	</table>
 </section>
 
 <button id="widthdraw_btn">회원탈퇴</button>

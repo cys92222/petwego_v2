@@ -87,7 +87,7 @@ $(document).ready(function(){
 
 	//신청하기
 	var t_num = $("#t_num").val();
-	var user_id = "wonwoo";
+	var user_id = "user1";
   	var t_size = ${detailTogether.t_size };
   	var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
 
@@ -152,6 +152,7 @@ $(document).ready(function(){
 			<section id="container">
 				<form id="detailForm" name="detailForm" role="form" method="get">
 				<!-- scri의 값을 보관하기 위해서 form태그안에 타입 hidden -->
+				<input type="hidden" id="user_id" name="user_id" value="${detailTogether.user_id }">
 				<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
 				<input type="hidden" id="t_size" name="t_size" value="${detailTogether.t_size }"/>
 				<input type="hidden" id="t_attendee_cnt" name="t_attendee_cnt" value="${detailTogether.t_attendee_cnt }"/>

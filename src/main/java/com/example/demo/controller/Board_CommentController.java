@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.example.demo.service.AlarmService;
 import com.example.demo.service.Board_CommentService;
 import com.example.demo.util.AopLog.NoLogging;
+import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.google.gson.Gson;
 
@@ -28,6 +29,9 @@ public class Board_CommentController {
 	public void setComm_service(Board_CommentService comm_service) {
 		this.comm_service = comm_service;
 	}
+	
+	@Autowired
+	AlarmService alarmService;
 	
 	// 댓글목록
 	@NoLogging
@@ -44,13 +48,28 @@ public class Board_CommentController {
 	public ModelAndView insertComment(HttpServletRequest request, Board_CommentVo bc) {
 		//System.out.println("댓글작성 컨트롤러 동작함");
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
+		
 		comm_service.insertComment(bc);
+		
+		//댓글 등록 알람 등록
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id(bc.getUser_id());
+		alarm.setT_num(bc.getBoard_no());
+		alarmService.insert_board_alarm(alarm);
+		
 		return mav;
 	}
 
 	// 댓글만 삭제
 	@GetMapping(value = "/commDeleteSubmit")
 	public String commDeleteSubmit(HttpServletRequest request, Board_CommentVo bc) {	
+		//댓글 삭제 알람 등록
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id(bc.getUser_id());
+		alarm.setBoard_num(bc.getComm_num());
+		alarm.setT_num(bc.getBoard_no());
+		alarmService.cancle_insert_board_alarm(alarm);
+		
 		comm_service.deleteComment(bc);	// where comm_num = #{comm_num}
 		// System.out.println("댓글삭제 컨트롤러 동작");
 		return "redirect:/board/get";

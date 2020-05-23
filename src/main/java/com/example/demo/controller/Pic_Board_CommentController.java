@@ -27,10 +27,9 @@ public class Pic_Board_CommentController {
 	public void setComm_service(Pic_Board_CommentService pcomm_service) {
 		this.pcomm_service = pcomm_service;
 	}
-
 	// 댓글목록
 	@GetMapping(value = "/plistComment", produces = "application/json; charset=utf-8")
-	public String plistComment(HttpServletRequest request,Pic_Board_CommentVo pbc) {
+	public String plistComment(HttpServletRequest request,Pic_Board_CommentVo pbc) {   
 		List<Pic_Board_CommentVo> plistComment = pcomm_service.plistComment(pbc.getPhoto_no());
 		Gson gson = new Gson();
 		return gson.toJson(plistComment);

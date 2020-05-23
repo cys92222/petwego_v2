@@ -20,7 +20,7 @@ var temp = function(){
 	var arr_file = ${file};
 	var arr_board = ${board};
 	$.each(arr_file,function(idx,data){
-		var a = $('<a href="/pic_board/detail?photo_no=' + data.photo_no + '"></a>');
+		var a = $("<a href=/pic_board/detail?photo_no="+data.photo_no+"&user_id="+arr_board[idx].user_id+"></a>");
 		var img = $("<img/>").attr({"src":"/img/"+data.photo_file_name,"photo_no":data.photo_no});
 		a.append(img);
 		$("#sns").append(a);

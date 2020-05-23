@@ -10,6 +10,7 @@ import com.example.demo.vo.Animal_infoVo;
 
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
+import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 import com.example.demo.vo.TogetherVo;
@@ -146,5 +147,14 @@ public class MypageServiceImpl implements MypageService {
 		re = mypagedao.delete_people_pic(m);
 		return re;
 	}
+	
+	//결제 정보
+	@Override
+	public List<PaymentVo> search_pay(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		List<PaymentVo> list = mypagedao.search_pay(m);
+		return list;
+	}
+
 
 }
