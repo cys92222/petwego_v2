@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 민아) 5/22, 결제 서비스 하는중 
+// 민아) 5/22, 결제 서비스 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

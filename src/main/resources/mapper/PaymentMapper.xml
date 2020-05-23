@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 민아) 5/22, 결제 -->
 <mapper namespace="com.example.demo.dao.PaymentDao">
 	<!-- 결제정보 등록 -->
 	<insert id="insertPay">

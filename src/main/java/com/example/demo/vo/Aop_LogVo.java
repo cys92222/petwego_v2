@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// 민아) 5/19, log 남기기 작업중 
+// 민아) 5/19, log 남기기 완료
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
