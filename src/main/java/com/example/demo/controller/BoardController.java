@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.service.AlarmService;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.Board_CommentService;
 import com.example.demo.service.Board_fileService;
+import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
@@ -67,6 +69,9 @@ public class BoardController {
 	public void setComm_service(Board_CommentService comm_service) {
 		this.comm_service = comm_service;
 	}
+	
+	@Autowired
+	AlarmService alarmService;
 
 	// 게시물 목록, 검색, 페이징
 	@GetMapping("/list")
@@ -114,6 +119,13 @@ public class BoardController {
 	public void getBoard(HttpServletRequest request,BoardVo b, Model model) {
 		service.updateHit(b.getBoard_no()); // 게시물 조회수 증가
 		model.addAttribute("detail", service.getBoard(b));
+		
+		//로그인 구현되면 로그인 아이디로 셋팅
+//		//댓글 등록된거 알람안가게 셋팅
+//		AlarmVo alarm = new AlarmVo();
+//		alarm.setUser_id("로그인한 아이디");
+//		alarm.setT_num(b.getBoard_no());
+//		alarmService.chk_board_alarm(alarm);
 	}
 
 	// 게시글 수정
@@ -164,7 +176,12 @@ public class BoardController {
 	@GetMapping("/delete")
 	public ModelAndView deleteSubmit(HttpServletRequest request,BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/board/list");
-
+		
+		//알람 삭제
+		AlarmVo alarm = new AlarmVo();
+		alarm.setT_num(bc.getBoard_no());
+		alarmService.delete_board_alarm(alarm);
+		
 		// 첨부파일이 있는 글이라면, 첨부파일 먼저 지워줘!
 		bf_service.delbord_no(bf.getBoard_no());
 

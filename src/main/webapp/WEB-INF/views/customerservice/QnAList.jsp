@@ -119,6 +119,9 @@ $(function(){
 				else if(category == 2){
 					cs_no.append("계정 관련");
 					}
+				else if(categoty ==3 ){
+					cs_no.append("결제 관련 문의");
+					}
 				var user_id = $("<td></td>").append(qna.user_id);
 
 				var a = qna.inq_title;
@@ -377,6 +380,7 @@ $(function(){
 <select name="cs_no" required="required">
 	<option value="1">홈페이지 이용 관련</option>
 	<option value="2">계정 관련</option>
+	<option value="3">결제 관련 문의</option>
 </select><br>
 작성자<br>
 <input type="text" name="user_id" required="required"><br>
@@ -418,6 +422,7 @@ $(function(){
 		<select name="cs_no">
 			<option value="1">홈페이지 이용 관련</option>
 			<option value="2">계정 관련</option>
+			<option value="3">결제 관련 관련</option>
 		</select><br>
 		작성자 아이디<br>
 		<input type="text" id="re_user_id" name="user_id"><br>
@@ -442,6 +447,7 @@ $(function(){
 		<select id="up_cs_no" name="up_cs_no"><br>
 			<option value="1">홈페이지 이용 관련</option>
 			<option value="2">계정 관련</option>
+			<option value="3">결제 관련 문의</option>
 		</select><br>
 		작성자<br>
 		<input type="text" id="up_user_id" name="up_user_id" readonly="readonly"><br>

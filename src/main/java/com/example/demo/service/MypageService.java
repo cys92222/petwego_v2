@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.MemberInfoVo;
+import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 import com.example.demo.vo.TogetherVo;
@@ -55,5 +56,8 @@ public interface MypageService {
 	
 	//사람 사진 삭제
 	public int delete_people_pic(MemberInfoVo m);
+	
+	//결제 정보
+	public List<PaymentVo> search_pay(MemberInfoVo m);
 	
 }

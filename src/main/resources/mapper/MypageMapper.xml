@@ -84,4 +84,8 @@
 		update member_info set fname = '' where user_id = #{user_id}
 	</update>
 
+<!-- 결제 정보 -->
+	<select id="search_pay" resultType="com.example.demo.vo.PaymentVo">
+		select * from payment where user_id = #{user_id}
+	</select>
 </mapper>

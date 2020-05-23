@@ -61,7 +61,9 @@ $(function(){
 			cs_no.html("홈페이지 이용 관련");
 		}else if (notice.cs_no == 2){
 			cs_no.html("계정 관련");
-		}
+		}else if (notice.cs_no ==3){
+			cs_no.html("결제 관련 문의");
+			}
 		
 
 		var tr = $("<tr></tr>").append(notice_no, cs_no, notice_title, notice_hit, notice_date);
@@ -91,6 +93,9 @@ $(function(){
 						}
 					else if(d_ca == 2){
 						$("#d_cs_no").val("계정 관련");
+						}
+					else if(d_ca == 3){
+						$("#d_cs_no").val("결제 관련 관련");
 						}
 
 
@@ -253,6 +258,7 @@ $(function(){
 <select name="cs_no">
 	<option value="1">홈페이지 관련</option>
 	<option value="2">계정 관련</option>
+	<option value="3">결제 관련 문의</option>
 </select><br>
 제목<br>
 <input type="text" id="notice_title" name="notice_title" required="required"><br>
@@ -290,6 +296,7 @@ $(function(){
 <select id="u_cs_no" name="u_cs_no"><br>
 	<option value="1">홈페이지 이용 관련</option>
 	<option value="2">계정 관련</option>
+	<option value="3">결제 관련 문의</option>
 </select><br>
 공지사항 번호 : <input type="text" id="u_notice_no" name="u_notice_no" readonly="readonly"><br>
 제목 : <input type="text" id="u_notice_title" name="u_notice_title"><br>

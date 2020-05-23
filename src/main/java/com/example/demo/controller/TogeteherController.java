@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.service.AlarmService;
 import com.example.demo.service.ApplicationService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.service.TogetherService;
@@ -34,6 +35,7 @@ import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.ApplicationVo;
 import com.example.demo.vo.ReplyVo;
 import com.example.demo.vo.ThumbnailVo;
@@ -54,6 +56,9 @@ public class TogeteherController {
 	
 	@Autowired
 	ApplicationService Aservice;
+	
+	@Autowired
+	AlarmService alarmService;
 	
 //	@RequestMapping(value="/write")
 //	public String boardWrite() {
@@ -213,6 +218,13 @@ public class TogeteherController {
   public String detailTogether(HttpServletRequest request, TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
      LOGGER.info("detailTogether");
      
+//     //함께가요 작성자가 상세보기하면 알람 확인해서 알람 안가게
+//     //로그인되면 로그인 아이디로 셋팅
+//     AlarmVo alarm = new AlarmVo();
+//     alarm.setUser_id();
+//     alarm.setT_num(togetherVo.getT_num());
+//     alarmService.chk_together_alarm(alarm);
+     
      model.addAttribute("detailTogether",service.detailTogether(togetherVo.getT_num()));
      //값이 안가져와서 테스트해봄
 //     System.out.println(togetherVo.getT_num());
@@ -318,6 +330,20 @@ public class TogeteherController {
 	@RequestMapping(value="/together/deleteTogether",method = RequestMethod.POST)
 	public String deleteTogether(HttpServletRequest request, TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri , RedirectAttributes rttr) throws Exception{
 		LOGGER.info("deleteTogether");
+		System.out.println(togetherVo);
+		//알람 삭제
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id("user1");
+		//함께가요 글 번호로 셋팅
+		alarm.setT_num(togetherVo.getT_num());
+		alarmService.delete_together_alarm(alarm);
+		
+		//함께가요 삭제
+		ApplicationVo applicationVo = new ApplicationVo();
+		applicationVo.setUser_id(togetherVo.getUser_id());
+		applicationVo.setT_num(togetherVo.getT_num());
+		alarmService.delete_application(applicationVo);
+		
 		Rservice.deleteAll(togetherVo);
 		service.deleteTogether(togetherVo.getT_num());
 		rttr.addAttribute("page",scri.getPage());
@@ -394,6 +420,19 @@ public class TogeteherController {
 			str = "이미 마감되었습니다.";
 		}else{
 			Aservice.insertApplication(av);
+			
+			//신청 알람 등록
+			AlarmVo alarm = new AlarmVo();
+//			alarm.setUser_id(av.getUser_id());
+			alarm.setUser_id("user1");
+			alarm.setT_num(av.getT_num());
+			int result = alarmService.insert_together_alarm(alarm);
+			System.out.println(result);
+			if(result > 0) {
+				System.out.println("알람등록");
+			}else {
+				System.out.println("알람등록 실패");
+			}
 			str = "신청하기 완료";
 		}
 	
@@ -406,6 +445,16 @@ public class TogeteherController {
 	public String deleteApplication(HttpServletRequest request,ApplicationVo av) {
 				
 		String re = "0";
+		
+		//신청,취소 알람 삭제
+//		System.out.println(av.getApplication_no());
+//		System.out.println(av.getT_num());
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id("user1");
+		//함께가요 글 번호 
+		alarm.setT_num(av.getT_num());
+		alarmService.cancle_insert_together_alarm(alarm);
+		
 		int r = Aservice.deleteApplication(av);
 		if (r > 0) {
 			re = "1";

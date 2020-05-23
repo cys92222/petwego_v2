@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.service.AlarmService;
 import com.example.demo.service.MypageService;
 import com.example.demo.util.AopLog.NoLogging;
+import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
@@ -27,6 +29,9 @@ public class MyPageController {
 	
 	@Autowired
 	MypageService mypageservice;
+	
+	@Autowired
+	AlarmService alarmSerivce;
 	
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
@@ -56,7 +61,61 @@ public class MyPageController {
 		//반려동물 리스트
 		mav.addObject("animal_list", mypageservice.search_my_animal(m));
 //		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
+		
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id(m.getUser_id());
+		
+		//신청알림수
+		mav.addObject("search_insert_together_count", alarmSerivce.search_insert_together_count(alarm));
+		System.out.println("search_insert_together_count" + alarmSerivce.search_insert_together_count(alarm));
+		
+		//신청알림 있는지 조회
+		mav.addObject("search_insert_together_alarm", alarmSerivce.search_insert_together_alarm(alarm));
+		System.out.println("search_insert_together_alarm" + alarmSerivce.search_insert_together_alarm(alarm));
+		
+		//취소알림수
+		mav.addObject("search_cancle_together_count", alarmSerivce.search_cancle_together_count(alarm));
+		System.out.println("search_cancle_together_count" + alarmSerivce.search_cancle_together_count(alarm));
+		
+		//취소알림 있는지 조회
+		mav.addObject("search_cancle_together_alarm", alarmSerivce.search_cancle_together_alarm(alarm));
+		System.out.println("search_cancle_together_alarm" + alarmSerivce.search_cancle_together_alarm(alarm));
+		
+		//자유게시판 댓글 등록 알람 조회
+		mav.addObject("search_insert_board_alarm", alarmSerivce.search_insert_board_alarm(alarm));
+		System.out.println("search_insert_board_alarm" + alarmSerivce.search_insert_board_alarm(alarm));
+		
+		//자유게시판 댓글 삭제 알람 조회
+		mav.addObject("search_cancle_board_alarm", alarmSerivce.search_cancle_board_alarm(alarm));
+		System.out.println("search_cancle_board_alarm" + alarmSerivce.search_cancle_board_alarm(alarm));
+		
+		//자유게시판 댓글 등록  수
+		mav.addObject("search_insert_board_alarm_count", alarmSerivce.search_insert_board_alarm_count(alarm));
+		System.out.println("search_insert_board_alarm_count" + alarmSerivce.search_insert_board_alarm_count(alarm));
+		
+		//자유게시판  댓글 취소 수
+		mav.addObject("search_cancle_board_alarm_count", alarmSerivce.search_cancle_board_alarm_count(alarm));
+		System.out.println("search_cancle_board_alarm_count" + alarmSerivce.search_cancle_board_alarm_count(alarm));
+		
+		//결제 정보
+		mav.addObject("search_pay", mypageservice.search_pay(m));
+		
 		return mav;
+		
+	}
+	
+	//함께가요 신청 알람 확인
+	@RequestMapping("/mypage/check_alarm_in")
+	public String check_alarm_in(HttpServletRequest request, AlarmVo a) {
+			alarmSerivce.check_alarm_in(a);
+		return "redirect:/mypage/mypage";
+	}
+	
+	//함께가요 취소 알람 확인
+	@RequestMapping("/mypage/check_alarm_cancle")
+	public String check_alarm_cancle(HttpServletRequest request, AlarmVo a) {
+			alarmSerivce.check_alarm_cancle(a);
+		return "redirect:/mypage/mypage";
 	}
 	
 	//반려동물 관리폼
@@ -187,6 +246,7 @@ public class MyPageController {
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id("user1");
 		mav.setViewName("/mypage/pay_list");
+		mav.addObject("search_pay", mypageservice.search_pay(m));
 		return mav;
 	}
 	
