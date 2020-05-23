@@ -8,15 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>나의 결제 내역</h2>
+<h2>나의 예약 결제 내역</h2>
 <hr>
+	카드승인 번호는 카카오페이등의 간편결제를 이용할경우 보여지지 않습니다.
 <h2>${search_pay[0].user_id }님의 결제내역입니다</h2>  
 	<table border="1">
 	<tr>
 		<th>고유결제번호</th><th>상점거래id</th><th>결제금액</th><th>결제수단</th><th>카드승인번호</th><th>결제승인시각</th><th>결제상태</th><th>예약번호</th><th>아이디</th>
 	</tr>
 	<c:forEach items="${search_pay }" var="search_pay">
-		<tr>
+		<tr onclick="location.href='/mypage/detail_pay?imp_uid=${search_pay.imp_uid }&user_id=${search_pay.user_id }'">
 			<td>${search_pay.imp_uid }</td>
 			<td>${search_pay.merchant_uid }</td>
 			<td>${search_pay.paid_amount }</td>
@@ -26,7 +27,7 @@
 			<td>${search_pay.status }</td>
 			<td>${search_pay.rsv_no }</td>
 			<td>${search_pay.user_id }</td>
-		</tr>	
+		</tr>
 	</c:forEach>
 	</table>
 </body>

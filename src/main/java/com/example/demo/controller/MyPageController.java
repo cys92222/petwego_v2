@@ -21,6 +21,7 @@ import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.MemberInfoVo;
+import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
 
 //민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
@@ -381,4 +382,13 @@ public class MyPageController {
 		return "redirect:/mypage/mypage?user_id"+m.getUser_id();
 	}
 	
+	//결제 상세
+	@RequestMapping("/mypage/detail_pay")
+	public ModelAndView detail_pay(HttpServletRequest request,PaymentVo p) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("detail_pay", mypageservice.detail_pay(p));
+		mav.setViewName("/mypage/detail_pay");
+		
+		return mav;
+	}
 }

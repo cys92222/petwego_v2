@@ -156,5 +156,13 @@ public class MypageServiceImpl implements MypageService {
 		return list;
 	}
 
+	//결제 상세
+	@Override
+	public PaymentVo detail_pay(PaymentVo p) {
+		// TODO Auto-generated method stub
+		PaymentVo pv = mypagedao.detail_pay(p);
+		return pv;
+	}
+
 
 }

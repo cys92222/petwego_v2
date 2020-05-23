@@ -88,4 +88,9 @@
 	<select id="search_pay" resultType="com.example.demo.vo.PaymentVo">
 		select * from payment where user_id = #{user_id}
 	</select>
+	
+<!-- 	결제 상세 -->
+	<select id="detail_pay" resultType="com.example.demo.vo.PaymentVo">
+		select * from payment where user_id = #{user_id} and imp_uid = #{imp_uid}
+	</select>
 </mapper>
