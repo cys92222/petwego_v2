@@ -16,7 +16,7 @@ public class PaymentVo {
 	private String merchant_uid; 	// 상점거래id
 	private int paid_amount;		// 결제금액
 	private String pay_method; 		// 결제수단
-	private String apply_num; 		// 카드승인번호
+	private String apply_num; 		// 카드승인번호 : 이건 카카오페이등의 간편결제를 이용할경우 null값이 들어간다. 
 	private Date paid_time; 		// 결제승인시각
 	private String status;			// 결제상태
 	private int rsv_no; 			// 예약번호
