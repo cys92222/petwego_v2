@@ -28,7 +28,7 @@ public class Pic_Board_CommentController {
 		this.pcomm_service = pcomm_service;
 	}
 
-	// 댓글목록
+	// 댓글목록 입니다
 	@GetMapping(value = "/plistComment", produces = "application/json; charset=utf-8")
 	public String plistComment(HttpServletRequest request,Pic_Board_CommentVo pbc) {
 		List<Pic_Board_CommentVo> plistComment = pcomm_service.plistComment(pbc.getPhoto_no());
