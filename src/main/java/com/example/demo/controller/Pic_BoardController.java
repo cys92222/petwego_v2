@@ -117,8 +117,8 @@ public class Pic_BoardController extends HttpServlet {
 			ModelAndView mav = new ModelAndView();
 //			System.out.println(pic_boardService.detailPic_Board(pb));
 			//System.out.println(pic_boardService.detailFile(pbf));
-			System.out.println("pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
-			System.out.println("pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
+			System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
+			System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
 			
 			
 			
