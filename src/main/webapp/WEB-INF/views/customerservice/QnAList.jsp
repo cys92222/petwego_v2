@@ -119,7 +119,7 @@ $(function(){
 				else if(category == 2){
 					cs_no.append("계정 관련");
 					}
-				else if(categoty ==3 ){
+				else if(category ==3 ){
 					cs_no.append("결제 관련 문의");
 					}
 				var user_id = $("<td></td>").append(qna.user_id);
