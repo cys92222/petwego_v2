@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자페이지- 로그기록</title>
-<!-- 민아) 5/19, 관리자페이지 하는중  -->
+<!-- 민아) 5/19, 관리자페이지 - 로그관리  -->
 <style type="text/css">
 	li {list-style: none; float: left; padding: 6px;}	<!--페이징 가로정렬 스타일 -->
 	#wrapper{display:flex;}

@@ -17,6 +17,8 @@ import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.PaymentVo;
 
+// 민아) 5/22, 결제 구현완료
+// 민아) 5/23, 결제 성공이나 오류시 이동할 페이지 만들어야함 
 @Controller
 @RequestMapping("/payments/*")
 public class PaymentController {
@@ -27,50 +29,32 @@ public class PaymentController {
 	public void setPay_service(PaymentService pay_service) {
 		this.pay_service = pay_service;
 	}
-	
-	// 결제 창 
+
+	// 결제 창
 	@NoLogging
 	@GetMapping(value = "/paySystem")
 	public void paySystem() {
-		
+
 	}
 
 	// 결제정보 등록
-//	@NoLogging
-//	@RequestMapping(value = "/insertPay")
-//	public void insertForm(HttpServletRequest request,PaymentVo p) {
-//		System.out.println("결제 폼 동작함");
-//		
-//	}
-	
-//	@RequestMapping(value = "/insertPay")
 	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String insertSubmit(HttpServletRequest request, PaymentVo p, @RequestBody List<PaymentVo> listPay) {
-		
+
 		for (PaymentVo pv : listPay) {
 			pay_service.insertPay(pv);
 		}
 
-		System.out.println(p);
-		System.out.println(p.getImp_uid());
 		System.out.println("결제컨트롤러 동작함");
-		
+
 		return "등록ok";
 	}
-	
+
 	@NoLogging
 	@GetMapping(value = "/okayPay")
 	public String okay() {
 		return "결제가 성공하였습니다.";
 	}
-	
-//	@NoLogging
-//	@RequestMapping("aaaaa")
-//	public String aaaa(HttpServletRequest request, PaymentVo p) {
-//		System.out.println("aaaaaaaaaaaaaaaaaaaa");
-//		
-//		return "등록";
-//	}
 
 }
