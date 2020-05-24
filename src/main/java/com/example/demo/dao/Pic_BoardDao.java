@@ -46,8 +46,11 @@ public interface Pic_BoardDao {
 	// 게시글 삭제
 	int deletePic_Board(Pic_BoardVo pb);
 
-	// 게시글 수정
+	// 게시글 내용 수정
 	int updatePic_Board(Pic_BoardVo pb);
+	
+	// 게시물 파일 수정
+	int updatePic_Board_File(Pic_Board_FileVo pbf);
 	
 	//파일삭제
 	int deleteFile(Pic_BoardVo pb);

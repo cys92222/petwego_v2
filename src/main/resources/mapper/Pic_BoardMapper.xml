@@ -83,9 +83,14 @@
    		delete pic_board_file where photo_no = #{photo_no}<!--and user_id = #{user_id}--> 
    </delete>
 
-   <!-- sns수정 ??? -->
+   <!-- sns내용수정 ??? -->
    <update id="updatePic_Board">
-      update pic_board set photo_detail = #{photo_detail},pic_board_file = #{pic_board_file} where photo_no = #{photo_no}
+      update pic_board set photo_detail = #{photo_detail} where photo_no = #{photo_no}
+   </update>
+   
+   <!-- sns사진수정 ??? -->
+   <update id="updatePic_Board_File">
+      update pic_board_file set photo_file_name = #{photo_file_name} where photo_file_no = #{photo_file_no}
    </update>
 
 

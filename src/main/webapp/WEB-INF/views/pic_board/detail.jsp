@@ -134,7 +134,7 @@
 	<hr>
 	<a href="/pic_board/list">sns 메인</a><br><br>
 	<form id="f">
-	<input type="hidden" id="photo_no" value="${Board.photo_no }">
+	<input type="text" id="photo_no" value="${Board.photo_no }">
 	<table border="1" width="80%">
 	<tr>
 		<td>아이디 : <input type="text" value="${Board.user_id }" id="follow_user_id" readonly="readonly"> / 팔로잉수 : ${search_follow_count } 명 </td>

@@ -117,8 +117,8 @@ public class Pic_BoardController extends HttpServlet {
 			ModelAndView mav = new ModelAndView();
 //			System.out.println(pic_boardService.detailPic_Board(pb));
 			//System.out.println(pic_boardService.detailFile(pbf));
-			System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
-			System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
+//			System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
+//			System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
 			
 			
 			
@@ -128,13 +128,13 @@ public class Pic_BoardController extends HttpServlet {
 			f.setUser_id2("로그인한 아이디로 변경해야됨");
 			//팔로잉수
 			mav.addObject("search_follow_count", followService.search_follow_count(f));
-			System.out.println("search_follow_count" + followService.search_follow_count(f));
+//			System.out.println("search_follow_count" + followService.search_follow_count(f));
 			//팔로잉한 유저 정보
 			mav.addObject("search_follow", followService.search_follow(f));
-			System.out.println("search_follow" + followService.search_follow(f));
+//			System.out.println("search_follow" + followService.search_follow(f));
 			//팔로잉 확인
 			mav.addObject("follow_chk", followService.follow_chk(f));
-			System.out.println("follow_chk" + followService.follow_chk(f));
+//			System.out.println("follow_chk" + followService.follow_chk(f));
 			
 			mav.addObject("Board", pic_boardService.detailPic_Board(pb));
 			mav.addObject("file", pic_boardService.detailFile(pbf));
@@ -226,23 +226,48 @@ public class Pic_BoardController extends HttpServlet {
 
 		// sns수정폼
 		@GetMapping("/pic_board/update")
-		public String updateForm(Pic_BoardVo pb, Model model ) {
+		public String updateForm(HttpServletRequest request,Pic_BoardVo pb, Model model ) {
 			model.addAttribute("up",pic_boardService.detailPic_Board(pb));
 			
 			Pic_Board_FileVo pbf = new Pic_Board_FileVo();
 			pbf.setPhoto_no(pb.getPhoto_no());
 			
 			model.addAttribute("pic", pic_boardService.detailFile(pbf));
+			model.addAttribute("board", pic_boardService.detailPic_Board(pb));
 			return "/pic_board/update";
 		}
 
 		
 		//sns 수정
-//		@ResponseBody
-//		@PostMapping(value = "/pic_board/update")
-//		public String updateSubmit(HttpServletRequest request,Pic_BoardVo pb,			Pic_Board_FileVo pbf, Model model,Criteria cri)throws Exception {
-//			pic_boardService.updatePic_Board(pb);
-//			
+		@RequestMapping(value = "/pic_board/update", method = RequestMethod.POST)
+		public String updateSubmit(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf, Model model,Criteria cri,MultipartFile uploadFile)throws Exception {
+			
+//			System.out.println("pb"+pb);
+//			System.out.println("pbf"+pbf);
+//			System.out.println("pb.getUser_id()"+pb.getUser_id());
+			
+			//내용 수정
+			pic_boardService.updatePic_Board(pb);
+			
+			//기존 사진 이름
+			String oldfilename = pbf.getPhoto_file_name();
+			System.out.println("기존 사진 이름"+ oldfilename);
+			
+			//업로드파일 이름
+			String uploadfile = uploadFile.getOriginalFilename();
+			System.out.println("업로드 파일 이름" + uploadfile);
+			//사진 수정을 한다면
+			if(uploadfile!=null & !uploadfile.equals("")) {
+				pbf.setPhoto_file_name(uploadfile);
+				pic_boardService.updatePic_Board_File(pbf);
+				System.out.println("사진 수정함");
+			}else {
+				System.out.println("사진 수정안함");
+			}
+			
+			
+			
+			
 //			model.addAttribute("pic_board_no",pb.getPhoto_no());
 //			model.addAttribute("pic_board_file_",pbf.getPhoto_file_no());
 //			
@@ -261,7 +286,7 @@ public class Pic_BoardController extends HttpServlet {
 //					pic_boardService.deleteFile(pbf1.getPhoto_file_name());
 //				}
 //			}
-//		
-//			return pb.getPhoto_no()+"";
-//		}
+		
+			return "redirect:/pic_board/detail?photo_no="+pb.getPhoto_no()+"&user_id="+pb.getUser_id();
+		}
 }

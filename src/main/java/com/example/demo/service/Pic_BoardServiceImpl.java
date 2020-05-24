@@ -68,7 +68,9 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 	//업데이트
 	@Override
 	public int updatePic_Board(Pic_BoardVo pb) {
-		return pic_boardDao.updatePic_Board(pb);
+		int re = -1;
+		re = pic_boardDao.updatePic_Board(pb);
+		return re;
 
 	}
 	
@@ -94,6 +96,15 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
 		int re=-1;
 		System.out.println("파일삭제aaaaaaaaaaaaaaaaaaaa");
 		re = pic_boardDao.deleteFile(pb);
+		return re;
+	}
+	
+	// 게시물 파일 수정
+	@Override
+	public int updatePic_Board_File(Pic_Board_FileVo pbf) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = pic_boardDao.updatePic_Board_File(pbf);
 		return re;
 	}
 	
