@@ -275,9 +275,12 @@ public class MyPageController {
 	
 	//회원탈퇴
 	@RequestMapping("/mypage/delete_member")
+	@ResponseBody
 	public String delete_member(HttpServletRequest request,MemberInfoVo m) {
+		System.out.println("탈퇴할  id"+m.getUser_id());
 		mypageservice.delete_myinfo(m);
-		return "redirect:/MainPage";
+//		return "redirect:/MainPage";
+		return "/MainPage";
 	}
 	
 	//비밀번호 변경
