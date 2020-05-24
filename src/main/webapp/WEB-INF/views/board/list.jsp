@@ -4,6 +4,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -17,6 +18,9 @@
 </script>
 </head>
 <body>
+<c:if test="${a eq 'admin' }">
+<%@include file="../management/header.jsp"%>
+</c:if>
 	<h2>자유 게시판</h2>
 	<hr>
 	<a href="/MainPage">메인페이지</a><br>
