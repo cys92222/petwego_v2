@@ -5,6 +5,7 @@
 <%@include file="../management/header.jsp"%>
 <!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
 <body>
+<br>
  	<!-- Begin Page Content -->
  	<div class="container-fluid">
 		

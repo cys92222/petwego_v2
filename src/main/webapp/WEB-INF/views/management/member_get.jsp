@@ -30,6 +30,7 @@
 </script>
 </head>
 <body>
+<br>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 	<!-- Page Heading -->
@@ -43,6 +44,7 @@
 	
 	<!-- 원래내가 쓴 부분  -->
 	<a href="/management/member_list">회원 목록</a><br><br>
+
 	<input type="hidden" id="user_id" value="${detail_Info.user_id }">
 	<table class="table table-bordered" border="1" width="80%"  style="text-align: center;">
 		<tr>
@@ -90,7 +92,13 @@
 			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detail_Info.info_update_date }"/></td>
 		</tr>
 	</table>
-	<button id="btnDelete">회원 강퇴</button>
+	<!-- 회원 강퇴 버튼 -->
+		<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
+       	 <span class="icon text-white-50">
+        	<i class="fas fa-trash"></i>
+         </span>
+        	<span class="text">회원 강퇴</span>
+        </a>
 	</div>
 	</div>
 	</div>
