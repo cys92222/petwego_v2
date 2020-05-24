@@ -6,8 +6,11 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.AlarmService;
 import com.example.demo.service.MypageService;
+import com.example.demo.service.SecurityService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.Animal_infoVo;
@@ -25,11 +30,21 @@ import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
 
 //민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
+//수인) 5/25 만약에 오류날 경우 각 메소드에 session 처리 추가할 계획
 @Controller
 public class MyPageController {
 	
 	@Autowired
+	LoginMapperDao loginMapperDao;
+	
+	@Autowired
+	SecurityService securityService;
+	
+	@Autowired
 	MypageService mypageservice;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 	
 	@Autowired
 	AlarmService alarmSerivce;
@@ -176,6 +191,7 @@ public class MyPageController {
 		return "redirect:/mypage/animal_info_up_form?user_id="+m.getUser_id();
 	}
 	
+/* 영수 원본	
 	//사람 정보 수정 폼
 	@NoLogging
 	@RequestMapping("/mypage/people_info_up_form")
@@ -227,7 +243,74 @@ public class MyPageController {
 		//수정 끝나고 리스트 컨트롤러 호출
 		return "redirect:/mypage/mypage";
 	}
-	
+*/
+	//수인 수정버전 문제있으면 다시 바꾸기
+	//사람 정보 수정 폼
+		@NoLogging
+		@RequestMapping("/mypage/people_info_up_form")
+		public ModelAndView people_info_up_form(HttpServletRequest request) {
+			HttpSession session = request.getSession();
+		    Authentication authentication = (Authentication) session.getAttribute("user");
+		    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();		
+			MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+			
+			ModelAndView mav = new ModelAndView();
+			m.setUser_id(user.getUser_id());
+			mav.setViewName("/mypage/people_info");
+			mav.addObject("m", mypageservice.select_myinfo(m));
+			return mav;
+		}
+		
+		//사람 정보 수정
+		@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
+		public String people_info_up(HttpServletRequest request, MultipartFile aa, MemberInfoVo m) {
+			HttpSession session = request.getSession();
+		    Authentication authentication = (Authentication) session.getAttribute("user");
+		    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
+
+			String user_id = m.getUser_id();
+
+			memberInfo = loginMapperDao.getSelectMemberInfo(user_id);
+			memberInfo.setUser_id(user_id);
+
+			String str = aa.getOriginalFilename();
+			String o_str = m.getFname();
+			String path = request.getRealPath("/img/peopleImg");
+			System.out.println(path);
+			
+			if(str != null && !str.equals("")) {
+				System.out.println("사진첨부함");
+				m.setFname(str);
+				
+				try {
+					byte []data = aa.getBytes();
+					FileOutputStream fos = new FileOutputStream(path+"/"+str);
+					fos.write(data);
+					fos.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+					System.out.println(e.getMessage());
+				}
+				int re = -1;
+							
+				re = mypageservice.update_myinfo(m);
+				
+				if(re > 0 && str != null && !str.equals("") && o_str != null && !o_str.equals("")) {
+					File file = new File(path + "/" + o_str);
+					file.delete();
+				}
+				
+			}else {
+				System.out.println("사진첨부안함");
+				m.setFname("사진없음");
+			}
+			
+			mypageservice.update_myinfo(m);
+			session.invalidate();
+			//수정 끝나고 리스트 컨트롤러 호출
+			return "redirect:/mypage/mypage";
+		}
+		//근데!!!!!!!!!!!!정보를 수정하고 나면 다시 로그인 페이지로 감....왜지? 안 가게 어떻게 하지? 
 	
 	//내가 작성한 글
 	@RequestMapping("/mypage/board_list")
@@ -282,7 +365,8 @@ public class MyPageController {
 //		return "redirect:/MainPage";
 		return "/MainPage";
 	}
-	
+
+	/* 영수 원본
 	//비밀번호 변경
 	@NoLogging
 	@RequestMapping("/mypage/update_pwd")
@@ -294,6 +378,51 @@ public class MyPageController {
 		mypageservice.update_pwd(m);
 		return "ok";
 	}
+	*/
+	
+	//비밀번호 변경 - 아래 메소드 2개 : 수인 수정 버전
+	//패스워드 체크
+		@NoLogging
+		@RequestMapping(value="/join/passCheck", method=RequestMethod.POST)
+		@ResponseBody
+		public boolean passCheck(MemberInfoVo vo) throws Exception {
+			String user_id = vo.getUser_id();
+			MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user_id);
+			boolean pwdChk = passwordEncoder.matches(vo.getPwd(), m.getPwd());
+			return pwdChk;
+			
+		}
+		
+		//비밀번호 변경
+		@NoLogging
+		@RequestMapping("/mypage/update_pwd")
+		@ResponseBody
+		public String update_pwd(HttpServletRequest request, MemberInfoVo m, String o_pwd,String o_user_id) {
+			HttpSession session = request.getSession();
+		    Authentication authentication = (Authentication) session.getAttribute("user");
+		    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
+
+//			o_user_id = m.getUser_id();
+			memberInfo = loginMapperDao.getSelectMemberInfo(o_user_id);
+			memberInfo.setUser_id(o_user_id);
+			
+			String pwd = memberInfo.getPwd();
+			String pwd2 = m.getPwd2();
+			
+			boolean pwdCheck = passwordEncoder.matches(o_pwd, pwd);
+			if(pwdCheck==true) {
+				 String encPassword = passwordEncoder.encode(pwd2);
+				 memberInfo.setPwd2(encPassword);	
+				
+			}else {
+				return "/mypage/main";	//여긴 어디로 보낼지 고민!
+			}
+			
+			mypageservice.update_pwd(memberInfo);	 
+			return "ok";
+		}
+	
+	
 	
 	//반려동물 정보 수정폼
 	@NoLogging
