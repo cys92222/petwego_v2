@@ -52,12 +52,18 @@ public class MyPageController {
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
 	public ModelAndView mypage(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/mypage/main");
 //		mav.setViewName("/mypage/MypageMain");
-		MemberInfoVo m = new MemberInfoVo();
+
 		//아이디 임의로 설정
-		m.setUser_id("user1");
+		m.setUser_id(m.getUser_id());
 		//내 정보
 		mav.addObject("myinfo", mypageservice.select_myinfo(m));
 		
@@ -77,7 +83,8 @@ public class MyPageController {
 		//반려동물 리스트
 		mav.addObject("animal_list", mypageservice.search_my_animal(m));
 //		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
-		
+
+		/*
 		AlarmVo alarm = new AlarmVo();
 		alarm.setUser_id(m.getUser_id());
 		
@@ -115,11 +122,11 @@ public class MyPageController {
 		
 		//결제 정보
 		mav.addObject("search_pay", mypageservice.search_pay(m));
-		
+		*/
 		return mav;
 		
 	}
-	
+/*	
 	//함께가요 신청 알람 확인
 	@RequestMapping("/mypage/check_alarm_in")
 	public String check_alarm_in(HttpServletRequest request, AlarmVo a) {
@@ -133,6 +140,7 @@ public class MyPageController {
 			alarmSerivce.check_alarm_cancle(a);
 		return "redirect:/mypage/mypage";
 	}
+*/
 	
 	//반려동물 관리폼
 	@RequestMapping("/mypage/animal_info_up_form")
@@ -151,8 +159,15 @@ public class MyPageController {
 	
 	//반려동물 등록
 	@RequestMapping(value = "/mypage/animal_info_up", method = RequestMethod.POST)
-	public String update_animal_info(HttpServletRequest request,Animal_infoVo a,MemberInfoVo m, MultipartFile aa) {
-//		System.out.println("반려동물 등록 컨트롤러");
+	public String update_animal_info(HttpServletRequest request,Animal_infoVo a, /*MemberInfoVo m,*/ MultipartFile aa) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+		
+//		m.setUser_id(user.getUser_id());
+		
+		//		System.out.println("반려동물 등록 컨트롤러");
 		String str = aa.getOriginalFilename();
 //		System.out.println("업로드 파일 이름"+str);
 		
@@ -315,9 +330,17 @@ public class MyPageController {
 	//내가 작성한 글
 	@RequestMapping("/mypage/board_list")
 	public ModelAndView board_list(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();	
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+		
+		m.setUser_id(user.getUser_id());
+		
 		ModelAndView mav = new ModelAndView();
-		MemberInfoVo m = new MemberInfoVo();
-		m.setUser_id("user1");
+//		MemberInfoVo m = new MemberInfoVo();
+//		m.setUser_id("user1");
+		m.setUser_id(user.getUser_id());
 		mav.setViewName("/mypage/board_list");
 		mav.addObject("myboard", mypageservice.search_my_board(m));
 		return mav;
@@ -326,9 +349,17 @@ public class MyPageController {
 	//내 결제 내역
 	@RequestMapping("/mypage/pay_list")
 	public ModelAndView pay_list(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+		m.setUser_id(user.getUser_id());
+		
 		ModelAndView mav = new ModelAndView();
-		MemberInfoVo m = new MemberInfoVo();
-		m.setUser_id("user1");
+//		MemberInfoVo m = new MemberInfoVo();
+//		m.setUser_id("user1");
+		m.setUser_id(m.getUser_id());
 		mav.setViewName("/mypage/pay_list");
 		mav.addObject("search_pay", mypageservice.search_pay(m));
 		return mav;
@@ -337,9 +368,15 @@ public class MyPageController {
 	//내가 쓴 함께가요 리스트
 	@RequestMapping("/mypage/together_list")
 	public ModelAndView together_list(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+		
 		ModelAndView mav = new ModelAndView();
-		MemberInfoVo m = new MemberInfoVo();
-		m.setUser_id("user1");
+//		MemberInfoVo m = new MemberInfoVo();
+//		m.setUser_id(user.getUser_id());
+		m.setUser_id(m.getUser_id());
 		mav.setViewName("/mypage/together_list");
 		mav.addObject("mytogether", mypageservice.search_my_together(m));
 		return mav;
@@ -348,9 +385,15 @@ public class MyPageController {
 	//내가 쓴 sns리스트
 	@RequestMapping("/mypage/sns_list")
 	public ModelAndView sns_list(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo m = (MemberInfoVo) authentication.getPrincipal();
+		
+		m.setUser_id(m.getUser_id());
 		ModelAndView mav = new ModelAndView();
-		MemberInfoVo m = new MemberInfoVo();
-		m.setUser_id("user1");
+//		MemberInfoVo m = new MemberInfoVo();
+//		m.setUser_id("user1");
+		m.setUser_id(m.getUser_id());
 		mav.setViewName("/mypage/sns_list");
 		mav.addObject("mysns", mypageservice.search_my_sns(m));
 		return mav;
@@ -382,46 +425,45 @@ public class MyPageController {
 	
 	//비밀번호 변경 - 아래 메소드 2개 : 수인 수정 버전
 	//패스워드 체크
-		@NoLogging
-		@RequestMapping(value="/join/passCheck", method=RequestMethod.POST)
-		@ResponseBody
-		public boolean passCheck(MemberInfoVo vo) throws Exception {
-			String user_id = vo.getUser_id();
-			MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user_id);
-			boolean pwdChk = passwordEncoder.matches(vo.getPwd(), m.getPwd());
-			return pwdChk;
+	@NoLogging
+	@RequestMapping(value="/join/passCheck", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean passCheck(MemberInfoVo vo) throws Exception {
+		String user_id = vo.getUser_id();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user_id);
+		boolean pwdChk = passwordEncoder.matches(vo.getPwd(), m.getPwd());
+		return pwdChk;
+		
+	}
+	
+	//비밀번호 변경
+	@NoLogging
+	@RequestMapping("/mypage/update_pwd")
+	@ResponseBody
+	public String update_pwd(HttpServletRequest request, MemberInfoVo m, String o_pwd,String o_user_id) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
+
+		memberInfo = loginMapperDao.getSelectMemberInfo(o_user_id);
+		memberInfo.setUser_id(o_user_id);
+		
+		String pwd = memberInfo.getPwd();
+		String pwd2 = m.getPwd2();
+		
+		boolean pwdCheck = passwordEncoder.matches(o_pwd, pwd);
+		if(pwdCheck==true) {
+			 String encPassword = passwordEncoder.encode(pwd2);
+			 memberInfo.setPwd2(encPassword);	
 			
+		}else {
+			return "/mypage/main";	//여긴 어디로 보낼지 고민!
 		}
 		
-		//비밀번호 변경
-		@NoLogging
-		@RequestMapping("/mypage/update_pwd")
-		@ResponseBody
-		public String update_pwd(HttpServletRequest request, MemberInfoVo m, String o_pwd,String o_user_id) {
-			HttpSession session = request.getSession();
-		    Authentication authentication = (Authentication) session.getAttribute("user");
-		    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
+		mypageservice.update_pwd(memberInfo);	 
+		return "ok";
+	}
 
-//			o_user_id = m.getUser_id();
-			memberInfo = loginMapperDao.getSelectMemberInfo(o_user_id);
-			memberInfo.setUser_id(o_user_id);
-			
-			String pwd = memberInfo.getPwd();
-			String pwd2 = m.getPwd2();
-			
-			boolean pwdCheck = passwordEncoder.matches(o_pwd, pwd);
-			if(pwdCheck==true) {
-				 String encPassword = passwordEncoder.encode(pwd2);
-				 memberInfo.setPwd2(encPassword);	
-				
-			}else {
-				return "/mypage/main";	//여긴 어디로 보낼지 고민!
-			}
-			
-			mypageservice.update_pwd(memberInfo);	 
-			return "ok";
-		}
-	
 	
 	
 	//반려동물 정보 수정폼
@@ -502,8 +544,15 @@ public class MyPageController {
 	
 	//사람사진 삭제
 	@RequestMapping(value = "/mypage/delete_people_pic", method = RequestMethod.GET)
-	public String delete_people_pic(HttpServletRequest request, MemberInfoVo m) {
+	public String delete_people_pic(HttpServletRequest request /*, MemberInfoVo m*/) {
 		String path = request.getRealPath("/img/peopleImg");
+		
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+		m.setUser_id(user.getUser_id());
 		
 		String o_str = m.getFname();
 		System.out.println(o_str);
