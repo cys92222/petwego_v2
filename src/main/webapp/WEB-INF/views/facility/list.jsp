@@ -544,6 +544,7 @@ select{
         <section class="booking">
             <div class="container">
                 <form id="searchForm" method="GET" action="${path}/search" class="form">
+                <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <div class="input-group">
                        	<label for="keywordInput" class="input-label">Destination</label>
                         <input type="text" class="input" id="keywordInput" name="keyword" value="${scri.keyword}" />

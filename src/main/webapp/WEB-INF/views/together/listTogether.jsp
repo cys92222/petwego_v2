@@ -33,6 +33,7 @@ $(function(){
 			
 			<section id="container">
 				<form role="form" method="get">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<table width="80%">
 						<tr>
 							<th>썸네일</th>

@@ -67,6 +67,7 @@ $(function(){
 <h2>동물 추가</h2>
 <hr>
 	<form action="/mypage/animal_info_up" id="insert_animal" enctype="multipart/form-data" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <%-- 		<input type="text" name="user_id" value="${animal_list[0].user_id}" readonly="readonly"><br> --%>
 		반려인 <input type="text" name="user_id" value="${user_id.user_id }" readonly="readonly"><br>
 		동물이름 <input type="text" name="pet_name"><br>

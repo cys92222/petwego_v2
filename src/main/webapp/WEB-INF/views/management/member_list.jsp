@@ -30,6 +30,7 @@
             <div class="card-body">
 
 	<form action="/management/member_list">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="search">
    			<select name="searchType">
 		      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>

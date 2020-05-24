@@ -35,6 +35,7 @@
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/together/deleteReply">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input type="hidden" id="t_num" name="t_num" value="${deleteReply.t_num}" readonly="readonly"/>
 					<input type="hidden" id="t_r_num" name="t_r_num" value="${deleteReply.t_r_num}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 

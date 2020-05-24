@@ -26,6 +26,7 @@
 	<a href="/MainPage">메인페이지</a><br>
 	<a href="/board/insert">게시글 등록</a><br>
 	<form action="/board/list">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="search">
    			<select name="searchType">
 		      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>

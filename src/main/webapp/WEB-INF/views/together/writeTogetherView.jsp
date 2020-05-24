@@ -92,6 +92,7 @@ $(document).ready(function(){
 
 		<section id="container">
 			<form method="post" action="writeTogether" name="writeForm" enctype="multipart/form-data">
+			<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<table>
 					<tbody>
 						<tr>

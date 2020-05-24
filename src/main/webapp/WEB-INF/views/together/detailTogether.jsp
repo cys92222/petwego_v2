@@ -151,6 +151,7 @@ $(document).ready(function(){
 			
 			<section id="container">
 				<form id="detailForm" name="detailForm" role="form" method="get">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<!-- scri의 값을 보관하기 위해서 form태그안에 타입 hidden -->
 				<input type="hidden" id="user_id" name="user_id" value="${detailTogether.user_id }">
 				<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
@@ -224,6 +225,7 @@ $(document).ready(function(){
 
 				</form>
 				<form name="applicationForm" id="applicationForm">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<!-- scri의 값을 보관하기 위해서 form태그안에 타입 hidden -->
 					<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
 					<input type="hidden" id="t_size" name="t_size" value="${detailTogether.t_size }"/>
@@ -241,6 +243,7 @@ $(document).ready(function(){
 				</form>
 				<hr>
 				<form id="replyForm" method="post">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
 					<input type="hidden" id="page" name="page" value="${scri.page }"/>
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum }"/>
@@ -293,6 +296,7 @@ $(document).ready(function(){
 					<!-- 신청자 목록 -->
 					<div id="userApplication">
 						<form role="form">
+						<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<table width="30%">
 								<tr>
 									<td>현재 참여자</td>

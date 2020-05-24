@@ -124,6 +124,7 @@ $(function(){
 	
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form action="/payments/insertPay" id="payForm" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="imp_uid" name="imp_uid"  />
 		<input type="hidden" id="merchant_uid" name="merchant_uid"  />
 		<input type="hidden" id="paid_amount" name="paid_amount"  />

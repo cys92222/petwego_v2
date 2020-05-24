@@ -201,6 +201,7 @@ $(function(){
 <a href="/MainPage">메인화면</a>
 <section id="listSection">
 <form role="form" method="get">
+<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   <div class="search">
     <select name="searchType">
       <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
@@ -255,6 +256,7 @@ $(function(){
 <h2>공지사항 등록</h2>
 <hr>
 <form id="insertForm">
+<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <select name="cs_no">
 	<option value="1">홈페이지 관련</option>
 	<option value="2">계정 관련</option>
@@ -292,6 +294,7 @@ $(function(){
 <h2>공지사항 수정</h2>
 <hr>
 <form id="updateForm">
+<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 카테고리<br>
 <select id="u_cs_no" name="u_cs_no"><br>
 	<option value="1">홈페이지 이용 관련</option>

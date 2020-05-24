@@ -88,6 +88,7 @@
 	<hr>
 	<a href="list">게시글 목록</a><br><br>
 	<form id="f">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<input type="hidden" id="board_no" value="${ detail.board_no }">
 	<table border="1" width="70%">
 		<tr>
@@ -122,6 +123,7 @@
 	<hr>
 	<!-- 댓글입력 -->
 	<form name="commentForm" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="board_no" name="board_no" value="${detail.board_no}">
 		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
 		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>

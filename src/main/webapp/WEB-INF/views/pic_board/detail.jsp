@@ -134,6 +134,7 @@
 	<hr>
 	<a href="/pic_board/list">sns 메인</a><br><br>
 	<form id="f">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<input type="text" id="photo_no" value="${Board.photo_no }">
 	<table border="1" width="80%">
 	<tr>
@@ -178,6 +179,7 @@
 	
 	<!--댓글입력폼-->
 	<form name="pcommentForm" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
 		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
 		댓글 내용 : <textarea name="photo_comm_cont" rows="5" cols="20"></textarea><br>

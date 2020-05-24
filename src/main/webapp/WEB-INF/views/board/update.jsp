@@ -138,6 +138,7 @@
 	<h2>게시글 수정</h2>
 	<hr>
 	<form action="update" method="post" enctype="multipart/form-data" id="updateForm">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<input type="hidden" id="board_no" name="board_no" value="${up.board_no}">
 	
 	<table width="100%">
