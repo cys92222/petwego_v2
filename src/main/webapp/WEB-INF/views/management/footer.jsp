@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
       </div>
       <!-- End of Main Content -->
 

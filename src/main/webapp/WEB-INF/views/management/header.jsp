@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,6 +27,7 @@
 
   <!-- Page Wrapper -->
   <div id="wrapper">
+
     <!-- Sidebar -->
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -48,13 +49,21 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>관리자 메인</span></a>
       </li>
+      
+      <!-- Nav Item - Charts // 로그페이지 -->
+      <li class="nav-item">
+        <a class="nav-link" href="/management/listLog">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>통계</span></a>
+      </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
-
-      <!-- Nav Item - Pages Collapse Menu // 왼쪽 메뉴바 -->
+      
+       <!-- Nav Item - Pages Collapse Menu // 왼쪽메뉴 바 - 게시판 -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
           <span>게시판</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -62,14 +71,14 @@
             <h6 class="collapse-header">게시판 관리</h6>
             <a class="collapse-item" href="#">공지사항</a>
             <a class="collapse-item" href="#">문의사항</a>
-            <a class="collapse-item" href="#">함께가요</a>
             <a class="collapse-item" href="/board/list">자유게시판</a>
-            <a class="collapse-item" href="#">sns게시판</a>
+            <a class="collapse-item" href="#">SNS게시판</a>
+            <a class="collapse-item" href="#">함께가요</a>
           </div>
         </div>
       </li>
-
-      <!-- Nav Item - Utilities Collapse Menu // 왼쪽 메뉴바 -->
+      
+      <!-- Nav Item - Utilities Collapse Menu // 왼쪽메뉴 바 - 회원 -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
@@ -78,18 +87,15 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">회원관리</h6>
-            <a class="collapse-item" href="/management/manager_member">회원 목록</a>
+            <a class="collapse-item" href="/management/member_list">회원 목록</a>
             <a class="collapse-item" href="#">회원 : 결제정보</a>
             <a class="collapse-item" href="#">Animations</a>
             <a class="collapse-item" href="#">Other</a>
           </div>
         </div>
       </li>
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
-      <!-- Nav Item - Pages Collapse Menu // 왼쪽 메뉴바 -->
+      
+         <!-- Nav Item - Pages Collapse Menu // 왼쪽 메뉴 바 - 숙소 -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
@@ -97,18 +103,17 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">숙소관리</h6>
-            <a class="collapse-item" href="login.html">숙소등록</a>
-            <a class="collapse-item" href="register.html">숙소 목록</a>
+           <h6 class="collapse-header">숙소관리</h6>
+            <a class="collapse-item" href="#">숙소등록</a>
+            <a class="collapse-item" href="#">숙소 목록</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="404.html">404 Page</a>
-            <a class="collapse-item" href="blank.html">Blank Page</a>
+            <a class="collapse-item" href="#">404 Page</a>
+            <a class="collapse-item" href="#">Blank Page</a>
           </div>
         </div>
       </li>
-
-     
+      
     </ul>
     <!-- End of Sidebar -->
 

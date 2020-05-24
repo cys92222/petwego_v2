@@ -40,12 +40,6 @@ public class ManagerPageController  {
 
 	}
 	
-	@RequestMapping("ManagerPage")
-	@NoLogging
-	public void managerP() {
-
-	}
-	
 	// 로그 차트 (구글차트 이용해서)
 	@NoLogging
 	@ResponseBody
@@ -60,7 +54,7 @@ public class ManagerPageController  {
 	
 	// 회원 목록, 검색, 페이징
 	@NoLogging
-	@GetMapping("manager_member")
+	@GetMapping("member_list")
 	public void listMember(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
 		model.addAttribute("listMember", mp_service.listMember(scri));
@@ -72,18 +66,18 @@ public class ManagerPageController  {
 
 	// 회원정보 상세보기
 	@NoLogging
-	@GetMapping("manager_getMember")
+	@GetMapping("member_get")
 	public void getMember(MemberInfoVo m, Model model) {
 		model.addAttribute("detail_Info", mp_service.getMember(m));
 	}
 
 	// 회원정보 삭제(강퇴)
 	@NoLogging
-	@GetMapping("manager_deleteMember")
+	@GetMapping("member_delete")
 	public String deleteMember(MemberInfoVo m) {
 		
 		mp_service.deleteMember(m);
-		return "redirect:/management/manager_member";
+		return "redirect:/management/member_list";
 	}
 	
 	// aopLog 목록

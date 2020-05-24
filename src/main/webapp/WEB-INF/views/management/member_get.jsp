@@ -7,13 +7,12 @@
 <%@include file="../management/header.jsp"%>
 <head>
 <!-- 민아) 5/19, 관리자페이지_회원관리 -->
+<!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
 <meta charset="UTF-8">
-<title>관리자페이지-회원상세</title>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		var user_id = $("#user_id").val();
-
 		
 		//회원 강퇴를 누르면
 		$("#btnDelete").click(function(){
@@ -21,7 +20,7 @@
 			if(check == true){
 				var check2 = confirm("돌이킬 수 없습니다. 정말 강퇴하시겠습니까?")
 				if(check2 == true){
-					self.location = "/management/manager_deleteMember?user_id="+user_id;
+					self.location = "/management/member_delete?user_id="+user_id;
 					alert("회원을 강퇴시켰습니다!");
 				}
 			}
@@ -31,26 +30,36 @@
 </script>
 </head>
 <body>
-	<h2>회원정보 상세보기</h2>
-	<hr>
-	<a href="/management/manager_member">회원 목록</a><br><br>
+<!-- Begin Page Content -->
+<div class="container-fluid">
+	<!-- Page Heading -->
+    <p class="mb-4">회원관리 페이지</p>
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+    	<div class="card-header py-3">
+        	<h6 class="m-0 font-weight-bold text-primary">회원정보 상세보기</h6>
+        </div>
+        <div class="card-body">
+	
+	<!-- 원래내가 쓴 부분  -->
+	<a href="/management/member_list">회원 목록</a><br><br>
 	<input type="hidden" id="user_id" value="${detail_Info.user_id }">
-	<table border="1" width="70%">
+	<table class="table table-bordered" border="1" width="80%"  style="text-align: center;">
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" value="${detail_Info.user_id }" name="user_id" readonly="readonly"></td>
+			<td>${detail_Info.user_id }</td>
 		</tr>
 		<tr>
 			<td>이름</td>
-			<td><input type="text" value="${detail_Info.name }" name="name" readonly="readonly"></td>
+			<td>${detail_Info.name }</td>
 		</tr>
 		<tr>
 			<td>닉네임</td>
-			<td><input type="text" value="${detail_Info.nick_name }" name="nick_name" readonly="readonly"></td>
+			<td>${detail_Info.nick_name }</td>
 		</tr>
 		<tr>
 			<td>전화번호</td>
-			<td><input type="text" value="${detail_Info.tel }" name="tel" readonly="readonly"></td>
+			<td>${detail_Info.tel }</td>
 		</tr>
 		<tr>
 			<td>생년월일</td>
@@ -58,11 +67,11 @@
 		</tr>
 		<tr>
 			<td>주소</td>
-			<td><input type="text" value="${detail_Info.address }" name="address" readonly="readonly"></td>
+			<td>${detail_Info.address }</td>
 		</tr>
 		<tr>
 			<td>성별</td>
-			<td><input type="text" value="${detail_Info.gender }" name="gender" readonly="readonly"></td>
+			<td>${detail_Info.gender }</td>
 		</tr>
 		<tr>
 			<td>프로필 사진</td>
@@ -70,7 +79,7 @@
 		</tr>
 		<tr>
 			<td>자기소개</td>
-			<td><input type="text" value="${detail_Info.intro }" name="intro" readonly="readonly"></td>
+			<td>${detail_Info.intro }</td>
 		</tr>
 		<tr>
 			<td>가입일</td>
@@ -82,7 +91,10 @@
 		</tr>
 	</table>
 	<button id="btnDelete">회원 강퇴</button>
-	<hr>
+	</div>
+	</div>
+	</div>
+	
 </body>
 <%@include file="../management/footer.jsp"%>
 </html>

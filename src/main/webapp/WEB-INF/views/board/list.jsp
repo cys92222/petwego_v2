@@ -19,7 +19,7 @@
 </head>
 <body>
 <c:if test="${a eq 'admin' }">
-<%@include file="../management/header.jsp"%>
+	<%@include file="../management/header.jsp"%>
 </c:if>
 	<h2>자유 게시판</h2>
 	<hr>

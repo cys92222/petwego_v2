@@ -4,10 +4,12 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
+<%@include file="../management/header.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>관리자페이지- 로그기록</title>
 <!-- 민아) 5/19, 관리자페이지 - 로그관리  -->
+<!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
 <style type="text/css">
 	li {list-style: none; float: left; padding: 6px;}	<!--페이징 가로정렬 스타일 -->
 	#wrapper{display:flex;}
@@ -76,17 +78,25 @@
 </script>
 </head>
 <body>
-	<h1>로그관리</h1>
-	<hr>
-	<a href="/management/manager_main">관리자페이지 메인</a><br>
+<br>
+<!-- Begin Page Content -->
+        <div class="container-fluid">
+		<!-- Page Heading -->
+          <p class="mb-4">사용자 이용 통계</p>
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">로그 관리</h6>
+            </div>
+            <div class="card-body">
+	
 	<div id="wrapper" style="display:flex;">
-	<div id="chart_circle" style="width:55%; height:500px; "></div>
-	<div id="chart_table" style="width:45%; height:500px; "></div>
+	<div id="chart_circle" class="ch" style="width:55%; height:500px; text-align: center;"></div>
+	<div id="chart_table" class="ch" style="width:45%; height:500px; text-align: center; "></div>
 	</div>
 	<hr>
-	
-	
-	<table border="1" width="84.4%">
+	<p style="text-align: center;">** 사용자 로그기록 목록 **</p>
+	<table class="table table-bordered" border="1" width="80%"  style="text-align: center; ">
 		<thead>
 			<tr>
 				<th>로그번호</th>
@@ -126,6 +136,10 @@
     	<li><a href="listLog${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
     </c:if> 
   </ul>
+  </div>
+  </div>
+  </div>
 </div>
 </body>
+<%@include file="../management/footer.jsp"%>
 </html>
