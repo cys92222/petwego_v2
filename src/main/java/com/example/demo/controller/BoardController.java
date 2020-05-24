@@ -78,7 +78,8 @@ public class BoardController {
 	public void listBoard(HttpServletRequest request,Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
 		model.addAttribute("listBoard", service.listBoard(scri));
-
+		model.addAttribute("a", "admin");
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.boardCount(scri));

@@ -40,6 +40,12 @@ public class ManagerPageController  {
 
 	}
 	
+	@RequestMapping("ManagerPage")
+	@NoLogging
+	public void managerP() {
+
+	}
+	
 	// 로그 차트 (구글차트 이용해서)
 	@NoLogging
 	@ResponseBody

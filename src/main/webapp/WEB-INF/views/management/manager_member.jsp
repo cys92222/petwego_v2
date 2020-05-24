@@ -4,6 +4,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
+<%@include file="../management/header.jsp"%>
 <head>
 <!-- 민아) 5/19, 관리자페이지_회원관리 -->
 <meta charset="UTF-8">
@@ -83,4 +84,5 @@
  		 </ul>
 	</div>
 </body>
+<%@include file="../management/footer.jsp"%>
 </html>

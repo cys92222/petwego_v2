@@ -40,9 +40,20 @@ public class PaymentController {
 	// 결제정보 등록
 	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String insertSubmit(HttpServletRequest request, PaymentVo p, @RequestBody List<PaymentVo> listPay) {
-
+	public String insertSubmit(HttpServletRequest request, @RequestBody List<PaymentVo> listPay) {
+		
+		
 		for (PaymentVo pv : listPay) {
+			
+			// 결제 수단과 결제상태 한글로 저장되도록!  
+			if (pv.getPay_method().equals("card")) {
+				pv.setPay_method("카드 결제");
+			}
+			// 어차피 결제 성공해야만 테이블에 저장되니까 결제완료로 하나만 치환하면 될듯 
+			if(pv.getStatus().equals("paid")) {
+				pv.setStatus("결제 완료");
+			}
+			
 			pay_service.insertPay(pv);
 		}
 

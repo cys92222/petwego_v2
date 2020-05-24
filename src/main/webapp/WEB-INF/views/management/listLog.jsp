@@ -76,7 +76,6 @@
 </script>
 </head>
 <body>
-
 	<h1>로그관리</h1>
 	<hr>
 	<a href="/management/manager_main">관리자페이지 메인</a><br>

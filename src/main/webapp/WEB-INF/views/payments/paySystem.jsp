@@ -20,6 +20,7 @@ $(function(){
 	var info = [];	//결제 정보를 담기 위한 전역변수 
 
 	$("#okay").click(function(){
+
 		var imp_uid = $("#imp_uid").val();
 		var merchant_uid = $("#merchant_uid").val();
 		var paid_amount = $("#paid_amount").val();
@@ -28,7 +29,6 @@ $(function(){
 		var status = $("#status").val();
 		var rsv_no = $("#rsv_no").val();
 		var user_id = $("#user_id").val();
-
 
  /*
 	pay_method/String/결제수단			merchant_uid/String/고유주문번호
