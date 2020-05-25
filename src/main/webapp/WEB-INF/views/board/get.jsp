@@ -139,7 +139,7 @@
 	<form name="commentForm" method="post">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="board_no" name="board_no" value="${detail.board_no}">
-		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
+		댓글 작성자 : <input type="text" name="user_id" required="required" value="${login_id }"><br>
 		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>
 		<button type="submit" id="comment">댓글 등록</button>
 	</form>

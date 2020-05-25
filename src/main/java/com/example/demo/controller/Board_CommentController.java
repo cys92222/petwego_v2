@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.dao.BoardDao;
 import com.example.demo.service.AlarmService;
 import com.example.demo.service.Board_CommentService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.AlarmVo;
+import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.google.gson.Gson;
 
@@ -33,6 +35,9 @@ public class Board_CommentController {
 	@Autowired
 	AlarmService alarmService;
 	
+	@Autowired
+	BoardDao boardDao;
+	
 	// 댓글목록
 	@NoLogging
 	@GetMapping(value = "/listComment", produces = "application/json; charset=utf-8")
@@ -49,11 +54,12 @@ public class Board_CommentController {
 		//System.out.println("댓글작성 컨트롤러 동작함");
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
 		comm_service.insertComment(bc);
-		
+				
 		//댓글 등록 알람 등록
 		AlarmVo alarm = new AlarmVo();
 		alarm.setUser_id(bc.getUser_id());
 		alarm.setT_num(bc.getBoard_no());
+		alarm.setIn_user_id(bc.getUser_id());
 		alarmService.insert_board_alarm(alarm);
 		
 		return mav;
