@@ -21,14 +21,5 @@
    <sec:authentication property="principal.user_role" var="login_role"/>
 </sec:authorize>
 
-<sec:authorize access="isAnonymous()">
-   <a href="/login/login">로그인</a>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-   <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
-   <a href="/login/logout">로그아웃</a>
-</sec:authorize>
-
-
 </body>
 </html>

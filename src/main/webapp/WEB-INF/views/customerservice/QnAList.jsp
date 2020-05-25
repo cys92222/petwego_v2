@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
 
 <!-- //영수) 5월12일 QnAjsp  -->
 <!DOCTYPE html>
@@ -413,8 +416,10 @@ $(function(){
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
 	<section id="rebutton">
+	<c:if test="${login_id }">
 		<button id="up">수정하기</button><br>
 		<button id="del">삭제하기</button><br>
+	</c:if>	
    		<button id="re">답변달기</button><br>
 	</section>
 	<a href="/customerservice/List">QnA리스트 돌아가기</a>
