@@ -50,17 +50,13 @@ public class Board_CommentController {
 	
 	// 댓글작성
 	@PostMapping(value = "/insertComment")
-	public ModelAndView insertComment(HttpServletRequest request, Board_CommentVo bc) {
+	public ModelAndView insertComment(HttpServletRequest request, Board_CommentVo bc,AlarmVo a) {
 		//System.out.println("댓글작성 컨트롤러 동작함");
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
 		comm_service.insertComment(bc);
 				
 		//댓글 등록 알람 등록
-		AlarmVo alarm = new AlarmVo();
-		alarm.setUser_id(bc.getUser_id());
-		alarm.setT_num(bc.getBoard_no());
-		alarm.setIn_user_id(bc.getUser_id());
-		alarmService.insert_board_alarm(alarm);
+		alarmService.insert_board_alarm(a);
 		
 		return mav;
 	}

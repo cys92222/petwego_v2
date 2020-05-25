@@ -6,8 +6,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.LikeItService;
 import com.example.demo.service.Pic_BoardService;
@@ -26,6 +29,7 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.vo.FollowVo;
 import com.example.demo.vo.LikeItVo;
+import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.Pic_BoardVo;
 import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
@@ -46,13 +50,26 @@ public class Pic_BoardController extends HttpServlet {
    
    @Autowired
    FollowService followService;
+   
+   @Autowired
+   LoginMapperDao loginMapperDao;
+
 
    // 사진에 좋아요를 누른적이 있는지 판단
    @NoLogging
    @GetMapping("/pic_board/okLike")
    @ResponseBody
-   public String checkLike(LikeItVo vo) {
-      String re = "0";
+   public String checkLike(HttpServletRequest request,LikeItVo vo) {
+      
+	   HttpSession session = request.getSession();
+	   Authentication authentication = (Authentication) session.getAttribute("user");
+	   MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+	   MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+	   vo.setUser_id(m.getUser_id());
+
+	   
+	  String re = "0";
       int cntLike = likeService.checkLike(vo);
       if (cntLike > 0) {
          re = "1";
@@ -65,6 +82,14 @@ public class Pic_BoardController extends HttpServlet {
       @ResponseBody
       public String insertLike(HttpServletRequest request,LikeItVo vo) {
          String re = "0";
+         
+       HttpSession session = request.getSession();
+  	   Authentication authentication = (Authentication) session.getAttribute("user");
+  	   MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+  	   MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+  	   vo.setUser_id(m.getUser_id());
+         
          int r = likeService.insertLike(vo);
          if (r > 0) {
             re = "1";
@@ -77,6 +102,14 @@ public class Pic_BoardController extends HttpServlet {
       @ResponseBody
       public String deleteLike(HttpServletRequest request,LikeItVo vo) {
          String re = "0";
+         
+       HttpSession session = request.getSession();
+  	   Authentication authentication = (Authentication) session.getAttribute("user");
+  	   MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+  	   MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+  	   vo.setUser_id(m.getUser_id());
+         
          int r = likeService.deleteLike(vo);
          if (r > 0) {
             re = "1";
@@ -120,12 +153,17 @@ public class Pic_BoardController extends HttpServlet {
 //         System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
 //         System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
          
+         HttpSession session = request.getSession();
+  	   Authentication authentication = (Authentication) session.getAttribute("user");
+  	   MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+  	   MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
          
          
          //팔로우 관련
          FollowVo f = new FollowVo();
          f.setUser_id(pb.getUser_id());
-         f.setUser_id2("로그인한 아이디로 변경해야됨");
+         f.setUser_id2(m.getUser_id());
          //팔로잉수
          mav.addObject("search_follow_count", followService.search_follow_count(f));
 //         System.out.println("search_follow_count" + followService.search_follow_count(f));
