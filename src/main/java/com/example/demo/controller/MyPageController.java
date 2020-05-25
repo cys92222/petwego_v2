@@ -3,9 +3,12 @@ package com.example.demo.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -261,71 +264,71 @@ public class MyPageController {
 */
 	//수인 수정버전 문제있으면 다시 바꾸기
 	//사람 정보 수정 폼
-		@NoLogging
-		@RequestMapping("/mypage/people_info_up_form")
-		public ModelAndView people_info_up_form(HttpServletRequest request) {
-			HttpSession session = request.getSession();
-		    Authentication authentication = (Authentication) session.getAttribute("user");
-		    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();		
-			MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
-			
-			ModelAndView mav = new ModelAndView();
-			m.setUser_id(user.getUser_id());
-			mav.setViewName("/mypage/people_info");
-			mav.addObject("m", mypageservice.select_myinfo(m));
-			return mav;
-		}
+	@NoLogging
+	@RequestMapping("/mypage/people_info_up_form")
+	public ModelAndView people_info_up_form(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();		
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
 		
-		//사람 정보 수정
-		@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
-		public String people_info_up(HttpServletRequest request, MultipartFile aa, MemberInfoVo m) {
-			HttpSession session = request.getSession();
-		    Authentication authentication = (Authentication) session.getAttribute("user");
-		    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
+		ModelAndView mav = new ModelAndView();
+		m.setUser_id(user.getUser_id());
+		mav.setViewName("/mypage/people_info");
+		mav.addObject("m", mypageservice.select_myinfo(m));
+		return mav;
+	}
+	
+	//사람 정보 수정
+	@RequestMapping(value = "/mypage/people_info_up", method = RequestMethod.POST)
+	public String people_info_up(HttpServletRequest request, MultipartFile aa, MemberInfoVo m) {
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
 
-			String user_id = m.getUser_id();
+		String user_id = m.getUser_id();
 
-			memberInfo = loginMapperDao.getSelectMemberInfo(user_id);
-			memberInfo.setUser_id(user_id);
+		memberInfo = loginMapperDao.getSelectMemberInfo(user_id);
+		memberInfo.setUser_id(user_id);
 
-			String str = aa.getOriginalFilename();
-			String o_str = m.getFname();
-			String path = request.getRealPath("/img/peopleImg");
-			System.out.println(path);
+		String str = aa.getOriginalFilename();
+		String o_str = m.getFname();
+		String path = request.getRealPath("/img/peopleImg");
+		System.out.println(path);
+		
+		if(str != null && !str.equals("")) {
+			System.out.println("사진첨부함");
+			m.setFname(str);
 			
-			if(str != null && !str.equals("")) {
-				System.out.println("사진첨부함");
-				m.setFname(str);
-				
-				try {
-					byte []data = aa.getBytes();
-					FileOutputStream fos = new FileOutputStream(path+"/"+str);
-					fos.write(data);
-					fos.close();
-				} catch (Exception e) {
-					// TODO: handle exception
-					System.out.println(e.getMessage());
-				}
-				int re = -1;
-							
-				re = mypageservice.update_myinfo(m);
-				
-				if(re > 0 && str != null && !str.equals("") && o_str != null && !o_str.equals("")) {
-					File file = new File(path + "/" + o_str);
-					file.delete();
-				}
-				
-			}else {
-				System.out.println("사진첨부안함");
-				m.setFname("사진없음");
+			try {
+				byte []data = aa.getBytes();
+				FileOutputStream fos = new FileOutputStream(path+"/"+str);
+				fos.write(data);
+				fos.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e.getMessage());
+			}
+			int re = -1;
+						
+			re = mypageservice.update_myinfo(m);
+			
+			if(re > 0 && str != null && !str.equals("") && o_str != null && !o_str.equals("")) {
+				File file = new File(path + "/" + o_str);
+				file.delete();
 			}
 			
-			mypageservice.update_myinfo(m);
-			session.invalidate();
-			//수정 끝나고 리스트 컨트롤러 호출
-			return "redirect:/mypage/mypage";
+		}else {
+			System.out.println("사진첨부안함");
+			m.setFname("사진없음");
 		}
-		//근데!!!!!!!!!!!!정보를 수정하고 나면 다시 로그인 페이지로 감....왜지? 안 가게 어떻게 하지? 
+		
+		mypageservice.update_myinfo(m);
+//		session.invalidate();
+		//수정 끝나고 리스트 컨트롤러 호출
+		return "redirect:/mypage/mypage";
+	}
+	//근데!!!!!!!!!!!!정보를 수정하고 나면 다시 로그인 페이지로 감....왜지? 안 가게 어떻게 하지? 
 	
 	//내가 작성한 글
 	@RequestMapping("/mypage/board_list")
@@ -440,7 +443,7 @@ public class MyPageController {
 	@NoLogging
 	@RequestMapping("/mypage/update_pwd")
 	@ResponseBody
-	public String update_pwd(HttpServletRequest request, MemberInfoVo m, String o_pwd,String o_user_id) {
+	public String update_pwd(HttpServletRequest request, HttpServletResponse response, MemberInfoVo m, String o_pwd,String o_user_id) {
 		HttpSession session = request.getSession();
 	    Authentication authentication = (Authentication) session.getAttribute("user");
 	    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
@@ -454,10 +457,9 @@ public class MyPageController {
 		boolean pwdCheck = passwordEncoder.matches(o_pwd, pwd);
 		if(pwdCheck==true) {
 			 String encPassword = passwordEncoder.encode(pwd2);
-			 memberInfo.setPwd2(encPassword);	
-			
+			 memberInfo.setPwd2(encPassword);			
 		}else {
-			return "/mypage/main";	//여긴 어디로 보낼지 고민!
+			return "redirect:/mypage/mypage";	//여긴 어디로 보낼지 고민!
 		}
 		
 		mypageservice.update_pwd(memberInfo);	 

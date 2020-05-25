@@ -25,9 +25,14 @@ $(function(){
 			$("#u_p_form").css({"display":"none"});
 			var data = $("#update_pwd_form").serialize();
 			$.ajax("/mypage/update_pwd",{data:data,success:function(re){
-				alert("비밀번호가 변경됐습니다");
-				$("#u_p_form").css({"display":"none"});
-				$("#o_from").css({"display":"block"});
+	            if(re === "ok"){
+	                alert("비밀번호가 변경됐습니다");
+	                $("#u_p_form").css({"display":"none"});
+	                $("#o_from").css({"display":"block"});
+	                }else{
+	                   alert("기본비밀번호가 틀렸습니다");
+	                   window.location.reload(true);
+	                   }
 				}});
 			});
 		});
@@ -35,7 +40,6 @@ $(function(){
 
 
 
-//근데!!!!!!!!!!!!정보를 수정하고 나면 다시 로그인 페이지로 감....왜지? 안 가게 어떻게 하지? 
 $(document).ready(function(){
 		$("#submit").on("click", function(){
 			$.ajax({
@@ -50,7 +54,8 @@ $(document).ready(function(){
 							}
 						}else{
 							alert("비밀번호가 틀렸습니다.");
-							return;
+							return false;
+
 							}
 					}	
 			})
