@@ -86,7 +86,7 @@
 <!-- 	자유게시판 댓글 삭제 알람 등록 -->
 	<insert id="cancle_insert_board_alarm">
 	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-		select comm_num from board_comment where board_no=#{board_no} and user_id = #{user_id}
+		select comm_num from board_comment where board_no=#{t_num} and in_user_id = #{in_user_id}
 	</selectKey>
 		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,${in_user_id},'자유게시판',#{board_num},#{t_num})
 	</insert>

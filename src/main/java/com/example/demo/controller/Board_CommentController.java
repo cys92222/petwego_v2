@@ -54,7 +54,7 @@ public class Board_CommentController {
 		//System.out.println("댓글작성 컨트롤러 동작함");
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
 		comm_service.insertComment(bc);
-				
+		a.setT_num(bc.getBoard_no());
 		//댓글 등록 알람 등록
 		alarmService.insert_board_alarm(a);
 		
@@ -63,7 +63,7 @@ public class Board_CommentController {
 
 	// 댓글만 삭제
 	@GetMapping(value = "/commDeleteSubmit")
-	public String commDeleteSubmit(HttpServletRequest request, Board_CommentVo bc) {	
+	public String commDeleteSubmit(HttpServletRequest request, Board_CommentVo bc,AlarmVo a) {	
 		//댓글 삭제 알람 등록
 		AlarmVo alarm = new AlarmVo();
 		alarm.setUser_id(bc.getUser_id());
