@@ -80,10 +80,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers( "/", "/home/**"
                 ,"/login/**", "/join/**", "/MainPage")
 			.permitAll()
-			.antMatchers("/admin/**").hasAnyRole("ADMIN")
+			.antMatchers("/management/**").hasRole("ADMIN")
 			.antMatchers("/user/**", "/mypage/**", "/comment/**", "/board/**",
 					"/customerservice/**", "/pcomment/**", 
-					"/pic_board/**", "/together/**").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
+					"/pic_board/**", "/together/**", "/uploadSummernoteImageFile").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
 			.anyRequest().authenticated(); 
 		
 		http.formLogin()
