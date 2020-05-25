@@ -417,18 +417,18 @@ $(function(){
 
 	<section id="rebutton">
 <!-- 	로그인한 id랑 작성자랑 같으면 -->
-<%-- 	<c:if test="${login_id eq  }"> --%>
-		<button id="up">수정하기</button><br>
-		<button id="del">삭제하기</button><br>
+<%-- 	<c:if test="${login_id eq detail.user_id }"> --%>
+<!-- 		<button id="up">수정하기</button><br> -->
+<!-- 		<button id="del">삭제하기</button><br> -->
 <%-- 	</c:if> --%>
-	<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-   		<button id="re">답변달기</button><br>
-	</sec:authorize>
+<%-- 	<sec:authorize access="hasRole('ROLE_ADMIN')">  --%>
+<!--    		<button id="re">답변달기</button><br> -->
+<%-- 	</sec:authorize> --%>
 
-   	
 	</section>
 	<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
+
 <section id="AddRe">
 	<h3>답변등록</h3>
 	<hr>
