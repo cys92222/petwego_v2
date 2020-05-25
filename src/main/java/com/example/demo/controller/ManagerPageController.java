@@ -36,8 +36,10 @@ public class ManagerPageController  {
 	// 관리자페이지메인
 	@RequestMapping("manager_main")
 	@NoLogging
-	public void managerPage() {
-
+	public void managerPage(Model model) {
+		model.addAttribute("newM", mp_service.newMember());
+		model.addAttribute("newP", mp_service.newPay());
+		model.addAttribute("newT", mp_service.newTogether());
 	}
 	
 	// 로그 차트 (구글차트 이용해서)

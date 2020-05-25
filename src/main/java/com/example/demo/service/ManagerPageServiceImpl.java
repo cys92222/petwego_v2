@@ -19,6 +19,23 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	@Autowired
 	private ManagerPageDao mDao;
 	
+	// 관리자메인 - 일주일 - 신규회원수, 결제된금액, 개설모임수, 게시판새글수(게시판쿼리생각중)
+	@Override
+	public int newMember() {
+		return mDao.newMember();
+	}
+
+	@Override
+	public int newPay() {
+		return mDao.newPay();
+	}
+
+	@Override
+	public int newTogether() {
+		return mDao.newTogether();
+	}
+	
+	
 	// 로그 차트 
 	@Override
 	public List<ChartVo> chartLog() {
@@ -66,8 +83,5 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int deleteMember(MemberInfoVo m) {
 		return mDao.deleteMember(m);
 	}
-
-
-
 
 }
