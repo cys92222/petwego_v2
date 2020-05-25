@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
+<%@ include file="../login.jsp" %>
 <%
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     Object principal = auth.getPrincipal();
@@ -183,7 +184,7 @@ $(function(){
 		</select>
 		</tr>
 		<tr>
-			<td>작성자</td><td> <input type="text" name="user_id" required="required"></td>
+			<td>작성자</td><td> <input type="text" name="user_id" value="${login_id }" required="required"></td>
 		</tr>
 		<tr>
 			<td>내용</td>

@@ -87,7 +87,7 @@ public class MyPageController {
 		mav.addObject("animal_list", mypageservice.search_my_animal(m));
 //		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
 
-		/*
+		
 		AlarmVo alarm = new AlarmVo();
 		alarm.setUser_id(m.getUser_id());
 		
@@ -125,7 +125,7 @@ public class MyPageController {
 		
 		//결제 정보
 		mav.addObject("search_pay", mypageservice.search_pay(m));
-		*/
+		
 		return mav;
 		
 	}

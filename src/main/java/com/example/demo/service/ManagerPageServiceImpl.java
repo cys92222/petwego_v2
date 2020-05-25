@@ -81,26 +81,14 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 
 	// 로그 목록
 	@Override
-	public List<Aop_LogVo> listLog(Criteria cri) {
-		return mDao.listLog(cri);
-	}
-	
-	// 로그 총 개수
-	@Override
-	public int countLog(Criteria cri) {
-		return mDao.countLog(cri);
+	public List<Aop_LogVo> listLog() {
+		return mDao.listLog();
 	}
 
 	// 회원목록
 	@Override
-	public List<MemberInfoVo> listMember(SearchCriteria scri) {
-		return mDao.listMember(scri);
-	}
-
-	// 총 회원 수
-	@Override
-	public int countMember(SearchCriteria scri) {
-		return mDao.countMember(scri);
+	public List<MemberInfoVo> listMember() {
+		return mDao.listMember();
 	}
 
 	// 회원정보 상세보기
