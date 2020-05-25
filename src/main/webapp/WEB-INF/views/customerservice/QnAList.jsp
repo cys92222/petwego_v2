@@ -170,8 +170,16 @@ $(function(){
 					var d_no = {inq_no:qna.inq_no};
 					$.ajax("/customerservice/detailQnA",{data:d_no,success:function(detail){
 						$("#detail_inq_no").val(detail.inq_no);
-						$("#detail_cs_no").val(detail.cs_no);
 
+						if(detail.cs_no == 1){
+							$("#detail_cs_no").val("홈페이지 이용관련");
+							}else if (detaiil.cs_no == 2){
+								$("#detail_cs_no").val("계정 관련");
+								}else if (detail.cs_no == 3){
+									$("#detail_cs_no").val("결제 관련 문의");
+									}
+
+						
 						if(qna.ref_level > 0){
 							$("#detail_user_id").val("관리자");
 							}else {
@@ -201,13 +209,8 @@ $(function(){
 // 						$("#detail_inq_date").val(detail.inq_date);
 						
 						
-// 						$("#up").on("click",function(){
-
-// 							});
-						
-						//수정 폼
-						$("#up").click(function(){
-//	 						alert("수정버튼 누름");
+						//수정하기 폼 셋팅
+						$("#up").on("click",function(){
 							$("#DetailQnA").css("display","none");
 							$("#UpdateQnA").css("display","block");
 							$("#up_inq_no").val(detail.inq_no);
@@ -237,7 +240,7 @@ $(function(){
 							$("#up_ref_step").val(detail.ref_step);							
 							$("#up_ref_level").val(detail.ref_level);
 							
-							$("#up_btn").click(function(){
+							$("#up_btn_go").click(function(){
 								var u = $("#upQnA").serialize();
 								$.ajax("/customerservice/updateQnA",{data:u,success:function(){
 									window.location.reload(true);
@@ -245,9 +248,39 @@ $(function(){
 									$("#UpdateQnA").css("display","none");
 									}});
 								}) //수정 ajax end
-								
-							}); //수정폼 end
+							});
 
+
+						//관리자 삭제 버튼
+						$("#admin_del_btn").click(function(){
+							var con = confirm("삭제할까요?");
+
+							if(con == true){
+								var dd_no = {inq_no:detail.inq_no,ref:detail.ref}
+								console.log(dd_no);
+								
+								//답변 있는지 확인
+								$.ajax("/customerservice/checkQnA",{data:dd_no,success:function(r){
+//											alert(r);
+										console.log(typeof r);
+										if(r === "o"){
+											alert("답변이 있는 문의글은 수정,삭제 불가능합니다");
+												window.location.href="/customerservice/List";
+												$("#ListQnA").css("display","block");
+												$("#DetailQnA").css("display","none");
+											}else{
+												//답변 없으면 삭제
+												$.ajax("/customerservice/deleteQnA",{data:d_no,success:function(){
+													window.location.reload(true);
+													$("#ListQnA").css("display","block");
+													$("#DetailQnA").css("display","none");
+													}});							
+											}
+									}}); //checkQnA end
+								}
+							}); //관리자 삭제 버튼
+
+						
 							//삭제
 							$("#del").click(function(){
 //		 						alert(qna.inq_no);
@@ -344,6 +377,8 @@ $(function(){
 			}});
 		});
 	
+	
+	
 })
 </script>
 
@@ -421,7 +456,7 @@ $(function(){
 	<option value="3">결제 관련 문의</option>
 </select><br>
 작성자<br>
-<input type="text" name="user_id" required="required" value="${id.user_id }"><br>
+<input type="text" name="user_id" required="required" value="${login_id }"><br>
 제목<br>
 <input type="text" name="inq_title" required="required"><br>
 내용<br>
@@ -444,15 +479,12 @@ $(function(){
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
 	<section id="rebutton">
-<%-- 	<c:if test=""> --%>
-<!-- 		<button id="up">수정하기</button><br> -->
-<!-- 		<button id="del">삭제하기</button><br> -->
-<%-- 	</c:if>	 --%>
+
 		<sec:authorize access="hasRole('ROLE_ADMIN')"> 
 			<button id="re">답변달기</button><br>
+			<button id="admin_del_btn">삭제하기</button>
 		</sec:authorize>
 			
-   		
 	</section>
 	<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
@@ -510,7 +542,7 @@ $(function(){
 		<input type="hidden" id="up_ref_level" name="up_ref_level"><br>
 		<input type="hidden" name="up_inq_file" id="up_inq_file"><br>
 	</form>
-	<button id="up_btn">수정</button><br>
+	<button id="up_btn_go">수정</button><br>
 
 <a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
