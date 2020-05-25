@@ -138,7 +138,7 @@
 	<input type="text" id="photo_no" value="${Board.photo_no }">
 	<table border="1" width="80%">
 	<tr>
-		<td>아이디 : <input type="text" value="${Board.user_id }" id="follow_user_id" readonly="readonly"> / 팔로잉수 : ${search_follow_count } 명 </td>
+		<td>아이디 : <input type="text" value="${Board.user_id}" id="follow_user_id" readonly="readonly"> / 팔로잉수 : ${search_follow_count } 명 </td>
 		<c:if test="${follow_chk ==0 }">
 			<input type="button" value="팔로잉하기" id="follow"><br>
 		</c:if>
@@ -151,25 +151,24 @@
 			<a href="#">더보기</a>
 		</c:if>
 	</tr>
-	 <tr>
-			<td>사진</td>
-			<!-- <td>${Board.photo_no}</td> -->		
-	</tr>
+<!-- 	 <tr> -->
+<!-- 			<td>사진</td> -->
+				<!-- <td>${Board.photo_no}</td> -->		 
+<!-- 	</tr> -->
 	<tr>
 			<td><img width="200" height="200" src="/img/${file.photo_file_name}"/></td>
 	</tr>
 		<tr>
-			<td>글 내용</td>
+<!-- 			<td>글 내용</td> -->
 			<td><div>${Board.photo_detail }</div></td>
 		</tr>
 		<tr>
 			<td>
-				<img id="like" src="/img/like.png">
-				<img id="clickLike" src="/img/clickLike.png">
+				<img id="like" src="/img/like.png" width="50" height="50">
+				<img id="clickLike" src="/img/clickLike.png" width="50" height="50">
+				 <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> 
 			</td>
-			<!-- escapeXml="false" 없으면 화면에 <p id='cntLike'>0</p> 태그가 다 보임  -->
-			<!-- https://needjarvis.tistory.com/51 참고  -->
-			<td>좋아요 <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> </td>
+<%-- 			<td>좋아요 <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> </td> --%>
 		</tr>
 	</table>
 	</form>
@@ -182,7 +181,7 @@
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
 		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
-		댓글 내용 : <textarea name="photo_comm_cont" rows="5" cols="20"></textarea><br>
+		댓글 내용 :<textarea name="photo_comm_cont" rows="5" cols="20"></textarea><br>
 	</form>
 	<button type="submit" id="pcomment">댓글 등록</button>
 	<hr>

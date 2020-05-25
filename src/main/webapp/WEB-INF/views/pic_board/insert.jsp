@@ -11,8 +11,7 @@
 	<hr>
 	<form action="/pic_board/insert" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		작성자 <br>
-		<input type="text" name="user_id"><br>
+		<input type="hidden"><br>  <!-- name="user_id" -->
 		내용 <br>
 		<textarea rows="8" cols="100" name="photo_detail"></textarea><br>
 		사진<br>

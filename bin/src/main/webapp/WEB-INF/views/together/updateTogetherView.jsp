@@ -12,7 +12,7 @@ $(document).ready(function(){
 	
 	$(".cancel_btn").on("click",function(){
 		event.preventDefault();
-		location.href = "detailTogether?t_num=${updateTogether.t_num}"
+		location.href = "/together/detailTogether?t_num=${updateTogether.t_num}"
 			   + "&page=${scri.page}"
 			   + "&perPageNum=${scri.perPageNum}"
 			   + "&searchType=${scri.searchType}"
@@ -35,6 +35,19 @@ $(document).ready(function(){
 			}
 		}
 	}
+
+	//썸네일 파일 수정 버튼을 누르면
+	$("#th_btn").click(function(e){
+		//폼 안에 있어서 기본 이벤트 제거
+// 		e.preventDefault();
+// 		e.stopPropagation();
+		$("#thumbnail").remove();
+		$("#th_btn").css({"display":"none"});
+		var aa = $("<input type='file' name='up_thumbnailFile'>");
+		
+		$("#o_section").append(aa);
+		});
+	
 });
 </script>
 </head>
@@ -51,13 +64,23 @@ $(document).ready(function(){
 		<hr />
 		
 		<section id="container">
-				<form name="updateForm" role="form" method="post" action="updateTogether">
+				<form name="updateForm" role="form" method="post" action="updateTogether" enctype="multipart/form-data">
 					<input type="hidden" name="t_num" value="${updateTogether.t_num}" readonly="readonly"/>
 					<table>
 						<tbody>
 							<tr>
 								<td>
-									<label for="t_thumbnail">썸네일</label><input type="text" id="t_thumbnail" name="t_thumbnail" value="${updateTogether.t_thumbnail }" class="chk" title="썸네일을 등록하세요."/>
+									썸네일<br>
+									
+									<section id="o_section">
+									<input type="text" id="thumbnail" name="thumbnail" value="${updateTogether.thumbnail}"><br>
+									<input type="button" id="th_btn" value="썸네일 사진  수정">
+									</section>
+									
+									<section id="th_section">
+									<br>
+									</section>
+									
 								</td>
 							</tr>
 							
@@ -78,7 +101,7 @@ $(document).ready(function(){
 									<label for="t_detail">내용</label><textarea id="t_detail" name="t_detail" class="chk" title="내용을 입력하세요.">${updateTogether.t_detail}</textarea>
 								</td>
 							</tr>
-							
+													
 							<tr>
 								<td>
 									<label for="t_place">모임장소</label><input type="text" id="t_place" name="t_place" value="${updateTogether.t_place}" class="chk" title="모임장소를 입력하세요."/>
@@ -91,15 +114,15 @@ $(document).ready(function(){
 								</td>
 							<tr>
 					
-							<tr>
-								<td>
-									<label for="t_date">모임일</label><input type="text" id="t_date" name="t_date" value="${updateTogether.t_date}" class="chk" title="모임날짜를 입력하세요."/>
-								</td>
-							</tr>
+<!-- 							<tr> -->
+<!-- 								<td> -->
+<%-- 									<label for="t_date">모임일</label><input type="text" id="t_date" name="t_date" value="${updateTogether.t_date}" class="chk" title="모임날짜를 입력하세요."/> --%>
+<!-- 								</td> -->
+<!-- 							</tr> -->
 							
 							<tr>
 								<td>
-									<label for="t_fname">첨부파일</label><input type="text" id="t_fname" name="t_fname" value="${updateTogether.t_fname}" class="chk" title="첨부파일을 등록하세요."/>
+									<label for="t_fname">첨부파일</label><input type="text" id="t_fname" name="t_fname" value="${updateTogether.t_fname}"/>
 								</td>
 							</tr>
 									

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
@@ -31,7 +32,6 @@ import com.example.demo.vo.Pic_Board_FileVo;
 import com.google.gson.Gson;
 
 //봉현) 5/12
-//민아) 5/17, 좋아요기능 추가
 //민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
 @Controller
 public class Pic_BoardController extends HttpServlet {
@@ -160,7 +160,7 @@ public class Pic_BoardController extends HttpServlet {
 			//System.out.println("마지막 글번호:" + pic_boardService.photo_no());
 			pbf.setPhoto_no(pic_boardService.photo_no());
 			String path = request.getRealPath("/img");
-			//System.out.println(path);
+			System.out.println(path);
 
 			String oldFname = pbf.getPhoto_file_name();
 			MultipartFile uploadFile = pbf.getUploadFile();
@@ -256,37 +256,42 @@ public class Pic_BoardController extends HttpServlet {
 			//업로드파일 이름
 			String uploadfile = uploadFile.getOriginalFilename();
 			System.out.println("업로드 파일 이름" + uploadfile);
+			String path = request.getRealPath("/img");
+			System.out.println(path);
 			//사진 수정을 한다면
 			if(uploadfile!=null & !uploadfile.equals("")) {
 				pbf.setPhoto_file_name(uploadfile);
 				pic_boardService.updatePic_Board_File(pbf);
-				System.out.println("사진 수정함");
+				
+				try {
+					byte []data = uploadFile.getBytes();
+					FileOutputStream fos = new FileOutputStream(path +"/"+ uploadfile);
+					fos.write(data);
+					fos.close();
+				}catch (Exception e) {
+					// TODO: handle exception
+				System.out.println(e.getMessage());
+				
+				}	
+		
+				int re = -1;
+				re = pic_boardService.updatePic_Board(pb);
+				
+				if(re > 0 && uploadfile != null && !uploadfile.equals("") 
+					&& uploadFile != null && !uploadFile.equals("")) {
+					File file = new File(path +"/"+ oldfilename);
+					file.delete();
+				}
 			}else {
-				System.out.println("사진 수정안함");
+				System.out.println("사진첨부 안함");
 			}
-			
-			
-			
-			
-//			model.addAttribute("pic_board_no",pb.getPhoto_no());
-//			model.addAttribute("pic_board_file_",pbf.getPhoto_file_no());
-//			
-//			//사진만 수정
-//			if(!pb.getPhoto_detail().equals("")) {
-//				if(!pbf.getPhoto_file_name().equals("")) {
-//					pic_boardService.insertfile(pbf);
-//				}
-//			}
-//			
-//			List<Pic_Board_FileVo> listImg = pic_boardService.listFile(pb.getPhoto_no());
-//			
-//			for(Pic_Board_FileVo pbf1 : listImg) {
-//				String pic_board_detail = pb.getPhoto_detail();
-//				if(!pic_board_detail.contains(pbf1.getPhoto_file_name())) {
-//					pic_boardService.deleteFile(pbf1.getPhoto_file_name());
-//				}
-//			}
+				ModelAndView mav = new ModelAndView();
+				mav.setViewName("/pic_board/list");   //위치 설정
+				pic_boardService.updatePic_Board(pb);
 		
 			return "redirect:/pic_board/detail?photo_no="+pb.getPhoto_no()+"&user_id="+pb.getUser_id();
 		}
-}
+			
+		
+	}
+
