@@ -295,10 +295,20 @@ $(document).ready(function(){
 										${replyList.t_r_content }
 									</c:if>
 									
-<%-- 									<c:if test="${replyList.user_id eq ${login_id } }"> --%>
+<!-- 									댓글 작성자 -->
+									<c:set var="user_id" value="${replyList.user_id }"/>
+<!-- 									로그인 아이디 -->
+									<c:set var="login_id" value="${login_id }"/>
+<!-- 									함께가요 원본글 작성자 -->
+									<c:set var="dt_user_id" value="${detailTogether.user_id }"/>
 									
+									<c:if test="${user_id eq login_id || login_id eq dt_user_id || user_id eq login_id}">
+										${replyList.t_r_content }
+									</c:if>
+									
+<%-- 									<c:if test="${login_id eq  dt_user_id}"> --%>
+<%-- 										${replyList.t_r_content } --%>
 <%-- 									</c:if> --%>
-									
 
 									비밀댓글입니다(자물쇠 사진같은거로 변경)
 								</c:if>
