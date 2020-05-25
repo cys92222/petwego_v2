@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 
 		// 민아) 5/17, 좋아요기능 추가, user_id 는 임의로 멤버인포에 추가한 user1으로 해둠 
 		var photo_no = $("#photo_no").val();
-		var user_id = "user1";
+		var user_id = "${login_id}";
 		$("#clickLike").hide();
 		
 		//이 사진에 좋아요를 눌렀는지 체크 

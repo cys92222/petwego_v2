@@ -15,7 +15,7 @@
 
       // 민아) 5/17, 좋아요기능 추가, user_id 는 임의로 멤버인포에 추가한 user1으로 해둠 
       var photo_no = $("#photo_no").val();
-      var user_id = ${login_id};
+      var user_id = "${login_id}";
       $("#clickLike").hide();
       
       //이 사진에 좋아요를 눌렀는지 체크 
@@ -110,7 +110,7 @@
       //팔로우하기
       $("#follow").click(function(){
          var follow_user_id = $("#follow_user_id").val();
-         var follow_in_user_id = $("follow_in_user_id").val();
+         var follow_in_user_id = $("#follow_in_user_id").val();
          $.ajax("/follow/insert_follow",{data:{user_id:follow_user_id,in_user_id:follow_in_user_id},success:function(re){
             alert(re);
             window.location.reload(true);
@@ -132,7 +132,7 @@
 </script>
 </head>
 <body>
-<input type="hidden" id="follow_in_user_id" value="${login_id }">
+<input type="text" id="follow_in_user_id" value="${login_id }">
 
    <h2>sns</h2>
    <hr>

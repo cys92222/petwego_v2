@@ -146,7 +146,7 @@ public class Pic_BoardController extends HttpServlet {
 
       // 상세보기
       @GetMapping("/pic_board/detail")
-      public ModelAndView detailPic_Board(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf) {   
+      public ModelAndView detailPic_Board(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf,String in_user_id) {   
          ModelAndView mav = new ModelAndView();
 //         System.out.println(pic_boardService.detailPic_Board(pb));
          //System.out.println(pic_boardService.detailFile(pbf));
@@ -163,7 +163,10 @@ public class Pic_BoardController extends HttpServlet {
          //팔로우 관련
          FollowVo f = new FollowVo();
          f.setUser_id(pb.getUser_id());
-         f.setUser_id2(m.getUser_id());
+         System.out.println("팔로우할 아이디 pb.getUser_id()" + pb.getUser_id());
+         f.setUser_id2(in_user_id);
+         System.out.println("팔로우 신청한 아이디 in_user_id " + in_user_id);
+         
          //팔로잉수
          mav.addObject("search_follow_count", followService.search_follow_count(f));
 //         System.out.println("search_follow_count" + followService.search_follow_count(f));

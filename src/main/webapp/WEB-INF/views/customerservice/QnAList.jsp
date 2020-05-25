@@ -473,11 +473,14 @@ $(function(){
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
 	<section id="rebutton">
-
+		
+<!-- 		관리자만 답변 버튼 보임 -->
 		<sec:authorize access="hasRole('ROLE_ADMIN')"> 
 			<button id="re">답변달기</button><br>
 			<button id="admin_del_btn">삭제하기</button>
 		</sec:authorize>
+		
+		
 			
 	</section>
 	<a href="/customerservice/List">QnA리스트 돌아가기</a>
