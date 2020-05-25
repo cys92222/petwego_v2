@@ -27,6 +27,8 @@
 <link rel="stylesheet" href="../summernote/css/summernote-lite.css">
 
 <script type="text/javascript">
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
 
 var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 var listImg = [];
@@ -70,6 +72,9 @@ $(function(){
 			url : "/board/boardUpload",	// 이 url을 컨트롤러 @PostMapping(value="/boardUpload", 와 동일해야함 
 			contentType : false,
 			processData : false,
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},
 			success : function(data) {
 		
 				//이미지 용량제한은 application.properties 에 
@@ -101,6 +106,7 @@ $(function(){
 				}
 			})
 		}
+	
 				
 		$("#save").click(function(e){
 		// 폼태그 기본속성(action은 디폴트)을 동작중단시키지 않으면 글이 두개씩 등록되버림 
