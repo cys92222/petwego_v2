@@ -1,19 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="org.springframework.security.core.Authentication" %>
-<%
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    Object principal = auth.getPrincipal();
- 
-    String name = "";
-    if(principal != null) {
-        name = auth.getName();
-    }
-%> 
+
 <!-- //영수) 5월12일 QnAjsp  -->
 <!DOCTYPE html>
 <html>
@@ -334,17 +322,13 @@ $(function(){
 
 </head>
 <body>
+
+<%@include file="../login.jsp"%>
+
 <a href="/MainPage">메인페이지</a>
 
 <section id="ListQnA">
 <h2>QnA리스트</h2>
-<sec:authorize access="isAnonymous()">
-   <a href="/login/login">로그인</a>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-   <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
-   <a href="/login/logout">로그아웃</a>
-</sec:authorize>
 <hr>
 <sec:authorize access="hasRole('ADMIN')"> 
 <li><a href="<c:url value='/management/manager_main' />">관리자 메뉴</a></li> 
@@ -406,7 +390,7 @@ $(function(){
 	<option value="3">결제 관련 문의</option>
 </select><br>
 작성자<br>
-<input type="text" name="user_id" required="required" value="${id.user_id }"><br>
+<input type="text" name="user_id" required="required" value="${login_id }"><br>
 제목<br>
 <input type="text" name="inq_title" required="required"><br>
 내용<br>
