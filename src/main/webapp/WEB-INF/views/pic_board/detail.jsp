@@ -184,7 +184,7 @@
    <form name="pcommentForm" method="post">
    <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
       <input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
-      댓글 작성자 : <input type="text" name="user_id" required="required"><br>
+      댓글 작성자 : <input type="text" name="user_id" value="${login_id }" required="required"><br>
       댓글 내용 :<textarea name="photo_comm_cont" rows="5" cols="20"></textarea><br>
    </form>
    <button type="submit" id="pcomment">댓글 등록</button>

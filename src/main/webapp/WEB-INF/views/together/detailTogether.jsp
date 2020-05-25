@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../login.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,7 +88,7 @@ $(document).ready(function(){
 
 	//신청하기
 	var t_num = $("#t_num").val();
-	var user_id = "user1";
+	var user_id = ${login_id};
   	var t_size = ${detailTogether.t_size };
   	var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
 
@@ -305,7 +306,7 @@ $(document).ready(function(){
 							<c:forEach var="userList" items="${userList}" varStatus="status">
 								<tr>
 									<td>${userList.user_id}</td>
-								</tr>
+								</tr>ㄹ
 							</c:forEach>
 							</table>
 						</form>
