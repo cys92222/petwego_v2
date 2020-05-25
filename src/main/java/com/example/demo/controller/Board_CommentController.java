@@ -48,7 +48,6 @@ public class Board_CommentController {
 	public ModelAndView insertComment(HttpServletRequest request, Board_CommentVo bc) {
 		//System.out.println("댓글작성 컨트롤러 동작함");
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
-		
 		comm_service.insertComment(bc);
 		
 		//댓글 등록 알람 등록

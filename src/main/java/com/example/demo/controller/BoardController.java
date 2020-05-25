@@ -78,7 +78,7 @@ public class BoardController {
 	public void listBoard(HttpServletRequest request,Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
 		model.addAttribute("listBoard", service.listBoard(scri));
-		model.addAttribute("a", "admin"); //어드민 로그인
+//		model.addAttribute("a", "admin"); //어드민 로그인
 //		model.addAttribute("a", "user"); //일반유저 로그인
 		
 		

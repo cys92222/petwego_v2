@@ -6,6 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<%@include file="../login.jsp"%>
+
+<c:if test="${login_id eq 'manager' }">
+	<%@include file="../management/header.jsp"%>
+</c:if>
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 상세보기화면 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
@@ -118,8 +123,17 @@
 		
 	</table>
 	</form>
-	<button id="btnUpdate">글 수정</button>
-	<button id="btnDelete">글 삭제</button>
+	<c:if test="${login_id ne 'manager' }">
+		<button id="btnUpdate">글 수정</button>
+		<button id="btnDelete">글 삭제</button>
+	</c:if>
+	
+	
+	<sec:authorize access="hasRole('ROLE_ADMIN')"> 
+	<li><a href="<c:url value='/board/delete?user_id=${detail.user_id }&board_no=${detail.board_no }' />">관리자 삭제</a></li> 
+	</sec:authorize>
+	
+	
 	<hr>
 	<!-- 댓글입력 -->
 	<form name="commentForm" method="post">

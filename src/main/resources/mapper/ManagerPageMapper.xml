@@ -4,6 +4,18 @@
   <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 	
+	<!-- 자유게시판 - 목록/상세/삭제 -->
+<!-- 	<select id="listBoard" resultType="com.example.demo.vo.BoardVo"> -->
+<!-- 		select * from board -->
+<!-- 	</select> -->
+<!-- 	<select id="getBoard" resultType="com.example.demo.vo.BoardVo"> -->
+<!-- 		select * from board where board_no = #{board_no} -->
+<!-- 	</select> -->
+<!-- 	<delete id="delBoard"> -->
+<!-- 		delete board where board_no -->
+<!-- 	</delete> -->
+	
+	
 	<!-- 관리자메인 / 일주일/ 신규회원수 -->
 	<select id="newMember" resultType="int">
 		select count(*) from member_info

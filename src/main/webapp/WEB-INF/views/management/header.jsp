@@ -71,7 +71,7 @@
             <h6 class="collapse-header">게시판 관리</h6>
             <a class="collapse-item" href="#">공지사항</a>
             <a class="collapse-item" href="#">문의사항</a>
-            <a class="collapse-item" href="#">자유게시판</a>
+            <a class="collapse-item" href="/management/listBoard">자유게시판</a>
             <a class="collapse-item" href="#">SNS게시판</a>
             <a class="collapse-item" href="#">함께가요</a>
           </div>

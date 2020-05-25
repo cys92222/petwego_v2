@@ -57,7 +57,7 @@ public class AopLog {
 		String url = request.getRequestURI();
 		String ip = request.getRemoteAddr();
 		String time = new Date().toLocaleString();
-		String user_id = "user1";
+		String user_id = "tiger1";
 
 		Aop_LogVo al = new Aop_LogVo();
 		al.setUrl(url);

@@ -44,7 +44,7 @@ $(function(){
 			name : '주문명:뫄뫄 애견 펜션',
 			amount : 100,
 			buyer_email : 'acs@petwego.kr',
-			buyer_name : 'user1',
+			buyer_name : user_id,
 			buyer_tel : '010-1234-5678',
 			buyer_addr : '서울시 서대문구'
 				    
