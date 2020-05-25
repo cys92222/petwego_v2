@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +79,14 @@
 </script>
 </head>
 <body>
+<sec:authorize access="isAnonymous()">
+   <a href="/login/login">로그인</a>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal.user_id" var="irum"/>
+   <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
+   <a href="/login/logout">로그아웃</a>
+	</sec:authorize>
 	<div class="logo">
 		<span class="logo">펫위고 PET WE GO</span>
 	</div>
@@ -101,9 +121,9 @@
 			<li><span id="login">로그인</span>
 				<ul class="dept01"></ul>
 				<ul class="dept01"><a href="/mypage/mypage">마이페이지</a></ul>
-				<c:if test="${login_role eq "" }">
+				
 				<ul class="dept01"><a href="/management/manager_main">관리자페이지</a></ul>
-				</c:if>
+			
 			</li>
 
 		</ul>
