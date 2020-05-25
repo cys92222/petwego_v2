@@ -146,7 +146,7 @@ public class TogeteherController {
 	
 	//함께가요 글 작성 화면
 	@NoLogging
-	@RequestMapping(value="/together/writeTogetherView",method = RequestMethod.GET)
+	@RequestMapping(value="/writeTogetherView",method = RequestMethod.GET)
 //	@RequestMapping(value="writeTogetherView",method = RequestMethod.GET)
 	public void writeTogetherView() throws Exception{
 		LOGGER.info("writeTogetherView");
@@ -154,7 +154,7 @@ public class TogeteherController {
 
 	
 	//함께가요 등록
-	@RequestMapping(value="/together/writeTogether",method = RequestMethod.POST)
+	@RequestMapping(value="/writeTogether",method = RequestMethod.POST)
 //@RequestMapping(value="writeTogether",method = {RequestMethod.GET,RequestMethod.POST})
 	public String write(HttpServletRequest request,TogetherVo togetherVo ,HttpSession session) throws Exception{
 	LOGGER.info("writeTogether");
@@ -192,7 +192,7 @@ public class TogeteherController {
 }
 	
 	//함께가요 목록
-	@RequestMapping(value="/together/listTogether", method = RequestMethod.GET)
+	@RequestMapping(value="/listTogether", method = RequestMethod.GET)
 	public String listTogether(HttpServletRequest request, Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		LOGGER.info("listTogether");
 		//썸네일
@@ -214,7 +214,7 @@ public class TogeteherController {
 	
 	   //함께가요 상세
 //  @RequestMapping(value="detailTogether",method = {RequestMethod.GET , RequestMethod.POST})
-  @RequestMapping(value="/together/detailTogether",method = RequestMethod.GET)
+  @RequestMapping(value="/detailTogether",method = RequestMethod.GET)
   public String detailTogether(HttpServletRequest request, TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
      LOGGER.info("detailTogether");
      
@@ -260,7 +260,7 @@ public class TogeteherController {
 	
 	//함께가요 수정 뷰
   	@NoLogging
-	@RequestMapping(value="/together/updateTogetherView", method = RequestMethod.GET)
+	@RequestMapping(value="/updateTogetherView", method = RequestMethod.GET)
 	public String updateTogetherView(TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri,Model model) throws Exception{
 		LOGGER.info("updateTogether");
 		model.addAttribute("updateTogether", service.detailTogether(togetherVo.getT_num()));
@@ -270,7 +270,7 @@ public class TogeteherController {
 	}
 	
 	//함께가요 수정
-	@RequestMapping(value="/together/updateTogether",method = RequestMethod.POST)
+	@RequestMapping(value="/updateTogether",method = RequestMethod.POST)
 	public String updateTogether(HttpServletRequest request,TogetherVo togetherVo,ThumbnailVo t,@ModelAttribute("scri") SearchCriteria scri,RedirectAttributes rttr) throws Exception{
 		LOGGER.info("updateTogether");
 		System.out.println("bbbbbbbbbbbbbbbbbbb" +t.getUp_thumbnailFile());
@@ -327,7 +327,7 @@ public class TogeteherController {
 	}
 	
 	//함께가요 삭제
-	@RequestMapping(value="/together/deleteTogether",method = RequestMethod.POST)
+	@RequestMapping(value="/deleteTogether",method = RequestMethod.POST)
 	public String deleteTogether(HttpServletRequest request, TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri , RedirectAttributes rttr) throws Exception{
 		LOGGER.info("deleteTogether");
 		System.out.println(togetherVo);
@@ -387,7 +387,7 @@ public class TogeteherController {
 	
 	//신청하기 누른적이 있는지 판단
 	@NoLogging
-	@GetMapping("/together/okApplication")
+	@GetMapping("/okApplication")
 	@ResponseBody
 	public String checkApplication(ApplicationVo av) {
 		String re = "0";
@@ -399,7 +399,7 @@ public class TogeteherController {
 	}
 	
 	//신청하기 
-	@GetMapping("/together/insertApplication")
+	@GetMapping("/insertApplication")
 	@ResponseBody
 	public String insertApplication(HttpServletRequest request,ApplicationVo av, TogetherVo togetherVo) {
 		int re = Aservice.checkApplication(av);
@@ -440,7 +440,7 @@ public class TogeteherController {
 	}
 	
 	//신청하기 취소
-	@GetMapping("/together/deleteApplication")
+	@GetMapping("/deleteApplication")
 	@ResponseBody
 	public String deleteApplication(HttpServletRequest request,ApplicationVo av) {
 				
