@@ -416,11 +416,16 @@ $(function(){
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
 	<section id="rebutton">
-	<c:if test="${login_id }">
+<!-- 	로그인한 id랑 작성자랑 같으면 -->
+<%-- 	<c:if test="${login_id eq  }"> --%>
 		<button id="up">수정하기</button><br>
 		<button id="del">삭제하기</button><br>
-	</c:if>	
+<%-- 	</c:if> --%>
+	<sec:authorize access="hasRole('ROLE_ADMIN')"> 
    		<button id="re">답변달기</button><br>
+	</sec:authorize>
+
+   	
 	</section>
 	<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
