@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.AlarmService;
 import com.example.demo.service.ApplicationService;
 import com.example.demo.service.ReplyService;
@@ -37,6 +39,7 @@ import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.ApplicationVo;
+import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.ReplyVo;
 import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
@@ -59,6 +62,10 @@ public class TogeteherController {
 	
 	@Autowired
 	AlarmService alarmService;
+	
+//	@Autowired
+//	LoginMapperDao loginMapperDao;
+
 	
 //	@RequestMapping(value="/write")
 //	public String boardWrite() {
@@ -131,9 +138,17 @@ public class TogeteherController {
 	//RedirectAttributes는 redirect했을때 값들을 물고 이동.
 	//그래서 SearchCriteria의 값을
 	//넣어서 댓글을 저장 한 뒤 원래 페이지로 redirect하여 이동
-	public String writeReply(HttpServletRequest request,ReplyVo rv, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
+	public String writeReply(HttpServletRequest request,String c_user_id,ReplyVo rv, SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		LOGGER.info("writeReply");
+		rv.setUser_id(c_user_id);
 		
+//		HttpSession session = request.getSession();
+//		Authentication authentication = (Authentication) session.getAttribute("user");
+//		MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+//		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+		
+		System.out.println("댓글작성 rv.setUser_id(c_user_id)" + c_user_id);
 		Rservice.writeReply(rv);
 		rttr.addAttribute("t_num",rv.getT_num());
 		rttr.addAttribute("page",scri.getPage());
@@ -141,7 +156,7 @@ public class TogeteherController {
 		rttr.addAttribute("searchType",scri.getSearchType());
 		rttr.addAttribute("keyword",scri.getKeyword());
 		
-		return "redirect:/together/detailTogether";
+		return "redirect:/together/detailTogether?user_id="+c_user_id;
 	}
 	
 	//함께가요 글 작성 화면
@@ -218,12 +233,14 @@ public class TogeteherController {
   public String detailTogether(HttpServletRequest request, TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
      LOGGER.info("detailTogether");
      
-//     //함께가요 작성자가 상세보기하면 알람 확인해서 알람 안가게
-//     //로그인되면 로그인 아이디로 셋팅
-//     AlarmVo alarm = new AlarmVo();
-//     alarm.setUser_id();
-//     alarm.setT_num(togetherVo.getT_num());
-//     alarmService.chk_together_alarm(alarm);
+     //함께가요 작성자가 상세보기하면 알람 확인해서 알람 안가게
+     //로그인되면 로그인 아이디로 셋팅
+     AlarmVo alarm = new AlarmVo();
+     alarm.setUser_id(togetherVo.getUser_id());
+     System.out.println("상세togetherVo.getUser_id()" + togetherVo.getUser_id());
+     alarm.setT_num(togetherVo.getT_num());
+     System.out.println("상세togetherVo.getT_num()" + togetherVo.getT_num());
+     alarmService.chk_together_alarm(alarm);
      
      model.addAttribute("detailTogether",service.detailTogether(togetherVo.getT_num()));
      //값이 안가져와서 테스트해봄
@@ -391,6 +408,7 @@ public class TogeteherController {
 	@ResponseBody
 	public String checkApplication(ApplicationVo av) {
 		String re = "0";
+		System.out.println("신청한 아이디 " + av.getUser_id());
 		int t_attendee_cnt = Aservice.checkApplication(av);
 		if ( t_attendee_cnt > 0) {
 			re = "1";
@@ -401,7 +419,9 @@ public class TogeteherController {
 	//신청하기 
 	@GetMapping("/insertApplication")
 	@ResponseBody
-	public String insertApplication(HttpServletRequest request,ApplicationVo av, TogetherVo togetherVo) {
+	public String insertApplication(HttpServletRequest request,ApplicationVo av, TogetherVo togetherVo,String in_user_id) {
+		av.setUser_id(in_user_id);
+		//		System.out.println("신청한 아이딤ㅁㅁㅁㅁㅁㅁㅁㅁ"+av.getUser_id());
 		int re = Aservice.checkApplication(av);
 		
 		
@@ -427,7 +447,11 @@ public class TogeteherController {
 			String to_id = service.select_together_id(av.getT_num());
 			AlarmVo alarm = new AlarmVo();
 			alarm.setUser_id(to_id);
+			System.out.println("alarm.setUser_id(to_id)" + to_id);
+			alarm.setIn_user_id(in_user_id);
+			System.out.println("alarm.setIn_user_id(in_user_id) "+ in_user_id);
 			alarm.setT_num(av.getT_num());
+			System.out.println("alarm.setT_num(av.getT_num() " + av.getT_num());
 			int result = alarmService.insert_together_alarm(alarm);
 			System.out.println(result);
 			if(result > 0) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,6 +62,9 @@ $(document).ready(function(){
 				data : data,
 				type : "POST",
 				url : "/together/uploadSummernoteImageFile",
+				beforeSend: function(xhr){
+			         xhr.setRequestHeader(header, token);
+			      },
 				contentType : false,
 				processData : false,
 				success : function(data) {
@@ -114,6 +118,11 @@ $(document).ready(function(){
 							<td><label for="t_intro">인트로</label> <input type="text"
 								id="t_intro" name="t_intro" class="chk" title="인트로를 입력하세요." /></td>
 						<tr>
+						<tr>
+							<td>
+								<input type="text" name="user_id" value="${login_id }" readonly="readonly">
+							</td>
+						</tr>
 						<tr>
 							<td><label for="t_detail">내용</label><br> <textarea
 									id="summernote" name="t_detail" class="chk" title="내용을 입력하세요."></textarea></td>

@@ -197,6 +197,6 @@
 	
 <!-- 	함께가요 원본글 작성자 id -->
 	<select id="select_together_id" resultType="String">
-		select * from together where t_num = #{t_num}
+		select user_id from together where t_num = #{t_num}
 	</select>
 </mapper>
