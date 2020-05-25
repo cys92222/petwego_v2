@@ -37,7 +37,7 @@ public class FollowController {
 		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
 		
 		System.out.println("팔로우 컨트로러"+f);
-		f.setUser_id2(m.getUser_id());
+//		f.setUser_id2(m.getUser_id());//팔로우한 아이디에 로그인한 아이디 설정
 		followService.insert_follow(f);
 		
 		return "팔로잉 완료";

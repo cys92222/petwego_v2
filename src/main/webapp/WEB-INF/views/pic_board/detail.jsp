@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ include file="../longin.jsp" %>
+<%@include file="../login.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,7 +110,8 @@
       //팔로우하기
       $("#follow").click(function(){
          var follow_user_id = $("#follow_user_id").val();
-         $.ajax("/follow/insert_follow",{data:{user_id:follow_user_id},success:function(re){
+         var follow_in_user_id = $("follow_in_user_id").val();
+         $.ajax("/follow/insert_follow",{data:{user_id:follow_user_id,in_user_id:follow_in_user_id},success:function(re){
             alert(re);
             window.location.reload(true);
             }});
@@ -131,6 +132,8 @@
 </script>
 </head>
 <body>
+<input type="hidden" id="follow_in_user_id" value="${login_id }">
+
    <h2>sns</h2>
    <hr>
    <a href="/pic_board/list">sns 메인</a><br><br>

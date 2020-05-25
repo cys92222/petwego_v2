@@ -138,8 +138,8 @@
 	<!-- 댓글입력 -->
 	<form name="commentForm" method="post">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<input type="text" id="board_no" name="board_no" value="${detail.board_no}">
-		<input type="text" name="user_id" value="${detail.user_id }">
+		원본글 번호 : <input type="text" id="board_no" name="board_no" value="${detail.board_no}">
+		원본글 작성자 : <input type="text" name="user_id" value="${detail.user_id }">
 		댓글 작성자 : <input type="text" name="in_user_id" required="required" value="${login_id }"><br>
 		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>
 		<button type="submit" id="comment">댓글 등록</button>
