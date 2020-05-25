@@ -101,7 +101,7 @@
 			<li><span id="login">로그인</span>
 				<ul class="dept01"></ul>
 				<ul class="dept01"><a href="/mypage/mypage">마이페이지</a></ul>
-				<c:if test="${login_role eq "" }">
+				<c:if test="${login_role ne role_user }">
 				<ul class="dept01"><a href="/management/manager_main">관리자페이지</a></ul>
 				</c:if>
 			</li>
