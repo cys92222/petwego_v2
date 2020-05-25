@@ -80,7 +80,6 @@
       <div class="form-group has-feedback">
          <label class="control-label" for="address">주소</label>
          <input class="form-control" type="text" name="address" id="address" required="required"/>
-         <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
          <span class="form-control-feedback"></span>
       </div>
       
@@ -105,11 +104,8 @@
            <label for="comment">소개글:</label>
            <textarea class="form-control" rows="5" id="comment"></textarea>
       </div>
-      
-<!--       <button class="btn btn-success" type="submit" id="btn">가입</button> -->
       <button class="btn btn-success" id="btn">가입</button>
    </form>
-<!--     <button class="btn btn-success" id="btn">가입</button> -->
 </div>
 	
 </body>
