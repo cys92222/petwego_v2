@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,6 +87,9 @@ $(function(){
 						type : "POST",
 						url : "/payments/insertPay",
 						dataType : "JSON",
+						beforeSend: function(xhr){
+							xhr.setRequestHeader(header, token);
+						},
 	    	            contentType:"application/json; charset=utf-8",
 	    	            data : JSON.stringify(info),	//json데이터의 "key":"value" 형태의 패턴을 인식을 위해 변환 
 						success : function(done){

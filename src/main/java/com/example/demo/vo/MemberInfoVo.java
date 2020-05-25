@@ -2,6 +2,8 @@ package com.example.demo.vo;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +35,7 @@ private static final long serialVersionUID = 1L;
 	private String user_role;
 	private String email;
 	private String pwd2;
+	
+	MultipartFile uploadfile;
 	
 }
