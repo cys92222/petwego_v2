@@ -4,17 +4,27 @@
   <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 	
-	<!-- 자유게시판 - 목록/상세/삭제 -->
-<!-- 	<select id="listBoard" resultType="com.example.demo.vo.BoardVo"> -->
-<!-- 		select * from board -->
-<!-- 	</select> -->
-<!-- 	<select id="getBoard" resultType="com.example.demo.vo.BoardVo"> -->
-<!-- 		select * from board where board_no = #{board_no} -->
-<!-- 	</select> -->
-<!-- 	<delete id="delBoard"> -->
-<!-- 		delete board where board_no -->
-<!-- 	</delete> -->
+	<!-- 공지사항 / 목록,글쓰기,상세보기,삭제,수정  -->
+	<select id="listNotice" resultType="com.example.demo.vo.NoticeVo">
+		select * from notice order by notice_no desc
+	</select>
 	
+	<insert id="insertNotice">
+ 		insert into notice values (seq_notice_no.nextval, #{notice_title},#{notice_content},0,sysdate,#{cs_no})
+ 	</insert>
+ 	
+ 	<select id="detailNotice" resultType="com.example.demo.vo.NoticeVo">
+		select * from notice where notice_no = #{notice_no}
+	</select>
+ 	
+ 	<delete id="deleteNotice">
+		delete notice where notice_no = #{notice_no}
+	</delete>
+	
+	<update id="updateNotice">
+		update notice set notice_title = #{notice_title}, notice_content = #{notice_content},
+				 cs_no = #{cs_no} where notice_no = #{notice_no}
+	</update>
 	
 	<!-- 관리자메인 / 일주일/ 신규회원수 -->
 	<select id="newMember" resultType="int">

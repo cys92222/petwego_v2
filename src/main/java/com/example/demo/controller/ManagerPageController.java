@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -19,8 +20,10 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.util.AopLog.NoLogging;
+import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
+import com.example.demo.vo.NoticeVo;
 import com.google.gson.Gson;
 // 민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
 // 민아) 5/19, 관리자페이지 하는중 
@@ -32,6 +35,27 @@ public class ManagerPageController  {
 
 	@Autowired
 	private ManagerPageService mp_service;
+	
+	// 공지사항 목록
+	@GetMapping("listNotice")
+	@NoLogging
+	public void listNotice(Model model) {
+		model.addAttribute("listNotice", mp_service.listNotice());		
+	}
+	
+	// 공지사항 등록
+	@NoLogging
+	@PostMapping(value = "/insertNotice")
+	@ResponseBody
+	public void insertNotice(NoticeVo nv,Model model) {
+		mp_service.insertNotice(nv);
+	}
+	
+	// 공지사항 상세
+	
+	// 공지사항 수정
+	
+	// 공지사항 삭제
 
 	// 관리자페이지메인
 	@RequestMapping("manager_main")
