@@ -5,6 +5,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
+<%@ include file="../login.jsp" %>
 <%
     Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     Object principal = auth.getPrincipal();
@@ -431,7 +432,12 @@ $(function(){
 	<section id="rebutton">
 		<button id="up">수정하기</button><br>
 		<button id="del">삭제하기</button><br>
-   		<button id="re">답변달기</button><br>
+		
+		<sec:authorize access="hasRole('ROLE_ADMIN')"> 
+			<button id="re">답변달기</button><br>
+		</sec:authorize>
+			
+   		
 	</section>
 	<a href="/customerservice/List">QnA리스트 돌아가기</a>
 </section>
