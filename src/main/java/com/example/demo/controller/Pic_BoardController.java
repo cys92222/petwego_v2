@@ -152,13 +152,7 @@ public class Pic_BoardController extends HttpServlet {
          //System.out.println(pic_boardService.detailFile(pbf));
 //         System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
 //         System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
-         
-         HttpSession session = request.getSession();
-  	   Authentication authentication = (Authentication) session.getAttribute("user");
-  	   MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
-  	   MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
-
-         
+         System.out.println("aaaaaaaaaaaaaaaaa" + in_user_id);
          
          //팔로우 관련
          FollowVo f = new FollowVo();

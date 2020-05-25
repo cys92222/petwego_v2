@@ -29,7 +29,7 @@ public class FollowController {
 	@NoLogging
 	@RequestMapping("/follow/insert_follow")
 	@ResponseBody
-	public String insert_follow(HttpServletRequest request,FollowVo f) {
+	public String insert_follow(HttpServletRequest request,FollowVo f,String in_user_id) {
 		
 		HttpSession session = request.getSession();
 		Authentication authentication = (Authentication) session.getAttribute("user");
@@ -37,7 +37,7 @@ public class FollowController {
 		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
 		
 		System.out.println("팔로우 컨트로러"+f);
-//		f.setUser_id2(m.getUser_id());//팔로우한 아이디에 로그인한 아이디 설정
+		f.setUser_id2(in_user_id);//팔로우한 아이디에 로그인한 아이디 설정
 		followService.insert_follow(f);
 		
 		return "팔로잉 완료";
