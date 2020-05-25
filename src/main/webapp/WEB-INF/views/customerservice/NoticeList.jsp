@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="org.springframework.security.core.Authentication" %>    
+<%@ include file="../login.jsp" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,6 +34,9 @@ $(function(){
 		$.ajax({
 			data : data,
 			type : "POST",
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},
 			url : "/customerservice/uploadSummernoteImageFile",
 			contentType : false,
 			processData : false,

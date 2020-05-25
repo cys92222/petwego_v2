@@ -59,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	 @Override
 	    public void configure(WebSecurity web) {
-	        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/adminImg/**", "/summernote/**");
+	        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/adminImg/**", 
+	        		"/summernote/**", "/resources/**", "/t_thumbnailUpload/**");
 	        web.ignoring()
 	            .antMatchers(
 	                "/messages/**"
@@ -83,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/management/**").hasRole("ADMIN")
 			.antMatchers("/user/**", "/mypage/**", "/comment/**", "/board/**",
 					"/customerservice/**", "/pcomment/**", 
-					"/pic_board/**", "/together/**", "/uploadSummernoteImageFile").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
+					"/pic_board/**", "/together/**", "/together/uploadSummernoteImageFile", "/together/uploadSummernoteImageFile2").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
 			.anyRequest().authenticated(); 
 		
 		http.formLogin()

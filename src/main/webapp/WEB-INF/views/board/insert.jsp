@@ -1,18 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="org.springframework.security.core.Authentication" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../login.jsp" %>
-<%
-    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    Object principal = auth.getPrincipal();
- 
-    String name = "";
-    if(principal != null) {
-        name = auth.getName();
-    }
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,8 +17,8 @@
 <link rel="stylesheet" href="../summernote/css/summernote-lite.css">
 
 <script type="text/javascript">
-var token = $("meta[name='_csrf']").attr("content");
-var header = $("meta[name='_csrf_header']").attr("content");
+// var token = $("meta[name='_csrf']").attr("content");
+// var header = $("meta[name='_csrf_header']").attr("content");
 
 var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 var listImg = [];
@@ -118,6 +108,9 @@ $(function(){
 				data : insertBoard,
 				type : "POST",
 				url : "/board/insert",
+				beforeSend: function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
 				success : function(postNum){
 					console.log(postNum);
 					
@@ -152,6 +145,9 @@ $(function(){
 							dataType : "JSON",	
 							type : "POST",
 							url : "/board/imgsDB",
+							beforeSend: function(xhr){
+								xhr.setRequestHeader(header, token);
+							},
 							success : function(ok){
 								alert("등록성공")
 								location.href="/board/get?board_no="+postNum;

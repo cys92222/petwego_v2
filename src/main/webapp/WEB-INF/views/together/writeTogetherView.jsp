@@ -50,6 +50,10 @@ $(document).ready(function(){
 	/**
 		 * 이미지 파일 업로드
 		 */
+		 $.ajaxPrefilter(function(options, originalOptions, jqXHR){
+	         var token = "${_csrf.token}";
+	         jqXHR.setRequestHeader('X-CSRF-Token', token);
+	      });
 		function uploadSummernoteImageFile(file, editor) {
 			data = new FormData();
 			data.append("file", file);
