@@ -180,6 +180,15 @@ $(function(){
 						
 						$("#detail_inq_title").val(detail.inq_title);
 						
+						
+						
+						//로그인한 id가 작성자라면
+						if('${login_id}' === detail.user_id){
+							var up_btn = $("<button id='up'>수정하기</button><br>");
+							var del_btn = $("<button id='del'>삭제하기</button><br>");
+							$("#rebutton").append(up_btn,del_btn);
+							}
+						
 	/*	aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa	
 						var dit = detail.inq_title;			
 						//답변 이면 답변 버튼 지움
@@ -190,7 +199,12 @@ $(function(){
 						$('#detail_inq_content').append(detail.inq_content).css({"border":"1px solid"});
 						$("#detail_inq_date").val(moment(detail.inq_date).format('YYYY년 MM월 DD일 HH시 mm분'));
 // 						$("#detail_inq_date").val(detail.inq_date);
+						
+						
+// 						$("#up").on("click",function(){
 
+// 							});
+						
 						//수정 폼
 						$("#up").click(function(){
 //	 						alert("수정버튼 누름");
@@ -430,9 +444,10 @@ $(function(){
 작성일	<input type="text" id="detail_inq_date" readonly="readonly"><br>
 
 	<section id="rebutton">
-		<button id="up">수정하기</button><br>
-		<button id="del">삭제하기</button><br>
-		
+<%-- 	<c:if test=""> --%>
+<!-- 		<button id="up">수정하기</button><br> -->
+<!-- 		<button id="del">삭제하기</button><br> -->
+<%-- 	</c:if>	 --%>
 		<sec:authorize access="hasRole('ROLE_ADMIN')"> 
 			<button id="re">답변달기</button><br>
 		</sec:authorize>
