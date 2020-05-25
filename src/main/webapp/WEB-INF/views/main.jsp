@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +101,9 @@
 			<li><span id="login">로그인</span>
 				<ul class="dept01"></ul>
 				<ul class="dept01"><a href="/mypage/mypage">마이페이지</a></ul>
+				<c:if test="${login_role eq "" }">
 				<ul class="dept01"><a href="/management/manager_main">관리자페이지</a></ul>
+				</c:if>
 			</li>
 
 		</ul>

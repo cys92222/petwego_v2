@@ -26,7 +26,10 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	}
 
 	@Override
-	public int newPay() {
+	public Integer newPay() {
+		if(mDao.newPay() == null) {
+			return 0;
+		}
 		return mDao.newPay();
 	}
 

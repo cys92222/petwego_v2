@@ -11,7 +11,7 @@
 	</select>
 	
 	<!-- 관리자메인 / 일주일/ 결제된 금액 -->
-	<select id="newPay" resultType="int">
+	<select id="newPay" resultType="java.lang.Integer">
 		select sum(paid_amount) from payment  
 			where paid_time <![CDATA[  <    ]]> sysdate and paid_time <![CDATA[  >    ]]> sysdate - 6
 	</select>
