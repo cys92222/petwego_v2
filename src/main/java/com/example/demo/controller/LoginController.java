@@ -43,6 +43,7 @@ public class LoginController {
 
  
    //로그인
+   @NoLogging
    @RequestMapping(value="/login/login")
    public ModelAndView login(HttpServletRequest request, @RequestParam(value="msg", required=false) String msg) throws Exception {
       ModelAndView mav = new ModelAndView();
@@ -53,12 +54,14 @@ public class LoginController {
 
    
    //로그아웃
+   @NoLogging
    @RequestMapping("/login/logout")
    public String logout(HttpServletRequest request) {
       return "/login/logout";
    }
  
    //로그아웃
+   @NoLogging
    @RequestMapping(value = "/login/logout", method = RequestMethod.POST) 
    public String logout(HttpServletRequest request, HttpServletResponse response) throws Exception { 
       Authentication auth = SecurityContextHolder.getContext().getAuthentication(); 
@@ -118,12 +121,14 @@ public class LoginController {
    
    
    //회원가입 페이지 이동
+   @NoLogging
    @RequestMapping("/join/join")
    public String join(HttpServletRequest request) {
       return "login/join";
    }
    
    //회원가입
+   @NoLogging
    @RequestMapping("/join/insert")
    public String setInertMemberInfo(HttpServletRequest req, HttpServletResponse res, MemberInfoVo member) throws Exception{
    

@@ -7,17 +7,21 @@ import java.lang.annotation.Target;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.dao.ManagerPageDao;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.vo.MemberInfoVo;
 
 // 민아) 5/19, aopLog
 @Component	
@@ -31,6 +35,10 @@ public class AopLog {
 	public void setmDao(ManagerPageDao mDao) {
 		this.mDao = mDao;
 	}
+	
+	@Autowired
+	LoginMapperDao loginMapperDao;
+
 
 	
 	// 컨트롤러에 있는 모든 public 메소드 포함 && @NoLogging이 붙은 메소드는 제외해줘 
@@ -54,10 +62,16 @@ public class AopLog {
 		String methodName = j.getSignature().toShortString();
 		HttpServletRequest request = (HttpServletRequest) j.getArgs()[0];
 
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+		
 		String url = request.getRequestURI();
 		String ip = request.getRemoteAddr();
 		String time = new Date().toLocaleString();
-		String user_id = "tiger1";
+		String user_id = m.getUser_id();
+
 
 		Aop_LogVo al = new Aop_LogVo();
 		al.setUrl(url);
