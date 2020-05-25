@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 // 민아) 5/11, 스케쥴러 추가 
 // 민아) 5/13, 테이블에 없는 파일 삭제 스케쥴러... 문제해결중
 // 민아) 5/19, aop_log 완료
+         
 
 @EnableAspectJAutoProxy
 @EnableScheduling
