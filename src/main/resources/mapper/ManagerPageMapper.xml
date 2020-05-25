@@ -64,54 +64,17 @@
 	</insert>
 
 	<!-- 로그 목록 -->
-	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo" parameterType="com.example.demo.util.Criteria">
+	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo">
 		select log_num, url, ip, time, user_id
-			from(select log_num, url, ip, time, user_id , row_number() over (order by log_num desc) as rNum
-				from aop_log
-			)
-				MP									
-			where rNum between #{rowStart} and #{rowEnd}
-			order by log_num desc
+			from aop_log order by log_num desc
 	</select>
 	
-	<!-- 총 로그 수 -->
-	<select id="countLog" resultType="int">
-		select count (log_num) 
-			from aop_log
-				where log_num > 0
-	</select>
 
 	<!-- 회원 목록 -->
-	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo" parameterType="com.example.demo.util.Criteria">
+	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo">
 		select user_id, tel, name, nick_name, info_create_date, info_update_date
-			from (select user_id, tel, name, nick_name, info_create_date, info_update_date
-					,row_number() over(order by info_create_date desc) as rNum 
-						from member_info 
-							where 1 = 1
-							<include refid="search"></include>
-						)
-								MP
-									
-						where rNum between #{rowStart} and #{rowEnd}
-						order by info_create_date desc
+			from member_info order by info_create_date desc						
 	</select>
-	
-	<!-- 총 회원 수  -->
-	<select id="countMember" resultType="int">
-		select count (user_id) 
-			from member_info  
-				where 1 = 1
-				<include refid="search"></include>
-	</select>
-	
-	<!-- 회원검색을 위한 동적쿼리  -->
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND user_id LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND name LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND nick_name LIKE '%' || #{keyword} || '%'</if>
-		</if>
-	</sql>
 	
 	<!-- 회원 상세보기 -->
 	<select id="getMember" resultType="com.example.demo.vo.MemberInfoVo">

@@ -32,16 +32,10 @@ public interface ManagerPageDao {
 	int insertLog(Aop_LogVo al);
 	
 	// 로그 목록
-	List<Aop_LogVo> listLog(Criteria cri);
-	
-	// 로그 총 개수
-	int countLog(Criteria cri);
+	List<Aop_LogVo> listLog();
 	
 	// 회원목록
-	List<MemberInfoVo> listMember(SearchCriteria scri);
-
-	// 총 회원 수
-	int countMember(SearchCriteria scri);
+	List<MemberInfoVo> listMember();
 
 	// 회원정보 상세보기
 	MemberInfoVo getMember(MemberInfoVo m);
