@@ -406,7 +406,7 @@ $(function(){
 	<option value="3">결제 관련 문의</option>
 </select><br>
 작성자<br>
-<input type="text" name="user_id" required="required"><br>
+<input type="text" name="user_id" required="required" value="${id.user_id }"><br>
 제목<br>
 <input type="text" name="inq_title" required="required"><br>
 내용<br>

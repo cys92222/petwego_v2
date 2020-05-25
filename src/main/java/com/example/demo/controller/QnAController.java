@@ -6,9 +6,11 @@ import java.io.InputStream;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.QnAService;
+import com.example.demo.service.SecurityService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.QnAUpdateVo;
 import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
@@ -36,6 +41,12 @@ public class QnAController {
 	
 	@Autowired
 	QnAService service;
+	
+	@Autowired
+	LoginMapperDao loginMapperDao;
+	
+	@Autowired
+	SecurityService securityService;
 	
 	//고객센터 메인
 	@NoLogging
@@ -52,10 +63,17 @@ public class QnAController {
 	public ModelAndView allQnAList(HttpServletRequest request, @ModelAttribute("scri") SearchCriteria scri){
 		ModelAndView mav = new ModelAndView();
 		
-		
+//		HttpSession session = request.getSession();
+//	    Authentication authentication = (Authentication) session.getAttribute("user");
+//	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+//		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+//		
+//		//로그인한 정보를 id에 담아서 보냄
+//		mav.addObject("id", m);
 		
 		Gson gson = new Gson();
 		mav.addObject("list", gson.toJson(service.allQnAList(scri)));
+		
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
