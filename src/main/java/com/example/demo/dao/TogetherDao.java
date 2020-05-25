@@ -46,4 +46,7 @@ public interface TogetherDao {
 	public int t_attendee_cnt(ApplicationVo av) throws Exception;
 	
 	public int upcntApplication(int t_num);
+	
+	//함께가요 원본글 작성자 id
+	String select_together_id(int t_num);
 }

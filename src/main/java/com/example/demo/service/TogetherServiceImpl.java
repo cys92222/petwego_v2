@@ -64,5 +64,14 @@ public class TogetherServiceImpl implements TogetherService {
 		return dao.detailTogether(t_num);
 	}
 	
+	//함께가요 원본글 작성자 id
+	@Override
+	public String select_together_id(int t_num) {
+		// TODO Auto-generated method stub
+		String str = "";
+		str = dao.select_together_id(t_num);
+		return str;
+	}
+	
 	
 }

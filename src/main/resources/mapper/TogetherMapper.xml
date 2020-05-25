@@ -194,4 +194,9 @@
 		update together set t_attendee_cnt = (select count(*) from together_application where t_num=#{t_num})
 			where t_num = #{t_num}
 	</update>
+	
+<!-- 	함께가요 원본글 작성자 id -->
+	<select id="select_together_id" resultType="String">
+		select * from together where t_num = #{t_num}
+	</select>
 </mapper>

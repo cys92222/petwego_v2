@@ -18,7 +18,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<%@include file="../login.jsp"%>
+<%@include file="../head.jsp"%>
 
 <c:if test="${login_id eq 'manager' }">
 	<%@include file="../management/header.jsp"%>

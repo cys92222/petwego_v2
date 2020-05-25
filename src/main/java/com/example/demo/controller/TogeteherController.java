@@ -407,7 +407,8 @@ public class TogeteherController {
 		
 		int totalCnt = togetherVo.getT_size();
 		int attendeeCnt = togetherVo.getT_attendee_cnt();
-//		System.out.println(togetherVo.getT_num());
+		System.out.println("togetherVo.getT_num() "+togetherVo.getT_num());
+		System.out.println("av.getT_num() " + av.getT_num());
 //		System.out.println(togetherVo.getUser_id());
 //		System.out.println(totalCnt);
 //		System.out.println(attendeeCnt);
@@ -422,9 +423,10 @@ public class TogeteherController {
 			Aservice.insertApplication(av);
 			
 			//신청 알람 등록
+			//함께가요 원본글 작성자 id
+			String to_id = service.select_together_id(av.getT_num());
 			AlarmVo alarm = new AlarmVo();
-//			alarm.setUser_id(av.getUser_id());
-			alarm.setUser_id("user1");
+			alarm.setUser_id(to_id);
 			alarm.setT_num(av.getT_num());
 			int result = alarmService.insert_together_alarm(alarm);
 			System.out.println(result);

@@ -9,6 +9,7 @@
 			select max(application_no) from together_application
 		</selectKey>
 		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,#{in_user_id},'함께가요',#{board_num},#{t_num})
+		<!-- 		알람시퀀스,원본글 작성자,확인유무,신청자,신청번호,원본글 번호 -->
 	</insert>
 	
 <!-- 	함께가요 신청취소하면 취소 알람 등록 -->

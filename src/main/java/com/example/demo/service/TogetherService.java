@@ -29,5 +29,8 @@ public interface TogetherService {
 		
 	//함께가요 삭제
 	public void deleteTogether(int t_num) throws Exception;
+	
+	//함께가요 원본글 작성자 id
+	String select_together_id(int t_num);
 
 }
