@@ -103,8 +103,6 @@ public class Pic_BoardController extends HttpServlet {
 			pageMaker.setCri(cri);
 			pageMaker.setTotalCount(pic_boardService.listCount());
 			mav.addObject("pageMaker", pageMaker);
-//			System.out.println("ddddd :  " + pageMaker);
-//			mav.addObject("listAll",str_board);
 			mav.addObject("board", gson.toJson(list_board)); // 오류시 삭제
 			mav.addObject("file", gson.toJson(list_file));
 			mav.setViewName("/pic_board/list");
@@ -115,26 +113,20 @@ public class Pic_BoardController extends HttpServlet {
 		@GetMapping("/pic_board/detail")
 		public ModelAndView detailPic_Board(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf) {	
 			ModelAndView mav = new ModelAndView();
-//			System.out.println(pic_boardService.detailPic_Board(pb));
-			//System.out.println(pic_boardService.detailFile(pbf));
-//			System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
-//			System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
-			
-			
-			
+
 			//팔로우 관련
 			FollowVo f = new FollowVo();
 			f.setUser_id(pb.getUser_id());
 			f.setUser_id2("로그인한 아이디로 변경해야됨");
 			//팔로잉수
 			mav.addObject("search_follow_count", followService.search_follow_count(f));
-//			System.out.println("search_follow_count" + followService.search_follow_count(f));
+
 			//팔로잉한 유저 정보
 			mav.addObject("search_follow", followService.search_follow(f));
-//			System.out.println("search_follow" + followService.search_follow(f));
+
 			//팔로잉 확인
 			mav.addObject("follow_chk", followService.follow_chk(f));
-//			System.out.println("follow_chk" + followService.follow_chk(f));
+
 			
 			mav.addObject("Board", pic_boardService.detailPic_Board(pb));
 			mav.addObject("file", pic_boardService.detailFile(pbf));
@@ -157,7 +149,6 @@ public class Pic_BoardController extends HttpServlet {
 				 Criteria cri) throws Exception {
 			int re = -1;
 			re = pic_boardService.insertPic_Board(pb); // sns글등록
-			//System.out.println("마지막 글번호:" + pic_boardService.photo_no());
 			pbf.setPhoto_no(pic_boardService.photo_no());
 			String path = request.getRealPath("/img");
 			System.out.println(path);
@@ -210,17 +201,12 @@ public class Pic_BoardController extends HttpServlet {
 		public String deletePic_Board(HttpServletRequest request,Pic_BoardVo pb) {
 			Pic_Board_CommentVo c = new Pic_Board_CommentVo();
 			c.setPhoto_no(pb.getPhoto_no()); 
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+pb.getUser_id());
 			LikeItVo l = new LikeItVo();
 			l.setPhoto_no(pb.getPhoto_no());
 			likeService.deleteLike(l);
 			pbc.pdeleteCommBoard(c);
-			System.out.println("좋아요삭제결과"+likeService.deleteLike(l));
-			System.out.println("댓글삭제 결과 " + pbc.pdeleteCommBoard(c));
 			pic_boardService.deleteFile(pb);
-			System.out.println("파일삭제 결과"+pic_boardService.deleteFile(pb));
 			pic_boardService.deletePic_Board(pb);
-			System.out.println("게시물삭제결과"+pic_boardService.deletePic_Board(pb));
 			return "redirect:/pic_board/list";
 		}
 
@@ -241,10 +227,6 @@ public class Pic_BoardController extends HttpServlet {
 		//sns 수정
 		@RequestMapping(value = "/pic_board/update", method = RequestMethod.POST)
 		public String updateSubmit(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf, Model model,Criteria cri,MultipartFile uploadFile)throws Exception {
-			
-//			System.out.println("pb"+pb);
-//			System.out.println("pbf"+pbf);
-//			System.out.println("pb.getUser_id()"+pb.getUser_id());
 			
 			//내용 수정
 			pic_boardService.updatePic_Board(pb);
