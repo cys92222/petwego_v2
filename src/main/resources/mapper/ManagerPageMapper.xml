@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 민아) 5/19, 관리자페이지  -->
+  <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
+	
+	<!-- 관리자메인 / 일주일/ 신규회원수 -->
+	<select id="newMember" resultType="int">
+		select count(*) from member_info
+			where info_create_date <![CDATA[  <    ]]> sysdate and info_create_date <![CDATA[  >    ]]> sysdate - 6
+	</select>
+	
+	<!-- 관리자메인 / 일주일/ 결제된 금액 -->
+	<select id="newPay" resultType="int">
+		select sum(paid_amount) from payment  
+			where paid_time <![CDATA[  <    ]]> sysdate and paid_time <![CDATA[  >    ]]> sysdate - 6
+	</select>
+	
+	<!-- 관리자메인 / 일주일/ 등록된 게시물 수 -->
+<!-- 	<select id="newBoard" resultType="int"> -->
+<!-- 		select count(board_no) cb from board where board_date < sysdate and board_date > sysdate - 6 -->
+<!-- 		select count(photo_no) cp from pic_board where photo_date < sysdate and photo_date > sysdate - 6	 -->
+<!-- 	</select> -->
+	
+	<!-- 관리자메인 / 일주일/ 개설된 모임 수 -->
+	<select id="newTogether" resultType="int">
+		select count(t_num) from together 
+			where t_open_date <![CDATA[  <    ]]> sysdate and t_open_date <![CDATA[  >    ]]> sysdate - 6
+	</select>
 		
 	<!-- 로그를 구글 차트로 나타내보기 위한 카운트 상위 10개만뽑는다면? -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	<select id="chartLog" resultType="com.example.demo.vo.ChartVo">

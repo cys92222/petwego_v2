@@ -11,6 +11,11 @@ import com.example.demo.vo.MemberInfoVo;
 // 민아) 5/19, 관리자페이지
 public interface ManagerPageDao {
 	
+	// 관리자메인 - 일주일 - 신규회원수, 결제된금액, 개설모임수, 게시판새글수(게시판쿼리생각중)
+	int newMember();
+	int newPay();
+	int newTogether();
+	
 	// 로그 차트 
 	List<ChartVo> chartLog();
 	

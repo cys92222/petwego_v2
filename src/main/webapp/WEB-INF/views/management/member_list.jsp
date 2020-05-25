@@ -72,8 +72,8 @@
 				<td><c:out value="${member.tel }"/></td>
 				<td><a href="/management/member_get?user_id=${member.user_id }"><c:out value="${member.name }"/></a></td>
 				<td><c:out value="${member.nick_name }"/></td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.info_create_date }"/></td>
-				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${member.info_update_date }"/></td>
+				<td><c:out value="${member.info_create_date }"/></td>
+				<td><c:out value="${member.info_update_date }"/></td>
 			</tr>
 		</c:forEach>
 		</tbody>

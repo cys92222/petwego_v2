@@ -18,9 +18,6 @@
 </script>
 </head>
 <body>
-<c:if test="${a eq 'admin' }">
-	<%@include file="../management/header.jsp"%>
-</c:if>
 	<h2>자유 게시판</h2>
 	<hr>
 	<a href="/MainPage">메인페이지</a><br>
