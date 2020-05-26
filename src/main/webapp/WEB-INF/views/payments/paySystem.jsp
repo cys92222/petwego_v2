@@ -30,6 +30,7 @@ $(function(){
 		var status = $("#status").val();
 		var rsv_no = $("#rsv_no").val();
 		var user_id = $("#user_id").val();
+// 		var user_id = "${login_id}";
 
  /*
 	pay_method/String/결제수단			merchant_uid/String/고유주문번호
@@ -136,7 +137,7 @@ $(function(){
 		<input type="hidden" id="apply_num" name="apply_num"  />	
 		<input type="hidden" id="status" name="status"  />
 		<input type="hidden" id="rsv_no" name="rsv_no"  />
-		<input type="hidden" id="user_id" name="user_id"  />
+		<input type="hidden" id="user_id" name="user_id"  value="${login_id }"/>
 	</form>
 
 </body>
