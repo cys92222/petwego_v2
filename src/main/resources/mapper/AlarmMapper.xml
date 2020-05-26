@@ -81,7 +81,8 @@
 	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
 		select max(comm_num) from board_comment
 	</selectKey>
-		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,${in_user_id},'자유게시판',#{board_num},#{t_num})
+		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,#{in_user_id},'자유게시판',#{board_num},#{t_num})
+<!-- 		시퀀스, 원본글 아이디, 읽음유무, 댓글작성자, 게시판, 댓글번호, 원본글번호 -->
 	</insert>
 	
 <!-- 	자유게시판 댓글 삭제 알람 등록 -->
@@ -89,7 +90,7 @@
 	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
 		select comm_num from board_comment where board_no=#{t_num} and in_user_id = #{in_user_id}
 	</selectKey>
-		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,${in_user_id},'자유게시판',#{board_num},#{t_num})
+		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,#{in_user_id},'자유게시판',#{board_num},#{t_num})
 	</insert>
 
 <!-- 자유게시판 댓글 등록 알람 조회 -->

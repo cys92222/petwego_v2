@@ -130,6 +130,9 @@
 								dataType : "JSON",	
 								type : "POST",
 								url : "/board/imgsDB",
+								beforeSend: function(xhr){
+									xhr.setRequestHeader(header, token);
+								},
 								success : function(ok){
 									alert("수정성공")
 									location.href="/board/get?board_no="+postNum;
