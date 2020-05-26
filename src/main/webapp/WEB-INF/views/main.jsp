@@ -18,6 +18,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <style type="text/css">
    * {margin: 0; padding: 0; }
    li {list-style: none; }
@@ -37,7 +39,9 @@
    .none:after {content: ""; display: block; clear: both; }
    
 </style>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 <script>
    $(document).on('mouseover', '.topMenu span', function() {
        $('.dept01').slideDown(300);
@@ -76,16 +80,25 @@
       
 
    })
+   
+   $(function(){
+	
+	    $("#popbtn").click(function(){
+//	    $(".login").click(function(){
+	        $('div.modal').modal();
+	    })
+
+})
 </script>
 </head>
 <body>
 <sec:authorize access="isAnonymous()">
-   <a href="/login/login">로그인</a>
+    <button class="btn btn-default" id="popbtn">로그인</button>
    </sec:authorize>
    <sec:authorize access="isAuthenticated()">
    <sec:authentication property="principal.user_id" var="irum"/>
    <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
-   <a href="/login/logout">로그아웃</a>
+   <a href="/login/logout"><button class="btn btn-default" id="logoutbtn">로그아웃</button></a>
    </sec:authorize>
    <div class="logo">
       <span class="logo">펫위고 PET WE GO</span>
@@ -131,5 +144,52 @@
    </div>
     <div class="none">
      </div>
+     
+     <div class="modal fade" id="layerpop" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title -->
+        <h4 class="modal-title">로그인</h4>
+      </div>
+      <!-- body -->
+      <div class="modal-body">
+           <form action="/login/login" method="POST"><!-- /login-processing --> <!-- /MainPage -->
+  						<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  				<!--  	<input type="text" name="_csrf" value="${_csrf}"/>-->	
+  						<!--<sec:csrfInput/>-->
+						<div class="form-group">
+							<label for="InputId">아이디</label>
+							<input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID">
+						</div>
+						<div class="form-group">
+							<label for="InputPassword">비밀번호</label>
+							<input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="remember-me">아이디 기억하기 <!-- 로그인 유지 기능 -->
+							</label>
+						</div>
+						<button id="login-button" name="submit" type="submit" class="btn btn-block btn-primary text-light">로그인</button>
+						<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						    <font color="red">
+						        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+						        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+						    </font>
+						</c:if>
+					</form>
+      </div>
+      <!-- Footer -->
+      <div class="modal-footer">
+<!--         Footer --> <a href="/join/join">회원가입</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
