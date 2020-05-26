@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +45,7 @@ $(function(){
 			name : '주문명:뫄뫄 애견 펜션',
 			amount : 100,
 			buyer_email : 'acs@petwego.kr',
-			buyer_name : 'user1',
+			buyer_name : user_id,
 			buyer_tel : '010-1234-5678',
 			buyer_addr : '서울시 서대문구'
 				    
@@ -86,6 +87,9 @@ $(function(){
 						type : "POST",
 						url : "/payments/insertPay",
 						dataType : "JSON",
+						beforeSend: function(xhr){
+							xhr.setRequestHeader(header, token);
+						},
 	    	            contentType:"application/json; charset=utf-8",
 	    	            data : JSON.stringify(info),	//json데이터의 "key":"value" 형태의 패턴을 인식을 위해 변환 
 						success : function(done){
@@ -124,6 +128,7 @@ $(function(){
 	
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form action="/payments/insertPay" id="payForm" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="imp_uid" name="imp_uid"  />
 		<input type="hidden" id="merchant_uid" name="merchant_uid"  />
 		<input type="hidden" id="paid_amount" name="paid_amount"  />

@@ -149,10 +149,10 @@ public class Pic_BoardController extends HttpServlet {
       public ModelAndView detailPic_Board(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf,String in_user_id) {   
          ModelAndView mav = new ModelAndView();
 //         System.out.println(pic_boardService.detailPic_Board(pb));
-         //System.out.println(pic_boardService.detailFile(pbf));
+//		   System.out.println(pic_boardService.detailFile(pbf));
 //         System.out.println("상세보기 pb aaaaaaaaaaaaaaaaaaaaaaaaa" + pb);
 //         System.out.println("상세보기 pbf aaaaaaaaaaaaaaaaaaaaaaaaaa" + pbf);
-         System.out.println("aaaaaaaaaaaaaaaaa" + in_user_id);
+//         System.out.println("aaaaaaaaaaaaaaaaa" + in_user_id);
          
          //팔로우 관련
          FollowVo f = new FollowVo();
@@ -195,7 +195,7 @@ public class Pic_BoardController extends HttpServlet {
          //System.out.println("마지막 글번호:" + pic_boardService.photo_no());
          pbf.setPhoto_no(pic_boardService.photo_no());
          String path = request.getRealPath("/img");
-         System.out.println(path);
+         //System.out.println(path);
 
          String oldFname = pbf.getPhoto_file_name();
          MultipartFile uploadFile = pbf.getUploadFile();
@@ -245,17 +245,17 @@ public class Pic_BoardController extends HttpServlet {
       public String deletePic_Board(HttpServletRequest request,Pic_BoardVo pb) {
          Pic_Board_CommentVo c = new Pic_Board_CommentVo();
          c.setPhoto_no(pb.getPhoto_no()); 
-         System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+pb.getUser_id());
+// 		 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+pb.getUser_id());
          LikeItVo l = new LikeItVo();
          l.setPhoto_no(pb.getPhoto_no());
          likeService.deleteLike(l);
          pbc.pdeleteCommBoard(c);
-         System.out.println("좋아요삭제결과"+likeService.deleteLike(l));
-         System.out.println("댓글삭제 결과 " + pbc.pdeleteCommBoard(c));
+//		 System.out.println("좋아요삭제결과"+likeService.deleteLike(l));
+// 		 System.out.println("댓글삭제 결과 " + pbc.pdeleteCommBoard(c));
          pic_boardService.deleteFile(pb);
-         System.out.println("파일삭제 결과"+pic_boardService.deleteFile(pb));
+//		 System.out.println("파일삭제 결과"+pic_boardService.deleteFile(pb));
          pic_boardService.deletePic_Board(pb);
-         System.out.println("게시물삭제결과"+pic_boardService.deletePic_Board(pb));
+//		 System.out.println("게시물삭제결과"+pic_boardService.deletePic_Board(pb));
          return "redirect:/pic_board/list?user_id="+pb.getUser_id()+"in_user_id="+pb.getUser_id();
          
       }
@@ -287,13 +287,13 @@ public class Pic_BoardController extends HttpServlet {
          
          //기존 사진 이름
          String oldfilename = pbf.getPhoto_file_name();
-         System.out.println("기존 사진 이름"+ oldfilename);
+//       System.out.println("기존 사진 이름"+ oldfilename);
          
          //업로드파일 이름
          String uploadfile = uploadFile.getOriginalFilename();
-         System.out.println("업로드 파일 이름" + uploadfile);
+//       System.out.println("업로드 파일 이름" + uploadfile);
          String path = request.getRealPath("/img");
-         System.out.println(path);
+//       System.out.println(path);
          //사진 수정을 한다면
          if(uploadfile!=null & !uploadfile.equals("")) {
             pbf.setPhoto_file_name(uploadfile);

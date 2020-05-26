@@ -52,6 +52,7 @@ $(function(){
 			<%-- <button id="sortBtn">${sortString}</button>  --%>
 			<section id="container">
 				<form role="form" method="get">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<table width="100%">
 						<tr>
 							<th>이미지</th>

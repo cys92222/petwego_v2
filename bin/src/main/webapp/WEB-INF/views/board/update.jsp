@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,6 +55,9 @@
 				data : data,
 				type : "POST",
 				url : "/board/boardUpload",	// 이 url을 컨트롤러 @PostMapping(value="/boardUpload", 와 동일해야함 
+				beforeSend: function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
 				contentType : false,
 				processData : false,
 				success : function(data) {
@@ -96,6 +102,9 @@
 					data : insertBoard,
 					type : "POST",
 					url : "/board/update",
+					beforeSend: function(xhr){
+						xhr.setRequestHeader(header, token);
+					},
 					success : function(postNum){
 						console.log(postNum);
 						
@@ -138,6 +147,7 @@
 	<h2>게시글 수정</h2>
 	<hr>
 	<form action="update" method="post" enctype="multipart/form-data" id="updateForm">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<input type="hidden" id="board_no" name="board_no" value="${up.board_no}">
 	
 	<table width="100%">

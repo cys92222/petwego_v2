@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,6 +67,9 @@ $(function(){
     	                type : "POST",
     	                dataType : "JSON",
     	                contentType:"application/json; charset=utf-8",
+    	                beforeSend: function(xhr){
+    	    				xhr.setRequestHeader(header, token);
+    	    			},
     	                data: {
     	                	//기타 필요한 데이터가 있으면 추가 전달
     	                    imp_uid : rsp.imp_uid,
@@ -92,6 +96,9 @@ $(function(){
 								type : "POST",
 								url : "/payments/insertPay",
 								contentType:"application/json; charset=utf-8",
+								beforeSend: function(xhr){
+									xhr.setRequestHeader(header, token);
+								},
     	                		success:function(a){
 									console.log(a);
    	         						alert("결제테이블 등록성공");
@@ -128,6 +135,7 @@ $(function(){
 	
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form id="asd">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="imp_uid" name="imp_uid"  />
 		<input type="hidden" id="merchant_uid" name="merchant_uid"  />
 		<input type="hidden" id="paid_amount" name="paid_amount"  />

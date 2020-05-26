@@ -8,7 +8,8 @@
 		<selectKey keyProperty="board_num" resultType="java.lang.Integer" order="BEFORE">
 			select max(application_no) from together_application
 		</selectKey>
-		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,'신청자id로 수정해야됨','함께가요',#{board_num},#{t_num})
+		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,#{in_user_id},'함께가요',#{board_num},#{t_num})
+		<!-- 		알람시퀀스,원본글 작성자,확인유무,신청자,신청번호,원본글 번호 -->
 	</insert>
 	
 <!-- 	함께가요 신청취소하면 취소 알람 등록 -->
@@ -16,7 +17,7 @@
 	<selectKey keyProperty="board_num" resultType="java.lang.Integer" order="BEFORE">
 		select application_no from together_application where user_id = #{user_id} and t_num = #{t_num}
 	</selectKey>
-		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,'신청자id로 수정해야됨','함께가요',#{board_num},#{t_num})
+		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,#{in_user_id},'함께가요',#{board_num},#{t_num})
 	</insert>
 	
 	
@@ -27,7 +28,7 @@
 	
 <!-- 	함께가요 삭제 aaaaaaaaaaaaaaaaaaaaaaaa -->
 	<delete id="delete_application">
-		delete together_application where user_id = #{user_id} and t_num = #{t_num}
+		delete together_application where t_num = #{t_num}
 	</delete>
 	
 	
@@ -80,15 +81,15 @@
 	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
 		select max(comm_num) from board_comment
 	</selectKey>
-		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,'신청자id로 수정해야됨','자유게시판',#{board_num},#{t_num})
+		insert into alarm values(seq_alarm_no.nextval,#{user_id},1,${in_user_id},'자유게시판',#{board_num},#{t_num})
 	</insert>
 	
 <!-- 	자유게시판 댓글 삭제 알람 등록 -->
 	<insert id="cancle_insert_board_alarm">
 	<selectKey keyProperty="board_num" resultType="int" order="BEFORE">
-		select comm_num from board_comment where board_no=#{board_no} and user_id = #{user_id}
+		select comm_num from board_comment where board_no=#{t_num} and in_user_id = #{in_user_id}
 	</selectKey>
-		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,'신청자id로 수정해야됨','자유게시판',#{board_num},#{t_num})
+		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,${in_user_id},'자유게시판',#{board_num},#{t_num})
 	</insert>
 
 <!-- 자유게시판 댓글 등록 알람 조회 -->

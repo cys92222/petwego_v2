@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,12 +15,14 @@ $(function(){
 
 
 
+
 </script>
 </head>
 <body>
 	<h2>사진 수정</h2>
 	<hr>
 	<form action="/pic_board/update" method="post" enctype="multipart/form-data">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		작성자 <br>
 		<input type="text" name="photo_no" value="${board.photo_no }" readonly="readonly"><br>
 		<input type="text" name="photo_file_no" value="${pic.photo_file_no }" readonly="readonly"><br>

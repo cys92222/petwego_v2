@@ -70,7 +70,7 @@
 	
 	<!-- 게시물 삭제 // 로그인처리 추가되면 본인이 쓴 글만 지울 수 있게 수정할것 -->
 	<delete id="deleteBoard">
-		delete board where board_no = #{board_no}
+		delete board where board_no = #{board_no} and user_id = #{user_id}
 	</delete>
 	
 	<!-- 마지막글번호 -->

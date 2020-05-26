@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ include fi %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,17 +92,18 @@ $(document).ready(function(){
 
 	//신청하기
 	var t_num = $("#t_num").val();
-	var user_id = "user1";
+	var user_id = $("#user_id").val();
   	var t_size = ${detailTogether.t_size };
   	var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
-
+  	var in_user_id = "${login_id}";
+  	
 	console.log(t_num,user_id,t_size,t_attendee_cnt)
   	
 	$("#clickApplication").hide();
 	
 	//신청하기 체크
 	var okApplication = function(user_id, t_num){
-		$.ajax("/together/okApplication",{data: {user_id:user_id,t_num:t_num}, success:function(re){
+		$.ajax("/together/okApplication",{data: {user_id:in_user_id,t_num:t_num}, success:function(re){
 			if( re == 1 ){				//
 				$("#clickApplication").show();	
 				$("#Application").hide();
@@ -112,7 +117,7 @@ $(document).ready(function(){
 	$(document).on("click","#Application",function(){
 		var data = $("#applicationForm").serialize();
 		console.log(user_id,t_num)
-		$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt}, success:function(re){
+		$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt,in_user_id:in_user_id}, success:function(re){
 			alert(re);
 			if(re === "신청하기 완료"){
 				$("#clickApplication").show();
@@ -125,7 +130,8 @@ $(document).ready(function(){
 	
 	// 신청하기 delete 신청하기 한번 더 누르면 신청취소
 	$(document).on("click","#clickApplication",function(){
-		$.ajax("/together/deleteApplication",{data: {user_id:user_id, t_num:t_num},success: function(re){
+		var d_user_id = '${login_id}';
+		$.ajax("/together/deleteApplication",{data: {user_id:d_user_id, t_num:t_num},success: function(re){
 			if( re == 1 ){
 				$("#clickApplication").hide();
 				$("#Application").show();
@@ -152,6 +158,7 @@ $(document).ready(function(){
 			
 			<section id="container">
 				<form id="detailForm" name="detailForm" role="form" method="get">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<!-- scri의 값을 보관하기 위해서 form태그안에 타입 hidden -->
 				<input type="hidden" id="user_id" name="user_id" value="${detailTogether.user_id }">
 				<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
@@ -162,6 +169,7 @@ $(document).ready(function(){
 				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType }"/>
 				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword }"/>
 				
+				<input type="hidden" name="in_user_id" value="${login_id }">
 					<table>
 						<tbody>
 							
@@ -192,6 +200,12 @@ $(document).ready(function(){
 							
 							<tr>
 								<td>
+									작성자<input type="text" name="t_user_id" value="${login_id }"><br>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
 									<label for="t_detail">내용</label><div id="t_detail" name="t_detail">${detailTogether.t_detail }</div>
 								</td>
 							</tr>
@@ -219,12 +233,15 @@ $(document).ready(function(){
 					<hr>
 					
 					<hr>
-					<button type="submit" class="update_btn">수정</button>
-					<button type="submit" class="delete_btn">삭제</button>
+					<c:if test="${login_id eq detailTogether.user_id }">
+						<button type="submit" class="update_btn">수정</button>
+						<button type="submit" class="delete_btn">삭제</button>
+					</c:if>
 					<button type="submit" class="list_btn">목록</button>
 
 				</form>
 				<form name="applicationForm" id="applicationForm">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<!-- scri의 값을 보관하기 위해서 form태그안에 타입 hidden -->
 					<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
 					<input type="hidden" id="t_size" name="t_size" value="${detailTogether.t_size }"/>
@@ -242,6 +259,7 @@ $(document).ready(function(){
 				</form>
 				<hr>
 				<form id="replyForm" method="post">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input type="hidden" id="t_num" name="t_num" value="${detailTogether.t_num }"/>
 					<input type="hidden" id="page" name="page" value="${scri.page }"/>
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${scri.perPageNum }"/>
@@ -250,7 +268,7 @@ $(document).ready(function(){
 					
 					
 					<div>
-						<label for="user_id">댓글 작성자</label><input type="text" id="user_id" name="user_id" />
+						<label for="c_user_id">댓글 작성자</label><input type="text" id="c_user_id" name="c_user_id" value="${login_id }"/>
 						<br/>
 						<label for="t_r_content">댓글 내용</label><input type="text" id="t_r_content" name="t_r_content" />
 					</div>
@@ -269,18 +287,35 @@ $(document).ready(function(){
 					        <p>
 					        작성자 : ${replyList.user_id}<br />
 					        작성 날짜 :  <fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-					        ${replyList.secret_reply}
+<%-- 					        ${replyList.secret_reply} --%>
 					        </p>
 					        <!-- 비밀여부체크, 로그인 완성되면 함께가요 작성자,댓글작성자도 추가해야됨 -->
-		                     <c:choose>
-		                        <c:when test="${replyList.secret_reply eq 'y' }">
-		                           <p>비밀댓글입니다</p>
-		                        </c:when>
-		                        
-		                     	<c:otherwise>
-		                    	  <p>${replyList.t_r_content}</p>
-		                     	</c:otherwise>
-		                     </c:choose>
+								<c:if test="${replyList.secret_reply ne 'y' }">
+									${replyList.t_r_content }	
+								</c:if>
+								
+								<c:if test="${replyList.secret_reply eq 'y'}">
+									<c:if test="${login_id eq 'manager' }">
+										${replyList.t_r_content }
+									</c:if>
+									
+<!-- 									댓글 작성자 -->
+									<c:set var="user_id" value="${replyList.user_id }"/>
+<!-- 									로그인 아이디 -->
+									<c:set var="login_id" value="${login_id }"/>
+<!-- 									함께가요 원본글 작성자 -->
+									<c:set var="dt_user_id" value="${detailTogether.user_id }"/>
+									
+									<c:if test="${user_id eq login_id || login_id eq dt_user_id || user_id eq login_id}">
+										${replyList.t_r_content }
+									</c:if>
+									
+<%-- 									<c:if test="${login_id eq  dt_user_id}"> --%>
+<%-- 										${replyList.t_r_content } --%>
+<%-- 									</c:if> --%>
+
+									비밀댓글입니다(자물쇠 사진같은거로 변경)
+								</c:if>
 					
 					        <div>
 							  <button type="button" class="replyUpdateBtn" data-t_r_num="${replyList.t_r_num}">수정</button>
@@ -294,6 +329,7 @@ $(document).ready(function(){
 					<!-- 신청자 목록 -->
 					<div id="userApplication">
 						<form role="form">
+						<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<table width="30%">
 								<tr>
 									<td>현재 참여자</td>

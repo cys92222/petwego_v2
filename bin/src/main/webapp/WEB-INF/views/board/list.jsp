@@ -5,6 +5,13 @@
 <!DOCTYPE html>
 <html>
 
+<%@include file="../head.jsp"%>
+
+<c:if test="${login_id eq 'manager' }">
+	<%@include file="../management/header.jsp"%>
+</c:if>
+
+
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -18,14 +25,12 @@
 </script>
 </head>
 <body>
-<c:if test="${a eq 'admin' }">
-	<%@include file="../management/header.jsp"%>
-</c:if>
 	<h2>자유 게시판</h2>
 	<hr>
 	<a href="/MainPage">메인페이지</a><br>
 	<a href="/board/insert">게시글 등록</a><br>
 	<form action="/board/list">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<div class="search">
    			<select name="searchType">
 		      <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
@@ -89,4 +94,5 @@
  		 </ul>
 	</div>
 </body>
+
 </html>

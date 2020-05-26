@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +66,7 @@ $(document).ready(function(){
 		
 		<section id="container">
 				<form name="updateForm" role="form" method="post" action="updateTogether" enctype="multipart/form-data">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input type="hidden" name="t_num" value="${updateTogether.t_num}" readonly="readonly"/>
 					<table>
 						<tbody>

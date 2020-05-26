@@ -55,6 +55,7 @@
 <body>
 	
 	<form id="frm">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
           <div class="rating-box">
                     <!--pic -->
                     <!--시설 이름-->

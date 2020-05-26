@@ -7,9 +7,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>sns게시판</title>
+<title>SNS게시판</title>
 <style type="text/css">
-li{list-style:none; float:left; padding: 6px;}
+li{list-style:none; float:left; padding: 6px; position: fixed; bottom: 0; width: 100%;} 
+/*  text-align: center; */
 </style>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
@@ -22,11 +23,11 @@ var temp = function(){
    var arr_file = ${file};
    var arr_board = ${board};
    $.each(arr_file,function(idx,data){
-	  var id = $("<div></div>").append(arr_board[idx].user_id + "님의 사진");
+	  var id = $("<center><div></div></center>").append(arr_board[idx].user_id + "님의 사진");
       var a = $("<a href=/pic_board/detail?photo_no="+data.photo_no+"&user_id="+arr_board[idx].user_id+"&in_user_id="+in_user_id+"></a>");
       var img = $("<img/>").attr({"src":"/img/"+data.photo_file_name,"photo_no":data.photo_no}).width(300).height(300);
       a.append(img,id);
-//       a.css({"float":"left"});
+	       a.css({"float":"left","margin":"10px"});
       $("#sns").append(a);
    });
 }
@@ -34,13 +35,12 @@ var temp = function(){
 </head>
 <body>
 <a href="/MainPage">메인화면</a>
-<h2>sns리스트</h2>
+<h2>SNS리스트</h2>
+<a href="/pic_board/insertForm">게시글 등록</a>
 <hr>
 <div id="sns">
-
+	
 </div>
-<a href="/pic_board/insertForm">sns 등록</a>
-
    <div>
         <ul>
           <c:if test="${pageMaker.prev}">
