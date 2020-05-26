@@ -120,7 +120,8 @@
       //팔로우취소하기
       $("#delete_follow").click(function(){
          var follow_user_id = $("#follow_user_id").val();
-         $.ajax("/follow/delete_follow",{data:{user_id:follow_user_id},success:function(re){
+         var user_id2 = "${login_id}";
+         $.ajax("/follow/delete_follow",{data:{user_id:follow_user_id,user_id2:user_id2},success:function(re){
             alert(re);
             window.location.reload(true);
             }});
@@ -148,11 +149,11 @@
       </c:if>
       <c:if test="${follow_chk !=0 }">
          <input type="button" value="팔로잉취소하기" id="delete_follow"><br>
-         나를 팔로잉한 유저 리스트<br>
+        팔로잉한 유저 리스트<br>
          <c:forEach items="${search_follow }" var="search_follow" begin="0" end="5">
             ${search_follow.user_id2 }님 
          </c:forEach>
-         <a href="#">더보기</a>
+         <a href="/follow/search_follow?user_id=${Board.user_id }">더보기</a>
       </c:if>
    </tr>
 <!--     <tr> -->

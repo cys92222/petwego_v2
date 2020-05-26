@@ -73,5 +73,14 @@ public class FollowServiceImpl implements FollowService {
 		re = FollowDao.follow_chk(f);
 		return re;
 	}
+	
+	//맞팔로우 가능한지 조회
+	@Override
+	public Integer serach_follow2_count(FollowVo f) {
+		// TODO Auto-generated method stub
+		Integer re = -1;
+		re = FollowDao.serach_follow2_count(f);
+		return re;
+	}
 
 }

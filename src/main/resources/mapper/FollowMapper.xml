@@ -6,7 +6,7 @@
 	
 <!-- 	나를 팔로잉한 회원 조회 -->
 	<select id="search_follow" resultType="com.example.demo.vo.FollowVo">
-		select user_id2 from follow where user_id=#{user_id}
+		select user_id2,user_id from follow where user_id=#{user_id}
 	</select>
 	
 <!-- 	나를 팔로잉한 회원 수 -->
@@ -28,6 +28,11 @@
 	<insert id="insert_follow2">
 		insert into follow values(seq_f_no.nextval,'팔로잉',#{user_id2},#{user_id})
 	</insert>
+	
+<!-- 	맞팔로우 가능한지 조회 -->
+	<select id="serach_follow2_count" resultType="java.lang.Integer">
+		select user_id from follow where user_id2=#{user_id2}
+	</select>
 
 <!-- 	언팔로우 -->
 	<delete id="delete_follow">

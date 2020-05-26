@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.FollowService;
@@ -37,6 +40,7 @@ public class FollowController {
 		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
 		
 		System.out.println("팔로우 컨트로러"+f);
+		System.out.println("팔로우할 아이디 "+f.getUser_id());
 		f.setUser_id2(in_user_id);//팔로우한 아이디에 로그인한 아이디 설정
 		followService.insert_follow(f);
 		
@@ -44,27 +48,42 @@ public class FollowController {
 	}
 	
 	@NoLogging
+	@RequestMapping(value = "/follow/insert_follow2")
 	//맞팔로잉
 	public String insert_follow2(FollowVo f) {
 		
-		
-		return "팔로잉 완료";
+		followService.insert_follow2(f);
+	
+		return "redirect:/follow/search_follow?user_id="+f.getUser_id2();
 	}
 	
 	//언팔로잉
 	@NoLogging
 	@RequestMapping("/follow/delete_follow")
 	@ResponseBody
-	public String delete_follow(HttpServletRequest request,FollowVo f) {
-		HttpSession session = request.getSession();
-		Authentication authentication = (Authentication) session.getAttribute("user");
-		MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
-		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+	public String delete_follow(HttpServletRequest request,FollowVo f,String in_user_id) {
+		
 		
 		System.out.println("언팔로잉"+f);
-		f.setUser_id2(m.getUser_id());
+		
 		followService.delete_follow(f);
 		
 		return "팔로잉 취소 완료";
+	}
+	
+	@NoLogging
+	@RequestMapping(value = "/follow/search_follow")
+	//나를 팔로우한 유저 목록
+	public ModelAndView followList(FollowVo f){
+		List<FollowVo> list = followService.search_follow(f);
+		System.out.println(list);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("followList", list);
+		
+		f.setUser_id2(f.getUser_id());
+		mav.addObject("count", followService.search_following(f));
+		mav.setViewName("/pic_board/followList");
+		return mav;
+		
 	}
 }

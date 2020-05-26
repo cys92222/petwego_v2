@@ -25,4 +25,7 @@ public interface FollowDao {
 	
 	//팔로잉 확인
 	int follow_chk(FollowVo f);
+	
+	//맞팔로우 가능한지 조회
+	Integer serach_follow2_count(FollowVo f);
 }
