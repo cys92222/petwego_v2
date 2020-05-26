@@ -57,6 +57,9 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 	        
            if(savedRequest!=null) {
                String targetUrl = savedRequest.getRedirectUrl(); //savedRequest객체를 통해 getRedirectUrl(로그인 전의 url)을 가져와요
+               if(targetUrl.indexOf("error") > 0) {
+            	   targetUrl = "/MainPage";
+               }
                redirectStratgy.sendRedirect(request, response, targetUrl);
                System.out.println("이전 페이지로 돌아가요");
            } else {
