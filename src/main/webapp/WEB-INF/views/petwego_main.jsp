@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,6 +46,15 @@ $(function(){
 		location.href="/mypage/mypage";
 	});
 });
+
+$(function(){
+	
+    $("#popbtn").click(function(){
+//    $(".login").click(function(){
+        $('div.modal').modal();
+    })
+
+})
 </script>
 
 <!-- Bootstrap core CSS -->
@@ -68,7 +78,7 @@ $(function(){
 
 <body>
 	<%@include file="header.jsp"%>
-
+	
 	<!-- Navigation -->
 	<nav class="navbar navbar-light bg-light static-top">
 		<div class="container"></div>
@@ -260,8 +270,11 @@ $(function(){
 			</div>
 		</div>
 	</section>
+	
+	
 
 	<%@include file="footer.jsp"%>
+
 
 </body>
 

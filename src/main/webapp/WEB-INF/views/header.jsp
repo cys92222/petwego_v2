@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,14 +26,12 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script type="text/javascript">
   $(function(){
-	  var user_id="admin";
-		if(user_id==="admin"){
-			$("#adminPage").show();
-		}else{
-			$("#adminPage").hide();
-		}
-  })
-  	
+		
+	    $("#popbtn").click(function(){
+	        $('div.modal').modal();
+	    })
+
+})
   </script>
 
   <!-- Bootstrap core CSS -->
@@ -69,6 +79,21 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- 로그인, 로그아웃 여부 보여주기 -->
+    	<sec:authorize access="isAnonymous()">
+    		<button class="btn btn-info" id="popbtn">로그인</button>  <!-- glyphicon glyphicon-user -->
+   	  	</sec:authorize>
+   
+    	<sec:authorize access="isAuthenticated()">
+		<li><a href="/login/logout"><span
+			class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+		<span class="navbar-form pull-right"> <img class="img-circle"
+		style="width: 20px; height: 20px; margin-left:10px"
+		src="../img/peopleImg/<sec:authentication property="principal.fname"/>" />
+		</span>
+		</sec:authorize>
+      <!-- 로그인, 로그아웃 여부 보여주기 끝-->
+      
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
@@ -84,14 +109,16 @@
             <a class="nav-link js-scroll-trigger" href="/together/listTogether">함께가요</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/admin/index">고객지원</a>
+            <a class="nav-link js-scroll-trigger" href="/customerservice/index">고객지원</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/mypage/mypage">마이페이지</a>
           </li>
+          <sec:authorize access="hasRole('ROLE_ADMIN')">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="" id="adminPage">관리자페이지</a>
+            <a class="nav-link js-scroll-trigger" href="/management/manager_main" id="adminPage">관리자페이지</a>
           </li>
+           </sec:authorize>
         </ul>
       </div>
     </div>
@@ -107,6 +134,56 @@
   <!-- Custom JavaScript for this theme -->
   <script src="resources/main/js/scrolling-nav.js"></script>
 
+<!-- 여기부터는 로그인 팝업창 -->	
+<div class="modal fade" id="layerpop" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- header -->
+      <div class="modal-header">
+        <!-- 닫기(x) 버튼 -->
+        <h4 class="modal-title">로그인</h4>
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <!-- header title -->
+        
+      </div>
+      <!-- body -->
+      <div class="modal-body">
+           <form action="/login/login" method="POST"><!-- /login-processing --> <!-- /MainPage -->
+  						<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  				<!--  	<input type="text" name="_csrf" value="${_csrf}"/>-->	
+  						<!--<sec:csrfInput/>-->
+						<div class="form-group">
+							<label for="InputId">아이디</label>
+							<input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID">
+						</div>
+						<div class="form-group">
+							<label for="InputPassword">비밀번호</label>
+							<input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD">
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox" name="remember-me">아이디 기억하기 <!-- 로그인 유지 기능 -->
+							</label>
+						</div>
+						<button id="login-button" name="submit" type="submit" class="btn btn-block btn-primary text-light">로그인</button>
+						<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						    <font color="red">
+						        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+						        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+						    </font>
+						</c:if>
+					</form>
+      </div>
+      <!-- Footer -->
+      <div class="modal-footer">
+			<!--         Footer --> 
+			<a href="/join/join">회원가입</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 로그인 팝업창 끝 -->
 </body>
 
 </html>

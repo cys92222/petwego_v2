@@ -95,11 +95,23 @@
 <sec:authorize access="isAnonymous()">
     <button class="btn btn-default" id="popbtn">로그인</button>
    </sec:authorize>
-   <sec:authorize access="isAuthenticated()">
-   <sec:authentication property="principal.user_id" var="irum"/>
-   <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
-   <a href="/login/logout"><button class="btn btn-default" id="logoutbtn">로그아웃</button></a>
-   </sec:authorize>
+   
+   
+<%--    <sec:authorize access="isAuthenticated()"> --%>
+<%--    <sec:authentication property="principal.user_id" var="irum"/> --%>
+<%--    <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p> --%>
+<!--    <a href="/login/logout"><button class="btn btn-default" id="logoutbtn">로그아웃</button></a> -->
+<%--    </sec:authorize> --%>
+    <sec:authorize access="isAuthenticated()">
+	<li><a href="/login/logout"><span
+			class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+	<span class="navbar-form pull-right"> <img class="img-circle"
+		style="width: 60px; height: 70px; right:100;"
+		src="../img/peopleImg/<sec:authentication property="principal.fname"/>" />
+	</span>
+	</sec:authorize>
+   
+   
    <div class="logo">
       <span class="logo">펫위고 PET WE GO</span>
    </div>
@@ -145,7 +157,7 @@
     <div class="none">
      </div>
      
-     <div class="modal fade" id="layerpop" >
+  <div class="modal fade" id="layerpop" >
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- header -->
