@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +34,7 @@ $(function(){
 			
 			<section id="container">
 				<form role="form" method="get">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<table width="80%">
 						<tr>
 							<th>썸네일</th>
@@ -50,6 +52,7 @@ $(function(){
 								<td><img src="../t_thumbnailUpload/${c.thumbnail}" width="100" height="100"></td>
 								
 								<td><a href="detailTogether?t_num=${c.t_num}&
+															user_id=${login_id }&
 															page=${scri.page}&
 															perPageNum=${scri.perPageNum}&
 															searchType=${scri.searchType}&

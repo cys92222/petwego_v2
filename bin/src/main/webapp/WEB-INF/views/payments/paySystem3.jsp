@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +66,9 @@ $(function(){
     	                    rsv_no : 1,
     	                    user_id : rsp.buyer_name  
 							},
+							beforeSend: function(xhr){
+								xhr.setRequestHeader(header, token);
+							},
 						success : function(ww){
 							console.log(ww);
 							alert("결제정보 저장했음")
@@ -90,6 +94,7 @@ $(function(){
 	
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form action="/payments/insertPay" id="asd" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="text" id="imp_uid" name="imp_uid"  />
 		<input type="text" id="merchant_uid" name="merchant_uid"  />
 		<input type="text" id="paid_amount" name="paid_amount"  />

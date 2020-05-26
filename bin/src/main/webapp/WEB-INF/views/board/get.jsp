@@ -2,15 +2,33 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<%@include file="../head.jsp"%>
+
+<c:if test="${login_id eq 'manager' }">
+	<%@include file="../management/header.jsp"%>
+</c:if>
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 상세보기화면 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
+
 	$(function(){
 		var board_no = $("#board_no").val();
 
@@ -88,6 +106,7 @@
 	<hr>
 	<a href="list">게시글 목록</a><br><br>
 	<form id="f">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<input type="hidden" id="board_no" value="${ detail.board_no }">
 	<table border="1" width="70%">
 		<tr>
@@ -117,13 +136,24 @@
 		
 	</table>
 	</form>
-	<button id="btnUpdate">글 수정</button>
-	<button id="btnDelete">글 삭제</button>
+	<c:if test="${login_id ne 'manager' }">
+		<button id="btnUpdate">글 수정</button>
+		<button id="btnDelete">글 삭제</button>
+	</c:if>
+	
+	
+	<sec:authorize access="hasRole('ROLE_ADMIN')"> 
+	<li><a href="<c:url value='/board/delete?user_id=${detail.user_id }&board_no=${detail.board_no }' />">관리자 삭제</a></li> 
+	</sec:authorize>
+	
+	
 	<hr>
 	<!-- 댓글입력 -->
 	<form name="commentForm" method="post">
-		<input type="hidden" id="board_no" name="board_no" value="${detail.board_no}">
-		댓글 작성자 : <input type="text" name="user_id" required="required"><br>
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		원본글 번호 : <input type="text" id="board_no" name="board_no" value="${detail.board_no}">
+		원본글 작성자 : <input type="text" name="user_id" value="${detail.user_id }">
+		댓글 작성자 : <input type="text" name="in_user_id" required="required" value="${login_id }"><br>
 		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>
 		<button type="submit" id="comment">댓글 등록</button>
 	</form>

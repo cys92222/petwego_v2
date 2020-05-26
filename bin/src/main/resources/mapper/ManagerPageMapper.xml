@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 민아) 5/19, 관리자페이지  -->
+  <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
+	
+	<!-- 공지사항 / 목록,글쓰기,상세보기,삭제,수정  -->
+	<select id="listNotice" resultType="com.example.demo.vo.NoticeVo">
+		select * from notice order by notice_no desc
+	</select>
+	
+	<insert id="insertNotice">
+ 		insert into notice values (seq_notice_no.nextval, #{notice_title},#{notice_content},0,sysdate,#{cs_no})
+ 	</insert>
+ 	
+ 	<select id="detailNotice" resultType="com.example.demo.vo.NoticeVo">
+		select * from notice where notice_no = #{notice_no}
+	</select>
+ 	
+ 	<delete id="deleteNotice">
+		delete notice where notice_no = #{notice_no}
+	</delete>
+	
+	<update id="updateNotice">
+		update notice set notice_title = #{notice_title}, notice_content = #{notice_content},
+				 cs_no = #{cs_no} where notice_no = #{notice_no}
+	</update>
+	
+	<!-- 관리자메인 / 일주일/ 신규회원수 -->
+	<select id="newMember" resultType="int">
+		select count(*) from member_info
+			where info_create_date <![CDATA[  <    ]]> sysdate and info_create_date <![CDATA[  >    ]]> sysdate - 6
+	</select>
+	
+	<!-- 관리자메인 / 일주일/ 결제된 금액 -->
+	<select id="newPay" resultType="java.lang.Integer">
+		select sum(paid_amount) from payment  
+			where paid_time <![CDATA[  <    ]]> sysdate and paid_time <![CDATA[  >    ]]> sysdate - 6
+	</select>
+	
+	<!-- 관리자메인 / 일주일/ 등록된 게시물 수 -->
+<!-- 	<select id="newBoard" resultType="int"> -->
+<!-- 		select count(board_no) cb from board where board_date < sysdate and board_date > sysdate - 6 -->
+<!-- 		select count(photo_no) cp from pic_board where photo_date < sysdate and photo_date > sysdate - 6	 -->
+<!-- 	</select> -->
+	
+	<!-- 관리자메인 / 일주일/ 개설된 모임 수 -->
+	<select id="newTogether" resultType="int">
+		select count(t_num) from together 
+			where t_open_date <![CDATA[  <    ]]> sysdate and t_open_date <![CDATA[  >    ]]> sysdate - 6
+	</select>
 		
 	<!-- 로그를 구글 차트로 나타내보기 위한 카운트 상위 10개만뽑는다면? -->                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 	<select id="chartLog" resultType="com.example.demo.vo.ChartVo">
@@ -17,54 +64,17 @@
 	</insert>
 
 	<!-- 로그 목록 -->
-	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo" parameterType="com.example.demo.util.Criteria">
+	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo">
 		select log_num, url, ip, time, user_id
-			from(select log_num, url, ip, time, user_id , row_number() over (order by log_num desc) as rNum
-				from aop_log
-			)
-				MP									
-			where rNum between #{rowStart} and #{rowEnd}
-			order by log_num desc
+			from aop_log order by log_num desc
 	</select>
 	
-	<!-- 총 로그 수 -->
-	<select id="countLog" resultType="int">
-		select count (log_num) 
-			from aop_log
-				where log_num > 0
-	</select>
 
 	<!-- 회원 목록 -->
-	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo" parameterType="com.example.demo.util.Criteria">
+	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo">
 		select user_id, tel, name, nick_name, info_create_date, info_update_date
-			from (select user_id, tel, name, nick_name, info_create_date, info_update_date
-					,row_number() over(order by info_create_date desc) as rNum 
-						from member_info 
-							where 1 = 1
-							<include refid="search"></include>
-						)
-								MP
-									
-						where rNum between #{rowStart} and #{rowEnd}
-						order by info_create_date desc
+			from member_info order by info_create_date desc						
 	</select>
-	
-	<!-- 총 회원 수  -->
-	<select id="countMember" resultType="int">
-		select count (user_id) 
-			from member_info  
-				where 1 = 1
-				<include refid="search"></include>
-	</select>
-	
-	<!-- 회원검색을 위한 동적쿼리  -->
-	<sql id="search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND user_id LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND name LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND nick_name LIKE '%' || #{keyword} || '%'</if>
-		</if>
-	</sql>
 	
 	<!-- 회원 상세보기 -->
 	<select id="getMember" resultType="com.example.demo.vo.MemberInfoVo">

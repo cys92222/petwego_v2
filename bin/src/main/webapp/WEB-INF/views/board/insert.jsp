@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +17,8 @@
 <link rel="stylesheet" href="../summernote/css/summernote-lite.css">
 
 <script type="text/javascript">
+// var token = $("meta[name='_csrf']").attr("content");
+// var header = $("meta[name='_csrf_header']").attr("content");
 
 var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 var listImg = [];
@@ -57,6 +62,9 @@ $(function(){
 			url : "/board/boardUpload",	// 이 url을 컨트롤러 @PostMapping(value="/boardUpload", 와 동일해야함 
 			contentType : false,
 			processData : false,
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},
 			success : function(data) {
 		
 				//이미지 용량제한은 application.properties 에 
@@ -88,6 +96,7 @@ $(function(){
 				}
 			})
 		}
+	
 				
 		$("#save").click(function(e){
 		// 폼태그 기본속성(action은 디폴트)을 동작중단시키지 않으면 글이 두개씩 등록되버림 
@@ -99,6 +108,9 @@ $(function(){
 				data : insertBoard,
 				type : "POST",
 				url : "/board/insert",
+				beforeSend: function(xhr){
+					xhr.setRequestHeader(header, token);
+				},
 				success : function(postNum){
 					console.log(postNum);
 					
@@ -133,6 +145,9 @@ $(function(){
 							dataType : "JSON",	
 							type : "POST",
 							url : "/board/imgsDB",
+							beforeSend: function(xhr){
+								xhr.setRequestHeader(header, token);
+							},
 							success : function(ok){
 								alert("등록성공")
 								location.href="/board/get?board_no="+postNum;
@@ -147,9 +162,18 @@ $(function(){
 </head>
 <body>
 	<h2>게시글 등록</h2>
+	<sec:authorize access="isAnonymous()">
+   <a href="/login/login">로그인</a>
+	</sec:authorize>
+	<sec:authorize access="isAuthenticated()">
+   <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
+
+   <a href="/login/logout">로그아웃</a>
+	</sec:authorize>
 	<hr>
 	<form id="insertForm" method="post" enctype="multipart/form-data">
 <%-- 	<input type="hidden" name="board_no" value="${no}"> --%>
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<table width="100%">
 		<tr>
 			<td>제목</td><td> <input type="text" name="board_title" required="required" style="width:650px"></td>
@@ -162,7 +186,7 @@ $(function(){
 		</select>
 		</tr>
 		<tr>
-			<td>작성자</td><td> <input type="text" name="user_id" required="required"></td>
+			<td>작성자</td><td> <input type="text" name="user_id" value="${login_id }" required="required"></td>
 		</tr>
 		<tr>
 			<td>내용</td>

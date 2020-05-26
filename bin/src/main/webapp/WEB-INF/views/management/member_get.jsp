@@ -65,7 +65,7 @@
 		</tr>
 		<tr>
 			<td>생년월일</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detail_Info.birth }"/></td>
+			<td>${detail_Info.birth }</td>
 		</tr>
 		<tr>
 			<td>주소</td>
@@ -85,11 +85,11 @@
 		</tr>
 		<tr>
 			<td>가입일</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detail_Info.info_create_date }"/></td>
+			<td>${detail_Info.info_create_date }</td>
 		</tr>
 		<tr>
 			<td>정보수정일</td>
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detail_Info.info_update_date }"/></td>
+			<td>${detail_Info.info_update_date }</td>
 		</tr>
 	</table>
 	<!-- 회원 강퇴 버튼 -->

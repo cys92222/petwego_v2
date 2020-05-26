@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="../head.jsp" %>
 <html>
 	<head>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -35,6 +36,7 @@
 			
 			<section id="container">
 				<form name="updateForm" role="form" method="post" action="/together/deleteReply">
+				<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<input type="hidden" id="t_num" name="t_num" value="${deleteReply.t_num}" readonly="readonly"/>
 					<input type="hidden" id="t_r_num" name="t_r_num" value="${deleteReply.t_r_num}" />
 					<input type="hidden" id="page" name="page" value="${scri.page}"> 
