@@ -79,12 +79,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.authorizeRequests()
 			.antMatchers( "/", "/home/**"
-                ,"/login/**", "/join/**", "/MainPage")
+                ,"/login/**", "/join/**", "/MainPage" 
+                /* , "/board/list", "/comment/listComment",
+                "/customerservice/allNotice", "/customerservice/List", 
+                "/pcomment/plistComment", "/together/listTogether", "/pic_board/list" 이 부분 설정하고 싶은데 aop 오류나요 */)
 			.permitAll()
 			.antMatchers("/management/**").hasRole("ADMIN")
 			.antMatchers("/user/**", "/mypage/**", "/comment/**", "/board/**",
 					"/customerservice/**", "/pcomment/**", 
-					"/pic_board/**", "/together/**", "/together/uploadSummernoteImageFile", "/together/uploadSummernoteImageFile2").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
+					"/pic_board/**", "/together/**", "/together/uploadSummernoteImageFile", 
+					"/together/uploadSummernoteImageFile2").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
 			.anyRequest().authenticated(); 
 		
 		http.formLogin()
