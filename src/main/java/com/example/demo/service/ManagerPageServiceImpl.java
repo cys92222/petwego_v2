@@ -12,6 +12,7 @@ import com.example.demo.vo.Aop_LogVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
+import com.example.demo.vo.PaymentVo;
 
 //민아) 5/19, 관리자페이지
 @Service
@@ -19,13 +20,19 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 
 	@Autowired
 	private ManagerPageDao mDao;
-	
+
+	// 회원 / 결제정보
+	@Override
+	public List<PaymentVo> listPay() {
+		return mDao.listPay();
+	}
+
 	// 공지사항 / 목록,글쓰기,상세보기,삭제,수정
 	@Override
 	public List<NoticeVo> listNotice() {
 		return mDao.listNotice();
 	}
-	
+
 	@Override
 	public int insertNotice(NoticeVo nv) {
 		return mDao.insertNotice(nv);
@@ -45,8 +52,7 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int updateNotice(NoticeVo nv) {
 		return mDao.updateNotice(nv);
 	}
-	
-	
+
 	// 관리자메인 - 일주일 - 신규회원수, 결제된금액, 개설모임수, 게시판새글수(게시판쿼리생각중)
 	@Override
 	public int newMember() {
@@ -55,7 +61,7 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 
 	@Override
 	public Integer newPay() {
-		if(mDao.newPay() == null) {
+		if (mDao.newPay() == null) {
 			return 0;
 		}
 		return mDao.newPay();
@@ -65,14 +71,13 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int newTogether() {
 		return mDao.newTogether();
 	}
-	
-	
-	// 로그 차트 
+
+	// 로그 차트
 	@Override
 	public List<ChartVo> chartLog() {
 		return mDao.chartLog();
 	}
-	
+
 	// 로그 기록(등록)
 	@Override
 	public int insertLog(Aop_LogVo al) {
@@ -102,7 +107,5 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int deleteMember(MemberInfoVo m) {
 		return mDao.deleteMember(m);
 	}
-
-	
 
 }

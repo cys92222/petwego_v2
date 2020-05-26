@@ -24,7 +24,7 @@
   <!-- Custom styles for this page -->
   <link href="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 	
-   <!-- Bootstrap core JavaScript-->
+ <!-- Bootstrap core JavaScript-->
   <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
   <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
@@ -41,10 +41,7 @@
   <!-- Page level custom scripts -->
   <script src="/resources/manager/js/demo/datatables-demo.js"></script>
   
-   <!-- summernote --> 
-<!--   <script src="/resources/editor/js/summernote-lite.js"></script> -->
-<!--   <script src="/resources/editor/js/lang/summernote-ko-KR.js"></script> -->
-<!--   <link rel="stylesheet" href="/resources/editor/css/summernote-lite.css"> -->
+
 </head>
 
 <body id="page-top">
@@ -146,6 +143,7 @@
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>  
     </ul>
+    
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->

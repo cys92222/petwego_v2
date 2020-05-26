@@ -17,6 +17,14 @@ public class M_MemberController {
 	@Autowired
 	private ManagerPageService mp_service;
 
+	// 회원 결제정보
+	@NoLogging
+	@GetMapping("/member/listPay")
+	public void listPay(Model model) {
+		model.addAttribute("listPay",mp_service.listPay());
+	}
+	
+	
 	// 회원 목록
 	@NoLogging
 	@GetMapping("/member/member_list")

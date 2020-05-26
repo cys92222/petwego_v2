@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
 <%@include file="../management/header.jsp"%>
 <!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
+<html>
 <body>
 <br>
  	<!-- Begin Page Content -->

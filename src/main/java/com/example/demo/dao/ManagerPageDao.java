@@ -8,9 +8,13 @@ import com.example.demo.vo.Aop_LogVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
+import com.example.demo.vo.PaymentVo;
 
 // 민아) 5/19, 관리자페이지
 public interface ManagerPageDao {
+	
+	// 회원 / 결제정보
+	List<PaymentVo> listPay();
 	
 	// 공지사항 / 목록,글쓰기,상세보기,삭제,수정
 	List<NoticeVo> listNotice();
