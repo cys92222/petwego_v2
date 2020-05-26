@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
 <title>Insert title here</title>
-<%@include file="../management/header.jsp"%>
+<%@include file="../header.jsp"%>
 <script type="text/javascript">
 	$(function(){
 		var notice_no = $("#notice_no").val();
@@ -19,7 +19,7 @@
 		$("#btnDelete").click(function(){
 			var check = confirm("공지글을 삭제하시겠습니까?")
 			if(check == true){
-				self.location = "/management/deleteNotice?notice_no="+notice_no;
+				self.location = "/management/notice/deleteNotice?notice_no="+notice_no;
 				alert("게시글을 삭제했습니다!");
 			}
 		});
@@ -83,5 +83,5 @@
 	</div>
 
 </body>
-<%@include file="../management/footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </html>

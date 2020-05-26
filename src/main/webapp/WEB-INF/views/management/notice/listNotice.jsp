@@ -6,7 +6,7 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
 <!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
-<%@include file="../management/header.jsp"%>
+<%@include file="../header.jsp"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		$("#btnInsert").click(function(){
-			self.location = "/management/insertNotice"
+			self.location = "/management/notice/insertNotice"
 		})
 	})
 </script>
@@ -68,7 +68,7 @@
 							<c:forEach var="notice" items="${listNotice }">
 							<tr>
 								<td><c:out value="${notice.notice_no }"/></td>
-								<td><a href="/management/detailNotice?notice_no=${notice.notice_no}">
+								<td><a href="/management/notice/detailNotice?notice_no=${notice.notice_no}">
 									<c:out value="${notice.notice_title }"/>
 								</a></td>
 								<td><c:out value="${notice.notice_hit }"/></td>
@@ -84,5 +84,5 @@
 	</div>
 
 </body>
-<%@include file="../management/footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </html>

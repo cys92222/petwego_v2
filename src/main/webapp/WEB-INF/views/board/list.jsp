@@ -7,11 +7,6 @@
 
 <%@include file="../head.jsp"%>
 
-<c:if test="${login_id eq 'manager' }">
-	<%@include file="../management/header.jsp"%>
-</c:if>
-
-
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>

@@ -5,15 +5,16 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
 <!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
-<%@include file="../management/header.jsp"%>
+<head>
+<%@include file="../header.jsp"%>
+<meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="../summernote/js/summernote-lite.js"></script>
-<script src="../summernote/js/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../summernote/css/summernote-lite.css">
+<script src="../../summernote/js/summernote-lite.js"></script>
+<script src="../../summernote/js/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
+
 <script type="text/javascript">
 $(function(){
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
@@ -48,7 +49,7 @@ $(function(){
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
 			},
-			url : "/management/uploadNotice",
+			url : "/management/notice/uploadNotice",
 			contentType : false,
 			processData : false,
 			success : function(data) {
@@ -58,22 +59,24 @@ $(function(){
 		});
 	}
 	//공지사항 등록 
-	$("#addNotice").click(function(){
-		var data = $("#insertForm").serialize();
-		$.ajax("/management/insertNotice",
-				{data:data,
-				beforeSend: function(xhr){
+	$("#addNotice").click(function(e){
+		e.preventDefault();
+		var insert = $("#insertForm").serialize();
+
+		$.ajax({
+				url :"/management/notice/insertNotice",
+				type : "POST",
+				data : insert,
+				beforeSend : function(xhr){
 					xhr.setRequestHeader(header, token);
 				},
 				success:function(){
 			
-			alert("공지사항 등록");
-			window.location.reload(true);
+				alert("공지사항 등록");
+			
 		}});
 	});
 })
-
-
 </script>
 </head>
 <body>
@@ -103,10 +106,15 @@ $(function(){
 				<input type="text" id="notice_title" name="notice_title" required="required"><br>
 				내용<br>
 				<textarea rows="8" cols="100" id="notice_content" name="notice_content"></textarea>
-				
+				<br>
 				<!-- 글쓰기 버튼  -->
 				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-					<button id="addNotice">등록</button>
+				<a href="#" class="btn btn-success btn-icon-split" id="addNotice">
+		       		<span class="icon text-white-50">
+		        		<i class="fas fa-edit"></i>
+		        	</span>
+		        	<span class="text">공지등록</span>
+	       		</a>
 				</sec:authorize>		
 				</form>
 			</div>
@@ -114,5 +122,5 @@ $(function(){
 	</div>
 
 </body>
-<%@include file="../management/footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </html>
