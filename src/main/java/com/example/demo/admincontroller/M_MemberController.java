@@ -38,7 +38,7 @@ public class M_MemberController {
 	public String deleteMember(MemberInfoVo m) {
 
 		mp_service.deleteMember(m);
-		return "redirect:/management/member_list";
+		return "redirect:/management/member/member_list";
 	}
 
 }

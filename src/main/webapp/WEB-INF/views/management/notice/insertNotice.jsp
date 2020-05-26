@@ -60,8 +60,10 @@ $(function(){
 	//공지사항 등록 
 	$("#addNotice").click(function(){
 		var data = $("#insertForm").serialize();
-		$.ajax("/management/notice/insertNotice",
-				{data:data,
+
+		$.ajax({
+				url :"/management/notice/insertNotice",
+				data:data,
 				beforeSend: function(xhr){
 					xhr.setRequestHeader(header, token);
 				},
