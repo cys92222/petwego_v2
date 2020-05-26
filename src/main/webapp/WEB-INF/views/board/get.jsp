@@ -66,7 +66,10 @@
 				var td1 = $("<td></td>").html(c.comm_cont);
 				var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
 				var td3 = $("<td></td>").html(c.user_id);
-				var delBtn = $("<button></button>").text("댓글삭제").attr("comm_num",c.comm_num);
+				if(c.user_id === "${login_id}"){
+					var delBtn = $("<button></button>").text("댓글삭제").attr("comm_num",c.comm_num);
+					}
+				
 				var td4 = $("<td></td>");
 				td4.append(delBtn);
 				tr.append(td1, td2, td3, td4);
@@ -136,7 +139,7 @@
 		
 	</table>
 	</form>
-	<c:if test="${login_id ne 'manager' }">
+	<c:if test="${login_id eq detail.user_id }">
 		<button id="btnUpdate">글 수정</button>
 		<button id="btnDelete">글 삭제</button>
 	</c:if>

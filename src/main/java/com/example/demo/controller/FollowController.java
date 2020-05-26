@@ -17,6 +17,7 @@ import com.example.demo.service.FollowService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.FollowVo;
 import com.example.demo.vo.MemberInfoVo;
+import com.google.gson.Gson;
 
 @Controller
 public class FollowController {
@@ -73,11 +74,14 @@ public class FollowController {
 		List<FollowVo> list = followService.search_follow(f);
 		System.out.println(list);
 		ModelAndView mav = new ModelAndView();
+		Gson gson = new Gson();
+		String str = gson.toJson(list);
+		mav.addObject("followList2", str);
 		mav.addObject("followList", list);
 		
 		f.setUser_id2(f.getUser_id());
 		mav.addObject("count", followService.search_following(f));
-		mav.setViewName("/pic_board/followList");
+		mav.setViewName("/pic_board/followList2");
 		return mav;
 		
 	}

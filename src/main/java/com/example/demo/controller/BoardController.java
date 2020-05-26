@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.AlarmService;
 import com.example.demo.service.BoardService;
 import com.example.demo.service.Board_CommentService;
@@ -32,6 +35,7 @@ import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
+import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.util.AopLog.NoLogging;
@@ -72,6 +76,9 @@ public class BoardController {
 	
 	@Autowired
 	AlarmService alarmService;
+	
+	@Autowired
+	LoginMapperDao loginMapperDao;
 
 	// 게시물 목록, 검색, 페이징
 	@GetMapping("/list")
@@ -123,12 +130,19 @@ public class BoardController {
 		service.updateHit(b.getBoard_no()); // 게시물 조회수 증가
 		model.addAttribute("detail", service.getBoard(b));
 		
+		
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+		
 		//로그인 구현되면 로그인 아이디로 셋팅
-//		//댓글 등록된거 알람안가게 셋팅
-//		AlarmVo alarm = new AlarmVo();
-//		alarm.setUser_id("로그인한 아이디");
-//		alarm.setT_num(b.getBoard_no());
-//		alarmService.chk_board_alarm(alarm);
+		//댓글 등록된거 알람안가게 셋팅
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id(m.getUser_id());
+		alarm.setT_num(b.getBoard_no());
+		alarmService.chk_board_alarm(alarm);
 	}
 
 	// 게시글 수정
@@ -140,7 +154,7 @@ public class BoardController {
 
 	@PostMapping(value = "/update")
 	@ResponseBody
-	public String updateSubmit(BoardVo b, Board_fileVo bf, Model model) {
+	public String updateSubmit(HttpServletRequest request,BoardVo b, Board_fileVo bf, Model model) {
 
 		System.out.println("수정한 글번호" + b.getBoard_no());
 		service.updateBoard(b);
