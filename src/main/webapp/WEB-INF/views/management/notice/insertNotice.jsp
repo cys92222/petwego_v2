@@ -19,6 +19,9 @@
 $(function(){
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	
 	//썸머노트
 	$('#notice_content').summernote({
 		maximumImageFileSize : maxVolume,	//첨부 이미지 크기 20MB로 보여짐 
@@ -94,8 +97,8 @@ $(function(){
 				<h6 class="m-0 font-weight-bold text-primary">공지사항 | 글 쓰기</h6>
 			</div>
 			<div class="card-body">
-			<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<form id="insertForm" method="POST" enctype="multipart/form-data">	
+			<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<select name="cs_no">
 					<option selected>카테고리 선택</option>
 					<option value="1">홈페이지 관련</option>
