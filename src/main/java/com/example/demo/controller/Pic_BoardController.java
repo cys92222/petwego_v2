@@ -275,7 +275,7 @@ public class Pic_BoardController extends HttpServlet {
       
       //sns 수정
       @RequestMapping(value = "/pic_board/update", method = RequestMethod.POST)
-      public String updateSubmit(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf, Model model,Criteria cri,MultipartFile uploadFile)throws Exception {
+      public String updateSubmit(HttpServletRequest request,Pic_BoardVo pb,Pic_Board_FileVo pbf, Model model,Criteria cri,MultipartFile uploadFile,String in_user_id)throws Exception {
          
 //         System.out.println("pb"+pb);
 //         System.out.println("pbf"+pbf);
@@ -324,7 +324,7 @@ public class Pic_BoardController extends HttpServlet {
             mav.setViewName("/pic_board/list");   //위치 설정
             pic_boardService.updatePic_Board(pb);
       
-         return "redirect:/pic_board/detail?photo_no="+pb.getPhoto_no()+"&user_id="+pb.getUser_id();
+         return "redirect:/pic_board/detail?photo_no="+pb.getPhoto_no()+"&user_id="+pb.getUser_id()+"&in_user_id="+in_user_id;
       }
          
       
