@@ -53,15 +53,17 @@ public class Board_CommentController {
 	public ModelAndView insertComment(HttpServletRequest request, Board_CommentVo bc,AlarmVo a,String in_user_id) {
 		//System.out.println("댓글작성 컨트롤러 동작함");
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
-		System.out.println("bc " + bc);
+//		System.out.println("bc " + bc);
+//		System.out.println("in_user_id "+ in_user_id);
 		bc.setUser_id(in_user_id);
 		comm_service.insertComment(bc);
+//		System.out.println("댓글등록 완료");
 		
 		a.setT_num(bc.getBoard_no());
-		System.out.println("alarmVo a " +a);
+//		System.out.println("alarmVo a " +a);
 		//댓글 등록 알람 등록
 		alarmService.insert_board_alarm(a);
-		
+//		System.out.println("알람등록 완료");
 		return mav;
 	}
 
