@@ -20,9 +20,24 @@
 
   <!-- Custom styles for this page -->
   <link href="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-  <!-- 제이쿼리 충돌때문에 header에 가져다둠  -->
+	
+   <!-- Bootstrap core JavaScript-->
   <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/resources/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/resources/manager/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/resources/manager/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/resources/manager/js/demo/datatables-demo.js"></script>
+  
 </head>
 
 <body id="page-top">
@@ -71,7 +86,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">게시판 관리</h6>
-            <a class="collapse-item" href="/management/listNotice">공지사항</a>
+            <a class="collapse-item" href="/management/notice/listNotice">공지사항</a>
             <a class="collapse-item" href="#">문의사항</a>
             <a class="collapse-item" href="/board/list">자유게시판</a>
             <a class="collapse-item" href="#">SNS게시판</a>
@@ -89,7 +104,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">회원관리</h6>
-            <a class="collapse-item" href="/management/member_list">회원 목록</a>
+            <a class="collapse-item" href="/management/member/member_list">회원 목록</a>
             <a class="collapse-item" href="#">회원 : 결제정보</a>
             <a class="collapse-item" href="#">Animations</a>
             <a class="collapse-item" href="#">Other</a>
@@ -122,8 +137,7 @@
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
-      </div>
-      
+      </div>  
     </ul>
     <!-- End of Sidebar -->
 

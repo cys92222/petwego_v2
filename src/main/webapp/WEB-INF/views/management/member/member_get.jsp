@@ -4,7 +4,7 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
-<%@include file="../management/header.jsp"%>
+<%@include file="../header.jsp"%>
 <head>
 <!-- 민아) 5/19, 관리자페이지_회원관리 -->
 <!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
@@ -19,7 +19,7 @@
 			if(check == true){
 				var check2 = confirm("돌이킬 수 없습니다. 정말 강퇴하시겠습니까?")
 				if(check2 == true){
-					self.location = "/management/member_delete?user_id="+user_id;
+					self.location = "/management/member/member_delete?user_id="+user_id;
 					alert("회원을 강퇴시켰습니다!");
 				}
 			}
@@ -42,7 +42,7 @@
         <div class="card-body">
 	
 	<!-- 원래내가 쓴 부분  -->
-	<a href="/management/member_list">회원 목록</a><br><br>
+	<a href="/management/member/member_list">회원 목록</a><br><br>
 
 	<input type="hidden" id="user_id" value="${detail_Info.user_id }">
 	<table class="table table-bordered" border="1" width="80%"  style="text-align: center;">
@@ -103,5 +103,5 @@
 	</div>
 	
 </body>
-<%@include file="../management/footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </html>

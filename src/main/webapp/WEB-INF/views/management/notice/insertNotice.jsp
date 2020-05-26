@@ -5,15 +5,15 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
 <html>
+<%@include file="../header.jsp"%>
+<!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
 <head>
 <meta charset="UTF-8">
-<!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
-<%@include file="../management/header.jsp"%>
 <title>Insert title here</title>
+<script src="../../summernote/js/summernote-lite.js"></script>
+<script src="../../summernote/js/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
 
-<script src="../summernote/js/summernote-lite.js"></script>
-<script src="../summernote/js/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../summernote/css/summernote-lite.css">
 <script type="text/javascript">
 $(function(){
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
@@ -48,7 +48,7 @@ $(function(){
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
 			},
-			url : "/management/uploadNotice",
+			url : "/management/notice/uploadNotice",
 			contentType : false,
 			processData : false,
 			success : function(data) {
@@ -60,15 +60,15 @@ $(function(){
 	//공지사항 등록 
 	$("#addNotice").click(function(){
 		var data = $("#insertForm").serialize();
-		$.ajax("/management/insertNotice",
+		$.ajax("/management/notice/insertNotice",
 				{data:data,
 				beforeSend: function(xhr){
 					xhr.setRequestHeader(header, token);
 				},
 				success:function(){
 			
-			alert("공지사항 등록");
-			window.location.reload(true);
+				alert("공지사항 등록");
+			
 		}});
 	});
 })
@@ -114,5 +114,5 @@ $(function(){
 	</div>
 
 </body>
-<%@include file="../management/footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </html>

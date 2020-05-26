@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
-<%@include file="../management/header.jsp"%>
+<%@include file="../header.jsp"%>
 </head>
 <body>
 <br>
@@ -49,7 +49,7 @@
 						<tbody>
 							<c:forEach var="member" items="${listMember }">
 							<tr>
-								<td><a href="/management/member_get?user_id=${member.user_id}">
+								<td><a href="/management/member/member_get?user_id=${member.user_id}">
 									<c:out value="${member.user_id }"/>
 								</a></td>
 								<td><c:out value="${member.tel }"/></td>
@@ -67,5 +67,5 @@
 	</div>
 
 </body>
-<%@include file="../management/footer.jsp"%>
+<%@include file="../footer.jsp"%>
 </html>
