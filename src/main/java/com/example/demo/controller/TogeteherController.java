@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.annotation.Repeatable;
 import java.util.List;
 import java.util.UUID;
 
@@ -345,23 +346,26 @@ public class TogeteherController {
 	
 	//함께가요 삭제
 	@RequestMapping(value="/deleteTogether",method = RequestMethod.POST)
-	public String deleteTogether(HttpServletRequest request, TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri , RedirectAttributes rttr) throws Exception{
+	public String deleteTogether(HttpServletRequest request, TogetherVo togetherVo,@ModelAttribute("scri") SearchCriteria scri , RedirectAttributes rttr,String in_user_id) throws Exception{
 		LOGGER.info("deleteTogether");
 		System.out.println(togetherVo);
 		//알람 삭제
 		AlarmVo alarm = new AlarmVo();
-		alarm.setUser_id("user1");
+		alarm.setUser_id(in_user_id);
 		//함께가요 글 번호로 셋팅
 		alarm.setT_num(togetherVo.getT_num());
 		alarmService.delete_together_alarm(alarm);
 		
-		//함께가요 삭제
+		//댓글 삭제
+		Rservice.deleteAll(togetherVo);
+		
+		//함께가요  삭제
 		ApplicationVo applicationVo = new ApplicationVo();
-		applicationVo.setUser_id(togetherVo.getUser_id());
+//		applicationVo.setUser_id(in_user_id);
 		applicationVo.setT_num(togetherVo.getT_num());
 		alarmService.delete_application(applicationVo);
 		
-		Rservice.deleteAll(togetherVo);
+		
 		service.deleteTogether(togetherVo.getT_num());
 		rttr.addAttribute("page",scri.getPage());
 		rttr.addAttribute("perPageNum",scri.getPerPageNum());
@@ -469,7 +473,7 @@ public class TogeteherController {
 	//신청하기 취소
 	@GetMapping("/deleteApplication")
 	@ResponseBody
-	public String deleteApplication(HttpServletRequest request,ApplicationVo av) {
+	public String deleteApplication(HttpServletRequest request,ApplicationVo av,String in_user_id) {
 				
 		String re = "0";
 		
@@ -477,7 +481,7 @@ public class TogeteherController {
 //		System.out.println(av.getApplication_no());
 //		System.out.println(av.getT_num());
 		AlarmVo alarm = new AlarmVo();
-		alarm.setUser_id("user1");
+		alarm.setUser_id(in_user_id);
 		//함께가요 글 번호 
 		alarm.setT_num(av.getT_num());
 		alarmService.cancle_insert_together_alarm(alarm);

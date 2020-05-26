@@ -130,7 +130,8 @@ $(document).ready(function(){
 	
 	// 신청하기 delete 신청하기 한번 더 누르면 신청취소
 	$(document).on("click","#clickApplication",function(){
-		$.ajax("/together/deleteApplication",{data: {user_id:user_id, t_num:t_num},success: function(re){
+		var d_user_id = '${login_id}';
+		$.ajax("/together/deleteApplication",{data: {user_id:d_user_id, t_num:t_num},success: function(re){
 			if( re == 1 ){
 				$("#clickApplication").hide();
 				$("#Application").show();
@@ -168,6 +169,7 @@ $(document).ready(function(){
 				<input type="hidden" id="searchType" name="searchType" value="${scri.searchType }"/>
 				<input type="hidden" id="keyword" name="keyword" value="${scri.keyword }"/>
 				
+				<input type="hidden" name="in_user_id" value="${login_id }">
 					<table>
 						<tbody>
 							
@@ -231,8 +233,10 @@ $(document).ready(function(){
 					<hr>
 					
 					<hr>
-					<button type="submit" class="update_btn">수정</button>
-					<button type="submit" class="delete_btn">삭제</button>
+					<c:if test="${login_id eq detailTogether.user_id }">
+						<button type="submit" class="update_btn">수정</button>
+						<button type="submit" class="delete_btn">삭제</button>
+					</c:if>
 					<button type="submit" class="list_btn">목록</button>
 
 				</form>

@@ -28,7 +28,7 @@
 	
 <!-- 	함께가요 삭제 aaaaaaaaaaaaaaaaaaaaaaaa -->
 	<delete id="delete_application">
-		delete together_application where user_id = #{user_id} and t_num = #{t_num}
+		delete together_application where t_num = #{t_num}
 	</delete>
 	
 	
