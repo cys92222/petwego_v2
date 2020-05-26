@@ -5,12 +5,20 @@
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
+<!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
+<%@include file="../management/header.jsp"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
-<%@include file="../management/header.jsp"%>
+<script type="text/javascript">
+	$(function(){
+		$("#btnInsert").click(function(){
+			self.location = "/management/insertNotice"
+		})
+	})
+</script>
+
 </head>
 <body>
 <br>
@@ -27,7 +35,12 @@
 				<h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
 				<!-- 글쓰기 버튼  -->
 				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-				<li><a href="<c:url value='/management/insertNotice' />">공지사항 등록</a></li> 
+				<a href="#" class="btn btn-secondary btn-icon-split" id="btnInsert">
+		       		<span class="icon text-white-50">
+		        		<i class="fas fa-arrow-right"></i>
+		        	</span>
+		        	<span class="text">공지등록|관리자</span>
+	       		</a>
 				</sec:authorize>
 			</div>
 			<div class="card-body">

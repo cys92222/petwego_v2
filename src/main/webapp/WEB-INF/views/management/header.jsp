@@ -21,6 +21,8 @@
   <!-- Custom styles for this page -->
   <link href="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
+  <!-- 제이쿼리 충돌때문에 header에 가져다둠  -->
+  <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
 </head>
 
 <body id="page-top">

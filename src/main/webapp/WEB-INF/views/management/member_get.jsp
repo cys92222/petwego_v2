@@ -9,7 +9,6 @@
 <!-- 민아) 5/19, 관리자페이지_회원관리 -->
 <!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
 <meta charset="UTF-8">
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		var user_id = $("#user_id").val();

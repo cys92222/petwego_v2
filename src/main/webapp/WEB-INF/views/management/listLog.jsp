@@ -14,7 +14,6 @@
 
 </style>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 	//구글 차트 api 로딩 메소드 
 	google.charts.load('current', {

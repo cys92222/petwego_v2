@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +11,6 @@
 <!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
 <title>Insert title here</title>
 <%@include file="../management/header.jsp"%>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		var notice_no = $("#notice_no").val();

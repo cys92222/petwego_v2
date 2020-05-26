@@ -10,7 +10,7 @@
 <!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
 <%@include file="../management/header.jsp"%>
 <title>Insert title here</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+
 <script src="../summernote/js/summernote-lite.js"></script>
 <script src="../summernote/js/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../summernote/css/summernote-lite.css">
@@ -59,7 +59,6 @@ $(function(){
 	}
 	//공지사항 등록 
 	$("#addNotice").click(function(){
-		alert("등록 버튼 누름");
 		var data = $("#insertForm").serialize();
 		$.ajax("/management/insertNotice",
 				{data:data,
@@ -69,8 +68,7 @@ $(function(){
 				success:function(){
 			
 			alert("공지사항 등록");
-// 			window.location.reload(true);
-			window.location.href="management/listNotice";
+			window.location.reload(true);
 		}});
 	});
 })
@@ -108,8 +106,7 @@ $(function(){
 				
 				<!-- 글쓰기 버튼  -->
 				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-					<input type="button" id="addNotice" value="등록">
-<!-- 					<button id="addNotice">등록</button> -->
+					<button id="addNotice">등록</button>
 				</sec:authorize>		
 				</form>
 			</div>

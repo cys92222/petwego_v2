@@ -27,7 +27,7 @@
 
 
   <!-- Bootstrap core JavaScript-->
-  <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
+<!--   <script src="/resources/manager/vendor/jquery/jquery.min.js"></script> -->
   <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
