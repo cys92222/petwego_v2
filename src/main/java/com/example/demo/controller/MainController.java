@@ -41,7 +41,7 @@ public class MainController {
 	@RequestMapping("/MainPage")
 	public static ModelAndView mainPage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/peywego_main");
+		mav.setViewName("/petwego_main");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null) {
 			Authentication authentication = (Authentication) session.getAttribute("user");
