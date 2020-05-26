@@ -338,7 +338,7 @@ $(document).ready(function(){
 							<c:forEach var="userList" items="${userList}" varStatus="status">
 								<tr>
 									<td>${userList.user_id}</td>
-								</tr>ㄹ
+								</tr>
 							</c:forEach>
 							</table>
 						</form>

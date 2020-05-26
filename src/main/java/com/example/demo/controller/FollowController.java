@@ -34,11 +34,6 @@ public class FollowController {
 	@ResponseBody
 	public String insert_follow(HttpServletRequest request,FollowVo f,String in_user_id) {
 		
-		HttpSession session = request.getSession();
-		Authentication authentication = (Authentication) session.getAttribute("user");
-		MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
-		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
-		
 		System.out.println("팔로우 컨트로러"+f);
 		System.out.println("팔로우할 아이디 "+f.getUser_id());
 		f.setUser_id2(in_user_id);//팔로우한 아이디에 로그인한 아이디 설정
