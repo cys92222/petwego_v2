@@ -88,7 +88,9 @@
                var td1 = $("<td></td>").html(c.photo_comm_cont);
                var td2 = $("<td></td>").html( moment(c.photo_comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')   );
                var td3 = $("<td></td>").html(c.user_id);
-               var delBtn = $("<button></button>").text("댓글삭제").attr("photo_comm_no",c.photo_comm_no);
+               if(c.user_id === "${login_id}"){
+              	 var delBtn = $("<button></button>").text("댓글삭제").attr("photo_comm_no",c.photo_comm_no);
+               }
                var td4 = $("<td></td>");
                td4.append(delBtn);
                tr.append(td1, td2, td3, td4);
@@ -177,9 +179,11 @@
       </tr>
    </table>
    </form>
+   <c:if test="${Board.user_id eq login_id}" >
    <button id="btnUpdate">글 수정</button>
    <button id="btnDelete">글 삭제</button>
    <hr>
+   </c:if>
    
    <!--댓글입력폼-->
    <form name="pcommentForm" method="post">
