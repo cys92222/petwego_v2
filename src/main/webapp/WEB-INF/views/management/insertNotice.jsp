@@ -31,7 +31,7 @@ $(function(){
 		callbacks: {						// 이미지를 첨부하는 부분
 			onImageUpload : function(files) {
 				$.each(files, function(idx, images){
-					uploadSummernoteImageFile(images, $("#notice_content"));
+					uploadSummernoteImageFile(files[0],this);
 					//console.log(file);
 				})
 				//uploadSummernoteImageFile(files[0],this);	
@@ -59,6 +59,7 @@ $(function(){
 	}
 	//공지사항 등록 
 	$("#addNotice").click(function(){
+		alert("등록 버튼 누름");
 		var data = $("#insertForm").serialize();
 		$.ajax("/management/insertNotice",
 				{data:data,
@@ -68,7 +69,8 @@ $(function(){
 				success:function(){
 			
 			alert("공지사항 등록");
-			window.location.reload(true);
+// 			window.location.reload(true);
+			window.location.href="management/listNotice";
 		}});
 	});
 })
@@ -106,7 +108,8 @@ $(function(){
 				
 				<!-- 글쓰기 버튼  -->
 				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-					<button id="addNotice">등록</button>
+					<input type="button" id="addNotice" value="등록">
+<!-- 					<button id="addNotice">등록</button> -->
 				</sec:authorize>		
 				</form>
 			</div>

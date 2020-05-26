@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,11 +48,23 @@ public class ManagerPageController {
 		model.addAttribute("listNotice", mp_service.listNotice());
 	}
 
+	// 공지사항 등록 폼
+	@NoLogging
+	@GetMapping("/insertNotice")
+	public String insertNotice_form(NoticeVo nv, Model model) {
+		//mp_service.insertNotice(nv);
+		return "management/insertNotice";
+	}
+	
 	// 공지사항 등록
 	@NoLogging
-	@PostMapping("/insertNotice")
-	public void insertNotice(NoticeVo nv, Model model) {
+	@RequestMapping(value = "/insertNotice", method = RequestMethod.POST)
+	@ResponseBody
+	public String insertNotice(NoticeVo nv, Model model) {
+		System.out.println(nv);
 		mp_service.insertNotice(nv);
+		
+		return "ok";
 	}
 
 	// 공지사항 상세
