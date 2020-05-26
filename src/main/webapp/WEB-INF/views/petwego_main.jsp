@@ -174,7 +174,7 @@ $(function(){
 			<div class="row no-gutters">
 
 				<div class="col-lg-6 order-lg-2 text-white showcase-img"
-					style="background-image: url('resources/img/bg-pic-03.jpg');"></div>
+					style="background-image: url('resources/main/img/bg-pic-03.jpg');"></div>
 				<div class="col-lg-6 order-lg-1 my-auto showcase-text">
 					<h2>내 아이에게 잊지 못할 추억을</h2>
 					<p class="lead mb-0">하루하루 집에만 있기 답답하거나 혼자 갈 용기가 없다면 함께가요 콘텐츠를
@@ -183,7 +183,7 @@ $(function(){
 			</div>
 			<div class="row no-gutters">
 				<div class="col-lg-6 text-white showcase-img"
-					style="background-image: url('resources/img/bg-pic-02.jpg');"></div>
+					style="background-image: url('resources/main/img/bg-pic-02.jpg');"></div>
 				<div class="col-lg-6 my-auto showcase-text">
 					<h2>Updated For Bootstrap 4</h2>
 					<p class="lead mb-0">Newly improved, and full of great utility
@@ -194,7 +194,7 @@ $(function(){
 			</div>
 			<div class="row no-gutters">
 				<div class="col-lg-6 order-lg-2 text-white showcase-img"
-					style="background-image: url('resources/img/bg-pic-01.jpg');"></div>
+					style="background-image: url('resources/main/img/bg-pic-01.jpg');"></div>
 				<div class="col-lg-6 order-lg-1 my-auto showcase-text">
 					<h2>Easy to Use &amp; Customize</h2>
 					<p class="lead mb-0">Landing Page is just HTML and CSS with a
@@ -214,7 +214,7 @@ $(function(){
 				<div class="col-lg-4">
 					<div class="testimonial-item mx-auto mb-5 mb-lg-0">
 						<img class="img-fluid rounded-circle mb-3"
-							src="resources/img/testimonials-1.jpg" alt="">
+							src="resources/main/img/testimonials-1.jpg" alt="">
 						<h5>Margaret E.</h5>
 						<p class="font-weight-light mb-0">"This is fantastic! Thanks
 							so much guys!"</p>
@@ -223,7 +223,7 @@ $(function(){
 				<div class="col-lg-4">
 					<div class="testimonial-item mx-auto mb-5 mb-lg-0">
 						<img class="img-fluid rounded-circle mb-3"
-							src="resources/img/testimonials-2.jpg" alt="">
+							src="resources/main/img/testimonials-2.jpg" alt="">
 						<h5>Fred S.</h5>
 						<p class="font-weight-light mb-0">"Bootstrap is amazing. I've
 							been using it to create lots of super nice landing pages."</p>
@@ -232,7 +232,7 @@ $(function(){
 				<div class="col-lg-4">
 					<div class="testimonial-item mx-auto mb-5 mb-lg-0">
 						<img class="img-fluid rounded-circle mb-3"
-							src="resources/img/testimonials-3.jpg" alt="">
+							src="resources/main/img/testimonials-3.jpg" alt="">
 						<h5>Sarah W.</h5>
 						<p class="font-weight-light mb-0">"Thanks so much for making
 							these free resources available to us!"</p>
