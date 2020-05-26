@@ -24,7 +24,6 @@ $(function(){
 	<form action="/pic_board/update" method="post" enctype="multipart/form-data">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		작성자 <br>
-		<input type="hidden" name="in_user_id" value="${login_id} }">
 		<input type="text" name="photo_no" value="${board.photo_no }" readonly="readonly"><br>
 		<input type="text" name="photo_file_no" value="${pic.photo_file_no }" readonly="readonly"><br>
 		<input type="text" name="user_id" value="${board.user_id }" readonly="readonly"><br>

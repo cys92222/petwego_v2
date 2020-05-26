@@ -324,7 +324,7 @@ public class Pic_BoardController extends HttpServlet {
             mav.setViewName("/pic_board/list");   //위치 설정
             pic_boardService.updatePic_Board(pb);
       
-         return "redirect:/pic_board/detail?photo_no="+pb.getPhoto_no()+"&user_id="+pb.getUser_id()+"&in_user_id="+in_user_id;
+         return "redirect:/pic_board/detail?photo_no="+pb.getPhoto_no()+"&user_id="+pb.getUser_id()+"&in_user_id="+pb.getUser_id();
       }
          
       
