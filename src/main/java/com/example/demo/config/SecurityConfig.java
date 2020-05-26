@@ -80,9 +80,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 			.antMatchers( "/", "/home/**"
                 ,"/login/**", "/join/**", "/MainPage" 
-                /* , "/board/list", "/comment/listComment",
+                 , "/board/list", "/comment/listComment",
                 "/customerservice/allNotice", "/customerservice/List", 
-                "/pcomment/plistComment", "/together/listTogether", "/pic_board/list" 이 부분 설정하고 싶은데 aop 오류나요 */)
+                "/pcomment/plistComment", "/together/listTogether", "/pic_board/list")
 			.permitAll()
 			.antMatchers("/management/**").hasRole("ADMIN")
 			.antMatchers("/user/**", "/mypage/**", "/comment/**", "/board/**",
