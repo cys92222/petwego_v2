@@ -1,39 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+     <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	
-	    $("#popbtn").click(function(){
-	        $('div.modal').modal();
-	    })
-})
-</script>
+<title>로그인</title>
+ 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
 </head>
 <body>
 
-<button class="btn btn-default" id="popbtn">모달출력버튼</button><br/>
-<div class="modal fade" id="layerpop" >
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <!-- header -->
-      <div class="modal-header">
-        <!-- 닫기(x) 버튼 -->
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <!-- header title -->
-        <h4 class="modal-title">Header</h4>
-      </div>
-      <!-- body -->
-      <div class="modal-body">
-           <form action="/login/login" method="POST"><!-- /login-processing --> <!-- /MainPage -->
+<div class="container">
+	  <div class="row" style="padding-top:10%">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="flex-align:center">
+			<div class="card">
+				<h5 class="card-header">로그인</h5>
+				<div class="card-body">
+				
+					<form action="/login/login" method="POST"><!-- /login-processing --> <!-- /MainPage -->
   						<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   				<!--  	<input type="text" name="_csrf" value="${_csrf}"/>-->	
   						<!--<sec:csrfInput/>-->
@@ -51,16 +42,28 @@ $(function(){
 							</label>
 						</div>
 						<button id="login-button" name="submit" type="submit" class="btn btn-block btn-primary text-light">로그인</button>
+						<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						    <font color="red">
+						        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+						        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+						    </font>
+						</c:if>
 					</form>
-      </div>
-      <!-- Footer -->
-      <div class="modal-footer">
-        Footer
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 
+</div>
+</div>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js">
+$(function(){
+	$("#login-button").click(function(){
+		login();
+		//window.location.href="/MainPage";
+	})		
+})
+</script>
 </html>
