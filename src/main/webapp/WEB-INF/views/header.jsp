@@ -60,7 +60,7 @@
 
 <body id="page-top">
 	<div id="logoArea">
-  		<a class="navbar-brand" href="petwego_main"><img src="resources/img/petwego_logo.jpg" width="450" height="300" id="logo"></a>
+  		<a class="navbar-brand" href="petwego_main"><img src="resources/main/img/petwego_logo.jpg" width="450" height="300" id="logo"></a>
   	</div>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-info fixed-top" id="mainNav">
