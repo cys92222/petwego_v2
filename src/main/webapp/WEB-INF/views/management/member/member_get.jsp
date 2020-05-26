@@ -33,7 +33,8 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 	<!-- Page Heading -->
-    <p class="mb-4">회원관리 페이지</p>
+	<h1 class="h3 mb-2 text-gray-800">회원</h1>
+	<p class="mb-4">회원관리 | 관리자접속중</p>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
     	<div class="card-header py-3">

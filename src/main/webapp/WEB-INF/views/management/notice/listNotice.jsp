@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
@@ -72,7 +73,7 @@
 									<c:out value="${notice.notice_title }"/>
 								</a></td>
 								<td><c:out value="${notice.notice_hit }"/></td>
-								<td><c:out value="${notice.notice_date }"/></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.notice_date }"/></td>
 								<td><c:out value="${notice.cs_no }"/></td>
 							</tr>
 							</c:forEach>

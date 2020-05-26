@@ -20,6 +20,7 @@ $(function(){
 
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 
 	var token = $("meta[name='_csrf']").attr("content");
@@ -38,7 +39,7 @@ $(function(){
 		callbacks: {						// 이미지를 첨부하는 부분
 			onImageUpload : function(files) {
 				$.each(files, function(idx, images){
-					uploadSummernoteImageFile(files[0],this);
+					uploadSummernoteImageFile(files[0],$("#notice_content"));
 					//console.log(file);
 				})
 				//uploadSummernoteImageFile(files[0],this);	
@@ -49,6 +50,7 @@ $(function(){
 	function uploadSummernoteImageFile(file, editor) {
 		data = new FormData();
 		data.append("file", file);
+		
 		$.ajax({
 			data : data,
 			type : "POST",
@@ -78,10 +80,11 @@ $(function(){
 				},
 				success:function(){
 			
-				alert("공지사항 등록성공");
+				alert("공지사항 등록성공");	
 				location.href = "/management/notice/listNotice";
 			
 		}});
+		
 	});
 })
 </script>

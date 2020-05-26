@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
+<%@include file="../header.jsp"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
 <title>Insert title here</title>
-<%@include file="../header.jsp"%>
+
 <script type="text/javascript">
 	$(function(){
+		
 		var notice_no = $("#notice_no").val();
 
 		// 삭제버튼 누르면...
@@ -42,8 +45,7 @@
 				<h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
 			</div>
 			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered" border="1" width="80%" style="text-align: center;">
 						<tbody>
 							<tr>
 								<td>제목</td>
@@ -58,8 +60,8 @@
 								<td>${detailNotice.notice_hit }</td>
 							</tr>
 							<tr>
-								<td>작성일</td>
-								<td>${detailNotice.notice_date }</td>
+								<td>작성일</td>	
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detailNotice.notice_date }"/></td>
 							</tr>
 							<tr>
 								<td>담당자번호</td>
