@@ -19,19 +19,37 @@ import com.example.demo.vo.MemberInfoVo;
 public class MainController {
 	
 	//사이트 메인페이지
+//	@NoLogging
+//	@RequestMapping("/MainPage")
+//	public static ModelAndView mainPage(HttpServletRequest request) {
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("/main");
+//		HttpSession session = request.getSession();
+//		if(session.getAttribute("user") != null) {
+//	         Authentication authentication = (Authentication) session.getAttribute("user");
+//	         MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+//	         WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
+//	         System.out.println(details.getSessionId() + "\t" + details.getRemoteAddress());
+//	         System.out.println(user.getUser_id());
+//	      }
+//		
+//		return mav;
+//	}
+	
+	
 	@NoLogging
 	@RequestMapping("/MainPage")
 	public static ModelAndView mainPage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/main");
+		mav.setViewName("/petwego_main");
 		HttpSession session = request.getSession();
 		if(session.getAttribute("user") != null) {
-	         Authentication authentication = (Authentication) session.getAttribute("user");
-	         MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
-	         WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
-	         System.out.println(details.getSessionId() + "\t" + details.getRemoteAddress());
-	         System.out.println(user.getUser_id());
-	      }
+			Authentication authentication = (Authentication) session.getAttribute("user");
+			MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+			WebAuthenticationDetails details = (WebAuthenticationDetails) authentication.getDetails();
+			System.out.println(details.getSessionId() + "\t" + details.getRemoteAddress());
+			System.out.println(user.getUser_id());
+		}
 		
 		return mav;
 	}

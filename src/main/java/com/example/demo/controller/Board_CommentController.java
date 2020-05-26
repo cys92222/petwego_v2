@@ -55,6 +55,8 @@ public class Board_CommentController {
 		ModelAndView mav = new ModelAndView("redirect:/board/get?board_no="+bc.getBoard_no());
 		comm_service.insertComment(bc);
 		a.setT_num(bc.getBoard_no());
+		a.setUser_id(bc.getUser_id());
+		System.out.println("alarmVo a " +a);
 		//댓글 등록 알람 등록
 		alarmService.insert_board_alarm(a);
 		

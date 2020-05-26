@@ -172,7 +172,7 @@ $(function(){
 	</sec:authorize>
 	<hr>
 	<form id="insertForm" method="post" enctype="multipart/form-data">
-<%-- 	<input type="hidden" name="board_no" value="${no}"> --%>
+
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	<table width="100%">
 		<tr>
