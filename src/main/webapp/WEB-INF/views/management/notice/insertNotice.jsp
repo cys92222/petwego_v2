@@ -5,11 +5,12 @@
 <%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
 <html>
-<%@include file="../header.jsp"%>
 <!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
 <head>
+<%@include file="../header.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <script src="../../summernote/js/summernote-lite.js"></script>
 <script src="../../summernote/js/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
@@ -58,13 +59,15 @@ $(function(){
 		});
 	}
 	//공지사항 등록 
-	$("#addNotice").click(function(){
-		var data = $("#insertForm").serialize();
+	$("#addNotice").click(function(e){
+		e.preventDefault();
+		var insert = $("#insertForm").serialize();
 
 		$.ajax({
 				url :"/management/notice/insertNotice",
-				data:data,
-				beforeSend: function(xhr){
+				type : "POST",
+				data : insert,
+				beforeSend : function(xhr){
 					xhr.setRequestHeader(header, token);
 				},
 				success:function(){
@@ -74,8 +77,6 @@ $(function(){
 		}});
 	});
 })
-
-
 </script>
 </head>
 <body>
@@ -105,10 +106,15 @@ $(function(){
 				<input type="text" id="notice_title" name="notice_title" required="required"><br>
 				내용<br>
 				<textarea rows="8" cols="100" id="notice_content" name="notice_content"></textarea>
-				
+				<br>
 				<!-- 글쓰기 버튼  -->
 				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-					<button id="addNotice">등록</button>
+				<a href="#" class="btn btn-success btn-icon-split" id="addNotice">
+		       		<span class="icon text-white-50">
+		        		<i class="fas fa-edit"></i>
+		        	</span>
+		        	<span class="text">공지등록</span>
+	       		</a>
 				</sec:authorize>		
 				</form>
 			</div>
