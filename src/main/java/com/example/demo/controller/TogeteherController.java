@@ -371,6 +371,7 @@ public class TogeteherController {
 		return "redirect:/together/listTogether";
 	}
 	
+	@NoLogging
 	@PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
