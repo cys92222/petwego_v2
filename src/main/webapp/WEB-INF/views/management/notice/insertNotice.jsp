@@ -3,20 +3,23 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
+
+<%@include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
 <head>
-<%@include file="../header.jsp"%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 <script src="../../summernote/js/summernote-lite.js"></script>
 <script src="../../summernote/js/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
-
 <script type="text/javascript">
 $(function(){
+
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 
 	var token = $("meta[name='_csrf']").attr("content");
@@ -75,7 +78,8 @@ $(function(){
 				},
 				success:function(){
 			
-				alert("공지사항 등록");
+				alert("공지사항 등록성공");
+				location.href = "/management/notice/listNotice";
 			
 		}});
 	});
@@ -83,6 +87,7 @@ $(function(){
 </script>
 </head>
 <body>
+
 	<br>
 	<!-- Begin Page Content -->
 	<div class="container-fluid">

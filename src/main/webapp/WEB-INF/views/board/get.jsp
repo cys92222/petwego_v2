@@ -20,9 +20,6 @@
 <meta charset="UTF-8">
 <%@include file="../head.jsp"%>
 
-<c:if test="${login_id eq 'manager' }">
-	<%@include file="../management/header.jsp"%>
-</c:if>
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 상세보기화면 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
@@ -144,12 +141,6 @@
 		<button id="btnDelete">글 삭제</button>
 	</c:if>
 	
-	
-	<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-	<li><a href="<c:url value='/board/delete?user_id=${detail.user_id }&board_no=${detail.board_no }' />">관리자 삭제</a></li> 
-	</sec:authorize>
-	
-	
 	<hr>
 	<!-- 댓글입력 -->
 	<form name="commentForm" method="post">
@@ -165,6 +156,5 @@
 	<!-- 댓글 목록-->
 	<table id="comm_list" border="1">
 	</table>
-	<footer></footer>
 </body>
 </html>

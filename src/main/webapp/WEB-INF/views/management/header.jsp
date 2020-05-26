@@ -8,6 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  
+  <meta name="_csrf" content="${_csrf.token}"/>
+  <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
   <title>Pet We Go | 관리자페이지</title>
 
@@ -38,6 +41,10 @@
   <!-- Page level custom scripts -->
   <script src="/resources/manager/js/demo/datatables-demo.js"></script>
   
+   <!-- summernote --> 
+<!--   <script src="/resources/editor/js/summernote-lite.js"></script> -->
+<!--   <script src="/resources/editor/js/lang/summernote-ko-KR.js"></script> -->
+<!--   <link rel="stylesheet" href="/resources/editor/css/summernote-lite.css"> -->
 </head>
 
 <body id="page-top">
