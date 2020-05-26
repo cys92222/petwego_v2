@@ -96,7 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/login/login").permitAll()	//로그인 페이지는 /, /login 에서 로그인을 실행하겠습니다 (새로운 로그인 페이지 호출을 설정) - 커스텀 로그인 페이지
 			.usernameParameter("user_id")	//input name 파라미터로 user_id를 받아요
 			.passwordParameter("pwd") //input name 파라미터로 "pwd"를 받아요
-			.failureUrl("/login/login")	//로그인 실패시 이동하는 페이지
+			.failureUrl("/MainPage")	//로그인 실패시 이동하는 페이지
 			.successHandler(new LoginSuccessHandler());	//로그인 성공하면 수행하는 클래스
 
 		http.logout()
