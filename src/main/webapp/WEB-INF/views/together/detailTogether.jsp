@@ -182,7 +182,7 @@ $(document).ready(function(){
 							<tr>
 								<td>
 									<label for="t_thumbnail">썸네일</label><input type="text" id="thumbnail" name="thumbnail" value="${detailTogether.thumbnail }"/><br>
-									<img src="../t_thumbnailUpload/${detailTogether.thumbnail}">
+									<img src="../t_thumbnailUpload/${detailTogether.thumbnail}" height="300" width="300">
 								</td>
 							</tr>
 							
