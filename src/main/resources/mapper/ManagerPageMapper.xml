@@ -65,8 +65,7 @@
 
 	<!-- 로그 목록 -->
 	<select id="listLog" resultType="com.example.demo.vo.Aop_LogVo">
-		select log_num, url, ip, time, user_id
-			from aop_log order by log_num desc
+		select log_num, url, ip, time, user_id from aop_log order by log_num desc
 	</select>
 	
 

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="org.springframework.security.core.Authentication" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +25,10 @@
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
+				<!-- 글쓰기 버튼  -->
+				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
+				<li><a href="<c:url value='/management/insertNotice' />">공지사항 등록</a></li> 
+				</sec:authorize>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">

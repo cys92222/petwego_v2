@@ -37,7 +37,7 @@ $(function(){
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
 			},
-			url : "/customerservice/uploadSummernoteImageFile",
+			url : "/uploadNotice",
 			contentType : false,
 			processData : false,
 			success : function(data) {
