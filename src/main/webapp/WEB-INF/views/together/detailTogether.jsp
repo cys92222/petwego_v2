@@ -151,6 +151,7 @@ $(document).ready(function(){
 			</header>
 			<hr />
 			 
+			 
 			<nav>
 			  홈 - 글 작성
 			</nav>
