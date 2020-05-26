@@ -20,6 +20,7 @@ $(function(){
 
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
+	
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 
 	//썸머노트
