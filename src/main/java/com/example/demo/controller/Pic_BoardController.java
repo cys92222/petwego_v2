@@ -256,7 +256,7 @@ public class Pic_BoardController extends HttpServlet {
          System.out.println("파일삭제 결과"+pic_boardService.deleteFile(pb));
          pic_boardService.deletePic_Board(pb);
          System.out.println("게시물삭제결과"+pic_boardService.deletePic_Board(pb));
-         return "redirect:/pic_board/list";
+         return "redirect:/pic_board/list?user_id="+pb.getUser_id()+"in_user_id="+pb.getUser_id();
       }
 
       // sns수정폼
