@@ -89,22 +89,25 @@
 					</table>
 						<sec:authorize access="hasRole('ROLE_ADMIN')"> 
 							<!-- 답변 버튼 -->
-							<a href="#" class="btn btn-danger btn-icon-split" id="btnAnwer">
+							<a href="#" class="btn btn-success btn-icon-split" id="btnAnwer">
 		       					<span class="icon text-white-50">
-		        				<i class="fas fa-trash"></i>
+		        				<i class="fas fa-edit"></i>
 		         				</span>
-		        				<span class="text">답변달기|관리자</span>
+		        				<span class="text">문의답변 | 관리자</span>
 	       					</a>
 						</sec:authorize>
 						
 				</div>
 			</div>
 		</div>
-	</div>
-
+		
 <section id="anwer_Sec">
+	<div class="card-header py-3">
+				<h6 class="m-0 font-weight-bold text-primary">QnA 답변등록</h6>
+			</div>
+	<div class="card-body">
 	<form action="/management/qna/anwerQnA">
-		<input type="text" name="inq_no" value="${detailQnA.inq_no }"><br>
+		<input type="hidden" name="inq_no" value="${detailQnA.inq_no }"><br>
 		카테고리<br>
 		
 		<select name="cs_no">
@@ -127,11 +130,13 @@
 		<input type="text" name="inq_title" value="${detailQnA.inq_title }의 답변입니다" readonly="readonly"><br>
 		내용<br>
 		<textarea rows="8" cols="100" name="inq_content" required="required"></textarea><br>
-		<input type="text" name="a_ref" value="${detailQnA.ref }">
-		<input type="text" name="a_ref_step" value="${detailQnA.ref_step }">
-		<input type="text" name="a_ref_level" value="${detailQnA.ref_level }">
+		<input type="hidden" name="a_ref" value="${detailQnA.ref }">
+		<input type="hidden" name="a_ref_step" value="${detailQnA.ref_step }">
+		<input type="hidden" name="a_ref_level" value="${detailQnA.ref_level }">
 		<input type="submit" id="addAnwer" value="답변 등록하기">
 	</form>
+	</div>
+	
 </section>
 
 </body>
