@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.dao.M_PicboardDao">
+<!-- 	리스트에서 사용할 맵퍼 pic_board, pic_boardfile 조인 -->
+	<select id="picBoardList" resultType="">
+		select * from pic_board pb, pic_board_file pbf
+	</select>
+	
+<!-- 	상세보기에서 사용할 맵퍼 ic_board, pic_boardfile, pic_board_comment 조인 -->
+	<select id="picBoardDetail" resultType="String">
+		select * 
+		from pic_board pb, pic_board_file pbf, pic_board_comment 
+		where photo_no = #{photo_no} 
+	</select>
+</mapper>
