@@ -44,7 +44,7 @@ $(function(){
 		}
 	});
 
-	var content = "${up.notice_content}";
+	var content = '${up.notice_content}';
 	
 	$('#notice_content').summernote('code', content);
 	
