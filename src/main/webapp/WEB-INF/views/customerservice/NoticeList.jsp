@@ -28,24 +28,24 @@ li {
 $(function(){
 
 // 	이미지 파일 업로드
-	function uploadSummernoteImageFile(file, editor) {
-		data = new FormData();
-		data.append("file", file);
-		$.ajax({
-			data : data,
-			type : "POST",
-			beforeSend: function(xhr){
-				xhr.setRequestHeader(header, token);
-			},
-			url : "/uploadNotice",
-			contentType : false,
-			processData : false,
-			success : function(data) {
-            	//항상 업로드된 파일의 url이 있어야 한다.
-				$(editor).summernote('insertImage', data.url);
-			}
-		});
-	}
+// 	function uploadSummernoteImageFile(file, editor) {
+// 		data = new FormData();
+// 		data.append("file", file);
+// 		$.ajax({
+// 			data : data,
+// 			type : "POST",
+// 			beforeSend: function(xhr){
+// 				xhr.setRequestHeader(header, token);
+// 			},
+// 			url : "/uploadNotice",
+// 			contentType : false,
+// 			processData : false,
+// 			success : function(data) {
+//             	//항상 업로드된 파일의 url이 있어야 한다.
+// 				$(editor).summernote('insertImage', data.url);
+// 			}
+// 		});
+// 	}
 
 	
 	var list = ${list}
@@ -140,62 +140,62 @@ $(function(){
 				}}); //detail ajax end
 			
 			//수정폼
-			$("#up").click(function(){
-				$("#updateSection").css({"display":"block"});
-				$("#detailSection").css({"display":"none"});
-				//썸머노트
-				$('#u_notice_content').summernote({
-					height: 300,                 // 에디터 높이
-					minHeight: null,             // 최소 높이
-					maxHeight: null,             // 최대 높이
-					focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-					lang: "ko-KR",					// 한글 설정
-					placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-					callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-						onImageUpload : function(files) {
-							uploadSummernoteImageFile(files[0],this);
-						}
-					}
-				}); //썸머노트 폼 end
+// 			$("#up").click(function(){
+// 				$("#updateSection").css({"display":"block"});
+// 				$("#detailSection").css({"display":"none"});
+// 				//썸머노트
+// 				$('#u_notice_content').summernote({
+// 					height: 300,                 // 에디터 높이
+// 					minHeight: null,             // 최소 높이
+// 					maxHeight: null,             // 최대 높이
+// 					focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+// 					lang: "ko-KR",					// 한글 설정
+// 					placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+// 					callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+// 						onImageUpload : function(files) {
+// 							uploadSummernoteImageFile(files[0],this);
+// 						}
+// 					}
+// 				}); //썸머노트 폼 end
 				
-				}); //수정봄 end
+// 				}); //수정봄 end
 			
 			}); //상세보기 end
 		
 		}); //each end
 
 		//공지사항 등록 폼
-		$("#addbtn").click(function(){
-			$("#listSection").css({"display":"none"});
-			$("#addSection").css({"display":"block"});
-// 			alert("등록버튼 누름");
-			//썸머노트
-			$('#notice_content').summernote({
-				height: 300,                 // 에디터 높이
-				minHeight: null,             // 최소 높이
-				maxHeight: null,             // 최대 높이
-				focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-				lang: "ko-KR",					// 한글 설정
-				placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
-				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-					onImageUpload : function(files) {
-						uploadSummernoteImageFile(files[0],this);
-					}
-				}
-			}); //썸머노트 폼 end
+// 		$("#addbtn").click(function(){
+// 			$("#listSection").css({"display":"none"});
+// 			$("#addSection").css({"display":"block"});
+// // 			alert("등록버튼 누름");
+// 			//썸머노트
+// 			$('#notice_content').summernote({
+// 				height: 300,                 // 에디터 높이
+// 				minHeight: null,             // 최소 높이
+// 				maxHeight: null,             // 최대 높이
+// 				focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+// 				lang: "ko-KR",					// 한글 설정
+// 				placeholder: '최대 2048자까지 쓸 수 있습니다',	//placeholder 설정
+// 				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+// 					onImageUpload : function(files) {
+// 						uploadSummernoteImageFile(files[0],this);
+// 					}
+// 				}
+// 			}); //썸머노트 폼 end
 		
-		});
+// 		});
 		
 		//공지사항 등록 
-		$("#addNotice").click(function(){
-			var data = $("#insertForm").serialize();
-			$.ajax("/customerservice/insertNotice",{data:data,success:function(){
-// 				alert("공지사항 등록");
-				$("#listSection").css({"display":"block"});
-				$("#addSection").css({"display":"none"});
-				window.location.reload(true);
-				}});
-		});//공지사항 등록 end
+// 		$("#addNotice").click(function(){
+// 			var data = $("#insertForm").serialize();
+// 			$.ajax("/customerservice/insertNotice",{data:data,success:function(){
+// // 				alert("공지사항 등록");
+// 				$("#listSection").css({"display":"block"});
+// 				$("#addSection").css({"display":"none"});
+// 				window.location.reload(true);
+// 				}});
+// 		});//공지사항 등록 end
 
 	
 });
@@ -234,7 +234,7 @@ $(function(){
 		<th>공지사항 번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일</th>
 	</tr>
 </table>
-<button id="addbtn">공지사항 등록</button>
+<!-- <button id="addbtn">공지사항 등록</button> -->
 
 <section id="p">
 <div>
@@ -256,24 +256,24 @@ $(function(){
 
 </section>
 
-<section id="addSection">
-<h2>공지사항 등록</h2>
-<hr>
-<form id="insertForm">
-<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-<select name="cs_no">
-	<option value="1">홈페이지 관련</option>
-	<option value="2">계정 관련</option>
-	<option value="3">결제 관련 문의</option>
-</select><br>
-제목<br>
-<input type="text" id="notice_title" name="notice_title" required="required"><br>
-내용<br>
-<textarea rows="8" cols="100" id="notice_content" name="notice_content"></textarea>
-</form>
-<button id="addNotice">등록하기</button><br>
-<a href="/customerservice/allNotice">리스트로 돌아가기</a>
-</section>
+<!-- <section id="addSection"> -->
+<!-- <h2>공지사항 등록</h2> -->
+<!-- <hr> -->
+<!-- <form id="insertForm"> -->
+<%-- <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+<!-- <select name="cs_no"> -->
+<!-- 	<option value="1">홈페이지 관련</option> -->
+<!-- 	<option value="2">계정 관련</option> -->
+<!-- 	<option value="3">결제 관련 문의</option> -->
+<!-- </select><br> -->
+<!-- 제목<br> -->
+<!-- <input type="text" id="notice_title" name="notice_title" required="required"><br> -->
+<!-- 내용<br> -->
+<!-- <textarea rows="8" cols="100" id="notice_content" name="notice_content"></textarea> -->
+<!-- </form> -->
+<!-- <button id="addNotice">등록하기</button><br> -->
+<!-- <a href="/customerservice/allNotice">리스트로 돌아가기</a> -->
+<!-- </section> -->
 
 <section id="detailSection">
 <h2>공지사항 상세보기</h2>
@@ -288,35 +288,35 @@ $(function(){
 작성일 : <input type="text" id="d_notice_date" readonly="readonly"><br>
 
 <section id="btnSection">
-	<button id="up">수정</button><br>
-	<button id="del">삭제</button><br>
+<!-- 	<button id="up">수정</button><br> -->
+<!-- 	<button id="del">삭제</button><br> -->
 	<a href="/customerservice/allNotice">리스트로 돌아가기</a>
 </section>
 </section>
 
-<section id="updateSection">
-<h2>공지사항 수정</h2>
-<hr>
-<form id="updateForm">
-<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-카테고리<br>
-<select id="u_cs_no" name="u_cs_no"><br>
-	<option value="1">홈페이지 이용 관련</option>
-	<option value="2">계정 관련</option>
-	<option value="3">결제 관련 문의</option>
-</select><br>
-공지사항 번호 : <input type="text" id="u_notice_no" name="u_notice_no" readonly="readonly"><br>
-제목 : <input type="text" id="u_notice_title" name="u_notice_title"><br>
-내용<br>
-<textarea rows="8" cols="100" id="u_notice_content" name="u_notice_content"></textarea>
-조회수 : <input type="text" id="u_notice_hit" readonly="readonly"><br>
-작성일 : <input type="text" id="u_notice_date" readonly="readonly"><br>
-</form>
+<!-- <section id="updateSection"> -->
+<!-- <h2>공지사항 수정</h2> -->
+<!-- <hr> -->
+<!-- <form id="updateForm"> -->
+<%-- <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+<!-- 카테고리<br> -->
+<!-- <select id="u_cs_no" name="u_cs_no"><br> -->
+<!-- 	<option value="1">홈페이지 이용 관련</option> -->
+<!-- 	<option value="2">계정 관련</option> -->
+<!-- 	<option value="3">결제 관련 문의</option> -->
+<!-- </select><br> -->
+<!-- 공지사항 번호 : <input type="text" id="u_notice_no" name="u_notice_no" readonly="readonly"><br> -->
+<!-- 제목 : <input type="text" id="u_notice_title" name="u_notice_title"><br> -->
+<!-- 내용<br> -->
+<!-- <textarea rows="8" cols="100" id="u_notice_content" name="u_notice_content"></textarea> -->
+<!-- 조회수 : <input type="text" id="u_notice_hit" readonly="readonly"><br> -->
+<!-- 작성일 : <input type="text" id="u_notice_date" readonly="readonly"><br> -->
+<!-- </form> -->
 
-<section id="btnSection">
-	<button id="upNotice">수정하기</button><br>
-	<a href="/customerservice/allNotice">리스트로 돌아가기</a>
-</section>
-</section>
+<!-- <section id="btnSection"> -->
+<!-- 	<button id="upNotice">수정하기</button><br> -->
+<!-- 	<a href="/customerservice/allNotice">리스트로 돌아가기</a> -->
+<!-- </section> -->
+<!-- </section> -->
 </body>
 </html>
