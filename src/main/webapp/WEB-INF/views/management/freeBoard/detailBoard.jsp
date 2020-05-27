@@ -75,7 +75,7 @@
 		       					<span class="icon text-white-50">
 		        				<i class="fas fa-trash"></i>
 		         				</span>
-		        				<span class="text">게시글삭제|관리자</span>
+		        				<span class="text">게시글삭제 | 관리자</span>
 	       					</a>
 						</sec:authorize>
 						<br>	

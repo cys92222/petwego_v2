@@ -12,7 +12,8 @@
 <!-- 민아) 5/24, 관리자페이지 꾸미기 및 정리 중  -->
 <style type="text/css">
 </style>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
 	//구글 차트 api 로딩 메소드 
 	google.charts.load('current', {
@@ -125,13 +126,13 @@
 						</tfoot>
 						<tbody>
 							<c:forEach var="log" items="${listLog }">
-							<tr>
-								<td><c:out value="${log.log_num }"/></td>
-								<td><c:out value="${log.url }"/></td>
-								<td><c:out value="${log.ip }"/></td>
-								<td><c:out value="${log.time }"/></td>
-								<td><c:out value="${log.user_id }"/></td>
-							</tr>
+								<tr>
+									<td><c:out value="${log.log_num }" /></td>
+									<td><c:out value="${log.url }" /></td>
+									<td><c:out value="${log.ip }" /></td>
+									<td><c:out value="${log.time }" /></td>
+									<td><c:out value="${log.user_id }" /></td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

@@ -42,15 +42,14 @@ public class M_BoardController {
 	@Autowired
 	private ManagerPageService mp_service;
 
-
 	// 자유게시판 - 댓글만 삭제
 	@NoLogging
 	@GetMapping(value = "/freeBoard/commDeleteSubmit")
-	public String commDeleteSubmit(Board_CommentVo bc,int board_no) {
+	public String commDeleteSubmit(Board_CommentVo bc, int board_no) {
 		mp_service.deleteComment(bc);// where comm_num = #{comm_num}
 //		System.out.println("삭제할 댓글 번호 " + bc.getComm_num());
 //		System.out.println("상세화면으로 돌아갈 게시물 번호 " + board_no);
-		return "redirect:/management/freeBoard/detailBoard?board_no="+board_no;
+		return "redirect:/management/freeBoard/detailBoard?board_no=" + board_no;
 	}
 
 	// 자유게시판 목록
@@ -60,15 +59,15 @@ public class M_BoardController {
 		model.addAttribute("listBoard", mp_service.listBoard());
 	}
 
-	// 자유게시판 상세 - 댓글목록도 같이 보이기 
+	// 자유게시판 상세 - 댓글목록도 같이 보이기
 	@NoLogging
 	@GetMapping("/freeBoard/detailBoard")
 	public void detaiBoard(BoardVo b, Model model) {
 		model.addAttribute("detailBoard", mp_service.detailBoard(b));
-		
+
 		Board_CommentVo bc = new Board_CommentVo();
 		bc.setBoard_no(b.getBoard_no());
-		
+
 		List<Board_CommentVo> listComment = mp_service.listComment(bc);
 		model.addAttribute("detailComment", listComment);
 //		System.out.println("댓글 " + listComment);
@@ -80,8 +79,8 @@ public class M_BoardController {
 	@GetMapping("/freeBoard/deleteBoard")
 	public ModelAndView deleteBoard(BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/management/freeBoard/listBoard");
-		
-		//댓글, 사진 지우고 게시글 지워줘
+
+		// 댓글, 사진 지우고 게시글 지워줘
 		mp_service.deleteCommBoard(bc);
 		mp_service.delboard_no(bf);
 		mp_service.deleteBoard(b);
@@ -200,17 +199,16 @@ public class M_BoardController {
 		return "/management/qna/detailQnA";
 	}
 
-	
-	//답변달기
+	// 답변달기
 	@NoLogging
 	@RequestMapping(value = "qna/anwerQnA")
-	public String anwerQnA(QnAVo q,int a_ref, int a_ref_step, int a_ref_level) {
+	public String anwerQnA(QnAVo q, int a_ref, int a_ref_step, int a_ref_level) {
 		q.setRef(a_ref);
-		q.setRef_step(a_ref_step+1);
-		q.setRef_level(a_ref_level+1);
+		q.setRef_step(a_ref_step + 1);
+		q.setRef_level(a_ref_level + 1);
 		q.setUser_id("manager");
 		System.out.println("답변 정보 " + q);
-		
+
 		mp_service.anwerQnA(q);
 		System.out.println("답변드으록");
 		return "redirect:/management/qna/listQnA";
