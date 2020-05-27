@@ -16,9 +16,6 @@
 <link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
 <script type="text/javascript">
 $(function(){
-
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
 	 
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 
@@ -47,10 +44,9 @@ $(function(){
 		}
 	});
 
-var content = "${up.notice_content}";
+	var content = "${up.notice_content}";
 	
 	$('#notice_content').summernote('code', content);
-// 	$('#notice_content').summernote('code', "asdasd");
 	
 	function uploadSummernoteImageFile(file, editor) {
 		data = new FormData();
@@ -85,7 +81,7 @@ var content = "${up.notice_content}";
 				},
 				success:function(){
 			
-				alert("공지사항 등록성공");	
+				alert("공지사항 수정성공");	
 				location.href = "/management/notice/listNotice";
 			
 		}});
