@@ -3,6 +3,8 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -11,15 +13,30 @@ import com.example.demo.vo.QnAVo;
 
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
+
 	
+	// 자유게시판, 댓글 목록/삭제
+	List<Board_CommentVo> listComment();
+
+	int deleteComment(Board_CommentVo bc);
+
+	int deleteCommBoard(Board_CommentVo bc);
+
+	// 자유게시판, 목록/상세/삭제
+	List<BoardVo> listBoard();
+
+	BoardVo detailBoard(BoardVo b);
+
+	int deleteBoard(BoardVo b);
+
 	// 회원 / 결제정보
 	List<PaymentVo> listPay();
-	
+
 	// 공지사항 / 목록,글쓰기,상세보기,삭제,수정
 	List<NoticeVo> listNotice();
 
 	int insertNotice(NoticeVo nv);
- 
+
 	NoticeVo detailNotice(NoticeVo nv);
 
 	int deleteNotice(NoticeVo nv);
@@ -50,11 +67,11 @@ public interface ManagerPageService {
 
 	// 회원삭제(강퇴)
 	int deleteMember(MemberInfoVo m);
-	
-	//QnA 리스트
+
+	// QnA 리스트
 	List<QnAVo> listQnA();
-	
-	//QnA 상세
+
+	// QnA 상세
 	QnAVo detailQnA(QnAVo q);
 	
 	//QnA 답변등록

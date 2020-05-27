@@ -7,6 +7,7 @@
 <%@include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
+
 <!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
 <head>
 <meta charset="UTF-8">
@@ -17,10 +18,7 @@
 <link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
 <script type="text/javascript">
 $(function(){
- 
-	var token = $("meta[name='_csrf']").attr("content");
-	var header = $("meta[name='_csrf_header']").attr("content");
-	
+
 	var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 
 	var token = $("meta[name='_csrf']").attr("content");

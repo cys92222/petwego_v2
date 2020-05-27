@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>sns게시판</h2>
+<hr>
 </body>
 </html>

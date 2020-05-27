@@ -12,6 +12,7 @@
   <meta name="_csrf" content="${_csrf.token}"/>
   <meta name="_csrf_header" content="${_csrf.headerName}"/>
 
+
   <title>Pet We Go | 관리자페이지</title>
 
   <!-- Custom fonts for this template -->
@@ -89,8 +90,8 @@
             <h6 class="collapse-header">게시판 관리</h6>
             <a class="collapse-item" href="/management/notice/listNotice">공지사항</a>
             <a class="collapse-item" href="/management/qna/listQnA">문의사항</a>
-            <a class="collapse-item" href="#">자유게시판</a>
-            <a class="collapse-item" href="#">SNS게시판</a>
+            <a class="collapse-item" href="/management/freeBoard/listBoard">자유게시판</a>
+            <a class="collapse-item" href="/management/picboad/listPicboad">SNS게시판</a>
             <a class="collapse-item" href="#">함께가요</a>
           </div>
         </div>

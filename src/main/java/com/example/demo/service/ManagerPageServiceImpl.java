@@ -9,6 +9,8 @@ import com.example.demo.dao.ManagerPageDao;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -19,15 +21,49 @@ import com.example.demo.vo.QnAVo;
 @Service
 public class ManagerPageServiceImpl implements ManagerPageService {
 
+	
 	@Autowired
 	private ManagerPageDao mDao;
+	
+	// 자유게시판, 댓글 목록/삭제
+	@Override
+	public List<Board_CommentVo> listComment() {
+		return mDao.listComment();
+	}
+
+	@Override
+	public int deleteComment(Board_CommentVo bc) {
+		return mDao.deleteComment(bc);
+	}
+
+	@Override
+	public int deleteCommBoard(Board_CommentVo bc) {
+		return mDao.deleteCommBoard(bc);
+	}
+	
+	
+	// 자유게시판, 목록/상세/삭제
+	@Override
+	public List<BoardVo> listBoard() {
+		return mDao.listBoard();
+	}
+
+	@Override
+	public BoardVo detailBoard(BoardVo b) {
+		return mDao.detailBoard(b);
+	}
+
+	@Override
+	public int deleteBoard(BoardVo b) {
+		return mDao.deleteBoard(b);
+	}
 
 	// 회원 / 결제정보
 	@Override
 	public List<PaymentVo> listPay() {
 		return mDao.listPay();
 	}
- 
+
 	// 공지사항 / 목록,글쓰기,상세보기,삭제,수정
 	@Override
 	public List<NoticeVo> listNotice() {
@@ -108,22 +144,23 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int deleteMember(MemberInfoVo m) {
 		return mDao.deleteMember(m);
 	}
-	
-	//QnA 리스트
+
+	// QnA 리스트
 	@Override
 	public List<QnAVo> listQnA() {
 		// TODO Auto-generated method stub
 		List<QnAVo> list = mDao.listQnA();
 		return list;
 	}
-	
-	//QnA 상세
+
+	// QnA 상세
 	@Override
 	public QnAVo detailQnA(QnAVo q) {
 		// TODO Auto-generated method stub
 		QnAVo detail = mDao.detailQnA(q);
 		return detail;
 	}
+
 
 	//QnA 답변등록
 	@Override
@@ -133,5 +170,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.anwerQnA(q);
 		return re;
 	}
+
+	
+
 
 }
