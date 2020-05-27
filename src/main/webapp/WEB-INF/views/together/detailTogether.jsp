@@ -345,7 +345,7 @@ $(document).ready(function(){
 						</form>
 					</div>
 		</section>
-			<input type="button" value="맨위로" onClick="javascript:window.scrollTo(0,0)" />
+			<input type=hidden value="맨위로" onClick="javascript:window.scrollTo(0,0)" />
 			<input type="image" src="/top.png" onClick="javascript:window.scrollTo(0,0)" alt="맨위로" />
 			<hr />
 		</div>
