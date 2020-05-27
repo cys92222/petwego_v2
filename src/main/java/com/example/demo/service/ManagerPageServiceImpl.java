@@ -114,6 +114,16 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int newTogether() {
 		return mDao.newTogether();
 	}
+	
+	@Override
+	public int newBoard() {
+		return mDao.newBoard();
+	}
+
+	@Override
+	public int newPic() {
+		return mDao.newPic();
+	}
 
 	// 로그 차트
 	@Override
@@ -176,6 +186,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.anwerQnA(q);
 		return re;
 	}
+
+
 
 
 

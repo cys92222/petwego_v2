@@ -98,7 +98,7 @@
        	 <span class="icon text-white-50">
         	<i class="fas fa-trash"></i>
          </span>
-        	<span class="text">회원 강퇴</span>
+        	<span class="text">회원 강퇴 | 관리자</span>
         </a>
 	</div>
 </div>

@@ -52,6 +52,10 @@ public interface ManagerPageService {
 
 	int newTogether();
 
+	int newBoard();
+
+	int newPic();
+
 	// 로그 차트
 	List<ChartVo> chartLog();
 
