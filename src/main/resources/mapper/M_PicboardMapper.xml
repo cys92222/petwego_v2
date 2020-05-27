@@ -10,4 +10,34 @@
 <select id="picboardfile_list" resultType="com.example.demo.vo.Pic_Board_FileVo">
 	select * from pic_board_file
 </select>
+
+<!-- 픽보드 상세보기 -->
+<select id="picboaard_detail" resultType="com.example.demo.vo.Pic_BoardVo">
+	select * from pic_board where photo_no = #{photo_no}
+</select>
+
+<!-- 픽보드파일 상세보기 -->
+<select id="picboardfile_detail" resultType="com.example.demo.vo.Pic_Board_FileVo">
+	select * from pic_board_file where photo_no = #{photo_no}
+</select>
+
+<!-- 픽보드 삭제 -->
+<delete id="picboard_delete">
+	delete pic_board where photo_no = #{photo_no}
+</delete>
+
+<!-- 픽보드파일 삭제 -->
+<delete id="picboardfile_delete">
+	delete pic_board_file where photo_no = #{photo_no}
+</delete>
+
+<!-- 픽보드댓글 삭제 -->
+<delete id="picboardcomment_delete">
+	delete pic_board_comment where photo_no = #{photo_no}
+</delete>
+
+<!-- 좋아요 삭제 -->
+<delete id="like_delete">
+	delete likeit where photo_no = #{photo_no}
+</delete>
 </mapper>

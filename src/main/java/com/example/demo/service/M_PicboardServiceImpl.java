@@ -30,5 +30,57 @@ public class M_PicboardServiceImpl implements M_PicboardService {
 		return list;
 	}
 	
+//	픽보드 상세보기
+	@Override
+	public Pic_BoardVo picboaard_detail(int photo_no) {
+		// TODO Auto-generated method stub
+		Pic_BoardVo pb = dao.picboaard_detail(photo_no);
+		return pb;
+	}
+
+//	픽보드파일 상세보기
+	@Override
+	public Pic_Board_FileVo picboardfile_detail(int photo_no) {
+		// TODO Auto-generated method stub
+		Pic_Board_FileVo pbc = dao.picboardfile_detail(photo_no);
+		return pbc;
+	}
+	
+//	픽보드 삭제
+	@Override
+	public int picboard_delete(int photo_no) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.picboard_delete(photo_no);
+		return re;
+	}
+	
+//	픽보드파일 삭제 
+	@Override
+	public int picboardfile_delete(int photo_no) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.picboardfile_delete(photo_no);
+		return re;
+	}
+
+//	픽보드댓글 삭제	
+	@Override
+	public int picboardcomment_delete(int photo_no) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.picboardcomment_delete(photo_no);
+		return re;
+	}
+	
+//	좋아요 삭제
+	@Override
+	public int like_delete(int photo_no) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.like_delete(photo_no);
+		return re;
+	}
+	
 
 }

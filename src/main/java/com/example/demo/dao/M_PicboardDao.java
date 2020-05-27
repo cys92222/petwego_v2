@@ -12,4 +12,22 @@ public interface M_PicboardDao {
 
 //	픽보드파일 리스트
 	List<Pic_Board_FileVo> picboardfile_list();
+	
+//	 픽보드 상세보기
+	Pic_BoardVo picboaard_detail(int photo_no);
+
+//	픽보드파일 상세보기 
+	Pic_Board_FileVo picboardfile_detail(int photo_no);
+	
+//	픽보드 삭제
+	int picboard_delete(int photo_no);
+
+//	픽보드파일 삭제 
+	int picboardfile_delete(int photo_no);
+
+//	픽보드댓글 삭제
+	int picboardcomment_delete(int photo_no);
+
+//	좋아요 삭제
+	int like_delete(int photo_no);
 }
