@@ -137,9 +137,9 @@
 <body>
 <input type="text" id="follow_in_user_id" value="${login_id }">
 
-   <h2>sns</h2>
+   <h2>SNS</h2>
    <hr>
-   <a href="/pic_board/list">sns 메인</a><br><br>
+   <a href="/pic_board/list">SNS 메인</a><br><br>
    <form id="f">
    <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
    <input type="text" id="photo_no" value="${Board.photo_no }">

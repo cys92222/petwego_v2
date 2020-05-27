@@ -315,7 +315,7 @@ $(document).ready(function(){
 <%-- 										${replyList.t_r_content } --%>
 <%-- 									</c:if> --%>
 
-									비밀댓글입니다(자물쇠 사진같은거로 변경)
+									비밀댓글입니다<input type="image" src="/img/locker.png" width="15" height="15" />
 								</c:if>
 					
 					        <div>
@@ -345,7 +345,7 @@ $(document).ready(function(){
 						</form>
 					</div>
 		</section>
-			<input type="button" value="맨위로" onClick="javascript:window.scrollTo(0,0)" />
+			<input type=hidden value="맨위로" onClick="javascript:window.scrollTo(0,0)" />
 			<input type="image" src="/top.png" onClick="javascript:window.scrollTo(0,0)" alt="맨위로" />
 			<hr />
 		</div>
