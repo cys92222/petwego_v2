@@ -99,4 +99,7 @@
 		order by ref desc, ref_level, ref_step
 	</select>
 	
+	<select id="detailQnA" resultType="com.example.demo.vo.QnAVo">
+		select * from qna where inq_no = #{inq_no}
+	</select>
 </mapper>

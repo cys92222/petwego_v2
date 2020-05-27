@@ -17,12 +17,11 @@
 		
 		var inq_no = $("#inq_no").val();
  
-		// 삭제버튼 누르면...
-		$("#btnDelete").click(function(){
-			var check = confirm("문의글을 삭제하시겠습니까?")
+		// 답변버튼 누르면...
+		$("#btnAnwer").click(function(){
+			var check = confirm("답변을 작성하시겠습니까?")
 			if(check == true){
-				self.location = "/management/notice/deleteNotice?notice_no="+notice_no;
-				alert("문의글을 삭제했습니다!");
+				window.location.href="";
 			}
 		});
 
@@ -38,7 +37,7 @@
 		<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
 		<p class="mb-4">QnA | 관리자접속중</p>
 		
-		<input type="hidden" id="notice_no" value="${detailNotice.notice_no }">
+		<input type="hidden" id="notice_no" value="${detail.inq_no }">
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
@@ -49,40 +48,41 @@
 						<tbody>
 							<tr>
 								<td>제목</td>
-								<td>${detailNotice.notice_title }</td>
+								<td>${detailQnA.inq_title }</td>
 							</tr>
 							<tr>
 								<td>내용</td>
-								<td>${detailNotice.notice_content }</td>
+								<td>${detailQnA.inq_content }</td>
 							</tr>
-							<tr>
-								<td>조회수</td>
-								<td>${detailNotice.notice_hit }</td>
-							</tr>
+
 							<tr>
 								<td>작성일</td>	
-								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detailNotice.notice_date }"/></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detailQnA.inq_date }"/></td>
 							</tr>
 							<tr>
-								<td>담당자번호</td>
-								<td>${detailNotice.cs_no }</td>
+								<td>카테고리</td>
+								<td><c:if test="${detailQnA.cs_no ==  1}">
+										<c:out value="홈페이지 이용 관련"/>
+									</c:if>
+									
+									<c:if test="${detailQnA.cs_no ==  2}">
+										<c:out value="계정 관련"/>
+									</c:if>
+									
+									<c:if test="${detailQnA.cs_no ==  3}">
+										<c:out value="결제 관련 관련"/>
+									</c:if>
+								</td>
 							</tr>
 						</tbody>
 					</table>
 						<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-							<!-- 공지삭제 버튼 -->
+							<!-- 답변 버튼 -->
 							<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
 		       					<span class="icon text-white-50">
 		        				<i class="fas fa-trash"></i>
 		         				</span>
-		        				<span class="text">QnA|관리자</span>
-	       					</a>
-	       					
-	       					<a href="#" class="btn btn-danger btn-icon-split" id="btnUpdate">
-		       					<span class="icon text-white-50">
-		        				<i class="fas fa-trash"></i>
-		         				</span>
-		        				<span class="text">QnA|관리자</span>
+		        				<span class="text">답변달기|관리자</span>
 	       					</a>
 						</sec:authorize>
 						

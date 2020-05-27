@@ -46,7 +46,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>번호</th>
@@ -65,13 +65,45 @@
 						</tfoot>
 						<tbody>
 							<c:forEach var="QnA" items="${listQnA }">
-							<tr>
+							<tr onclick="location.href='/management/qna/detailQnA?inq_no=${QnA.inq_no}'">
 								<td><c:out value="${QnA.inq_no }"/></td>
-								<td><a href="/management/qna/detailQnA?inq_no=${QnA.inq_no}">
-									<c:out value="${QnA.inq_title }"/>
-								</a></td>
+								
+								
+<%-- 								<td><c:out value="${QnA.inq_title }"/></td> --%>
+
+
+								<td>
+									<c:choose> 
+									
+										<c:when test = "${QnA.ref_level > 0}">
+										<c:forEach begin="0" end="${QnA.ref_level}">
+											<c:out value="&nbsp;&nbsp;&nbsp;&nbsp;" escapeXml="false"/> 
+										</c:forEach>	
+											<img src="../../adminImg/re2.png">
+											<c:out value="${QnA.inq_title }"/>
+										</c:when> 
+										
+										<c:otherwise>
+											<c:out value="${QnA.inq_title }"/>
+										</c:otherwise> 
+									
+									</c:choose>
+								</td>
+								
+								
 								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${QnA.inq_date }"/></td>
-								<td><c:out value="${QnA.cs_no }"/></td>
+								<td><c:if test="${QnA.cs_no ==  1}">
+										<c:out value="홈페이지 이용 관련"/>
+									</c:if>
+									
+									<c:if test="${QnA.cs_no ==  2}">
+										<c:out value="계정 관련"/>
+									</c:if>
+									
+									<c:if test="${QnA.cs_no ==  3}">
+										<c:out value="결제 관련 관련"/>
+									</c:if>
+								</td>
 							</tr>
 							</c:forEach>
 						</tbody>

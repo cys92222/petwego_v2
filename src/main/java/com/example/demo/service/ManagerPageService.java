@@ -55,5 +55,5 @@ public interface ManagerPageService {
 	List<QnAVo> listQnA();
 	
 	//QnA 상세
-	QnAVo detailQnA();
+	QnAVo detailQnA(QnAVo q);
 }

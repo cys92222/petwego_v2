@@ -119,9 +119,9 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	
 	//QnA 상세
 	@Override
-	public QnAVo detailQnA() {
+	public QnAVo detailQnA(QnAVo q) {
 		// TODO Auto-generated method stub
-		QnAVo detail = mDao.detailQnA();
+		QnAVo detail = mDao.detailQnA(q);
 		return detail;
 	}
 

@@ -142,10 +142,10 @@ public class M_BoardController {
 	@NoLogging
 	@RequestMapping(value = "qna/detailQnA")
 	public String detailQnA(QnAVo q, Model model) {
-		QnAVo detail = mp_service.detailQnA();
-		model.addAttribute("detail", detail);
+		QnAVo detail = mp_service.detailQnA(q);
+		model.addAttribute("detailQnA", detail);
 		
-		return "/management/qna/detail.QnA";
-		 
+		return "/management/qna/detailQnA";
 	}
+	
 }

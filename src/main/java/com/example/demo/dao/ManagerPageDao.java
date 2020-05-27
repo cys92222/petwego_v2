@@ -52,5 +52,5 @@ public interface ManagerPageDao {
 	List<QnAVo> listQnA();
 	
 	//QnA 상세
-	QnAVo detailQnA();
+	QnAVo detailQnA(QnAVo q);
 }
