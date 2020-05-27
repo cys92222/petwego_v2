@@ -23,11 +23,11 @@ var temp = function(){
    var arr_file = ${file};
    var arr_board = ${board};
    $.each(arr_file,function(idx,data){
-	  var id = $("<center><div></div></center>").append(arr_board[idx].user_id + "님의 사진");
+     var id = $("<center><div></div></center>").append(arr_board[idx].user_id + "님의 사진");
       var a = $("<a href=/pic_board/detail?photo_no="+data.photo_no+"&user_id="+arr_board[idx].user_id+"&in_user_id="+in_user_id+"></a>");
       var img = $("<img/>").attr({"src":"/img/"+data.photo_file_name,"photo_no":data.photo_no}).width(300).height(300);
       a.append(img,id);
-	       a.css({"float":"left","margin":"10px"});
+          a.css({"float":"left","margin":"10px"});
       $("#sns").append(a);
    });
 }
@@ -39,7 +39,7 @@ var temp = function(){
 <a href="/pic_board/insertForm">게시글 등록</a>
 <hr>
 <div id="sns">
-	
+   
 </div>
    <div>
         <ul>
