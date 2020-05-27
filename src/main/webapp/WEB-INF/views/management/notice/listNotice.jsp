@@ -34,16 +34,18 @@
 
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
-			<div class="card-header py-3">
+			<div class="card-header py-3" style="float: left;">
 				<h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
 				<!-- 글쓰기 버튼  -->
+				<div style="float: right;">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">
-					<a href="#" class="btn btn-secondary btn-icon-split" id="btnInsert">
-						<span class="icon text-white-50"> <i
-							class="fas fa-arrow-right"></i>
-					</span> <span class="text">공지등록|관리자</span>
+					<a href="#" class="btn btn-info btn-icon-split" id="btnInsert">
+						<span class="icon text-white-50"> 
+						<i class="fas fa-flag-checkered"></i></span> 
+						<span class="text">공지등록 | 관리자</span>
 					</a>
 				</sec:authorize>
+				</div>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">

@@ -207,10 +207,10 @@ public class M_BoardController {
 		q.setRef_step(a_ref_step + 1);
 		q.setRef_level(a_ref_level + 1);
 		q.setUser_id("manager");
-		System.out.println("답변 정보 " + q);
+//		System.out.println("답변 정보 " + q);
 
 		mp_service.anwerQnA(q);
-		System.out.println("답변드으록");
+//		System.out.println("답변등록");
 		return "redirect:/management/qna/listQnA";
 	}
 
