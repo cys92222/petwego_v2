@@ -18,7 +18,7 @@ public interface ManagerPageDao {
 	
 	
 	// 자유게시판, 댓글 목록/삭제
-	List<Board_CommentVo> listComment();
+	List<Board_CommentVo> listComment(Board_CommentVo bc);
 	int deleteComment(Board_CommentVo bc);
 	int deleteCommBoard(Board_CommentVo bc);
 	

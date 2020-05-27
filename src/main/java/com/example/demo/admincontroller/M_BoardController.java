@@ -46,7 +46,7 @@ public class M_BoardController {
 	@NoLogging
 	@GetMapping(value = "/freeBoard/listComment", produces = "application/json; charset=utf-8")
 	public String listComment(Board_CommentVo bc) {
-		List<Board_CommentVo> listComment = mp_service.listComment();
+		List<Board_CommentVo> listComment = mp_service.listComment(bc);
 		Gson gson = new Gson();
 		return gson.toJson(listComment);
 	}
@@ -54,9 +54,11 @@ public class M_BoardController {
 	// 자유게시판 - 댓글만 삭제
 	@NoLogging
 	@GetMapping(value = "/freeBoard/commDeleteSubmit")
-	public String commDeleteSubmit(Board_CommentVo bc) {
+	public String commDeleteSubmit(Board_CommentVo bc,int board_no) {
 		mp_service.deleteComment(bc);// where comm_num = #{comm_num}
-		return "redirect:/freeBoard/detailBoard";
+		System.out.println("삭제할 댓글 번호 " + bc.getComm_num());
+		System.out.println("상세화면으로 돌아갈 게시물 번호 " + board_no);
+		return "redirect:/management/freeBoard/detailBoard?board_no="+board_no;
 	}
 
 	// 자유게시판 목록
@@ -71,6 +73,12 @@ public class M_BoardController {
 	@GetMapping("/freeBoard/detailBoard")
 	public void detaiBoard(BoardVo b, Model model) {
 		model.addAttribute("detailBoard", mp_service.detailBoard(b));
+		Board_CommentVo bc = new Board_CommentVo();
+		bc.setBoard_no(b.getBoard_no());
+		List<Board_CommentVo> listComment = mp_service.listComment(bc);
+		model.addAttribute("detailComment", listComment);
+		System.out.println("댓글 " + listComment);
+//		Gson gson = new Gson();
 	}
 
 	// 자유게시판 삭제

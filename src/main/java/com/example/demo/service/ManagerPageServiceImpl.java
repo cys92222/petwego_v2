@@ -27,8 +27,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	
 	// 자유게시판, 댓글 목록/삭제
 	@Override
-	public List<Board_CommentVo> listComment() {
-		return mDao.listComment();
+	public List<Board_CommentVo> listComment(Board_CommentVo bc) {
+		return mDao.listComment(bc);
 	}
 
 	@Override
