@@ -16,7 +16,7 @@
 	$(function(){
 		
 		var inq_no = $("#inq_no").val();
-
+ 
 		// 삭제버튼 누르면...
 		$("#btnDelete").click(function(){
 			var check = confirm("문의글을 삭제하시겠습니까?")

@@ -17,7 +17,7 @@ public interface QnADao {
 	
 	//qna상세보기
 	public QnAVo detailQnA(QnAVo q);
-	
+	 
 	//qna삭제
 	public int deleteQnA(QnAVo q);
 	

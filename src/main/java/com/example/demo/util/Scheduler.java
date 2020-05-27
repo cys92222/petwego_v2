@@ -27,7 +27,7 @@ public class Scheduler {
    public void setBf_service(Board_fileService bf_service) {
       this.bf_service = bf_service;
    }
-
+ 
    // https://kms0209.tistory.com/69 @Scheduled표현식이 정리가 잘 되어있음! 매일 새벽4시에 파일테이블에 없는,
    // 실제 업로드가 되지 않은 파일은 C:\\summernote_image 경로에서 삭제된다.
    // @Scheduled 를 적용할 메소드에는 매개변수가 있으면 안됨!!!!!! public void deleteImg(board_fileVo

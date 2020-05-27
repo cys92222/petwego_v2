@@ -14,7 +14,7 @@
 #AddQnA,#DetailQnA,#UpdateQnA,#AddRe{
 	display: none;
 	
-}
+} 
 
 li {
 	list-style: none; float: left; padding: 6px;

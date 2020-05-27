@@ -14,3 +14,4 @@ public class Board_fileVo {
 	private String file_name;	// 파일의 오리지널 이름 
 	private int board_no;		// 게시물 번호(글번호)
 }
+ 

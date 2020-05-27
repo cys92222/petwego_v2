@@ -7,7 +7,7 @@
 <mapper namespace="com.example.demo.dao.LoginMapperDao">
    <!-- id는 dao의 클래스 이름과 일치시켜야함 -->
    <!-- resultType은 vo의 경로 -->
-   
+    
   <insert id="setInsertMemberInfo" parameterType="com.example.demo.vo.MemberInfoVo">
     <!-- 회원가입 -->
     insert into member_info(

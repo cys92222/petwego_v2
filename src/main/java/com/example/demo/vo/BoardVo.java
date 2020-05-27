@@ -24,3 +24,4 @@ public class BoardVo {
 	//한 게시글에 이미지가 여러개 올라갈 경우를 생각
 	private List<Board_fileVo> listImg;
 }
+ 

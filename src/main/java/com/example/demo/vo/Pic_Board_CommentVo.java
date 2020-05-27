@@ -17,3 +17,4 @@ public class Pic_Board_CommentVo {
 	private String user_id;
 	private int photo_no;
 }
+ 

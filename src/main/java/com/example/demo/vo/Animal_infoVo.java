@@ -24,3 +24,4 @@ public class Animal_infoVo {
 	
 	private MultipartFile pic;
 }
+ 

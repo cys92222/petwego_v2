@@ -34,7 +34,7 @@ public class Pic_Board_CommentController {
       Gson gson = new Gson();
       return gson.toJson(plistComment);
    }
-
+ 
    // 댓글작성
    @RequestMapping(value = "/pinsertComment")
    public ModelAndView pinsertComment(HttpServletRequest request,Pic_Board_CommentVo pbc) {

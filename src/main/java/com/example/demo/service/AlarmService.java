@@ -6,7 +6,7 @@ import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.ApplicationVo;
 
 public interface AlarmService {
-
+ 
 	//함께가요 신청 알림 등록
 	int insert_together_alarm(AlarmVo a);
 		 

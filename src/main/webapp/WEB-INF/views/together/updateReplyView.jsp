@@ -18,7 +18,7 @@
 					   + "&searchType=${scri.searchType}"
 					   + "&keyword=${scri.keyword}";
 			})
-			
+			 
 		})
 		
 	</script>

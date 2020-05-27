@@ -20,7 +20,7 @@ public interface TogetherDao {
 	
 	//함께가요 목록
 	public List<TogetherVo> listTogether(SearchCriteria scri) throws Exception;
-	
+	 
 	//게시물 총 개수
 	public int listCount(SearchCriteria scri) throws Exception;
 	

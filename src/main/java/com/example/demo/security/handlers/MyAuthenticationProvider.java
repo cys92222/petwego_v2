@@ -32,7 +32,7 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
     
     @Autowired
     PasswordEncoder pwdEncoder;
-	
+	 
   @Override	//authenticationManager
   public Authentication authenticate(Authentication authentication) throws AuthenticationException { 
     UsernamePasswordAuthenticationToken authToken = (UsernamePasswordAuthenticationToken) authentication; 

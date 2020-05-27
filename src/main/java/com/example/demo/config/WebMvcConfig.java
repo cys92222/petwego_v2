@@ -17,4 +17,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("file:///C:/summernote_image_QnA/")
                 .addResourceLocations("file:///C:/summernote_together_detail_image/");
     }
-}
+} 

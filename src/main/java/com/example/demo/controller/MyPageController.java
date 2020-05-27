@@ -48,7 +48,7 @@ public class MyPageController {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
+	 
 	@Autowired
 	AlarmService alarmSerivce;
 	
@@ -129,7 +129,7 @@ public class MyPageController {
 		return mav;
 		
 	}
-/*	
+	
 	//함께가요 신청 알람 확인
 	@RequestMapping("/mypage/check_alarm_in")
 	public String check_alarm_in(HttpServletRequest request, AlarmVo a) {
@@ -143,7 +143,7 @@ public class MyPageController {
 			alarmSerivce.check_alarm_cancle(a);
 		return "redirect:/mypage/mypage";
 	}
-*/
+
 	
 	//반려동물 관리폼
 	@RequestMapping("/mypage/animal_info_up_form")

@@ -19,7 +19,7 @@ public class NoticeUpdateVo {
 	private int u_cs_no;
 }
 
-
+ 
 //NOTICE_NO                                 NOT NULL NUMBER
 //NOTICE_TITLE                                       VARCHAR2(225)
 //NOTICE_CONTENT                                     CLOB

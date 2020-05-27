@@ -27,7 +27,7 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public List<PaymentVo> listPay() {
 		return mDao.listPay();
 	}
-
+ 
 	// 공지사항 / 목록,글쓰기,상세보기,삭제,수정
 	@Override
 	public List<NoticeVo> listNotice() {

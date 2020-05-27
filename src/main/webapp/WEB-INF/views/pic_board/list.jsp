@@ -15,7 +15,7 @@ li{list-style:none; float:left; padding: 6px; position: fixed; bottom: 0; width:
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 $(function() {
-   temp();
+   temp(); 
 })
    var in_user_id = "${login_id}";
 

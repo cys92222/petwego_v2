@@ -16,7 +16,7 @@
  		nick_name=#{nick_name}, fname=#{fname}
  		 where user_id = #{user_id} <!--  and pwd = #{pwd} -->
  	</update>
- 	
+ 	 
 <!--  	반려동물 등록 -->
  	<insert id="insert_pet">
  		insert into animal_info values(seq_pet_no.nextval,#{user_id},#{pet_date},#{pet_type},#{pet_pic},#{pet_name})

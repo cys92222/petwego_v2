@@ -21,7 +21,7 @@ public interface NoticeService {
 
 	//공지사항 삭제
 	public int deleteNotice(NoticeVo n);
-
+ 
 	//공지사항 수정
 	public int updateNotice(NoticeUpdateVo nu);
 	

@@ -14,7 +14,7 @@ $(function(){
  	$('#searchBtn').click(function() {
     	self.location = "listTogether" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
      });
-	
+	 
 });
 </script>
 <style type="text/css">

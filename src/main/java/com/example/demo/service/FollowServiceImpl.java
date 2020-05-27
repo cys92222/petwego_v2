@@ -20,7 +20,7 @@ public class FollowServiceImpl implements FollowService {
 		List<FollowVo> list = FollowDao.search_follow(f);
 		return list;
 	}
-
+ 
 	//나를 팔로잉한 회원 수
 	@Override
 	public int search_follow_count(FollowVo f) {

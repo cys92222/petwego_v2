@@ -27,7 +27,7 @@ public class MypageServiceImpl implements MypageService {
 		MemberInfoVo my = mypagedao.select_myinfo(m);
 		return my;
 	}
-
+ 
 	//내 정보 수정
 	@Override
 	public int update_myinfo(MemberInfoVo m) {

@@ -19,7 +19,7 @@
 					   + "&keyword=${scri.keyword}";
 			})
 			
-		})
+		}) 
 	</script>
 	<body>
 	

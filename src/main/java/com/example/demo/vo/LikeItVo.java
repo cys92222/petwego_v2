@@ -12,3 +12,4 @@ public class LikeItVo {
 	private int photo_no;
 	private String user_id;
 }
+ 

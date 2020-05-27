@@ -19,7 +19,7 @@
 	</selectKey>
 		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,#{in_user_id},'함께가요',#{board_num},#{t_num})
 	</insert>
-	
+	 
 	
 <!-- 	함께가요 신청 번호 조회 aaaaaaaaaaaaaaaaaaa -->
 	<select id="together_no" resultType="java.lang.Integer">

@@ -17,7 +17,7 @@
 $(document).ready(function(){
 	//form태그를  변수에 저장
 	 var formObj = $("form[name='detailForm']");
-
+ 
 	//수정
 	$(".update_btn").on("click",function(){
 		formObj.attr("action","updateTogetherView");

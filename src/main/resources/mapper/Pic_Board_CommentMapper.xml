@@ -18,7 +18,7 @@
       insert into pic_board_comment(photo_comm_no, photo_comm_date, photo_comm_cont, user_id, photo_no)
          values(seq_photo_comm_no.nextval, sysdate, #{photo_comm_cont,jdbcType=VARCHAR}, #{user_id},#{photo_no})
    </insert>
-   
+    
    <!-- 댓글삭제 -->
    <delete id="pdeleteComment">
       delete pic_board_comment where photo_comm_no = #{photo_comm_no}

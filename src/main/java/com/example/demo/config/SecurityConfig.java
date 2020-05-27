@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	SecurityService securityService; //암호화작업1
-
+ 
 	 @Override
 	    public void configure(WebSecurity web) {
 	        web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/adminImg/**", 

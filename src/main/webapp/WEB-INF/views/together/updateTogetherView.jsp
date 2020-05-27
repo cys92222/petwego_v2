@@ -18,7 +18,7 @@ $(document).ready(function(){
 			   + "&perPageNum=${scri.perPageNum}"
 			   + "&searchType=${scri.searchType}"
 			   + "&keyword=${scri.keyword}";
-	});
+	}); 
 	$(".update_btn").on("click", function(){
 		if(fn_valiChk()){
 			return false;

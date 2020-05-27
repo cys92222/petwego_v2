@@ -12,7 +12,7 @@
   	select * from member_info;
   </select>
   
-  
+   
   <select id="getSelectMemberInfo" parameterType="String" resultType="com.example.demo.vo.MemberInfoVo">
     <!-- 회원정보 조회 -->
     select *

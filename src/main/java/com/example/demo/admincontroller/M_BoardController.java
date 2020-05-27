@@ -148,6 +148,6 @@ public class M_BoardController {
 		model.addAttribute("detail", detail);
 		
 		return "/management/qna/detail.QnA";
-		
+		 
 	}
 }

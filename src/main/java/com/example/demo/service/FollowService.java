@@ -13,7 +13,7 @@ public interface FollowService {
 			
 	//내가 팔로잉한 회원 조회
 	List<FollowVo> search_following(FollowVo f);
-		
+		 
 	//팔로우하기
 	int insert_follow(FollowVo f);
 	

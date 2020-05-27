@@ -17,7 +17,7 @@
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		order by notice_no desc
  	</select>
- 	
+ 	 
 <!--  	공지사항 등록 -->
  	<insert id="insertNotice">
  		insert into notice values (seq_notice_no.nextval, #{notice_title},#{notice_content},0,sysdate,#{cs_no})

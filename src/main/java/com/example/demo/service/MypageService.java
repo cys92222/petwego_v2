@@ -20,7 +20,7 @@ public interface MypageService {
 		
 	//반려동물 등록
 	public int insert_pet(Animal_infoVo a);
-	
+	 
 	//회원탈퇴
 	public int delete_myinfo(MemberInfoVo m);
 		

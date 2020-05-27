@@ -13,7 +13,7 @@
    <delete id="deleteLike">
       delete likeit where photo_no = #{photo_no}  <!--  and user_id = #{user_id} -->
    </delete>
-   
+    
    
    <!-- 진짜 좋아요를 누른 수!  -->
    <select id="checkLike" resultType="java.lang.Integer">

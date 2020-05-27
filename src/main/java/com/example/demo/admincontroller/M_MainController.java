@@ -26,5 +26,5 @@ public class M_MainController {
 		model.addAttribute("newM", mp_service.newMember());
 		model.addAttribute("newP", mp_service.newPay());
 		model.addAttribute("newT", mp_service.newTogether());
-	}
+	} 
 }

@@ -13,7 +13,7 @@ import com.example.demo.vo.Board_fileVo;
 public class Board_fileServiceImpl implements Board_fileService{
 	@Autowired
 	private Board_fileDao bfDao;
-	
+	 
 	@Override
 	public int insert(Board_fileVo bf) {
 		int re = bfDao.insert(bf);

@@ -19,7 +19,7 @@ public class MemberInfoVo {
 
 private static final long serialVersionUID = 1L;
 	
-	
+	 
 	private String user_id;
 	private String pwd;
 	private String tel;

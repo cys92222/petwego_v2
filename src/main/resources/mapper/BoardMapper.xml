@@ -9,7 +9,7 @@
 <!-- 	private String board_title; -->
 <!-- 	private String board_content; -->
 <!-- 	private Date board_date; -->
-<!-- 	private int board_hit; -->
+<!-- 	private int board_hit; --> 
 <!-- 	private String user_id; -->
 	<!-- 자유게시판 목록 -->
 	<select id="listBoard" resultType="com.example.demo.vo.BoardVo" parameterType="com.example.demo.util.Criteria">

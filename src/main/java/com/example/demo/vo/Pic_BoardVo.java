@@ -24,3 +24,4 @@ public class Pic_BoardVo {
 	private int cntLike; // 좋아요 수
 
 }
+ 

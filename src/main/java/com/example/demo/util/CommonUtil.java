@@ -21,7 +21,7 @@ public class CommonUtil {
 	    if (ip == null) {
 	        ip = request.getHeader("WL-Proxy-Client-IP");
 	        LOGGER.info(">  WL-Proxy-Client-IP : " + ip);
-	    }
+	    } 
 	    if (ip == null) {
 	        ip = request.getHeader("HTTP_CLIENT_IP");
 	        LOGGER.info("> HTTP_CLIENT_IP : " + ip);

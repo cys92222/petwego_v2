@@ -29,7 +29,7 @@ public class PaymentController {
 	public void setPay_service(PaymentService pay_service) {
 		this.pay_service = pay_service;
 	}
-
+ 
 	// 결제 창
 	@NoLogging
 	@GetMapping(value = "/paySystem")

@@ -15,7 +15,7 @@
 	<select id="togetherReply" resultType="com.example.demo.vo.ReplyVo">
 		select t_r_num, t_r_content,user_id,regdate,secret_reply from together_comment where t_num=#{t_num}
 	</select>
-	
+	 
 	<!-- 댓글 수정 -->
 	<update id="updateReply" parameterType="com.example.demo.vo.ReplyVo">
 		update together_comment set t_r_content = #{t_r_content} where t_r_num=#{t_r_num}

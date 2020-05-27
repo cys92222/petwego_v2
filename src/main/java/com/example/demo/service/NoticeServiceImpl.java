@@ -24,7 +24,7 @@ public class NoticeServiceImpl implements NoticeService {
 		List<NoticeVo> list = dao.allNoticeList(scri);
 		return list;
 	}
-
+ 
 	//공지사항 등록
 	@Override
 	public int insertNotice(NoticeVo n) {

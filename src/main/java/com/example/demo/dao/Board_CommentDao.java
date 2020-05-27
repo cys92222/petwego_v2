@@ -12,7 +12,7 @@ public interface Board_CommentDao {
 
 	// 댓글등록
 	int insertComment(Board_CommentVo bc);
-
+ 
 	// 댓글삭제
 	int deleteComment(Board_CommentVo bc);
 

@@ -32,7 +32,7 @@ public class UserServiceImpl implements SecurityService {
 	//MemberInfoVo에 있는 authorities에 setter를 합니다
 	//그러면 로그인한 유저에게 권한이 부여됩니다
 	
-	
+	 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 		MemberInfoVo memberInfo = loginMapperDao.getSelectMemberInfo(username); 

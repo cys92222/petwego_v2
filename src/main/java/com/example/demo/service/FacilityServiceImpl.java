@@ -22,7 +22,7 @@ public class FacilityServiceImpl implements FacilityService {
 	//검색조건과 일치하는 숙소 총 개수
 	public int listCount(SearchCriteria scri) throws Exception {
 		return dao.listCount(scri);
-	}
+	} 
 	
 	//숙소 상세뷰 
 	public FacilityVo getFacility(int facility_no) throws Exception {

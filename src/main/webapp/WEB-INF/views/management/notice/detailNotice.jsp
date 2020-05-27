@@ -15,7 +15,7 @@
 
 <script type="text/javascript">
 	$(function(){
-		
+		 
 		var notice_no = $("#notice_no").val();
 
 		// 삭제버튼 누르면...

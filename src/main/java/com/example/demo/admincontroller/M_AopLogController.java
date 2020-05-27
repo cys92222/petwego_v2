@@ -38,5 +38,5 @@ public class M_AopLogController {
 	@GetMapping("listLog")
 	public void listLog(Model model) {
 		model.addAttribute("listLog", mp_service.listLog());
-	}
+	} 
 }

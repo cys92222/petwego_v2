@@ -474,7 +474,7 @@ public class TogeteherController {
 		}
 		System.out.println(str);
 		return str;
-	} 
+	}  
 	
 	//신청하기 취소
 	@GetMapping("/deleteApplication")

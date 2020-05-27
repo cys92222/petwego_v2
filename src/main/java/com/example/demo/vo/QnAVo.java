@@ -23,7 +23,7 @@ public class QnAVo {
 	private int ref_step;			//부모글 그룹안에서 정렬 순서,답변의 답변
 	private int ref_level;			//들여쓰기
 
-}
+} 
 
 
 //INQ_NO                                    NOT NULL NUMBER

@@ -83,6 +83,6 @@ public class FollowController {
 		mav.addObject("count", followService.search_following(f));
 		mav.setViewName("/pic_board/followList2");
 		return mav;
-		
+		 
 	}
 }

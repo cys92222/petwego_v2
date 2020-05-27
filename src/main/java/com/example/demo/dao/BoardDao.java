@@ -14,7 +14,7 @@ public interface BoardDao {
 	
 	//자유게시판 게시물 총 갯수(페이징처리를 위함)
 	int countBoard(SearchCriteria scri);
-	
+	 
 	//게시물 등록
 	int insertBoard(BoardVo b);
 

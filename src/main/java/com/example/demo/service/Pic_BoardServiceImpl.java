@@ -27,7 +27,7 @@ public class Pic_BoardServiceImpl implements Pic_BoardService {
    @Override
    public List<Pic_BoardVo> listPic_Board(Criteria cri) throws Exception{
       return pic_boardDao.listPic_Board(cri);
-
+ 
    }
    
    //전체글 수

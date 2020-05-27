@@ -15,7 +15,7 @@
  		t_place,
  		t_hit,
  		thumbnail
- 		from
+ 		from 
  		(
  		select t_num,
  		t_title,

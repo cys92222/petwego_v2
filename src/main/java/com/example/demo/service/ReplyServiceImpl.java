@@ -26,7 +26,7 @@ public class ReplyServiceImpl implements ReplyService {
 		public void writeReply(ReplyVo rv) throws Exception {
 			rDao.writeReply(rv);
 		}
-		
+		 
 		//함께가요 댓글 수정
 		@Override
 		public void updateReply(ReplyVo rv) throws Exception {

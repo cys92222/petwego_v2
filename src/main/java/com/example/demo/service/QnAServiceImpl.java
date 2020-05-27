@@ -24,7 +24,7 @@ public class QnAServiceImpl implements QnAService {
 		List<QnAVo> list = dao.allQnAList(scri);
 		return list;
 	}
-	
+	 
 	//qna등록
 	@Override
 	public int insertQnA(QnAVo q) {

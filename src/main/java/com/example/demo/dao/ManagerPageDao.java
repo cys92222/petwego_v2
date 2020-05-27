@@ -29,7 +29,7 @@ public interface ManagerPageDao {
 	int newMember();
 	Integer newPay();
 	int newTogether();
-	
+	 
 	// 로그 차트 
 	List<ChartVo> chartLog();
 	

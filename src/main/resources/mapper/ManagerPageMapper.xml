@@ -17,7 +17,7 @@
 	<insert id="insertNotice">
  		insert into notice values (seq_notice_no.nextval, #{notice_title},#{notice_content},0,sysdate,#{cs_no})
  	</insert>
- 	
+ 	 
  	<select id="detailNotice" resultType="com.example.demo.vo.NoticeVo">
 		select * from notice where notice_no = #{notice_no}
 	</select>

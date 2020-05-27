@@ -16,7 +16,7 @@ public interface FollowDao {
 		
 	//팔로우하기
 	int insert_follow(FollowVo f);
-	
+	 
 	//맞팔로우하기
 	int insert_follow2(FollowVo f);
 

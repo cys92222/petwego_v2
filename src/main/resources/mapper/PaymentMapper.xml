@@ -10,4 +10,4 @@
 			values(#{imp_uid}, #{merchant_uid}, #{paid_amount}, #{pay_method}, #{apply_num},
 					sysdate, #{status}, #{rsv_no}, #{user_id})
 	</insert>
-</mapper>
+</mapper> 

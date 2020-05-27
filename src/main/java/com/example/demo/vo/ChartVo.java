@@ -13,3 +13,4 @@ public class ChartVo {
 	private String url;
 	private int count;
 }
+ 

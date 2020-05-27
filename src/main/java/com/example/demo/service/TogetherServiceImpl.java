@@ -37,7 +37,7 @@ public class TogetherServiceImpl implements TogetherService {
 	public List<TogetherVo> listTogether(SearchCriteria scri) throws Exception{
 		return dao.listTogether(scri);
 	}
-	
+	 
 	//게시물 총 개수
 	public int listCount(SearchCriteria scri) throws Exception{
 		return dao.listCount(scri);

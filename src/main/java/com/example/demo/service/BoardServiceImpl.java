@@ -18,7 +18,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
 	private BoardDao boardDao;
-	
+	 
 	@Autowired
 	private Board_fileDao bfDao;
 	

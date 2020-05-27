@@ -17,7 +17,7 @@ import com.example.demo.vo.MemberInfoVo;
 //민아) 5/19, 메인페이지 @NoLogging 처리 
 @RestController
 public class MainController {
-	
+	 
 	//사이트 메인페이지
 //	@NoLogging
 //	@RequestMapping("/MainPage")

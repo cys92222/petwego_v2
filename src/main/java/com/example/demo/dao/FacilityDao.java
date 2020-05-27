@@ -16,7 +16,7 @@ public interface FacilityDao {
 	
 	//숙소 상세뷰
 	public FacilityVo getFacility(int facility_no) throws Exception;
-	
+	 
 	//객실 리스트 
 	public List<RoomVo> listRoom(int facility_no) throws Exception;
 	

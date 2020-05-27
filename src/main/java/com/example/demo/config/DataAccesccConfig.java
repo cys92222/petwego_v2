@@ -25,7 +25,7 @@ public class DataAccesccConfig {
 		);
 		return sessionFactory.getObject();
 	}
-	
+	 
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}

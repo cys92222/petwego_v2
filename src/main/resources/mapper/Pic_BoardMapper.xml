@@ -15,7 +15,7 @@
       WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
       order by photo_file_no desc
    </select>
-
+ 
    <!-- 모든 글 -->
    <select id="listPic_Board"
       resultType="com.example.demo.vo.Pic_BoardVo"

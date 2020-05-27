@@ -31,7 +31,7 @@ public class Board_CommentController {
 	public void setComm_service(Board_CommentService comm_service) {
 		this.comm_service = comm_service;
 	}
-	
+	 
 	@Autowired
 	AlarmService alarmService;
 	

@@ -12,3 +12,4 @@ public interface LikeItService {
 
 	int checkLike(LikeItVo vo);
 }
+ 

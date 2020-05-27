@@ -13,7 +13,7 @@
 	<select id="selectComment" resultType="com.example.demo.vo.Board_CommentVo">
 		select * from board_comment where comm_num = #{comm_num}
 	</select>
-	
+	 
 	<!-- 댓글등록 -->
 	<insert id="insertComment">
 		insert into board_comment(comm_num, comm_date, comm_cont, board_no, user_id)

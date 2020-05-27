@@ -15,7 +15,7 @@ import com.example.demo.vo.Board_CommentVo;
 public class Board_CommentServiceImlp implements Board_CommentService {
 	@Autowired
 	private Board_CommentDao bcDao;
-
+ 
 	@Autowired
 	private BoardDao boardDao;
 

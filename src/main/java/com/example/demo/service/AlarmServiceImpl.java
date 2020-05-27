@@ -12,7 +12,7 @@ import com.example.demo.vo.ApplicationVo;
 
 @Service
 public class AlarmServiceImpl implements AlarmService {
-
+ 
 	@Autowired
 	AlarmDao AlarmDao;
 	 

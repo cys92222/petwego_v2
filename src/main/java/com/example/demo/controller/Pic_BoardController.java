@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
+ 
 import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.FollowService;
 import com.example.demo.service.LikeItService;

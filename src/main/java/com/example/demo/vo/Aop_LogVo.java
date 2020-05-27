@@ -16,3 +16,4 @@ public class Aop_LogVo {
 	private String user_id;
 	
 }
+ 

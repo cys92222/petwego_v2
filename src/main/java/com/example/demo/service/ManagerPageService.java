@@ -19,7 +19,7 @@ public interface ManagerPageService {
 	List<NoticeVo> listNotice();
 
 	int insertNotice(NoticeVo nv);
-
+ 
 	NoticeVo detailNotice(NoticeVo nv);
 
 	int deleteNotice(NoticeVo nv);

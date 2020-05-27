@@ -19,7 +19,7 @@ public class MemberInfoVo2 implements UserDetails {	//User를 확장
 	public MemberInfoVo2(MemberInfoVo member1) {
 		this.member1 = member1;
 	}
-
+ 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();

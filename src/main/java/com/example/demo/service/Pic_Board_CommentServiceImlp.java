@@ -30,7 +30,7 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	//댓글등록
 	@Override
 	public int pinsertComment(Pic_Board_CommentVo pbc) {
-		
+		 
 		return pbcDao.pinsertComment(pbc);
 	}
 	//댓글삭제

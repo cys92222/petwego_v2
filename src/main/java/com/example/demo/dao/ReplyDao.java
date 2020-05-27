@@ -14,7 +14,7 @@ public interface ReplyDao {
 		
 		//함께가요 댓글 수정
 		public void updateReply(ReplyVo rv) throws Exception;
-		
+		 
 		//함께가요 댓글 삭제
 		public void deleteReply(ReplyVo rv) throws Exception;
 		

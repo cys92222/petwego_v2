@@ -11,7 +11,7 @@ public interface Board_fileDao {
 	
 	//같은 게시물번호에 등록된 파일목록
 	public List<Board_fileVo> selectFile(int board_no);
-	
+	 
 	//삭제
 	public int delete(String uuid);
 	public int delbord_no(int board_no);

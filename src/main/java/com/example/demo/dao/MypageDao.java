@@ -26,7 +26,7 @@ public interface MypageDao {
 	
 	//내가 쓴 자유게시판 글
 	public List<BoardVo> search_my_board(MemberInfoVo m);
-	
+	 
 	//내가 쓴 sns
 	public List<Pic_BoardVo> search_my_sns(MemberInfoVo m);
 	

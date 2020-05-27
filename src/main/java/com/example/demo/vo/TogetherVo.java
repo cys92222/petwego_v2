@@ -28,6 +28,6 @@ public class TogetherVo{
 	
 	private MultipartFile thumbnailFile;
 	
-
+ 
 	
 }

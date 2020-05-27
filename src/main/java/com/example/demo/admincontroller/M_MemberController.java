@@ -24,7 +24,7 @@ public class M_MemberController {
 		model.addAttribute("listPay",mp_service.listPay());
 	}
 	
-	
+	 
 	// 회원 목록
 	@NoLogging
 	@GetMapping("/member/member_list")

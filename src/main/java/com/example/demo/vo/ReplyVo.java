@@ -19,3 +19,4 @@ public class ReplyVo {
 	private String secret_reply;
 	
 }
+ 

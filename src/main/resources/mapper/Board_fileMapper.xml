@@ -14,7 +14,7 @@
 		insert into board_file(uuid, file_path, file_name, board_no)
 			values(#{uuid}, #{file_path}, #{file_name}, #{board_no})
 	</insert>
-	
+	 
 	<!-- 같은 게시물번호에 등록된 파일들찾기 -->
 	<select id="selectFile" resultType="com.example.demo.vo.Board_fileVo">
 		select * from board_file where board_no = #{board_no}

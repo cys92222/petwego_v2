@@ -12,7 +12,7 @@
  		f_minprice,
  		f_phone,
  		f_feature
- 		from
+ 		from 
  		(
  		select facility_no,
  		f_pic,

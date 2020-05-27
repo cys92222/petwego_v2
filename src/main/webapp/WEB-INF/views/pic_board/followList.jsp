@@ -12,7 +12,7 @@
 <h2>${followList[0].user_id }님을 팔로우한 유저</h2>
 <hr>
 
-
+ 
 <c:forEach items="${followList }" var="followList">
 ${followList.user_id2 } 님 
 

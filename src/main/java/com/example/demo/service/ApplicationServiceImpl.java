@@ -13,7 +13,7 @@ import com.example.demo.vo.TogetherVo;
 
 @Service
 public class ApplicationServiceImpl implements ApplicationService {
-	
+	 
 	@Autowired
 	private ApplicationDao Adao;
 	

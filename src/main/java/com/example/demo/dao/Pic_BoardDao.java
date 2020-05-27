@@ -21,7 +21,7 @@ public interface Pic_BoardDao {
    
    // 페이징
    int listCount() throws Exception;
-
+ 
    // 상세보기
    Pic_BoardVo detailPic_Board(Pic_BoardVo pb);
 

@@ -18,3 +18,4 @@ public class Pic_Board_FileVo {
 	
 	private MultipartFile uploadFile;
 }
+ 

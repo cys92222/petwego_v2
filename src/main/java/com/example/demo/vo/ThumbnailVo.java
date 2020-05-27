@@ -15,3 +15,4 @@ public class ThumbnailVo {
 	
 	private MultipartFile up_thumbnailFile;
 }
+ 

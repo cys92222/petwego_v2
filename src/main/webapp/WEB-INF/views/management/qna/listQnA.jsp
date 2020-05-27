@@ -16,7 +16,7 @@
 		
 		$("#btnInsert").click(function(){
 			self.location = "/management/notice/insertNotice"
-		})
+		}) 
 	})
 </script>
 

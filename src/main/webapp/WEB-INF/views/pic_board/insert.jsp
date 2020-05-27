@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 	<h2>사진 등록</h2>
 	<hr>
 	<form action="/pic_board/insert" method="post" enctype="multipart/form-data">

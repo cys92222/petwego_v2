@@ -39,7 +39,7 @@ public class AopLog {
 	@Autowired
 	LoginMapperDao loginMapperDao;
 
-
+ 
 	
 	// 컨트롤러에 있는 모든 public 메소드 포함 && @NoLogging이 붙은 메소드는 제외해줘 
 	@Pointcut("execution(public *  com.example.demo.controller.*.*(..)) "

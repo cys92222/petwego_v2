@@ -14,7 +14,7 @@ public interface BoardService {
 
 	// 게시물 목록
 	public List<BoardVo> listBoard(SearchCriteria scri);
-
+ 
 	// 게시물 총 개수
 	public int boardCount(SearchCriteria scri);
 

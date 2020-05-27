@@ -14,7 +14,7 @@ $(function(){
 	
 	$.each(list,function(idx,e){
 			alert(e);
-		});
+		}); 
 // 	list.IndexOf()
 });
 </script>

@@ -18,4 +18,4 @@ public class FollowVo {
 //F_NO                                      NOT NULL NUMBER
 //F_TYPE                                             VARCHAR2(225)
 //USER_ID                                            VARCHAR2(225)
-//USER_ID2                                           VARCHAR2(225)
+//USER_ID2                                           VARCHAR2(225) 

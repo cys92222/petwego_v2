@@ -26,7 +26,7 @@ public interface Pic_BoardService {
 
    // 사진파일
    public int insertfile(Pic_Board_FileVo pbf);
-
+ 
    // 상세보기
    public Pic_BoardVo detailPic_Board(Pic_BoardVo pb);
 

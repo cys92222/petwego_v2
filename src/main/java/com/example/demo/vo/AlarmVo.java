@@ -18,7 +18,7 @@ public class AlarmVo {
 }
 
 
-
+ 
 //ALARM_NO                                  NOT NULL NUMBER
 //USER_ID                                            VARCHAR2(225)
 //CHK                                                NUMBER

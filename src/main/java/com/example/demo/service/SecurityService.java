@@ -21,7 +21,7 @@ public interface SecurityService extends UserDetailsService {
 	int nickCheck(String nick_name) throws Exception;
 	//비밀번호 확인
 	int passCheck(MemberInfoVo memberInfo) throws Exception;
-	
+	 
 	
 	
 }

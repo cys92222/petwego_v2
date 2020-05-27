@@ -15,7 +15,7 @@ public interface FacilityService {
 	
 	//숙소 조회
 	public FacilityVo getFacility(int facility_no) throws Exception;
-	
+	 
 	//객실 리스트
 	public List<RoomVo> listRoom(int facility_no) throws Exception;
 	//리뷰 작성

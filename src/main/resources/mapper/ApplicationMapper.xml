@@ -13,7 +13,7 @@
 		delete together_application where t_num = #{t_num} and user_id = #{user_id}
 	</delete>
 	
-	
+	 
 	<!-- 신청하기 누른 수 조회!  -->
 	<select id="checkApplication" resultType="java.lang.Integer">
 		select count(*) from together_application where t_num = #{t_num} and user_id = #{user_id}

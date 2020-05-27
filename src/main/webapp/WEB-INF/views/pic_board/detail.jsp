@@ -12,7 +12,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
    $(function(){
-
+ 
       // 민아) 5/17, 좋아요기능 추가, user_id 는 임의로 멤버인포에 추가한 user1으로 해둠 
       var photo_no = $("#photo_no").val();
       var user_id = "${login_id}";

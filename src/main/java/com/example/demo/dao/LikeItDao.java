@@ -12,3 +12,4 @@ public interface LikeItDao {
 
 	int checkLike(LikeItVo vo);
 }
+ 

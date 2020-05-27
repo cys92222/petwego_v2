@@ -19,5 +19,5 @@ public class FacilityVo {
 	private String f_checkin;
 	private String f_checkout;
 }
-
+ 
 

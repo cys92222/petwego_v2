@@ -18,7 +18,7 @@
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		order by ref desc, ref_level, ref_step
  	</select>
-
+ 
 		<!-- qna등록 시퀀스 이용 -->
 <!-- 	<insert id="insertQnA"> -->
 <!-- 		insert into qna values (seq_inq_no.nextval, #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, #{inq_file}, #{ref}, 0, 0) -->

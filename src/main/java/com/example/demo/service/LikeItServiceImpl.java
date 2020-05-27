@@ -20,7 +20,7 @@ public class LikeItServiceImpl implements LikeItService {
 
 	@Autowired
 	private Pic_BoardDao picDao;
-
+ 
 	@Override
 	public int insertLike(LikeItVo vo) {
 		int re = 0;
