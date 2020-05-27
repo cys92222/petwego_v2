@@ -85,10 +85,10 @@
 		         				</span>
 		        				<span class="text">공지삭제|관리자</span>
 	       					</a>
-	       					
-	       					<a href="#" class="btn btn-danger btn-icon-split" id="btnUpdate">
+	       					<!-- 공지수정 버튼 -->
+	       					<a href="#" class="btn btn-info btn-icon-split" id="btnUpdate">
 		       					<span class="icon text-white-50">
-		        				<i class="fas fa-trash"></i>
+		        				<i class="fas fa-pencil-alt"></i>
 		         				</span>
 		        				<span class="text">공지수정|관리자</span>
 	       					</a>

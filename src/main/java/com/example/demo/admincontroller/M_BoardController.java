@@ -47,8 +47,7 @@ public class M_BoardController {
 	@NoLogging
 	@GetMapping("/notice/insertNotice")
 	public String insertNotice_form(NoticeVo nv, Model model) {
-		System.out.println("공지사항 폼 컨틀로러 동작");
-		// mp_service.insertNotice(nv);
+//		System.out.println("공지사항 폼 컨틀로러 동작");
 		return "management/notice/insertNotice";
 	}
 
@@ -57,10 +56,9 @@ public class M_BoardController {
 	@RequestMapping(value = "/notice/insertNotice", method = RequestMethod.POST)
 	@ResponseBody
 	public String insertNotice(NoticeVo nv, Model model) {
-		System.out.println("공지사항 등록 컨트롤러 동작");
-		System.out.println(nv);
+//		System.out.println("공지사항 등록 컨트롤러 동작");
+//		System.out.println(nv);
 		mp_service.insertNotice(nv);
-
 		return "ok";
 	}
 

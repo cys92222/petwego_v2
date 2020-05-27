@@ -100,9 +100,8 @@
         	<span class="text">회원 강퇴</span>
         </a>
 	</div>
-	</div>
-	</div>
-	
+</div>
+</div>
 </body>
 <%@include file="../footer.jsp"%>
 </html>

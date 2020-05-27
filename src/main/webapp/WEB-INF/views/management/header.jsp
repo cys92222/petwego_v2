@@ -21,26 +21,6 @@
   <!-- Custom styles for this template -->
   <link href="/resources/manager/css/sb-admin-2.min.css" rel="stylesheet">
 
-  <!-- Custom styles for this page -->
-  <link href="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-	
- <!-- Bootstrap core JavaScript-->
-  <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="/resources/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="/resources/manager/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="/resources/manager/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="/resources/manager/js/demo/datatables-demo.js"></script>
-  
 
 </head>
 
@@ -145,6 +125,23 @@
     </ul>
     
     <!-- End of Sidebar -->
+  
+  <!-- Bootstrap core JavaScript-->
+  <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/resources/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="/resources/manager/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/resources/manager/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/resources/manager/js/demo/datatables-demo.js"></script>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
