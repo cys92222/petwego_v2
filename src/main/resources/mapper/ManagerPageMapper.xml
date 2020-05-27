@@ -4,7 +4,35 @@
   <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 	
-	<!-- 회원 결제정보 //  -->
+	<!-- 자유게시판, 댓글 목록/삭제 -->
+	<!-- 댓글목록 -->
+	<select id="listComment" resultType="com.example.demo.vo.Board_CommentVo">
+		select * from board_comment where board_no = #{board_no} order by comm_num desc
+	</select>
+	
+	<!-- 댓글삭제 -->
+	<delete id="deleteComment">
+		delete board_comment where comm_num = #{comm_num}
+	</delete>
+	
+	<delete id="deleteCommBoard">
+		delete board_comment where board_no = #{board_no}
+	</delete>
+	
+	<!-- 자유게시판, 목록/상세/삭제 -->
+	<select id="listBoard" resultType="com.example.demo.vo.BoardVo">
+		select * from board order by board_no desc
+	</select>
+	
+	<select id="detailBoard" resultType="com.example.demo.vo.BoardVo">
+		select * from board where board_no = #{board_no}
+	</select>
+	
+	<delete id="deleteBoard">
+		delete board where board_no = #{board_no}
+	</delete>
+	
+	<!-- 회원 결제정보 //  나중에 예약정보 상세페이지도 연결할것 -->
 	<select id="listPay" resultType="com.example.demo.vo.PaymentVo">
 		select * from payment
 	</select>

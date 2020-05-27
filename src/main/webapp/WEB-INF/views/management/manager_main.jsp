@@ -76,7 +76,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-s font-weight-bold text-warning text-uppercase mb-1">오늘 개설된 모임</div>
+                      <div class="text-s font-weight-bold text-warning text-uppercase mb-1">개설된 모임(일주일)</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">${newT }개</div>
                     </div>
                     <div class="col-auto">

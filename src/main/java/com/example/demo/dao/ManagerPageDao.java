@@ -5,6 +5,8 @@ import java.util.List;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.Aop_LogVo;
+import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -13,6 +15,16 @@ import com.example.demo.vo.QnAVo;
 
 // 민아) 5/19, 관리자페이지
 public interface ManagerPageDao {
+	
+	// 자유게시판, 댓글 목록/삭제
+	List<Board_CommentVo> listComment();
+	int deleteComment(Board_CommentVo bc);
+	int deleteCommBoard(Board_CommentVo bc);
+	
+	// 자유게시판, 목록/상세/삭제
+	List<BoardVo> listBoard();
+	BoardVo detailBoard(BoardVo b);
+	int deleteBoard(BoardVo b);
 	
 	// 회원 / 결제정보
 	List<PaymentVo> listPay();

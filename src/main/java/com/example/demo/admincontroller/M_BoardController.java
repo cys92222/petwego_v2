@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.service.ManagerPageService;
 
 import com.example.demo.util.AopLog.NoLogging;
+import com.example.demo.vo.AlarmVo;
+import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -35,6 +40,49 @@ public class M_BoardController {
 
 	@Autowired
 	private ManagerPageService mp_service;
+
+	// 자유게시판 - 댓글목록
+	@NoLogging
+	@GetMapping(value = "/freeBoard/listComment", produces = "application/json; charset=utf-8")
+	public String listComment(Board_CommentVo bc) {
+		List<Board_CommentVo> listComment = mp_service.listComment();
+		Gson gson = new Gson();
+		return gson.toJson(listComment);
+	}
+
+	// 자유게시판 - 댓글만 삭제
+	@NoLogging
+	@GetMapping(value = "/freeBoard/commDeleteSubmit")
+	public String commDeleteSubmit(Board_CommentVo bc) {
+		mp_service.deleteComment(bc);// where comm_num = #{comm_num}
+		return "redirect:/freeBoard/detailBoard";
+	}
+
+	// 자유게시판 목록
+	@NoLogging
+	@GetMapping("/freeBoard/listBoard")
+	public void listBoard(Model model) {
+		model.addAttribute("listBoard", mp_service.listBoard());
+	}
+
+	// 자유게시판 상세
+	@NoLogging
+	@GetMapping("/freeBoard/detailBoard")
+	public void detaiBoard(BoardVo b, Model model) {
+		model.addAttribute("detailBoard", mp_service.detailBoard(b));
+	}
+
+	// 자유게시판 삭제
+	@NoLogging
+	@GetMapping("/freeBoard/deleteBoard")
+	public ModelAndView deleteBoard(BoardVo b, Board_CommentVo bc) {
+		ModelAndView mav = new ModelAndView("redirect:/management/freeBoard/listBoard");
+		
+		//댓글, 사진 지우고 게시글 지워줘
+		mp_service.deleteCommBoard(bc);
+		mp_service.deleteBoard(b);
+		return mav;
+	}
 
 	// 공지사항 목록
 	@GetMapping("/notice/listNotice")
@@ -88,7 +136,7 @@ public class M_BoardController {
 		model.addAttribute("notice_no", nv.getNotice_no());
 
 //		return nv.getNotice_no() + "";
-		return "redirect:/management/notice/detailNotice?notice_no="+nv.getNotice_no();
+		return "redirect:/management/notice/detailNotice?notice_no=" + nv.getNotice_no();
 	}
 
 	// 공지사항 삭제
@@ -130,22 +178,22 @@ public class M_BoardController {
 
 		return jsonObject;
 	}
-	
-	//QnA리스트
+
+	// QnA리스트
 	@NoLogging
 	@RequestMapping(value = "/qna/listQnA")
 	public void listQnA(Model model) {
 		model.addAttribute("listQnA", mp_service.listQnA());
 	}
-	
-	//QnA상세
+
+	// QnA상세
 	@NoLogging
 	@RequestMapping(value = "qna/detailQnA")
 	public String detailQnA(QnAVo q, Model model) {
 		QnAVo detail = mp_service.detailQnA(q);
 		model.addAttribute("detailQnA", detail);
-		
+
 		return "/management/qna/detailQnA";
 	}
-	
+
 }
