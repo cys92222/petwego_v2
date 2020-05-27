@@ -38,7 +38,7 @@ $(function(){
 });
 $(function(){
 	$("#admin").click(function(){
-		location.href="/admin/index";
+		location.href="/customerservice/index";
 	});
 });
 $(function(){
