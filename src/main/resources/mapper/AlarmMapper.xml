@@ -30,7 +30,7 @@
 	<select id="together_id" resultType="String">
 		select user_id from together where t_num = #{t_num}
 	</select>
-	
+	 
 <!-- 	함께가요 삭제 aaaaaaaaaaaaaaaaaaaaaaaa -->
 	<delete id="delete_application">
 		delete together_application where t_num = #{t_num}

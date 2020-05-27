@@ -15,7 +15,7 @@ public class AlarmServiceImpl implements AlarmService {
 
 	@Autowired
 	AlarmDao AlarmDao;
-	
+	 
 	//함께가요 신청 알림 등록
 	@Override
 	public int insert_together_alarm(AlarmVo a) {

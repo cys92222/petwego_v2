@@ -49,7 +49,7 @@ public interface AlarmDao {
 	
 	//자유게시판 댓글 등록 알람 조회
 	List<AlarmVo> search_insert_board_alarm(AlarmVo a);
-	
+	 
 	//자유게시판 댓글 삭제 알람 조회
 	List<AlarmVo> search_cancle_board_alarm(AlarmVo a);
 	

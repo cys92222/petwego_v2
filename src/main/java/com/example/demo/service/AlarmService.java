@@ -9,7 +9,7 @@ public interface AlarmService {
 
 	//함께가요 신청 알림 등록
 	int insert_together_alarm(AlarmVo a);
-		
+		 
 	//함께가요 취소 알림 등록
 	int cancle_insert_together_alarm(AlarmVo a);
 	
