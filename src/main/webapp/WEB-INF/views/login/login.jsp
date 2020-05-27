@@ -17,7 +17,15 @@ $(function(){
 </script>
 </head>
 <body>
-           <form action="/login/login" method="POST"><!-- /login-processing --> <!-- /MainPage -->
+<div class="container">
+	  <div class="row" style="padding-top:10%">
+		<div class="col-md-4"></div>
+		<div class="col-md-4" style="flex-align:center">
+			<div class="card">
+				<h5 class="card-header">로그인</h5>
+				<div class="card-body">
+				
+					<form action="/login/login" method="POST"><!-- /login-processing --> <!-- /MainPage -->
   						<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   				<!--  	<input type="text" name="_csrf" value="${_csrf}"/>-->	
   						<!--<sec:csrfInput/>-->
@@ -35,8 +43,17 @@ $(function(){
 							</label>
 						</div>
 						<button id="login-button" name="submit" type="submit" class="btn btn-block btn-primary text-light">로그인</button>
+						<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						    <font color="red">
+						        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
+						        <c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session"/>
+						    </font>
+						</c:if>
 					</form>
-     
-
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 </body>
 </html>
