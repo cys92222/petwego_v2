@@ -6,7 +6,7 @@
 	
 	<!-- 회원 결제정보 //  -->
 	<select id="listPay" resultType="com.example.demo.vo.PaymentVo">
-		select * from payment 
+		select * from payment
 	</select>
 	
 	<!-- 공지사항 / 목록,글쓰기,상세보기,삭제,수정  -->

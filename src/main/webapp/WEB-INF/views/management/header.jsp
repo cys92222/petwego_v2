@@ -21,6 +21,23 @@
   <!-- Custom styles for this template -->
   <link href="/resources/manager/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- Custom styles for this page -->
+  <link href="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	
+   <!-- Bootstrap core JavaScript-->
+  <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
+  <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="/resources/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="/resources/manager/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="/resources/manager/js/demo/datatables-demo.js"></script>
+  
 
 </head>
 
@@ -72,7 +89,7 @@
             <h6 class="collapse-header">게시판 관리</h6>
             <a class="collapse-item" href="/management/notice/listNotice">공지사항</a>
             <a class="collapse-item" href="/management/qna/listQnA">문의사항</a>
-            <a class="collapse-item" href="/board/list">자유게시판</a>
+            <a class="collapse-item" href="#">자유게시판</a>
             <a class="collapse-item" href="#">SNS게시판</a>
             <a class="collapse-item" href="#">함께가요</a>
           </div>
@@ -88,8 +105,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">회원관리</h6>
-            <a class="collapse-item" href="/management/member/member_list">회원 목록</a>
-            <a class="collapse-item" href="#">회원 : 결제정보</a>
+            <a class="collapse-item" href="/management/member/member_list">회원목록</a>
+            <a class="collapse-item" href="/management/member/listPay">결제목록</a>
             <a class="collapse-item" href="#">Animations</a>
             <a class="collapse-item" href="#">Other</a>
           </div>
@@ -125,24 +142,11 @@
     </ul>
     
     <!-- End of Sidebar -->
-  
-  <!-- Bootstrap core JavaScript-->
-  <script src="/resources/manager/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/manager/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="/resources/manager/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="/resources/manager/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="/resources/manager/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="/resources/manager/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="/resources/manager/js/demo/datatables-demo.js"></script>
-
+	
+	<!-- 이건 위에 있으면 사이드바 토글이 동작안하길래 여기에 뒀음  -->
+	<!-- Custom scripts for all pages-->
+	<script src="/resources/manager/js/sb-admin-2.min.js"></script>
+	
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
