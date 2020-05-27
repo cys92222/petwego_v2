@@ -14,9 +14,7 @@
 <script type="text/javascript">
 	$(function(){
 		
-		$("#btnInsert").click(function(){
-			self.location = "/management/notice/insertNotice"
-		}) 
+
 	})
 </script>
 
@@ -34,15 +32,6 @@
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">QnA</h6>
-				<!-- 글쓰기 버튼  -->
-				<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-				<a href="#" class="btn btn-secondary btn-icon-split" id="btnInsert">
-		       		<span class="icon text-white-50">
-		        		<i class="fas fa-arrow-right"></i>
-		        	</span>
-		        	<span class="text">QnA|관리자</span>
-	       		</a>
-				</sec:authorize>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">

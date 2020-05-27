@@ -148,4 +148,17 @@ public class M_BoardController {
 		return "/management/qna/detailQnA";
 	}
 	
+	//답변달기
+	@NoLogging
+	@RequestMapping(value = "qna/anwerQnA")
+	public String anwerQnA(QnAVo q,int a_ref, int a_ref_step, int a_ref_level) {
+		q.setRef(a_ref);
+		q.setRef_step(a_ref_step);
+		q.setRef_level(a_ref_level);
+		System.out.println("답변 정보 " + q);
+		
+		mp_service.anwerQnA(q);
+		System.out.println("답변드으록");
+		return "redirect:/management/qna/listQnA";
+	}
 }

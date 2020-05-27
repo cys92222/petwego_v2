@@ -56,4 +56,7 @@ public interface ManagerPageService {
 	
 	//QnA 상세
 	QnAVo detailQnA(QnAVo q);
+	
+	//QnA 답변등록
+	int anwerQnA(QnAVo q);
 }

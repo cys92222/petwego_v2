@@ -125,4 +125,13 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		return detail;
 	}
 
+	//QnA 답변등록
+	@Override
+	public int anwerQnA(QnAVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mDao.anwerQnA(q);
+		return re;
+	}
+
 }
