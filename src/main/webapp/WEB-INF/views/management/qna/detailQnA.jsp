@@ -108,17 +108,19 @@
 		카테고리<br>
 		
 		<select name="cs_no">
-			<c:if test="${detail.cs_no == 1 }">
+		<c:choose>
+			<c:when test="${detailQnA.cs_no == 1 }">
 				<option value="1" selected="selected">홈페이지 이용 관련</option>
-			</c:if>
+			</c:when>
 			
-			<c:if test="${detail.cs_no == 2 }">
+			<c:when test="${detailQnA.cs_no == 2 }">
 				<option value="2" selected="selected">계정 관련</option>
-			</c:if>
+			</c:when>
 			
-			<c:if test="${detail.cs_no == 3 }">
+			<c:when test="${detailQnA.cs_no == 3 }">
 				<option value="3" selected="selected">결제 관련 관련</option>
-			</c:if>	
+			</c:when>
+		</c:choose>
 		</select><br>
 		
 		제목<br>

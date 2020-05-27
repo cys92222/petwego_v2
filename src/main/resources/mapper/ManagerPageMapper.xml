@@ -106,6 +106,6 @@
 	
 	<!-- QnA 답변등록 -->
 	<insert id="anwerQnA">
-		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, '관리자', '', #{ref}, #{ref_step}, #{ref_level})
+		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
 	</insert>
 </mapper>

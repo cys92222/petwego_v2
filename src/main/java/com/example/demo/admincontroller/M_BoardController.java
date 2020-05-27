@@ -153,8 +153,9 @@ public class M_BoardController {
 	@RequestMapping(value = "qna/anwerQnA")
 	public String anwerQnA(QnAVo q,int a_ref, int a_ref_step, int a_ref_level) {
 		q.setRef(a_ref);
-		q.setRef_step(a_ref_step);
-		q.setRef_level(a_ref_level);
+		q.setRef_step(a_ref_step+1);
+		q.setRef_level(a_ref_level+1);
+		q.setUser_id("manager");
 		System.out.println("답변 정보 " + q);
 		
 		mp_service.anwerQnA(q);
