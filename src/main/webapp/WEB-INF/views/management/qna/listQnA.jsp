@@ -69,7 +69,8 @@
 										<c:forEach begin="0" end="${QnA.ref_level}">
 											<c:out value="&nbsp;&nbsp;&nbsp;&nbsp;" escapeXml="false"/> 
 										</c:forEach>	
-											<img src="../../adminImg/re2.png">
+<!-- 											<img src="../../adminImg/re2.png"> -->
+											<img src="../../adminImg/re4.png">
 											<c:out value="${QnA.inq_title }"/>
 										</c:when> 
 										
