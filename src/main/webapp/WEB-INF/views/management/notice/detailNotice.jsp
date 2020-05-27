@@ -26,6 +26,14 @@
 				alert("게시글을 삭제했습니다!");
 			}
 		});
+
+		//수정버튼
+		$("#btnUpdate").click(function(){
+			var check = confirm("공지글을 수정하시겠습니까?");
+			if(check == true){
+				self.location = "/management/notice/updateNotice?notice_no="+notice_no;
+				}
+			});
 	})
 </script>
 </head>
@@ -76,6 +84,13 @@
 		        				<i class="fas fa-trash"></i>
 		         				</span>
 		        				<span class="text">공지삭제|관리자</span>
+	       					</a>
+	       					
+	       					<a href="#" class="btn btn-danger btn-icon-split" id="btnUpdate">
+		       					<span class="icon text-white-50">
+		        				<i class="fas fa-trash"></i>
+		         				</span>
+		        				<span class="text">공지수정|관리자</span>
 	       					</a>
 						</sec:authorize>
 						

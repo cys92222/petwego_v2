@@ -82,13 +82,14 @@ public class M_BoardController {
 	@PostMapping(value = "/notice/updateNotice")
 	@ResponseBody
 	public String updateNoticeSubmit(NoticeVo nv, Model model) {
-
+		System.out.println("NoticeVo nv " + nv);
 		mp_service.updateNotice(nv);
 
 		// 수정할 글의 번호가 넘어가야함
 		model.addAttribute("notice_no", nv.getNotice_no());
 
-		return nv.getNotice_no() + "";
+//		return nv.getNotice_no() + "";
+		return "redirect:/management/notice/detailNotice?notice_no="+nv.getNotice_no();
 	}
 
 	// 공지사항 삭제
