@@ -5,6 +5,7 @@ import java.util.List;
 import com.example.demo.vo.Aop_LogVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
+import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -14,13 +15,14 @@ import com.example.demo.vo.QnAVo;
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
 
-	
 	// 자유게시판, 댓글 목록/삭제
 	List<Board_CommentVo> listComment(Board_CommentVo bc);
 
 	int deleteComment(Board_CommentVo bc);
 
 	int deleteCommBoard(Board_CommentVo bc);
+
+	int delboard_no(Board_fileVo bf);
 
 	// 자유게시판, 목록/상세/삭제
 	List<BoardVo> listBoard();
@@ -73,7 +75,7 @@ public interface ManagerPageService {
 
 	// QnA 상세
 	QnAVo detailQnA(QnAVo q);
-	
-	//QnA 답변등록
+
+	// QnA 답변등록
 	int anwerQnA(QnAVo q);
 }

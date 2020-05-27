@@ -11,7 +11,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 
@@ -25,29 +24,6 @@
 				alert("게시글을 삭제했습니다!");
 			}
 		});
-
-		// 댓글 목록 
-// 		$.ajax({
-// 			url :'/freeBoard/listComment',
-// 			type : 'GET',
-// 			data : {board_no:board_no},
-// 			success : function(comm){
-// 				comm = JSON.parse(comm);
-// 				$.each(comm, function(idx, c){
-// 					var tr = $("<tr></tr>");
-// 					var td1 = $("<td></td>").html(c.comm_cont);
-// 					var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
-// 					var td3 = $("<td></td>").html(c.user_id);	
-// 					var delBtn = $("<button></button>").text("댓글삭제").attr("comm_num",c.comm_num);
-// 					var td4 = $("<td></td>");
-// 					td4.append(delBtn);
-// 					tr.append(td1, td2, td3, td4);
-// 					$("#comm_list").append(tr);
-// 				})
-// 			}
-
-// 		})
-
 	
 	})
 </script>
@@ -101,28 +77,20 @@
 		         				</span>
 		        				<span class="text">게시글삭제|관리자</span>
 	       					</a>
-						</sec:authorize>	
+						</sec:authorize>
+						<br>	
 						<!-- 댓글 목록-->
-						댓글목록
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">댓글목록</h6>
+						</div>
 						<table id="comm_list" class="table table-bordered" border="1" width="80%" style="text-align: center;">
-							<th>내용</th><th>날짜</th><th>아이디</th>
+							<th>내용</th><th>작성일</th><th>아이디</th><th>비고</th>
 							<c:forEach items="${detailComment }" var="comment">
 								<tr>
-									<td>
-										${comment.comm_cont }
-									</td>
-								
-									<td>
-										${comment.comm_date }
-									</td>							
-								
-									<td>
-										${comment.user_id }
-									</td>
-									
-									<td>
-										<a href="/management/freeBoard/commDeleteSubmit?comm_num=${comment.comm_num }&board_no=${detailBoard.board_no }">삭제</a>
-									</td>
+									<td>${comment.comm_cont }</td>
+									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.comm_date }"/></td>							
+									<td>${comment.user_id }</td>
+									<td><a href="/management/freeBoard/commDeleteSubmit?comm_num=${comment.comm_num }&board_no=${detailBoard.board_no }">삭제</a></td>
 								</tr>
 							</c:forEach>
 						</table>							

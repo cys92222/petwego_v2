@@ -7,6 +7,7 @@ import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.Aop_LogVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
+import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -21,6 +22,7 @@ public interface ManagerPageDao {
 	List<Board_CommentVo> listComment(Board_CommentVo bc);
 	int deleteComment(Board_CommentVo bc);
 	int deleteCommBoard(Board_CommentVo bc);
+	int delboard_no(Board_fileVo bf);
 	
 	// 자유게시판, 목록/상세/삭제
 	List<BoardVo> listBoard();

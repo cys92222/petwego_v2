@@ -27,6 +27,7 @@ import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
+import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -41,23 +42,14 @@ public class M_BoardController {
 	@Autowired
 	private ManagerPageService mp_service;
 
-	
-	// 자유게시판 - 댓글목록
-	@NoLogging
-	@GetMapping(value = "/freeBoard/listComment", produces = "application/json; charset=utf-8")
-	public String listComment(Board_CommentVo bc) {
-		List<Board_CommentVo> listComment = mp_service.listComment(bc);
-		Gson gson = new Gson();
-		return gson.toJson(listComment);
-	}
 
 	// 자유게시판 - 댓글만 삭제
 	@NoLogging
 	@GetMapping(value = "/freeBoard/commDeleteSubmit")
 	public String commDeleteSubmit(Board_CommentVo bc,int board_no) {
 		mp_service.deleteComment(bc);// where comm_num = #{comm_num}
-		System.out.println("삭제할 댓글 번호 " + bc.getComm_num());
-		System.out.println("상세화면으로 돌아갈 게시물 번호 " + board_no);
+//		System.out.println("삭제할 댓글 번호 " + bc.getComm_num());
+//		System.out.println("상세화면으로 돌아갈 게시물 번호 " + board_no);
 		return "redirect:/management/freeBoard/detailBoard?board_no="+board_no;
 	}
 
@@ -68,27 +60,30 @@ public class M_BoardController {
 		model.addAttribute("listBoard", mp_service.listBoard());
 	}
 
-	// 자유게시판 상세
+	// 자유게시판 상세 - 댓글목록도 같이 보이기 
 	@NoLogging
 	@GetMapping("/freeBoard/detailBoard")
 	public void detaiBoard(BoardVo b, Model model) {
 		model.addAttribute("detailBoard", mp_service.detailBoard(b));
+		
 		Board_CommentVo bc = new Board_CommentVo();
 		bc.setBoard_no(b.getBoard_no());
+		
 		List<Board_CommentVo> listComment = mp_service.listComment(bc);
 		model.addAttribute("detailComment", listComment);
-		System.out.println("댓글 " + listComment);
-//		Gson gson = new Gson();
+//		System.out.println("댓글 " + listComment);
+
 	}
 
 	// 자유게시판 삭제
 	@NoLogging
 	@GetMapping("/freeBoard/deleteBoard")
-	public ModelAndView deleteBoard(BoardVo b, Board_CommentVo bc) {
+	public ModelAndView deleteBoard(BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/management/freeBoard/listBoard");
 		
 		//댓글, 사진 지우고 게시글 지워줘
 		mp_service.deleteCommBoard(bc);
+		mp_service.delboard_no(bf);
 		mp_service.deleteBoard(b);
 		return mav;
 	}

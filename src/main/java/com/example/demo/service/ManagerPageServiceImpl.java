@@ -11,6 +11,7 @@ import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.Aop_LogVo;
 import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
+import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
@@ -39,6 +40,11 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	@Override
 	public int deleteCommBoard(Board_CommentVo bc) {
 		return mDao.deleteCommBoard(bc);
+	}
+	
+	@Override
+	public int delboard_no(Board_fileVo bf) {
+		return mDao.delboard_no(bf);
 	}
 	
 	
@@ -170,6 +176,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.anwerQnA(q);
 		return re;
 	}
+
+
 
 	
 
