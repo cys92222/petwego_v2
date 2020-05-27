@@ -59,27 +59,27 @@
       </div>
       <div class="form-group has-feedback">
          <label class="control-label" for="email">이메일</label>
-         <input class="form-control" type="email" name="email" id="email" required="required"/>
+         <input class="form-control" type="email" name="email" id="email" required="required" placeholder="user@petwego.com"/>
          <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
          <span class="form-control-feedback"></span>
       </div>
       
       <div class="form-group has-feedback">
          <label class="control-label" for="tel">전화번호</label>
-         <input class="form-control" type="text" name="tel" id="tel" required="required"/>
+         <input class="form-control" type="text" name="tel" id="tel" required="required" placeholder="01011112222"/>
          <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
          <span class="form-control-feedback"></span>
       </div>
         
       <div class="form-group has-feedback">
          <label class="control-label" for="birth">생년월일</label>
-         <input class="form-control" type="text" name="birth" id="birth" required="required"/>
+         <input class="form-control" type="text" name="birth" id="birth" required="required" placeholder="2020-06-12"/>
          <span class="form-control-feedback"></span>
       </div>
       
       <div class="form-group has-feedback">
          <label class="control-label" for="address">주소</label>
-         <input class="form-control" type="text" name="address" id="address" required="required"/>
+         <input class="form-control" type="text" name="address" id="address" required="required" placeholder="서울특별시 마포구 신수동 63-14"/>
          <span class="form-control-feedback"></span>
       </div>
       
