@@ -21,9 +21,10 @@ public class M_PicboardController {
 	@NoLogging
 	@RequestMapping("/management/picboad/listPicboad")
 	public String picBoardList(Model model){
-		List<String> list = service.picBoardList();
-		System.out.println(list);
-		model.addAttribute("list", list);
+		//게시물 목록
+		model.addAttribute("boardList", service.picboaard_list());
+		//사진 목록
+		model.addAttribute("fileList", service.picboardfile_list());
 		return "management/picboard/listPicboard";
 	}
 	
@@ -31,9 +32,8 @@ public class M_PicboardController {
 	@NoLogging
 	@RequestMapping("/management/picboad/detailPicboad")
 	public String picBoardDetail(int photo_no,Model model){
-		List<String> detatil = service.picBoardDetail(photo_no);
-		model.addAttribute("detail", detatil);
 		
-		return "../picboard/detailPicboard";
+		
+		return "management/picboard/listPicboard";
 	}
 }

@@ -2,10 +2,13 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_FileVo;
+
 public interface M_PicboardService {
-	//리스트에서 사용할 맵퍼 pic_board, pic_boardfile
-	List<String> picBoardList();
-		
-	//상세보기에서 사용할 맵퍼 ic_board, pic_boardfile, pic_board_comment 조인
-	List<String> picBoardDetail(int photo_no);
+//	픽보드 리스트 
+	List<Pic_BoardVo> picboaard_list();
+
+//	픽보드파일 리스트
+	List<Pic_Board_FileVo> picboardfile_list();
 }

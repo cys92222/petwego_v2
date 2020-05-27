@@ -6,27 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.M_PicboardDao;
+import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_FileVo;
 
 @Service
 public class M_PicboardServiceImpl implements M_PicboardService {
 	
 	@Autowired
 	M_PicboardDao dao;
-	
-	//리스트에서 사용할 맵퍼 pic_board, pic_boardfile
+//	픽보드 리스트 
 	@Override
-	public List<String> picBoardList() {
+	public List<Pic_BoardVo> picboaard_list() {
 		// TODO Auto-generated method stub
-		List<String> list = dao.picBoardList();
+		List<Pic_BoardVo> list = dao.picboaard_list();
 		return list;
 	}
 	
-	//상세보기에서 사용할 맵퍼 ic_board, pic_boardfile, pic_board_comment 조인
+//	픽보드파일 리스트
 	@Override
-	public List<String> picBoardDetail(int photo_no) {
+	public List<Pic_Board_FileVo> picboardfile_list() {
 		// TODO Auto-generated method stub
-		List<String> detail = dao.picBoardDetail(photo_no);
-		return detail;
+		List<Pic_Board_FileVo> list = dao.picboardfile_list();
+		return list;
 	}
+	
 
 }
