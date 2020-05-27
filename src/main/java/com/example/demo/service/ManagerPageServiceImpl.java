@@ -21,6 +21,7 @@ import com.example.demo.vo.QnAVo;
 @Service
 public class ManagerPageServiceImpl implements ManagerPageService {
 
+	
 	@Autowired
 	private ManagerPageDao mDao;
 	

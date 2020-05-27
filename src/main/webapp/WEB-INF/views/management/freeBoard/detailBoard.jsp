@@ -90,6 +90,7 @@
 							</tr>
 						</tbody>
 					</table>
+					
 						<sec:authorize access="hasRole('ROLE_ADMIN')"> 
 							<!-- 자유게시판 글 삭제 버튼 -->
 							<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">

@@ -7,6 +7,7 @@
 <%@include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
+
 <!-- 민아) 5/26, 관리자페이지 꾸미기 및 정리 중  -->
 <head>
 <meta charset="UTF-8">

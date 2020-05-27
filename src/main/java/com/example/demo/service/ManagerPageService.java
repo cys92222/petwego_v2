@@ -14,6 +14,7 @@ import com.example.demo.vo.QnAVo;
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
 
+	
 	// 자유게시판, 댓글 목록/삭제
 	List<Board_CommentVo> listComment();
 

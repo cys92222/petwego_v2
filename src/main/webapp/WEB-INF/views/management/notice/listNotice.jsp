@@ -18,6 +18,7 @@
 			self.location = "/management/notice/insertNotice"
 		})
 	}) 
+	
 </script>
 
 </head>

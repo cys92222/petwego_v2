@@ -41,6 +41,7 @@ public class M_BoardController {
 	@Autowired
 	private ManagerPageService mp_service;
 
+	
 	// 자유게시판 - 댓글목록
 	@NoLogging
 	@GetMapping(value = "/freeBoard/listComment", produces = "application/json; charset=utf-8")
