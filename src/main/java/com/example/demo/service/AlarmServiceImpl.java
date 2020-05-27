@@ -192,6 +192,15 @@ public class AlarmServiceImpl implements AlarmService {
 		re = AlarmDao.chk_together_alarm(a);
 		return re;
 	}
+
+	//함께가요 작성자 조회
+	@Override
+	public String together_id(ApplicationVo av) {
+		// TODO Auto-generated method stub
+		String str = "";
+		str = AlarmDao.together_id(av);
+		return str;
+	}
 	
 
 

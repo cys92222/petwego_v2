@@ -90,4 +90,13 @@
 		delete member_info where user_id = #{user_id}
 	</delete>
 	
+<!-- 	QnA 리스트 -->
+	<select id="listQnA" resultType="com.example.demo.vo.QnAVo">
+		SELECT  *
+		 FROM ( 
+		 		select inq_no, cs_no, inq_title, inq_content, inq_date, user_id, inq_file, ref, ref_step, ref_level, ROW_NUMBER() OVER(ORDER BY inq_no DESC) AS RNUM
+		        FROM qna) q
+		order by ref desc, ref_level, ref_step
+	</select>
+	
 </mapper>

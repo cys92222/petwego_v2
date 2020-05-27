@@ -7,6 +7,7 @@ import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
+import com.example.demo.vo.QnAVo;
 
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
@@ -49,5 +50,10 @@ public interface ManagerPageService {
 
 	// 회원삭제(강퇴)
 	int deleteMember(MemberInfoVo m);
-
+	
+	//QnA 리스트
+	List<QnAVo> listQnA();
+	
+	//QnA 상세
+	QnAVo detailQnA();
 }

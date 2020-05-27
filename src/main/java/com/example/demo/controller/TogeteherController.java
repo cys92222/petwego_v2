@@ -64,8 +64,8 @@ public class TogeteherController {
 	@Autowired
 	AlarmService alarmService;
 	
-//	@Autowired
-//	LoginMapperDao loginMapperDao;
+	@Autowired
+	LoginMapperDao loginMapperDao;
 
 	
 //	@RequestMapping(value="/write")
@@ -233,6 +233,12 @@ public class TogeteherController {
   @RequestMapping(value="/detailTogether",method = RequestMethod.GET)
   public String detailTogether(HttpServletRequest request, TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
      LOGGER.info("detailTogether");
+     HttpSession session = request.getSession();
+     Authentication authentication = (Authentication) session.getAttribute("user");
+     MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+     MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+     togetherVo.setUser_id(m.getUser_id());
      
      //함께가요 작성자가 상세보기하면 알람 확인해서 알람 안가게
      //로그인되면 로그인 아이디로 셋팅
@@ -466,7 +472,7 @@ public class TogeteherController {
 			}
 			str = "신청하기 완료";
 		}
-	
+		System.out.println(str);
 		return str;
 	}
 	
@@ -474,18 +480,21 @@ public class TogeteherController {
 	@GetMapping("/deleteApplication")
 	@ResponseBody
 	public String deleteApplication(HttpServletRequest request,ApplicationVo av,String in_user_id) {
-				
+		System.out.println(in_user_id);
 		String re = "0";
-		
+		System.out.println("신청취소 컨트롤러");
 		//신청,취소 알람 삭제
 //		System.out.println(av.getApplication_no());
 //		System.out.println(av.getT_num());
+		//함께가요 신청자 id
+		String str = alarmService.together_id(av);
 		AlarmVo alarm = new AlarmVo();
-		alarm.setUser_id(in_user_id);
+		alarm.setUser_id(str);
+		alarm.setIn_user_id(in_user_id);
 		//함께가요 글 번호 
 		alarm.setT_num(av.getT_num());
 		alarmService.cancle_insert_together_alarm(alarm);
-		
+		av.setUser_id(in_user_id);
 		int r = Aservice.deleteApplication(av);
 		if (r > 0) {
 			re = "1";

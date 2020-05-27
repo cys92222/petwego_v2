@@ -25,6 +25,7 @@ import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
+import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
@@ -130,5 +131,23 @@ public class M_BoardController {
 		}
 
 		return jsonObject;
+	}
+	
+	//QnA리스트
+	@NoLogging
+	@RequestMapping(value = "/qna/listQnA")
+	public void listQnA(Model model) {
+		model.addAttribute("listQnA", mp_service.listQnA());
+	}
+	
+	//QnA상세
+	@NoLogging
+	@RequestMapping(value = "qna/detailQnA")
+	public String detailQnA(QnAVo q, Model model) {
+		QnAVo detail = mp_service.detailQnA();
+		model.addAttribute("detail", detail);
+		
+		return "/management/qna/detail.QnA";
+		
 	}
 }

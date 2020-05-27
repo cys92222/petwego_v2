@@ -67,4 +67,7 @@ public interface AlarmDao {
 	
 	//함께가요 작성자가 상세보기하면 알람 확인해서 알람 안가게
 	int chk_together_alarm(AlarmVo a);
+	
+	//함께가요 작성자 조회
+	String together_id(ApplicationVo av);
 }

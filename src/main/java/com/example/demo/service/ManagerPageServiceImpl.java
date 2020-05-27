@@ -13,6 +13,7 @@ import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
+import com.example.demo.vo.QnAVo;
 
 //민아) 5/19, 관리자페이지
 @Service
@@ -106,6 +107,22 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	@Override
 	public int deleteMember(MemberInfoVo m) {
 		return mDao.deleteMember(m);
+	}
+	
+	//QnA 리스트
+	@Override
+	public List<QnAVo> listQnA() {
+		// TODO Auto-generated method stub
+		List<QnAVo> list = mDao.listQnA();
+		return list;
+	}
+	
+	//QnA 상세
+	@Override
+	public QnAVo detailQnA() {
+		// TODO Auto-generated method stub
+		QnAVo detail = mDao.detailQnA();
+		return detail;
 	}
 
 }

@@ -131,7 +131,7 @@ $(document).ready(function(){
 	// 신청하기 delete 신청하기 한번 더 누르면 신청취소
 	$(document).on("click","#clickApplication",function(){
 		var d_user_id = '${login_id}';
-		$.ajax("/together/deleteApplication",{data: {user_id:d_user_id, t_num:t_num},success: function(re){
+		$.ajax("/together/deleteApplication",{data: {user_id:d_user_id, t_num:t_num,in_user_id:d_user_id},success: function(re){
 			if( re == 1 ){
 				$("#clickApplication").hide();
 				$("#Application").show();
