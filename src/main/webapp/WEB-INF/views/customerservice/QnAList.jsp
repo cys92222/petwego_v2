@@ -475,10 +475,10 @@ $(function(){
 	<section id="rebutton">
 		
 <!-- 		관리자만 답변 버튼 보임 -->
-		<sec:authorize access="hasRole('ROLE_ADMIN')"> 
-			<button id="re">답변달기</button><br>
-			<button id="admin_del_btn">삭제하기</button>
-		</sec:authorize>
+<%-- 		<sec:authorize access="hasRole('ROLE_ADMIN')">  --%>
+<!-- 			<button id="re">답변달기</button><br> -->
+<!-- 			<button id="admin_del_btn">삭제하기</button> -->
+<%-- 		</sec:authorize> --%>
 		
 		
 			
