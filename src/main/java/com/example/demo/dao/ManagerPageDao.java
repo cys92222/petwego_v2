@@ -73,4 +73,7 @@ public interface ManagerPageDao {
 	
 	//QnA 답변등록
 	int anwerQnA(QnAVo q);
+	
+	//QnA 삭제
+	int deleteQnA(QnAVo q);
 }

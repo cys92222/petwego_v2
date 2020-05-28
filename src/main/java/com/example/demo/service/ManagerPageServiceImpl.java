@@ -186,6 +186,15 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.anwerQnA(q);
 		return re;
 	}
+	
+	//QnA 삭제
+	@Override
+	public int deleteQnA(QnAVo q) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mDao.deleteQnA(q);
+		return re;
+	}
 
 
 

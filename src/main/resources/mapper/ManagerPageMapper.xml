@@ -144,4 +144,9 @@
 	<insert id="anwerQnA">
 		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
 	</insert>
+	
+<!-- 	QnA 삭제 -->
+	<delete id="deleteQnA">
+		delete qna where inq_no = #{inq_no}
+	</delete>
 </mapper>
