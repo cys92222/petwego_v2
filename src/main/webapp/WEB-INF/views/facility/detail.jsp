@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ include file="../head.jsp" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -13,8 +13,16 @@
                     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
           <meta http-equiv="X-UA-Compatible" content="ie=edge">
           <title>PETWEGO | 숙소</title>
+          <!--Font awesome CDN-->
+          <title>Document</title>
           <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-         
+          <!-- 합쳐지고 최소화된 최신 CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+
+<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
           <style type="text/css">
 @import url('https://fonts.googleapis.com/css?family=Courgette|Open+Sans:400,800&display=swap');
@@ -375,7 +383,7 @@ select{
 
 
 ::placeholder{
-    color:inherit;
+    color:#333;
 }
 
 /* Featured hotels section styles */
@@ -1133,54 +1141,52 @@ font-size: 14px;
 
 
                                         <!-- <label><i class="fas fa-calendar-alt"></i></label> -->
-                                        <input type="text" autocomplete="off" id="i-date1" class="form-control"
-                                                  placeholder="2020-05-16">
-                                        <input type="text" autocomplete="off" id="i-date1" class="form-control"
-                                                  placeholder="2020-05-23">
+                                        <input type="date" autocomplete="off" id="i-date1" class="form-control">
+                                        <input type="date" autocomplete="off" id="i-date1" class="form-control">
                                         <input type="hidden" id="RoomPassen" name="RoomPassen">객실
                                         <span id="srp_room">
                                                   <select id="room">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
-                                                            <option value="1">6</option>
-                                                            <option value="1">7</option>
-                                                            <option value="1">8</option>
-                                                            <option value="1">9+</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                            <option value="7">7</option>
+                                                            <option value="8">8</option>
+                                                            <option value="9">9+</option>
                                                   </select>
 
                                         </span>개, 성인
                                         <span id="srp_adult">
                                                   <select id="adult">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
-                                                            <option value="1">6</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
                                                   </select>
                                         </span>명, 아동
                                         <span id="srp_child">
                                                   <select id="child">
                                                             <option value="1">1</option>
-                                                            <option value="1">2</option>
-                                                            <option value="1">3</option>
-                                                            <option value="1">4</option>
-                                                            <option value="1">5</option>
-                                                            <option value="1">6</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
                                                   </select>
                                         </span>명, 애완동물
                                         <span id="srp_pet">
                                                   <span id="srp_child">
                                                             <select id="pet">
                                                                       <option value="1">1</option>
-                                                                      <option value="1">2</option>
-                                                                      <option value="1">3</option>
-                                                                      <option value="1">4</option>
-                                                                      <option value="1">5</option>
-                                                                      <option value="1">6</option>
+                                                                      <option value="2">2</option>
+                                                                      <option value="3">3</option>
+                                                                      <option value="4">4</option>
+                                                                      <option value="5">5</option>
+                                                                      <option value="6">6</option>
                                                             </select>
                                                   </span>마리
                                                   <a href="#" class="i-bt-search"><span class="ft">검색</span></a>
@@ -1226,8 +1232,9 @@ font-size: 14px;
                                                                       </th>
                                                             </tr>
                                                   </thead>
-                                                  <c:forEach var="r" items="${listRoom}">
+                                                  
                                                   <tbody id="tbRateList">
+                                                  			<c:forEach var="r" items="${listRoom}">
                                                             <tr>
                                                                       <td class="td-scope-figure">
                                                                                 <img src="${r.rm_pic}" width="168"
@@ -1258,15 +1265,13 @@ font-size: 14px;
                                                                                 </div>
 
                                                                                 <div>
-                                                                                          <a href="reserve"
-                                                                                                    class="i-bt-reserve"><span
-                                                                                                              class="ft">예약</span></a>
+                                                                                          <a class="i-bt-reserve"><span class="ft">예약</span></a><!-- value="${r.rm_no}" -->
                                                                                 </div>
                                                                       </td>
                                                             </tr>
-
+															 </c:forEach>
                                                   </tbody>
-                                                  </c:forEach>
+                                                 
                                         </table>
 										
                                         <!--소개-->
@@ -1323,6 +1328,7 @@ font-size: 14px;
                                                                                 </span>
                                                                       </div>
                                                             </div>
+                                                            
                                                             <div class="review-content">
                                                                       <div class="table-line">
                                                                                 <table>
@@ -1336,270 +1342,159 @@ font-size: 14px;
                                                                                                               style="width:46px">
                                                                                           </colgroup>
                                                                                           <tbody>
-                                                                                                    <tr
-                                                                                                              class="tr-thumb">
-                                                                                                              <th scope="row"
-                                                                                                                        class="i-list-rate">
-                                                                                                                        <span
-                                                                                                                                  class="rate-icon">
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star-half"></i>
-                                                                                                                        </span>
-
-                                                                                                                        <span
-                                                                                                                                  class="rate-num">
-                                                                                                                                  <strong>2</strong>/5
-                                                                                                                        </span>
+                                                                              
+                                                                                          			<c:forEach items="${listReview}" var="l">
+                                                                                                    <tr class="tr-thumb">
+                                                                                                              <th scope="row" class="i-list-rate">
+                                                                                                                    <span class="rate-icon">
+                                                                                                                       <i class="fas fa-star"></i>
+                                                                                                                       <i class="fas fa-star"></i>
+                                                                                                                       <i class="fas fa-star"></i>
+                                                                                                                       <i class="fas fa-star"></i>
+                                                                                                                       <i class="fas fa-star-half"></i>
+                                                                                                                    </span>
+																													<span class="rate-num">
+                                                                                                                       <strong>${l.r_grade}</strong>/5
+                                                                                                                    </span>
                                                                                                               </th>
-                                                                                                              <td
-                                                                                                                        class="i-list-title">
-                                                                                                                        <!-- <button>무늬만
-                                                                                                                                  5성급
-                                                                                                                                  호텔?</button> -->
-                                                                                                                        주변경관은
-                                                                                                                        좀
-                                                                                                                        아쉬웠지만
-                                                                                                                        가족과함께
-                                                                                                                        오긴
-                                                                                                                        좋습니다.
-                                                                                                                        관리해주시는
-                                                                                                                        사장님?
-                                                                                                                        이
-                                                                                                                        넘
-                                                                                                                        친절하십니다.
-                                                                                                                        도구도
-                                                                                                                        빌려주시고
-                                                                                                                        텐트초보라
-                                                                                                                        헤매는
-                                                                                                                        저를...
+                                                                                                              <td class="i-list-title"> ${l.review_content}</td>
+                                                                                                              <td class="i-list-user">
+                                                                                                                  <span class="ft-secondary"><fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd" value="${l.r_update_date}" /><c:out value="${dateTempParse}" /> <br><span>${l.user_id}</span></span>
                                                                                                               </td>
-                                                                                                              <td
-                                                                                                                        class="i-list-user">
-                                                                                                                        <span
-                                                                                                                                  class="ft-secondary">2020.05.08<br>corri2020님</span>
+                                                                                                              
+                                                                                                              <td>
+                                                                                                              	<input type="hidden" name="r_no" value="${l.r_no}">
+                                                                                                              	<button name="modify" value="${l.r_no}" class="btn btn-xs btn-warning">수정</button>
+                                                                                                              	<button name="delete" value="${l.r_no}" class="btn btn-xs btn-danger">삭제</button>
                                                                                                               </td>
                                                                                                     </tr>
-                                                                                                    <tr
-                                                                                                              class="tr-thumb">
-                                                                                                              <th scope="row"
-                                                                                                                        class="i-list-rate">
-                                                                                                                        <span
-                                                                                                                                  class="rate-icon">
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star-half"></i>
-                                                                                                                        </span>
-
-                                                                                                                        <span
-                                                                                                                                  class="rate-num">
-                                                                                                                                  <strong>2</strong>/5
-                                                                                                                        </span>
-                                                                                                              </th>
-                                                                                                              <td
-                                                                                                                        class="i-list-title">
-                                                                                                                        <!-- <button>무늬만
-                                                                                                                                  5성급
-                                                                                                                                  호텔?</button> -->
-                                                                                                                        주변경관은
-                                                                                                                        좀
-                                                                                                                        아쉬웠지만
-                                                                                                                        가족과함께
-                                                                                                                        오긴
-                                                                                                                        좋습니다.
-                                                                                                                        관리해주시는
-                                                                                                                        사장님?
-                                                                                                                        이
-                                                                                                                        넘
-                                                                                                                        친절하십니다.
-                                                                                                                        도구도
-                                                                                                                        빌려주시고
-                                                                                                                        텐트초보라
-                                                                                                                        헤매는
-                                                                                                                        저를...
-                                                                                                              </td>
-                                                                                                              <td
-                                                                                                                        class="i-list-user">
-                                                                                                                        <span
-                                                                                                                                  class="ft-secondary">2020.05.08<br>corri2020님</span>
-                                                                                                              </td>
-                                                                                                    </tr>
-                                                                                                    <tr
-                                                                                                              class="tr-thumb">
-                                                                                                              <th scope="row"
-                                                                                                                        class="i-list-rate">
-                                                                                                                        <span
-                                                                                                                                  class="rate-icon">
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star-half"></i>
-                                                                                                                        </span>
-
-                                                                                                                        <span
-                                                                                                                                  class="rate-num">
-                                                                                                                                  <strong>2</strong>/5
-                                                                                                                        </span>
-                                                                                                              </th>
-                                                                                                              <td
-                                                                                                                        class="i-list-title">
-                                                                                                                        <!-- <button>무늬만
-                                                                                                                                  5성급
-                                                                                                                                  호텔?</button> -->
-                                                                                                                        주변경관은
-                                                                                                                        좀
-                                                                                                                        아쉬웠지만
-                                                                                                                        가족과함께
-                                                                                                                        오긴
-                                                                                                                        좋습니다.
-                                                                                                                        관리해주시는
-                                                                                                                        사장님?
-                                                                                                                        이
-                                                                                                                        넘
-                                                                                                                        친절하십니다.
-                                                                                                                        도구도
-                                                                                                                        빌려주시고
-                                                                                                                        텐트초보라
-                                                                                                                        헤매는
-                                                                                                                        저를...
-                                                                                                              </td>
-                                                                                                              <td
-                                                                                                                        class="i-list-user">
-                                                                                                                        <span
-                                                                                                                                  class="ft-secondary">2020.05.08<br>corri2020님</span>
-                                                                                                              </td>
-                                                                                                    </tr>
-                                                                                                    <tr
-                                                                                                              class="tr-thumb">
-                                                                                                              <th scope="row"
-                                                                                                                        class="i-list-rate">
-                                                                                                                        <span
-                                                                                                                                  class="rate-icon">
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star-half"></i>
-                                                                                                                        </span>
-
-                                                                                                                        <span
-                                                                                                                                  class="rate-num">
-                                                                                                                                  <strong>2</strong>/5
-                                                                                                                        </span>
-                                                                                                              </th>
-                                                                                                              <td
-                                                                                                                        class="i-list-title">
-                                                                                                                        <!-- <button>무늬만
-                                                                                                                                  5성급
-                                                                                                                                  호텔?</button> -->
-                                                                                                                        주변경관은
-                                                                                                                        좀
-                                                                                                                        아쉬웠지만
-                                                                                                                        가족과함께
-                                                                                                                        오긴
-                                                                                                                        좋습니다.
-                                                                                                                        관리해주시는
-                                                                                                                        사장님?
-                                                                                                                        이
-                                                                                                                        넘
-                                                                                                                        친절하십니다.
-                                                                                                                        도구도
-                                                                                                                        빌려주시고
-                                                                                                                        텐트초보라
-                                                                                                                        헤매는
-                                                                                                                        저를...
-                                                                                                              </td>
-                                                                                                              <td
-                                                                                                                        class="i-list-user">
-                                                                                                                        <span
-                                                                                                                                  class="ft-secondary">2020.05.08<br>corri2020님</span>
-                                                                                                              </td>
-                                                                                                    </tr>
-                                                                                                    <tr
-                                                                                                              class="tr-thumb">
-                                                                                                              <th scope="row"
-                                                                                                                        class="i-list-rate">
-                                                                                                                        <span
-                                                                                                                                  class="rate-icon">
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star"></i>
-                                                                                                                                  <i
-                                                                                                                                            class="fas fa-star-half"></i>
-                                                                                                                        </span>
-
-                                                                                                                        <span
-                                                                                                                                  class="rate-num">
-                                                                                                                                  <strong>2</strong>/5
-                                                                                                                        </span>
-                                                                                                              </th>
-                                                                                                              <td
-                                                                                                                        class="i-list-title">
-                                                                                                                        <!-- <button>무늬만
-                                                                                                                                  5성급
-                                                                                                                                  호텔?</button> -->
-                                                                                                                        주변경관은
-                                                                                                                        좀
-                                                                                                                        아쉬웠지만
-                                                                                                                        가족과함께
-                                                                                                                        오긴
-                                                                                                                        좋습니다.
-                                                                                                                        관리해주시는
-                                                                                                                        사장님?
-                                                                                                                        이
-                                                                                                                        넘
-                                                                                                                        친절하십니다.
-                                                                                                                        도구도
-                                                                                                                        빌려주시고
-                                                                                                                        텐트초보라
-                                                                                                                        헤매는
-                                                                                                                        저를...
-                                                                                                              </td>
-                                                                                                              <td
-                                                                                                                        class="i-list-user">
-                                                                                                                        <span
-                                                                                                                                  class="ft-secondary">2020.05.08<br>corri2020님</span>
-                                                                                                              </td>
-                                                                                                    </tr>
+                                                                                                    </c:forEach>  
                                                                                           </tbody>
                                                                                 </table>
                                                                                 <div class="btnWrap">
-                                                                                          <a href="postReview"
+                                                                                          <a id="reviewBtn"
                                                                                                     class="btn-write">리뷰쓰기</a>
-                            <!--                                                               <a href="#"
-                                                                                                    class="btn-viewAll">리뷰
-                                                                                                    전체보기</a> -->
                                                                                 </div>
+                                                                                <!--  modal:review start  -->
+                                                                                	<div class="modal fade" id="testModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																					<div class="modal-dialog" role="document">
+																						<div class="modal-content">
+																							<div class="modal-header">
+																								<button type="button" class="close" data-dismiss="modal">&times;</button>
+																								<h4 id="modal-title" class="modal-title"></h4>
+																							</div>
+																							<div class="modal-body">
+																								<table class="table">
+																								
+																									<tr>
+																										<td>숙소에 대한 전반적인 평가</td>
+																										<td><input class="form-control" id="r_grade" type="text"></td>
+																									</tr>
+																									<tr>
+																										<td>작성자</td>
+																										<td><input class="form-control" id="user_id" type="text"></td>
+																									</tr>
+																									<tr>
+																										<td>리뷰내용</td>
+																										<td><textarea class="form-control" id="review_content" rows="10"></textarea></td>
+																									</tr>					
+																								</table>
+																							</div>
+																							<div class="modal-footer">
+																								<button id="modalSubmit" type="button" class="btn btn-success">저장</button>
+																								<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+	
+																				<!-- modal:review end -->
+																				
+ 																				<!--  modal:reserve start  -->
+                                                                                	<div class="modal fade" id="reserveModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																					<div class="modal-dialog" role="document">
+																						<div class="modal-content">
+																							<div class="modal-header">
+																								<button type="button" class="close" data-dismiss="modal">&times;</button>
+																								<!-- <h4 id="modal-title" class="modal-title"></h4> -->
+																							</div>
+																							<div class="modal-body">
+																								
+																								
+																								<table class="table">
+																									<tr><td><h4>예약정보</h4></td></tr>
+																									<tr>
+																										<td>체크인</td>
+																										<td><input class="form-control" id="check_in" type="text"></td>
+																										<td>체크아웃</td>
+																										<td><input class="form-control" id="check_out" type="text"></td>
+																										
+																									</tr>
+																									<tr>
+																										<td>숙박기간</td>
+																										<td><input class="form-control" id="nights" type="text">박</td>
+																									</tr>
+																					
+																									<tr>
+																										<td>호텔/지역</td>
+																										<td><input class="form-control" id="facility_name" type="text"></td>
+																										<td>객실명</td>
+																										<td><input class="form-control" id="rm_name" type="text">										
+																											<input type="hidden" id="rm_no"><!-- value="${r.rm_no}" -->
+																										</td>
+																									</tr>
+					
+																									<tr>
+																										<td>객실수</td>
+																										<td><input class="form-control" id="cnt" type="text" value="1"></td>
+																										<td>1박당가격</td>
+																										<td><input class="form-control" id="price" type="text"></td>
+																									</tr>
+																									<tr>
+																										<td>인원수</td>
+																										<td><input class="form-control" id="human_num" type="text"></td>
+																										<td>마리수</td>
+																										<td><input class="form-control" id="pet_num" type="text"></td>
+																									</tr>
+																									
+																									
+																									<tr><td><h4>예약자 정보</h4></td></tr>
+																									<tr>
+																										<td>아이디</td>
+																										<td><input class="form-control" id="user_id" type="text"></td>
+																										<td>예약자 이름</td>
+																										<td><input class="form-control" id="name" type="text"></td>
+																									</tr>
+																									
+																									<tr>
+																										<td>연락처</td>
+																										<td><input class="form-control" id="tel" type="text"></td>
+																										<td>이메일</td>
+																										<td><input class="form-control" id="email" type="text"></td>
+																		
+																									</tr>
+																									
+																									<tr><td><h4>예약내역 확인</h4></td></tr>
+																									<tr>
+																										<td>총예약금액</td>
+																										<td><input class="form-control" id="rsv_price" type="text"></td>
+																									</tr>					
+																								</table>
+																								
+																							</div>
+																							<div class="modal-footer">
+																								<c:set var="h" value="${getRoom}"></c:set>
+																								<button id="modalPay" type="button" class="btn btn-success" value="${h.rm_no}">결제하기</button><!-- value="${rm_no}" -->
+																								<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+	
+																				<!-- modal:reserve end -->																				
+	
+
+                                                                                
                                                                       </div>
                                                             </div>
                                                   </div>
@@ -1610,7 +1505,212 @@ font-size: 14px;
 
           </main>
 
-          <script src="main.js"></script>
+          	<script>
+            $.fn.getUrlParameter = function (sParam) {
+
+                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+
+                        sURLVariables = sPageURL.split('&'),
+
+                        sParameterName,
+
+                        i;
+
+
+
+                for (i = 0; i < sURLVariables.length; i++) {
+
+                    sParameterName = sURLVariables[i].split('=');
+
+
+
+                    if (sParameterName[0] === sParam) {
+
+                        return sParameterName[1] === undefined ? true : sParameterName[1];
+
+                    }
+
+                }
+
+            };
+
+		// 예약하기 버튼 클릭
+		$('.i-bt-reserve').click(function(e){
+			
+			e.preventDefault();
+			action='reserve';
+			type='POST';
+			
+			// Form content 담기
+			var r_tr = $(this).parent().parent().parent(); 
+			var r_td = r_tr.children(); // td
+			
+			var rm_name = r_td.eq(1).find('div').find('strong').text();
+			var price = r_td.eq(3).find('div').find('span').find('span').text();
+
+			// container
+			var container = $(this).parent().parent().parent().parent().parent().parent().parent().prev().find('div');
+			var hotelName =  $(this).parent().parent().parent().parent().parent().parent().parent().find('div').find('h5').find('span').text();
+			var hotelCity = $(this).parent().parent().parent().parent().parent().parent().parent().find('div').find('h5').find('strong').text();
+			// input 값 가져오기
+			var input = container.children();
+			//var facility_name = input.eq(0).val();
+			var check_in = input.eq(1).val();
+			var check_out= input.eq(2).val();
+			var nights = parseInt(check_out.substr(8,2)) - parseInt(check_in.substr(8,2));
+			
+		
+			var roomOption = input.eq(4).find('#room').find('option:selected').val();
+			var adultOption = input.eq(5).find('#adult').find('option:selected').val();
+			
+			var petOption = input.eq(7).find('#pet').find('option:selected').val();
+			
+		
+			//$('#modal-title').text('예약하기');
+			
+			// 예약 정보
+			$('#check_in').val(check_in); // 체크인 ok
+			$('#check_out').val(check_out);// 체크아웃 ok
+			//$('#facility_name').val(facility_name); // 호텔		
+			$('#facility_name').val(hotelName+'/'+hotelCity);
+				
+			$('#rm_name').val(rm_name); // 객실명 ok
+			$('#price').val(parseInt(price)); // 1박비용 ok
+			
+			//$('#user_id').val();
+			// nights
+			$('#nights').val(nights);
+
+
+			$('#human_num').val(adultOption);
+			$('#pet_num').val(petOption);
+			// 신청자 정보  -> 사용자 작성 or 회원 정보에서 가져오기
+			/* $('#name').val();
+			$('#tel').val();
+			$('#email').val(); */
+			if(parseInt($('#human_num').val()) == 2){
+				$('#rsv_price').val( parseInt(price.split('~')[0].replace(',',''))*nights );
+			}else{
+				$('#rsv_price').val( parseInt(price.split('~')[1].replace(',','').substring(0,price.split('~')[1].length-1))*nights );
+			}
+			
+			$('#reserveModal').modal('show');
+		});
+
+            
+        // 리뷰쓰기 버튼 클릭    
+		$('#reviewBtn').click(function(e){
+			e.preventDefault();
+
+			action='create';
+			type='POST';
+			$('#modal-title').text('리뷰 작성');
+			$('#testModal').modal("show");
+		});
+		// 수정하기 버튼 클릭
+		$("button[name='modify']").click(function(){
+			action='modify';
+			type = 'PUT';
+			r_no = this.value;
+
+			// content 담기
+			var row = $(this).parent().parent();
+			var tr = row.children();
+
+			var review_content = tr.eq(1).text();
+			var user_id = tr.eq(2).find('span').find('span').text();
+			var r_grade = tr.eq(0).find('span.rate-num').find('strong').text();
+
+			
+			//var r_grade = tr.eq(3).text();
+			//var user_id = tr.eq(2).text();
+			//var review_content = tr.eq(1).text();
+
+			$("#modal-title").text("리뷰 수정하기");
+			$("#r_grade").val(r_grade);
+			$("#user_id").val(user_id);
+			$("#review_content").val(review_content);
+			
+			$("#testModal").modal();
+		});
+
+		// 삭제하기 버튼 클릭
+		$("button[name='delete']").click(function(){
+			r_no = this.value;
+			alert(r_no);
+			facility_no = $.fn.getUrlParameter('facility_no');
+			$.ajax({
+				url : '/facility/detail?facility_no=' + facility_no+'&r_no='+r_no,
+				type : 'DELETE',
+			});
+			location.reload();
+		})	
+		
+		// Modal의 Submit 버튼 클릭
+		$("#modalSubmit").click(function(){
+			r_no = this.value;
+			if(action == 'create'){
+				//facility_no = 0;
+				facility_no = $.fn.getUrlParameter('facility_no');
+				url = '/facility/detail/review';
+				
+			}else if(action == 'modify'){
+				facility_no = $.fn.getUrlParameter('facility_no');
+				url = '/facility/detail?facility_no='+facility_no+'&r_no='+r_no;
+			}
+
+			var data = {
+				"facility_no" : facility_no,
+				"r_grade" : $("#r_grade").val(),
+				"user_id" : $("#user_id").val(),
+				"review_content" : $("#review_content").val()
+			};
+			
+			$.ajax({
+				url : url,
+				type : type,
+				data : data,
+				complete:function(data){
+					$('#testModal').modal('toggle');
+					location.reload();
+				}
+			
+			})
+			
+		});
+
+		// Modal의 '결제하기' 버튼 클릭 ***
+		$('#modalPay').click(function(){
+			rm_no = this.value;
+		
+			if(action == 'reserve'){
+				facility_no = $.fn.getUrlParameter('facility_no');
+				url = '/facility/detail?facility_no='+facility_no,
+				type = 'POST'
+			}
+			var data = {
+				'user_id' : $('#user_id').val(),
+				'rsv_price' : parseInt($('#rsv_price').val()),
+				'check_in' : new Date($('#check_in').val()).format('{yy}/{MM}/{dd}'),
+				'check_out' : new Date($('#check_out').val()).format('{yy}/{MM}/{dd}'),
+				'human_num' : parseInt($('#human_num').val()),
+				'pet_num' : parseInt($('#pet_num').val()),
+				'rm_no' : rm_no
+			};
+
+			//'{yyyy}-{mm}-{dd}'
+			console.log(data);
+			$.ajax({
+				url : url,
+				type : type,
+				data : data,
+				success:function(data){
+					$('#reserveModal').modal('toggle');
+					location.href='/payments/paySystem';
+				}
+			})
+		})
+	</script>
 </body>
 
 </html>

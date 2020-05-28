@@ -4,12 +4,14 @@ import java.util.List;
 
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.FacilityVo;
+import com.example.demo.vo.ReservationVo;
 import com.example.demo.vo.ReviewVo;
 import com.example.demo.vo.RoomVo;
 
 public interface FacilityService {
 	//숙소 리스트
 	public List<FacilityVo> listFacility(SearchCriteria scri) throws Exception;
+	
 	//검색조건과 일치하는 숙소 총 개수
 	public int listCount(SearchCriteria scri) throws Exception;
 	
@@ -19,7 +21,20 @@ public interface FacilityService {
 	//객실 리스트
 	public List<RoomVo> listRoom(int facility_no) throws Exception;
 	//리뷰 작성
-	public int postReview(ReviewVo reviewVo) throws Exception;
-	
+	public void postReview(ReviewVo reviewVo) throws Exception;
 
+
+	
+	//리뷰 리스트
+	public List<ReviewVo> listReview(int facility_no) throws Exception;
+
+	//리뷰 수정
+	public void updateReview(ReviewVo reviewVo) throws Exception;
+	//리뷰 삭제
+	public void deleteReview(int r_no) throws Exception;
+	//리뷰 GET
+	public ReviewVo getReview(int r_no) throws Exception;
+	//예약
+	//public void reservePlace(int rm_no) throws Exception;
+	public void reservePlace(ReservationVo reservation) throws Exception;
 }
