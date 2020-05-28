@@ -134,13 +134,13 @@ $(function(){
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form action="/payments/insertPay" id="payForm" method="post">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<input type="text" id="imp_uid" name="imp_uid"  />
-		<input type="text" id="merchant_uid" name="merchant_uid"  />
-		<input type="text" id="paid_amount" name="paid_amount"  />
-		<input type="text" id="pay_method" name="pay_method"  />
-		<input type="text" id="apply_num" name="apply_num"  />	
-		<input type="text" id="status" name="status"  />
-		<input type="text" id="rsv_no" name="rsv_no"  />
+		<input type="hidden" id="imp_uid" name="imp_uid"  />
+		<input type="hidden" id="merchant_uid" name="merchant_uid"  />
+		<input type="hidden" id="paid_amount" name="paid_amount"  />
+		<input type="hidden" id="pay_method" name="pay_method"  />
+		<input type="hidden" id="apply_num" name="apply_num"  />	
+		<input type="hidden" id="status" name="status"  />
+		<input type="hidden" id="rsv_no" name="rsv_no"  />
 <%-- 		<input type="text" id="user_id" name="user_id"  value="${login_id }"/> --%>
 		<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/>
 		<input type="text" value="${my.email }"/>
