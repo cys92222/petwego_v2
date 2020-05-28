@@ -20,8 +20,6 @@ $(function(){
 	
 	var info = [];	//결제 정보를 담기 위한 전역변수 
 
-// 	console.log("${user_id}" + '${user_id}');
-// 	console.log("user_id"+ user_id );
 	$("#okay").click(function(){
 
 		var imp_uid = $("#imp_uid").val();
@@ -30,9 +28,15 @@ $(function(){
 		var pay_method = $("#pay_method").val();
 		var apply_num = $("#apply_num").val();
 		var status = $("#status").val();
+
 		var rsv_no = $("#rsv_no").val();
 		var user_id = $("#user_id").val();
-// 		var user_id = "${login_id}";
+
+		// 실제 여행가는 사람이 아닌 사이트에 가입된 회원 정보가 넘어감 
+		var buyer_tel = $("#tel").val();
+		var buyer_addr = $("#address").val();
+		var buyer_email = $("#email").val();
+	
 
  /*
 	pay_method/String/결제수단			merchant_uid/String/고유주문번호
@@ -45,12 +49,13 @@ $(function(){
 			pg : 'html5_inicis.PetWeGo',
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
+
 			name : '주문명:뫄뫄 애견 펜션',
 			amount : 100,
-			buyer_email : 'acs@petwego.kr',
+			buyer_email : email,
 			buyer_name : user_id,
-			buyer_tel : '010-1234-5678',
-			buyer_addr : '서울시 서대문구'
+			buyer_tel : tel,
+			buyer_addr : address
 				    
 			}, function(rsp) {
 
@@ -106,7 +111,8 @@ $(function(){
                     	msg += '결제수단 : ' + rsp.pay_method+"\n";
                     	msg += '결제 금액 : ' + rsp.paid_amount+"\n";
                     	msg += '카드 승인번호 : ' + rsp.apply_num+"\n";
-
+						msg += '자세한 예약(결제) 정보는 마이페이지에서 확인가능합니다.';
+						
 				// 결제성공시 이동할 페이지
     	       // location.href='http://localhost:8088/MainPage';
 			    } else {
@@ -135,17 +141,18 @@ $(function(){
 	<form action="/payments/insertPay" id="payForm" method="post">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="hidden" id="imp_uid" name="imp_uid"  />
-		<input type="hidden" id="merchant_uid" name="merchant_uid"  />
-		<input type="hidden" id="paid_amount" name="paid_amount"  />
+		<input type="hidden" id="merchant_uid" name="merchant_uid"  />		
 		<input type="hidden" id="pay_method" name="pay_method"  />
 		<input type="hidden" id="apply_num" name="apply_num"  />	
 		<input type="hidden" id="status" name="status"  />
+		
+		<!-- 가져와야 하는 값 호텔이름, 방이름, 가격, 예약번호  -->
+		<input type="hidden" id="paid_amount" name="paid_amount"  />
 		<input type="hidden" id="rsv_no" name="rsv_no"  />
-<%-- 		<input type="text" id="user_id" name="user_id"  value="${login_id }"/> --%>
 		<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/>
-		<input type="text" value="${my.email }"/>
-		<input type="text" value="${my.address }"/>
-		<input type="text" value="${my.tel }"/>
+		<input type="text" id="email" value="${my.email }"/>
+		<input type="text" id="address" value="${my.address }"/>
+		<input type="text" id="tel" value="${my.tel }"/>
 	</form>
 
 </body>
