@@ -125,7 +125,7 @@
          </li>
          <li><span id="facility">숙소찾기</span>
             <ul class="dept01">
-               <li>소제목1</li>
+               <li><a href="/facility/list">숙소리스트</a></li>
             </ul>
          </li>
          <li><span id="board">커뮤니티</span>
