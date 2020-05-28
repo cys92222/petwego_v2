@@ -35,13 +35,14 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>번호</th>
 								<th>제목</th>
 								<th>날짜</th>
 								<th>카테고리</th>
+								<th></th> <!--정렬 강제로 끄게하려고 일부로 만들었음  -->
 							</tr>
 						</thead>
 						<tfoot>
@@ -50,7 +51,7 @@
 								<th>제목</th>
 								<th>날짜</th>
 								<th>카테고리</th>
-								<th></th> <!--정렬 강제로 끄게하려고 일부로 만들었음  -->
+<!-- 								<th></th> 정렬 강제로 끄게하려고 일부로 만들었음  -->
 							</tr>
 						</tfoot>
 						<tbody>
@@ -95,6 +96,7 @@
 										<c:out value="결제 관련 관련"/>
 									</c:if>
 								</td>
+<!-- 								<td></td> -->
 							</tr>
 							</c:forEach>
 						</tbody>

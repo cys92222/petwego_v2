@@ -63,7 +63,24 @@
 				 cs_no = #{cs_no} where notice_no = #{notice_no}
 	</update>
 	
-	<!-- 관리자메인 / 일주일/ 신규회원수 -->
+	<!-- 관리자메인 / 일주일/ 문의게시판 글 수 -->
+	<select id="newQnA" resultType="int">
+		select count(*) from qna
+			where inq_date <![CDATA[  <    ]]> sysdate and inq_date <![CDATA[  >    ]]> sysdate - 6
+	</select>
+	
+	<!-- 관리자메인 / 총 관리중인 숙소 숫자 -->
+	<select id="allfacility" resultType="int">
+		select count(*) from facility
+	</select>
+	
+	<!-- 관리자메인 / 일주일/ 예약건수 -->
+	<select id="newReservation" resultType="int">
+		select count(*) from reservation
+			where rsv_date <![CDATA[  <    ]]> sysdate and rsv_date <![CDATA[  >    ]]> sysdate - 6
+	</select>
+	
+	<!-- 관리자메인 / 일주일/ 신규회원 -->
 	<select id="newMember" resultType="int">
 		select count(*) from member_info
 			where info_create_date <![CDATA[  <    ]]> sysdate and info_create_date <![CDATA[  >    ]]> sysdate - 6
@@ -142,6 +159,12 @@
 	
 	<!-- QnA 답변등록 -->
 	<insert id="anwerQnA">
-		insert into qna values ((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
+		insert into qna values 
+			((select nvl(max(inq_no), 0) + 1 from qna), #{cs_no}, #{inq_title}, #{inq_content}, sysdate, #{user_id}, '', #{ref}, #{ref_step}, #{ref_level})
 	</insert>
+	
+<!-- 	QnA 삭제 -->
+	<delete id="deleteQnA">
+		delete qna where inq_no = #{inq_no}
+	</delete>
 </mapper>

@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -1234,12 +1234,19 @@ font-size: 14px;
                                                   </thead>
                                                   
                                                   <tbody id="tbRateList">
-                                                  			<c:forEach var="r" items="${listRoom}">
+                                                  			<c:forEach var="r" items="${listRoom}">    
+                                                  			<tr>
+	                                                  			<td>
+	                                                  				<input type="hidden" id="rm_no_asd" value="${r.rm_no }">
+	                                                  			</td>
+                                                  			</tr>                                                      
                                                             <tr>
+                                                            
                                                                       <td class="td-scope-figure">
                                                                                 <img src="${r.rm_pic}" width="168"
                                                                                           height="94">
                                                                       </td>
+                                                                     
                                                                       <td class="td-scope-room">
                                                                                 <div>
                                                                                           <strong
@@ -1257,6 +1264,7 @@ font-size: 14px;
                                                                                 <span class="i-icon">${r.rm_max}</span>
                                                                                
                                                                       </td>
+                                                                      
                                                                      
                                                                       <td class="td-scope-reserve">
                                                                                 <div>
@@ -1461,7 +1469,7 @@ font-size: 14px;
 																									<tr><td><h4>예약자 정보</h4></td></tr>
 																									<tr>
 																										<td>아이디</td>
-																										<td><input class="form-control" id="user_id" type="text"></td>
+																										<td><input class="form-control" id="user_id" type="text" value="${login_id }" readonly="readonly"></td>
 																										<td>예약자 이름</td>
 																										<td><input class="form-control" id="name" type="text"></td>
 																									</tr>
@@ -1484,6 +1492,7 @@ font-size: 14px;
 																							</div>
 																							<div class="modal-footer">
 																								<c:set var="h" value="${getRoom}"></c:set>
+																								
 																								<button id="modalPay" type="button" class="btn btn-success" value="${h.rm_no}">결제하기</button><!-- value="${rm_no}" -->
 																								<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 																							</div>
@@ -1588,7 +1597,7 @@ font-size: 14px;
 			/* $('#name').val();
 			$('#tel').val();
 			$('#email').val(); */
-			if(parseInt($('#human_num').val()) == 2){
+			if(parseInt($('#human_num').val()) >= 2){
 				$('#rsv_price').val( parseInt(price.split('~')[0].replace(',',''))*nights );
 			}else{
 				$('#rsv_price').val( parseInt(price.split('~')[1].replace(',','').substring(0,price.split('~')[1].length-1))*nights );
@@ -1681,34 +1690,51 @@ font-size: 14px;
 
 		// Modal의 '결제하기' 버튼 클릭 ***
 		$('#modalPay').click(function(){
-			rm_no = this.value;
+// 			rm_no = this.value;
+// 			rm_no = 172;
+			rm_no = $("#rm_no_asd").val();
+			alert(rm_no);
 		
 			if(action == 'reserve'){
 				facility_no = $.fn.getUrlParameter('facility_no');
-				url = '/facility/detail?facility_no='+facility_no,
+// 				url = '/facility/detail?facility_no='+facility_no,
+				url = '/facility/aa',
 				type = 'POST'
 			}
 			var data = {
-				'user_id' : $('#user_id').val(),
+				'user_id' : '${login_id}',
 				'rsv_price' : parseInt($('#rsv_price').val()),
-				'check_in' : new Date($('#check_in').val()).format('{yy}/{MM}/{dd}'),
-				'check_out' : new Date($('#check_out').val()).format('{yy}/{MM}/{dd}'),
+// 				'check_in' : new Date($('#check_in').val()).format('{yy}/{MM}/{dd}'),
+// 				'check_out' : new Date($('#check_out').val()).format('{yy}/{MM}/{dd}'),
+				'check_in' : $('#check_in').val(),
+				'check_out' : $('#check_out').val(),
 				'human_num' : parseInt($('#human_num').val()),
 				'pet_num' : parseInt($('#pet_num').val()),
-				'rm_no' : rm_no
+				'rm_no' : rm_no,
+				'facility_no' : facility_no
 			};
 
 			//'{yyyy}-{mm}-{dd}'
-			console.log(data);
-			$.ajax({
-				url : url,
-				type : type,
-				data : data,
-				success:function(data){
-					$('#reserveModal').modal('toggle');
-					location.href='/payments/paySystem';
-				}
-			})
+// 			console.log(data);
+// 			alert("aaaaaaaaaaaaaaa");
+// 			$.ajax({
+// 				url : url,
+				
+// 				type : type,
+// 				data : data,
+// 				success:function(data){
+// 					$('#reserveModal').modal('toggle');
+// 					location.href='/payments/paySystem';
+// 				}
+// 			})
+			$.ajax("/facility/aa",{data:data,success:function(re){
+				$('#reserveModal').modal('toggle');
+// 				console.log(re);
+// 				console.log(re[0]);
+// 				location.href=re;
+// 				console.log(${result});
+				window.location.href="/facility/bb?str="+re;
+				}});
 		})
 	</script>
 </body>

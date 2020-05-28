@@ -75,26 +75,26 @@
 		delete from review where r_no = #{r_no}
 	</delete>
 	
-	<delete id="deleteReview" parameterType="int">
+<!-- 시큐리티	<delete id="deleteReview" parameterType="int">
 		delete from review where r_no = #{r_no} and user_id = #{user_id}
 	</delete>
-	 
+	 -->
 	<update id="updateReview" parameterType="com.example.demo.vo.ReviewVo">
 		update review set review_content=#{review_content},r_grade=#{r_grade},r_update_date=sysdate,user_id=#{user_id} where r_no = #{r_no}
 	</update>
 	
 	
-	<update id="updateReview" parameterType="com.example.demo.vo.ReviewVo">
+<!-- 시큐리티	<update id="updateReview" parameterType="com.example.demo.vo.ReviewVo">
 		update review set review_content=#{review_content},r_grade=#{r_grade},r_update_date=sysdate where r_no = #{r_no} and user_id = #{user_id}
-	</update>
+	</update> -->
 		
 	<insert id="reservePlace" parameterType="com.example.demo.vo.ReservationVo">
 		insert into reservation(rsv_no,user_id,rsv_price,rsv_date,check_in,check_out,human_num,pet_num,rm_no)
 		values(seq_rsv_no.nextval,#{user_id},#{rsv_price},sysdate,#{check_in},#{check_out},#{human_num},#{pet_num},#{rm_no})		
 	</insert>
-
-
+ 
+ 
 	
-
+ 
 	
 </mapper>

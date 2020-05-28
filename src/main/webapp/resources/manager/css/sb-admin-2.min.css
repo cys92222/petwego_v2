@@ -8,6 +8,7 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+ 
 :root {
     --blue: #4e73df;
     --indigo: #6610f2;
@@ -8759,8 +8760,8 @@ a:focus {
     animation-timing-function: opacity cubic-bezier(0, 1, 0.4, 1);
 }
 .bg-gradient-primary {
-    background-color: #30cfd0;
-    background-image: linear-gradient(to top, #30cfd0 30%, #330867 100%);
+    background-color: #6e45e2;
+    background-image: linear-gradient(to top, #88d3ce 15%, #6e45e2 90%);
     background-size: cover;
 }
 .bg-gradient-secondary {

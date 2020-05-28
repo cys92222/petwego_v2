@@ -213,5 +213,13 @@ public class M_BoardController {
 //		System.out.println("답변등록");
 		return "redirect:/management/qna/listQnA";
 	}
-
+	
+	//QnA 삭제
+	@NoLogging
+	@RequestMapping(value = "qna/deleteQnA")
+	public String deleteQnA(QnAVo q) {
+		mp_service.deleteQnA(q);
+		
+		return "redirect:/management/qna/listQnA";
+	}
 }

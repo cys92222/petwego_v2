@@ -110,7 +110,7 @@
 
 			<!-- Nav Item - Pages Collapse Menu // 왼쪽 메뉴 바 - 숙소 -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> 
-			<i class="fas fa-dog"></i><span>숙소</span>
+			<i class="fas fa-dog"></i> <span>숙소</span>
 			</a>
 				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
@@ -128,11 +128,11 @@
 			<hr class="sidebar-divider d-none d-md-block">
 			
 			<!-- Nav Item - Dashboard // 로그아웃 -->
-			<li class="nav-item"><a class="nav-link" href="#"> 
+			
+			<li class="nav-item"><a class="nav-link" href="/login/logout"> 
 			<i class="fas fa-sign-out-alt"></i> 
 			<span>로그아웃</span></a></li>
 		
-
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>

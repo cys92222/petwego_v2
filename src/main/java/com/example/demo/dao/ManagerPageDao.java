@@ -40,12 +40,15 @@ public interface ManagerPageDao {
 	int updateNotice(NoticeVo nv);
 	
 	
-	// 관리자메인 - 일주일 - 신규회원수, 결제된금액, 개설모임수, 게시판새글수(게시판쿼리생각중)
-	int newMember();
-	Integer newPay();
+	// 관리자메인 - 카드들 
+	int newMember();	
+	Integer newPay();	
 	int newTogether();
 	int newBoard();
 	int newPic();
+	int newQnA();
+	int allfacility();
+	int newReservation();
 	 
 	// 로그 차트 
 	List<ChartVo> chartLog();
@@ -73,4 +76,7 @@ public interface ManagerPageDao {
 	
 	//QnA 답변등록
 	int anwerQnA(QnAVo q);
+	
+	//QnA 삭제
+	int deleteQnA(QnAVo q);
 }
