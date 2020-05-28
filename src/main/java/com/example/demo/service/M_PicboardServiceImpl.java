@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.M_PicboardDao;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 
 @Service
@@ -66,10 +67,10 @@ public class M_PicboardServiceImpl implements M_PicboardService {
 
 //	픽보드댓글 삭제	
 	@Override
-	public int picboardcomment_delete(int photo_no) {
+	public int picboardcomment_Alldelete(int photo_no) {
 		// TODO Auto-generated method stub
 		int re = -1;
-		re = dao.picboardcomment_delete(photo_no);
+		re = dao.picboardcomment_Alldelete(photo_no);
 		return re;
 	}
 	
@@ -80,6 +81,23 @@ public class M_PicboardServiceImpl implements M_PicboardService {
 		int re = -1;
 		re = dao.like_delete(photo_no);
 		return re;
+	}
+
+//	댓글 한개씩 삭제
+	@Override
+	public int picboardcomment_delete(int photo_comm_no) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.picboardcomment_delete(photo_comm_no);
+		return re;
+	}
+
+//	댓글 리스트	
+	@Override
+	public List<Pic_Board_CommentVo> picboardcomment_list(int photo_no) {
+		// TODO Auto-generated method stub
+		List<Pic_Board_CommentVo> list = dao.picboardcomment_list(photo_no);
+		return list;
 	}
 	
 

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.service.M_PicboardService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 import com.google.gson.Gson;
 
@@ -42,12 +43,15 @@ public class M_PicboardController {
 	public String picBoardDetail(int photo_no,Model model){
 		System.out.println("상세보기할 번호" + photo_no);
 		Pic_BoardVo pb = service.picboaard_detail(photo_no);
-		Pic_Board_FileVo pbc = service.picboardfile_detail(photo_no);
+		Pic_Board_FileVo pbf = service.picboardfile_detail(photo_no);
+		List<Pic_Board_CommentVo> pbc = service.picboardcomment_list(photo_no);
 		
 		model.addAttribute("pb", pb);
+		model.addAttribute("pbf", pbf);
 		model.addAttribute("pbc", pbc);
 		
 		System.out.println(pb);
+		System.out.println(pbc);
 		System.out.println(pbc);
 		return "management/picboard/detailPicboard";
 	}
@@ -60,7 +64,7 @@ public class M_PicboardController {
 		service.like_delete(photo_no);
 		
 		//댓글 삭제
-		service.picboardcomment_delete(photo_no);
+		service.picboardcomment_Alldelete(photo_no);
 		
 		//파일 삭제
 		service.picboardfile_delete(photo_no);
@@ -69,5 +73,18 @@ public class M_PicboardController {
 		service.picboard_delete(photo_no);
 		
 		return "redirect:/management/picboad/listPicboad";
+	}
+	
+	
+	
+	//댓글 삭제
+	@NoLogging
+	@RequestMapping("/management/picboad/picboardcomment_delete")
+	public String picboardcomment_delete(int photo_comm_no, int photo_no) {
+		System.out.println("삭제할 댓글번호" + photo_comm_no);
+		System.out.println("상세보기 글 번호" + photo_no);
+		service.picboardcomment_delete(photo_comm_no);
+		
+		return "redirect:/management/picboad/detailPicboad?photo_no="+photo_no;
 	}
 }

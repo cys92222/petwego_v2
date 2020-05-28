@@ -31,8 +31,8 @@
 	delete pic_board_file where photo_no = #{photo_no}
 </delete>
 
-<!-- 픽보드댓글 삭제 -->
-<delete id="picboardcomment_delete">
+<!-- 픽보드댓글 게시물에 달린거 전체 삭제 -->
+<delete id="picboardcomment_Alldelete">
 	delete pic_board_comment where photo_no = #{photo_no}
 </delete>
 
@@ -40,4 +40,15 @@
 <delete id="like_delete">
 	delete likeit where photo_no = #{photo_no}
 </delete>
+
+<!-- 댓글 리스트 -->
+<select id="picboardcomment_list" resultType="com.example.demo.vo.Pic_Board_CommentVo">
+	select * from pic_board_comment where photo_no = #{photo_no}
+</select>
+
+<!-- 댓글 한개씩 삭제 -->
+<delete id="picboardcomment_delete">
+	delete pic_board_comment where photo_comm_no = #{photo_comm_no}
+</delete>
+
 </mapper>

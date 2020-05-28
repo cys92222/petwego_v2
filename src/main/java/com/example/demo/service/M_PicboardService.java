@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 
 public interface M_PicboardService {
@@ -25,8 +26,14 @@ public interface M_PicboardService {
 	int picboardfile_delete(int photo_no);
 
 //	픽보드댓글 삭제
-	int picboardcomment_delete(int photo_no);
+	int picboardcomment_Alldelete(int photo_no);
 
 //	좋아요 삭제
 	int like_delete(int photo_no);	
+	
+//	댓글 리스트
+	List<Pic_Board_CommentVo> picboardcomment_list(int photo_no);	
+	
+//	댓글 한개씩 삭제
+	int picboardcomment_delete(int photo_comm_no);	
 }

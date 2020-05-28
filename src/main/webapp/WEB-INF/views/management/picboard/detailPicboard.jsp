@@ -14,10 +14,17 @@
 ${pb }<br>
 
 픽보드파일 상세보기
-${pbc }<br>
-<img src="../../img/${pbc.photo_file_name }" width="200px" height="200px"><br>
+${pbf }<br>
+<img src="../../img/${pbf.photo_file_name }" width="200px" height="200px"><br>
 
 <a href="/management/picboad/deletePicboard?photo_no=${pb.photo_no }">삭제</a>
+
+댓글 리스트<br>
+<c:forEach items="${pbc }" var="pbc">
+${pbc }
+<a href="/management/picboad/picboardcomment_delete?photo_comm_no=${pbc.photo_comm_no }&photo_no=${pbc.photo_no}">삭제</a><br>
+</c:forEach>
+
 
 </body>
 </html>
