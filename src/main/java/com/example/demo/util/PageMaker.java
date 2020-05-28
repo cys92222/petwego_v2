@@ -73,6 +73,18 @@ public class PageMaker {
 		   
 		return uriComponents.toUriString();
 	}
+	//주련) 0528 키워드 페이징 하나 더 만듦
+	public String makeKeywordSearch(int page)
+	{
+	  
+	 UriComponents uriComponents =
+	            UriComponentsBuilder.newInstance()
+	            .queryParam("page", page)
+	            .queryParam("perPageNum", cri.getPerPageNum())       
+				.queryParam("keyword", encoding(((SearchCriteria)cri).getKeyword()))
+	            .build(); 
+	    return uriComponents.toUriString();  
+	}	
 	
 	//page, perPageNum, searchType, keyword를 url로 사용할수 있게 makeSearch를 하나 만들어준다.
 	public String makeSearch(int page)
