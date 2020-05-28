@@ -67,7 +67,7 @@
 
 			<!-- Nav Item - Dashboard // 관리자 메인페이지 -->
 			<li class="nav-item"><a class="nav-link" href="/management/manager_main"> 
-			<i class="fas fa-fw fa-tachometer-alt"></i> 
+			<i class="fas fa-cat"></i> 
 			<span>관리자 메인</span></a></li>
 
 			<!-- Nav Item - Charts // 로그페이지 -->
@@ -126,6 +126,12 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
+			
+			<!-- Nav Item - Dashboard // 로그아웃 -->
+			<li class="nav-item"><a class="nav-link" href="#"> 
+			<i class="fas fa-sign-out-alt"></i> 
+			<span>로그아웃</span></a></li>
+		
 
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
