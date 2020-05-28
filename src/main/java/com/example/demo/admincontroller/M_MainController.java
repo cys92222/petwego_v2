@@ -24,9 +24,13 @@ public class M_MainController {
 	@NoLogging
 	public void managerPage(Model model) {
 		// sns+자유게시판 새글 수 , 새 회원 수 , 총 결제금액, 모임개설수 (일주일)
-		model.addAttribute("totBoard", mp_service.newBoard() + mp_service.newPic());
+		model.addAttribute("newPic",mp_service.newPic());
+		model.addAttribute("newBoard", mp_service.newBoard());
 		model.addAttribute("newM", mp_service.newMember());
 		model.addAttribute("newP", mp_service.newPay());
 		model.addAttribute("newT", mp_service.newTogether());
+		model.addAttribute("newQnA", mp_service.newQnA());
+		model.addAttribute("allfacility", mp_service.allfacility());
+		model.addAttribute("newReservation", mp_service.newReservation());
 	} 
 }

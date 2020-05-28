@@ -22,10 +22,9 @@ import com.example.demo.vo.QnAVo;
 @Service
 public class ManagerPageServiceImpl implements ManagerPageService {
 
-	
 	@Autowired
 	private ManagerPageDao mDao;
-	
+
 	// 자유게시판, 댓글 목록/삭제
 	@Override
 	public List<Board_CommentVo> listComment(Board_CommentVo bc) {
@@ -41,13 +40,12 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int deleteCommBoard(Board_CommentVo bc) {
 		return mDao.deleteCommBoard(bc);
 	}
-	
+
 	@Override
 	public int delboard_no(Board_fileVo bf) {
 		return mDao.delboard_no(bf);
 	}
-	
-	
+
 	// 자유게시판, 목록/상세/삭제
 	@Override
 	public List<BoardVo> listBoard() {
@@ -114,7 +112,7 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int newTogether() {
 		return mDao.newTogether();
 	}
-	
+
 	@Override
 	public int newBoard() {
 		return mDao.newBoard();
@@ -123,6 +121,21 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	@Override
 	public int newPic() {
 		return mDao.newPic();
+	}
+
+	@Override
+	public int newQnA() {
+		return mDao.newQnA();
+	}
+
+	@Override
+	public int allfacility() {
+		return mDao.allfacility();
+	}
+
+	@Override
+	public int newReservation() {
+		return mDao.newReservation();
 	}
 
 	// 로그 차트
@@ -177,8 +190,7 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		return detail;
 	}
 
-
-	//QnA 답변등록
+	// QnA 답변등록
 	@Override
 	public int anwerQnA(QnAVo q) {
 		// TODO Auto-generated method stub
@@ -186,8 +198,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.anwerQnA(q);
 		return re;
 	}
-	
-	//QnA 삭제
+
+	// QnA 삭제
 	@Override
 	public int deleteQnA(QnAVo q) {
 		// TODO Auto-generated method stub
@@ -195,12 +207,5 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.deleteQnA(q);
 		return re;
 	}
-
-
-
-
-
-	
-
 
 }
