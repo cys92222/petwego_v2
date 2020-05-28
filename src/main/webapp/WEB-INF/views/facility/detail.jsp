@@ -3,7 +3,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 
@@ -1469,7 +1469,7 @@ font-size: 14px;
 																									<tr><td><h4>예약자 정보</h4></td></tr>
 																									<tr>
 																										<td>아이디</td>
-																										<td><input class="form-control" id="user_id" type="text"></td>
+																										<td><input class="form-control" id="user_id" type="text" value="${login_id }" readonly="readonly"></td>
 																										<td>예약자 이름</td>
 																										<td><input class="form-control" id="name" type="text"></td>
 																									</tr>
@@ -1702,7 +1702,7 @@ font-size: 14px;
 				type = 'POST'
 			}
 			var data = {
-				'user_id' : $('#user_id').val(),
+				'user_id' : '${login_id}',
 				'rsv_price' : parseInt($('#rsv_price').val()),
 // 				'check_in' : new Date($('#check_in').val()).format('{yy}/{MM}/{dd}'),
 // 				'check_out' : new Date($('#check_out').val()).format('{yy}/{MM}/{dd}'),
@@ -1715,8 +1715,8 @@ font-size: 14px;
 			};
 
 			//'{yyyy}-{mm}-{dd}'
-			console.log(data);
-			alert("aaaaaaaaaaaaaaa");
+// 			console.log(data);
+// 			alert("aaaaaaaaaaaaaaa");
 // 			$.ajax({
 // 				url : url,
 				
@@ -1727,9 +1727,13 @@ font-size: 14px;
 // 					location.href='/payments/paySystem';
 // 				}
 // 			})
-			$.ajax("/facility/aa",{data:data,success:function(){
+			$.ajax("/facility/aa",{data:data,success:function(re){
 				$('#reserveModal').modal('toggle');
-				location.href='/payments/paySystem';
+// 				console.log(re);
+// 				console.log(re[0]);
+// 				location.href=re;
+// 				console.log(${result});
+				window.location.href="/facility/bb?str="+re;
 				}});
 		})
 	</script>
