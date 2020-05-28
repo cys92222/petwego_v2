@@ -47,11 +47,15 @@ public class PaymentController {
 			
 			// 결제 수단과 결제상태 한글로 저장되도록!  
 			if (pv.getPay_method().equals("card")) {
-				pv.setPay_method("카드 결제");
+				pv.setPay_method("카드결제");
 			}
 			// 어차피 결제 성공해야만 테이블에 저장되니까 결제완료로 하나만 치환하면 될듯 
 			if(pv.getStatus().equals("paid")) {
-				pv.setStatus("결제 완료");
+				pv.setStatus("결제완료");
+			}
+			// apply_num은 간편결제시에 null 이 넘어옴
+			if(pv.getApply_num().equals("")) {
+				pv.setApply_num("간편결제");
 			}
 			
 			pay_service.insertPay(pv);
