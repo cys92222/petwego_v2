@@ -49,7 +49,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
 						<thead>
 							<tr>
 								<th>번호</th>

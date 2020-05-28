@@ -45,7 +45,7 @@
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
-		<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
+		<h1 class="h3 mb-2 text-gray-800">QnA</h1>
 		<p class="mb-4">QnA | 관리자접속중</p>
 		
 		<input type="hidden" id="inq_no" value="${detailQnA.inq_no }">
@@ -89,7 +89,7 @@
 					</table>
 						<sec:authorize access="hasRole('ROLE_ADMIN')"> 
 							<!-- 답변 버튼 -->
-							<a href="#" class="btn btn-success btn-icon-split" id="btnAnwer">
+							<a href="#" class="btn btn-success btn-icon-split" id="btnAnwer" style="float: right">
 		       					<span class="icon text-white-50">
 		        				<i class="fas fa-edit"></i>
 		         				</span>
@@ -133,7 +133,15 @@
 		<input type="hidden" name="a_ref" value="${detailQnA.ref }">
 		<input type="hidden" name="a_ref_step" value="${detailQnA.ref_step }">
 		<input type="hidden" name="a_ref_level" value="${detailQnA.ref_level }">
-		<input type="submit" id="addAnwer" value="답변 등록하기">
+		<!-- 답변등록하기 버튼 -->
+		<sec:authorize access="hasRole('ROLE_ADMIN')"> 
+				<a href="#" class="btn btn-success btn-icon-split" id="addAnwer">
+		       		<span class="icon text-white-50">
+		        		<i class="fas fa-edit"></i>
+		        	</span>
+		        	<span class="text">답변등록</span>
+	       		</a>
+		</sec:authorize>	
 	</form>
 	</div>
 	
