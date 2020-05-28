@@ -177,7 +177,7 @@
       <!-- Footer -->
       <div class="modal-footer">
 			<!--         Footer --> 
-			<a href="/join/join">회원가입</a>
+		<a href="/join/join"><button type="button" class="btn btn-default">회원가입</button></a>
         <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
       </div>
     </div>
