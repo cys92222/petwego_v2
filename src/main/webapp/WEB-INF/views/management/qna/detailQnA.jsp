@@ -21,19 +21,20 @@
 	$(function(){
 		
 		var inq_no = $("#inq_no").val();
- 
+		var formObj = $("form[id='anwerForm']");
+		 
 		// 답변버튼 누르면...
 		$("#btnAnwer").click(function(){
 			var check = confirm("답변을 작성하시겠습니까?")
 			if(check == true){
 				$("#anwer_Sec").css({"display":"block"});
-				
 			}
 		});
 
 		// 답변등록버튼 누르면
 		$("#addAnwer").click(function(){
 			$("#anwer_Sec").css({"display":"none"});
+			formObj.submit();
 			});
 
 	})
@@ -106,7 +107,7 @@
 				<h6 class="m-0 font-weight-bold text-primary">QnA 답변등록</h6>
 			</div>
 	<div class="card-body">
-	<form action="/management/qna/anwerQnA">
+	<form action="/management/qna/anwerQnA" id="anwerForm">
 		<input type="hidden" name="inq_no" value="${detailQnA.inq_no }"><br>
 		카테고리<br>
 		
