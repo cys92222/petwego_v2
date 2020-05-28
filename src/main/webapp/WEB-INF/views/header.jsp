@@ -100,7 +100,7 @@
             <a class="nav-link js-scroll-trigger" href="/pic_board/list">마이펫</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#services">숙소찾기</a>
+            <a class="nav-link js-scroll-trigger" href="/facility/list">숙소찾기</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/board/list">커뮤니티</a>
