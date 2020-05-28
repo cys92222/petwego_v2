@@ -22,7 +22,7 @@ public class ReservationController {
 	FacilityService service;
 	// submitForm for Reservation : 예약을 위한 submit
 	
-	@RequestMapping(value = "/facility/detail")
+	@RequestMapping(value = "/facility/aa")
 	@ResponseBody
 	public String reserve(HttpServletRequest request,ReservationVo reservation,Model model) throws Exception{
 		System.out.println("aaaaaasdasdasdasdddddd"+reservation);
