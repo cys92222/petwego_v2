@@ -128,11 +128,11 @@
 			<hr class="sidebar-divider d-none d-md-block">
 			
 			<!-- Nav Item - Dashboard // 로그아웃 -->
-			<li class="nav-item"><a class="nav-link" href="#"> 
+			
+			<li class="nav-item"><a class="nav-link" href="/login/logout"> 
 			<i class="fas fa-sign-out-alt"></i> 
 			<span>로그아웃</span></a></li>
 		
-
 			<!-- Sidebar Toggler (Sidebar) -->
 			<div class="text-center d-none d-md-inline">
 				<button class="rounded-circle border-0" id="sidebarToggle"></button>
