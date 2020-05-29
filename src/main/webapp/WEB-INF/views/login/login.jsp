@@ -45,11 +45,11 @@ $(function(){
   						<!--<sec:csrfInput/>-->
 						<div class="form-group">
 							<label for="InputId">아이디</label>
-							<input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID" value="manager">
+							<input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID" >
 						</div>
 						<div class="form-group">
 							<label for="InputPassword">비밀번호</label>
-							<input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD" value="a123456">
+							<input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD" >
 						</div>
 						<div class="checkbox">
 							<label>
