@@ -1,289 +1,402 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<title>PET WE GO</title>
-	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
-	<link rel="icon" href="/resources/assets/img/icon.ico" type="image/x-icon"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="resources/quixlab/images/favicon.png">
+    <!-- Pignose Calender -->
+    <link href="/resources/quixlab/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="/resources/quixlab/plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="/resources/quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+    <link href="/resources/quixlab/css/style.css" rel="stylesheet">
 
-	<!-- Fonts and icons -->
-	<script src="/resources/assets/js/plugin/webfont/webfont.min.js"></script>
-	<script>
-		WebFont.load({
-			google: {"families":["Lato:300,400,700,900"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css']},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
-
-	<!-- CSS Files -->
-	<link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/assets/css/atlantis.min.css">
-	
-	<!--   Core JS Files   -->
-	<script src="/resources/assets/js/core/jquery.3.2.1.min.js"></script>
-	<script src="/resources/assets/js/core/popper.min.js"></script>
-	<script src="/resources/assets/js/core/bootstrap.min.js"></script>
-
-	<!-- jQuery UI -->
-	<script src="/resources/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-	<script src="/resources/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
-
-	<!-- jQuery Scrollbar -->
-	<script src="/resources/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-
-
-	<!-- Chart JS -->
-	<script src="/resources/assets/js/plugin/chart.js/chart.min.js"></script>
-
-	<!-- jQuery Sparkline -->
-	<script src="/resources/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
-
-	<!-- Chart Circle -->
-	<script src="/resources/assets/js/plugin/chart-circle/circles.min.js"></script>
-
-	<!-- Datatables -->
-	<script src="/resources/assets/js/plugin/datatables/datatables.min.js"></script>
- 
-	<!-- Bootstrap Notify -->
-	<script src="/resources/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-
-	<!-- jQuery Vector Maps -->
-	<script src="/resources/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
-	<script src="/resources/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
-
-	<!-- Sweet Alert -->
-	<script src="/resources/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
-
-	<!-- Atlantis JS -->
-	<script src="/resources/assets/js/atlantis.min.js"></script>
 </head>
 
-<div class="wrapper">
-	<div class="main-header">
-		<!-- Logo Header -->
-		<div class="logo-header" data-background-color="white">
+<body>
 
-			<a href="index.html" class="logo"> <img
-				src="/resources/assets/img/petwego_logo.png" alt="navbar brand"
-				class="navbar-brand" style="width: 160px; height: 30px;">
-			</a>
-			<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
-				data-toggle="collapse" data-target="collapse" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"> <i class="icon-menu"></i>
-				</span>
-			</button>
-			<button class="topbar-toggler more">
-				<i class="icon-options-vertical"></i>
-			</button>
-			<div class="nav-toggle">
-				<button class="btn btn-toggle toggle-sidebar">
-					<i class="icon-menu"></i>
-				</button>
-			</div>
-		</div>
-		<!-- End Logo Header -->
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
 
-		<!-- Navbar Header -->
-		<nav class="navbar navbar-header navbar-expand-lg"
-			data-background-color="blue2">
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
 
-			<div class="container-fluid">
-				<div class="collapse" id="search-nav">
-					<form class="navbar-left navbar-form nav-search mr-md-3">
-						<div class="input-group">
-							<div class="input-group-prepend">
-								<button type="submit" class="btn btn-search pr-1">
-									<i class="fa fa-search search-icon"></i>
-								</button>
-							</div>
-							<input type="text" placeholder="Search ..." class="form-control">
-						</div>
-					</form>
-				</div>
-				<ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-					<li class="nav-item toggle-nav-search hidden-caret"><a
-						class="nav-link" data-toggle="collapse" href="#search-nav"
-						role="button" aria-expanded="false" aria-controls="search-nav">
-							<i class="fa fa-search"></i>
-					</a></li>
-<!-- 					<li class="nav-item dropdown hidden-caret"><a -->
-<!-- 						class="nav-link dropdown-toggle" href="#" id="notifDropdown" -->
-<!-- 						role="button" data-toggle="dropdown" aria-haspopup="true" -->
-<!-- 						aria-expanded="false"> <i class="fa fa-bell"></i> <span -->
-<!-- 							class="notification">4</span> -->
-							
-<!-- 							 알람 수  -->
-<!-- 					</a> -->
-<!-- 						<ul class="dropdown-menu notif-box animated fadeIn" -->
-<!-- 							aria-labelledby="notifDropdown"> -->
-<!-- 							<li> -->
-<!-- 								<div class="dropdown-title">You have 4 new notification</div> -->
-<!-- 							</li> -->
-<!-- 							<li> -->
-<!-- 								<div class="notif-scroll scrollbar-outer"> -->
-<!-- 									<div class="notif-center"> -->
-<!-- 										<a href="#"> -->
-<!-- 											<div class="notif-icon notif-primary"> -->
-<!-- 												<i class="fa fa-user-plus"></i> -->
-<!-- 											</div> -->
-<!-- 											<div class="notif-content"> -->
-<!-- 												<span class="block"> New user registered </span> <span -->
-<!-- 													class="time">5 minutes ago</span> -->
-<!-- 											</div> -->
-<!-- 										</a> <a href="#"> -->
-<!-- 											<div class="notif-icon notif-success"> -->
-<!-- 												<i class="fa fa-comment"></i> -->
-<!-- 											</div> -->
-<!-- 											<div class="notif-content"> -->
-<!-- 												<span class="block"> Rahmad commented on Admin </span> <span -->
-<!-- 													class="time">12 minutes ago</span> -->
-<!-- 											</div> -->
-<!-- 										</a> <a href="#"> -->
-<!-- 											<div class="notif-img"> -->
-<!-- 												<img src="../assets/img/profile2.jpg" alt="Img Profile"> -->
-<!-- 											</div> -->
-<!-- 											<div class="notif-content"> -->
-<!-- 												<span class="block"> Reza send messages to you </span> <span -->
-<!-- 													class="time">12 minutes ago</span> -->
-<!-- 											</div> -->
-<!-- 										</a> <a href="#"> -->
-<!-- 											<div class="notif-icon notif-danger"> -->
-<!-- 												<i class="fa fa-heart"></i> -->
-<!-- 											</div> -->
-<!-- 											<div class="notif-content"> -->
-<!-- 												<span class="block"> Farrah liked Admin </span> <span -->
-<!-- 													class="time">17 minutes ago</span> -->
-<!-- 											</div> -->
-<!-- 										</a> -->
-<!-- 									</div> -->
-<!-- 								</div> -->
-<!-- 							</li> -->
-<!-- 							<li><a class="see-all" href="javascript:void(0);">See -->
-<!-- 									all notifications<i class="fa fa-angle-right"></i> -->
-<!-- 							</a></li> -->
-<!-- 						</ul></li> -->
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="/resources/quixlab/images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="/resources/quixlab/images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
 
-					<li class="nav-item dropdown hidden-caret"><a
-						class="dropdown-toggle profile-pic" data-toggle="dropdown"
-						href="#" aria-expanded="false">
-						<button id="login-button" name="submit" type="submit" class="btn btn-block btn-primary text-light">로그인</button>\
-						
-								<!-- 유저 프로필사진이었는데 일단 막아 놓음 -->
-<!-- 							<div class="avatar-sm"> -->
-<!-- 								<img src="../assets/img/profile.jpg" alt="..." -->
-<!-- 									class="avatar-img rounded-circle"> -->
-<!-- 							</div> -->
-					</a>
-						<ul class="dropdown-menu dropdown-user animated fadeIn">
-							<div class="dropdown-user-scroll scrollbar-outer">
-								<li>		
-								<button id="login-button" name="submit" type="submit" class="btn btn-block btn-primary text-light">로그인</button>	
-<!-- 									<div class="user-box"> -->
-<!-- 										<div class="avatar-lg"> -->
-<!-- 											<img src="../assets/img/profile.jpg" alt="image profile" -->
-<!-- 												class="avatar-img rounded"> -->
-<!-- 										</div> -->
-<!-- 										<div class="u-text"> -->
-											
-<!-- 										</div> -->
-<!-- 									</div> -->
-								</li>
-								<li>
-									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">My Profile</a> <a class="dropdown-item" href="#">My
-										Balance</a> <a class="dropdown-item" href="#">Inbox</a>
-									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">Account Setting</a>
-									<div class="dropdown-divider"></div> <a class="dropdown-item"
-									href="#">Logout</a>
-								</li>
-							</div>
-						</ul></li>
-				</ul>
-			</div>
-		</nav>
-		<!-- End Navbar -->
-	</div>
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">    
+            <div class="header-content clearfix">
+                
+                <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div>
+                <div class="header-left">
+                    <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down animated flipInX d-md-none">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-email-outline"></i>
+                                <span class="badge badge-pill gradient-1">3</span>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                    <span class="">3 New Messages</span>  
+                                    <a href="javascript:void()" class="d-inline-block">
+                                        <span class="badge badge-pill gradient-1">3</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="resources/quixlab/images/avatar/1.jpg" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Saiful Islam</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li class="notification-unread">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="resources/quixlab/images/avatar/2.jpg" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Adam Smith</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Can you do me a favour?</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="resources/quixlab/images/avatar/3.jpg" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Barak Obama</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hi Teddy, Just wanted to let you ...</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="resources/quixlab/images/avatar/4.jpg" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">Hilari Clinton</div>
+                                                    <div class="notification-timestamp">08 Hours ago</div>
+                                                    <div class="notification-text">Hello</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                                <i class="mdi mdi-bell-outline"></i>
+                                <span class="badge badge-pill gradient-2">3</span>
+                            </a>
+                            <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
+                                <div class="dropdown-content-heading d-flex justify-content-between">
+                                    <span class="">2 New Notifications</span>  
+                                    <a href="javascript:void()" class="d-inline-block">
+                                        <span class="badge badge-pill gradient-2">5</span>
+                                    </a>
+                                </div>
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Events near you</h6>
+                                                    <span class="notification-text">Within next 5 days</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Event Started</h6>
+                                                    <span class="notification-text">One hour ago</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-success-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Event Ended Successfully</h6>
+                                                    <span class="notification-text">One hour ago</span>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <span class="mr-3 avatar-icon bg-danger-lighten-2"><i class="icon-present"></i></span>
+                                                <div class="notification-content">
+                                                    <h6 class="notification-heading">Events to Join</h6>
+                                                    <span class="notification-text">After two days</span> 
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown d-none d-md-flex">
+                            <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
+                                <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
+                            </a>
+                            <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li><a href="javascript:void()">English</a></li>
+                                        <li><a href="javascript:void()">Dutch</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="images/user/1.png" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="app-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void()">
+                                                <i class="icon-envelope-open"></i> <span>Inbox</span> <div class="badge gradient-3 badge-pill gradient-1">3</div>
+                                            </a>
+                                        </li>
+                                        
+                                        <hr class="my-2">
+                                        <li>
+                                            <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock Screen</span></a>
+                                        </li>
+                                        <li><a href="page-login.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
 
-	<!-- Sidebar -->
-	<div class="sidebar sidebar-style-2">
-		<div class="sidebar-wrapper scrollbar scrollbar-inner">
-			<div class="sidebar-content">
-				<div class="user">
-					<div class="avatar-sm float-left mr-2">
-					<!-- 비로그인일때는 디폴트 사진, 로그인 시 자기 프로필 사진으로 -->
-<!-- 						<img src="../assets/img/profile.jpg" alt="..." -->
-<!-- 							class="avatar-img rounded-circle"> -->
-					</div>
-					<div class="info">
-						<a data-toggle="collapse" href="#collapseExample"
-							aria-expanded="true"> <span> Hizrian <span
-								class="user-level">Administrator</span> <span class="caret"></span>
-						</span>
-						</a>
-						<div class="clearfix"></div>
-
-						<div class="collapse in" id="collapseExample">
-							<ul class="nav">
-								<li><a href="#profile"> <span class="link-collapse">My
-											Page</span>
-								</a></li>
-								<li><a href="#edit"> <span class="link-collapse">회원
-											정보 수정</span>
-								</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<ul class="nav nav-primary">
-					<li class="nav-section"><span class="sidebar-mini-icon">
-							<i class="fa fa-ellipsis-h"></i>
-					</span>
-						<h4 class="text-section">Menu</h4></li>
-					<li class="nav-item"><a href="/pic_board/list">
-							<i class="fas fa-layer-group"></i>
-							<p>마이펫</p>
-					</a></li>
-					<li class="nav-item"><a data-toggle="collapse"
-						href="#sidebarLayouts"> <i class="fas fa-th-list"></i>
-							<p>숙소찾기</p> <span class="caret"></span>
-					</a>
-						<div class="collapse" id="sidebarLayouts">
-							<ul class="nav nav-collapse">
-								<li><a href="/reservation/reservation"> <span
-										class="sub-item">예약하기</span>
-								</a></li>
-							</ul>
-						</div></li>
-					<li class="nav-item"><a href="/together/listTogether">
-							<i class="fas fa-pen-square"></i>
-							<p>함께가요</p>
-					</a></li>
-					<li class="nav-item"><a href="/board/list">
-							<i class="fas fa-table"></i>
-							<p>커뮤니티</p>
-					</a></li>
-					<li class="nav-item"><a data-toggle="collapse" href="#maps">
-							<i class="fas fa-map-marker-alt"></i>
-							<p>고객지원</p> <span class="caret"></span>
-					</a>
-						<div class="collapse" id="maps">
-							<ul class="nav nav-collapse">
-								<li><a href="/customerservice/index"> <span class="sub-item">공지사항</span>
-								</a></li>
-								<li><a href="/customerservice/index"> <span class="sub-item">문의사항</span>
-								</a></li>
-							</ul>
-						</div></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
-<!-- End Sidebar -->
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Dashboard</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="resources/quixlab/index.html">Home 1</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                        </ul>
+                    </li>
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="resources/quixlab/layout-blank.html">Blank</a></li>
+                            <li><a href="resources/quixlab/layout-one-column.html">One Column</a></li>
+                            <li><a href="resources/quixlab/layout-two-column.html">Two column</a></li>
+                            <li><a href="resources/quixlab/layout-compact-nav.html">Compact Nav</a></li>
+                            <li><a href="resources/quixlab/layout-vertical.html">Vertical</a></li>
+                            <li><a href="resources/quixlab/layout-horizontal.html">Horizontal</a></li>
+                            <li><a href="resources/quixlab/layout-boxed.html">Boxed</a></li>
+                            <li><a href="resources/quixlab/layout-wide.html">Wide</a></li>
+                            
+                            
+                            <li><a href="resources/quixlab/layout-fixed-header.html">Fixed Header</a></li>
+                            <li><a href="resources/quixlab/layout-fixed-sidebar.html">Fixed Sidebar</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Apps</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./email-inbox.html">Inbox</a></li>
+                            <li><a href="./email-read.html">Read</a></li>
+                            <li><a href="./email-compose.html">Compose</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Apps</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./app-profile.html">Profile</a></li>
+                            <li><a href="./app-calender.html">Calender</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i> <span class="nav-text">Charts</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./chart-flot.html">Flot</a></li>
+                            <li><a href="./chart-morris.html">Morris</a></li>
+                            <li><a href="./chart-chartjs.html">Chartjs</a></li>
+                            <li><a href="./chart-chartist.html">Chartist</a></li>
+                            <li><a href="./chart-sparkline.html">Sparkline</a></li>
+                            <li><a href="./chart-peity.html">Peity</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">UI Components</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">UI Components</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./ui-accordion.html">Accordion</a></li>
+                            <li><a href="./ui-alert.html">Alert</a></li>
+                            <li><a href="./ui-badge.html">Badge</a></li>
+                            <li><a href="./ui-button.html">Button</a></li>
+                            <li><a href="./ui-button-group.html">Button Group</a></li>
+                            <li><a href="./ui-cards.html">Cards</a></li>
+                            <li><a href="./ui-carousel.html">Carousel</a></li>
+                            <li><a href="./ui-dropdown.html">Dropdown</a></li>
+                            <li><a href="./ui-list-group.html">List Group</a></li>
+                            <li><a href="./ui-media-object.html">Media Object</a></li>
+                            <li><a href="./ui-modal.html">Modal</a></li>
+                            <li><a href="./ui-pagination.html">Pagination</a></li>
+                            <li><a href="./ui-popover.html">Popover</a></li>
+                            <li><a href="./ui-progressbar.html">Progressbar</a></li>
+                            <li><a href="./ui-tab.html">Tab</a></li>
+                            <li><a href="./ui-typography.html">Typography</a></li>
+                        <!-- </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-layers menu-icon"></i><span class="nav-text">Components</span>
+                        </a>
+                        <ul aria-expanded="false"> -->
+                            <li><a href="./uc-nestedable.html">Nestedable</a></li>
+                            <li><a href="./uc-noui-slider.html">Noui Slider</a></li>
+                            <li><a href="./uc-sweetalert.html">Sweet Alert</a></li>
+                            <li><a href="./uc-toastr.html">Toastr</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="widgets.html" aria-expanded="false">
+                            <i class="icon-badge menu-icon"></i><span class="nav-text">Widget</span>
+                        </a>
+                    </li>
+                    <li class="nav-label">Forms</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Forms</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./form-basic.html">Basic Form</a></li>
+                            <li><a href="./form-validation.html">Form Validation</a></li>
+                            <li><a href="./form-step.html">Step Form</a></li>
+                            <li><a href="./form-editor.html">Editor</a></li>
+                            <li><a href="./form-picker.html">Picker</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Table</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-menu menu-icon"></i><span class="nav-text">Table</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./table-basic.html" aria-expanded="false">Basic Table</a></li>
+                            <li><a href="./table-datatable.html" aria-expanded="false">Data Table</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-label">Pages</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Pages</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./page-login.html">Login</a></li>
+                            <li><a href="./page-register.html">Register</a></li>
+                            <li><a href="./page-lock.html">Lock Screen</a></li>
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Error</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="./page-error-404.html">Error 404</a></li>
+                                    <li><a href="./page-error-403.html">Error 403</a></li>
+                                    <li><a href="./page-error-400.html">Error 400</a></li>
+                                    <li><a href="./page-error-500.html">Error 500</a></li>
+                                    <li><a href="./page-error-503.html">Error 503</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
