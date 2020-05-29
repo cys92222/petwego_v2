@@ -17,8 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.demo.dao.MypageDao;
 import com.example.demo.service.FacilityService;
 import com.example.demo.util.AopLog.NoLogging;
+import com.example.demo.vo.FacilityVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.ReservationVo;
+import com.example.demo.vo.RoomVo;
 import com.google.gson.Gson;
 @Controller
 public class ReservationController {
@@ -61,18 +63,32 @@ public class ReservationController {
 	@RequestMapping("/facility/pay")
 	public ModelAndView rr(String str) {
 		MemberInfoVo m = new MemberInfoVo();
+		//user_id
 		m.setUser_id(str);
 		
 		ModelAndView mav = new ModelAndView();
 //		회원정보
 		
 		mav.addObject("my", my.select_myinfo(m));
-//		예약정보
+//		결제안한 예약조회
 		mav.addObject("to", service.select_reserve(str));
 		
-//		호텔정보
+//		아이디로 rm_no조회
+		int rm_no = service.select_rm_no(str);
+		mav.addObject("rm_no", rm_no);
 		
-//		방정보
+//		rm_no로 방이름 조회
+		RoomVo room = service.select_room_name(rm_no);
+		mav.addObject("room", room);
+		
+//  	rm_no로 호텔 번호 조회
+		int facility_no = service.select_facility_no(rm_no);
+		mav.addObject("facility_no", facility_no);
+		
+//		facility_no로 호텔 조회
+		FacilityVo Facility = service.select_facility(facility_no);
+		mav.addObject("Facility", Facility);
+		
 		
 		mav.setViewName("payments/paySystem");
 		
