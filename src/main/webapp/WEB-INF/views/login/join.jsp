@@ -90,6 +90,11 @@
             <option value="male">남성</option>
          </select>
       </div>
+       <div class="form-group has-feedback">
+         <label class="control-label" for="fname">프로필 사진</label>
+         <input class="form-control" type="file" name="fname" id="fname" required="required"/>
+         <span class="form-control-feedback"></span>
+      </div>
       <div class="form-group has feedback">
          <label class="control-label" for="nick_name">닉네임</label>
          <input class="form-control" type="text" name="nick_name" id="nick_name" required="required"/>
@@ -99,7 +104,7 @@
          <span class="glyphicon glyphicon-ok form-control-feedback"></span>
          
       </div> 
-        
+      
       <div class="form-group">
            <label for="comment">소개글:</label>
            <textarea class="form-control" rows="5" id="comment"></textarea>

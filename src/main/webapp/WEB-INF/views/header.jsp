@@ -27,9 +27,12 @@
   <script type="text/javascript">
   $(function(){
 		
-	    $("#popbtn").click(function(){
-	        $('div.modal').modal();
+	    $("#popbtn").click(function(e){
+		    e.preventdefault();
+	        $('div.modal').modal("show");
 	    })
+
+	   
 
 })
   </script>

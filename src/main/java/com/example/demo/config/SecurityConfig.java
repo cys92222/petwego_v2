@@ -92,6 +92,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					"/together/uploadSummernoteImageFile2","/facility/**").hasAnyRole("USER", "ADMIN") // /user/** 라는 이름의 URL은  USER의 권한을 가진 사용자만 접근 가능
 			.anyRequest().authenticated(); 
 		
+		//네이버 로그인을 위한 csrf 토큰 해제 (특정 url에 대한 csrf 비활성화) 근데 아직은 소용이 없음
+		http
+        .csrf()
+            .ignoringAntMatchers("https://nid.naver.com/**");
+		
 		http.formLogin()
 			.loginPage("/login/login").permitAll()	//로그인 페이지는 /, /login 에서 로그인을 실행하겠습니다 (새로운 로그인 페이지 호출을 설정) - 커스텀 로그인 페이지
 			.usernameParameter("user_id")	//input name 파라미터로 user_id를 받아요
