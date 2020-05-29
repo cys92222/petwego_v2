@@ -123,14 +123,12 @@
 <script src="/resources/js/addressapi.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-
 //아이디 중복체크 등 건너뛰면 가입도 안되게 처리 해야하는데!!!
 //성공적이면 "회원가입 성공!"멘트 뜨게!어떻게 하지?
 $("#btn").on("click", function(){
 	alert("회원가입 성공");
 	
 })
-
 //아이디 중복체크
 var idx = false;
 	$("#idCheck").on("click", function(){ 
@@ -156,8 +154,6 @@ var idx = false;
 	    }
 	 })
 	});
-
-
 //닉네임 중복체크
 $("#nickCheck").on("click", function(){ 
 	
@@ -181,7 +177,6 @@ $("#nickCheck").on("click", function(){
     }
  })
 });
-
 //비밀번호 유효성 검사    
    $("#pwd").keyup(function(){   //오류 수정 필요! - 1. 비밀번호가 8글자 이하인데 에러메시지가 뜨지 않고 2. 비밀번호가 일치해도 오류 메시지 뜸
       var pwd = $('#pwd').val();
@@ -194,14 +189,12 @@ $("#nickCheck").on("click", function(){
       //정규표현식을 통과하지 못하면
       }else{
          $("#pwdRegErr").show();
-         errorState("#pwd");
+         //errorState("#pwd");
       }
    });
-
    //비밀번호 재확인
    $("#rePwd").keyup(function(){
       var rePwd = $('#rePwd').val();
-
       //비밀번호가 일치하는지 확인
       if(rePwd==$('#pwd').val()){ //비밀번호가 일치하면
          $("#rePwdErr").hide();
@@ -211,7 +204,6 @@ $("#nickCheck").on("click", function(){
          //errorState("#rePwd");
       }
   	 });
-
    //이메일 유효성 검사
    $("#email").keyup(function(){
        var email=$(this).val();
@@ -227,7 +219,6 @@ $("#nickCheck").on("click", function(){
        }
    });
    
-
    //성공 상태로 바꾸는 함수
    function successState(sel){
       $(sel)
@@ -241,7 +232,6 @@ $("#nickCheck").on("click", function(){
       
       $("#myForm button[type=submit]").removeAttr("disabled");
    }
-
  
    //에러 상태로 바꾸는 함수
    function errorState(sel){
@@ -253,20 +243,17 @@ $("#nickCheck").on("click", function(){
       .removeClass("glyphicon-ok")
       .addClass("glyphicon-remove")
       .show();
-
       $("#myForm button[type=submit]").attr("disabled", "disabled");
    };
-/*   
+   
    function execPostCode() {
        new daum.Postcode({
            oncomplete: function(data) {
               // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
               // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
               // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
               var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
               var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-
               // 법정동명이 있을 경우 추가한다. (법정리는 제외)
               // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
               if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
@@ -284,7 +271,6 @@ $("#nickCheck").on("click", function(){
               if(fullRoadAddr !== ''){
                   fullRoadAddr += extraRoadAddr;
               }
-
               // 우편번호와 주소 정보를 해당 필드에 넣는다.
               console.log(data.zonecode);
               console.log(fullRoadAddr);
@@ -292,15 +278,14 @@ $("#nickCheck").on("click", function(){
               
 //              $("[name=addrress]").val(data.zonecode);
 //              $("[name=address2]").val(fullRoadAddr);  
-
            	  // 우편번호와 주소 정보를 해당 필드에 넣는다.
               document.getElementById('address').value = data.zonecode; //5자리 새우편번호 사용
               document.getElementById('address2').value = fullRoadAddr;
-              
+
+              //self.close();
           }
        }).open();
    }
-*/
 
 </script>
 </html>
