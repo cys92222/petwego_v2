@@ -15,26 +15,26 @@
 </style>
 <!-- 민아) 5/10, 자유게시판 목록 -->
 <body>
-	<div class="main-panel">
-		<div class="content">
-			<div class="page-inner">
-				<div class="page-header">
-					<h4 class="page-title">자유게시판</h4>
-					<ul class="breadcrumbs">
-						<li class="nav-home"><a href="/MainPage"> <i class="flaticon-home"></i></a></li>
-						<li class="separator"><i class="flaticon-right-arrow"></i></li>
-						<li class="nav-item"><a href="/board/list">자유게시판</a></li>
-					</ul>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-header">
-								<h4 class="card-title">자유게시판 목록</h4>
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table id="basic-datatables" class="display table table-striped table-hover">
+ <div class="content-body">
+
+            <div class="row page-titles mx-0">
+                <div class="col p-md-0">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                    </ol>
+                </div>
+            </div>
+            <!-- row -->
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Data Table</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered zero-configuration">
 										<thead>
 											<tr>
 												<th>글번호</th>
