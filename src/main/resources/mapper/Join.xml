@@ -25,7 +25,9 @@
       nick_name, 
       user_role, 
       email,
-      pwd2) 
+      pwd2,
+      address2,
+      address3) 
    values(#{user_id}, 
          #{pwd},
          #{tel,jdbcType=VARCHAR},
@@ -40,7 +42,9 @@
          #{nick_name,jdbcType=VARCHAR},
          'ROLE_USER',
          #{email,jdbcType=VARCHAR},
-         #{pwd2,jdbcType=VARCHAR}
+         #{pwd2,jdbcType=VARCHAR},
+         #{address2,jdbcType=VARCHAR},
+         #{address3,jdbcType=VARCHAR}
          )
   </insert>
     <!-- 아이디 중복 확인 -->
