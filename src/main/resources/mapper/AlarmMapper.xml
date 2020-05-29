@@ -15,7 +15,7 @@
 <!-- 	함께가요 신청취소하면 취소 알람 등록 -->
 	<insert id="cancle_insert_together_alarm">
 	<selectKey keyProperty="board_num" resultType="java.lang.Integer" order="BEFORE">
-		select application_no from together_application where user_id = #{user_id} and t_num = #{t_num}
+		select application_no from together_application where user_id = #{in_user_id} and t_num = #{t_num}
 	</selectKey>
 		insert into alarm values(seq_alarm_no.nextval,#{user_id},2,#{in_user_id},'함께가요',#{board_num},#{t_num})
 	</insert>

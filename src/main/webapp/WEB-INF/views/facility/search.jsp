@@ -429,7 +429,7 @@
                                                                                           ￦<span>${c.f_minprice}</span>~
                                                                                 </div>
                                                                                 <div class="cart-btn text-center p-3">
-                                                                                          <a id="reserveBtn" href="#">예약하기</a>
+                                                                                          <a id="reserveBtn" href="detail?facility_no=${c.facility_no}">예약하기</a>
                                                                                 </div>
                                                                       </div>
                                                             </div>
@@ -446,16 +446,16 @@
 								  <ul class="pagination justify-content-end">
 								  	<c:if test="${pageMaker.prev}">
 									    <li class="page-item disabled">
-									      <a class="page-link text-dart" href="listFacility${pageMaker.makeKeywordSearch(pageMaker.startPage - 1)}" tabindex="-1">이전</a>
+									      <a class="page-link text-dart" href="search${pageMaker.makeKeywordSearch(pageMaker.startPage - 1)}" tabindex="-1">이전</a>
 									    </li>
 									</c:if> 
 									<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 									    <li class="page-item">
-									    	<a class="page-link text-dark" href="listFacility${pageMaker.makeKeywordSearch(idx)}">${idx}</a>	
+									    	<a class="page-link text-dark" href="search${pageMaker.makeKeywordSearch(idx)}">${idx}</a>	
 									    </li>
 									</c:forEach>
 									    <li class="page-item">
-									      <a class="page-link text-dark" href="listFacility${pageMaker.makeKeywordSearch(pageMaker.endPage + 1)}">다음</a>
+									      <a class="page-link text-dark" href="search${pageMaker.makeKeywordSearch(pageMaker.endPage + 1)}">다음</a>
 									    </li>
 								  </ul>
 								</nav>

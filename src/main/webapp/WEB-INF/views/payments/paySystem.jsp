@@ -36,6 +36,8 @@ $(function(){
 		var buyer_tel = $("#tel").val();
 		var buyer_addr = $("#address").val();
 		var buyer_email = $("#email").val();
+
+		var rsv_no = $("#rsv_no").val();
 	
 
  /*
@@ -55,7 +57,9 @@ $(function(){
 			buyer_email : email,
 			buyer_name : user_id,
 			buyer_tel : tel,
-			buyer_addr : address
+			buyer_addr : address,
+
+			rsv_no : rsv_no
 				    
 			}, function(rsp) {
 
@@ -77,8 +81,9 @@ $(function(){
 	                pay_method : rsp.pay_method,
 	                apply_num : rsp.apply_num,
 	                status : rsp.status,
-	                rsv_no : 1,
 	                user_id : rsp.buyer_name  
+	                
+	                rsv_no : rso.rsv_no,
 				}
 			
 				info.push(payInfo);
@@ -149,10 +154,15 @@ $(function(){
 		<!-- 가져와야 하는 값 호텔이름, 방이름, 가격, 예약번호  -->
 		<input type="hidden" id="paid_amount" name="paid_amount"  />
 		<input type="hidden" id="rsv_no" name="rsv_no"  />
-		<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/>
-		<input type="text" id="email" value="${my.email }"/>
-		<input type="text" id="address" value="${my.address }"/>
-		<input type="text" id="tel" value="${my.tel }"/>
+		
+		회원 아이디<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/><br>
+		회원 이메일 <input type="text" id="email" value="${my.email }"/><br>
+		회원 주소 <input type="text" id="address" value="${my.address }"/><br>
+		회원 전화번호<input type="text" id="tel" value="${my.tel }"/><br>
+		
+		예약번호<input type="text" id="rsv_no" value="${to.rsv_no }"/><br>
+		투숙객이름<input type="text" value="${to.guest_name }"><br>
+		투숙객전화번호<input type="text" value="${to.guest_tel }"> <br>
 	</form>
 
 </body>

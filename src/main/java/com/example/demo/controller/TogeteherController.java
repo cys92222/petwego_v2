@@ -257,7 +257,7 @@ public class TogeteherController {
      
      //신청자 목록
      List<ApplicationVo> userList = Aservice.userApplication(applicationVo.getT_num());
-     System.out.println(applicationVo.getUser_id());
+     System.out.println("ㅁㄴㅇㅁㄴㅇㅁㄴㅇㅁㄴㅇ" + applicationVo.getUser_id());
      for(ApplicationVo av : userList) {
     	 
      }
@@ -499,6 +499,7 @@ public class TogeteherController {
 		if (r > 0) {
 			re = "1";
 		}
+		System.out.println("신청 취소 컨트롤러 끝남");
 		return re;
 	}
 	

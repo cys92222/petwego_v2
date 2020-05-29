@@ -33,8 +33,8 @@ public class FollowController {
 	@NoLogging
 	@RequestMapping("/follow/insert_follow")
 	@ResponseBody
-	public String insert_follow(HttpServletRequest request,FollowVo f,String in_user_id) {
-		
+	public String insert_follow(HttpServletRequest request,FollowVo f,String in_user_id, String user_id2) {
+		f.setUser_id(user_id2);
 		System.out.println("팔로우 컨트로러"+f);
 		System.out.println("팔로우할 아이디 "+f.getUser_id());
 		f.setUser_id2(in_user_id);//팔로우한 아이디에 로그인한 아이디 설정

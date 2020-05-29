@@ -89,11 +89,14 @@
 	</update> -->
 		
 	<insert id="reservePlace" parameterType="com.example.demo.vo.ReservationVo">
-		insert into reservation(rsv_no,user_id,rsv_price,rsv_date,check_in,check_out,human_num,pet_num,rm_no)
-		values(seq_rsv_no.nextval,#{user_id},#{rsv_price},sysdate,#{check_in},#{check_out},#{human_num},#{pet_num},#{rm_no})		
+		insert into reservation(rsv_no,user_id,rsv_price,rsv_date,check_in,check_out,human_num,pet_num,rm_no,rsv_paid,guest_name,guest_tel)
+		values(seq_rsv_no.nextval,#{user_id},#{rsv_price},sysdate,#{check_in},#{check_out},#{human_num},#{pet_num},#{rm_no},'결제대기',#{guest_name},#{guest_tel})		
 	</insert>
  
- 
+<!-- 결제안한 예약 정보 조회 -->
+<select id="select_reserve" resultType="com.example.demo.vo.ReservationVo">
+	select * from reservation where user_id = #{user_id} and rsv_paid = '결제대기'
+</select>
 	
  
 	

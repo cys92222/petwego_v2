@@ -19,5 +19,9 @@ public class ReservationVo {
 	private int human_num;
 	private int pet_num;
 	private int rm_no;
+	
+	private String rsv_paid;	//예약 상태 : 결제대기/결제완료
+	private String guest_name;	//투숙객 이름
+	private String guest_tel;	//투숙객 전화번호
 }
 

@@ -30,7 +30,7 @@ public class ReservationController {
 	@Autowired
 	MypageDao my;
 	
-	@RequestMapping(value = "/facility/aa")
+	@RequestMapping(value = "/facility/reserve")
 	@ResponseBody
 	public String reserve(HttpServletRequest request,ReservationVo r,Model model) throws Exception{
 		System.out.println("aaaaaasdasdasdasdddddd"+r);
@@ -58,13 +58,18 @@ public class ReservationController {
 	
 	//결제창으로 정보 넘기기위한
 	@NoLogging
-	@RequestMapping("/facility/bb")
+	@RequestMapping("/facility/pay")
 	public ModelAndView rr(String str) {
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id(str);
 		
 		ModelAndView mav = new ModelAndView();
+//		회원정보
+		
 		mav.addObject("my", my.select_myinfo(m));
+//		예약정보
+		mav.addObject("to", service.select_reserve(str));
+		
 		mav.setViewName("payments/paySystem");
 		
 		return mav;

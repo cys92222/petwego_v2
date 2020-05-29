@@ -26,11 +26,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.service.FacilityService;
+import com.example.demo.service.MypageService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 
 import com.example.demo.vo.FacilityVo;
+import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.ReservationVo;
 import com.example.demo.vo.ReviewVo;
 import com.example.demo.vo.RoomVo;
@@ -43,6 +45,9 @@ public class FacilityController{
 	
 	@Autowired
 	FacilityService service;
+	
+	@Autowired
+	MypageService ms;
 	
 	//숙소 목록	
 	@RequestMapping(value="/facility/list",method = RequestMethod.GET)
@@ -70,11 +75,16 @@ public class FacilityController{
 	
 	//숙소 상세(객실목록 및 리뷰목록)
 	@RequestMapping(value="/facility/detail",method = RequestMethod.GET)
-	public String get(HttpServletRequest request,@RequestParam("facility_no") int facility_no,FacilityVo facilityVo,RoomVo roomVo, ReviewVo reviewVo, Model model) throws Exception{
+	public String get(HttpServletRequest request,@RequestParam("facility_no") int facility_no,FacilityVo facilityVo,RoomVo roomVo, ReviewVo reviewVo, Model model, String user_id) throws Exception{
 		LOGGER.info("getFacility");
 		model.addAttribute("getFacility",service.getFacility(facilityVo.getFacility_no()));
 		model.addAttribute("listRoom",service.listRoom(roomVo.getFacility_no()));
 		model.addAttribute("listReview",service.listReview(reviewVo.getFacility_no()));
+		
+		//회원 정보
+		MemberInfoVo m = new MemberInfoVo();
+		m.setUser_id(user_id);
+		model.addAttribute("my", ms.select_myinfo(m));
 		return "facility/detail";
 	}	
 	
