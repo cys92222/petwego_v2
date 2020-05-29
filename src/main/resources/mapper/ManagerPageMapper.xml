@@ -63,10 +63,11 @@
 				 cs_no = #{cs_no} where notice_no = #{notice_no}
 	</update>
 	
-	<!-- 관리자메인 / 일주일/ 문의게시판 글 수 -->
+	<!-- 관리자메인 / 일주일/ 문의게시판 문의 글 수! 답변글 수는 제외하고 순수 문의글만  -->
 	<select id="newQnA" resultType="int">
 		select count(*) from qna
-			where inq_date <![CDATA[  <    ]]> sysdate and inq_date <![CDATA[  >    ]]> sysdate - 6
+			where ref_step = 0 and ref_level = 0
+				and inq_date <![CDATA[  <    ]]> sysdate and inq_date <![CDATA[  >    ]]> sysdate - 6
 	</select>
 	
 	<!-- 관리자메인 / 총 관리중인 숙소 숫자 -->
