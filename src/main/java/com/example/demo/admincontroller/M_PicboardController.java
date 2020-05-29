@@ -23,15 +23,11 @@ public class M_PicboardController {
 	
 	//리스트
 	@NoLogging
-	@RequestMapping("/management/picboad/listPicboad")
+	@RequestMapping("/management/picboard/listPicboard")
 	public String picBoardList(Model model){
-		//게시물 목록
-//		Gson gson = new Gson();
-//		String str = gson.toJson(service.picboaard_list());
-//		model.addAttribute("boardList", str);
-//		System.out.println(str);
-		
+
 		model.addAttribute("boardList", service.picboaard_list());
+		
 		//사진 목록
 		model.addAttribute("fileList", service.picboardfile_list());
 		return "management/picboard/listPicboard";
@@ -39,9 +35,9 @@ public class M_PicboardController {
 	
 	//상세보기
 	@NoLogging
-	@RequestMapping("/management/picboad/detailPicboad")
+	@RequestMapping("/management/picboard/detailPicboard")
 	public String picBoardDetail(int photo_no,Model model){
-		System.out.println("상세보기할 번호" + photo_no);
+//		System.out.println("상세보기할 번호" + photo_no);
 		Pic_BoardVo pb = service.picboaard_detail(photo_no);
 		Pic_Board_FileVo pbf = service.picboardfile_detail(photo_no);
 		List<Pic_Board_CommentVo> pbc = service.picboardcomment_list(photo_no);
@@ -50,15 +46,15 @@ public class M_PicboardController {
 		model.addAttribute("pbf", pbf);
 		model.addAttribute("pbc", pbc);
 		
-		System.out.println(pb);
-		System.out.println(pbc);
-		System.out.println(pbc);
+//		System.out.println(pb);
+//		System.out.println(pbc);
+//		System.out.println(pbc);
 		return "management/picboard/detailPicboard";
 	}
 	
 	//삭제
 	@NoLogging
-	@RequestMapping("/management/picboad/deletePicboard")
+	@RequestMapping("/management/picboard/deletePicboard")
 	public String deletePicboard(int photo_no,Model model) {
 		//좋아요 삭제
 		service.like_delete(photo_no);
@@ -72,19 +68,19 @@ public class M_PicboardController {
 		//게시물 삭제
 		service.picboard_delete(photo_no);
 		
-		return "redirect:/management/picboad/listPicboad";
+		return "redirect:/management/picboard/listPicboard";
 	}
 	
 	
 	
 	//댓글 삭제
 	@NoLogging
-	@RequestMapping("/management/picboad/picboardcomment_delete")
+	@RequestMapping("/management/picboard/picboardcomment_delete")
 	public String picboardcomment_delete(int photo_comm_no, int photo_no) {
-		System.out.println("삭제할 댓글번호" + photo_comm_no);
-		System.out.println("상세보기 글 번호" + photo_no);
+//		System.out.println("삭제할 댓글번호" + photo_comm_no);
+//		System.out.println("상세보기 글 번호" + photo_no);
 		service.picboardcomment_delete(photo_comm_no);
 		
-		return "redirect:/management/picboad/detailPicboad?photo_no="+photo_no;
+		return "redirect:/management/picboard/detailPicboard?photo_no="+photo_no;
 	}
 }

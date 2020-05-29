@@ -97,9 +97,9 @@
 		        				<span class="text">문의답변 | 관리자</span>
 	       					</a>
 	       					<!-- 삭제버튼 -->
-	       					<a href="/management/qna/deleteQnA?inq_no=${detailQnA.inq_no}" class="btn btn-success btn-icon-split" id="btnDelete" style="float: right">
+	       					<a href="/management/qna/deleteQnA?inq_no=${detailQnA.inq_no}" class="btn btn-danger btn-icon-split" id="btnDelete" style="float: left;">
 		       					<span class="icon text-white-50">
-		        				<i class="fas fa-edit"></i>
+		        				<i class="fas fa-trash"></i>
 		         				</span>
 		        				<span class="text">답변삭제 | 관리자</span>
 	       					</a>

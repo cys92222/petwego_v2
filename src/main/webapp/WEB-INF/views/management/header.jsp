@@ -89,7 +89,7 @@
 						<a class="collapse-item" href="/management/notice/listNotice">공지사항</a>
 						<a class="collapse-item" href="/management/qna/listQnA">문의사항</a> <a
 							class="collapse-item" href="/management/freeBoard/listBoard">자유게시판</a>
-						<a class="collapse-item" href="/management/picboad/listPicboad">SNS게시판</a>
+						<a class="collapse-item" href="/management/picboard/listPicboard">SNS게시판</a>
 						<a class="collapse-item" href="#">함께가요</a>
 					</div>
 				</div></li>

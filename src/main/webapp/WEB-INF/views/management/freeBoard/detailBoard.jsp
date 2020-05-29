@@ -83,14 +83,18 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">댓글목록</h6>
 						</div>
-						<table id="comm_list" class="table table-bordered" border="1" width="80%" style="text-align: center;">
+						<table id="comm_list" class="table table-bordered" border="1" width="80%" style="text-align: center; ">
 							<th>내용</th><th>작성일</th><th>아이디</th><th>비고</th>
 							<c:forEach items="${detailComment }" var="comment">
 								<tr>
 									<td>${comment.comm_cont }</td>
 									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${comment.comm_date }"/></td>							
 									<td>${comment.user_id }</td>
-									<td><a href="/management/freeBoard/commDeleteSubmit?comm_num=${comment.comm_num }&board_no=${detailBoard.board_no }">삭제</a></td>
+									<td>
+										<a href="/management/freeBoard/commDeleteSubmit?comm_num=${comment.comm_num }&board_no=${detailBoard.board_no }" class="btn btn-danger btn-circle">
+                    					<i class="fas fa-trash"></i>
+                 						</a>
+                 					</td>
 								</tr>
 							</c:forEach>
 						</table>							
