@@ -113,7 +113,7 @@
       $("#follow").click(function(){
          var follow_user_id = $("#follow_user_id").val();
          var follow_in_user_id = $("#follow_in_user_id").val();
-         $.ajax("/follow/insert_follow",{data:{user_id:follow_user_id,in_user_id:follow_in_user_id},success:function(re){
+         $.ajax("/follow/insert_follow",{data:{user_id2:follow_user_id,in_user_id:follow_in_user_id},success:function(re){
             alert(re);
             window.location.reload(true);
             }});
