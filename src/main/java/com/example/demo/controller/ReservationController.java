@@ -70,6 +70,10 @@ public class ReservationController {
 //		예약정보
 		mav.addObject("to", service.select_reserve(str));
 		
+//		호텔정보
+		
+//		방정보
+		
 		mav.setViewName("payments/paySystem");
 		
 		return mav;

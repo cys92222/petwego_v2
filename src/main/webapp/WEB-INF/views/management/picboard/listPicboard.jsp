@@ -29,7 +29,9 @@
 						<!-- Basic Card Example -->
 						<div class="card shadow mb-4" style="width: 300px; text-align: center; float: left;" >
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">${boardList[status.index].user_id }</h6>
+								<h6 class="m-0 font-weight-bold text-primary">
+								${pic.photo_no } || ${boardList[status.index].user_id }
+								</h6>
 							</div>
 							<a href="/management/picboard/detailPicboard?photo_no=${pic.photo_no }">
 							<div class="card-body">

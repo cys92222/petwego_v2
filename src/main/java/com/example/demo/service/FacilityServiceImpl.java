@@ -69,6 +69,24 @@ public class FacilityServiceImpl implements FacilityService {
 		ReservationVo rv = dao.select_reserve(user_id);
 		return rv;
 	}
+//	아이디로 rm_no조회
+	@Override
+	public ReservationVo select_rm_no(String user_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+//	rm_no로 방이름 조회
+	@Override
+	public RoomVo select_room_name(int rm_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+//	rm_no로 호텔 조회
+	@Override
+	public FacilityVo select_facility(int rm_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 

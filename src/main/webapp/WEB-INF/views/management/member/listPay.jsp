@@ -9,6 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function() {
+	// 테이블 정렬 defalut가 asc라서 예약번호(1) 기준으로 desc해달라고 함 
+    $('#ok').DataTable( {
+        "order": [[ 1, "desc" ]]
+    } );
+} );
+</script>
 </head>
 <body>
 <br>
@@ -27,7 +35,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;">
 						<thead>
 							<tr>
 								<th>아이디</th>
