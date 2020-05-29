@@ -7,8 +7,35 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quixlab - Bootstrap Admin Dashboard Template by
-	Themefisher.com</title>
+<title>PET WE GO</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#myPet").click(function(){
+		location.href="/pic_board/list";
+	});
+});
+$(function(){
+	$("#reservation").click(function(){
+		location.href="/pic_board/list";
+	});
+});
+$(function(){
+	$("#board").click(function(){
+		location.href="/board/list";
+	});
+});
+$(function(){
+	$("#together").click(function(){
+		location.href="/together/listTogether";
+	});
+});
+$(function(){
+	$("#myPage").click(function(){
+		location.href="/mypage/mypage";
+	});
+});
+</script>
 <!-- Favicon icon -->
 <link rel="icon" type="../resources/quixlab/image/png" sizes="16x16"
 	href="../resources/quixlab/images/favicon.png">
@@ -97,65 +124,8 @@
 				</div>
 				<div class="header-right">
 					<ul class="clearfix">
-						<li class="icons dropdown"><a href="javascript:void(0)"
-							data-toggle="dropdown"> <i class="mdi mdi-email-outline"></i>
-								<span class="badge badge-pill gradient-1">3</span>
-						</a>
-							<div class="drop-down animated fadeIn dropdown-menu">
-								<div
-									class="dropdown-content-heading d-flex justify-content-between">
-									<span class="">3 New Messages</span> <a
-										href="javascript:void()" class="d-inline-block"> <span
-										class="badge badge-pill gradient-1">3</span>
-									</a>
-								</div>
-								<div class="dropdown-content-body">
-									<ul>
-										<li class="notification-unread"><a
-											href="javascript:void()"> <img
-												class="float-left mr-3 avatar-img"
-												src="../resources/quixlab/images/avatar/1.jpg" alt="">
-												<div class="notification-content">
-													<div class="notification-heading">Saiful Islam</div>
-													<div class="notification-timestamp">08 Hours ago</div>
-													<div class="notification-text">Hi Teddy, Just wanted
-														to let you ...</div>
-												</div>
-										</a></li>
-										<li class="notification-unread"><a
-											href="javascript:void()"> <img
-												class="float-left mr-3 avatar-img"
-												src="../resources/quixlab/images/avatar/2.jpg" alt="">
-												<div class="notification-content">
-													<div class="notification-heading">Adam Smith</div>
-													<div class="notification-timestamp">08 Hours ago</div>
-													<div class="notification-text">Can you do me a
-														favour?</div>
-												</div>
-										</a></li>
-										<li><a href="javascript:void()"> <img
-												class="float-left mr-3 avatar-img"
-												src="../resources/quixlab/images/avatar/3.jpg" alt="">
-												<div class="notification-content">
-													<div class="notification-heading">Barak Obama</div>
-													<div class="notification-timestamp">08 Hours ago</div>
-													<div class="notification-text">Hi Teddy, Just wanted
-														to let you ...</div>
-												</div>
-										</a></li>
-										<li><a href="javascript:void()"> <img
-												class="float-left mr-3 avatar-img"
-												src="../resources/quixlab/images/avatar/4.jpg" alt="">
-												<div class="notification-content">
-													<div class="notification-heading">Hilari Clinton</div>
-													<div class="notification-timestamp">08 Hours ago</div>
-													<div class="notification-text">Hello</div>
-												</div>
-										</a></li>
-									</ul>
-
-								</div>
-							</div></li>
+						
+						<!-- 알람 시작 -->
 						<li class="icons dropdown"><a href="javascript:void(0)"
 							data-toggle="dropdown"> <i class="mdi mdi-bell-outline"></i>
 								<span class="badge badge-pill gradient-2">3</span>
@@ -208,20 +178,9 @@
 
 								</div>
 							</div></li>
-						<li class="icons dropdown d-none d-md-flex"><a
-							href="javascript:void(0)" class="log-user" data-toggle="dropdown">
-								<span>English</span> <i class="fa fa-angle-down f-s-14"
-								aria-hidden="true"></i>
-						</a>
-							<div
-								class="drop-down dropdown-language animated fadeIn  dropdown-menu">
-								<div class="dropdown-content-body">
-									<ul>
-										<li><a href="javascript:void()">English</a></li>
-										<li><a href="javascript:void()">Dutch</a></li>
-									</ul>
-								</div>
-							</div></li>
+						<!-- 알람 끝 -->
+						
+						
 						<li class="icons dropdown">
 							<div class="user-img c-pointer position-relative"
 								data-toggle="dropdown">
@@ -266,29 +225,34 @@
 					<li class="nav-label">Menu</li>
 					<li><a class="has-arrow" href="javascript:void()"
 						aria-expanded="false"> <i class="icon-speedometer menu-icon"></i><span
-							class="nav-text">마이펫</span>
+							class="nav-text" id="myPet">마이펫</span>
 					</a></li>
 					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
 						href="javascript:void()" aria-expanded="false"> <i
-							class="icon-globe-alt menu-icon"></i><span class="nav-text">숙소찾기</span>
+							class="icon-globe-alt menu-icon"></i><span class="nav-text" id="reservation">숙소찾기</span>
 					</a></li>
 
 					<li><a class="has-arrow" href="javascript:void()"
 						aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
-							<span class="nav-text">커뮤니티</span>
+							<span class="nav-text" id="board">커뮤니티</span>
 					</a></li>
 					<li><a class="has-arrow" href="javascript:void()"
 						aria-expanded="false"> <i class="icon-screen-tablet menu-icon"></i><span
-							class="nav-text">함께가요</span>
+							class="nav-text" id="together">함께가요</span>
 					</a></li>
 					<li><a class="has-arrow" href="javascript:void()"
 						aria-expanded="false"> <i class="icon-graph menu-icon"></i> <span
 							class="nav-text">고객지원</span>
 					</a>
 						<ul aria-expanded="false">
-							<li><a href="./chart-flot.html">공지사항</a></li>
-							<li><a href="./chart-morris.html">문의사항</a></li>
+							<li><a href="/customerservice/allNotice">공지사항</a></li>
+							<li><a href="/customerservice/List">문의사항</a></li>
 						</ul></li>
+						
+						<li><a class="has-arrow" href="javascript:void()"
+						aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
+							<span class="nav-text" id="myPage">마이페이지</span>
+					</a></li>
 				</ul>
 			</div>
 		</div>
@@ -297,3 +261,10 @@
         ***********************************-->
 
 		<div class="content-body">
+		
+		<!-- view페이지 작업할때 민아가 준 Quixlab사이트에서  f12누르고  <div class="content-body"> 검색 후 다음 코드부터 복사 한 후 작업 시작 -->
+		<!-- ex) -->
+		<!-- <div class="content-body"> -->
+		
+		<!-- 여기서부터 코드 긁어오면 됌 -->
+		<!-- 	<div class="어쩌구저쩌구"> -->
