@@ -256,7 +256,7 @@ $("#nickCheck").on("click", function(){
 
       $("#myForm button[type=submit]").attr("disabled", "disabled");
    };
-   
+/*   
    function execPostCode() {
        new daum.Postcode({
            oncomplete: function(data) {
@@ -300,6 +300,7 @@ $("#nickCheck").on("click", function(){
           }
        }).open();
    }
+*/
 
 </script>
 </html>
