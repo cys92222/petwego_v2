@@ -205,7 +205,6 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부 안함");
-			a.setPet_pic("사진없음");
 		}
 //		System.out.println("동물등록");
 		
@@ -265,7 +264,6 @@ public class MyPageController {
 			
 		}else {
 			System.out.println("사진첨부안함");
-			m.setFname("사진없음");
 		}
 		
 		mypageservice.update_myinfo(m);
@@ -332,7 +330,7 @@ public class MyPageController {
 			
 		}else {
 			System.out.println("사진첨부안함");
-			m.setFname("사진없음");
+//			m.setFname(m.getFname());
 		}
 		
 		mypageservice.update_myinfo(m);
@@ -539,6 +537,7 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부안함");
+//			a.setPic(a.getPic());
 		}
 		
 		ModelAndView mav = new ModelAndView();

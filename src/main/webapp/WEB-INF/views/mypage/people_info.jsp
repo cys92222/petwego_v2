@@ -86,6 +86,7 @@ $(document).ready(function(){
 		주소 <input type="text" value="${m.address }" name="address"><br>
 		성별 <input type="text" value="${m.gender }" name="gender"><br>
 		사진 <img alt="사진이 없습니다" src="/img/peopleImg/${m.fname }"><br>
+		<input type="hidden" value="${m.fname }">
 		<a href="/mypage/delete_people_pic?user_id=${m.user_id }">사진 삭제</a><br>
 		<input type="hidden" value="${m.fname }" name="fname"> <br>
 		<input type="file" name="aa"><br>
