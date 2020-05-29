@@ -45,4 +45,13 @@ public interface FacilityDao {
 	
 //	결제안한 예약 조회
 	ReservationVo select_reserve(String user_id);
+	
+//	아이디로 rm_no조회
+	ReservationVo select_rm_no(String user_id);
+
+//	rm_no로 방이름 조회
+	RoomVo select_room_name(int rm_no);
+
+//	rm_no로 호텔 조회
+	FacilityVo select_facility(int rm_no);
 }

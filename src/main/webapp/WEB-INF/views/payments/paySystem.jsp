@@ -163,6 +163,9 @@ $(function(){
 		예약번호<input type="text" id="rsv_no" value="${to.rsv_no }"/><br>
 		투숙객이름<input type="text" value="${to.guest_name }"><br>
 		투숙객전화번호<input type="text" value="${to.guest_tel }"> <br>
+		
+		방이름
+		호텔이름
 	</form>
 
 </body>
