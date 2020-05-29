@@ -1456,7 +1456,7 @@ font-size: 14px;
 																										<td>객실수</td>
 																										<td><input class="form-control" id="cnt" type="text" value="1"></td>
 																										<td>1박당가격</td>
-																										<td><input class="form-control" id="price" type="text"></td>
+																										<td><input class="form-control" id="price" type="text" readonly="readonly"></td>
 																									</tr>
 																									<tr>
 																										<td>인원수</td>
@@ -1482,10 +1482,22 @@ font-size: 14px;
 																		
 																									</tr>
 																									
+																									<tr><td><h4>투숙객 정보</h4></td></tr>
+																									<tr>
+																										<td>이름</td>
+																										<td><input class="form-control" id="user_id" type="text" value="${login_id }" readonly="readonly"></td>
+																										<td>연락처</td>
+																										<td><input class="form-control" id="name" type="text"></td>
+																									</tr>
+																									
+													
+										
+																									
+																																					
 																									<tr><td><h4>예약내역 확인</h4></td></tr>
 																									<tr>
 																										<td>총예약금액</td>
-																										<td><input class="form-control" id="rsv_price" type="text"></td>
+																										<td><input class="form-control" id="rsv_price" type="text" readonly="readonly"></td>
 																									</tr>					
 																								</table>
 																								
