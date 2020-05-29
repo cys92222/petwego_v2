@@ -164,8 +164,10 @@ $(function(){
 		투숙객이름<input type="text" value="${to.guest_name }"><br>
 		투숙객전화번호<input type="text" value="${to.guest_tel }"> <br>
 		
-		방이름
-		호텔이름
+		방이름<input type="text" id="rm_name" value="${room.rm_name }"><br>
+		호텔이름<input type="text" id="facility_name" value="${Facility.facility_name }"><br>
+		
+		가격<input type="text" id="rsv_price" value="${to.rsv_price }"><br>
 	</form>
 
 </body>

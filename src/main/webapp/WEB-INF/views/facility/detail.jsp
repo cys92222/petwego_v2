@@ -1725,7 +1725,7 @@ font-size: 14px;
 				'rm_no' : rm_no,
 				'facility_no' : facility_no,
 				'guest_name' : $("#guest_name").val(),
-				'guest_tel' : $("#guest_tel").val()
+				'guest_tel' : $("#guest_tel").val(),
 			};
 
 			//'{yyyy}-{mm}-{dd}'
