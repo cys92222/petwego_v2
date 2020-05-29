@@ -444,24 +444,38 @@ public class MyPageController {
 	@RequestMapping("/mypage/update_pwd")
 	@ResponseBody
 	public String update_pwd(HttpServletRequest request, HttpServletResponse response, MemberInfoVo m, String o_pwd,String o_user_id) {
+		//세션에 저장된 정보 받기위해서 세션 설정
 		HttpSession session = request.getSession();
+		//시큐리티가 권한 검사
 	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    //sever가 보내준 vo 받아와서 vo에 실려있는 권한 받아오기
 	    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
 
+	    //vo에 실려온 user_id를 mapper로 보내서 이 아이디가 가진 나머지 정보들 가져오기
 		memberInfo = loginMapperDao.getSelectMemberInfo(o_user_id);
+		//이 정보를 다시 자바가 갖고 있는 vo에 담아주기
 		memberInfo.setUser_id(o_user_id);
 		
+		//vo에 실려온 '기존 비밀번호' 받아오기
 		String pwd = memberInfo.getPwd();
+		//사용자가 입력한 '변경할 비밀번호' 받아오기
 		String pwd2 = m.getPwd2();
 		
+		//o_pwd = 원래 사용자 비밀번호, pwd = (비밀번호 확인을 위해) 사용자가 입력한 비밀번호 
+		//기존 비밀번호를 확인하는 작업
 		boolean pwdCheck = passwordEncoder.matches(o_pwd, pwd);
+		//비밀번호가 일치하면 사용자가 입력해준 '바꿀 비밀번호'를 암호화하기
 		if(pwdCheck==true) {
 			 String encPassword = passwordEncoder.encode(pwd2);
+			 //암호화된 비밀번호를 vo에 담기
 			 memberInfo.setPwd2(encPassword);			
 		}else {
+			//비밀번호 일치하지 않으면 수정페이지로 다시 리턴
 			return "redirect:/mypage/mypage";	//여긴 어디로 보낼지 고민!
 		}
 		
+		//새로 바꿀 비밀번호를 vo에 담아놨으면 그걸로 다시 mapper에 보내서 update 실행하기 
+		//(그렇게 하면 기존 비밀번호가 새로 바뀜) 
 		mypageservice.update_pwd(memberInfo);	 
 		return "ok";
 	}
