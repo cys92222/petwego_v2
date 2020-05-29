@@ -12,12 +12,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$(function(){
-		
 
-	})
 </script>
-
 </head>
 <body>
 <br>
@@ -35,7 +31,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>번호</th>

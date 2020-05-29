@@ -10,7 +10,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-
+$(document).ready(function() {
+	// 테이블 정렬 defalut가 asc라서 게시물번호(0) 기준으로 desc해달라고 함 
+    $('#ok').DataTable( {
+        "order": [[ 0, "desc" ]]
+    } );
+} );
 </script>
 </head>
 <body>
@@ -30,7 +35,7 @@
 
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;">
 						<thead>
 							<tr>
 								<th>게시물번호</th>
