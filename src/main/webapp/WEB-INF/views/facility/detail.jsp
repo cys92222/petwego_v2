@@ -1576,9 +1576,28 @@ font-size: 14px;
 			// input 값 가져오기
 			var input = container.children();
 			//var facility_name = input.eq(0).val();
+			
+			/* 주련) 5월29일, 숙박일수 계산 오류로 인한 수정 */
 			var check_in = input.eq(1).val();
 			var check_out= input.eq(2).val();
-			var nights = parseInt(check_out.substr(8,2)) - parseInt(check_in.substr(8,2));
+
+			var check_inArr = check_in.split('-');
+			var check_outArr = check_out.split('-');
+
+			var dateObj1 = new Date(check_inArr[0],Number(check_inArr[1])-1,check_inArr[2]);
+			var dateObj2 = new Date(check_outArr[0],Number(check_outArr[1])-1,check_outArr[2])
+
+
+			
+			
+			var nights =(dateObj2.getTime()-dateObj1.getTime())/24;
+
+
+
+		/* parseInt(check_out.substr(8,2)) - parseInt(check_in.substr(8,2)); */
+
+			
+			
 			
 		
 			var roomOption = input.eq(4).find('#room').find('option:selected').val();
