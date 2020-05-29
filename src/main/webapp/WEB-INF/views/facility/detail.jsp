@@ -1590,7 +1590,7 @@ font-size: 14px;
 
 			
 			
-			var nights =(dateObj2.getTime()-dateObj1.getTime())/24;
+			var nights =(dateObj2.getTime()-dateObj1.getTime())/1000/60/60/24;
 
 
 
