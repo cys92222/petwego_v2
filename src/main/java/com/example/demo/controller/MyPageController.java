@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.AlarmService;
+import com.example.demo.service.FacilityService;
 import com.example.demo.service.MypageService;
 import com.example.demo.service.SecurityService;
 import com.example.demo.util.AopLog.NoLogging;
@@ -51,6 +52,9 @@ public class MyPageController {
 	 
 	@Autowired
 	AlarmService alarmSerivce;
+	
+	@Autowired
+	FacilityService fs;
 	
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
@@ -125,6 +129,14 @@ public class MyPageController {
 		
 		//결제 정보
 		mav.addObject("search_pay", mypageservice.search_pay(m));
+		
+		//예약 정보
+		//아이디로 rm_no 찾고 방 조회
+//		int rm_no = fs.select_rm_no(m.getUser_id());
+//		mav.addObject("room", fs.select_room_name(rm_no));
+		
+		//모든 예약 리스트
+		mav.addObject("reservation", fs.select_reservation_list(m.getUser_id()));
 		
 		return mav;
 		

@@ -104,6 +104,23 @@ public class FacilityServiceImpl implements FacilityService {
 		return fv;
 	}
 	
+//	결제하면 rsv_paid를 결제완료로 수정	
+	@Override
+	public int pay_rsv_paid(String user_id, int rsv_no) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = dao.pay_rsv_paid(user_id, rsv_no);
+		return re;
+	}
+	
+//	모든 예약 리스트	
+	@Override
+	public List<ReservationVo> select_reservation_list(String user_id) {
+		// TODO Auto-generated method stub
+		List<ReservationVo> list = dao.select_reservation_list(user_id);
+		return list;
+	}
+	
 
 
 

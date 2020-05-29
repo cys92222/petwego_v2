@@ -150,6 +150,19 @@ $(function(){
 	</ul>
 </section>
 
+<section id="reserve_list">
+	<h2>${myinfo.user_id }(${myinfo.nick_name })님의 예약내역입니다</h2>
+	<a href="#">더보기</a>
+	<table>
+		<th>예약번호</th><th>체크인</th><th>체크아웃</th><th>사람수</th><th>동물수</th><th>예약상태</th><th>예약자이름</th><th>예약자전화번호</th><th>업소이름</th><th>방이름</th>
+		<c:forEach items="${reservation }" var="rs">
+			<tr>
+				<td>${rs.rsv_no }</td><td>${rs.check_in }</td><td>${rs.check_out }</td><td>${rs.human_num }</td><td>${rs.pet_num }</td><td>${rs.rsv_paid }</td><td>${rs.guest_name }</td><td>${rs.guest_tel }</td>
+			</tr>
+		</c:forEach>
+	</table>
+</section>
+
 <section id="pay_list">
 	<h2>${myinfo.user_id }(${myinfo.nick_name })님의 결제내역입니다</h2>  
 	<a href="/mypage/pay_list">더보기</a><br>

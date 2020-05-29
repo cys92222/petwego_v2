@@ -58,4 +58,10 @@ public interface FacilityDao {
 //	facility_no로 호텔 조회
 	FacilityVo select_facility(int facility_no);
 	
+//	결제하면 rsv_paid를 결제완료로 수정
+	int pay_rsv_paid(String user_id, int rsv_no);
+	
+//	모든 예약 리스트	
+	List<ReservationVo> select_reservation_list(String user_id);
+	
 }

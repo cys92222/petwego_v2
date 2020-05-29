@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.demo.service.FacilityService;
 import com.example.demo.service.PaymentService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.Board_fileVo;
@@ -25,6 +26,9 @@ public class PaymentController {
 
 	@Autowired
 	PaymentService pay_service;
+	
+	@Autowired
+	FacilityService fs;
 
 	public void setPay_service(PaymentService pay_service) {
 		this.pay_service = pay_service;
@@ -40,7 +44,7 @@ public class PaymentController {
 	// 결제정보 등록
 	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String insertSubmit(HttpServletRequest request, @RequestBody List<PaymentVo> listPay) {
+	public String insertSubmit(HttpServletRequest request, @RequestBody List<PaymentVo> listPay,String user_id, int rsv_no) {
 		
 		
 		for (PaymentVo pv : listPay) {
@@ -59,6 +63,8 @@ public class PaymentController {
 			}
 			
 			pay_service.insertPay(pv);
+			//결제완료하면 예약 테이블에서 결제대기를 결제완료로 수정
+			fs.pay_rsv_paid(user_id, rsv_no);
 		}
 
 		System.out.println("결제컨트롤러 동작함");
