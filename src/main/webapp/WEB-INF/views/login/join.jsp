@@ -78,14 +78,14 @@
       </div>
         <div class="form-group has-feedback">
         <label class="control-label" for="address">주소</label><br/>                   
-		<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="address" id="address" type="text" readonly="readonly" required="required">
+		<input class="form-control" style="width: 40%; display: inline;" placeholder="우편번호" name="address" id="address" type="text" readonly="readonly"/>
 		    <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>                               
 	  </div>
 	  <div class="form-group has-feedback">
-		<input class="form-control" style="top: 5px; width: 40%; display: inline;" placeholder="도로명 주소" name="address2" id="address2" type="text" readonly="readonly" required="required"/>
+		<input class="form-control" style="top: 5px; width: 40%; display: inline;" placeholder="도로명 주소" name="address2" id="address2" type="text" readonly="readonly"/>
 	  </div>
 	  <div class="form-group has-feedback">
-		<input class="form-control" style="width: 40%; display: inline;" placeholder="상세주소" name="address3" id="address3" type="text"  required="required"/>
+		<input class="form-control" style="width: 40%; display: inline;" placeholder="상세주소" name="address3" id="address3" type="text"/>
 	  </div>
       
       <div class="form-group has-feedback">

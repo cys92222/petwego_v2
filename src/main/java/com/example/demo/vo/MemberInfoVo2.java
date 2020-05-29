@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public class MemberInfoVo2 implements UserDetails {	//User를 확장
 
-	
 	private static final long serialVersionUID = 1L;
 	
 	private MemberInfoVo member1;
