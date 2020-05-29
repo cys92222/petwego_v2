@@ -3,12 +3,12 @@
 <mapper namespace="com.example.demo.dao.M_PicboardDao">
 <!-- 픽보드 리스트 -->
 <select id="picboaard_list" resultType="com.example.demo.vo.Pic_BoardVo">
-	select * from pic_board
+	select * from pic_board order by photo_no desc
 </select>
 
 <!-- 픽보드파일 리스트 -->
 <select id="picboardfile_list" resultType="com.example.demo.vo.Pic_Board_FileVo">
-	select * from pic_board_file
+	select * from pic_board_file order by photo_no desc
 </select>
 
 <!-- 픽보드 상세보기 -->

@@ -16,9 +16,15 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(function() {
+		// 공지글 등록버튼
 		$("#btnInsert").click(function() {
 			self.location = "/management/notice/insertNotice"
 		})
+		
+		// 테이블 정렬 defalut가 asc라서 글번호(0) 기준으로 desc해달라고 함 
+	    $('#ok').DataTable( {
+	        "order": [[ 0, "desc" ]]
+	    } );
 	})
 </script>
 
@@ -49,7 +55,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;">
 						<thead>
 							<tr>
 								<th>번호</th>
