@@ -1471,23 +1471,23 @@ font-size: 14px;
 																										<td>아이디</td>
 																										<td><input class="form-control" id="user_id" type="text" value="${login_id }" readonly="readonly"></td>
 																										<td>예약자 이름</td>
-																										<td><input class="form-control" id="name" type="text"></td>
+																										<td><input class="form-control" id="name" type="text" value="${my.name }" readonly="readonly"></td>
 																									</tr>
 																									
 																									<tr>
 																										<td>연락처</td>
-																										<td><input class="form-control" id="tel" type="text"></td>
+																										<td><input class="form-control" id="tel" type="text" value="${my.tel }" readonly="readonly"></td>
 																										<td>이메일</td>
-																										<td><input class="form-control" id="email" type="text"></td>
+																										<td><input class="form-control" id="email" type="text" value="${my.email }" readonly="readonly"></td>
 																		
 																									</tr>
 																									
 																									<tr><td><h4>투숙객 정보</h4></td></tr>
 																									<tr>
 																										<td>이름</td>
-																										<td><input class="form-control" id="user_id" type="text" value="${login_id }" readonly="readonly"></td>
+																										<td><input class="form-control" id="guest_name" type="text" required="required"></td>
 																										<td>연락처</td>
-																										<td><input class="form-control" id="name" type="text"></td>
+																										<td><input class="form-control" id="guest_tel" type="text" required="required"></td>
 																									</tr>
 																									
 													
@@ -1710,7 +1710,7 @@ font-size: 14px;
 			if(action == 'reserve'){
 				facility_no = $.fn.getUrlParameter('facility_no');
 // 				url = '/facility/detail?facility_no='+facility_no,
-				url = '/facility/aa',
+				url = '/facility/reserve',
 				type = 'POST'
 			}
 			var data = {
@@ -1723,7 +1723,9 @@ font-size: 14px;
 				'human_num' : parseInt($('#human_num').val()),
 				'pet_num' : parseInt($('#pet_num').val()),
 				'rm_no' : rm_no,
-				'facility_no' : facility_no
+				'facility_no' : facility_no,
+				'guest_name' : $("#guest_name").val(),
+				'guest_tel' : $("#guest_tel").val()
 			};
 
 			//'{yyyy}-{mm}-{dd}'
@@ -1739,13 +1741,13 @@ font-size: 14px;
 // 					location.href='/payments/paySystem';
 // 				}
 // 			})
-			$.ajax("/facility/aa",{data:data,success:function(re){
+			$.ajax("/facility/reserve",{data:data,success:function(re){
 				$('#reserveModal').modal('toggle');
 // 				console.log(re);
 // 				console.log(re[0]);
 // 				location.href=re;
 // 				console.log(${result});
-				window.location.href="/facility/bb?str="+re;
+				window.location.href="/facility/pay?str="+re;
 				}});
 		})
 	</script>

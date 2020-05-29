@@ -586,7 +586,7 @@ select{
 					<c:forEach var="c" items="${listFacility}">                
 	                    <div class="grid-item featured-hotels">
 	                        <img src="${c.f_pic}" alt="" class="hotel-image">
-	                        <h5 class="hotel-name"><a href="detail?facility_no=${c.facility_no}">${c.facility_name}</a></h5>
+	                        <h5 class="hotel-name"><a href="detail?facility_no=${c.facility_no}&user_id=${login_id}">${c.facility_name}</a></h5>
 	                        <span class="hotel-price">${c.f_minprice}</span>
 	                        <div class="hotel-rating">
 	                            <i class="fas fa-star rating"></i>
@@ -595,7 +595,7 @@ select{
 	                            <i class="fas fa-star rating"></i>
 	                            <i class="fas fa-star-half rating"></i>
 	                        </div>
-	                        <a href="detail?facility_no=${c.facility_no}" class="btn btn-gradient">Book now
+	                        <a href="detail?facility_no=${c.facility_no}&user_id=${login_id}" class="btn btn-gradient">Book now
 	                            <span class="dots"><i class="fas fa-ellipsis-h"></i></span>
 	                        </a>
 	                    </div>

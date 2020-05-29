@@ -37,4 +37,7 @@ public interface FacilityService {
 	//예약
 	//public void reservePlace(int rm_no) throws Exception;
 	public void reservePlace(ReservationVo reservation) throws Exception;
+	
+	//	결제안한 예약 조회
+	ReservationVo select_reserve(String user_id);
 }

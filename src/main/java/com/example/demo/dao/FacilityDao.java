@@ -42,4 +42,7 @@ public interface FacilityDao {
 	
 	//예약
 	public void reservePlace(ReservationVo reservation) throws Exception;
+	
+//	결제안한 예약 조회
+	ReservationVo select_reserve(String user_id);
 }
