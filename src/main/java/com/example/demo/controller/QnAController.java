@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.LoginMapperDao;
+import com.example.demo.service.MypageService;
 import com.example.demo.service.QnAService;
 import com.example.demo.service.SecurityService;
 import com.example.demo.util.AopLog.NoLogging;
@@ -48,6 +49,9 @@ public class QnAController {
 	
 	@Autowired
 	SecurityService securityService;
+	
+	@Autowired
+	MypageService mysevice;
 	 
 	//고객센터 메인
 	@NoLogging
@@ -175,7 +179,12 @@ public class QnAController {
 	//qna상세보기
 	@RequestMapping("/customerservice/QnADetail")
 	public void detailQnA(HttpServletRequest request,QnAVo q, Model model) {
+		//글정보
 		model.addAttribute("detail", service.detailQnA(q));
+		//작성자 정보
+		MemberInfoVo m = new MemberInfoVo();
+		m.setUser_id(q.getUser_id());
+		model.addAttribute("member", mysevice.select_myinfo(m));
 	}
 	
 	//qna삭제

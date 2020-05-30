@@ -50,7 +50,7 @@ $(function(){
 		$("#QnA_list").append(tr);
 
 		$(tr).on("click",function(){
-			window.location.href="/customerservice/QnADetail?inq_no="+qna.inq_no;
+			window.location.href="/customerservice/QnADetail?inq_no="+qna.inq_no+"&user_id="+qna.user_id;
 			});
 		});
 });
