@@ -105,13 +105,13 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-4 col-xl-3">
-				<div class="card">
+				<div class="card text-center">
 					<div class="card-body">
-						<div class="media align-items-center mb-4">
-							<div>
-								<div class="row mb-5">
+						<div class="media align-items-center justify-content-center mb-4">
+							<div class="text-center d-flex flex-column justify-content-center">
+								<div class="row mb-5 d-flex flex-column align-items-center">
 								<h2>반려인 정보</h2>
-									<img alt="사진이 없습니다" src="/img/peopleImg/${myinfo.fname }"
+									<img class="rounded-circle" alt="사진이 없습니다" src="/img/peopleImg/${myinfo.fname }"
 										width="100" height="100">
 								</div>
 								<h3 class="mb-0">${myinfo.user_id }</h3>
@@ -128,7 +128,7 @@
 								<span>${myinfo.tel }</span></li>
 							<li><strong class="text-dark mr-4">이메일</strong> <span>${myinfo.email }</span></li>
 						</ul>
-						<button id="people_info_up_btn">수정하기</button>
+						<button class="btn btn-primary" id="people_info_up_btn">수정하기</button>
 					</div>
 				</div>
 			</div>
