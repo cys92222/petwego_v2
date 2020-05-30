@@ -53,6 +53,11 @@ $(function(){
 			window.location.href="/customerservice/QnADetail?inq_no="+qna.inq_no+"&user_id="+qna.user_id;
 			});
 		});
+
+	//문의하기 버튼
+	$("#insert_qna").click(function(){
+		window.location.href="/customerservice/insertQnAForm";
+		});
 });
 </script>
 </head>
@@ -92,6 +97,7 @@ $(function(){
 					</div>
 				</div>
 			</div>
+			<button class="btn btn-primary" id="insert_qna">문의하기</button>
 		</div>
 <%@ include file="../footer.jsp"%>
 </body>

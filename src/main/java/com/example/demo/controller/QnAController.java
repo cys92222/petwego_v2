@@ -92,6 +92,11 @@ public class QnAController {
 		return mav;
 	}
 	
+	@RequestMapping("/customerservice/insertQnAForm")
+	@NoLogging
+	public String insertQnAForm() {
+		return "customerservice/insertQnA";
+	}
 	
 	//qna등록
 	@RequestMapping("/customerservice/insertQnA")

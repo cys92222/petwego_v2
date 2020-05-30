@@ -9,26 +9,47 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="col-lg-12">
-		<div class="card">
-			<div class="card-body">
-				<h4 class="card-title">${detail.inq_title }</h4>
-				<div class="basic-form">
-					<form>
-						<div class="form-group">
-							<label>
-								<img alt="사진이 없습니다" src="../img/peopleImg/${member.fname }" width=25 height=25>  ${detail.user_id } / ${detail.inq_date }</label>
-							<div class="form-control h-150px" rows="6" id="comment">${detail.inq_content }</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="read-content">
+							<div class="media pt-5">
+								<img class="mr-3 rounded-circle"
+									src="../img/peopleImg/${member.fname }" width=25 height=25>
+								<div class="media-body">
+									<h5 class="m-b-3">${detail.user_id }</h5>
+									<small class="text-muted">${member.email }</small>
+									<p class="m-b-2">${detail.inq_date }</p>
+								</div>
+
+							</div>
+							<hr>
+							<div class="media mb-4 mt-1">
+								<div class="media-body">
+									<h4 class="m-0 text-primary">${detail.inq_title }</h4>
+
+								</div>
+							</div>
+							<div>${detail.inq_content }</div>
+
+							<hr>
+							<h6 class="p-t-15">
+								<i class="fa fa-download mb-2"></i> 첨부파일
+							</h6>
+							<div class="row m-b-30">
+								<div class="col-auto">
+									<a href="#" class="text-muted">${detail.inq_file }</a>
+								</div>
+							</div>
+							<hr>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
-
-
-
 <%@ include file="../footer.jsp"%>
 </body>
 </html>
