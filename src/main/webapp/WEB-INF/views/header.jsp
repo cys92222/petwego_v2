@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%> <!-- petwego_v2 헤더 -->
+	<%@include file="head.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -181,6 +182,7 @@ $(function(){
 						<!-- 알람 끝 -->
 						
 						
+						<sec:authorize access="isAnonymous()">
 						<li class="icons dropdown">
 							<div class="user-img c-pointer position-relative"
 								data-toggle="dropdown">
@@ -192,22 +194,37 @@ $(function(){
 								class="drop-down dropdown-profile animated fadeIn dropdown-menu">
 								<div class="dropdown-content-body">
 									<ul>
-										<li><a href="app-profile.html"><i class="icon-user"></i>
-												<span>Profile</span></a></li>
-										<li><a href="javascript:void()"> <i
-												class="icon-envelope-open"></i> <span>Inbox</span>
-												<div class="badge gradient-3 badge-pill gradient-1">3</div>
-										</a></li>
-
+										<li><a href="/login/login"><i class="icon-user"></i>
+												<span>로그인</span></a></li>
 										<hr class="my-2">
-										<li><a href="page-lock.html"><i class="icon-lock"></i>
-												<span>Lock Screen</span></a></li>
-										<li><a href="page-login.html"><i class="icon-key"></i>
-												<span>Logout</span></a></li>
+										<li><a href="/join/join"><i class="icon-lock"></i>
+												<span>회원가입</span></a></li>
 									</ul>
 								</div>
 							</div>
 						</li>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+						<li class="icons dropdown">
+							<div class="user-img c-pointer position-relative"
+								data-toggle="dropdown">
+								<span class="activity active"></span> <img
+									src="../img/peopleImg/<sec:authentication property="principal.fname"/>" 
+									height="40" width="40" alt="">
+							</div>
+							<div
+								class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+								<div class="dropdown-content-body">
+									<ul>
+										<li><a href="/mypage/mypage"><i class="icon-user"></i>
+												<span>마이페이지</span></a></li>
+										<li><a href="/login/logout"><i class="icon-key"></i>
+												<span>로그아웃</span></a></li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						</sec:authorize>
 					</ul>
 				</div>
 			</div>
