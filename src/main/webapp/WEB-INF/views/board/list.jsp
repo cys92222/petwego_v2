@@ -4,7 +4,6 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
-<%-- <%@include file="../head.jsp"%> --%>
 <%@include file="../header.jsp"%>
 <%@include file="../head.jsp"%>
 <head>
@@ -16,7 +15,6 @@
 <!-- 민아) 5/10, 자유게시판 목록 -->
 <body>
  <div class="content-body">
-
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
@@ -74,9 +72,8 @@
 					</div>
 				</div>
 			</div>
+			<%@include file="../footer.jsp"%>
 		</div>
-		<%@include file="../footer.jsp"%>
-
-	</div>
+		
 </body>
 </html>
