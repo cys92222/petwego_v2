@@ -8,7 +8,7 @@
  	<!-- 모든 qna리스트 -->
  	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo" parameterType="com.example.demo.util.Criteria">
  		<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
- 		SELECT  *
+ 		SELECT  inq_no, cs_no, inq_title, inq_content, to_char(inq_date,'yyyy-mm-dd') as inq_date, user_id, inq_file, ref, ref_step, ref_level
 		 FROM ( 
 		        select inq_no, cs_no, inq_title, inq_content, inq_date, user_id, inq_file, ref, ref_step, ref_level, ROW_NUMBER() OVER(ORDER BY inq_no DESC) AS RNUM
 		         FROM qna
@@ -31,7 +31,7 @@
 	
 	<!-- qna상세보기 -->
 	<select id="detailQnA" resultType="com.example.demo.vo.QnAVo">
-		select * from qna where inq_no = #{inq_no}
+		select inq_no, cs_no, inq_title, inq_content, to_char(inq_date,'yyyy-mm-dd') as inq_date, user_id, inq_file, ref, ref_step, ref_level from qna where inq_no = #{inq_no}
 	</select>
 	
 	<!-- qna삭제 -->

@@ -16,7 +16,7 @@ public class QnAVo {
 	private int cs_no;
 	private String inq_title;
 	private String inq_content;
-	private Date inq_date;
+	private String inq_date;
 	private String user_id;
 	private String inq_file;
 	private int ref;				//부모글 그룹

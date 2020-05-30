@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +37,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 //영수) 5월12일 QnA컨트롤러 
 //민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리
-@RestController
+@Controller
 public class QnAController {
 	
 	@Autowired
@@ -73,7 +74,7 @@ public class QnAController {
 		
 		Gson gson = new Gson();
 		mav.addObject("list", gson.toJson(service.allQnAList(scri)));
-		
+//		System.out.println("list" + service.allQnAList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -172,10 +173,9 @@ public class QnAController {
 		}
 	
 	//qna상세보기
-	@RequestMapping("/customerservice/detailQnA")
-	public QnAVo detailQnA(HttpServletRequest request,QnAVo q) {
-		QnAVo detail = service.detailQnA(q);
-		return detail;
+	@RequestMapping("/customerservice/QnADetail")
+	public void detailQnA(HttpServletRequest request,QnAVo q, Model model) {
+		model.addAttribute("detail", service.detailQnA(q));
 	}
 	
 	//qna삭제
