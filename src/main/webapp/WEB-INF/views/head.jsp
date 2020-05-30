@@ -3,7 +3,17 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>  
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
-
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="org.springframework.security.core.Authentication" %>
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,12 +28,12 @@
 </script>
 </head>
 <body>
-<!--  로그인 아이디  -->
+<!-- <!-- 로그인 아이디  -->
 <%-- <sec:authorize access="isAuthenticated()"> --%>
 <%--    <sec:authentication property="principal.user_id" var="login_id"/> --%>
 <%-- </sec:authorize> --%>
 
-<!-- <!-- 로그인 계정 유저 / 어드민 정보 안가져와짐--> 
+<!-- <!-- 로그인 계정 유저 / 어드민 정보 안가져와짐-->
 <%-- <sec:authorize access="isAuthenticated()"> --%>
 <%--    <sec:authentication property="principal.user_role" var="login_role"/> --%>
 <%-- </sec:authorize> --%>
