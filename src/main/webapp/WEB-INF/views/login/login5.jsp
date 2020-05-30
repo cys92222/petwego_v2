@@ -53,14 +53,14 @@
         
                                 <form class="mt-5 mb-5 login-input">
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="email" class="form-control" placeholder="ID">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password">
+                                        <input type="password" class="form-control" placeholder="PASSWORD">
                                     </div>
-                                    <button class="btn login-form__btn submit w-100">Sign In</button>
+                                    <button class="btn login-form__btn submit w-100">로그인</button>
                                 </form>
-                                <p class="mt-5 login-form__footer">Dont have account? <a href="page-register.html" class="text-primary">Sign Up</a> now</p>
+                                <p class="mt-5 login-form__footer"><a href="/join/join" class="text-primary">회원가입</a></p>
                             </div>
                         </div>
                     </div>

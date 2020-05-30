@@ -47,15 +47,16 @@
                     <div class="form-input-content">
                         <div class="card login-form mb-0">
                             <div class="card-body pt-5">
-                                <a class="text-center" href="/MainPage"> <h4>MainPage</h4></a>
-                                <form class="mt-5 mb-5 login-input">
+                                <a class="text-center" href="/MainPage"> <h4>메인으로 돌아가기</h4></a>
+                                <form class="mt-5 mb-5 login-input" action="/login/login" method="POST">
+                                    <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" placeholder="Password">
+                                        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD">
                                     </div>
-                                    <button class="btn login-form__btn submit w-100">Sign In</button>
+                                    <button class="btn login-form__btn submit w-100">로그인</button>
                                 	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 								    <font color="red">
 								        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
@@ -65,7 +66,7 @@
                                 </form>
 								<!-- 네이버 로그인 창으로 이동 -->
 								<div id="naverIdLogin"></div>
-                                <p class="mt-5 login-form__footer"><a href="/join/join" class="text-primary">회원가입</a></p>
+                                <p class="mt-5 login-form__footer" style="margin-left: 400px;"><a href="/join/join" class="text-primary">회원가입</a></p>
                             </div>
                         </div>
                     </div>
