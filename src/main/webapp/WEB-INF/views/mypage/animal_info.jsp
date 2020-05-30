@@ -72,7 +72,7 @@ $(function(){
 <%-- 		<input type="text" name="user_id" value="${animal_list[0].user_id}" readonly="readonly"><br> --%>
 		반려인 <input type="text" name="user_id" value="${user_id.user_id }" readonly="readonly"><br>
 		동물이름 <input type="text" name="pet_name"><br>
-		반려일수 <input type="date" id="pet_date" name="pet_date"><br>
+		반려시작일 <input type="date" id="pet_date" name="pet_date"><br>
 		동물종류 <input type="text" name="pet_type"><br>
 		사진 <input type="file" name="aa"><br>
 	<button id="insert_btn">반려동물 등록</button>

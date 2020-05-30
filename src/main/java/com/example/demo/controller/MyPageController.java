@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -205,6 +206,7 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부 안함");
+			a.setPet_pic("사진첨부안함");
 		}
 //		System.out.println("동물등록");
 		
@@ -599,4 +601,91 @@ public class MyPageController {
 		
 		return mav;
 	}
+	
+	//헤더에 알람
+	@RequestMapping("/header")
+//	@RequestMapping("/*")
+//	@ResponseBody
+	public void header(HttpServletRequest request, Model model) {
+
+		HttpSession session = request.getSession();
+	    Authentication authentication = (Authentication) session.getAttribute("user");
+	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
+		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
+
+		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("/header");
+
+		//아이디 임의로 설정
+		m.setUser_id(m.getUser_id());
+		//내 정보
+		model.addAttribute("myinfo", mypageservice.select_myinfo(m));
+		
+		//내가 작성한 글
+		model.addAttribute("myboard", mypageservice.search_my_board(m));
+		
+		//내가 작성한 sns글
+		model.addAttribute("mysns", mypageservice.search_my_sns(m));
+		
+		//내가 작성한 sns글파일
+		model.addAttribute("mysnspic", mypageservice.search_my_sns_file(m));
+		
+		//내가 쓴 함께가요
+		model.addAttribute("mytogether", mypageservice.search_my_together(m));
+//		System.out.println(mypageservice.select_myinfo(m));
+		
+		//반려동물 리스트
+		model.addAttribute("animal_list", mypageservice.search_my_animal(m));
+//		System.out.println("동물리스트" + mypageservice.search_my_animal(m));
+
+		
+		AlarmVo alarm = new AlarmVo();
+		alarm.setUser_id(m.getUser_id());
+		
+		//신청알림수
+		model.addAttribute("search_insert_together_count", alarmSerivce.search_insert_together_count(alarm));
+//		System.out.println("search_insert_together_count" + alarmSerivce.search_insert_together_count(alarm));
+		
+		//신청알림 있는지 조회
+		model.addAttribute("search_insert_together_alarm", alarmSerivce.search_insert_together_alarm(alarm));
+//		System.out.println("search_insert_together_alarm" + alarmSerivce.search_insert_together_alarm(alarm));
+		
+		//취소알림수
+		model.addAttribute("search_cancle_together_count", alarmSerivce.search_cancle_together_count(alarm));
+//		System.out.println("search_cancle_together_count" + alarmSerivce.search_cancle_together_count(alarm));
+		
+		//취소알림 있는지 조회
+		model.addAttribute("search_cancle_together_alarm", alarmSerivce.search_cancle_together_alarm(alarm));
+//		System.out.println("search_cancle_together_alarm" + alarmSerivce.search_cancle_together_alarm(alarm));
+		
+		//자유게시판 댓글 등록 알람 조회
+		model.addAttribute("search_insert_board_alarm", alarmSerivce.search_insert_board_alarm(alarm));
+//		System.out.println("search_insert_board_alarm" + alarmSerivce.search_insert_board_alarm(alarm));
+		
+		//자유게시판 댓글 삭제 알람 조회
+		model.addAttribute("search_cancle_board_alarm", alarmSerivce.search_cancle_board_alarm(alarm));
+//		System.out.println("search_cancle_board_alarm" + alarmSerivce.search_cancle_board_alarm(alarm));
+		
+		//자유게시판 댓글 등록  수
+		model.addAttribute("search_insert_board_alarm_count", alarmSerivce.search_insert_board_alarm_count(alarm));
+//		System.out.println("search_insert_board_alarm_count" + alarmSerivce.search_insert_board_alarm_count(alarm));
+		
+		//자유게시판  댓글 취소 수
+		model.addAttribute("search_cancle_board_alarm_count", alarmSerivce.search_cancle_board_alarm_count(alarm));
+//		System.out.println("search_cancle_board_alarm_count" + alarmSerivce.search_cancle_board_alarm_count(alarm));
+		
+		//결제 정보
+		model.addAttribute("search_pay", mypageservice.search_pay(m));
+		
+		//예약 정보
+		//아이디로 rm_no 찾고 방 조회
+//		int rm_no = fs.select_rm_no(m.getUser_id());
+//		mav.addObject("room", fs.select_room_name(rm_no));
+		
+		//모든 예약 리스트
+		model.addAttribute("reservation", fs.select_reservation_list(m.getUser_id()));
+
+		
+	}
+
 }
