@@ -8,50 +8,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PET WE GO</title>
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#myPet").click(function(){
-		location.href="/pic_board/list";
-	});
-});
-$(function(){
-	$("#reservation").click(function(){
-		location.href="/pic_board/list";
-	});
-});
-$(function(){
-	$("#board").click(function(){
-		location.href="/board/list";
-	});
-});
-$(function(){
-	$("#together").click(function(){
-		location.href="/together/listTogether";
-	});
-});
-$(function(){
-	$("#myPage").click(function(){
-		location.href="/mypage/mypage";
-	});
-});
-</script>
 <!-- Favicon icon -->
-<link rel="icon" type="../resources/quixlab/image/png" sizes="16x16"
-	href="../resources/quixlab/images/favicon.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="/resources/quixlab/images/favicon.png">
 <!-- Pignose Calender -->
 <link
-	href="../resources/quixlab/plugins/pg-calendar/css/pignose.calendar.min.css"
+	href="/resources/quixlab/plugins/pg-calendar/css/pignose.calendar.min.css"
 	rel="stylesheet">
 <!-- Chartist -->
 <link rel="stylesheet"
-	href="../resources/quixlab/plugins/chartist/css/chartist.min.css">
+	href="/resources/quixlab/plugins/chartist/css/chartist.min.css">
 <link rel="stylesheet"
-	href="../resources/quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+	href="/resources/quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
 <!-- Custom Stylesheet -->
-<link href="../resources/quixlab/css/style.css" rel="stylesheet">
-
+<link href="/resources/quixlab/css/style.css" rel="stylesheet">
 </head>
+
 
 <body>
 
@@ -82,11 +54,11 @@ $(function(){
 		<div class="nav-header">
 			<div class="brand-logo">
 				<a href="index.html"> <b class="logo-abbr"><img
-						src="../resources/quixlab/images/logo.png" alt=""> </b> <span
+						src="/resources/quixlab/images/logo.png" alt=""> </b> <span
 					class="logo-compact"><img
-						src="../resources/quixlab/images/logo-compact.png" alt=""></span> <span
+						src="/resources/quixlab/images/logo-compact.png" alt=""></span> <span
 					class="brand-title"> <img
-						src="../resources/quixlab/images/logo-text.png" alt="">
+						src="/resources/quixlab/images/logo-text.png" alt="">
 				</span>
 				</a>
 			</div>
@@ -124,7 +96,7 @@ $(function(){
 				</div>
 				<div class="header-right">
 					<ul class="clearfix">
-						
+
 						<!-- 알람 시작 -->
 						<li class="icons dropdown"><a href="javascript:void(0)"
 							data-toggle="dropdown"> <i class="mdi mdi-bell-outline"></i>
@@ -179,13 +151,13 @@ $(function(){
 								</div>
 							</div></li>
 						<!-- 알람 끝 -->
-						
-						
+
+
 						<li class="icons dropdown">
 							<div class="user-img c-pointer position-relative"
 								data-toggle="dropdown">
 								<span class="activity active"></span> <img
-									src="../resources/quixlab/images/user/1.png" height="40"
+									src="/resources/quixlab/images/user/1.png" height="40"
 									width="40" alt="">
 							</div>
 							<div
@@ -200,10 +172,10 @@ $(function(){
 										</a></li>
 
 										<hr class="my-2">
-										<li><a href="page-lock.html"><i class="icon-lock"></i>
-												<span>Lock Screen</span></a></li>
-										<li><a href="page-login.html"><i class="icon-key"></i>
-												<span>Logout</span></a></li>
+										<li><a href="/resources/quixlab/page-lock.html"><i
+												class="icon-lock"></i> <span>Lock Screen</span></a></li>
+										<li><a href="/resources/quixlab/page-login.html"><i
+												class="icon-key"></i> <span>Logout</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -223,20 +195,21 @@ $(function(){
 			<div class="nk-nav-scroll">
 				<ul class="metismenu" id="menu">
 					<li class="nav-label">Menu</li>
-					<li><a class="has-arrow" href="javascript:void()"
+					<li><a class="has-arrow" href="/pic_board/list"
 						aria-expanded="false"> <i class="icon-speedometer menu-icon"></i><span
 							class="nav-text" id="myPet">마이펫</span>
 					</a></li>
 					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
 						href="javascript:void()" aria-expanded="false"> <i
-							class="icon-globe-alt menu-icon"></i><span class="nav-text" id="reservation">숙소찾기</span>
+							class="icon-globe-alt menu-icon"></i><span class="nav-text"
+							id="reservation">숙소찾기</span>
 					</a></li>
 
-					<li><a class="has-arrow" href="javascript:void()"
+					<li><a class="has-arrow" href="/board/list"
 						aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
 							<span class="nav-text" id="board">커뮤니티</span>
 					</a></li>
-					<li><a class="has-arrow" href="javascript:void()"
+					<li><a class="has-arrow" href="/together/listTogether"
 						aria-expanded="false"> <i class="icon-screen-tablet menu-icon"></i><span
 							class="nav-text" id="together">함께가요</span>
 					</a></li>
@@ -248,8 +221,8 @@ $(function(){
 							<li><a href="/customerservice/allNotice">공지사항</a></li>
 							<li><a href="/customerservice/List">문의사항</a></li>
 						</ul></li>
-						
-						<li><a class="has-arrow" href="javascript:void()"
+
+					<li><a class="has-arrow" href="/mypage/mypage"
 						aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
 							<span class="nav-text" id="myPage">마이페이지</span>
 					</a></li>
@@ -261,10 +234,10 @@ $(function(){
         ***********************************-->
 
 		<div class="content-body">
-		
-		<!-- view페이지 작업할때 민아가 준 Quixlab사이트에서  f12누르고  <div class="content-body"> 검색 후 다음 코드부터 복사 한 후 작업 시작 -->
-		<!-- ex) -->
-		<!-- <div class="content-body"> -->
-		
-		<!-- 여기서부터 코드 긁어오면 됌 -->
-		<!-- 	<div class="어쩌구저쩌구"> -->
+
+			<!-- 		view페이지 작업할때 민아가 준 Quixlab사이트에서  f12누르고  <div class="content-body"> 검색 후 다음 코드부터 복사 한 후 작업 시작 -->
+			<!-- 		ex) -->
+			<!-- 		<div class="content-body"> -->
+
+			<!-- 		여기서부터 코드 긁어오면 됌 -->
+			<!-- 			<div class="어쩌구저쩌구"> -->
