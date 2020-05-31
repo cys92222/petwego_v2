@@ -70,7 +70,7 @@
 							</tr>
 							<tr>
 								<td>작성일</td>	
-								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detailNotice.notice_date }"/></td>
+								<td>${detailNotice.notice_date }</td>
 							</tr>
 							<tr>
 								<td>담당자번호</td>
