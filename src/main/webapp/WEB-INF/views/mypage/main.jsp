@@ -252,7 +252,7 @@
 							<!-- 예약 -->
 							<div class="tab-pane fade" id="reservation_list">
 								<div class="p-t-15">
-									<table border="1">
+									<table border="1" width="60%">
 										<tr>
 											<th>예약번호</th>
 											<th>체크인</th>
@@ -262,8 +262,6 @@
 											<th>예약상태</th>
 											<th>예약자이름</th>
 											<th>예약자전화번호</th>
-											<th>업소이름</th>
-											<th>방이름</th>
 										</tr>
 										<c:forEach items="${reservation }" var="rs">
 											<tr>
@@ -286,7 +284,7 @@
 							<!-- 결제 -->
 							<div class="tab-pane fade" id="payment_list">
 								<div class="p-t-15">
-									<table border="1">
+									<table border="1" width="60%">
 										<tr>
 											<th>고유결제번호</th>
 											<th>상점거래id</th>
@@ -364,8 +362,7 @@
 			<!-- 				방명록  끝-->
 
 
-
-			<button id="widthdraw_btn">회원탈퇴</button>
+		<button class="btn btn-primary px-3 ml-4" id="widthdraw_btn">회원탈퇴</button>
 
 
 		</div>

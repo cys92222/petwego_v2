@@ -95,7 +95,7 @@ public class QnAController {
 	@RequestMapping("/customerservice/insertQnAForm")
 	@NoLogging
 	public String insertQnAForm() {
-		return "customerservice/insertQnA";
+		return "customerservice/QnAInsert";
 	}
 	
 	//qna등록
@@ -139,6 +139,7 @@ public class QnAController {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
 			jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
+			jsonObject.addProperty("filename", originalFileName);
 			jsonObject.addProperty("responseCode", "success");
 					
 		} catch (IOException e) {
@@ -170,6 +171,7 @@ public class QnAController {
 				InputStream fileStream = multipartFile.getInputStream();
 				FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
 				jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
+				jsonObject.addProperty("filename", originalFileName);
 				jsonObject.addProperty("responseCode", "success");
 						
 			} catch (IOException e) {
@@ -183,17 +185,20 @@ public class QnAController {
 	
 	//qna상세보기
 	@RequestMapping("/customerservice/QnADetail")
-	public void detailQnA(HttpServletRequest request,QnAVo q, Model model) {
+	public String detailQnA(HttpServletRequest request,QnAVo q, Model model) {
 		//글정보
 		model.addAttribute("detail", service.detailQnA(q));
 		//작성자 정보
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id(q.getUser_id());
 		model.addAttribute("member", mysevice.select_myinfo(m));
+		
+		return "/customerservice/QnADetail";
 	}
 	
 	//qna삭제
 	@RequestMapping("/customerservice/deleteQnA")
+	@ResponseBody
 	public void deleteQnA(HttpServletRequest request,QnAVo q) {
 		service.deleteQnA(q);
 	}
@@ -220,6 +225,7 @@ public class QnAController {
 	//답변있는 경우 삭제 못하게
 	@NoLogging
 	@RequestMapping("/customerservice/checkQnA")
+	@ResponseBody
 	public String no_delete(QnAVo q) {
 		String str = "";
 		System.out.println("답변유무 :" + service.no_delete(q));
@@ -258,10 +264,21 @@ public class QnAController {
 		service.insertRe(q);
 	}
 	
+	//수정폼
+	@RequestMapping("/customerservice/updateQnAForm")
+	@NoLogging
+	public String updateQnAForm(QnAVo q, Model model) {
+		model.addAttribute("detail", service.detailQnA(q));
+		
+		return "customerservice/QnAUpdate";
+	}	
+	
 	//수정
 	@RequestMapping("/customerservice/updateQnA")
-	public void updateQnA(HttpServletRequest request,QnAUpdateVo qu, String up_inq_file) {
+	public String updateQnA(HttpServletRequest request,QnAUpdateVo qu, String up_inq_file) {
+		System.out.println(up_inq_file);
 		qu.setUp_inq_file(up_inq_file);
 		service.updateQnA(qu);
+		return "redirect:/customerservice/List";
 	}
 }

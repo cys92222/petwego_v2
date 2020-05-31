@@ -14,7 +14,7 @@ public class QnAUpdateVo {
 	private int up_cs_no;
 	private String up_inq_title;
 	private String up_inq_content;
-	private Date up_inq_date;
+	private String up_inq_date;
 	private String up_user_id;
 	private String up_inq_file;
 	private int up_ref;				//부모글 그룹
