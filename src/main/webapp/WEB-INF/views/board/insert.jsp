@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%@ include file="../header.jsp" %>
+<%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +11,9 @@
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 글 등록 -->
 <!-- 민아) 5/11, 서머노트 파일 확장자가 이미지파일인것만 등록되게 & 용량 20mb 제한 -->
-
+<!-- 민아) 5/31, 자유게시판 부트스트랩적용 -->
 <script type="text/javascript">
-// var token = $("meta[name='_csrf']").attr("content");
-// var header = $("meta[name='_csrf_header']").attr("content");
-
+	
 var maxVolume = 20971520; 	//20mb를 byte로 환산한 숫자
 var listImg = [];
 var uploadImgs = [];
@@ -25,8 +23,8 @@ $(function(){
 	//썸머노트
 	$('#summernote').summernote({
 		maximumImageFileSize : maxVolume,	//첨부 이미지 크기 20MB로 보여짐 
-		width: 650,
-		height: 300,                 		// 에디터 높이
+		width: '100%',
+		height: 400,                 		// 에디터 높이
 		minHeight: null,             		// 최소 높이
 		maxHeight: null,             		// 최대 높이
 		focus: true,                  		// 에디터 로딩후 포커스를 맞출지 여부
@@ -92,8 +90,7 @@ $(function(){
 				}
 			})
 		}
-	
-				
+		
 		$("#save").click(function(e){
 		// 폼태그 기본속성(action은 디폴트)을 동작중단시키지 않으면 글이 두개씩 등록되버림 
 		// e.preventDefault는 고유 동작을 중단시키고, e.stopPropagation 는 상위 엘리먼트들로의 이벤트 전파를 중단시킨다.
@@ -157,49 +154,60 @@ $(function(){
 </script>
 </head>
 <body>
-	<h2>게시글 등록</h2>
-	<sec:authorize access="isAnonymous()">
-   <a href="/login/login">로그인</a>
-	</sec:authorize>
-	<sec:authorize access="isAuthenticated()">
-   <p><sec:authentication property="principal.user_id"/>님, 반갑습니다.</p>
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/board/insert">자유게시판 | 글쓰기</a></li>
+				<li class="breadcrumb-item"><a href="/board/list">자유게시판</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">게시글 등록</h4>
+						<div class="basic-form">
+							<form id="insertForm" method="post" enctype="multipart/form-data">
+								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								<div class="form-group">
+									제목<input type="text" class="form-control input-default" name="board_title" required="required" placeholder="제목을 입력해주세요.">
+								</div>
+								<div class="form-group">
+									<label>카테고리</label> <select class="form-control" id="sel1" name="category">
+										<option selected value="">=====카테고리를 선택해주세요=====</option>
+										<option value="수다">수다</option>
+										<option value="질문">질문</option>
+										<option>3</option>
+										<option>4</option>
+									</select>
+								</div>
+								<div class="form-group">
+									작성자<input type="text" name="user_id" value="${login_id }" readonly="readonly" class="form-control input-default">
+								</div>
+								<div class="form-group">
+									내용
+									<textarea name="board_content" id="summernote" class="form-control h-150px" rows="6"></textarea>
+								</div>
+								<div style="text-align: center;">
+									<button type="submit" id="save" class="btn mb-1 btn-success">등록</button>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<button type="reset" class="btn mb-1 btn-warning">취소</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-   <a href="/login/logout">로그아웃</a>
-	</sec:authorize>
-	<hr>
-	<form id="insertForm" method="post" enctype="multipart/form-data">
-
-	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	<table width="100%">
-		<tr>
-			<td>제목</td><td> <input type="text" name="board_title" required="required" style="width:650px"></td>
-		</tr>
-		<tr>
-		<select name="category">
-			<option selected>카테고리 선택</option>
-			<option value="수다">수다</option>
-			<option value="질문">질문</option>
-		</select>
-		</tr>
-		<tr>
-			<td>작성자</td><td> <input type="text" name="user_id" value="${login_id }" required="required"></td>
-		</tr>
-		<tr>
-			<td>내용</td>
-			<td><textarea name="board_content" id="summernote"></textarea></td>
-		</tr>
-		<tr>
-			<td><input type="hidden" id="uuid" name="uuid" ></td>
-			<td><input type="hidden" id="file_path" name="file_path" ></td>
-			<td><input type="hidden" id="file_name" name="file_name" ></td>
-		</tr>
-	</table>
-		<button type="submit" id="save">등록</button>
-		<button type="reset">취소</button>
-	</form>
-	
 </body>
-<%@ include file="../footer.jsp" %>
+<%@ include file="../footer.jsp"%>
 </html>
+
 
 
