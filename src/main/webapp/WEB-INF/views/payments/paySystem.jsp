@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../head.jsp" %>
+<%@ include file="../head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,8 +37,11 @@ $(function(){
 		var buyer_addr = $("#address").val();
 		var buyer_email = $("#email").val();
 
-		var rsv_no = $("#rsv_no").val();
-	
+
+		// 예약할 방이름, 숙소이름 , 가격
+		var rm_name = $("#rm_name").val();
+		var facility_name = $("#facility_name").val();
+		var rsv_price = $("#rsv_price").val();
 
  /*
 	pay_method/String/결제수단			merchant_uid/String/고유주문번호
@@ -51,16 +54,13 @@ $(function(){
 			pg : 'html5_inicis.PetWeGo',
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
-
-			name : '주문명:뫄뫄 애견 펜션',
-			amount : 100,
-			buyer_email : email,
+			name : facility_name + rm_name,
+			amount : rsv_price,
+			buyer_email : buyer_email,
 			buyer_name : user_id,
-			buyer_tel : tel,
-			buyer_addr : address,
-
-			rsv_no : rsv_no
-				    
+			buyer_tel : buyer_tel,
+			buyer_addr : buyer_addr,
+			rsv_no : rsv_no,				    
 			}, function(rsp) {
 
 				/*	rsp 속성 중 
@@ -81,9 +81,8 @@ $(function(){
 	                pay_method : rsp.pay_method,
 	                apply_num : rsp.apply_num,
 	                status : rsp.status,
-	                user_id : rsp.buyer_name  
-	                
-	                rsv_no : rso.rsv_no,
+	                user_id : rsp.buyer_name,  
+	                rsv_no : rsp.rsv_no,
 				}
 			
 				info.push(payInfo);
@@ -145,6 +144,14 @@ $(function(){
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form action="/payments/insertPay" id="payForm" method="post">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	<!-- imp_uid 
+		merchant_uid 
+	     paid_amount 
+	     pay_method 
+	       apply_num 
+	       status 
+	       user_id 
+	     rsv_no-->
 		<input type="hidden" id="imp_uid" name="imp_uid"  />
 		<input type="hidden" id="merchant_uid" name="merchant_uid"  />		
 		<input type="hidden" id="pay_method" name="pay_method"  />
@@ -153,14 +160,16 @@ $(function(){
 		
 		<!-- 가져와야 하는 값 호텔이름, 방이름, 가격, 예약번호  -->
 		<input type="hidden" id="paid_amount" name="paid_amount"  />
-		<input type="hidden" id="rsv_no" name="rsv_no"  />
-		
-		회원 아이디<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/><br>
+		예약번호<input type="text" id="rsv_no" value="${to.rsv_no }"/><br>
+	회원 아이디<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/><br>
+	</form>
+	
+	
 		회원 이메일 <input type="text" id="email" value="${my.email }"/><br>
 		회원 주소 <input type="text" id="address" value="${my.address }"/><br>
 		회원 전화번호<input type="text" id="tel" value="${my.tel }"/><br>
 		
-		예약번호<input type="text" id="rsv_no" value="${to.rsv_no }"/><br>
+		
 		투숙객이름<input type="text" value="${to.guest_name }"><br>
 		투숙객전화번호<input type="text" value="${to.guest_tel }"> <br>
 		
@@ -168,7 +177,6 @@ $(function(){
 		호텔이름<input type="text" id="facility_name" value="${Facility.facility_name }"><br>
 		
 		가격<input type="text" id="rsv_price" value="${to.rsv_price }"><br>
-	</form>
 
 </body>
 </html>
