@@ -10,6 +10,7 @@ import com.example.demo.service.ManagerPageService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.MemberInfoVo;
 
+//민아) 5/31, admincontroller 는 굳이  nologging 처리 안해도 되서 지움 
 @Controller
 @RequestMapping("/management/*")
 public class M_MemberController {
@@ -18,7 +19,6 @@ public class M_MemberController {
 	private ManagerPageService mp_service;
 
 	// 회원 결제정보
-	@NoLogging
 	@GetMapping("/member/listPay")
 	public void listPay(Model model) {
 		model.addAttribute("listPay",mp_service.listPay());
@@ -26,7 +26,6 @@ public class M_MemberController {
 	
 	 
 	// 회원 목록
-	@NoLogging
 	@GetMapping("/member/member_list")
 	public void listMember(Model model) {
 
@@ -34,14 +33,12 @@ public class M_MemberController {
 	}
 
 	// 회원정보 상세보기
-	@NoLogging
 	@GetMapping("/member/member_get")
 	public void getMember(MemberInfoVo m, Model model) {
 		model.addAttribute("detail_Info", mp_service.getMember(m));
 	}
 
 	// 회원정보 삭제(강퇴)
-	@NoLogging
 	@GetMapping("/member/member_delete")
 	public String deleteMember(MemberInfoVo m) {
 

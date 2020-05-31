@@ -35,6 +35,7 @@ import com.example.demo.vo.QnAVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+//민아) 5/31, admincontroller 는 굳이  nologging 처리 안해도 되서 지움 
 @Controller
 @RequestMapping("/management/*")
 public class M_BoardController {
@@ -43,7 +44,6 @@ public class M_BoardController {
 	private ManagerPageService mp_service;
 
 	// 자유게시판 - 댓글만 삭제
-	@NoLogging
 	@GetMapping(value = "/freeBoard/commDeleteSubmit")
 	public String commDeleteSubmit(Board_CommentVo bc, int board_no) {
 		mp_service.deleteComment(bc);// where comm_num = #{comm_num}
@@ -53,14 +53,12 @@ public class M_BoardController {
 	}
 
 	// 자유게시판 목록
-	@NoLogging
 	@GetMapping("/freeBoard/listBoard")
 	public void listBoard(Model model) {
 		model.addAttribute("listBoard", mp_service.listBoard());
 	}
 
 	// 자유게시판 상세 - 댓글목록도 같이 보이기
-	@NoLogging
 	@GetMapping("/freeBoard/detailBoard")
 	public void detaiBoard(BoardVo b, Model model) {
 		model.addAttribute("detailBoard", mp_service.detailBoard(b));
@@ -75,7 +73,6 @@ public class M_BoardController {
 	}
 
 	// 자유게시판 삭제
-	@NoLogging
 	@GetMapping("/freeBoard/deleteBoard")
 	public ModelAndView deleteBoard(BoardVo b, Board_CommentVo bc, Board_fileVo bf) {
 		ModelAndView mav = new ModelAndView("redirect:/management/freeBoard/listBoard");
@@ -89,13 +86,11 @@ public class M_BoardController {
 
 	// 공지사항 목록
 	@GetMapping("/notice/listNotice")
-	@NoLogging
 	public void listNotice(Model model) {
 		model.addAttribute("listNotice", mp_service.listNotice());
 	}
 
 	// 공지사항 등록 폼
-	@NoLogging
 	@GetMapping("/notice/insertNotice")
 	public String insertNotice_form(NoticeVo nv, Model model) {
 //		System.out.println("공지사항 폼 컨틀로러 동작");
@@ -103,7 +98,6 @@ public class M_BoardController {
 	}
 
 	// 공지사항 등록
-	@NoLogging
 	@RequestMapping(value = "/notice/insertNotice", method = RequestMethod.POST)
 	@ResponseBody
 	public String insertNotice(NoticeVo nv, Model model) {
@@ -114,7 +108,6 @@ public class M_BoardController {
 	}
 
 	// 공지사항 상세
-	@NoLogging
 	@GetMapping("/notice/detailNotice")
 	public void detailNotice(NoticeVo nv, Model model) {
 		// 관리자페이지에서는 공지사항 조회수가 올라갈 필요가 없음
@@ -122,13 +115,11 @@ public class M_BoardController {
 	}
 
 	// 공지사항 수정
-	@NoLogging
 	@GetMapping(value = "/notice/updateNotice")
 	public void updateNotice(NoticeVo nv, Model model) {
 		model.addAttribute("up", mp_service.detailNotice(nv));
 	}
 
-	@NoLogging
 	@PostMapping(value = "/notice/updateNotice")
 	@ResponseBody
 	public String updateNoticeSubmit(NoticeVo nv, Model model) {
@@ -143,7 +134,6 @@ public class M_BoardController {
 	}
 
 	// 공지사항 삭제
-	@NoLogging
 	@GetMapping("/notice/deleteNotice")
 	public ModelAndView deleteNotice(NoticeVo nv) {
 		ModelAndView mav = new ModelAndView("redirect:/management/notice/listNotice");
@@ -152,7 +142,6 @@ public class M_BoardController {
 	}
 
 	// 써머노트
-	@NoLogging
 	@PostMapping(value = "/notice/uploadNotice", produces = "application/json")
 	@ResponseBody
 	public JsonObject uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile) {
@@ -183,14 +172,12 @@ public class M_BoardController {
 	}
 
 	// QnA리스트
-	@NoLogging
 	@RequestMapping(value = "/qna/listQnA")
 	public void listQnA(Model model) {
 		model.addAttribute("listQnA", mp_service.listQnA());
 	}
 
 	// QnA상세
-	@NoLogging
 	@RequestMapping(value = "qna/detailQnA")
 	public String detailQnA(QnAVo q, Model model) {
 		QnAVo detail = mp_service.detailQnA(q);
@@ -200,7 +187,6 @@ public class M_BoardController {
 	}
 
 	// 답변달기
-	@NoLogging
 	@RequestMapping(value = "qna/anwerQnA")
 	public String anwerQnA(QnAVo q, int a_ref, int a_ref_step, int a_ref_level) {
 		q.setRef(a_ref);
@@ -215,7 +201,6 @@ public class M_BoardController {
 	}
 	
 	//QnA 삭제
-	@NoLogging
 	@RequestMapping(value = "qna/deleteQnA")
 	public String deleteQnA(QnAVo q) {
 		mp_service.deleteQnA(q);

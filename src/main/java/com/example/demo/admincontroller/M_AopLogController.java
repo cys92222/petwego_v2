@@ -14,6 +14,7 @@ import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.ChartVo;
 import com.google.gson.Gson;
 
+// 민아) 5/31, admincontroller 는 굳이  nologging 처리 안해도 되서 지움 
 @Controller
 @RequestMapping("/management/*")
 public class M_AopLogController {
@@ -21,8 +22,7 @@ public class M_AopLogController {
 	@Autowired
 	private ManagerPageService mp_service;
 
-	// 로그 차트 (구글차트 이용해서)
-	@NoLogging
+	// 로그 차트 (구글차트 이용해서)	
 	@ResponseBody
 	@GetMapping(value = "chartLog", produces = "application/json; charset=utf-8")
 	public String chartLog() {
@@ -34,7 +34,6 @@ public class M_AopLogController {
 	}
 
 	// aopLog 목록
-	@NoLogging
 	@GetMapping("listLog")
 	public void listLog(Model model) {
 		model.addAttribute("listLog", mp_service.listLog());

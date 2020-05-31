@@ -15,6 +15,7 @@ import com.example.demo.vo.Pic_Board_CommentVo;
 import com.example.demo.vo.Pic_Board_FileVo;
 import com.google.gson.Gson;
 
+//민아) 5/31, admincontroller 는 굳이  nologging 처리 안해도 되서 지움 
 @Controller
 public class M_PicboardController {
 
@@ -22,7 +23,6 @@ public class M_PicboardController {
 	private M_PicboardService service;
 	
 	//리스트
-	@NoLogging
 	@RequestMapping("/management/picboard/listPicboard")
 	public String picBoardList(Model model){
 
@@ -34,7 +34,6 @@ public class M_PicboardController {
 	}
 	
 	//상세보기
-	@NoLogging
 	@RequestMapping("/management/picboard/detailPicboard")
 	public String picBoardDetail(int photo_no,Model model){
 //		System.out.println("상세보기할 번호" + photo_no);
@@ -53,7 +52,6 @@ public class M_PicboardController {
 	}
 	
 	//삭제
-	@NoLogging
 	@RequestMapping("/management/picboard/deletePicboard")
 	public String deletePicboard(int photo_no,Model model) {
 		//좋아요 삭제
@@ -74,7 +72,6 @@ public class M_PicboardController {
 	
 	
 	//댓글 삭제
-	@NoLogging
 	@RequestMapping("/management/picboard/picboardcomment_delete")
 	public String picboardcomment_delete(int photo_comm_no, int photo_no) {
 //		System.out.println("삭제할 댓글번호" + photo_comm_no);
