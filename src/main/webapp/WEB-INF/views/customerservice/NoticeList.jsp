@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 <script type="text/javascript">
 $(function(){
 	var arr = ${list};
@@ -28,7 +31,7 @@ $(function(){
 			}
 			
 
-		var tr = $("<tr></tr>").append(cs_no, notice_title, notice_hit, notice_date);
+		var tr = $("<tr></tr>").append(notice_no,cs_no, notice_title, notice_hit, notice_date);
 
 		$("#listNotie").append(tr);
 
@@ -36,6 +39,10 @@ $(function(){
 			window.location.href="/customerservice/detailNotice?notice_no="+notice.notice_no;
 			});
 		});
+
+	 $('#notice_list').DataTable( {
+	        "order": [[ 0, "desc" ]]
+	    } );
 });
 </script>
 </head>
@@ -58,16 +65,16 @@ $(function(){
 							<h4 class="card-title">공지사항</h4>
 							<div class="table-responsive">
 								<table
-									class="table table-striped table-bordered zero-configuration">
+									class="table table-striped table-bordered zero-configuration" id="notice_list">
 									<thead>
-										<tr><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
+										<tr><th>번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
 									</thead>
 									
 									<tbody id="listNotie">
 									</tbody>
 									
 									<tfoot>
-										<tr><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
+										<tr><th>번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
 									</tfoot>
 								</table>
 							</div>

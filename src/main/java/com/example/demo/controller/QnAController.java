@@ -95,7 +95,7 @@ public class QnAController {
 	@RequestMapping("/customerservice/insertQnAForm")
 	@NoLogging
 	public String insertQnAForm() {
-		return "customerservice/insertQnA";
+		return "customerservice/QnAInsert";
 	}
 	
 	//qna등록
@@ -194,6 +194,7 @@ public class QnAController {
 	
 	//qna삭제
 	@RequestMapping("/customerservice/deleteQnA")
+	@ResponseBody
 	public void deleteQnA(HttpServletRequest request,QnAVo q) {
 		service.deleteQnA(q);
 	}
@@ -220,6 +221,7 @@ public class QnAController {
 	//답변있는 경우 삭제 못하게
 	@NoLogging
 	@RequestMapping("/customerservice/checkQnA")
+	@ResponseBody
 	public String no_delete(QnAVo q) {
 		String str = "";
 		System.out.println("답변유무 :" + service.no_delete(q));
@@ -257,6 +259,15 @@ public class QnAController {
 		q.setInq_content(re_inq_content);
 		service.insertRe(q);
 	}
+	
+	//수정폼
+	@RequestMapping("/customerservice/updateQnAForm")
+	@NoLogging
+	public String updateQnAForm(QnAVo q, Model model) {
+		model.addAttribute("detail", service.detailQnA(q));
+		
+		return "customerservice/QnAUpdate";
+	}	
 	
 	//수정
 	@RequestMapping("/customerservice/updateQnA")
