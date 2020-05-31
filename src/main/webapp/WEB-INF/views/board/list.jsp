@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<!-- 민아) 5/31, 자유게시판 부트스트랩적용 -->
 <script type="text/javascript">
 	$(function() {
 
@@ -17,8 +18,8 @@
 		})
 	
 		// 글 쓰기 버튼을 누르면
-		$("#insert_qna").click(function(){
-			self.location = "/board/insert";
+		$("#insertBtn").click(function(){
+			window.location.href = "/board/insert";
 		});
 	})
 </script>
