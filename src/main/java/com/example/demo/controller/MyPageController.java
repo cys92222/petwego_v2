@@ -24,15 +24,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.dao.LoginMapperDao;
 import com.example.demo.service.AlarmService;
+import com.example.demo.service.Board_CommentService;
 import com.example.demo.service.FacilityService;
 import com.example.demo.service.MypageService;
 import com.example.demo.service.SecurityService;
 import com.example.demo.util.AopLog.NoLogging;
 import com.example.demo.vo.AlarmVo;
 import com.example.demo.vo.Animal_infoVo;
+import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.google.gson.Gson;
 
 //민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
 //수인) 5/25 만약에 오류날 경우 각 메소드에 session 처리 추가할 계획
@@ -56,6 +60,9 @@ public class MyPageController {
 	
 	@Autowired
 	FacilityService fs;
+	
+	@Autowired
+	Board_CommentService bc;
 	
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
@@ -357,9 +364,34 @@ public class MyPageController {
 //		m.setUser_id("user1");
 		m.setUser_id(user.getUser_id());
 		mav.setViewName("/mypage/board_list");
+		//글목록
 		mav.addObject("myboard", mypageservice.search_my_board(m));
+		
+		String myl = "";
+		Gson gson = new Gson();
+		myl = gson.toJson(mypageservice.search_my_board(m));
+		mav.addObject("myl", myl);
+		
 		return mav;
 	}
+	
+	//댓글 목록
+	@RequestMapping("/mypage/comment_list")
+	@ResponseBody
+	@NoLogging
+	public List<Board_CommentVo> comment_list(int board_no,Model model) {
+	List<Board_CommentVo> list = bc.listComment(board_no);
+	
+	return list;
+	}
+//	public String comment_list(int board_no,Model model) {
+//		String str = "";
+//		Gson gson = new Gson();
+//		str = gson.toJson(bc.listComment(board_no));
+//		
+//		return str;
+//	}
+	
 	
 	//내 결제 내역
 	@RequestMapping("/mypage/pay_list")
