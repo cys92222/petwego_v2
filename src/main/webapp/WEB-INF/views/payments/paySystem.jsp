@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../head.jsp" %>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,7 @@
 <title>pet we go | 결제</title>
 <!-- 민아) 5/22, 결제 서비스 구현 완료 -->
 <!-- 민아) 5/23, 결제 성공/실패 메시지 처리해야함  -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script>
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script> -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 $(function(){
@@ -82,7 +82,7 @@ $(function(){
 	                apply_num : rsp.apply_num,
 	                status : rsp.status,
 	                user_id : rsp.buyer_name,  
-	                rsv_no : rsv_no,
+	                rsv_no : rsv_no
 				}
 
 				console.log("결제후: "+ payInfo)
@@ -93,13 +93,13 @@ $(function(){
 
 			        var insertPay = $("#payForm").serialize();
 
-					console.log(JSON.stringify(info));
-
+					console.log("111111" + JSON.stringify(info));
+					alert(rsv_no);
 					// db에 결제정보 저장을 위해 ajax 통신(마이페이지-결제내역에서 확인되도록)
 					$.ajax({
 						type : "POST",
-						url : "/payments/insertPay",
 						dataType : "JSON",
+						url : "/payments/insertPay",
 						beforeSend: function(xhr){
 							xhr.setRequestHeader(header, token);
 						},
@@ -140,7 +140,7 @@ $(function(){
 </head>
 <body>
 	<h1>결제 하시겠습니까?</h1>
-	<button id='okay'>결제하기</button>
+	<button type="button" id='okay'>결제하기</button>
 	
 	<!-- 결제정보 전달을 위한 폼  -->
 	<form action="/payments/insertPay" id="payForm" method="post">
@@ -161,7 +161,7 @@ $(function(){
 		
 		<!-- 가져와야 하는 값 호텔이름, 방이름, 가격, 예약번호  -->
 		paid_amount<input type="text" id="paid_amount" name="paid_amount"  />
-		예약번호<input type="text" id="rsv_no" value="${to.rsv_no }"/><br>
+		예약번호<input type="text" id="rsv_no" name="rsv_no" value="${to.rsv_no }"/><br>
 		회원 아이디<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/><br>
 	</form>
 	
@@ -178,6 +178,7 @@ $(function(){
 		호텔이름<input type="text" id="facility_name" value="${Facility.facility_name }"><br>
 		
 		가격<input type="text" id="rsv_price" value="${to.rsv_price }"><br>
-
+		
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

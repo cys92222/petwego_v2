@@ -44,9 +44,9 @@ public class PaymentController {
 	// 결제정보 등록
 	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
-	public String insertSubmit(HttpServletRequest request, @RequestBody List<PaymentVo> listPay,String user_id, int rsv_no) {
-		
-		
+	public String insertSubmit(HttpServletRequest request,@RequestBody List<PaymentVo> listPay) {
+		System.out.println(listPay);
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		for (PaymentVo pv : listPay) {
 			
 			// 결제 수단과 결제상태 한글로 저장되도록!  
@@ -64,9 +64,9 @@ public class PaymentController {
 			
 			pay_service.insertPay(pv);
 			
+			//결제완료하면 예약 테이블에서 결제대기를 결제완료로 수정
+			fs.pay_rsv_paid(pv.getUser_id(), pv.getRsv_no());	
 		}
-		//결제완료하면 예약 테이블에서 결제대기를 결제완료로 수정
-		//fs.pay_rsv_paid(user_id, rsv_no);	
 		System.out.println("결제컨트롤러 동작함");
 
 		return "등록ok";
