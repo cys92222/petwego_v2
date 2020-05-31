@@ -5,14 +5,24 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
+<%
+    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    Object principal = auth.getPrincipal();
+ 
+    String name = "";
+    if(principal != null) {
+        name = auth.getName();
+    }
+%>
 <!DOCTYPE html>
 <html>
-<%@include file="../header.jsp"%>
 <head>
 <meta charset="UTF-8">
+<%@include file="../head.jsp"%>
+
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 상세보기화면 -->
-<!-- 민아) 5/31, 자유게시판 부트스트랩적용 -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
 
@@ -149,5 +159,4 @@
 	<table id="comm_list" border="1">
 	</table>
 </body>
-<%@include file="../footer.jsp"%>
 </html>

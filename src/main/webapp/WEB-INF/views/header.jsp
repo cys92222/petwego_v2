@@ -1,30 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%> <!-- petwego_v2 헤더 -->
-	<%@include file="head.jsp" %>
+<%@include file="head.jsp" %>
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PET WE GO</title>
+
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
 	href="/resources/quixlab/images/favicon.png">
-<!-- Pignose Calender -->
-<link
-	href="/resources/quixlab/plugins/pg-calendar/css/pignose.calendar.min.css"
-	rel="stylesheet">
-<!-- Chartist -->
-<link rel="stylesheet"
-	href="/resources/quixlab/plugins/chartist/css/chartist.min.css">
-<link rel="stylesheet"
-	href="/resources/quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+	
 <!-- Custom Stylesheet -->
 <link href="/resources/quixlab/css/style.css" rel="stylesheet">
-</head>
 
+</head>
 
 <body>
 

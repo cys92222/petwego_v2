@@ -31,7 +31,14 @@
     <script src="/resources/quixlab/js/settings.js"></script>
     <script src="/resources/quixlab/js/gleek.js"></script>
     <script src="/resources/quixlab/js/styleSwitcher.js"></script>
+	
+	
+	<!-- summer note, 부트스트랩에 포함된거 말고 원래 쓰던 거 resource 폴더로 옮겨서 적용 -->
+<script src="../resources/summernote/js/summernote-lite.js"></script>
+<script src="../resources/summernote/js/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/resources/summernote/css/summernote-lite.css">
 
+	
     <!-- Chartjs -->
     <script src="/resources/quixlab/plugins/chart.js/Chart.bundle.min.js"></script>
     <!-- Circle progress -->
@@ -50,7 +57,7 @@
     <script src="/resources/quixlab/plugins/chartist/js/chartist.min.js"></script>
     <script src="/resources/quixlab/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
-
+	<!-- dataTable -->
     <script src="/resources/quixlab/plugins/tables/js/jquery.dataTables.min.js"></script>
     <script src="/resources/quixlab/plugins/tables/js/datatable/dataTables.bootstrap4.min.js"></script>
     <script src="/resources/quixlab/plugins/tables/js/datatable-init/datatable-basic.min.js"></script>

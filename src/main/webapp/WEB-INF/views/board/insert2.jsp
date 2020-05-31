@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
+<%@ include file="../header.jsp" %>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 글 등록 -->
 <!-- 민아) 5/11, 서머노트 파일 확장자가 이미지파일인것만 등록되게 & 용량 20mb 제한 -->
+<script src="../summernote/js/summernote-lite.js"></script>
+<script src="../summernote/js/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="../summernote/css/summernote-lite.css">
 
 <script type="text/javascript">
 // var token = $("meta[name='_csrf']").attr("content");
@@ -197,9 +200,7 @@ $(function(){
 		<button type="submit" id="save">등록</button>
 		<button type="reset">취소</button>
 	</form>
-	
 </body>
 <%@ include file="../footer.jsp" %>
 </html>
-
 
