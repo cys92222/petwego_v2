@@ -82,7 +82,7 @@
 											<c:out value="${notice.notice_title }" />
 									</a></td>
 									<td><c:out value="${notice.notice_hit }" /></td>
-									<td><fmt:formatDate pattern="yyyy-MM-dd" value="${notice.notice_date }" /></td>
+									<td>${notice.notice_date }</td>
 									<td><c:out value="${notice.cs_no }" /></td>
 								</tr>
 							</c:forEach>

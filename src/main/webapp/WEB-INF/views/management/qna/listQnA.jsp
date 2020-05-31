@@ -79,7 +79,7 @@
 								</td>
 								
 								
-								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${QnA.inq_date }"/></td>
+								<td>${QnA.inq_date }</td>
 								<td><c:if test="${QnA.cs_no ==  1}">
 										<c:out value="홈페이지 이용 관련"/>
 									</c:if>

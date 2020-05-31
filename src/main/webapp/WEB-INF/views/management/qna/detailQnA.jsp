@@ -69,7 +69,7 @@
 
 							<tr>
 								<td>작성일</td>	
-								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detailQnA.inq_date }"/></td>
+								<td>${detailQnA.inq_date }</td>
 							</tr>
 							<tr>
 								<td>카테고리</td>
