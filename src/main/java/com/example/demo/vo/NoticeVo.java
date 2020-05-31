@@ -15,7 +15,7 @@ public class NoticeVo {
 	private String notice_title;
 	private String notice_content;
 	private int notice_hit;
-	private Date notice_date;
+	private String notice_date;
 	private int cs_no;
 }
 

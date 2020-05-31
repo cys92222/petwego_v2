@@ -6,7 +6,7 @@
 <mapper namespace="com.example.demo.dao.NoticeDao">
 <!--  	공지사항 리스트 -->
  	<select id="allNoticeList" resultType="com.example.demo.vo.NoticeVo" parameterType="com.example.demo.util.SearchCriteria">
- 		SELECT  notice_no, notice_title,notice_content,notice_hit,notice_date,cs_no
+ 		SELECT  notice_no, notice_title,notice_content,notice_hit,to_char(notice_date,'yyyy-mm-dd') as notice_date,cs_no
 		 FROM ( 
 		        SELECT notice_no,notice_title,notice_content,notice_hit,notice_Date,cs_no,
 		               ROW_NUMBER() OVER(order by notice_no desc) AS RNUM
