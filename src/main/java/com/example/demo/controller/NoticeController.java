@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -120,12 +121,12 @@ public class NoticeController {
 	
 	//공지사항 상세보기
 	@RequestMapping(value = "/customerservice/detailNotice", method = RequestMethod.GET)
-	@ResponseBody
-	public NoticeVo detailNotice(HttpServletRequest request,NoticeVo n) {
+	public String detailNotice(HttpServletRequest request,NoticeVo n,Model model) {
 		NoticeVo dn = service.detailNotice(n);
 		service.hit(n);
 		System.out.println(dn);
-		return dn;
+		model.addAttribute("detail", dn);
+		return "customerservice/NoticeDetail";
 	}
 	
 	//조회수

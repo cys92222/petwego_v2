@@ -31,6 +31,10 @@ $(function(){
 		var tr = $("<tr></tr>").append(cs_no, notice_title, notice_hit, notice_date);
 
 		$("#listNotie").append(tr);
+
+		$(tr).on("click",function(){
+			window.location.href="/customerservice/detailNotice?notice_no="+notice.notice_no;
+			});
 		});
 });
 </script>
