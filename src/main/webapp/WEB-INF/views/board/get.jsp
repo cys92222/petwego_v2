@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="org.springframework.security.core.Authentication" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page import="org.springframework.security.core.Authentication"%>
 <!DOCTYPE html>
 <html>
 <%@include file="../header.jsp"%>
@@ -13,141 +15,158 @@
 <title>Insert title here</title>
 <!-- 민아) 5/10, 자유게시판 상세보기화면 -->
 <!-- 민아) 5/31, 자유게시판 부트스트랩적용 -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
 <script type="text/javascript">
 
-	$(function(){
-		var board_no = $("#board_no").val();
+$(function(){
+	var board_no = $("#board_no").val();
 
-		// 수정버튼 누르면...
-		$("#btnUpdate").click(function(){
-			self.location = "/board/update?board_no="+board_no;
-		})
-		
-		// 삭제버튼 누르면...
-		$("#btnDelete").click(function(){
-			var user_id = "${login_id}";
-			var check = confirm("게시글을 삭제하시겠습니까?");
-			if(check == true){
-				self.location = "/board/delete?board_no="+board_no+"&user_id="+user_id;
-				alert("게시글을 삭제했습니다!");
-			}
-		});
-
-		
-		// 댓글작성버튼을 누르면!
-		$("#comment").click(function(){
-
-			var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
-			if(commCheck == true){
-				var commSubmit = $("form[name='commentForm']");
-				commSubmit.attr("action","/comment/insertComment");
-				commSubmit.submit();
-			}
-
-		})
-		
-		// 댓글 목록
-		$.ajax("/comment/listComment",{type:"GET",data:{board_no:board_no},success:function(comm){
-			comm = JSON.parse(comm);
-			$.each(comm, function(idx,c){						
-				var tr = $("<tr></tr>");
-				var td1 = $("<td></td>").html(c.comm_cont);
-				var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
-				var td3 = $("<td></td>").html(c.user_id);
-				if(c.user_id === "${login_id}"){
-					var delBtn = $("<button></button>").text("댓글삭제").attr("comm_num",c.comm_num);
-					}
-				
-				var td4 = $("<td></td>");
-				td4.append(delBtn);
-				tr.append(td1, td2, td3, td4);
-				$("#comm_list").append(tr);
-
-				//댓글 삭제
-				$(delBtn).click(function(){
-						
-						var delCheck = confirm("댓글을 삭제하시겠습니까?");
-						if(delCheck == true){
-							self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num;
-							alert("댓글을 삭제했습니다!");
-							location.reload();
-						}
-				})
-			})
-		}})
-
-
-// 		// 댓글 삭제, 이 방식은 댓글 컨트롤러 따로 없이 board컨트롤러에서 상세보기 부분에 댓글목록 처리했을때 쓴 방식
-// 		$("#delComment").click(function(){
-// 				//[object HTMLInputElement] 오류가 떠서, 실제값을 가져옴
-// 				var realComm_num = document.getElementById("comm_num").value;
-// 				var delCheck = confirm("댓글을 삭제하시겠습니까?");
-// 				if(delCheck == true){
-// 					self.location = "/comment/commDeleteSubmit?comm_num="+realComm_num;
-// 					alert("댓글을 삭제했습니다!");
-// 					location.reload();
-// 				}
-// 			})
+	// 수정버튼 누르면...
+	$("#btnUpdate").click(function(){
+		self.location = "/board/update?board_no="+board_no;
+	})
+	
+	// 삭제버튼 누르면...
+	$("#btnDelete").click(function(){
+		var user_id = "${login_id}";
+		var check = confirm("게시글을 삭제하시겠습니까?");
+		if(check == true){
+			self.location = "/board/delete?board_no="+board_no+"&user_id="+user_id;
+			alert("게시글을 삭제했습니다!");
+		}
 	});
+
+	
+	// 댓글작성버튼을 누르면!
+	$("#comment").click(function(){
+
+		var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
+		if(commCheck == true){
+			var commSubmit = $("form[name='commentForm']");
+			commSubmit.attr("action","/comment/insertComment");
+			commSubmit.submit();
+		}
+
+	})
+	
+	// 댓글 목록
+	$.ajax("/comment/listComment",{type:"GET",data:{board_no:board_no},success:function(comm){
+		comm = JSON.parse(comm);
+		$.each(comm, function(idx,c){						
+			var tr = $("<tr></tr>");
+			var td1 = $("<td></td>").html(c.comm_cont);
+			var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
+			var td3 = $("<td></td>").html(c.user_id);
+			if(c.user_id === "${login_id}"){
+				var delBtn = $("<button></button>").text("댓글삭제").attr("comm_num",c.comm_num);
+				}
+			
+			var td4 = $("<td></td>");
+			td4.append(delBtn);
+			tr.append(td1, td2, td3, td4);
+			$("#comm_list").append(tr);
+
+			//댓글 삭제
+			$(delBtn).click(function(){
+					
+					var delCheck = confirm("댓글을 삭제하시겠습니까?");
+					if(delCheck == true){
+						self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num;
+						alert("댓글을 삭제했습니다!");
+						location.reload();
+					}
+			})
+		})
+	}})
+
+});
 </script>
 </head>
 <body>
-<header></header>
-	<h2>자유게시판 상세보기</h2>
-	<hr>
-	<a href="list">게시글 목록</a><br><br>
-	<form id="f">
-	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	<input type="hidden" id="board_no" value="${ detail.board_no }">
-	<table border="1" width="70%">
-		<tr>
-			<td>카테고리</td>
-			<td><input type="text" value="${detail.category }" name="category" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>글 제목</td>
-			<td><input type="text" value="${detail.board_title }" name="board_title" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>등록일</td>	
-			<td><fmt:formatDate pattern="yyyy-MM-dd" value="${detail.board_date }"/></td>
-		</tr>
-		<tr>
-			<td>조회수</td>
-			<td><input type="text" value="${detail.board_hit }" name="board_hit" readonly="readonly"></td>
-		</tr>
-		<tr>
-			<td>작성자</td>
-			<td>${detail.user_id }</td>
-		</tr>
-		<tr>
-			<td>글 내용</td>
-			<td><div>${detail.board_content }</div></td>
-		</tr>
-		
-	</table>
-	</form>
-	<c:if test="${login_id eq detail.user_id }">
-		<button id="btnUpdate">글 수정</button>
-		<button id="btnDelete">글 삭제</button>
-	</c:if>
-	
-	<hr>
-	<!-- 댓글입력 -->
-	<form name="commentForm" method="get">
-	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<input type="hidden" id="board_no" name="board_no" value="${detail.board_no}">
-		<input type="hidden" name="user_id" value="${detail.user_id }">
-		댓글 작성자 : <input type="text" name="in_user_id" required="required" value="${login_id }"><br>
-		댓글 내용 : <textarea name="comm_cont" rows="5" cols="20"></textarea><br>
-		<button type="submit" id="comment">댓글 등록</button>
-	</form>
-	
-	<hr>
-	<!-- 댓글 목록-->
-	<table id="comm_list" border="1">
-	</table>
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="#">자유게시판 | 상세보기</a></li>
+				<li class="breadcrumb-item"><a href="/board/list">자유게시판</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
+	<!-- row -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title">게시글 상세보기</h4>
+						<div class="basic-form">
+							<form id="f">
+								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
+								<input type="hidden" id="board_no" value="${ detail.board_no }">
+								<div class="table-responsive">
+									<table class="table header-border">
+										<tbody>
+											<tr>
+												<td>제목&nbsp;|&nbsp;&nbsp;&nbsp;${detail.board_title }</td>
+												<td>카테고리&nbsp;|&nbsp;&nbsp;&nbsp;${detail.category }</td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>작성자&nbsp;|&nbsp;&nbsp;&nbsp;${detail.user_id }</td>
+												<td>등록일&nbsp;|&nbsp;&nbsp;&nbsp;<fmt:formatDate pattern="yyyy년 MM월 dd일 EE요일" value="${detail.board_date }" /></td>
+												<td>조회수&nbsp;|&nbsp;&nbsp;&nbsp;${detail.board_hit }</td>
+											</tr>
+											<tr>
+												<td>내용&nbsp;|<br> <br>${detail.board_content }</td>
+												<td></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</form>
+							<c:if test="${login_id eq detail.user_id }">
+								<button type="button" id="btnDelete" style="float: left" class="btn mb-1 btn-danger">글 삭제</button>
+								<button type="button" id="btnUpdate" style="float: right;" class="btn mb-1 btn-primary">글 수정</button>
+							</c:if>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="card-body" style="float: left">
+					<div class="basic-form">
+						<!-- 댓글입력 -->
+						<form name="commentForm" method="get">
+							<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+							<input type="hidden" id="board_no" name="board_no" value="${detail.board_no}"> 
+							<input type="hidden" name="user_id" value="${detail.user_id }">
+
+							댓글 작성자 : 
+							<input type="text" name="in_user_id" required="required" value="${login_id }" class="form-control input-default"><br>
+
+							댓글 내용 :
+							<textarea name="comm_cont" class="form-control h-150px" rows="6"></textarea>
+							<br>
+							<button type="submit" id="comment" class="btn mb-1 btn-success">댓글 등록</button>
+							
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<!-- 댓글 목록-->
+			<div class="card" style="float: right">
+				<div class="card-body" style="float: right">
+				<div class="table-responsive">
+					<table id="comm_list" class="table table-striped">
+					</table>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 <%@include file="../footer.jsp"%>
 </html>
