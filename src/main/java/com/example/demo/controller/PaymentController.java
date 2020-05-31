@@ -45,8 +45,8 @@ public class PaymentController {
 	@PostMapping(value = "/insertPay", produces = "application/json; charset=utf-8")
 	@ResponseBody
 	public String insertSubmit(HttpServletRequest request,@RequestBody List<PaymentVo> listPay) {
-		System.out.println(listPay);
-		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+//		System.out.println(listPay);
+//		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		for (PaymentVo pv : listPay) {
 			
 			// 결제 수단과 결제상태 한글로 저장되도록!  

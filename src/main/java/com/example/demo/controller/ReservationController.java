@@ -35,8 +35,8 @@ public class ReservationController {
 	@RequestMapping(value = "/facility/reserve")
 	@ResponseBody
 	public String reserve(HttpServletRequest request,ReservationVo r,Model model) throws Exception{
-		System.out.println("aaaaaasdasdasdasdddddd"+r);
-		System.out.println();
+//		System.out.println("aaaaaasdasdasdasdddddd"+r);
+//		System.out.println();
 		//model.addAttribute("rm_no",rm_no);
 		//@RequestParam int rm_no,@ModelAttribute("reservation") ReservationVo reservation,BindingResult result,Model model
 		service.reservePlace(r);
@@ -46,7 +46,7 @@ public class ReservationController {
 		m.setUser_id(r.getUser_id());
 		
 		MemberInfoVo mi = my.select_myinfo(m);
-		System.out.println("예약자 정보" + mi);
+//		System.out.println("예약자 정보" + mi);
 //		model.addAttribute("result", mi);
 		
 //		Gson gson = new Gson();

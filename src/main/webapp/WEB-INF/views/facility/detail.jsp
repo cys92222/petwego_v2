@@ -1767,6 +1767,7 @@ font-size: 14px;
 // 				location.href=re;
 // 				console.log(${result});
 				window.location.href="/facility/pay?str="+re;
+			
 				}});
 		})
 	</script>
