@@ -59,10 +59,10 @@ $(function(){
 			buyer_email : buyer_email,
 			buyer_name : user_id,
 			buyer_tel : buyer_tel,
-			buyer_addr : buyer_addr,
-			rsv_no : rsv_no,				    
+			buyer_addr : buyer_addr,		    
 			}, function(rsp) {
 
+				console.log(rsp);
 				/*	rsp 속성 중 
 				pay_method/string/결제수단	card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(휴대폰소액결제)
 				paid_amount/number/결제금액	실제 결제승인된 금액이나 가상계좌 입금예정 금액
@@ -82,9 +82,10 @@ $(function(){
 	                apply_num : rsp.apply_num,
 	                status : rsp.status,
 	                user_id : rsp.buyer_name,  
-	                rsv_no : rsp.rsv_no,
+	                rsv_no : rsv_no,
 				}
-			
+
+				console.log("결제후: "+ payInfo)
 				info.push(payInfo);
 				
 			    if ( rsp.success ) {// 결제가 성공되었다면
@@ -152,16 +153,16 @@ $(function(){
 	       status 
 	       user_id 
 	     rsv_no-->
-		<input type="hidden" id="imp_uid" name="imp_uid"  />
-		<input type="hidden" id="merchant_uid" name="merchant_uid"  />		
-		<input type="hidden" id="pay_method" name="pay_method"  />
-		<input type="hidden" id="apply_num" name="apply_num"  />	
-		<input type="hidden" id="status" name="status"  />
+		imp_uid<input type="text" id="imp_uid" name="imp_uid"  />
+		merchant_uid<input type="text" id="merchant_uid" name="merchant_uid"  />		
+		pay_method<input type="text" id="pay_method" name="pay_method"  />
+		apply_num<input type="text" id="apply_num" name="apply_num"  />	
+		status<input type="text" id="status" name="status"  />
 		
 		<!-- 가져와야 하는 값 호텔이름, 방이름, 가격, 예약번호  -->
-		<input type="hidden" id="paid_amount" name="paid_amount"  />
+		paid_amount<input type="text" id="paid_amount" name="paid_amount"  />
 		예약번호<input type="text" id="rsv_no" value="${to.rsv_no }"/><br>
-	회원 아이디<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/><br>
+		회원 아이디<input type="text" id="user_id" name="user_id"  value="${my.user_id }"/><br>
 	</form>
 	
 	

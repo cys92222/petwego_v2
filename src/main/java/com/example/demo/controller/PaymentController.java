@@ -63,10 +63,10 @@ public class PaymentController {
 			}
 			
 			pay_service.insertPay(pv);
-			//결제완료하면 예약 테이블에서 결제대기를 결제완료로 수정
-			fs.pay_rsv_paid(user_id, rsv_no);
+			
 		}
-
+		//결제완료하면 예약 테이블에서 결제대기를 결제완료로 수정
+		//fs.pay_rsv_paid(user_id, rsv_no);	
 		System.out.println("결제컨트롤러 동작함");
 
 		return "등록ok";
