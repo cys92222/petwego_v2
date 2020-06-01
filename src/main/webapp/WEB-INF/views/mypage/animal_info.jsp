@@ -82,44 +82,8 @@ $(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-	<!-- 	<h2>동물 정보</h2> -->
-<!-- <hr> -->
-
-<!-- <section id="animail_list"> -->
-<!-- <h2>동물 리스트</h2> -->
-<!-- <hr> -->
-<!-- 	 <table> -->
-<!-- 	 <th>동물번호</th><th>반려동물 이름</th><th>반려시작일</th><th>반려일수</th><th>동물종류</th><th>동물사진</th> -->
-<%-- 		 <c:forEach items="${animal_list }" var="al"> --%>
-<!-- 		 	<tr> -->
-<%-- 		 		<td>${al.pet_no }</td> --%>
-<%-- 		 		<td>${al.pet_name }</td> --%>
-<%-- 		 		<td>${al.pet_date }</td> --%>
-<%-- 		 		<td>${al.day }</td> --%>
-<%-- 		 		<td>${al.pet_type }</td> --%>
-<%-- 		 		<td><img alt="사진이 없습니다" src="/img/animalImg/${al.pet_pic }"></td> --%>
-<%-- 		 		<td><a href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 수정</a></td> --%>
-<%-- 		 		<td><a href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 삭제</a> --%>
-<!-- 		 	</tr> -->
-<%-- 		 </c:forEach> --%>
-<!-- 	 </table> -->
-<!-- 	 <button id="form_btn">반려동물 추가</button> -->
-<!-- </section> -->
-
-
-
 <section id="animal_insert">
-<h2>동물 추가</h2>
+<h2>반려동물 추가</h2>
 <hr>
 	<form action="/mypage/animal_info_up" id="insert_animal" enctype="multipart/form-data" method="post">
 	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
