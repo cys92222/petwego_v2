@@ -443,6 +443,7 @@ public class MyPageController {
 		m.setUser_id(m.getUser_id());
 		mav.setViewName("/mypage/sns_list");
 		mav.addObject("mysns", mypageservice.search_my_sns(m));
+		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
 		return mav;
 	}
 	

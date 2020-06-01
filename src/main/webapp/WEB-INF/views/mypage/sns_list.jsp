@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../head.jsp" %>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,16 +9,33 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2>내가 작성한 sns 리스트</h2>
-<hr>
-<table border="1" width="80%">
-	<th>글번호</th><th>작성일</th>
-	<c:forEach var="sns" items="${mysns }">
-		<tr>
-			<td>${sns.photo_no }</td>
-			<td>${sns.photo_date }</td>
-		</tr>
-	</c:forEach>
-</table>
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-lg-6">
+				<c:forEach var="sns" items="${mysns }" varStatus="status">
+					<a href="/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&user_id2=${login_id}">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">${sns.photo_no }</h4>
+								<div class="bootstrap-carousel">
+									<div class="carousel slide" data-ride="carousel">
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<img class="d-block w-100" width="200" height="200"
+													src="/img/${mysnspic[status.index].photo_file_name}" />
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</c:forEach>
+			</div>
+
+		</div>
+	</div>	
+		<%@ include file="../footer.jsp"%>
 </body>
 </html>
