@@ -94,9 +94,9 @@
                                             <label class="col-lg-4 col-form-label">성별 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
-                                                <label class="css-control css-control-primary css-checkbox" for="agree">
-                                                    <input type="radio" class="css-control-input" id="gender" name="gender" value="여성"> <span class="css-control-indicator"></span> 여성
-                                                    <input type="radio" class="css-control-input" id="gender" name="gender" value="남성"> <span class="css-control-indicator"></span> 남성</label>
+                                                <label class="css-control css-control-primary css-checkbox" for="gender">
+                                                    <input type="radio" class="css-control-input" id="gender" name="gender" value="여자"> <span class="css-control-indicator"></span> 여자
+                                                    <input type="radio" class="css-control-input" id="gender" name="gender" value="남자"> <span class="css-control-indicator"></span> 남자</label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -133,7 +133,7 @@
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="tel" name="tel" placeholder="01012345678">
-                                                 <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                                 <span id="emailErr" class="help-block">올바른 전화번호 형식이 아닙니다. 다시 입력해 주세요.</span>
          										 <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -215,179 +215,56 @@
 <!-- <script src="/resources/js/addressapi.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-//아이디 중복체크 등 건너뛰면 가입도 안되게 처리 해야하는데!!!
-//성공적이면 "회원가입 성공!"멘트 뜨게!어떻게 하지?
+$(function(){
 
-$("#cancle").on("click", function(){
-	alert("회원가입 취소");
-	location.href="/join/join";
-})
-		
-$("#btn").on("click", function(){
-	alert("회원가입 성공");
-	
-})
+	//비밀번호 변경창
+	$("#update_pwd").click(function(){
+		$("#u_p_form").css({"display":"block"});
+		$("#o_from").css({"display":"none"});
 
-
-//아이디 중복체크
-var idx = false;
-	$("#idCheck").on("click", function(){ 
-		
-		 $.ajax({
-	         url: "${pageContext.request.contextPath}/join/idCheck",
-	         type: "GET",
-	         data: {user_id:$("#user_id").val()},
-	         success: function(data) {
-	            //사용 가능한 아이디라면
-		    if(data==0 && $.trim($('#user_id').val()) != '' ){   
-		       idx=true;
-			   $('#user_id').attr("readonly",true);
-		       $("#overlapErr").hide();
-		       successState("#user_id");
-		       alert("사용가능한 아이디입니다.");
-		    //정규표현식을 통과하지 못하면
-		    }else{
-		       $("#overlapErr").show();
-		       errorState("#user_id");
-		       return false;
-		    }
-	    }
-	 })
-	});
-//닉네임 중복체크
-$("#nickCheck").on("click", function(){ 
-	
-	 $.ajax({
-         url: "${pageContext.request.contextPath}/join/nickCheck",
-         type: "GET",
-         data: {nick_name:$("#nick_name").val()},
-         success: function(data) {
-            //사용 가능한 아이디라면
-	    if(data==0 && $.trim($('#nick_name').val()) != '' ){   
-	       idx=true;
-		   $('#nick_name').attr("readonly",true);
-	       $("#overlapNick").hide();
-	       successState("#nick_name");
-	       alert("사용가능한 닉네임입니다.");
-	    //정규표현식을 통과하지 못하면
-	    }else{
-	       $("#overlapNick").show();
-	       errorState("#nick_name");
-	    }
-    }
- })
+		//비밀번호 변경 버튼
+		$("#up_btn").click(function(){
+			$("#u_p_form").css({"display":"none"});
+			var data = $("#update_pwd_form").serialize();
+			$.ajax("/mypage/update_pwd",{data:data,success:function(re){
+	            if(re === "ok"){
+	                alert("비밀번호가 변경됐습니다");
+	                $("#u_p_form").css({"display":"none"});
+	                $("#o_from").css({"display":"block"});
+	                }else{
+	                   alert("기본비밀번호가 틀렸습니다");
+	                   window.location.reload(true);
+	                   }
+				}});
+			});
+		});
 });
-//비밀번호 유효성 검사    
-   $("#pwd").keyup(function(){   //오류 수정 필요! - 1. 비밀번호가 8글자 이하인데 에러메시지가 뜨지 않고 2. 비밀번호가 일치해도 오류 메시지 뜸
-      var pwd = $('#pwd').val();
-      //비밀번호를 검증할 정규 표현식
-      var reg = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,10}$/;
-      //정규표현식을 통과한다면
-      if(reg.test(pwd)){   //test() - 찾는 문자열이, 들어있는지 아닌지를 알려줍니다 / 문장 안에 찾으려는 문자가 들어있으면, 결과는 "true"
-         $("#pwdRegErr").hide();
-         successState("#pwd");
-      //정규표현식을 통과하지 못하면
-      }else{
-         $("#pwdRegErr").show();
-         errorState("#pwd");
-      }
-   });
-   //비밀번호 재확인
-   $("#rePwd").keyup(function(){
-      var rePwd = $('#rePwd').val();
-      //비밀번호가 일치하는지 확인
-      if(rePwd==$('#pwd').val()){ //비밀번호가 일치하면
-         $("#rePwdErr").hide();
-   
-      }else{   //비밀번호가 불일치한다면
-         $("#rePwdErr").show();
-         //errorState("#rePwd");
-      }
-  	 });
-   //이메일 유효성 검사
-   $("#email").keyup(function(){
-       var email=$(this).val();
-       // 이메일 검증할 정규 표현식
-       var reg=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     var reg = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
-       if(reg.test(email)){//정규표현식을 통과 한다면
-                   $("#emailErr").hide();
-                   successState("#email");
-       }else{//정규표현식을 통과하지 못하면
-                   $("#emailErr").show();
-                   errorState("#email");
-       }
-   });
-   
-   //성공 상태로 바꾸는 함수
-   function successState(sel){
-      $(sel)
-      .parent()
-      .removeClass("has-error")
-      .addClass("has-success")
-      .find(".glyphicon")
-      .removeClass("glyphicon-remove")
-      .addClass("glyphicon-ok")
-      .show();
-      
-      $("#myForm button[type=submit]").removeAttr("disabled");
-   }
- 
-   //에러 상태로 바꾸는 함수
-   function errorState(sel){
-      $(sel)
-      .parent()
-      .removeClass("has-success")
-      .addClass("has-error")
-      .find(".glyphicon")
-      .removeClass("glyphicon-ok")
-      .addClass("glyphicon-remove")
-      .show();
-      $("#myForm button[type=submit]").attr("disabled", "disabled");
-   };
 
-   
-   function execPostCode() {
-       new daum.Postcode({
-           oncomplete: function(data) {
-              // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-              // 도로명 주소의 노출 규칙에 따라 주소를 조합한다.
-              // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-              var fullRoadAddr = data.roadAddress; // 도로명 주소 변수
-              var extraRoadAddr = ''; // 도로명 조합형 주소 변수
-              // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-              // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-              if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                  extraRoadAddr += data.bname;
-              }
-              // 건물명이 있고, 공동주택일 경우 추가한다.
-              if(data.buildingName !== '' && data.apartment === 'Y'){
-                 extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-              }
-              // 도로명, 지번 조합형 주소가 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-              if(extraRoadAddr !== ''){
-                  extraRoadAddr = ' (' + extraRoadAddr + ')';
-              }
-              // 도로명, 지번 주소의 유무에 따라 해당 조합형 주소를 추가한다.
-              if(fullRoadAddr !== ''){
-                  fullRoadAddr += extraRoadAddr;
-              }
-              // 우편번호와 주소 정보를 해당 필드에 넣는다.
-              console.log(data.zonecode);
-              console.log(fullRoadAddr);
-              
-              
-//              $("[name=addrress]").val(data.zonecode);
-//              $("[name=address2]").val(fullRoadAddr);  
-           	  // 우편번호와 주소 정보를 해당 필드에 넣는다.
-              document.getElementById('address').value = data.zonecode; //5자리 새우편번호 사용
-              document.getElementById('address2').value = fullRoadAddr;
 
-              //self.close();
-          }
-       }).open();
-   }
 
-   
+$(document).ready(function(){
+		$("#submit").on("click", function(){
+			$.ajax({
+				url: "/join/passCheck",
+				type: "POST",
+				dataType: "json",
+				data: $("#updateForm").serializeArray(),
+				success: function(data) {
+					if(data==true){
+						if(confirm("회원 수정하시겠습니까?")){
+							$("#updateForm").submit();
+							}
+						}else{
+							alert("비밀번호가 틀렸습니다.");
+							return false;
+
+							}
+					}	
+			})
+		})
+})
+
+
+
 </script>
 </html>
