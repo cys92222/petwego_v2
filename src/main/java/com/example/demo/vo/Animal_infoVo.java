@@ -22,6 +22,8 @@ public class Animal_infoVo {
 	
 	private String day;
 	
+	private String pet_intro;
+	
 	private MultipartFile pic;
 }
  

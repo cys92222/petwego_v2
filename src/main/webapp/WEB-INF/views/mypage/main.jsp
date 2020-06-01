@@ -156,7 +156,7 @@
 
 
 					<div class="card">
-						<div class="card-body">
+						<div class="card-body mb-5">
 							<h2>반려동물 정보</h2>
 
 							<!-- 동물 정보 -->
@@ -168,17 +168,16 @@
 									<div class="media-body">
 										<div class="d-sm-flex justify-content-between mb-2">
 											<h5 class="mb-sm-0">
-												반려동물 이름 (${a.pet_name }) <small class="text-muted ml-3">반려시작일
-													(${a.pet_date })</small>
+												${a.pet_name } 
 											</h5>
+											<small class="text-muted ml-3">${a.pet_date }</small>
 										</div>
-
-										<p>반려동물 소개 (${a.pet_type }) / 칼럼 추가해야될거같음</p>
+											
+										<p>${a.pet_intro}</p> 
 									</div>
 								</c:forEach>
 							</div>
 							<!-- 동물 정보 끝						 -->
-
 							<button class="btn btn-primary" id="animal_info_up_btn">수정하기</button>
 						</div>
 					</div>
@@ -332,29 +331,7 @@
 								cols="30" rows="2" placeholder="발자취를 남겨주세요 (칼럼추가해야됨)"></textarea>
 						</div>
 						<div class="d-flex align-items-center">
-							<ul class="mb-0 form-profile__icons">
-								<li class="d-inline-block">
-									<button class="btn btn-transparent p-0 mr-3">
-										<i class="fa fa-user"></i>
-									</button>
-								</li>
-								<li class="d-inline-block">
-									<button class="btn btn-transparent p-0 mr-3">
-										<i class="fa fa-paper-plane"></i>
-									</button>
-								</li>
-								<li class="d-inline-block">
-									<button class="btn btn-transparent p-0 mr-3">
-										<i class="fa fa-camera"></i>
-									</button>
-								</li>
-								<li class="d-inline-block">
-									<button class="btn btn-transparent p-0 mr-3">
-										<i class="fa fa-smile"></i>
-									</button>
-								</li>
-							</ul>
-							<button class="btn btn-primary px-3 ml-4">등록하기</button>
+							<button class="btn btn-primary px-3 ml-2">등록하기</button>
 						</div>
 					</form>
 				</div>

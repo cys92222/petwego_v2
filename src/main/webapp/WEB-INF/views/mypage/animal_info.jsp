@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="../head.jsp" %>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,29 +38,83 @@ $(function(){
 </script>
 </head>
 <body>
-<h2>동물 정보</h2>
-<hr>
 
-<section id="animail_list">
-<h2>동물 리스트</h2>
-<hr>
-	 <table>
-	 <th>동물번호</th><th>반려동물 이름</th><th>반려시작일</th><th>반려일수</th><th>동물종류</th><th>동물사진</th>
-		 <c:forEach items="${animal_list }" var="al">
-		 	<tr>
-		 		<td>${al.pet_no }</td>
-		 		<td>${al.pet_name }</td>
-		 		<td>${al.pet_date }</td>
-		 		<td>${al.day }</td>
-		 		<td>${al.pet_type }</td>
-		 		<td><img alt="사진이 없습니다" src="/img/animalImg/${al.pet_pic }"></td>
-		 		<td><a href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 수정</a></td>
-		 		<td><a href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 삭제</a>
-		 	</tr>
-		 </c:forEach>
-	 </table>
-	 <button id="form_btn">반려동물 추가</button>
-</section>
+
+
+	<div class="container-fluid">
+	<button class="btn btn-primary mb-4" id="form_btn">반려동물 추가</button>
+			<div class="row">
+		<c:forEach items="${animal_list }" var="al">
+				<div class="col-lg-4 col-xl-3">
+					<div class="card text-center">
+						<div class="card-body">
+							<div class="media align-items-center justify-content-center mb-4">
+								<div
+									class="text-center d-flex flex-column justify-content-center">
+									<div class="row mb-5 d-flex flex-column align-items-center">
+										<h2>반려동물 정보</h2>
+										<img class="rounded-circle" alt="사진이 없습니다"
+											src="/img/animalImg/${al.pet_pic }" width="100" height="100">
+									</div>		
+									<h3 class="mb-0">${al.pet_name }</h3>
+								</div>
+							</div>
+
+
+							<h4>반려동물 소개</h4>
+							<p class="text-muted">${al.pet_intro }</p>
+							<ul class="card-profile__info">
+								<li class="mb-1"><strong class="text-dark mr-4 ml-4">반려시작일</strong><span>${al.pet_date }</span></li>
+								<li><strong class="text-dark mr-4 ml-4">반려동물종류</strong><span>${al.pet_type }</span></li>
+							</ul>
+							<a class="btn btn-primary"
+								href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물
+								정보 수정</a> <a class="btn btn-primary"
+								href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물
+								정보 삭제</a>
+						</div>
+					</div>
+				</div>
+		</c:forEach>
+			</div>
+		
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 	<h2>동물 정보</h2> -->
+<!-- <hr> -->
+
+<!-- <section id="animail_list"> -->
+<!-- <h2>동물 리스트</h2> -->
+<!-- <hr> -->
+<!-- 	 <table> -->
+<!-- 	 <th>동물번호</th><th>반려동물 이름</th><th>반려시작일</th><th>반려일수</th><th>동물종류</th><th>동물사진</th> -->
+<%-- 		 <c:forEach items="${animal_list }" var="al"> --%>
+<!-- 		 	<tr> -->
+<%-- 		 		<td>${al.pet_no }</td> --%>
+<%-- 		 		<td>${al.pet_name }</td> --%>
+<%-- 		 		<td>${al.pet_date }</td> --%>
+<%-- 		 		<td>${al.day }</td> --%>
+<%-- 		 		<td>${al.pet_type }</td> --%>
+<%-- 		 		<td><img alt="사진이 없습니다" src="/img/animalImg/${al.pet_pic }"></td> --%>
+<%-- 		 		<td><a href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 수정</a></td> --%>
+<%-- 		 		<td><a href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 삭제</a> --%>
+<!-- 		 	</tr> -->
+<%-- 		 </c:forEach> --%>
+<!-- 	 </table> -->
+<!-- 	 <button id="form_btn">반려동물 추가</button> -->
+<!-- </section> -->
 
 
 
@@ -75,8 +129,11 @@ $(function(){
 		반려시작일 <input type="date" id="pet_date" name="pet_date"><br>
 		동물종류 <input type="text" name="pet_type"><br>
 		사진 <input type="file" name="aa"><br>
+		반려동물소개 <br>
+		<textarea rows="8" cols="10" name="pet_intro"></textarea>
 	<button id="insert_btn">반려동물 등록</button>
 	</form>
 </section>
+<%@ include file="../footer.jsp" %>
 </body>
 </html>

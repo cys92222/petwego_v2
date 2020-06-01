@@ -189,6 +189,10 @@ public class MyPageController {
 	    MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
 		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
 		
+		if(a.getPet_intro().equals("")) {
+			a.setPet_intro("반려동물을 소개해주세요");
+		}
+		
 //		m.setUser_id(user.getUser_id());
 		
 		//		System.out.println("반려동물 등록 컨트롤러");
@@ -573,6 +577,7 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부안함");
+			a.setPet_pic("사진첨부안함");
 //			a.setPic(a.getPic());
 		}
 		

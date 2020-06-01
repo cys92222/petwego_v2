@@ -23,6 +23,8 @@ $(function(){
 		반려동물 번호 : <input type="text" name="pet_no" value="${animal_info.pet_no }" readonly="readonly"> <br>
 		반려동물 이름 :<input type="text" name="pet_name" value="${animal_info.pet_name }"> <br>
 		반려시작일 : <input type="text" name="pet_date" value="${animal_info.pet_date }"> <br>
+		반려동물소개 :<br>
+		<textarea rows="8" cols="10" name="pet_intro">${animal_info.pet_intro }</textarea><br>
 		동물종류 : <input type="text" name="pet_type" value="${animal_info.pet_type }"><br>
 		반려동물 사진 : <img alt="사진이 없습니다" src="/img/animalImg/${animal_info.pet_pic }"><br>
 					<input type="hidden" name="pet_pic" value="${animal_info.pet_pic }"><br>
