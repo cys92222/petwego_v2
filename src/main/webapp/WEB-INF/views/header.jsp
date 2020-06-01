@@ -10,8 +10,9 @@
 
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
-	href="/resources/quixlab/images/favicon.png">
-	
+	href="../resources/quixlab/images/favicon.png">
+
+
 <!-- Custom Stylesheet -->
 <link href="/resources/quixlab/css/style.css" rel="stylesheet">
 
@@ -78,7 +79,7 @@
 								id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
 						</div>
 						<input type="search" class="form-control"
-							placeholder="Search Dashboard" aria-label="Search Dashboard">
+							placeholder="검색" aria-label="Search Dashboard">
 						<div class="drop-down animated flipInX d-md-none">
 							<form action="#">
 								<input type="text" class="form-control" placeholder="Search">

@@ -18,7 +18,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>PETWEGO</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../resources/quixlab/images/favicon.png">
+<!--     <link rel="icon" type="image/png" sizes="16x16" href="../resources/quixlab/images/favicon.png"> -->
+    <link rel="icon" type="image/jpg" sizes="16x16" href="../img/peopleImg/profile.jpg">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> -->
     <link href="../resources/quixlab/css/style.css" rel="stylesheet">
     <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
@@ -56,7 +57,7 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD" value="a123456">
                                     </div>
-                                    <button class="btn login-form__btn submit w-100">로그인</button>
+                                    <button class="btn login-form__btn submit w-100" style="background: #1ce1cf;">로그인</button>
                                 	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
 								    <font color="red">
 								        <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
@@ -66,7 +67,7 @@
                                 </form>
 								<!-- 네이버 로그인 창으로 이동 -->
 								<div id="naverIdLogin"></div>
-                                <p class="mt-5 login-form__footer" style="margin-left: 400px;"><a href="/join/join" class="text-primary">회원가입</a></p>
+                                <p class="mt-5 login-form__footer" style="margin-left: 350px;"><a href="/join/join" style="color:#17b9aa;" class="text-primary">회원가입</a></p>
                             </div>
                         </div>
                     </div>
