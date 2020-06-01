@@ -88,71 +88,13 @@
 				</div>
 				<div class="header-right">
 					<ul class="clearfix">
-
-						<!-- 알람 시작 -->
-						<li class="icons dropdown"><a href="javascript:void(0)"
-							data-toggle="dropdown"> <i class="mdi mdi-bell-outline"></i>
-								<span class="badge badge-pill gradient-2">3</span>
-						</a>
-							<div
-								class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-								<div
-									class="dropdown-content-heading d-flex justify-content-between">
-									<span class="">2 New Notifications</span> <a
-										href="javascript:void()" class="d-inline-block"> <span
-										class="badge badge-pill gradient-2">5</span>
-									</a>
-								</div>
-								<div class="dropdown-content-body">
-									<ul>
-										<li><a href="javascript:void()"> <span
-												class="mr-3 avatar-icon bg-success-lighten-2"><i
-													class="icon-present"></i></span>
-												<div class="notification-content">
-													<h6 class="notification-heading">Events near you</h6>
-													<span class="notification-text">Within next 5 days</span>
-												</div>
-										</a></li>
-										<li><a href="javascript:void()"> <span
-												class="mr-3 avatar-icon bg-danger-lighten-2"><i
-													class="icon-present"></i></span>
-												<div class="notification-content">
-													<h6 class="notification-heading">Event Started</h6>
-													<span class="notification-text">One hour ago</span>
-												</div>
-										</a></li>
-										<li><a href="javascript:void()"> <span
-												class="mr-3 avatar-icon bg-success-lighten-2"><i
-													class="icon-present"></i></span>
-												<div class="notification-content">
-													<h6 class="notification-heading">Event Ended
-														Successfully</h6>
-													<span class="notification-text">One hour ago</span>
-												</div>
-										</a></li>
-										<li><a href="javascript:void()"> <span
-												class="mr-3 avatar-icon bg-danger-lighten-2"><i
-													class="icon-present"></i></span>
-												<div class="notification-content">
-													<h6 class="notification-heading">Events to Join</h6>
-													<span class="notification-text">After two days</span>
-												</div>
-										</a></li>
-									</ul>
-
-								</div>
-							</div></li>
-						<!-- 알람 끝 -->
-						
-						
-						<sec:authorize access="isAnonymous()">
-
+					
+					<!-- 로그인 안했을 때 -->
+					<sec:authorize access="isAnonymous()">
 						<li class="icons dropdown">
 							<div class="user-img c-pointer position-relative"
 								data-toggle="dropdown">
-								<span class="activity active"></span> <img
-									src="/resources/quixlab/images/user/1.png" height="40"
-									width="40" alt="">
+								<img src="../img/peopleImg/profile.jpg" height="40" width="40" alt="">
 							</div>
 							<div
 								class="drop-down dropdown-profile animated fadeIn dropdown-menu">
@@ -161,23 +103,20 @@
 										<li><a href="/login/login"><i class="icon-user"></i>
 												<span>로그인</span></a></li>
 										<hr class="my-2">
-										<li><a href="/join/join"><i class="icon-lock"></i>
+										<li><a href="/join/join"><i class="icon-key"></i>
 												<span>회원가입</span></a></li>
-										<li><a href="/resources/quixlab/page-lock.html"><i
-												class="icon-lock"></i> <span>Lock Screen</span></a></li>
-										<li><a href="/resources/quixlab/page-login.html"><i
-												class="icon-key"></i> <span>Logout</span></a></li>
 									</ul>
 								</div>
 							</div>
 						</li>
-						</sec:authorize>
-						<sec:authorize access="isAuthenticated()">
+					</sec:authorize>
+					
+					<!-- 로그인 했을 때 -->
+					<sec:authorize access="isAuthenticated()">
 						<li class="icons dropdown">
 							<div class="user-img c-pointer position-relative"
 								data-toggle="dropdown">
-								<span class="activity active"></span> <img
-									src="../img/peopleImg/<sec:authentication property="principal.fname"/>" 
+								<img src="../img/peopleImg/<sec:authentication property="principal.fname"/>" 
 									height="40" width="40" alt="">
 							</div>
 							<div
@@ -186,6 +125,12 @@
 									<ul>
 										<li><a href="/mypage/mypage"><i class="icon-user"></i>
 												<span>마이페이지</span></a></li>
+												
+										<sec:authorize access="hasRole('ROLE_ADMIN')">
+										<li><a href="<c:url value='/management/manager_main'/>"><i class="icon-user"></i>
+												<span>관리자페이지</span></a></li>
+										</sec:authorize>
+										
 										<li><a href="/login/logout"><i class="icon-key"></i>
 												<span>로그아웃</span></a></li>
 									</ul>
