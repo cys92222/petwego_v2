@@ -5,7 +5,7 @@
 <head>
 <%@include file="../header.jsp" %>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>회원정보 수정</title>
    <style type="text/css">
       /* .help-block을 일단 보이지 않게 설정 */
       #updateForm .help-block{
@@ -15,7 +15,7 @@
       #updateForm . glyphicon{
          display: none;
       }
-      
+       
    </style>
 
 </head>
@@ -25,7 +25,7 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                      	<li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
+                         <li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
                         <li class="breadcrumb-item active"><a href="javascript:void(0)">수정하기</a></li>
                     </ol>
                 </div>
@@ -41,40 +41,40 @@
                                 <div class="form-validation">
                                     <form class="form-valide" action="/mypage/people_info_up" method="post" novalidate="novalidate" id="updateForm">
                                        <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-                                       	<div class="form-group row d-flex justify-content-between ">
-                                       	비밀번호를 입력하셔야 정보를 수정할 수 있습니다
+                                          <div class="form-group row d-flex justify-content-between ">
+                                          비밀번호를 입력하셔야 정보를 수정할 수 있습니다
 
-                                       		<a href="/mypage/update_pwd"><button class="btn btn-primary">비밀번호 변경</button></a>
-	
-                                       	</div>
-										<div class="form-group row">
+                                             <a href="/mypage/update_pwd"><button class="btn btn-primary">비밀번호 변경</button></a>
+   
+                                          </div>
+                              <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="pwd">비밀번호 <span class="text-danger">*</span>
                                             </label>    
                                             <div class="col-lg-6">
                                                 <inpt type="text" class="form-control" name="pwd" id="pwd" required="required"/>
-                                            </div>				         
+                                            </div>                     
                                         </div>  
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
                                             </label>    
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" value="${m.user_id }" readonly="readonly" name="user_id"/>
-                                            </div>				         
+                                            </div>                     
                                         </div>  
                                          <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="name">이름 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" value="${m.name }" readonly="readonly" name="name"/>
-                                            </div>				         
+                                            </div>                     
                                         </div>  
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="email">이메일 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="email" class="form-control" id="email" name="email" value="${m.email }">
-                                            	<span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
-        		 								<span class="form-control-feedback"></span>
+                                               <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                       <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -109,9 +109,9 @@
                                         <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
                                             </label>
-	                                        <div class="col-lg-6">
-	                                                <input type="text" class="form-control" style="top: 5px; display: inline;" name="address2" id="address2" value="${m.address2 }" readonly="readonly"/>
-	                                            </div>
+                                           <div class="col-lg-6">
+                                                   <input type="text" class="form-control" style="top: 5px; display: inline;" name="address2" id="address2" value="${m.address2 }" readonly="readonly"/>
+                                               </div>
                                         </div>
                                         <div class="form-group row">
                                          <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
@@ -126,7 +126,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="tel" name="tel" value="${m.tel }">
                                                  <span id="emailErr" class="help-block">올바른 전화번호 형식이 아닙니다. 다시 입력해 주세요.</span>
-         										 <span class="form-control-feedback"></span>
+                                        <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -135,20 +135,20 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="nick_name" name="nick_name" value="${m.nick_name }">
                                                 <button type="button" id="nickCheck">닉네임 중복 확인</button> 
-									         	<span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
-									         	<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                       <span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
+                                       <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="fname">프로필 사진 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                            	<img alt="사진이 없습니다" src="/img/peopleImg/${m.fname }"><br>
+                                               <img alt="사진이 없습니다" src="/img/peopleImg/${m.fname }"><br>
 <!--                                                 <input type="file" class="form-control" id="fname" name="fname"/> -->
-												<input type="hidden" class="form-control" value="${m.fname }">
-												<a href="/mypage/delete_people_pic?user_id=${m.user_id }">사진 삭제</a><br>
-												<input type="hidden" class="form-control" value="${m.fname }" name="fname"> <br>
-												<input type="file" class="form-control" name="aa"><br>
+                                    <input type="hidden" class="form-control" value="${m.fname }">
+                                    <a href="/mypage/delete_people_pic?user_id=${m.user_id }">사진 삭제</a><br>
+                                    <input type="hidden" class="form-control" value="${m.fname }" name="fname"> <br>
+                                    <input type="file" class="form-control" name="aa"><br>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -205,7 +205,7 @@
 
     <script src="../resources/quixlab/plugins/validation/jquery.validate.min.js"></script>
     <script src="../resources/quixlab/plugins/validation/jquery.validate-init.js"></script>
-	
+   
 </body>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- <script src="/resources/js/addressapi.js"></script> -->
@@ -215,77 +215,77 @@
 //성공적이면 "회원가입 성공!"멘트 뜨게!어떻게 하지?
 
 $("#cancle").on("click", function(){
-	alert("회원가입 취소");
-	location.href="/mypage/people_info_up_form?user_id=${login_id}";
+   alert("회원가입 취소");
+   location.href="/mypage/people_info_up_form?user_id=${login_id}";
 })
-		
+      
 $(document).ready(function(){
-	$("#submit").on("click", function(){
-		$.ajax({
-			url: "/join/passCheck",
-			type: "POST",
-			dataType: "json",
-			data: $("#updateForm").serializeArray(),
-			success: function(data) {
-				if(data==true){
-					if(confirm("회원 수정하시겠습니까?")){
-						$("#updateForm").submit();
-						}
-					}else{
-						alert("비밀번호가 틀렸습니다.");
-						return false;
+   $("#submit").on("click", function(){
+      $.ajax({
+         url: "/join/passCheck",
+         type: "POST",
+         dataType: "json",
+         data: $("#updateForm").serializeArray(),
+         success: function(data) {
+            if(data==true){
+               if(confirm("회원 수정하시겠습니까?")){
+                  $("#updateForm").submit();
+                  }
+               }else{
+                  alert("비밀번호가 틀렸습니다.");
+                  return false;
 
-						}
-				}	
-		})
-	})
+                  }
+            }   
+      })
+   })
 })
 
 //아이디 중복체크
 var idx = false;
-	$("#idCheck").on("click", function(){ 
-		
-		 $.ajax({
-	         url: "${pageContext.request.contextPath}/join/idCheck",
-	         type: "GET",
-	         data: {user_id:$("#user_id").val()},
-	         success: function(data) {
-	            //사용 가능한 아이디라면
-		    if(data==0 && $.trim($('#user_id').val()) != '' ){   
-		       idx=true;
-			   $('#user_id').attr("readonly",true);
-		       $("#overlapErr").hide();
-		       successState("#user_id");
-		       alert("사용가능한 아이디입니다.");
-		    //정규표현식을 통과하지 못하면
-		    }else{
-		       $("#overlapErr").show();
-		       errorState("#user_id");
-		       return false;
-		    }
-	    }
-	 })
-	});
+   $("#idCheck").on("click", function(){ 
+      
+       $.ajax({
+            url: "${pageContext.request.contextPath}/join/idCheck",
+            type: "GET",
+            data: {user_id:$("#user_id").val()},
+            success: function(data) {
+               //사용 가능한 아이디라면
+          if(data==0 && $.trim($('#user_id').val()) != '' ){   
+             idx=true;
+            $('#user_id').attr("readonly",true);
+             $("#overlapErr").hide();
+             successState("#user_id");
+             alert("사용가능한 아이디입니다.");
+          //정규표현식을 통과하지 못하면
+          }else{
+             $("#overlapErr").show();
+             errorState("#user_id");
+             return false;
+          }
+       }
+    })
+   });
 //닉네임 중복체크
 $("#nickCheck").on("click", function(){ 
-	
-	 $.ajax({
+   
+    $.ajax({
          url: "${pageContext.request.contextPath}/join/nickCheck",
          type: "GET",
          data: {nick_name:$("#nick_name").val()},
          success: function(data) {
             //사용 가능한 아이디라면
-	    if(data==0 && $.trim($('#nick_name').val()) != '' ){   
-	       idx=true;
-		   $('#nick_name').attr("readonly",true);
-	       $("#overlapNick").hide();
-	       successState("#nick_name");
-	       alert("사용가능한 닉네임입니다.");
-	    //정규표현식을 통과하지 못하면
-	    }else{
-	       $("#overlapNick").show();
-	       errorState("#nick_name");
-	    }
+       if(data==0 && $.trim($('#nick_name').val()) != '' ){   
+          idx=true;
+         $('#nick_name').attr("readonly",true);
+          $("#overlapNick").hide();
+          successState("#nick_name");
+          alert("사용가능한 닉네임입니다.");
+       //정규표현식을 통과하지 못하면
+       }else{
+          $("#overlapNick").show();
+          errorState("#nick_name");
+       }
     }
  })
 });
@@ -315,7 +315,7 @@ $("#nickCheck").on("click", function(){
          $("#rePwdErr").show();
          //errorState("#rePwd");
       }
-  	 });
+      });
    //이메일 유효성 검사
    $("#email").keyup(function(){
        var email=$(this).val();
@@ -391,7 +391,7 @@ $("#nickCheck").on("click", function(){
               
 //              $("[name=addrress]").val(data.zonecode);
 //              $("[name=address2]").val(fullRoadAddr);  
-           	  // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
               document.getElementById('address').value = data.zonecode; //5자리 새우편번호 사용
               document.getElementById('address2').value = fullRoadAddr;
 

@@ -30,6 +30,7 @@
             <!-- row -->
 
             <div class="container-fluid">
+              <h4>회원가입</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
@@ -43,24 +44,24 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" required="required"/>
                                                 <button type="button" id="idCheck">아이디 중복 확인</button>
-                                           		<span id="overlapErr" class="help-block">사용할 수 없는 아이디 입니다.</span>
-                                           		<span class="glyphicon glyphicon-ok form-control-feedback"></span>
-                                            </div>				         
+                                                 <span id="overlapErr" class="help-block">사용할 수 없는 아이디 입니다.</span>
+                                                 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                            </div>                     
                                         </div>  
                                          <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="name">이름 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" name="name" id="name" placeholder="NAME" required="required"/>
-                                            </div>				         
+                                            </div>                     
                                         </div>  
                                         <div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="email">이메일 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="email" class="form-control" id="email" name="email" placeholder="user@petwego.com">
-                                            	<span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
-        		 								<span class="form-control-feedback"></span>
+                                               <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                       <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -69,7 +70,7 @@
                                             <div class="col-lg-6">
                                                 <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD">
                                                  <span id="pwdRegErr" class="help-block">숫자와 글자 조합으로 6글자 이상 10글자 이하를 입력하세요</span>
-         										 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -78,7 +79,7 @@
                                             <div class="col-lg-6">
                                                 <input type="password" class="form-control" id="rePwd" name="rePwd" placeholder="PASSWORD">
                                                  <span id="rePwdErr" class="help-block">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</span>
-         										 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -115,9 +116,9 @@
                                         <div class="form-group row">
                                         <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
                                             </label>
-	                                        <div class="col-lg-6">
-	                                                <input type="text" class="form-control" style="top: 5px; display: inline;" placeholder="도로명 주소" name="address2" id="address2" readonly="readonly"/>
-	                                            </div>
+                                           <div class="col-lg-6">
+                                                   <input type="text" class="form-control" style="top: 5px; display: inline;" placeholder="도로명 주소" name="address2" id="address2" readonly="readonly"/>
+                                               </div>
                                         </div>
                                         <div class="form-group row">
                                          <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
@@ -132,7 +133,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="tel" name="tel" placeholder="01012345678">
                                                  <span id="emailErr" class="help-block">올바른 전화번호 형식이 아닙니다. 다시 입력해 주세요.</span>
-         										 <span class="form-control-feedback"></span>
+                                        <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -141,8 +142,8 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="nick_name" name="nick_name" placeholder="NICKNAME">
                                                 <button type="button" id="nickCheck">닉네임 중복 확인</button> 
-									         	<span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
-									         	<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                                       <span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
+                                       <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -207,7 +208,7 @@
 
     <script src="../resources/quixlab/plugins/validation/jquery.validate.min.js"></script>
     <script src="../resources/quixlab/plugins/validation/jquery.validate-init.js"></script>
-	
+   
 </body>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- <script src="/resources/js/addressapi.js"></script> -->
@@ -215,51 +216,51 @@
 <script type="text/javascript">
 $(function(){
 
-	//비밀번호 변경창
-	$("#update_pwd").click(function(){
-		$("#u_p_form").css({"display":"block"});
-		$("#o_from").css({"display":"none"});
+   //비밀번호 변경창
+   $("#update_pwd").click(function(){
+      $("#u_p_form").css({"display":"block"});
+      $("#o_from").css({"display":"none"});
 
-		//비밀번호 변경 버튼
-		$("#up_btn").click(function(){
-			$("#u_p_form").css({"display":"none"});
-			var data = $("#update_pwd_form").serialize();
-			$.ajax("/mypage/update_pwd",{data:data,success:function(re){
-	            if(re === "ok"){
-	                alert("비밀번호가 변경됐습니다");
-	                $("#u_p_form").css({"display":"none"});
-	                $("#o_from").css({"display":"block"});
-	                }else{
-	                   alert("기본비밀번호가 틀렸습니다");
-	                   window.location.reload(true);
-	                   }
-				}});
-			});
-		});
+      //비밀번호 변경 버튼
+      $("#up_btn").click(function(){
+         $("#u_p_form").css({"display":"none"});
+         var data = $("#update_pwd_form").serialize();
+         $.ajax("/mypage/update_pwd",{data:data,success:function(re){
+               if(re === "ok"){
+                   alert("비밀번호가 변경됐습니다");
+                   $("#u_p_form").css({"display":"none"});
+                   $("#o_from").css({"display":"block"});
+                   }else{
+                      alert("기본비밀번호가 틀렸습니다");
+                      window.location.reload(true);
+                      }
+            }});
+         });
+      });
 });
 
 
 
 $(document).ready(function(){
-		$("#submit").on("click", function(){
-			$.ajax({
-				url: "/join/passCheck",
-				type: "POST",
-				dataType: "json",
-				data: $("#updateForm").serializeArray(),
-				success: function(data) {
-					if(data==true){
-						if(confirm("회원 수정하시겠습니까?")){
-							$("#updateForm").submit();
-							}
-						}else{
-							alert("비밀번호가 틀렸습니다.");
-							return false;
+      $("#submit").on("click", function(){
+         $.ajax({
+            url: "/join/passCheck",
+            type: "POST",
+            dataType: "json",
+            data: $("#updateForm").serializeArray(),
+            success: function(data) {
+               if(data==true){
+                  if(confirm("회원 수정하시겠습니까?")){
+                     $("#updateForm").submit();
+                     }
+                  }else{
+                     alert("비밀번호가 틀렸습니다.");
+                     return false;
 
-							}
-					}	
-			})
-		})
+                     }
+               }   
+         })
+      })
 })
 
 
