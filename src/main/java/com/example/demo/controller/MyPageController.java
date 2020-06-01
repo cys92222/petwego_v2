@@ -315,7 +315,12 @@ public class MyPageController {
 		memberInfo = loginMapperDao.getSelectMemberInfo(user_id);
 		memberInfo.setUser_id(user_id);
 
-		String str = aa.getOriginalFilename();
+		String str = "";
+		if(aa!=null) {
+			str = aa.getOriginalFilename();
+		}
+				
+				
 		String o_str = m.getFname();
 		String path = request.getRealPath("/img/peopleImg");
 		System.out.println(path);
@@ -489,6 +494,12 @@ public class MyPageController {
 		
 	}
 	
+	@NoLogging
+	@RequestMapping("/mypage/update_pwd_form")
+	public String update_pwd() {
+		return "/mypage/update_pwd";
+	}
+	
 	//비밀번호 변경
 	@NoLogging
 	@RequestMapping("/mypage/update_pwd")
@@ -502,9 +513,9 @@ public class MyPageController {
 	    MemberInfoVo memberInfo = (MemberInfoVo) authentication.getPrincipal();
 
 	    //vo에 실려온 user_id를 mapper로 보내서 이 아이디가 가진 나머지 정보들 가져오기
-		memberInfo = loginMapperDao.getSelectMemberInfo(o_user_id);
+//		memberInfo = loginMapperDao.getSelectMemberInfo(o_user_id);
 		//이 정보를 다시 자바가 갖고 있는 vo에 담아주기
-		memberInfo.setUser_id(o_user_id);
+//		memberInfo.setUser_id(o_user_id);
 		
 		//vo에 실려온 '기존 비밀번호' 받아오기
 		String pwd = memberInfo.getPwd();

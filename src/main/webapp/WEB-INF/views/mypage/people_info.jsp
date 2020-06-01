@@ -31,7 +31,7 @@
                 </div>
             </div>
             <!-- row -->
-
+			
             <div class="container-fluid">
             <h4>회원정보 수정</h4>
                 <div class="row justify-content-center">
@@ -43,15 +43,15 @@
                                        <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
                                           <div class="form-group row d-flex justify-content-between ">
                                           비밀번호를 입력하셔야 정보를 수정할 수 있습니다
-
-                                             <a href="/mypage/update_pwd"><button class="btn btn-primary">비밀번호 변경</button></a>
+									<button class="btn btn-primary" id="btnPwd" type="button">비밀번호 변경</button>
+                                             
    
                                           </div>
-                              <div class="form-group row">
+                              			<div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="pwd">비밀번호 <span class="text-danger">*</span>
                                             </label>    
                                             <div class="col-lg-6">
-                                                <inpt type="text" class="form-control" name="pwd" id="pwd" required="required"/>
+                                                <input type="text" class="form-control" name="pwd" id="pwd" required="required"/>
                                             </div>                     
                                         </div>  
                                         <div class="form-group row">
@@ -146,7 +146,7 @@
                                                <img alt="사진이 없습니다" src="/img/peopleImg/${m.fname }"><br>
 <!--                                                 <input type="file" class="form-control" id="fname" name="fname"/> -->
                                     <input type="hidden" class="form-control" value="${m.fname }">
-                                    <a href="/mypage/delete_people_pic?user_id=${m.user_id }">사진 삭제</a><br>
+                                    <a href="/mypage/delete_people_pic?user_id=${login_id }">사진 삭제</a><br>
                                     <input type="hidden" class="form-control" value="${m.fname }" name="fname"> <br>
                                     <input type="file" class="form-control" name="aa"><br>
                                             </div>
@@ -171,8 +171,8 @@
                     </div>
                 </div>
             </div>
+            
             <!-- #/ container -->
-        </div>
         <!--**********************************
             Content body end
         ***********************************-->
@@ -214,6 +214,10 @@
 //아이디 중복체크 등 건너뛰면 가입도 안되게 처리 해야하는데!!!
 //성공적이면 "회원가입 성공!"멘트 뜨게!어떻게 하지?
 
+$("#btnPwd").on("click", function(){
+	self.location.href="/mypage/update_pwd_form";
+})
+		
 $("#cancle").on("click", function(){
    alert("회원가입 취소");
    location.href="/mypage/people_info_up_form?user_id=${login_id}";
