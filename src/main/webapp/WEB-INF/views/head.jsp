@@ -28,14 +28,14 @@
 </head>
 <body>
 <!-- <!-- 로그인 아이디  -->
-<%-- <sec:authorize access="isAuthenticated()"> --%>
-<%--    <sec:authentication property="principal.user_id" var="login_id"/> --%>
-<%-- </sec:authorize> --%>
+<sec:authorize access="isAuthenticated()">
+   <sec:authentication property="principal.user_id" var="login_id"/>
+</sec:authorize>
 
 <!-- <!-- 로그인 계정 유저 / 어드민 정보 안가져와짐-->
-<%-- <sec:authorize access="isAuthenticated()"> --%>
-<%--    <sec:authentication property="principal.user_role" var="login_role"/> --%>
-<%-- </sec:authorize> --%>
+<sec:authorize access="isAuthenticated()">
+   <sec:authentication property="principal.user_role" var="login_role"/>
+</sec:authorize>
 
 <%-- <sec:authorize access="isAnonymous()"> --%>
 <!--    <a href="/login/login">로그인</a> -->
