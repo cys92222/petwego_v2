@@ -25,8 +25,7 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">회원가입</a></li>
                     </ol>
                 </div>
             </div>
@@ -85,20 +84,19 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="intro">소개글 <span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="intro">소개글
                                             </label>
                                             <div class="col-lg-6">
                                                 <textarea class="form-control" id="intro" name="intro" rows="5" placeholder="간단한 자기소개"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-skill">성별 <span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label">성별 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <select class="form-control" id="gender" name="gender">
-                                                    <option value="여성">여성</option>
-                                                    <option value="남성">남성</option>
-                                                </select>
+                                            <div class="col-lg-8">
+                                                <label class="css-control css-control-primary css-checkbox" for="agree">
+                                                    <input type="radio" class="css-control-input" id="gender" name="gender" value="여성"> <span class="css-control-indicator"></span> 여성
+                                                    <input type="radio" class="css-control-input" id="gender" name="gender" value="남성"> <span class="css-control-indicator"></span> 남성</label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -112,14 +110,22 @@
                                             <label class="col-lg-4 col-form-label" for="address">주소 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" style="width: 40%; display: inline;" id="address" name="address" readonly="readonly"/>
+                                                <input type="text" class="form-control" style="width: 40%; display: inline;" id="address" name="address" placeholder="우편번호" readonly="readonly"/>
                                                 <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
                                             </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
+                                            </label>
+	                                        <div class="col-lg-6">
+	                                                <input type="text" class="form-control" style="top: 5px; display: inline;" placeholder="도로명 주소" name="address2" id="address2" readonly="readonly"/>
+	                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                         <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
+                                            </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" style="top: 5px; width: 40%; display: inline;" placeholder="도로명 주소" name="address2" id="address2" readonly="readonly"/>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" style="width: 40%; display: inline;" placeholder="상세주소" name="address3" id="address3" />
+                                                <input type="text" class="form-control" style="display: inline;" placeholder="상세주소" name="address3" id="address3" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -135,7 +141,7 @@
                                             <label class="col-lg-4 col-form-label" for="nick_name">닉네임 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="nick_name" name="nick_name" placeholder="5">
+                                                <input type="text" class="form-control" id="nick_name" name="nick_name" placeholder="NICKNAME">
                                                 <button type="button" id="nickCheck">닉네임 중복 확인</button> 
 									         	<span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
 									         	<span class="glyphicon glyphicon-ok form-control-feedback"></span>
@@ -149,11 +155,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label"><a href="#">약관동의 &amp; Conditions</a>  <span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label"><a href="#">약관동의</a>  <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
                                                 <label class="css-control css-control-primary css-checkbox" for="agree">
-                                                    <input type="checkbox" class="css-control-input" id="agree" name="agree" value="1"> <span class="css-control-indicator"></span> I agree to the terms</label>
+                                                    <input type="checkbox" class="css-control-input" id="agree" name="agree" value="1"> <span class="css-control-indicator"></span> 약관에 동의합니다</label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
