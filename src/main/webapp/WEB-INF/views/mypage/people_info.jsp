@@ -21,7 +21,6 @@
 </head>
 <body data-theme-version="light" data-layout="vertical" data-nav-headerbg="color_1" data-headerbg="color_1" data-sidebar-style="full" data-sibebarbg="color_1" data-sidebar-position="static" data-header-position="static" data-container="wide" direction="ltr">
 
-        <div class="content-body" style="min-height: 740px;">
 
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
@@ -34,6 +33,7 @@
             <!-- row -->
 
             <div class="container-fluid">
+            <h4>회원정보 수정</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
@@ -41,11 +41,11 @@
                                 <div class="form-validation">
                                     <form class="form-valide" action="/mypage/people_info_up" method="post" novalidate="novalidate" id="updateForm">
                                        <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-                                       	<div class="form-group row">
+                                       	<div class="form-group row d-flex justify-content-between ">
                                        	비밀번호를 입력하셔야 정보를 수정할 수 있습니다
-                                       	</div>
-                                       	<div class="form-group row">
-                                       	<a href="/mypage/update_pwd"><button class="btn btn-primary">비밀번호 변경</button></a>
+
+                                       		<a href="/mypage/update_pwd"><button class="btn btn-primary">비밀번호 변경</button></a>
+	
                                        	</div>
 										<div class="form-group row">
                                             <label class="col-lg-4 col-form-label" for="pwd">비밀번호 <span class="text-danger">*</span>
