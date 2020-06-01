@@ -252,7 +252,7 @@
 							<!-- 예약 -->
 							<div class="tab-pane fade" id="reservation_list">
 								<div class="p-t-15">
-									<table border="1" width="60%">
+									<table border="1" width="80%">
 										<tr>
 											<th>예약번호</th>
 											<th>체크인</th>
@@ -277,14 +277,14 @@
 										</c:forEach>
 									</table>
 								</div>
-								<a href="#">더보기</a>
+								<a href="/mypage/reservation_list?user_id=${login_id }">더보기</a>
 							</div>
 							<!-- 						에약 끝 -->
 
 							<!-- 결제 -->
 							<div class="tab-pane fade" id="payment_list">
 								<div class="p-t-15">
-									<table border="1" width="60%">
+									<table border="1" width="80%">
 										<tr>
 											<th>고유결제번호</th>
 											<th>상점거래id</th>

@@ -36,6 +36,7 @@ import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.ReservationVo;
 import com.google.gson.Gson;
 
 //민아) 5/19, HttpServletRequest request 이랑 @NoLogging 처리 
@@ -635,7 +636,18 @@ public class MyPageController {
 		return mav;
 	}
 	
-	//헤더에 알람
+	//내 예약 내역
+	@RequestMapping("/mypage/reservation_list")
+	@NoLogging
+	public ModelAndView reservation_list(ReservationVo rv) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("reservation_list", fs.select_reservation_list(rv.getUser_id()));
+		mav.setViewName("/mypage/reservation_list");
+		
+		return mav;
+	}
+	
+	//헤더에 알람 테스트중
 	@RequestMapping("/header")
 //	@RequestMapping("/*")
 //	@ResponseBody

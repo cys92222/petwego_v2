@@ -14,9 +14,10 @@
 		<div class="row">
 			<div class="col-lg-6">
 				<c:forEach var="sns" items="${mysns }" varStatus="status">
-					<a href="/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&user_id2=${login_id}">
+					<a href="/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }">
 						<div class="card">
 							<div class="card-body">
+							<h4 class="card-title">SNS 작성글</h4>
 								<h4 class="card-title">${sns.photo_no }</h4>
 								<div class="bootstrap-carousel">
 									<div class="carousel slide" data-ride="carousel">

@@ -86,7 +86,7 @@
 
 <!-- 결제 정보 -->
 	<select id="search_pay" resultType="com.example.demo.vo.PaymentVo">
-		select * from payment where user_id = #{user_id}
+		select imp_uid, merchant_uid, paid_amount, pay_method, apply_num, to_char(paid_time,'YYYY-MM-DD-DAY/HH24:Mi') as paid_time, status, rsv_no, user_id from payment  where user_id = #{user_id} order by paid_time  desc
 	</select>
 	
 <!-- 	결제 상세 -->

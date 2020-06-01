@@ -19,6 +19,7 @@
 			<div class="card">
 				<img src="../t_thumbnailUpload/${to.thumbnail}">
 				<div class="card-body">
+				<h4 class="card-title">함께가요 작성글</h4>
 					<h5 class="card-title">제목 : ${to.t_title }</h5>
 					<p class="card-text">신청인원 : ${to.t_attendee_cnt }</p>
 					<p class="card-text">조회수 : ${to.t_hit }</p>
