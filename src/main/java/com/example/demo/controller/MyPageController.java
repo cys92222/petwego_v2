@@ -218,7 +218,7 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부 안함");
-			a.setPet_pic("사진첨부안함");
+			a.setPet_pic("사진첨부안함.png");
 		}
 //		System.out.println("동물등록");
 		
@@ -588,7 +588,7 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부안함");
-			a.setPet_pic("사진첨부안함");
+			a.setPet_pic("사진첨부안함.png");
 //			a.setPic(a.getPic());
 		}
 		
