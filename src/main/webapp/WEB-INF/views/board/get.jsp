@@ -59,7 +59,7 @@ $(function(){
 			var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
 			var td3 = $("<td></td>").html(c.user_id);
 			if(c.user_id === "${login_id}"){
-				var delBtn = $("<button></button>").text("댓글삭제").attr("comm_num",c.comm_num);
+				var delBtn = $("<button class='badge badge-danger'></button>").text("댓글삭제").attr("comm_num",c.comm_num);
 				}
 			
 			var td4 = $("<td></td>");
@@ -78,7 +78,7 @@ $(function(){
 					}
 			})
 		})
-	}})
+	}}) //댓글 ajax통신끝
 
 });
 </script>
@@ -134,8 +134,10 @@ $(function(){
 					</div>
 				</div>
 			</div>
-			<div class="card">
-				<div class="card-body" style="float: left">
+			<br>
+			<div class="col-lg-12">
+			<div class="card" style="width: 35%; float: left;">
+				<div class="card-body">
 					<div class="basic-form">
 						<!-- 댓글입력 -->
 						<form name="commentForm" method="get">
@@ -157,14 +159,15 @@ $(function(){
 			</div>
 
 			<!-- 댓글 목록-->
-			<div class="card" style="float: right">
-				<div class="card-body" style="float: right">
+			<div class="card" style="float: left; width: 65%;">
+				<div class="card-body">
 				<div class="table-responsive">
 					<table id="comm_list" class="table table-striped">
 					</table>
 				</div>
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </body>

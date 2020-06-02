@@ -22,11 +22,11 @@
 	
 	<!-- 댓글삭제 -->
 	<delete id="deleteComment">
-		delete board_comment where comm_num = #{comm_num}
+		delete board_comment where comm_num = #{comm_num} and user_id = #{user_id}
 	</delete>
 	
 	<delete id="deleteCommBoard">
-		delete board_comment where board_no = #{board_no}
+		delete board_comment where board_no = #{board_no} 
 	</delete>
 	
 	<!-- 댓글수정  -->	

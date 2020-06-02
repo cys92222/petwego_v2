@@ -13,16 +13,16 @@
     (document.querySelector(".sweet-confirm").onclick = function () {
         swal(
             {
-                title: "Are you sure to delete ?",
-                text: "You will not be able to recover this imaginary file !!",
+                title: "댓글을 등록하시겠습니까 ?",
+                text: "건강한 댓글 문화를 위해, 한번 등록한 댓글은 수정할 수 없습니다!",
                 type: "warning",
                 showCancelButton: !0,
                 confirmButtonColor: "#DD6B55",
-                confirmButtonText: "Yes, delete it !!",
+                confirmButtonText: "댓글 등록 하겠음!!",
                 closeOnConfirm: !1,
             },
             function () {
-                swal("Deleted !!", "Hey, your imaginary file has been deleted !!", "success");
+                swal("등록완료 !!", "댓글을 등록하였습니다 :>", "success");
             }
         );
     }),
