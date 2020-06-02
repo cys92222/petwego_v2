@@ -69,50 +69,63 @@
 			</div>
 		</div>
 
-		알림 리스트 수정예정<br>
-		<!-- 자유게시판 -->
-		<c:if test="${search_insert_board_alarm_count>0 }">
+
+		<div class="col-3">
+			<div class="card card-widget">
+				<div class="media">
+					<div class="media-body">
+
+						<span class="label label-success">신규알림</span><br><br>
+						<!-- 자유게시판 -->
+						<c:if test="${search_insert_board_alarm_count>0 }">
 		자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
-			<c:forEach items="${search_insert_board_alarm }"
-				var="search_insert_board_alarm">
+							<c:forEach items="${search_insert_board_alarm }"
+								var="search_insert_board_alarm">
 			${search_insert_board_alarm.in_user_id } 님이 댓글을 등록했습니다 <a
-					href="/board/get?board_no=${search_insert_board_alarm.t_num }">게시물로
-					이동</a>
-			</c:forEach>
-			<br>
-		</c:if>
+									href="/board/get?board_no=${search_insert_board_alarm.t_num }">/ 게시물로
+									이동</a> <br>
+							</c:forEach>
+							<br>
+						</c:if>
 
-		<c:if test="${search_cancle_board_alarm_count>0 }">
-		자유게시판 취소 댓글 수 : ${search_cancle_board_alarm_count } 개 입니다<br>
-			<c:forEach items="${search_cancle_board_alarm }"
-				var="search_cancle_board_alarm">
+						<c:if test="${search_cancle_board_alarm_count>0 }">
+		자유게시판 삭제 댓글 수 : ${search_cancle_board_alarm_count } 개 입니다<br>
+							<c:forEach items="${search_cancle_board_alarm }"
+								var="search_cancle_board_alarm">
 			${search_cancle_board_alarm.in_user_id } 님이 댓글을 삭제했습니다 <a>확인</a>
-			</c:forEach>
-			<br>
-		</c:if>
+							</c:forEach>
+							<br>
+						</c:if>
 
-		<!-- 함께가요 -->
-		<c:if test="${search_insert_together_count>0 }">
+						<!-- 함께가요 -->
+						<c:if test="${search_insert_together_count>0 }">
 		함께가요 신청자 수 : ${search_insert_together_count } 명 입니다<br>
-			<c:forEach items="${search_insert_together_alarm }"
-				var="search_insert_together_alarm">
+							<c:forEach items="${search_insert_together_alarm }"
+								var="search_insert_together_alarm">
 			${search_insert_together_alarm.in_user_id } 님 <a
-					href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a>
-				<br>
-			</c:forEach>
-			<br>
-		</c:if>
+									href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a>
+								<br>
+							</c:forEach>
+							<br>
+						</c:if>
 
-		<c:if test="${search_cancle_together_count>0 }">
+						<c:if test="${search_cancle_together_count>0 }">
 		함께가요 취소자 수 : ${search_cancle_together_count } 명 입니다<br>
-			<c:forEach items="${search_cancle_together_alarm }"
-				var="cancle_together_alarm">
+							<c:forEach items="${search_cancle_together_alarm }"
+								var="cancle_together_alarm">
 			${cancle_together_alarm.in_user_id } 님 <a
-					href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a>
-				<br>
-			</c:forEach>
-			<br>
-		</c:if>
+									href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a>
+								<br>
+							</c:forEach>
+							<br>
+						</c:if>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
 
 		<hr>
 
@@ -202,7 +215,7 @@
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
 								href="#together_list">함께가요 작성글</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#pic_board_list">sns 작성글</a></li>
+								href="#pic_board_list">SNS 작성글</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
 								href="#reservation_list">예약 내역</a></li>
 							<li class="nav-item"><a class="nav-link" data-toggle="tab"
@@ -339,7 +352,7 @@
 			<!-- 				방명록  끝-->
 
 
-		<button class="btn btn-primary px-3 ml-4" id="widthdraw_btn">회원탈퇴</button>
+		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button>
 
 
 		</div>
