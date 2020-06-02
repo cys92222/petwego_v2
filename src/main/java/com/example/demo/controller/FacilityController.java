@@ -1,29 +1,27 @@
 package com.example.demo.controller;
 
 
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.example.demo.service.FacilityService;
 import com.example.demo.service.MypageService;
@@ -42,12 +40,14 @@ import com.example.demo.vo.RoomVo;
 public class FacilityController{
 	private static final Logger LOGGER = LoggerFactory.getLogger(FacilityController.class);
 	
-	
 	@Autowired
 	FacilityService service;
 	
 	@Autowired
 	MypageService ms;
+	
+	
+
 	
 	//숙소 목록	
 	@RequestMapping(value="/facility/list",method = RequestMethod.GET)
@@ -68,6 +68,7 @@ public class FacilityController{
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
 		model.addAttribute("pageMaker",pageMaker);
+		
 		return "facility/search";
 	}	
 	
@@ -87,15 +88,20 @@ public class FacilityController{
 		model.addAttribute("my", ms.select_myinfo(m));
 		return "facility/detail";
 	}	
-	
+
+
 	
 	//리뷰등록
-	@PostMapping("/facility/detail/review")
-	public void create(HttpServletRequest request,@RequestParam("facility_no") int facility_no,ReviewVo review) throws Exception{
-		service.postReview(review);
-		System.out.println("1");
+	@ResponseBody
+	@PostMapping("/facility/detail")
+	public void create(HttpServletRequest request,@RequestParam("facility_no") int facility_no,@RequestBody ReviewVo review,String user_id,Model model) throws Exception{
+		
+		MemberInfoVo m = new MemberInfoVo();
+		m.setUser_id(user_id);
+		model.addAttribute("my", ms.select_myinfo(m));		
+		service.postReview(review);		
+		System.out.println(user_id);
 	}
-
 	
 	//(+)
 	//리뷰수정
