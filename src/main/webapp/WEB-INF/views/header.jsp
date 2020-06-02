@@ -173,7 +173,7 @@
 							class="nav-text" id="myPet">마이펫</span>
 					</a></li>
 					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
-						href="/facility/list" aria-expanded="false"> <i
+						href="/facility/search" aria-expanded="false"> <i
 							class="icon-globe-alt menu-icon"></i><span class="nav-text"
 							id="reservation">숙소찾기</span>
 					</a></li>
