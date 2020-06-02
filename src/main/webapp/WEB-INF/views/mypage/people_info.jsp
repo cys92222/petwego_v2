@@ -39,7 +39,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="/mypage/people_info_up" method="post" novalidate="novalidate" id="updateForm">
+                                    <form class="form-valide" action="/mypage/people_info_up" method="post" novalidate="novalidate" id="updateForm" enctype="multipart/form-data">
                                        <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
                                           <div class="form-group row d-flex justify-content-between ">
                                           비밀번호를 입력하셔야 정보를 수정할 수 있습니다

@@ -123,10 +123,11 @@
 										<img src="../img/peopleImg/profile.jpg" height="40" width="40" alt="">
 									</c:when>
 									
+
 									<c:when test="${not empty fname  }">
 										<img src="../img/peopleImg/${fname }" height="40" width="40" alt="">
 									</c:when>
-									
+
 									<c:otherwise>
 										
 									</c:otherwise>

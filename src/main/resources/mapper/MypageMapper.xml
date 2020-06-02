@@ -81,7 +81,7 @@
 	
 <!-- 	사람사진 삭제 -->
 	<update id="delete_people_pic">
-		update member_info set fname = '사진첨부안함.png' where user_id = #{user_id}
+		update member_info set fname = 'profile.jpg' where user_id = #{user_id}
 	</update>
 
 <!-- 결제 정보 -->

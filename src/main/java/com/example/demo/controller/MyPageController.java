@@ -314,7 +314,7 @@ public class MyPageController {
 
 		memberInfo = loginMapperDao.getSelectMemberInfo(user_id);
 		memberInfo.setUser_id(user_id);
-
+		System.out.println("첨부파일명 " + aa.getOriginalFilename());
 		String str = "";
 		if(aa!=null) {
 			str = aa.getOriginalFilename();
