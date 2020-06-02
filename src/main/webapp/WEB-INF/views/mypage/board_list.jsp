@@ -16,6 +16,7 @@ $(function(){
 // 		console.log(btn.board_no);
 		$("#"+btn.board_no).click(function(){
 			data = {board_no:btn.board_no};
+			$("#comment_sec"+btn.board_no).empty();
 			$.ajax("/mypage/comment_list",{data:data,success:function(str){
 // 				alert(str);
 // 				console.log(str);
