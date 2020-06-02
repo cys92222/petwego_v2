@@ -117,8 +117,21 @@
 						<li class="icons dropdown">
 							<div class="user-img c-pointer position-relative"
 								data-toggle="dropdown">
-								<img src="../img/peopleImg/<sec:authentication property="principal.fname"/>" 
-									height="40" width="40" alt="">
+								<sec:authentication property="principal.fname" var="fname"/>
+								<c:choose>
+									<c:when test="${empty fname  }">
+										<img src="../img/peopleImg/profile.jpg" height="40" width="40" alt="">
+									</c:when>
+									
+									<c:when test="${not empty fname  }">
+										<img src="../img/peopleImg/${fname }" height="40" width="40" alt="">
+									</c:when>
+									
+									<c:otherwise>
+										
+									</c:otherwise>
+								</c:choose>
+								
 							</div>
 							<div
 								class="drop-down dropdown-profile animated fadeIn dropdown-menu">
