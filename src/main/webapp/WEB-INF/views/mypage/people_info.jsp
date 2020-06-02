@@ -143,8 +143,8 @@
                                             <label class="col-lg-2 col-form-label" for="nick_name">닉네임 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" id="nick_name" name="nick_name" value="${m.nick_name }">
-                                                <button type="button" id="nickCheck">닉네임 중복 확인</button> 
+                                                <input type="text" class="form-control mb-1" id="nick_name" name="nick_name" value="${m.nick_name }">
+                                                <button class="btn btn-outline-dark btn-sm" type="button"  id="nickCheck">닉네임 중복 확인</button> 
                                        <span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
