@@ -103,8 +103,6 @@
 						<h6 class="collapse-header">회원관리</h6>
 						<a class="collapse-item" href="/management/member/member_list">회원목록</a>
 						<a class="collapse-item" href="/management/member/listPay">결제목록</a>
-						<a class="collapse-item" href="#">Animations</a> <a
-							class="collapse-item" href="#">Other</a>
 					</div>
 				</div></li>
 
@@ -115,12 +113,10 @@
 				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">숙소관리</h6>
-						<a class="collapse-item" href="#">숙소등록</a> <a
-							class="collapse-item" href="#">숙소 목록</a>
+						<a class="collapse-item" href="/management/froom/listFacility">숙소 목록</a>
 						<div class="collapse-divider"></div>
 						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="#">404 Page</a> <a
-							class="collapse-item" href="#">Blank Page</a>
+						<a class="collapse-item" href="#">Blank Page</a>
 					</div>
 				</div></li>
 

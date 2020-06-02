@@ -7,13 +7,21 @@ import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
+import com.example.demo.vo.FacilityVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.QnAVo;
+import com.example.demo.vo.RoomVo;
 
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
+
+	// 방정보
+//	RoomVo infoRoom(RoomVo rv);
+	List<RoomVo> infoRoom(RoomVo rv);
+	// 숙소목록
+	List<FacilityVo> listFacility();
 
 	// 자유게시판, 댓글 목록/삭제
 	List<Board_CommentVo> listComment(Board_CommentVo bc);

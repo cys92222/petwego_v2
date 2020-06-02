@@ -13,10 +13,12 @@ import com.example.demo.vo.BoardVo;
 import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
+import com.example.demo.vo.FacilityVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.QnAVo;
+import com.example.demo.vo.RoomVo;
 
 //민아) 5/19, 관리자페이지
 @Service
@@ -24,7 +26,29 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 
 	@Autowired
 	private ManagerPageDao mDao;
+	
+	// 방정보
 
+	@Override
+	public List<RoomVo> infoRoom(RoomVo rv) {
+		// TODO Auto-generated method stub
+		return mDao.infoRoom(rv);
+	}
+
+
+//	@Override
+//	public RoomVo infoRoom(RoomVo rv) {
+//		return mDao.infoRoom(rv);
+//	}
+
+	
+	// 숙소 목록
+	@Override
+	public List<FacilityVo> listFacility() {
+		return mDao.listFacility();
+	}
+
+	
 	// 자유게시판, 댓글 목록/삭제
 	@Override
 	public List<Board_CommentVo> listComment(Board_CommentVo bc) {
@@ -207,5 +231,6 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.deleteQnA(q);
 		return re;
 	}
+
 
 }

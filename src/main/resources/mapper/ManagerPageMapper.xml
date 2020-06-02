@@ -4,6 +4,15 @@
   <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 	
+	<!-- 숙소 목록 -->
+	<select id="listFacility" resultType="com.example.demo.vo.FacilityVo">
+		select * from facility
+	</select>
+	
+	<!-- 방 정보 -->
+	<select id="infoRoom" resultType="com.example.demo.vo.RoomVo">
+		select * from room  where facility_no = #{facility_no}
+	</select>
 	
 	<!-- 자유게시판, 댓글 목록/삭제 -->
 	<!-- 댓글목록 -->

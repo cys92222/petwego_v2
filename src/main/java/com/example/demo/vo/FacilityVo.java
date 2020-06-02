@@ -18,6 +18,9 @@ public class FacilityVo {
 	private String f_pic;
 	private String f_checkin;
 	private String f_checkout;
+	public static void main(String[] args) {
+		
+	}
 }
  
 
