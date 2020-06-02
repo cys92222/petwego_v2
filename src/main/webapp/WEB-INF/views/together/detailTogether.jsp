@@ -144,7 +144,8 @@ $(document).ready(function(){
 			if(re === "신청하기 완료"){
 				$("#clickApplication").show();
 				$("#Application").hide();	
-				$("#cntApplication").html(eval($("#cntApplication").html())+1);	
+				$("#cntApplication").html(eval($("#cntApplication").html())+1);
+				window.location.reload();
 			}
 		}})
 			
@@ -206,19 +207,19 @@ $(document).ready(function(){
 					<div class="media pt-5">
 						<img class="mr-3 rounded-circle"
 							src="../img/peopleImg/<sec:authentication property="principal.fname"/>"
-							height="50" width="50" alt="">
+							height="80" width="80" alt="">
 						<div class="media-body" style="float: left;">
-							<h5 class="m-b-3">
-								<div name="t_user_id" style="margin-top: 13px;">${login_id }</div>
-							</h5>
+							<h2 class="m-b-3">
+								<div name="t_user_id" style="margin-top: 20px; margin-left: 10px;">${login_id }</div>
+							</h2>
 						</div>
 						<div class="col-lg-2" style="float: left;">
 							<div class="card">
-								<div class="bootstrap-modal"">
+								<div class="bootstrap-modal">
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#exampleModalLong"
-										style="background-color: #4AD4C7; border: none; float: right;">참가자
+										style="background-color: #4AD4C7; border: none; float: right; width: 100%;">참가자
 										보기</button>
 									<!-- Modal -->
 									<div class="modal fade" id="exampleModalLong">
@@ -258,6 +259,13 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</div>
+									<button id="Application" class="btn btn-primary" type="button"
+										style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px; float: right;">신청하기</button>
+									<button id="clickApplication" class="btn btn-primary"
+										style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청취소</button>
+									<c:out
+										value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
+										escapeXml="false" />
 								</div>
 							</div>
 						</div>
@@ -265,7 +273,7 @@ $(document).ready(function(){
 					<hr>
 					<div class="media mb-4 mt-1">
 						<div class="media-body">
-							<span class="float-right" style="padding-top: 4px;"><fmt:formatDate
+							<span class="float-right" style="padding-top: 4px; padding-right: 1%;"><fmt:formatDate
 									value="${detailTogether.t_open_date}" pattern="yyyy-MM-dd" /></span>
 							<span class="label label-pill label-secondary"
 								style="float: left; padding-left: 20px; padding-right: 20px;">제&nbsp;&nbsp;&nbsp;목</span>
@@ -340,8 +348,8 @@ $(document).ready(function(){
 				<div class="card-body">
 					<div class="d-sm-flex justify-content-between mb-2"
 						style="float: left;">
-						<img class="mr-3 circle-rounded" src="images/avatar/2.jpg"
-							width="50" height="50">
+						<img class="mr-3 rounded-circle"
+							src="../img/peopleImg/${fname} }" height="50" width="50">
 					</div>
 					<h5 class="mb-sm-0" style="padding-top: 5px;">${replyList.user_id}</h5>
 					<fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />

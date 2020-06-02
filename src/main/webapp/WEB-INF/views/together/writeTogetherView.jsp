@@ -18,6 +18,10 @@
 			formObj.attr("method", "post");
 			formObj.submit();
 		});
+
+		$("#cancel_btn").on("click", function() {
+			location.href="listTogether";
+		});
 		$('#summernote').summernote({
 			height : 300, // 에디터 높이
 			minHeight : null, // 최소 높이
@@ -160,7 +164,7 @@
 									<button id="write_btn" type="button"
 										class="btn mb-1 btn-primary btn-lg"
 										style="background-color: #4AD4C7; border: 0; margin-right: 5px;">등록</button>
-									<button id="write_btn" type="button"
+									<button id="cancel_btn" type="button"
 										class="btn mb-1 btn-primary btn-lg"
 										style="background-color: #4AD4C7; border: 0;">취소</button>
 								</div>

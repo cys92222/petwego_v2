@@ -47,93 +47,6 @@
 				$("#writeTogether").click(function() {
 					location.href = "writeTogetherView";
 				});
-
-				//신청하기
-				var t_num = $("#t_num").val();
-				var user_id = $("#user_id").val();
-				var t_size = ${detailTogether.t_size };
-// 				var t_size = $("#t_size").val();
-				var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
-// 				var t_attendee_cnt = $("#t_attendee_cnt").val();
-				var in_user_id = "${login_id}";
-
-				console.log(t_num, user_id, t_size, t_attendee_cnt)
-
-				$("#clickApplication").hide();
-
-				//신청하기 체크
-				var okApplication = function(user_id, t_num) {
-					$.ajax("/together/okApplication", {
-						data : {
-							user_id : in_user_id,
-							t_num : t_num
-						},
-						success : function(re) {
-							if (re == 1) { //
-								$("#clickApplication").show();
-								$("#Application").hide();
-							}
-						}
-					})
-				}
-
-				okApplication(user_id, t_num);
-
-				// 신청하기 insert
-				$(document).on(
-						"click",
-						"#Application",
-						function() {
-							var data = $("#applicationForm").serialize();
-							console.log(user_id, t_num)
-							alert("ddd");
-							$.ajax("/together/insertApplication", {
-								data : {
-									user_id : user_id,
-									t_num : t_num,
-									t_size : t_size,
-									t_attendee_cnt : t_attendee_cnt,
-									in_user_id : in_user_id
-								},
-								success : function(re) {
-									alert(re);
-									if (re === "신청하기 완료") {
-										$("#clickApplication").show();
-										$("#Application").hide();
-										$("#cntApplication").html(
-												eval($("#cntApplication")
-														.html()) + 1);
-									}
-								}
-							})
-
-						})
-
-				// 신청하기 delete 신청하기 한번 더 누르면 신청취소
-				$(document).on(
-						"click",
-						"#clickApplication",
-						function() {
-							var d_user_id = '${login_id}';
-							$.ajax("/together/deleteApplication", {
-								data : {
-									user_id : d_user_id,
-									t_num : t_num,
-									in_user_id : d_user_id
-								},
-								success : function(re) {
-									if (re == 1) {
-										$("#clickApplication").hide();
-										$("#Application").show();
-										$("#cntApplication").html(
-												eval($("#cntApplication")
-														.html()) - 1);
-										alert("신청취소 완료");
-									}
-								}
-							})
-						})
-
 			});
 </script>
 <style type="text/css">
@@ -236,27 +149,7 @@
 								<!-- 								<a href="#" class="btn btn-primary" id="Application" -->
 								<!-- 									style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청하기</a> -->
 
-								<form name="applicationForm" id="applicationForm">
-									<input type="hidden" id="t_num" name="t_num"
-										value="${detailTogether.t_num }" /> <input type="hidden"
-										id="t_size" name="t_size" value="${detailTogether.t_size }" />
-									<input type="hidden" id="t_attendee_cnt" name="t_attendee_cnt"
-										value="${detailTogether.t_attendee_cnt }" /> <input
-										type="hidden" id="page" name="page" value="${scri.page }" />
-									<input type="hidden" id="perPageNum" name="perPageNum"
-										value="${scri.perPageNum }" /> <input type="hidden"
-										id="searchType" name="searchType" value="${scri.searchType }" />
-									<input type="hidden" id="keyword" name="keyword"
-										value="${scri.keyword }" />
-									<button id="Application" class="btn btn-primary" type="button"
-										style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청하기</button>
-									<button id="clickApplication" class="btn btn-primary"
-										style="width: 100%; background-color: #4AD4C7; border: 0;">신청취소</button>
-									<c:out
-										value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
-										escapeXml="false" />
-								</form>
-								<ul class="clearfix">
+									<ul class="clearfix" style="margin-top: 20px;">
 									<li class="icons dropdown"><a href="javascript:void(0)">
 											<i class="mdi mdi-eye"></i> <span>${c.t_hit }</span>
 									</a></li>
