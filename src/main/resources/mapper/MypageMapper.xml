@@ -6,7 +6,13 @@
 <mapper namespace="com.example.demo.dao.MypageDao">
 <!--  	내 정보 -->
  	<select id="select_myinfo" resultType="com.example.demo.vo.MemberInfoVo">
- 		select * from member_info where user_id = #{user_id}
+ 			select USER_ID, PWD, TEL, 
+ 				TO_CHAR(BIRTH, 'YYYY-MM-DD') as birth, 
+ 				NAME, ADDRESS,
+				GENDER, FNAME, INTRO, INFO_CREATE_DATE,
+				NICK_NAME, USER_ROLE,
+				EMAIL, PWD2, ADDRESS2, ADDRESS3 
+		from member_info where user_id = #{user_id}
  	</select>
  	
 <!--  	내 정보 수정 -->
