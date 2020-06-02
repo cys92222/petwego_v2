@@ -59,7 +59,7 @@
                                             <label class="col-lg-4 col-form-label" for="email">이메일 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="user@petwego.com">
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="ex) user@petwego.com">
                                             	<span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
         		 								<span class="form-control-feedback"></span>
                                             </div>
@@ -102,7 +102,7 @@
                                             <label class="col-lg-4 col-form-label" for="birth">생년월일 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="birth" name="birth" placeholder="2020-06-12">
+                                                <input type="text" class="form-control" id="birth" name="birth" placeholder="ex) 2020-06-12">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -131,7 +131,7 @@
                                             <label class="col-lg-4 col-form-label" for="tel">전화번호 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="tel" name="tel" placeholder="01012345678">
+                                                <input type="text" class="form-control" id="tel" name="tel" placeholder="ex) 01012345678">
                                                  <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
          										 <span class="form-control-feedback"></span>
                                             </div>
@@ -174,29 +174,7 @@
                     </div>
                 </div>
             </div>
-            <!-- #/ container -->
-        
-        <!--**********************************
-            Content body end
-        ***********************************-->
-        
-        
-        <!--**********************************
-            Footer start
-        ***********************************-->
-        <div class="footer">
-            <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
-            </div>
-        </div>
-        <!--**********************************
-            Footer end
-        ***********************************-->
-    </div>
-    <!--**********************************
-        Main wrapper end
-    ***********************************-->
-
+          <%@include file="../footer.jsp" %>
     <!--**********************************
         Scripts
     ***********************************-->
