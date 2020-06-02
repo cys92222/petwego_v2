@@ -15,6 +15,17 @@
       #myForm . glyphicon{
          display: none;
       }
+      
+      .card-body {
+      		padding: 1.2rem;
+      }
+      .card .card-body {
+      		padding: 5rem 7rem;
+      }
+      
+      .col-form-label {
+      	padding : 7px 9px;
+      }
    </style>
 
 </head>
@@ -37,128 +48,120 @@
                             <div class="card-body">
                                 <div class="form-validation"> <!-- form의 action 주소만 복사했음 join.jsp가 고치고 있는 중 / join2 가 원본 / join boot 가 boot 양식만 있는 거 -->
                                     <form class="form-valide" action="/join/insert" method="post" novalidate="novalidate" id="myForm">
-                                       <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+                                       <input type="hidden" id="token" name="_csrf" value="80e80458-bb33-49b3-bbb0-0dbb0b7eeb3e"> 
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" name="user_id" id="user_id" placeholder="ID" required="required"/>
-                                                <button type="button" id="idCheck">아이디 중복 확인</button>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control mb-1" name="user_id" id="user_id" placeholder="ID" required="required" aria-required="true">
+                                                <button class="btn btn-outline-dark btn-sm" type="button" id="idCheck">아이디 중복 확인</button>
                                            		<span id="overlapErr" class="help-block">사용할 수 없는 아이디 입니다.</span>
                                            		<span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>				         
                                         </div>  
                                          <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="name">이름 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="name">이름 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" name="name" id="name" placeholder="NAME" required="required"/>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control" name="name" id="name" placeholder="NAME" required="required" aria-required="true">
                                             </div>				         
                                         </div>  
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="email">이메일 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="email">이메일 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="email" class="form-control" id="email" name="email" placeholder="ex) user@petwego.com">
                                             	<span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
         		 								<span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="password">비밀번호 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="password">비밀번호 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD">
                                                  <span id="pwdRegErr" class="help-block">숫자와 글자 조합으로 6글자 이상 10글자 이하를 입력하세요</span>
          										 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="rePwd">비밀번호 확인 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="rePwd">비밀번호 확인 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="password" class="form-control" id="rePwd" name="rePwd" placeholder="PASSWORD">
                                                  <span id="rePwdErr" class="help-block">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</span>
          										 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="intro">소개글
+                                            <label class="col-lg-2 col-form-label" for="intro">소개글
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <textarea class="form-control" id="intro" name="intro" rows="5" placeholder="간단한 자기소개"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label">성별 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label">성별 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-8">
+                                            <div class="col-lg-10">
                                                 <label class="css-control css-control-primary css-checkbox" for="agree">
                                                     <input type="radio" class="css-control-input" id="gender" name="gender" value="여성"> <span class="css-control-indicator"></span> 여성
                                                     <input type="radio" class="css-control-input" id="gender" name="gender" value="남성"> <span class="css-control-indicator"></span> 남성</label>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="birth">생년월일 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="birth">생년월일 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="birth" name="birth" placeholder="ex) 2020-06-12">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="address">주소 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="address">주소 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" style="width: 40%; display: inline;" id="address" name="address" placeholder="우편번호" readonly="readonly"/>
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control" style="width: 40%; display: inline;" id="address" name="address" placeholder="우편번호" readonly="readonly">
                                                 <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
+                                        <label class="col-lg-2 col-form-label" for="address"><span class="text-danger"></span>
                                             </label>
-	                                        <div class="col-lg-6">
-	                                                <input type="text" class="form-control" style="top: 5px; display: inline;" placeholder="도로명 주소" name="address2" id="address2" readonly="readonly"/>
+	                                        <div class="col-lg-10">
+	                                                <input type="text" class="form-control" style="top: 5px; display: inline;" placeholder="도로명 주소" name="address2" id="address2" readonly="readonly">
 	                                            </div>
                                         </div>
                                         <div class="form-group row">
-                                         <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
+                                         <label class="col-lg-2 col-form-label" for="address"><span class="text-danger"></span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" style="display: inline;" placeholder="상세주소" name="address3" id="address3" />
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control" style="display: inline;" placeholder="상세주소" name="address3" id="address3">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="tel">전화번호 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="tel">전화번호 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="tel" name="tel" placeholder="ex) 01012345678">
                                                  <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
          										 <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="nick_name">닉네임 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="nick_name">닉네임 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="text" class="form-control" id="nick_name" name="nick_name" placeholder="NICKNAME">
-                                                <button type="button" id="nickCheck">닉네임 중복 확인</button> 
+                                            <div class="col-lg-10">
+                                                <input type="text" class="form-control mb-1" id="nick_name" name="nick_name" placeholder="NICKNAME">
+                                                <button type="button" id="nickCheck" class="btn btn-outline-dark btn-sm">닉네임 중복 확인</button> 
 									         	<span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
 									         	<span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="fname">프로필 사진 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="fname">프로필 사진 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
-                                                <input type="file" class="form-control" id="fname" name="fname" required="required"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label"><a href="#">약관동의</a>  <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-8">
-                                                <label class="css-control css-control-primary css-checkbox" for="agree">
-                                                    <input type="checkbox" class="css-control-input" id="agree" name="agree" value="1"> <span class="css-control-indicator"></span> 약관에 동의합니다</label>
+                                            <div class="col-lg-10">
+                                                <input type="file" class="form-control" id="fname" name="fname" required="required" aria-required="true">
                                             </div>
                                         </div>
                                         <div class="form-group row">

@@ -15,6 +15,16 @@
       #updateForm . glyphicon{
          display: none;
       }
+        .card-body {
+      		padding: 0.7rem;
+      }
+      .card .card-body {
+      		padding: 5rem 7rem;
+      }
+      
+      .col-form-label {
+      	padding : 7px 9px;
+      }
        
    </style>
 
@@ -48,91 +58,91 @@
    
                                           </div>
                               			<div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="pwd">비밀번호 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="pwd">비밀번호 <span class="text-danger">*</span>
                                             </label>    
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" name="pwd" id="pwd" required="required"/>
                                             </div>                     
                                         </div>  
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
                                             </label>    
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" value="${m.user_id }" readonly="readonly" name="user_id"/>
                                             </div>                     
                                         </div>  
                                          <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="name">이름 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="name">이름 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" value="${m.name }" readonly="readonly" name="name"/>
                                             </div>                     
                                         </div>  
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="email">이메일 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="email">이메일 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="email" class="form-control" id="email" name="email" value="${m.email }">
                                                <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
                                        <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="intro">소개글
+                                            <label class="col-lg-2 col-form-label" for="intro">소개글
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <textarea class="form-control" id="intro" name="intro" rows="5">${m.intro }</textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="email">성별 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="email">성별 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="gender" name="gender" value="${m.gender }">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="birth">생년월일 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="birth">생년월일 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="birth" name="birth" value="${m.birth }">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="address">주소 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="address">주소 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" style="width: 40%; display: inline;" id="address" name="address" value="${m.address }" readonly="readonly"/>
                                                 <button type="button" class="btn btn-default" onclick="execPostCode();"><i class="fa fa-search"></i> 우편번호 찾기</button>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
+                                        <label class="col-lg-2 col-form-label" for="address"><span class="text-danger"></span>
                                             </label>
-                                           <div class="col-lg-6">
+                                           <div class="col-lg-10">
                                                    <input type="text" class="form-control" style="top: 5px; display: inline;" name="address2" id="address2" value="${m.address2 }" readonly="readonly"/>
                                                </div>
                                         </div>
                                         <div class="form-group row">
-                                         <label class="col-lg-4 col-form-label" for="address"><span class="text-danger"></span>
+                                         <label class="col-lg-2 col-form-label" for="address"><span class="text-danger"></span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" style="display: inline;" name="address3" id="address3"  value="${m.address3 }" />
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="tel">전화번호 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="tel">전화번호 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="tel" name="tel" value="${m.tel }">
                                                  <span id="emailErr" class="help-block">올바른 전화번호 형식이 아닙니다. 다시 입력해 주세요.</span>
                                         <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="nick_name">닉네임 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="nick_name">닉네임 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="nick_name" name="nick_name" value="${m.nick_name }">
                                                 <button type="button" id="nickCheck">닉네임 중복 확인</button> 
                                        <span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
@@ -140,21 +150,21 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="fname">프로필 사진 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="fname">프로필 사진 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                <img alt="사진이 없습니다" src="/img/peopleImg/${m.fname }"><br>
 <!--                                                 <input type="file" class="form-control" id="fname" name="fname"/> -->
-                                    <input type="hidden" class="form-control" value="${m.fname }">
-                                    <a href="/mypage/delete_people_pic?user_id=${login_id }">사진 삭제</a><br>
-                                    <input type="hidden" class="form-control" value="${m.fname }" name="fname"> <br>
-                                    <input type="file" class="form-control" name="aa"><br>
+			                                    <input type="hidden" class="form-control" value="${m.fname }">
+			                                    <a href="/mypage/delete_people_pic?user_id=${login_id }">사진 삭제</a><br>
+			                                    <input type="hidden" class="form-control" value="${m.fname }" name="fname"> <br>
+			                                    <input type="file" class="form-control" name="aa"><br>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="info_create_date">가입일 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="info_create_date">가입일 <span class="text-danger">*</span>
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="info_create_date" name="info_create_date" value="${m.info_create_date }">
                                             </div>
                                         </div>
