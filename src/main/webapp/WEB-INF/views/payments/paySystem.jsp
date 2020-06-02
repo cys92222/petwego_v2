@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>pet we go | 결제</title>
 <!-- 민아) 5/22, 결제 서비스 구현 완료 -->
-<!-- 민아) 5/23, 결제 성공/실패 메시지 처리해야함  -->
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js" ></script> -->
+<!-- 민아) 5/23, 결제 성공/실패 메시지 처리  -->
+<!-- 민아) 5/31, 결제 페이지 부트스트랩 적용해야함  -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 $(function(){
