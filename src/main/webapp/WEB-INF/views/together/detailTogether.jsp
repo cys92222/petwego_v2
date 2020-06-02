@@ -27,6 +27,11 @@
 .ml-3 {
 	margin-left: 0;
 }
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
 </style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -157,6 +162,22 @@ $(document).ready(function(){
 			}
 		}})
 	})
+	
+	//맨위로 
+	$(window).scroll(function () {
+		if ($(this).scrollTop() > 50) {
+			$('#back-to-top').fadeIn();
+		} else {
+			$('#back-to-top').fadeOut();
+		}
+	});
+	// scroll body to 0px on click
+	$('#back-to-top').click(function () {
+		$('body,html').animate({
+			scrollTop: 0
+		}, 400);
+		return false;
+	});
  
 });
 </script>
@@ -186,10 +207,59 @@ $(document).ready(function(){
 						<img class="mr-3 rounded-circle"
 							src="../img/peopleImg/<sec:authentication property="principal.fname"/>"
 							height="50" width="50" alt="">
-						<div class="media-body">
+						<div class="media-body" style="float: left;">
 							<h5 class="m-b-3">
 								<div name="t_user_id" style="margin-top: 13px;">${login_id }</div>
 							</h5>
+						</div>
+						<div class="col-lg-2" style="float: left;">
+							<div class="card">
+								<div class="bootstrap-modal"">
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary"
+										data-toggle="modal" data-target="#exampleModalLong"
+										style="background-color: #4AD4C7; border: none; float: right;">참가자
+										보기</button>
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModalLong">
+										<div class="modal-dialog">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">참가자 List</h5>
+													<button type="button" class="close" data-dismiss="modal">
+														<span>&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<div id="userApplication">
+														<form role="form">
+															<input type="hidden" id="token"
+																name="${_csrf.parameterName}" value="${_csrf.token}" />
+															<table width="30%">
+																<tr>
+																	<td>현재 참여자</td>
+																</tr>
+
+																<c:forEach var="userList" items="${userList}"
+																	varStatus="status">
+																	<tr>
+																		<td>${userList.user_id}</td>
+																	</tr>
+																</c:forEach>
+															</table>
+														</form>
+													</div>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-dismiss="modal"
+														style="background-color: #4AD4C7; border: none;">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 					<hr>
@@ -245,13 +315,16 @@ $(document).ready(function(){
 				<div class="card">
 					<div class="card-body">
 						<div class="form-group">
-							<input type="text" id="c_user_id" name="c_user_id" value="${login_id }"/>
+							<%-- 					<label id="c_user_id" for="c_user_id">${login_id }</label> --%>
+							<input type="text" id="c_user_id" name="c_user_id"
+								readonly="readonly" value="${login_id }"
+								style="border: none; border-right: 0px; padding-bottom: 10px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
 							<textarea class="form-control" name="t_r_content"
 								id="t_r_content" cols="30" rows="2" placeholder="댓글을 입력하세요."></textarea>
 						</div>
-						<input type="checkbox" id="secretReply_chk">비밀댓글 <input
-							type="hidden" id="secretReply" name="secret_reply">
-						<button class="btn btn-primary px-3 ml-4" style="float: right;"
+						<input type="checkbox" id="secretReply_chk">&nbsp;&nbsp;&nbsp;비밀댓글
+						<input type="hidden" id="secretReply" name="secret_reply">
+						<button class="btn btn-primary px-3 ml-4" style="float: right; background-color:#4AD4C7; border: none;"
 							id="replyWriteBtn">댓글 달기</button>
 					</div>
 				</div>
@@ -298,19 +371,18 @@ $(document).ready(function(){
 								height="15" />
 						</c:if>
 					</p>
-					<div>
-						<button type="button" class="replyUpdateBtn"
-							data-t_r_num="${replyList.t_r_num}">수정</button>
-						<button type="button" class="replyDeleteBtn"
-							data-t_r_num="${replyList.t_r_num}">삭제</button>
+					<div style="float: right;">
+						<a class="replyUpdateBtn" data-t_r_num="${replyList.t_r_num}"><i
+							class="mdi mdi-message-draw"></i></a> <a class="replyDeleteBtn"
+							data-t_r_num="${replyList.t_r_num}"><i
+							class="mdi mdi-file-excel-box"></i></a>
 					</div>
 				</div>
+				<hr>
 			</c:forEach>
 		</div>
 	</div>
-	<br><br>
-
-
+	<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button" style="background-color:#4AD4C7; border: none;" ><i class="mdi mdi-format-wrap-top-bottom" style="color: white;"></i></a>
 	<%@include file="../footer.jsp"%>
 </body>
 </html>

@@ -6,11 +6,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style type="text/css">
+.back-to-top {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	display: none;
+}
+</style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
+		//맨위로 
+		$(window).scroll(function () {
+			if ($(this).scrollTop() > 50) {
+				$('#back-to-top').fadeIn();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function () {
+			$('body,html').animate({
+				scrollTop: 0
+			}, 400);
+			return false;
+		});
 				$('#searchBtn').click(
 						function() {
 							self.location = "listTogether"
@@ -29,10 +51,10 @@
 				//신청하기
 				var t_num = $("#t_num").val();
 				var user_id = $("#user_id").val();
-				// 	  	var t_size = ${detailTogether.t_size };
-				var t_size = $("#t_size").val();
-				// 	  	var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
-				var t_attendee_cnt = $("#t_attendee_cnt").val();
+				var t_size = ${detailTogether.t_size };
+// 				var t_size = $("#t_size").val();
+				var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
+// 				var t_attendee_cnt = $("#t_attendee_cnt").val();
 				var in_user_id = "${login_id}";
 
 				console.log(t_num, user_id, t_size, t_attendee_cnt)
@@ -64,6 +86,7 @@
 						function() {
 							var data = $("#applicationForm").serialize();
 							console.log(user_id, t_num)
+							alert("ddd");
 							$.ajax("/together/insertApplication", {
 								data : {
 									user_id : user_id,
@@ -225,13 +248,13 @@
 										id="searchType" name="searchType" value="${scri.searchType }" />
 									<input type="hidden" id="keyword" name="keyword"
 										value="${scri.keyword }" />
-									<button id="Application" class="btn btn-primary"
+									<button id="Application" class="btn btn-primary" type="button"
 										style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청하기</button>
-									<!-- 									<button id="clickApplication" class="btn btn-primary" -->
-									<!-- 										style="width: 100%; background-color: #4AD4C7; border: 0;">신청취소</button> -->
-									<%-- 									<c:out --%>
-									<%-- 										value="<p id='cntApplication'>${together.t_attendee_cnt }</p>" --%>
-									<%-- 										escapeXml="false" /> --%>
+									<button id="clickApplication" class="btn btn-primary"
+										style="width: 100%; background-color: #4AD4C7; border: 0;">신청취소</button>
+									<c:out
+										value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
+										escapeXml="false" />
 								</form>
 								<ul class="clearfix">
 									<li class="icons dropdown"><a href="javascript:void(0)">
@@ -276,7 +299,9 @@
 			</c:if>
 		</ul>
 	</div>
-
+	<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top"
+		role="button" style="background-color: #4AD4C7; border: none;"><i
+		class="mdi mdi-format-wrap-top-bottom" style="color: white;"></i></a>
 	<%@include file="../footer.jsp"%>
 </body>
 
