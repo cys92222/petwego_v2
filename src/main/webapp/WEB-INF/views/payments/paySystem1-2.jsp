@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
+    pageEncoding="UTF-8"%>
+<%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,8 +9,7 @@
 <!-- 민아) 5/22, 결제 서비스 구현 완료 -->
 <!-- 민아) 5/23, 결제 성공/실패 메시지 처리  -->
 <!-- 민아) 5/31, 결제 페이지 부트스트랩 적용해야함  -->
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 $(function(){
 	// 아임포트 깃 허브
@@ -133,93 +132,43 @@ $(function(){
 	})	//결제하기 버튼 동작 끝
 
 
-})	
+})
+  
+
 </script>
 </head>
 <body>
-	<!-- row -->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">예약확인 - 결제진행</h4>
-						<div class="basic-form">
-							<!-- 결제정보 전달을 위한 폼은 hidden 타입으로 뒀음  -->
-							<form action="/payments/insertPay" id="payForm" method="post">
-								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-								<!--imp_uid/merchant_uid/pay_method/apply_num/status/paid_amount/예약번호/회원 아이디 -->
-								<input type="hidden" id="imp_uid" name="imp_uid" /> 
-								<input type="hidden" id="merchant_uid" name="merchant_uid" />
-								<input type="hidden" id="pay_method" name="pay_method" />
-								<input type="hidden" id="apply_num" name="apply_num" />
-								<input type="hidden" id="status" name="status" />
-								<input type="hidden" id="paid_amount" name="paid_amount" />
-
-								<!-- 가져와야 하는 값 예약번호, 아이디  -->
-								<input type="hidden" id="rsv_no" name="rsv_no" value="${to.rsv_no }" /> 
-								<input type="hidden" id="user_id" name="user_id" value="${my.user_id }" />
-							</form>
-
-
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">호텔이름</label>
-								<div class="col-sm-9">
-									<input type="text" id="facility_name" value="${Facility.facility_name }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">방이름</label>
-								<div class="col-sm-9">
-									<input type="text" id="rm_name" value="${room.rm_name }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">가격</label>
-								<div class="col-sm-9">
-									<input type="text" id="rsv_price" value="${to.rsv_price }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">투숙객 이름</label>
-								<div class="col-sm-9">
-									<input type="text" value="${to.guest_name }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">투숙객전화번호</label>
-								<div class="col-sm-9">
-									<input type="text" value="${to.guest_tel }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">회원 이메일</label>
-								<div class="col-sm-9">
-									<input type="text" id="email" value="${my.email }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">회원 주소</label>
-								<div class="col-sm-9">
-									<input type="text" id="address" value="${my.address }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">회원 전화번호</label>
-								<div class="col-sm-9">
-									<input type="text" id="tel" value="${my.tel }" readonly="readonly" class="form-control-plaintext">
-								</div>
-							</div>
-						</div>
-						<hr>
-						<h5 class="text-primary">예약내용을 확인 후 결제를 진행해 주세요!</h5>
-						 <button type="button" id='okay' class="btn mb-1 btn-primary">결제하기</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+	<h1>결제 하시겠습니까?</h1>
+	<button type="button" id='okay'>결제하기</button>
+	
+	<!-- 결제정보 전달을 위한 폼은 hidden 타입으로 뒀음  -->
+	<form action="/payments/insertPay" id="payForm" method="post">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		imp_uid<input type="hidden" id="imp_uid" name="imp_uid"  />
+		merchant_uid<input type="hidden" id="merchant_uid" name="merchant_uid"  />		
+		pay_method<input type="hidden" id="pay_method" name="pay_method"  />
+		apply_num<input type="hidden" id="apply_num" name="apply_num"  />	
+		status<input type="hidden" id="status" name="status"  />
+		paid_amount<input type="hidden" id="paid_amount" name="paid_amount"  />
+		
+		<!-- 가져와야 하는 값 예약번호, 아이디  -->
+		예약번호<input type="hidden" id="rsv_no" name="rsv_no" value="${to.rsv_no }"/><br>
+		회원 아이디<input type="hidden" id="user_id" name="user_id"  value="${my.user_id }"/><br>
+	</form>
+	
+	
+		회원 이메일 <input type="hidden" id="email" value="${my.email }"/><br>
+		회원 주소 <input type="hidden" id="address" value="${my.address }"/><br>
+		회원 전화번호<input type="hidden" id="tel" value="${my.tel }"/><br>
+				
+		투숙객이름<input type="text" value="${to.guest_name }"><br>
+		투숙객전화번호<input type="text" value="${to.guest_tel }"> <br>
+		
+		방이름<input type="text" id="rm_name" value="${room.rm_name }"><br>
+		호텔이름<input type="text" id="facility_name" value="${Facility.facility_name }"><br>
+		
+		가격<input type="text" id="rsv_price" value="${to.rsv_price }"><br>
+		
 </body>
-<%@ include file="../footer.jsp"%>
+<%@ include file="../footer.jsp" %>
 </html>
