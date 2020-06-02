@@ -138,11 +138,16 @@ public class Pic_BoardController extends HttpServlet {
          mav.addObject("pageMaker", pageMaker);
 //         System.out.println("ddddd :  " + pageMaker);
 //         mav.addObject("listAll",str_board);
-         mav.addObject("board", gson.toJson(list_board)); // 오류시 삭제
-         mav.addObject("file", gson.toJson(list_file));
+//         mav.addObject("board", gson.toJson(list_board)); // 오류시 삭제
+//         mav.addObject("file", gson.toJson(list_file));
+         
+         	mav.addObject("board", list_board);
+         	mav.addObject("file", list_file);
          mav.setViewName("/pic_board/list");
          return mav;
       }
+      
+    
 
       // 상세보기
       @GetMapping("/pic_board/detail")
