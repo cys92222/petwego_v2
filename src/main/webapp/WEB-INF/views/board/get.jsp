@@ -72,7 +72,7 @@ $(function(){
 					
 					var delCheck = confirm("댓글을 삭제하시겠습니까?");
 					if(delCheck == true){
-						self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num;
+						self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num+"&user_id=${login_id}";
 						alert("댓글을 삭제했습니다!");
 						location.reload();
 					}
