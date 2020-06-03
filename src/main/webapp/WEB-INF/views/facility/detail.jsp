@@ -99,7 +99,7 @@ $(function(){
     	e.preventDefault();
         action = 'create';
         type = 'POST';
-
+		alert("리뷰등록버튼 누름");
         //facility_no = $.fn.getUrlParameter('facility_no');
         
         var facility_no = getUrlParameter('facility_no');
@@ -133,7 +133,7 @@ $(function(){
     });
 
     // ******** 예약 ********
-
+// aaaa
     var arr = ${arr};
 //     alert(arr);
 // console.log(arr);
@@ -174,7 +174,7 @@ $(function(){
 		$('input[name=nights]').val(nights);		
 		$('input[name=rm_opt]').val(1);
 		
-		// 숙소정보 
+		// 숙소정보
 		var facility_name = $('#facility_name').text();
 		var facility_area = $('#facility_area').text();
 		var rm_name = $('#rm_name').text();
@@ -477,7 +477,7 @@ $(function(){
                                                                                                                                             class="fa fa-won"></i>
                                                                                                                                             ${r.rm_cost}
                                                                                                                         </h4>
-                                                                                                                       
+<!--                  aaaa                                                                                                      -->
 <!-- reserveModal start -->
           <div class="bootstrap-modal">
                     <a id="reserveBtn${r.rm_no }" href="#" class="label gradient-1 text-white" data-toggle="modal"

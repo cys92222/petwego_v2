@@ -102,9 +102,9 @@ public class FacilityController{
 	
 	//리뷰등록
 	@ResponseBody
-	@PostMapping("/facility/detail")
+	@PostMapping("/detail/review")
 	public void create(HttpServletRequest request,@RequestParam("facility_no") int facility_no,@RequestBody ReviewVo review,String user_id,Model model) throws Exception{
-		
+		System.out.println("리뷰등록 컨트롤러");
 		MemberInfoVo m = new MemberInfoVo();
 		m.setUser_id(user_id);
 		model.addAttribute("my", ms.select_myinfo(m));		

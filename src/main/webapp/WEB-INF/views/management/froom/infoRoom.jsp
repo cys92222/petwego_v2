@@ -39,28 +39,29 @@
                     </c:forEach>
                   </div> 
                 </div>
-             
-               
-          <!-- Collapsable Card Example -->
-              <div class="card shadow mb-4">
-               <c:forEach var="info" items="${infoRoom }">
-            
-                <!-- Card Header - Accordion -->
-                <a href="#${info.rm_no }" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="${info.rm_no }">
-                  <h6 class="m-0 font-weight-bold text-primary">방이름:<c:out value="${info.rm_name }" />&nbsp;&nbsp; 방번호:<c:out value="${info.rm_no }" /></h6>
-                </a>
-                <!-- Card Content - Collapse -->
-                <div class="collapse show" id="${info.rm_no }">
-                  <div class="card-body">
-                    This is a collapsable card example using Bootstrap's built in collapse functionality. 
-                </div>
-                
-              </div>
-              </c:forEach>
-	
-</div>
 
+
+		<!-- Collapsable Card Example -->
+		<div class="card shadow mb-4">
+			<c:forEach var="info" items="${infoRoom }">
+				<a href="#asd${info.rm_no }" class="d-block card-header py-3"
+					data-toggle="collapse" role="button" aria-expanded="true"
+					aria-controls="asd${info.rm_no }">
+					<h6 class="m-0 font-weight-bold text-primary">
+						방이름:
+						<c:out value="${info.rm_name }" />
+						&nbsp;&nbsp; 방번호:
+						<c:out value="${info.rm_no }" />
+					</h6>
+				</a>
+				<div class="collapse show" id="asd${info.rm_no }">
+					<div class="card-body">This is a collapsable card example using Bootstrap's built in collapse functionality.</div>
+				</div>
+			</c:forEach>
+		</div>
 		
+
+	
 </body>
 <%@include file="../footer.jsp"%>
 </html>
