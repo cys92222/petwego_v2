@@ -128,7 +128,7 @@
 
 <!-- 결제하면 rsv_paid를 결제완료로 수정 -->
 <update id="pay_rsv_paid">
-	update reservation set rsv_paid = '결제완료' where user_id #{user_id} and rsv_no = #{rsv_no} and rsv_paid = '결제대기'
+	update reservation set rsv_paid = '결제완료' where user_id = #{user_id} and rsv_no = #{rsv_no} and rsv_paid = '결제대기'
 </update>
 
 <!-- 모든 예약 리스트 -->

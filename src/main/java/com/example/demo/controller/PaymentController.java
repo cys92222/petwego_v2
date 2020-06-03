@@ -46,7 +46,7 @@ public class PaymentController {
 	@ResponseBody
 	public String insertSubmit(HttpServletRequest request,@RequestBody List<PaymentVo> listPay) {
 //		System.out.println(listPay);
-//		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("결제컨트롤러 동작함");
 		for (PaymentVo pv : listPay) {
 			
 			// 결제 수단과 결제상태 한글로 저장되도록!  
@@ -67,7 +67,7 @@ public class PaymentController {
 			//결제완료하면 예약 테이블에서 결제대기를 결제완료로 수정
 			fs.pay_rsv_paid(pv.getUser_id(), pv.getRsv_no());	
 		}
-		System.out.println("결제컨트롤러 동작함");
+		System.out.println("결제컨트롤러 동작함2222");
 
 		return "등록ok";
 	}

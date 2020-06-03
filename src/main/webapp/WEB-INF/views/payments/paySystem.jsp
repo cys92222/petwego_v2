@@ -20,6 +20,7 @@ $(function(){
 	
 	var info = [];	//결제 정보를 담기 위한 전역변수 
 
+	
 	$("#okay").click(function(){
 
 		var imp_uid = $("#imp_uid").val();
@@ -106,7 +107,7 @@ $(function(){
 						success : function(done){
 							console.log(done);		
 						},error:function(request,status,error){
-						    //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 						}				        
 					}) //ajax 통신끝 
 					
@@ -157,7 +158,7 @@ $(function(){
 								<input type="hidden" id="paid_amount" name="paid_amount" />
 
 								<!-- 가져와야 하는 값 예약번호, 아이디  -->
-								<input type="hidden" id="rsv_no" name="rsv_no" value="${to.rsv_no }" /> 
+								<input type="hidden" id="rsv_no" name="rsv_no" value="${rm_no.rsv_no }" /> 
 								<input type="hidden" id="user_id" name="user_id" value="${my.user_id }" />
 							</form>
 
