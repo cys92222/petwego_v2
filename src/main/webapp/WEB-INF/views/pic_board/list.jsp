@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="../header.jsp"%>  
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +43,7 @@ var temp = function(){
 </head>
 
 <body> 
-
+<%@include file="../header.jsp"%>
 <!-- <a href="/MainPage">메인화면</a> -->
 
 
@@ -65,7 +65,7 @@ var temp = function(){
                         	<c:forEach var="sns" items="${board}" varStatus="status">
                             <div class="col-md-4 col-lg-4">
                                 <div class="card p-3">
-                                    <a href="/pic_board/detail/photo_no=${sns.photo_no }"><img id="snsImg" class="img-fluid" src="../img/${file[status.index].photo_file_name}"></a><!-- img-fluid   /card-img -->
+                                   <img id="snsImg" class="img-fluid" onclick="location.href='/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }'" src="../img/${file[status.index].photo_file_name}"><!-- img-fluid   /card-img -->
                                     <div class="card-body">
                                         <h5 class="card-title text-center">${sns.user_id}</h5>
                                         
@@ -102,41 +102,7 @@ var temp = function(){
                             
                             <!-- PAGINATION END -->
                 </div>
-       
-       
-       
-
-       
-
         <!-- container-fluid end -->
-        
-        
-        
-        
-
-        
-        <!-- paging start -->
- <%--        <ul id="pageMaker" style="text-cneter">
-          <c:if test="${pageMaker.prev}">
-             <li><a href="list${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
-          </c:if> 
-          <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-             <li><a href="list${pageMaker.makeQuery(idx)}">${idx}</a></li>
-          </c:forEach>
-          <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-             <li><a href="list${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
-          </c:if> 
-        </ul>
-   </div>
-      </div>   --%> 
-        
-
-        <!-- 사진끝 -->
-
-
-
-   
-
 <%@include file="../footer.jsp"%> 
 </body>
 </html>
