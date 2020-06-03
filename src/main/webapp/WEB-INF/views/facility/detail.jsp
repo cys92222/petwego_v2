@@ -99,7 +99,7 @@ $(function(){
     	e.preventDefault();
         action = 'create';
         type = 'POST';
-		alert("리뷰등록버튼 누름");
+
         //facility_no = $.fn.getUrlParameter('facility_no');
         
         var facility_no = getUrlParameter('facility_no');
@@ -133,7 +133,7 @@ $(function(){
     });
 
     // ******** 예약 ********
-// aaaa
+
     var arr = ${arr};
 //     alert(arr);
 // console.log(arr);
@@ -174,7 +174,7 @@ $(function(){
 		$('input[name=nights]').val(nights);		
 		$('input[name=rm_opt]').val(1);
 		
-		// 숙소정보
+		// 숙소정보 
 		var facility_name = $('#facility_name').text();
 		var facility_area = $('#facility_area').text();
 
@@ -191,11 +191,12 @@ $(function(){
 		var tempValue = $(this).parent().siblings('#rm_cost').text();
 		var rm_cost = $.trim(tempValue);		
 
-		// input hidden : 
-		//$('#reserveBtn868').parent().parents('td').eq(0).siblings('.d-flex').find('#rm_no_asd').val();
-
+		// 객실 번호, 주련 0603 
+	 	var rm_no = $(this).parent().parents('td').eq(0).siblings('.d-flex').find('#rm_no_asd').val();
+		
 		$('input[name=facility_info]').val(facility_name+'/'+facility_area);
 		$('input[name=rm_name]').val(rm_name);
+		$('input[name=rm_no]').val(rm_no);
 
 
 		
@@ -229,7 +230,9 @@ $(function(){
 	
 	// '결제하기'redirect
 	$('#reserveSubmit').click(function(e){
-		rm_no = $('#rm_no_asd').val();
+
+		rm_no= $('input[name=rm_no]').val();
+		
 		if(action == 'reserve'){
 			var facility_no = getUrlParameter('facility_no');
 			url = '/facility/reserve',
@@ -491,7 +494,7 @@ $(function(){
                                                                                                                                             class="fa fa-won"></i>
                                                                                                                                             ${r.rm_cost}
                                                                                                                         </h4>
-<!--                  aaaa                                                                                                      -->
+                                                                                                                       
 <!-- reserveModal start -->
           <div class="bootstrap-modal">
                     <a id="reserveBtn${r.rm_no }" href="#" class="label gradient-1 text-white" data-toggle="modal"
@@ -536,6 +539,7 @@ $(function(){
 										                                                  </div>
 										                                                  <div class="form-group col-md-6">
 										                                                      <label>객실명</label>
+										                                                      <input name="rm_no" type="hidden">
 										                                                      <input name="rm_name" type="text" class="form-control">
 										                                                  </div>
 	                                              </div><div class="form-row">
@@ -564,9 +568,8 @@ $(function(){
                                                                                       <div class="form-row">
                                                                                       
                                                                                           <div class="form-group col-md-6">
-                                                                                              <label>아이디</label>
-                                                                                              <c:set var="m" value="${pageContext.request.userPrincipal.name}" />
-                                                                                              <input name="user_id" type="text" value="${fn:substring(m,21,26)}" class="form-control">
+                                                                                              <label>아이디</label>                                                                                     
+                                                                                              <input name="user_id" type="text" value="${my.user_id}" class="form-control">
                                                                                           </div>
                                                                                               <div class="form-group col-md-6">
                                                                                               <label>예약자 이름</label>
