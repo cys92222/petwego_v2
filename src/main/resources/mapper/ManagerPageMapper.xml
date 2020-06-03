@@ -10,8 +10,12 @@
 	</select>
 	
 	<!-- 방 정보 -->
-	<select id="infoRoom" resultType="com.example.demo.vo.RoomVo">
-		select * from room  where facility_no = #{facility_no}
+	<select id="infoRoom" resultType="com.example.demo.vo.M_froomVo">
+		select f.facility_no,f.facility_name,f.facility_addr,f.f_phone,f.f_minprice,f.f_feature,f.f_intro,f.f_pic,f.f_checkin,f.f_checkout
+			,r.rm_no,r.rm_name,r.rm_max,r.rm_pic,r.rm_ok,r.rm_sn
+		
+		
+		 from facility f, room r where r.facility_no = f.facility_no and r.facility_no = #{facility_no}
 	</select>
 	
 	<!-- 자유게시판, 댓글 목록/삭제 -->

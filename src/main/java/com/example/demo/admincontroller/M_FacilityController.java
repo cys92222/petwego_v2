@@ -21,15 +21,11 @@ public class M_FacilityController {
 	@Autowired
 	private ManagerPageService mp_service;
 	
-//	// 방 정보
-//	@RequestMapping(value = "/froom/infoRoom", produces = "application/json; charset=utf-8")
-//	@ResponseBody
-//	public void infoRoom(Model model, @RequestBody List<RoomVo> listRoom) {
-////		model.addAttribute("infoRoom", mp_service.infoRoom(rv));
-//		for(RoomVo rv : listRoom) {
-//			mp_service.infoRoom(rv);
-//		}
-//	}
+	// 방 정보
+	@GetMapping("/froom/infoRoom")
+	public void infoRoom(Model model, int facility_no) {
+		model.addAttribute("infoRoom", mp_service.infoRoom(facility_no));
+	}
 	
 	// 숙소 목록
 	@GetMapping("/froom/listFacility")

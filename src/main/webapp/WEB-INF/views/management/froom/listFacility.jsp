@@ -59,8 +59,9 @@
 								<tr>
 									<td><c:out value="${listF.facility_no }" /></td>
 									<td>
-<%-- 										<a id="fff" href="/management/froom/infoRoom?facility_no=${listF.facility_no  }"> --%>
+										<a href="/management/froom/infoRoom?facility_no=${listF.facility_no  }">
 										<c:out value="${listF.facility_name }" />
+										</a>
 									</td>
 									<td><c:out value="${listF.facility_addr }" /></td>
 									<td><c:out value="${listF.f_phone }" /></td>

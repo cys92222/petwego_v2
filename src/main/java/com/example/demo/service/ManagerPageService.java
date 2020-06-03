@@ -8,6 +8,7 @@ import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.FacilityVo;
+import com.example.demo.vo.M_froomVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
@@ -18,8 +19,8 @@ import com.example.demo.vo.RoomVo;
 public interface ManagerPageService {
 
 	// 방정보
-//	RoomVo infoRoom(RoomVo rv);
-	List<RoomVo> infoRoom(RoomVo rv);
+	List<M_froomVo> infoRoom(int facility_no);
+	
 	// 숙소목록
 	List<FacilityVo> listFacility();
 

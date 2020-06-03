@@ -14,6 +14,7 @@ import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.Board_fileVo;
 import com.example.demo.vo.ChartVo;
 import com.example.demo.vo.FacilityVo;
+import com.example.demo.vo.M_froomVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
@@ -28,19 +29,10 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	private ManagerPageDao mDao;
 	
 	// 방정보
-
 	@Override
-	public List<RoomVo> infoRoom(RoomVo rv) {
-		// TODO Auto-generated method stub
-		return mDao.infoRoom(rv);
+	public List<M_froomVo> infoRoom(int facility_no) {
+		return mDao.infoRoom(facility_no);
 	}
-
-
-//	@Override
-//	public RoomVo infoRoom(RoomVo rv) {
-//		return mDao.infoRoom(rv);
-//	}
-
 	
 	// 숙소 목록
 	@Override
@@ -231,6 +223,8 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		re = mDao.deleteQnA(q);
 		return re;
 	}
+
+
 
 
 }
