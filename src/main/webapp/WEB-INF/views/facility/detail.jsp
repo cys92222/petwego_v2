@@ -177,13 +177,27 @@ $(function(){
 		// 숙소정보 
 		var facility_name = $('#facility_name').text();
 		var facility_area = $('#facility_area').text();
-		var rm_name = $('#rm_name').text();
+
+
+
+		// 객실명 수정, 주련 0603
+		//var rm_name = $.trim($(this).parent().siblings('.media-body').find('#rm_name').text());
+
+		//var tempName = $.trim( $(this).parent().parents('td').eq(0).find('.media-body').find('h5').text() );
+		var tempName = $(this).parent().parents('td').eq(0).siblings('.d-flex').find('.media-body').find('h5').text();
+		var rm_name = $.trim(tempName);
+
+		// 객실별 일박가격, 주련 0603
+		var tempValue = $(this).parent().siblings('#rm_cost').text();
+		var rm_cost = $.trim(tempValue);		
+
+		// input hidden : 
+		//$('#reserveBtn868').parent().parents('td').eq(0).siblings('.d-flex').find('#rm_no_asd').val();
+
 		$('input[name=facility_info]').val(facility_name+'/'+facility_area);
 		$('input[name=rm_name]').val(rm_name);
 
-		// 객실별 일박가격 
-		var tempValue = $('#rm_cost').text();
-		var rm_cost = $.trim(tempValue);
+
 		
 	    var special_pattern = /[~]/gi;
 	 	// 만약 특수문자 '~' 기호를 포함하고, 인원이 최소기준인원(2명)이라면
