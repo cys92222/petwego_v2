@@ -437,6 +437,7 @@ $(function(){
 
 
 		<form role="form" method="get">
+		<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
   <div class="search">
     <select name="searchType">
       <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
@@ -485,6 +486,7 @@ $(function(){
 <h2>QnA등록</h2>
 <hr>
 <form id="insertQnA">
+<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
 카테고리<br>
 <select name="cs_no" required="required">
 	<option value="1">홈페이지 이용 관련</option>
@@ -531,6 +533,7 @@ $(function(){
 	<h3>답변등록</h3>
 	<hr>
 	<form id="insertRe">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
 	<!-- 원본글 번호 저장 -->
 	<input type="text" id="re_inq_no" name="inq_no"><br>
 		카테고리<br>
@@ -557,6 +560,7 @@ $(function(){
 	<h2>QnA수정</h2>
 	<hr>
 	<form id="upQnA">
+	<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
 		<input type="text" id="up_inq_no" name="up_inq_no"><br>
 		카테고리<br>
 		<select id="up_cs_no" name="up_cs_no"><br>

@@ -76,6 +76,7 @@ $(function(){
 						<div class="email-right-box">
 							<div class="compose-content mt-5">
 								<form action="/customerservice/insertQnA" id="QnA">
+								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
 									<div class="form-group">
 									<select class="form-control bg-transparent" name="cs_no">
 										<option value="1">홈페이지 이용 관련</option>

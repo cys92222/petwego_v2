@@ -80,6 +80,7 @@ $(function(){
 						<div class="email-right-box">
 							<div class="compose-content mt-5">
 								<form action="/customerservice/updateQnA" id="QnA">
+								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
 								<input type="hidden" name="up_inq_no" value="${detail.inq_no }">
 									<div class="form-group">
 									<select class="form-control bg-transparent" name="up_cs_no">
