@@ -109,7 +109,7 @@
 							value="${detailTogether.t_num }" />
 						<div class="col-lg-3" style="float: left; text-align: center;">
 							<img src="../t_thumbnailUpload/${c.thumbnail}"
-								style="margin-right: 10px; width: 300px; height: 300px;">
+								style="margin-right: 10px; max-width: 100%; height: 300px;">
 						</div>
 						<div class="col-lg-9" style="float: left;">
 							<h2 class="card-title"

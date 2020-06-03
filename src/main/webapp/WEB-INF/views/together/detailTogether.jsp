@@ -27,11 +27,13 @@
 .ml-3 {
 	margin-left: 0;
 }
+
 .back-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    display: none;
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	display: none;
+}
 </style>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -66,7 +68,7 @@ $(document).ready(function(){
 		+"&perPageNum=${scri.perPageNum}"
 		+"&searchType=${scri.searchType}&keyword=${scri.keyword}";
 	})
-
+	   
 	//댓글 수정 View
 	$(".replyUpdateBtn").on("click", function(){
 		location.href = "/together/updateReplyView?t_num=${detailTogether.t_num}"
@@ -79,13 +81,29 @@ $(document).ready(function(){
 	});
 			
 	//댓글 삭제 View
-	$(".replyDeleteBtn").on("click", function(){
-		location.href = "/together/deleteReplyView?t_num=${detailTogether.t_num}"
+// 	$(".replyDeleteBtn").on("click", function(){
+// 		location.href = "/together/deleteReplyView?t_num=${detailTogether.t_num}"
+// 						+ "&page=${scri.page}"
+// 						+ "&perPageNum=${scri.perPageNum}"
+// 						+ "&searchType=${scri.searchType}"
+// 						+ "&keyword=${scri.keyword}"
+// 						+ "&t_r_num="+$(this).attr("data-t_r_num");
+// 	});
+
+	$(".replyDeleteBtn").on("click",function(){
+		var formObj2 =  $("form[id='replyForm']");
+		var deleteYN2 = confirm("삭제하시겠습니까?");
+			if(deleteYN2==true){
+// 				formObj2.attr("action","deleteReply");
+// 				formObj2.attr("method","post");
+// 				formObj2.submit();
+		location.href = "/together/deleteReply?t_num=${detailTogether.t_num}"
 						+ "&page=${scri.page}"
 						+ "&perPageNum=${scri.perPageNum}"
 						+ "&searchType=${scri.searchType}"
 						+ "&keyword=${scri.keyword}"
 						+ "&t_r_num="+$(this).attr("data-t_r_num");
+			}
 	});
 
 	//비밀댓글
@@ -163,23 +181,7 @@ $(document).ready(function(){
 			}
 		}})
 	})
-	
-	//맨위로 
-	$(window).scroll(function () {
-		if ($(this).scrollTop() > 50) {
-			$('#back-to-top').fadeIn();
-		} else {
-			$('#back-to-top').fadeOut();
-		}
-	});
-	// scroll body to 0px on click
-	$('#back-to-top').click(function () {
-		$('body,html').animate({
-			scrollTop: 0
-		}, 400);
-		return false;
-	});
- 
+
 });
 </script>
 </head>
@@ -273,7 +275,8 @@ $(document).ready(function(){
 					<hr>
 					<div class="media mb-4 mt-1">
 						<div class="media-body">
-							<span class="float-right" style="padding-top: 4px; padding-right: 1%;"><fmt:formatDate
+							<span class="float-right"
+								style="padding-top: 4px; padding-right: 1%;"><fmt:formatDate
 									value="${detailTogether.t_open_date}" pattern="yyyy-MM-dd" /></span>
 							<span class="label label-pill label-secondary"
 								style="float: left; padding-left: 20px; padding-right: 20px;">제&nbsp;&nbsp;&nbsp;목</span>
@@ -332,65 +335,68 @@ $(document).ready(function(){
 						</div>
 						<input type="checkbox" id="secretReply_chk">&nbsp;&nbsp;&nbsp;비밀댓글
 						<input type="hidden" id="secretReply" name="secret_reply">
-						<button class="btn btn-primary px-3 ml-4" style="float: right; background-color:#4AD4C7; border: none;"
+						<button class="btn btn-primary px-3 ml-4"
+							style="float: right; background-color: #4AD4C7; border: none;"
 							id="replyWriteBtn">댓글 달기</button>
 					</div>
 				</div>
 			</div>
 		</div>
 
-	</form>
 
-	<div class="col-xl-12"
-		style="padding: 50px; padding-top: 0; padding-bottom: 0;" id="reply">
-		<div class="card" id="replyList">
-			<c:forEach items="${replyList}" var="replyList">
-				<div class="card-body">
-					<div class="d-sm-flex justify-content-between mb-2"
-						style="float: left;">
-						<img class="mr-3 rounded-circle"
-							src="../img/peopleImg/${fname} }" height="50" width="50">
-					</div>
-					<h5 class="mb-sm-0" style="padding-top: 5px;">${replyList.user_id}</h5>
-					<fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
-					<p style="margin-top: 20px;">
-						<!-- 비밀여부체크, 로그인 완성되면 함께가요 작성자,댓글작성자도 추가해야됨 -->
-						<c:if test="${replyList.secret_reply ne 'y' }">
+
+		<div class="col-xl-12"
+			style="padding: 50px; padding-top: 0; padding-bottom: 0;" id="reply">
+			<div class="card" id="replyList"
+				style="background-color: #f2f2f9; display: block;">
+				<c:forEach items="${replyList}" var="replyList">
+					<div class="card-body"
+						style="background-color: white; border-radius: 10px;">
+						<div class="d-sm-flex justify-content-between mb-2"
+							style="float: left;"></div>
+						<h5 class="mb-sm-0" style="padding-top: 5px;">${replyList.user_id}</h5>
+						<fmt:formatDate value="${replyList.regdate}" pattern="yyyy-MM-dd" />
+						<p style="margin-top: 20px;">
+							<!-- 비밀여부체크, 로그인 완성되면 함께가요 작성자,댓글작성자도 추가해야됨 -->
+							<c:if test="${replyList.secret_reply ne 'y' }">
 									${replyList.t_r_content }	
 								</c:if>
 
-						<c:if test="${replyList.secret_reply eq 'y'}">
-							<c:if test="${login_id eq 'manager' }">
+							<c:if test="${replyList.secret_reply eq 'y'}">
+								<c:if test="${login_id eq 'manager' }">
 										${replyList.t_r_content }
 									</c:if>
 
-							<!-- 									댓글 작성자 -->
-							<c:set var="user_id" value="${replyList.user_id }" />
-							<!-- 									로그인 아이디 -->
-							<c:set var="login_id" value="${login_id }" />
-							<!-- 									함께가요 원본글 작성자 -->
-							<c:set var="dt_user_id" value="${detailTogether.user_id }" />
+								<!-- 									댓글 작성자 -->
+								<c:set var="user_id" value="${replyList.user_id }" />
+								<!-- 									로그인 아이디 -->
+								<c:set var="login_id" value="${login_id }" />
+								<!-- 									함께가요 원본글 작성자 -->
+								<c:set var="dt_user_id" value="${detailTogether.user_id }" />
 
-							<c:if
-								test="${user_id eq login_id || login_id eq dt_user_id || user_id eq login_id}">
+								<c:if
+									test="${user_id eq login_id || login_id eq dt_user_id || user_id eq login_id}">
 										${replyList.t_r_content }
 									</c:if>
 									비밀댓글입니다<input type="image" src="/img/locker.png" width="15"
-								height="15" />
-						</c:if>
-					</p>
-					<div style="float: right;">
-						<a class="replyUpdateBtn" data-t_r_num="${replyList.t_r_num}"><i
-							class="mdi mdi-message-draw"></i></a> <a class="replyDeleteBtn"
-							data-t_r_num="${replyList.t_r_num}"><i
-							class="mdi mdi-file-excel-box"></i></a>
+									height="15" />
+							</c:if>
+						</p>
+						<div style="float: right;">
+							<c:if test="${login_id eq replyList.user_id }">
+								<a class="replyUpdateBtn" data-t_r_num="${replyList.t_r_num}"><i
+									class="mdi mdi-message-draw"></i></a>
+								<a class="replyDeleteBtn" data-t_r_num="${replyList.t_r_num}"><i
+									class="mdi mdi-file-excel-box"></i></a>
+							</c:if>
+						</div>
 					</div>
-				</div>
-				<hr>
-			</c:forEach>
+					<hr>
+				</c:forEach>
+			</div>
 		</div>
-	</div>
-	<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top" role="button" style="background-color:#4AD4C7; border: none;" ><i class="mdi mdi-format-wrap-top-bottom" style="color: white;"></i></a>
+	</form>
+
 	<%@include file="../footer.jsp"%>
 </body>
 </html>

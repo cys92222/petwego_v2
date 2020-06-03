@@ -73,19 +73,19 @@ public class TogeteherController {
 //	  return "together/test";
 //	}
 	//댓글삭제 GET
-	@NoLogging
-	@RequestMapping(value="/deleteReplyView",method = RequestMethod.GET)
-	public String replyDeleteView(ReplyVo rv,SearchCriteria scri, Model model) throws Exception {
-		LOGGER.info("writeReply");
-		
-		model.addAttribute("deleteReply",Rservice.selectReply(rv.getT_r_num()));
-		model.addAttribute("scri",scri);
-		
-		return "together/deleteReplyView";
-	}
+//	@NoLogging
+//	@RequestMapping(value="/deleteReplyView",method = RequestMethod.GET)
+//	public String replyDeleteView(ReplyVo rv,SearchCriteria scri, Model model) throws Exception {
+//		LOGGER.info("writeReply");
+//		
+//		model.addAttribute("deleteReply",Rservice.selectReply(rv.getT_r_num()));
+//		model.addAttribute("scri",scri);
+//		
+//		return "together/deleteReplyView";
+//	}
 	
 	//댓글삭제 POST
-	@RequestMapping(value="/deleteReply",method = RequestMethod.POST)
+	@RequestMapping(value="/deleteReply",method = RequestMethod.GET)
 	public String replyDelete(HttpServletRequest request, ReplyVo rv,SearchCriteria scri, RedirectAttributes rttr) throws Exception {
 		LOGGER.info("writeReply");
 			
