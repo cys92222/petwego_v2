@@ -42,11 +42,11 @@
             <!-- row -->
 
             <div class="container-fluid">
-             <h4>회원가입</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+                             <h4>회원가입</h4>
                                 <div class="form-validation"> <!-- form의 action 주소만 복사했음 join.jsp가 고치고 있는 중 / join2 가 원본 / join boot 가 boot 양식만 있는 거 -->
                                     <form class="form-valide" action="/join/insert" method="post" novalidate="novalidate" id="myForm">
                                     <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
