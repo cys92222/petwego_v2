@@ -72,11 +72,12 @@ public class FacilityServiceImpl implements FacilityService {
 	
 //	아이디로 rm_no조회
 	@Override
-	public int select_rm_no(String user_id) {
+	public ReservationVo select_rm_no(String user_id) {
 		// TODO Auto-generated method stub
-		int re = -1;
-		re = dao.select_rm_no(user_id);
-		return re;
+//		int re = -1;
+//		re = dao.select_rm_no(user_id);
+		ReservationVo rv = dao.select_rm_no(user_id);
+		return rv;
 	}
 	
 //	rm_no로 방이름 조회

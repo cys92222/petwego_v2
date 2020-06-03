@@ -143,8 +143,8 @@ $(function(){
     
 	$('#reserveBtn'+n.rm_no).click(function(e){
 		e.preventDefault();
-/* 		action = 'reserve';
-		type = 'POST'; */
+ 		action = 'reserve';
+// 		type = 'POST'; 
 
 		// 모달에 넣어줄 정보 담기
 		var check_inF = $('#check_inF').val();
@@ -153,8 +153,8 @@ $(function(){
 		var human_numF = $('#human_numF option:selected').val();
 		var pet_numF = $('#pet_numF option:selected').val();
 
-		alert("reserveBtn 누름");
-		alert("check_inF" + check_inF);	
+// 		alert("reserveBtn 누름");
+// 		alert("check_inF" + check_inF);	
 		
 		// 체크인,체크아웃,인원,동물
 		$('input[name=check_in]').val(check_inF);

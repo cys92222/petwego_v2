@@ -71,18 +71,18 @@ public class ReservationController {
 		
 		mav.addObject("my", my.select_myinfo(m));
 //		결제안한 예약조회
-		mav.addObject("to", service.select_reserve(str));
+//		mav.addObject("to", service.select_reserve(str));
 		
 //		아이디로 rm_no조회
-		int rm_no = service.select_rm_no(str);
+		ReservationVo rm_no = service.select_rm_no(str);
 		mav.addObject("rm_no", rm_no);
 		
 //		rm_no로 방이름 조회
-		RoomVo room = service.select_room_name(rm_no);
+		RoomVo room = service.select_room_name(rm_no.getRm_no());
 		mav.addObject("room", room);
 		
 //  	rm_no로 호텔 번호 조회
-		int facility_no = service.select_facility_no(rm_no);
+		int facility_no = service.select_facility_no(rm_no.getRm_no());
 		mav.addObject("facility_no", facility_no);
 		
 //		facility_no로 호텔 조회

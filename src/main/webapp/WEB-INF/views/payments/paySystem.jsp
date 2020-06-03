@@ -177,19 +177,19 @@ $(function(){
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">가격</label>
 								<div class="col-sm-9">
-									<input type="text" id="rsv_price" value="${to.rsv_price }" readonly="readonly" class="form-control-plaintext">
+									<input type="text" id="rsv_price" value="${rm_no.rsv_price }" readonly="readonly" class="form-control-plaintext">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">투숙객 이름</label>
 								<div class="col-sm-9">
-									<input type="text" value="${to.guest_name }" readonly="readonly" class="form-control-plaintext">
+									<input type="text" value="${rm_no.guest_name }" readonly="readonly" class="form-control-plaintext">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">투숙객전화번호</label>
 								<div class="col-sm-9">
-									<input type="text" value="${to.guest_tel }" readonly="readonly" class="form-control-plaintext">
+									<input type="text" value="${rm_no.guest_tel }" readonly="readonly" class="form-control-plaintext">
 								</div>
 							</div>
 							<div class="form-group row">
