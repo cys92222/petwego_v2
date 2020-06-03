@@ -112,6 +112,7 @@ public class FacilityController{
 		System.out.println(user_id);
 	}
 	
+	
 	//(+)
 	//리뷰수정
 	@PutMapping("/facility/detail")
