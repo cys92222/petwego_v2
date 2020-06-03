@@ -11,13 +11,7 @@
 <script type="text/javascript">
 	$(function() {
 
-		// 태그 클릭시  
-// 		$('#fff').click(function(e) {
-// 			e.preventDefault();
 
-// 			$('#modal-title').text('방정보 확인');
-// 			$('#mmodal').modal("show");
-// 		});
 	})
 </script>
 </head>
@@ -70,42 +64,6 @@
 						</tbody>
 					</table>
 				</div>
-				<!--  modal: 누르면 모달창에 방정보 뜨게  -->
-<!-- 				<div class="modal fade" id="mmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"> -->
-<!-- 					<div class="modal-dialog" role="document"> -->
-<!-- 						<div class="modal-content"> -->
-<!-- 							<div class="modal-header"> -->
-<!-- 								<button type="button" class="close" data-dismiss="modal">&times;</button> -->
-
-<!-- 							</div> -->
-<!-- 							<div class="modal-body"> -->
-<!-- 								<form id="f"> -->
-<%-- 									<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />  --%>
-<%-- 									<input type="hidden" id="facility_no" value="${ infoRoom.facility_no }"> --%>
-<!-- 									<table class="table"> -->
-<!-- 										<tr> -->
-<!-- 											<th>방번호</th> -->
-<!-- 											<th>객실명</th> -->
-<!-- 											<th>숙소주소</th> -->
-<!-- 											<th>숙소연락처</th> -->
-<!-- 										</tr> -->
-<%-- 										<c:forEach var="info" items="${infoRoom }"> --%>
-<!-- 											<tr> -->
-<%-- 												<td><c:out value="${info.rm_no }" /></td> --%>
-<%-- 												<td><c:out value="${info.rm_name }" /></td> --%>
-<%-- 												<td><c:out value="${info }" /></td> --%>
-<!-- 											</tr> -->
-<%-- 										</c:forEach> --%>
-
-<!-- 									</table> -->
-<!-- 								</form> -->
-<!-- 							</div> -->
-<!-- 							<div class="modal-footer"> -->
-<!-- 								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button> -->
-<!-- 							</div> -->
-<!-- 						</div> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 			</div>
 		</div>
 	</div>
