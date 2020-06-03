@@ -199,6 +199,12 @@
 						aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
 							<span class="nav-text" id="myPage">마이페이지</span>
 					</a></li>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<li><a class="has-arrow" href="<c:url value='/management/manager_main'/>"
+						aria-expanded="false"> <i class="icon-envelope menu-icon"></i>
+						<span class="nav-text" id="management">관리자페이지</span>
+					</a></li>
+					</sec:authorize>
 				</ul>
 			</div>
 		</div>
