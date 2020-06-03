@@ -43,7 +43,7 @@
             <!-- row -->
 			
             <div class="container-fluid">
-            <h4>회원정보 수정</h4>
+              <h4>회원정보 수정</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
@@ -199,7 +199,7 @@
         <!--**********************************
             Footer end
         ***********************************-->
-    </div>
+  
     <!--**********************************
         Main wrapper end
     ***********************************-->

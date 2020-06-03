@@ -42,7 +42,7 @@
             <!-- row -->
 
             <div class="container-fluid">
-             <h4>회원가입</h4>
+              <h4>회원가입</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
@@ -179,7 +179,7 @@
                     </div>
                 </div>
             </div>
-          <%@include file="../footer.jsp" %>
+         
     <!--**********************************
         Scripts
     ***********************************-->
@@ -191,7 +191,7 @@
 
     <script src="../resources/quixlab/plugins/validation/jquery.validate.min.js"></script>
     <script src="../resources/quixlab/plugins/validation/jquery.validate-init.js"></script>
-	
+	 <%@include file="../footer.jsp" %>
 </body>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- <script src="/resources/js/addressapi.js"></script> -->
