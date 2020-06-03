@@ -28,4 +28,6 @@ public class M_froomVo {
 	private String rm_pic;
 	private int rm_ok;
 	private int rm_sn;
+	private String rm_cost;
+	private String rm_info;
 }

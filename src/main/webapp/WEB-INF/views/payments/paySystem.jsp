@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
+<%@ include file="../header.jsp"%>
 <head>
 <meta charset="UTF-8">
 <title>pet we go | 결제</title>
 <!-- 민아) 5/22, 결제 서비스 구현 완료 -->
 <!-- 민아) 5/23, 결제 성공/실패 메시지 처리  -->
 <!-- 민아) 5/31, 결제 페이지 부트스트랩 적용해야함  -->
-<script type="text/javascript"
-	src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 $(function(){
 	// 아임포트 깃 허브
@@ -53,7 +52,7 @@ $(function(){
 			pg : 'html5_inicis.PetWeGo',
 			pay_method : 'card',
 			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : facility_name +'('+ rm_name +')',
+			name : facility_name +'('+rm_name+')',
 			amount : rsv_price,
 			buyer_email : buyer_email,
 			buyer_name : user_id,
@@ -93,7 +92,7 @@ $(function(){
 			        var insertPay = $("#payForm").serialize();
 
 					console.log(JSON.stringify(info));
-					alert(rsv_no);
+// 					alert(rsv_no);
 					// db에 결제정보 저장을 위해 ajax 통신(마이페이지-결제내역에서 확인되도록)
 					$.ajax({
 						type : "POST",
@@ -107,7 +106,8 @@ $(function(){
 						success : function(done){
 							console.log(done);		
 						},error:function(request,status,error){
-						    //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}				        
+						    //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						}				        
 					}) //ajax 통신끝 
 					
 					var msg = '결제가 완료되었습니다.'+"\n";
@@ -213,7 +213,7 @@ $(function(){
 						</div>
 						<hr>
 						<h5 class="text-primary">예약내용을 확인 후 결제를 진행해 주세요!</h5>
-						 <button type="button" id='okay' class="btn mb-1 btn-primary">결제하기</button>
+						 <button type="button" id="okay" class="btn mb-1 btn-primary">결제하기</button>
 					</div>
 				</div>
 			</div>

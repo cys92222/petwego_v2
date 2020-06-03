@@ -27,7 +27,9 @@
               <div class="card-body">
              	<c:forEach var="info" items="${infoRoom }" begin="1" end="1">
                
-                  <h6 class="m-0 font-weight-bold text-primary">숙소명:<c:out value="${info.facility_name }" />&nbsp;&nbsp;||&nbsp;&nbsp;숙소번호:<c:out value="${info.facility_no }" /></h6>
+                  <h6 class="m-0 font-weight-bold text-info">숙소명:<c:out value="${info.facility_name }" />&nbsp;&nbsp;||&nbsp;&nbsp;숙소번호:<c:out value="${info.facility_no }" /></h6>
+                    <br>
+                    <br>
                     <p>숙소주소 : <c:out value="${info.facility_addr }" /></p>
                     <p>숙소연락처 : <c:out value="${info.f_phone }" /></p>
                     <p>숙소 최저가 : <c:out value="${info.f_minprice }" /></p>
@@ -44,9 +46,9 @@
 		<!-- Collapsable Card Example -->
 		<div class="card shadow mb-4">
 			<c:forEach var="info" items="${infoRoom }">
-				<a href="#asd${info.rm_no }" class="d-block card-header py-3"
+				<a href="#go${info.rm_no }" class="d-block card-header py-3"
 					data-toggle="collapse" role="button" aria-expanded="true"
-					aria-controls="asd${info.rm_no }">
+					aria-controls="${info.rm_no }">
 					<h6 class="m-0 font-weight-bold text-primary">
 						방이름:
 						<c:out value="${info.rm_name }" />
@@ -54,8 +56,15 @@
 						<c:out value="${info.rm_no }" />
 					</h6>
 				</a>
-				<div class="collapse show" id="asd${info.rm_no }">
-					<div class="card-body">This is a collapsable card example using Bootstrap's built in collapse functionality.</div>
+				<div class="collapse show" id="go${info.rm_no }">
+					<div class="card-body">
+						<p>최대수용인원 :<c:out value="${info.rm_name }" /> </p>
+						<p>객실1박당 가격 :<c:out value="${info.rm_cost }" /> </p>
+						<p>객실정보 :<c:out value="${info.rm_info }" /> </p>
+						<p>예약가능여부 :<c:out value="${info.rm_ok }" /> </p>
+						<p>숙소별 객실 식별번호 :<c:out value="${info.rm_sn }" /> </p>
+						<p>객실사진 : <img src="<c:out value="${info.rm_pic }" />" width="400px" height="400px"></p>
+					</div>
 				</div>
 			</c:forEach>
 		</div>
