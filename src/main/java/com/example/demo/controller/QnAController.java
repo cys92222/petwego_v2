@@ -100,7 +100,9 @@ public class QnAController {
 	
 	//qna등록
 	@RequestMapping("/customerservice/insertQnA")
-	public void insertQnA(HttpServletRequest request, QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {
+	public String insertQnA(HttpServletRequest request, QnAVo q, Criteria cri,@ModelAttribute("scri") SearchCriteria scri) {
+		
+		System.out.println(q);
 		
 		ModelAndView mav = new ModelAndView();
 		PageMaker pageMaker = new PageMaker();
@@ -117,6 +119,8 @@ public class QnAController {
 		}
 		
 		service.insertQnA(q);
+		
+		return "redirect:/customerservice/List";
 	}
 	
 	//섬머노트 사진업로드

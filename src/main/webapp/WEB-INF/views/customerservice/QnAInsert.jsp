@@ -94,7 +94,7 @@ $(function(){
 									</div>
 									<div class="form-group">	
 									
-									<textarea id="summernote"></textarea>
+									<textarea id="summernote" name="inq_content"></textarea>
 
 									</div>
 								<h5 class="m-b-20">
