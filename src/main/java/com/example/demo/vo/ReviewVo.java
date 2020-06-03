@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class ReviewVo {
 	private int r_no;
 	private String review_content;
-	private int grade;
+	private int r_grade;
 	private Date insert_date;
 	private Date update_date;
 	private int open_status;

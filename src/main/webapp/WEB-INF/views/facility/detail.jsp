@@ -100,35 +100,41 @@ $(function(){
         action = 'create';
         type = 'POST';
 
+		alert("리뷰등록 누름");
         //facility_no = $.fn.getUrlParameter('facility_no');
         
         var facility_no = getUrlParameter('facility_no');
         //url = '/facility/detail?facility_no='+facility_no;
         url = '/facility/detail/review';
         
-		r_no = this.value;
+// 		r_no = this.value;
 		r_grade = $('input[name=r_grade]').val();
 		review_content = $('textarea[name=review_content]').val();
 
 		var data = {
-			"r_no" : r_no,
+// 			"r_no" : r_no,
 			"facility_no" : facility_no,
 			"r_grade" : r_grade,
 			"review_content" : review_content,
 			"user_id" : '${login_id}'
 		}
 
+		console.log(data);
 
 		$.ajax({
 			url : url,
-			type : type,
+			type : "POST",
+// 			contentType: 'application/json',
 			data : data,
-			complete:function(data){
+			beforeSend: function(xhr){
+				xhr.setRequestHeader(header, token);
+			},
+			success:function(data){
 				$('#reviewModal').modal('toggle');
-				location.reload();
+				location.reload(true);
 			}
 		
-		})
+		});
 		
     });
 
