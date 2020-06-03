@@ -49,6 +49,7 @@
                             <div class="card-body">
                                 <div class="form-validation"> <!-- form의 action 주소만 복사했음 join.jsp가 고치고 있는 중 / join2 가 원본 / join boot 가 boot 양식만 있는 거 -->
                                     <form class="form-valide" action="/join/insert" method="post" novalidate="novalidate" id="myForm">
+                                    <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                        <input type="hidden" id="token" name="_csrf" value="80e80458-bb33-49b3-bbb0-0dbb0b7eeb3e"> 
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
@@ -167,7 +168,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">가입</button>
+                                                <button type="submit" class="btn btn-primary" id="btn">가입</button>
                                                 <button class="btn btn-danger" id="cancle">다시쓰기</button>
                                             </div>
                                         </div>
@@ -236,7 +237,7 @@ var idx = false;
 	 })
 	});
 
-var idx2 = false;
+
 //닉네임 중복체크
 $("#nickCheck").on("click", function(){ 
 	
