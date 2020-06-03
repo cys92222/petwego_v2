@@ -7,6 +7,32 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PET WE GO</title>
+<style type="text/css">
+.back-to-top {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	display: none;
+	z-index: 1;
+}
+</style>
+<script type="text/javascript">
+//맨위로 
+$(window).scroll(function () {
+	if ($(this).scrollTop() > 50) {
+		$('#back-to-top').fadeIn();
+	} else {
+		$('#back-to-top').fadeOut();
+	}
+});
+// scroll body to 0px on click
+$('#back-to-top').click(function () {
+	$('body,html').animate({
+		scrollTop: 0
+	}, 400);
+	return false;
+});
+</script>
 
 <!-- Favicon icon -->
 <link rel="icon" type="image/png" sizes="16x16"
@@ -211,7 +237,9 @@
 		<!--**********************************
             Sidebar end
         ***********************************-->
-
+		<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top"
+		role="button" style="background-color: #4AD4C7; border: none;"><i
+		class="mdi mdi-format-wrap-top-bottom" style="color: white;"></i></a>
 		<div class="content-body">
 
 			<!-- 		view페이지 작업할때 민아가 준 Quixlab사이트에서  f12누르고  <div class="content-body"> 검색 후 다음 코드부터 복사 한 후 작업 시작 -->
