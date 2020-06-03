@@ -43,11 +43,11 @@
             <!-- row -->
 			
             <div class="container-fluid">
+              <h4>회원정보 수정</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                             <h4>회원정보 수정</h4>
                                 <div class="form-validation">
                                     <form class="form-valide" action="/mypage/people_info_up" method="post" novalidate="novalidate" id="updateForm" enctype="multipart/form-data">
                                        <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
@@ -199,7 +199,7 @@
         <!--**********************************
             Footer end
         ***********************************-->
-    </div>
+  
     <!--**********************************
         Main wrapper end
     ***********************************-->

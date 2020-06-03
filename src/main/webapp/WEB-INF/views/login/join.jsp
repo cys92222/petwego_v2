@@ -42,11 +42,11 @@
             <!-- row -->
 
             <div class="container-fluid">
+              <h4>회원가입</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                             <h4>회원가입</h4>
                                 <div class="form-validation"> <!-- form의 action 주소만 복사했음 join.jsp가 고치고 있는 중 / join2 가 원본 / join boot 가 boot 양식만 있는 거 -->
                                     <form class="form-valide" action="/join/insert" method="post" novalidate="novalidate" id="myForm">
                                     <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -179,7 +179,7 @@
                     </div>
                 </div>
             </div>
-          <%@include file="../footer.jsp" %>
+         
     <!--**********************************
         Scripts
     ***********************************-->
@@ -191,7 +191,7 @@
 
     <script src="../resources/quixlab/plugins/validation/jquery.validate.min.js"></script>
     <script src="../resources/quixlab/plugins/validation/jquery.validate-init.js"></script>
-	
+	 <%@include file="../footer.jsp" %>
 </body>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- <script src="/resources/js/addressapi.js"></script> -->
