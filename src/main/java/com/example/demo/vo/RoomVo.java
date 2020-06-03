@@ -2,6 +2,8 @@ package com.example.demo.vo;
 
 
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,8 @@ public class RoomVo {
 	private String rm_info;
 	private int rm_ok;
 	private int rm_sn;
+	
+	private List<RoomVo> listRoom;
 }
 
  

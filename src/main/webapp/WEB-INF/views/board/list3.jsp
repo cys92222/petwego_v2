@@ -41,6 +41,40 @@
 				<div class="card">
 					<div class="card-body">
 						<h4 class="card-title">자유게시판</h4>
+						
+						
+						<div class="col-lg-10" style="float: left; margin-top: 15px;">
+			<div class="form-group" style="float: left;">
+				<select class="form-control form-control-sm" name="searchType"
+					style="width: 100px;">
+					<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
+		      <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+		      <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+		      <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+		      <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+				</select>
+			</div>
+			
+			<div class="basic-form" style="float: left;">
+				<form>
+					<div class="form-group">
+						<input type="text" class="form-control input-flat"
+							name="keyword" id="keywordInput" value="${scri.keyword}"
+							style="width: 300px; margin-left: 5px;" />
+					</div>
+				</form>
+			</div>
+			 <button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
+						
+						 <script>
+      $(function(){
+        $('#searchBtn').click(function() {
+          self.location 
+          	= "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() +
+          		 "&keyword=" + encodeURIComponent($('#keywordInput').val());
+        });
+      });   
+    </script>
 						<div class="table-responsive">
 							<table class="table table-hover " id="free">
 								<thead>
@@ -79,6 +113,26 @@
 								</tbody>
 							</table>
 						</div>
+						
+						<div class="bootstrap-pagination">
+						<nav>
+		<ul class="pagination justify-content-center">
+		    <c:if test="${pageMaker.prev}">
+		    	<li class="page-item disabled"><a class="page-link" href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+		    </c:if> 
+		
+		    <c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+		    	<li class="page-item"><a class="page-link" href="list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+		    </c:forEach>
+		
+		    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+		    	<li class="page-item"><a class="page-link" href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+		    </c:if> 
+ 		 
+		</ul>
+		</nav>
+	</div>
+						
 					</div>
 				</div>
 			</div>

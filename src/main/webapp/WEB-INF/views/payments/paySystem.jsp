@@ -107,7 +107,7 @@ $(function(){
 						success : function(done){
 							console.log(done);		
 						},error:function(request,status,error){
-						    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}				        
+						    //alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}				        
 					}) //ajax 통신끝 
 					
 					var msg = '결제가 완료되었습니다.'+"\n";

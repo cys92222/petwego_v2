@@ -4,23 +4,28 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
+// 민아) 6/3, 관리자페이지에서 시설 - 방 정보를 보기위해 만든 vo
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class FacilityVo {
+@Data
+public class M_froomVo {
+	
 	private int facility_no;
 	private String facility_name;
 	private String facility_addr;
 	private String f_phone;
-	private String f_minprice;
+	private int f_minprice;
 	private String f_feature;
 	private String f_intro;
 	private String f_pic;
 	private String f_checkin;
 	private String f_checkout;
-	public static void main(String[] args) {
-		
-	}
+	
+	private int rm_no;
+	private String rm_name;
+	private String rm_max;
+	private String rm_pic;
+	private int rm_ok;
+	private int rm_sn;
 }
- 
-
