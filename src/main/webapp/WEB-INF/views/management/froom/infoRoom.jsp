@@ -37,7 +37,7 @@
                     <p>숙소소개글 : <c:out value="${info.f_intro }" /></p>
                     <p>체크인시간 : <c:out value="${info.f_checkin }" /></p>
                     <p>체크아웃시간 : <c:out value="${info.f_checkout }" /></p>
-                    <p>숙소사진 : <img src="<c:out value="${info.f_pic }" />" width="400px" height="400px"></p>
+                    <p><img src="<c:out value="${info.f_pic }" />" width="400px" height="400px"></p>
                     </c:forEach>
                   </div> 
                 </div>
@@ -58,12 +58,12 @@
 				</a>
 				<div class="collapse show" id="go${info.rm_no }">
 					<div class="card-body">
-						<p>최대수용인원 :<c:out value="${info.rm_name }" /> </p>
+						<p>최대수용인원 :<c:out value="${info.rm_max }" /> </p>
 						<p>객실1박당 가격 :<c:out value="${info.rm_cost }" /> </p>
 						<p>객실정보 :<c:out value="${info.rm_info }" /> </p>
 						<p>예약가능여부 :<c:out value="${info.rm_ok }" /> </p>
 						<p>숙소별 객실 식별번호 :<c:out value="${info.rm_sn }" /> </p>
-						<p>객실사진 : <img src="<c:out value="${info.rm_pic }" />" width="400px" height="400px"></p>
+						<p><img src="<c:out value="${info.rm_pic }" />" width="400px" height="400px"></p>
 					</div>
 				</div>
 			</c:forEach>
