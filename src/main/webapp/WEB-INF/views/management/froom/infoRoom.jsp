@@ -24,7 +24,6 @@
 				<h6 class="m-0 font-weight-bold text-primary">숙소 상세정보</h6>
 			</div>
 			 <!-- Collapsable Card Example -->
-              <div class="card shadow mb-4">
               <div class="card-body">
              	<c:forEach var="info" items="${infoRoom }" begin="1" end="1">
                
@@ -40,9 +39,10 @@
                     </c:forEach>
                   </div> 
                 </div>
+             
                
-               
-               
+          <!-- Collapsable Card Example -->
+              <div class="card shadow mb-4">
                <c:forEach var="info" items="${infoRoom }">
             
                 <!-- Card Header - Accordion -->
@@ -57,7 +57,7 @@
                 
               </div>
               </c:forEach>
-	</div>
+	
 </div>
 
 		
