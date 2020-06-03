@@ -134,7 +134,14 @@ $(function(){
 
     // ******** 예약 ********
 
-	$('#reserveBtn').click(function(e){
+    var arr = ${arr};
+//     alert(arr);
+// console.log(arr);
+    
+	$.each(arr,function(idx,n){
+// 		console.log("bbbbbbbbb"+n.rm_no);
+    
+	$('#reserveBtn'+n.rm_no).click(function(e){
 		e.preventDefault();
 /* 		action = 'reserve';
 		type = 'POST'; */
@@ -145,6 +152,9 @@ $(function(){
 		
 		var human_numF = $('#human_numF option:selected').val();
 		var pet_numF = $('#pet_numF option:selected').val();
+
+		alert("reserveBtn 누름");
+		alert("check_inF" + check_inF);	
 		
 		// 체크인,체크아웃,인원,동물
 		$('input[name=check_in]').val(check_inF);
@@ -200,7 +210,9 @@ $(function(){
 				
 		
 	}); // reserveBtn-end
-
+});
+	
+	
 	// '결제하기'redirect
 	$('#reserveSubmit').click(function(e){
 		rm_no = $('#rm_no_asd').val();
@@ -468,11 +480,14 @@ $(function(){
                                                                                                                        
 <!-- reserveModal start -->
           <div class="bootstrap-modal">
-                    <a id="reserveBtn" href="#" class="label gradient-1 text-white" data-toggle="modal"
+                    <a id="reserveBtn${r.rm_no }" href="#" class="label gradient-1 text-white" data-toggle="modal"
                               data-target=".bd-example-modal-lg"><i class="fa fa-check"></i>
+                              
                               지금
                               바로
-                              예약</a>
+                              예약
+                              
+                              </a>
 
                     <div id="reserveModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" style="display: none;"
                               aria-hidden="true">
@@ -841,7 +856,7 @@ $(function(){
                               message += '<p>중심 좌표는 위도 ' + latlng.getLat() + ', 경도 ' + latlng.getLng() + '입니다</p>';
 
                               var resultDiv = document.getElementById('result');
-                              resultDiv.innerHTML = message;
+//                               resultDiv.innerHTML = message;
 
                     });
 

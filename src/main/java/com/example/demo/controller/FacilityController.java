@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -34,6 +36,7 @@ import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.ReservationVo;
 import com.example.demo.vo.ReviewVo;
 import com.example.demo.vo.RoomVo;
+import com.google.gson.Gson;
 
 @Controller
 @RequestMapping("/facility/*")
@@ -81,6 +84,12 @@ public class FacilityController{
 		model.addAttribute("getFacility",service.getFacility(facilityVo.getFacility_no()));
 		model.addAttribute("listRoom",service.listRoom(roomVo.getFacility_no()));
 		model.addAttribute("listReview",service.listReview(reviewVo.getFacility_no()));
+		
+		//버튼에 rm_no붙이려고 씀
+		Gson gson = new Gson();
+		String arr = gson.toJson(service.listRoom(roomVo.getFacility_no()));
+//		List<RoomVo> arr = service.listRoom(roomVo.getFacility_no());
+		model.addAttribute("arr", arr);
 		
 		//회원 정보
 		MemberInfoVo m = new MemberInfoVo();
