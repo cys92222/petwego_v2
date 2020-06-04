@@ -59,12 +59,12 @@
 	
 <!-- 	신청 알람 확인 -->
 	<update id="check_alarm_in">
-		delete alarm where user_id = #{user_id} and in_user_id = #{in_user_id} and chk = 1
+		delete alarm where user_id = #{user_id} and in_user_id = #{in_user_id} and chk = 1 and category = '함께가요'
 	</update>
 	
 <!-- 	취소 알람 확인 -->
 	<update id="check_alarm_cancle">
-		delete alarm where user_id = #{user_id} and in_user_id = #{in_user_id} and chk = 2
+		delete alarm where user_id = #{user_id} and in_user_id = #{in_user_id} and chk = 2 and category = '함께가요'
 	</update>	
 	
 <!-- 	함께가요 알람 삭제 -->

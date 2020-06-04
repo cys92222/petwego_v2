@@ -19,19 +19,25 @@ $(function(){
 	//등록 폼
 	$("#form_btn").click(function(){
 			$("#animal_insert").css({"display":"block"});
-			$("#animail_list").css({"display":"none"});
+// 			$("#animail_list").css({"display":"none"});
 		});
 
 	//등록
 	$("#insert_btn").click(function(){
 		$("#animal_insert").css({"display":"none"});
-		$("#animail_list").css({"display":"block"});
+// 		$("#animail_list").css({"display":"block"});
 		
 // 		var data = $("#insert_animal").serialize();
 // 		$.ajax("/mypage/animal_info_up",{data:data,success:function(re){
 // 			alert("동물등록 성공");
 // 			window.location.reload(true);
 // 			}});
+		});
+
+	//취소버튼
+	$("#cancle").click(function(){
+		$("#animal_insert").css({"display":"none"});
+// 		$("#animail_list").css({"display":"block"});
 		});
 
 });
@@ -47,7 +53,7 @@ $(function(){
 		<c:forEach items="${animal_list }" var="al">
 				<div class="col-lg-4 col-xl-3">
 					<div class="card text-center">
-						<div class="card-body">
+						<div class="card-body" >
 							<div class="media align-items-center justify-content-center mb-4">
 								<div
 									class="text-center d-flex flex-column justify-content-center">
@@ -85,7 +91,7 @@ $(function(){
 <section id="animal_insert">
 	
 
-            <h4>동물정보 수정</h4>
+            <h4>반려동물 추가하기</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
@@ -137,6 +143,7 @@ $(function(){
                                     <div class="form-group row">
                                         <div class="col-lg-8 ml-auto">
                                             <button type="submit" class="btn btn-primary" id="submit">등록하기</button>
+                                            <button type="button" class="btn btn-primary" id="cancle">취소하기</button>
                                         </div>
                                     </div>
                                     </form>

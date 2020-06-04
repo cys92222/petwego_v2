@@ -18,7 +18,7 @@ $(function(){
 
 
 <div class="container-fluid">
-            <h4>동물정보 수정</h4>
+            <h4>반려동물 정보수정</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -45,17 +46,19 @@ $(function(){
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${search_pay }" var="search_pay">
-                                        <tr onclick="location.href='/mypage/detail_pay?imp_uid=${search_pay.imp_uid }&user_id=${search_pay.user_id }'">
+<%--                                         <tr onclick="location.href='/mypage/detail_pay?imp_uid=${search_pay.imp_uid }&user_id=${search_pay.user_id }'"> --%>
+									<tr>
 									<td>${search_pay.imp_uid }</td>
 									<td>${search_pay.merchant_uid }</td>
 									<td>${search_pay.paid_amount }</td>
 									<td>${search_pay.pay_method }</td>
 									<td>${search_pay.apply_num }</td>
-									<td>${search_pay.paid_time }</td>
+									<td><fmt:formatDate value="${search_pay.paid_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 									<td>${search_pay.status }</td>
 									<td>${search_pay.rsv_no }</td>
 									<td>${search_pay.user_id }</td>
-								</tr>
+									<tr>
+<!-- 								</tr> -->
                                         </c:forEach> 
                                         </tbody>
                                         <tfoot>

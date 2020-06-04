@@ -9,33 +9,34 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <div class="container-fluid">
-   <h4>SNS 작성글</h4>
-      <div class="row">
-         <div class="col-lg-6">
-            <c:forEach var="sns" items="${mysns }" varStatus="status">
-               <a href="/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }">
-                  <div class="card">
-                     <div class="card-body">
-                     <h4 class="card-title">${sns.photo_no }</h4>
-                        <div class="bootstrap-carousel">
-                           <div class="carousel slide" data-ride="carousel">
-                              <div class="carousel-inner">
-                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" width="200" height="200"
-                                       src="/img/${mysnspic[status.index].photo_file_name}" />
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </a>
-            </c:forEach>
-         </div>
+<div class="container-fluid">
+<h4>SNS 작성글</h4>
 
-      </div>
-   </div>   
+	<div class="row">
+	<c:forEach var="sns" items="${mysns }" varStatus="status">
+	                    <div class="col-lg-3">
+	                        <div class="card">
+	                            <div class="card-body">
+	                                <h4 class="card-title">글번호 / ${sns.photo_no }</h4>
+	                                <div class="bootstrap-carousel">
+	                                    <div class="carousel slide" data-ride="carousel">
+	                                        <div class="carousel-inner">
+	                                            <div class="carousel-item active">
+	                                            <a href="/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }">
+<%-- 	                                                <img class="d-block w-100" src="/img/${mysnspic[status.index].photo_file_name}" /> --%>
+	                                                <img width="310" height="210" src="/img/${mysnspic[status.index].photo_file_name}" />
+	                                             </a>   
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+		</c:forEach>
+	</div>
+</div>
+  
       <%@ include file="../footer.jsp"%>
 </body>
 </html>

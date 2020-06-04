@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -54,82 +55,90 @@
 </head>
 <body>
 
-	<div class="row">
-		<div class="col-3">
-			<div class="card card-widget">
-				<div class="card-body gradient-3">
-					<div class="media">
-						<span class="card-widget__icon"><i class="icon-home"></i></span>
-						<div class="media-body">
-							<!-- 							<h5 class="card-widget__subtitle">마이페이지</h5> -->
-							<h1 style="color: white;">마이페이지</h1>
-						</div>
+	<div class="card-body">
+	<c:if test="${search_insert_board_alarm_count>0 or search_insert_together_count>0 or search_cancle_together_count>0}">
+		<h4 class="card-title"><span class="label label-success">신규알림</span></h4>
+	</c:if>
+	
+		<div id="accordion-three" class="accordion">
+
+		<c:if test="${search_insert_board_alarm_count>0 }">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="mb-0" data-toggle="collapse" data-target="#board"
+						aria-expanded="true" aria-controls="board">
+						<i class="fa" aria-hidden="true"></i> 자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
+					</h5>
+				</div>
+				<div id="board" class="collapse"
+					data-parent="#accordion-three">
+					<div class="card-body">
+						<c:forEach items="${search_insert_board_alarm }" var="search_insert_board_alarm">
+							${search_insert_board_alarm.in_user_id } 님이 댓글을 등록했습니다 
+							<a href="/board/get?board_no=${search_insert_board_alarm.t_num }">/ 게시물로 이동</a> <br>
+						</c:forEach>
+						<br>
 					</div>
 				</div>
 			</div>
-		</div>
+		</c:if>
 
-
-		<div class="col-3">
-			<div class="card card-widget">
-				<div class="media">
-					<div class="media-body">
-
-						<span class="label label-success">신규알림</span><br><br>
-						<!-- 자유게시판 -->
-						<c:if test="${search_insert_board_alarm_count>0 }">
-		자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
-							<c:forEach items="${search_insert_board_alarm }"
-								var="search_insert_board_alarm">
-			${search_insert_board_alarm.in_user_id } 님이 댓글을 등록했습니다 <a
-									href="/board/get?board_no=${search_insert_board_alarm.t_num }">/ 게시물로
-									이동</a> <br>
-							</c:forEach>
-							<br>
-						</c:if>
-
-						<c:if test="${search_cancle_board_alarm_count>0 }">
-		자유게시판 삭제 댓글 수 : ${search_cancle_board_alarm_count } 개 입니다<br>
-							<c:forEach items="${search_cancle_board_alarm }"
-								var="search_cancle_board_alarm">
-			${search_cancle_board_alarm.in_user_id } 님이 댓글을 삭제했습니다 <a>확인</a>
-							</c:forEach>
-							<br>
-						</c:if>
-
-						<!-- 함께가요 -->
-						<c:if test="${search_insert_together_count>0 }">
-		함께가요 신청자 수 : ${search_insert_together_count } 명 입니다<br>
-							<c:forEach items="${search_insert_together_alarm }"
-								var="search_insert_together_alarm">
-			${search_insert_together_alarm.in_user_id } 님 <a
-									href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a>
-								<br>
-							</c:forEach>
-							<br>
-						</c:if>
-
-						<c:if test="${search_cancle_together_count>0 }">
-		함께가요 취소자 수 : ${search_cancle_together_count } 명 입니다<br>
-							<c:forEach items="${search_cancle_together_alarm }"
-								var="cancle_together_alarm">
-			${cancle_together_alarm.in_user_id } 님 <a
-									href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a>
-								<br>
-							</c:forEach>
-							<br>
-						</c:if>
+		<c:if test="${search_insert_together_count>0 }">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="mb-0 collapsed" data-toggle="collapse"
+						data-target="#together_in" aria-expanded="false"
+						aria-controls="together_in">
+						<i class="fa" aria-hidden="true"></i> 함께가요 신규 신청자 수 : ${search_insert_together_count } 명 입니다<br>
+					</h5>
+				</div>
+				<div id="together_in" class="collapse"
+					data-parent="#accordion-three">
+					<div class="card-body">
+					<c:forEach items="${search_insert_together_alarm }" var="search_insert_together_alarm">
+						${search_insert_together_alarm.in_user_id } 님
+						 <a href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a>
+						 <br>
+					</c:forEach>
+					<br>
 					</div>
 				</div>
 			</div>
+		</c:if>
+
+		<c:if test="${search_cancle_together_count>0 }">
+			<div class="card">
+				<div class="card-header">
+					<h5 class="mb-0 collapsed" data-toggle="collapse"
+						data-target="#together_out" aria-expanded="false"
+						aria-controls="together_out">
+						<i class="fa" aria-hidden="true"></i> 함께가요 신규 취소자 수 : ${search_cancle_together_count } 명 입니다<br>
+					</h5>
+				</div>
+				<div id="together_out" class="collapse"
+					data-parent="#accordion-three">
+					<div class="card-body">
+					<c:forEach items="${search_cancle_together_alarm }" var="cancle_together_alarm">
+						${cancle_together_alarm.in_user_id } 님
+						 <a href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a>
+						 <br>
+					</c:forEach>
+					<br>
+					</div>
+				</div>
+			</div>
+		</c:if>
+			
 		</div>
-
-
 	</div>
+			
+
+
 
 		<hr>
 
 		<div class="container-fluid">
+		<h1>마이페이지</h1>
 			<div class="row">
 				<!-- 반려인 정보 -->
 				<div class="col-lg-4 col-xl-3">
@@ -227,37 +236,40 @@
 							<div class="tab-pane fade show active" id="board_list"
 								role="tabpanel">
 								<div class="p-t-15">
-									<c:forEach var="b" items="${myboard }" begin="0" end="5">
+									<c:forEach var="b" items="${myboard }" begin="0" end="4">
 										<h4>
 											<a href="/board/get?board_no=${b.board_no}">${b.board_title }</a>
 										</h4>
 									</c:forEach>
 								</div>
-								<a href="/mypage/board_list?user_id=${myinfo.user_id }">더보기</a><br>
+								<br><a href="/mypage/board_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
 							</div>
 							<!-- 						자유게시판 끝 -->
 
 							<!-- 함께가요 -->
 							<div class="tab-pane fade" id="together_list">
 								<div class="p-t-15">
-									<c:forEach var="to" items="${mytogether }" begin="0" end="5">
+									<c:forEach var="to" items="${mytogether }" begin="0" end="4">
 										<h4>
 											<a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a>
 										</h4>
 									</c:forEach>
 								</div>
-								<a href="/mypage/together_list?user_id=${myinfo.user_id }">더보기</a><br>
+								<br><a href="/mypage/together_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
 							</div>
 							<!-- 						함께가요 끝 -->
 
 							<!-- sns  -->
 							<div class="tab-pane fade" id="pic_board_list">
 								<div class="p-t-15">
-									<c:forEach var="sns" items="${mysns }" begin="0" end="5">
-										<h4>글번호 ${sns.photo_no }</h4>
-									</c:forEach>
+									<c:forEach items="${mysnspic }" var="sns" begin="0" end="6">
+										<img width="80" height="80" src="/img/${sns.photo_file_name}" />
+									</c:forEach>							
+<%-- 									<c:forEach var="sns" items="${mysns }" begin="0" end="4"> --%>
+<%-- 										<h4>글번호 ${sns.photo_no }</h4> --%>
+<%-- 									</c:forEach> --%>
 								</div>
-								<a href="/mypage/sns_list?user_id=${myinfo.user_id }">더보기</a><br>
+								<br><a href="/mypage/sns_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
 							</div>
 							<!-- 						sns 끝 -->
 
@@ -275,11 +287,15 @@
 											<th>예약자이름</th>
 											<th>예약자전화번호</th>
 										</tr>
-										<c:forEach items="${reservation }" var="rs">
+										<c:forEach items="${reservation }" var="rs" begin="0" end="4">
 											<tr>
 												<td>${rs.rsv_no }</td>
-												<td>${rs.check_in }</td>
-												<td>${rs.check_out }</td>
+												<td> <fmt:parseDate var="check_in" value="${rs.check_in }" pattern="yyyy-MM-dd"/> 
+													<fmt:formatDate value="${check_in }" pattern="yyyy-MM-dd" />
+												</td>
+												<td> <fmt:parseDate var="check_out" value="${rs.check_out }" pattern="yyyy-MM-dd"/> 
+													<fmt:formatDate value="${check_out }" pattern="yyyy-MM-dd" />
+												</td>
 												<td>${rs.human_num }</td>
 												<td>${rs.pet_num }</td>
 												<td>${rs.rsv_paid }</td>
@@ -289,7 +305,7 @@
 										</c:forEach>
 									</table>
 								</div>
-								<a href="/mypage/reservation_list?user_id=${login_id }">더보기</a>
+								<br><a href="/mypage/reservation_list?user_id=${login_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a>
 							</div>
 							<!-- 						에약 끝 -->
 
@@ -308,15 +324,14 @@
 											<th>예약번호</th>
 											<th>아이디</th>
 										</tr>
-										<c:forEach items="${search_pay }" var="search_pay" begin="0"
-											end="5">
+										<c:forEach items="${search_pay }" var="search_pay" begin="0" end="4">
 											<tr>
 												<td>${search_pay.imp_uid }</td>
 												<td>${search_pay.merchant_uid }</td>
 												<td>${search_pay.paid_amount }</td>
 												<td>${search_pay.pay_method }</td>
 												<td>${search_pay.apply_num }</td>
-												<td>${search_pay.paid_time }</td>
+												<td><fmt:formatDate value="${search_pay.paid_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 												<td>${search_pay.status }</td>
 												<td>${search_pay.rsv_no }</td>
 												<td>${search_pay.user_id }</td>
@@ -324,7 +339,7 @@
 										</c:forEach>
 									</table>
 								</div>
-								<a href="/mypage/pay_list">더보기</a><br>
+								<br><a href="/mypage/pay_list"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
 							</div>
 							<!-- 						결제끝 -->
 
@@ -335,20 +350,20 @@
 			<!-- 내가쓴글 ~ 리스트 끝 -->
 
 			<!-- 				방명록 -->
-			<div class="card">
-				<div class="card-body">
-					<form action="#" class="form-profile">
-						<h2>방명록</h2>
-						<div class="form-group">
-							<textarea class="form-control" name="textarea" id="textarea"
-								cols="30" rows="2" placeholder="발자취를 남겨주세요 (칼럼추가해야됨)"></textarea>
-						</div>
-						<div class="d-flex align-items-center">
-							<button class="btn btn-primary px-3 ml-2">등록하기</button>
-						</div>
-					</form>
-				</div>
-			</div>
+<!-- 			<div class="card"> -->
+<!-- 				<div class="card-body"> -->
+<!-- 					<form action="#" class="form-profile"> -->
+<!-- 						<h2>방명록</h2> -->
+<!-- 						<div class="form-group"> -->
+<!-- 							<textarea class="form-control" name="textarea" id="textarea" -->
+<!-- 								cols="30" rows="2" placeholder="발자취를 남겨주세요 (칼럼추가해야됨)"></textarea> -->
+<!-- 						</div> -->
+<!-- 						<div class="d-flex align-items-center"> -->
+<!-- 							<button class="btn btn-primary px-3 ml-2">등록하기</button> -->
+<!-- 						</div> -->
+<!-- 					</form> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- 				방명록  끝-->
 
 

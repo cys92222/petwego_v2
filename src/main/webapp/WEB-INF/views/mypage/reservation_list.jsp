@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
 <%@ include file="../header.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -52,8 +53,12 @@ $(function(){
                                                 <td>${rl.user_id }</td>
                                                 <td>${rl.rsv_price }</td>
                                                 <td>${rl.rsv_date }</td>
-                                                <td>${rl.check_in }</td>
-                                                <td>${rl.check_out }</td>
+                                                <td> <fmt:parseDate var="check_in" value="${rl.check_in }" pattern="yyyy-MM-dd"/> 
+											<fmt:formatDate value="${check_in }" pattern="yyyy-MM-dd" />
+										</td>
+                            				   <td> <fmt:parseDate var="check_out" value="${rl.check_out }" pattern="yyyy-MM-dd"/> 
+											<fmt:formatDate value="${check_out }" pattern="yyyy-MM-dd" />
+										</td>   
                                                 <td>${rl.human_num }</td>
                                                 <td>${rl.pet_num }</td>
                                                 <td>${rl.rm_no }</td>
