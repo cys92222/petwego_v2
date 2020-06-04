@@ -251,9 +251,9 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="text-center">
-							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+							<img src="../img/ys.png" class="rounded-circle" alt=""
 								width="150" height="150">
-							<h5 class="mt-3 mb-1">John Abraham</h5>
+							<h5 class="mt-3 mb-1">0 soo</h5>
 							<p class="m-0">Store Manager</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
