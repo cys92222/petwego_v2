@@ -28,6 +28,11 @@
 							window.location.href = "/mypage/animal_info_up_form?user_id=${myinfo.user_id }";
 						});
 
+		//더보기
+		$("#more").click(function(){
+			window.location.href = "/mypage/animal_info_up_form?user_id=${myinfo.user_id }";
+			});
+
 		//회원탈퇴
 		$("#widthdraw_btn").click(function() {
 			var ck = confirm("탈퇴하시겠습니까?");
@@ -179,11 +184,11 @@
 
 					<div class="card">
 						<div class="card-body">
-							<h2>반려동물 정보</h2>
+							<h2>반려동물 정보 &nbsp;&nbsp;<button type="button" class="btn mb-1 btn-outline-primary" id="more">더보기</button></h2>
 
 							<!-- 동물 정보 -->
 							<div class="media media-reply align-items-center justify-content-center" style="margin-bottom: 0px;">
-								<c:forEach items="${animal_list }" var="a" >
+								<c:forEach items="${animal_list }" var="a" begin="0" end="3">
 									
 									<div class="media-body align-items-center text-center d-flex flex-column justify-content-center mb-4" style="height: 350px" >
 										<img class="mr-3 circle-rounded d-flex flex-column justify-content-center"src="/img/animalImg/${a.pet_pic }" width="100" height="100" alt="반려동물 사진"><br>
@@ -199,7 +204,8 @@
 								</c:forEach>
 							</div>
 							<!-- 동물 정보 끝						 -->
-							<button class="btn btn-primary" id="animal_info_up_btn">수정하기</button>
+							
+							<button class="btn btn-primary" id="animal_info_up_btn">반려동물 추가/수정/삭제 하기</button>
 						</div>
 					</div>
 
