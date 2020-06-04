@@ -20,12 +20,15 @@
 <link href="/resources/quixlab/css/style.css" rel="stylesheet">
 
 <script type="text/javascript">
-$(document).ready(function(){
-	$("#mainPage").click(function(){
-		location.href="MainPage";
+	$(document).ready(function() {
+		$("#mainPage").click(function() {
+			location.href = "/MainPage";
+		})
+		$("#mainPage2").click(function() {
+			location.href = "/MainPage";
+		})
+
 	})
-	
-})
 </script>
 </head>
 
@@ -58,11 +61,10 @@ $(document).ready(function(){
 		<div class="nav-header" style="background-color: #4AD4C7;">
 			<div class="brand-logo">
 				<a href="#" id="mainPage"> <b class="logo-abbr"><img
-						src="/resources/quixlab/images/logo.png" alt=""> </b> <span
-					class="logo-compact"><img
-						src="/resources/quixlab/images/logo-compact.png" alt=""></span> <span
-					class="brand-title" style="color: white; font-weight: bold;">
-						PET WE GO </span>
+						src="/resources/quixlab/images/logo_compact.png" alt="">
+				</b> <span class="brand-title" style="color: white; font-weight: bold;">
+						PET WE GO <img
+						src="/resources/quixlab/images/logo_compact_03.png" alt="" style="width: 80px;"></span>
 				</a>
 			</div>
 		</div>
@@ -96,6 +98,11 @@ $(document).ready(function(){
 							</form>
 						</div>
 					</div>
+				</div>
+				<div>
+					<a href="#" id="mainPage2"><img
+						src="../resources/quixlab/images/petwego_logo_05.png" alt=""
+						style="float: left; width: 300px; padding-top: 10px; margin-left: 25%;"></a>
 				</div>
 				<div class="header-right">
 					<ul class="clearfix">
