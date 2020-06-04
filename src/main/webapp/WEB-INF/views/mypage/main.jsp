@@ -178,25 +178,24 @@
 
 
 					<div class="card">
-						<div class="card-body mb-5">
+						<div class="card-body">
 							<h2>반려동물 정보</h2>
 
 							<!-- 동물 정보 -->
-							<div class="media media-reply">
+							<div class="media media-reply align-items-center justify-content-center" style="margin-bottom: 0px;">
 								<c:forEach items="${animal_list }" var="a" >
-									<img class="mr-3 circle-rounded"
-										src="/img/animalImg/${a.pet_pic }" width="100" height="100"
-										alt="반려동물 사진">
-									<div class="media-body">
-										<div class="d-sm-flex justify-content-between mb-2">
+									
+									<div class="media-body align-items-center text-center d-flex flex-column justify-content-center mb-4" style="height: 350px" >
+										<img class="mr-3 circle-rounded d-flex flex-column justify-content-center"src="/img/animalImg/${a.pet_pic }" width="100" height="100" alt="반려동물 사진"><br>
+										<small class="text-muted ml-3"> (${a.pet_date })</small>
+										<div class="d-sm-flex d-flex flex-column justify-content-center">
 											<h5 class="mb-sm-0">
 												${a.pet_name } 
 											</h5>
-											<small class="text-muted ml-3">${a.pet_date }</small>
 										</div>
-											
-										<p>${a.pet_intro}</p> 
-									</div>
+<!-- 									<p>}</p>  -->
+										<textarea class="alert alert-secondary" cols="25" rows="10" readonly="readonly">${a.pet_intro}</textarea>	
+										</div>
 								</c:forEach>
 							</div>
 							<!-- 동물 정보 끝						 -->

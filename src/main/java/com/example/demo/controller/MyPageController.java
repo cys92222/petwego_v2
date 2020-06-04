@@ -588,7 +588,7 @@ public class MyPageController {
 			}
 		}else {
 			System.out.println("사진 첨부안함");
-			a.setPet_pic("사진첨부안함.png");
+//			a.setPet_pic("사진첨부안함.png");
 //			a.setPic(a.getPic());
 		}
 		

@@ -19,6 +19,7 @@ $(function(){
 	//등록 폼
 	$("#form_btn").click(function(){
 			$("#animal_insert").css({"display":"block"});
+			location.href="#animal_insert";
 // 			$("#animail_list").css({"display":"none"});
 		});
 
@@ -68,7 +69,8 @@ $(function(){
 
 
 							<h4>반려동물 소개</h4>
-							<p class="text-muted">${al.pet_intro }</p>
+							<textarea class="alert alert-secondary"  readonly="readonly" rows="10" cols="30">${al.pet_intro }</textarea>
+<%-- 							<p class="text-muted">${al.pet_intro }</p> --%>
 							<ul class="card-profile__info">
 								<li class="mb-1"><strong class="text-dark mr-4 ml-4">반려시작일</strong><span>${al.pet_date }</span></li>
 								<li><strong class="text-dark mr-4 ml-4">반려동물종류</strong><span>${al.pet_type }</span></li>

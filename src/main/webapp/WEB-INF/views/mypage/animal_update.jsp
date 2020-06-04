@@ -73,7 +73,7 @@ $(function(){
                                             <label class="col-lg-4 col-form-label" for="pet_pic">반려동물 사진 <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                           	 <img alt="사진이 없습니다" src="/img/animalImg/${animal_info.pet_pic }">
+                                           	 <img alt="사진이 없습니다" src="/img/animalImg/${animal_info.pet_pic }" height= "300" width="300">
                                            	 <input type="hidden" id="pet_pic" name="pet_pic" value="${animal_info.pet_pic }"><br>
                                            	 <input type="file" name="aa">
                                                 <a href="/mypage/delete_animal_pic?user_id=${animal_info.user_id }&pet_no=${animal_info.pet_no }">사진 삭제</a><br>
