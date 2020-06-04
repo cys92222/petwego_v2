@@ -21,14 +21,14 @@ $(function(){
 
 
  </script>
-<body>
- <div class="container-fluid">
+ <body>         
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">결제 내역</h4>
-                                <h4 class="card-title">카카오페이등의 간편결제를 이용할경우 승인번호는 보여지지 않습니다.</h4>
+                                <div class="alert alert-danger">카카오페이등의 간편결제를 이용할경우 승인번호는 보여지지 않습니다.</div>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration" id="list">
                                         <thead>
@@ -45,10 +45,9 @@ $(function(){
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <c:forEach items="${search_pay }" var="search_pay">
-<%--                                         <tr onclick="location.href='/mypage/detail_pay?imp_uid=${search_pay.imp_uid }&user_id=${search_pay.user_id }'"> --%>
-									<tr>
-									<td>${search_pay.imp_uid }</td>
+                                         <c:forEach items="${search_pay }" var="search_pay">
+                                            <tr>
+                                             <td>${search_pay.imp_uid }</td>
 									<td>${search_pay.merchant_uid }</td>
 									<td>${search_pay.paid_amount }</td>
 									<td>${search_pay.pay_method }</td>
@@ -57,13 +56,12 @@ $(function(){
 									<td>${search_pay.status }</td>
 									<td>${search_pay.rsv_no }</td>
 									<td>${search_pay.user_id }</td>
-									<tr>
-<!-- 								</tr> -->
+                                            </tr>
                                         </c:forEach> 
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>결제번호</th>
+                                               <th>결제번호</th>
                                                 <th>상점거래ID</th>
                                                 <th>결제금액</th>
                                                 <th>결제수단</th>
@@ -80,7 +78,8 @@ $(function(){
                         </div>
                     </div>
                 </div>
-            </div>	
+            </div>
+            
 	<%@ include file="../footer.jsp" %>
 </body>
 </html>
