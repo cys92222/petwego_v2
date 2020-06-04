@@ -178,6 +178,21 @@ public class Pic_BoardController extends HttpServlet {
          
          mav.addObject("Board", pic_boardService.detailPic_Board(pb));
          mav.addObject("file", pic_boardService.detailFile(pbf));
+         
+         // 주련) 모달 추가 시도
+ 		List<FollowVo> list = followService.search_follow(f);
+ 		System.out.println(list);
+ 		
+ 		Gson gson = new Gson();
+ 		String str = gson.toJson(list);
+ 		mav.addObject("followList2", str);
+ 		mav.addObject("followList", list);
+ 		
+ 		f.setUser_id2(f.getUser_id());
+ 		mav.addObject("count", followService.search_following(f));         
+         
+         
+         
          mav.setViewName("/pic_board/detail");
          
          return mav;

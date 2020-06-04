@@ -67,22 +67,40 @@ public class FollowController {
 		return "팔로잉 취소 완료";
 	}
 	
-	@NoLogging
-	@RequestMapping(value = "/follow/search_follow")
-	//나를 팔로우한 유저 목록
-	public ModelAndView followList(FollowVo f){
-		List<FollowVo> list = followService.search_follow(f);
-		System.out.println(list);
-		ModelAndView mav = new ModelAndView();
-		Gson gson = new Gson();
-		String str = gson.toJson(list);
-		mav.addObject("followList2", str);
-		mav.addObject("followList", list);
-		
-		f.setUser_id2(f.getUser_id());
-		mav.addObject("count", followService.search_following(f));
-		mav.setViewName("/pic_board/followList2");
-		return mav;
-		 
-	}
+//	@NoLogging
+//	@RequestMapping(value = "/follow/search_follow")
+//	//나를 팔로우한 유저 목록
+//	public ModelAndView followList(FollowVo f){
+//		List<FollowVo> list = followService.search_follow(f);
+//		System.out.println(list);
+//		ModelAndView mav = new ModelAndView();
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list);
+//		mav.addObject("followList2", str);
+//		mav.addObject("followList", list);
+//		
+//		f.setUser_id2(f.getUser_id());
+//		mav.addObject("count", followService.search_following(f));
+//		mav.setViewName("/pic_board/followList2");
+//		return mav;
+//		 
+//	}
+//	@NoLogging
+//	@RequestMapping(value = "/pic_board/detail")
+//	//나를 팔로우한 유저 목록
+//	public ModelAndView followList(FollowVo f){
+//		List<FollowVo> list = followService.search_follow(f);
+//		System.out.println(list);
+//		ModelAndView mav = new ModelAndView();
+//		Gson gson = new Gson();
+//		String str = gson.toJson(list);
+//		mav.addObject("followList2", str);
+//		mav.addObject("followList", list);
+//		
+//		f.setUser_id2(f.getUser_id());
+//		mav.addObject("count", followService.search_following(f));
+//		mav.setViewName("/pic_board/followList2");
+//		return mav;
+//		 
+//	}
 }
