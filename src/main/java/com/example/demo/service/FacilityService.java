@@ -58,4 +58,8 @@ public interface FacilityService {
 	
 //	모든 예약 리스트	
 	List<ReservationVo> select_reservation_list(String user_id);	
+	
+	//리뷰 개수
+	public int countReview(int facility_no);
+	
 }

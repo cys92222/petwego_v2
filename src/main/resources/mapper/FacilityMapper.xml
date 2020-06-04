@@ -63,8 +63,8 @@
 	</select>
 	
 
-	<select id="countReview" resultType="int">
-		select count(*) from review
+	<select id="countReview" parameterType="int" resultType="int">
+		select count(*) from review where facility_no = #{facility_no}
 	</select>
 	
 	
