@@ -17,22 +17,23 @@
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		//맨위로 
-		$(window).scroll(function () {
-			if ($(this).scrollTop() > 50) {
-				$('#back-to-top').fadeIn();
-			} else {
-				$('#back-to-top').fadeOut();
-			}
-		});
-		// scroll body to 0px on click
-		$('#back-to-top').click(function () {
-			$('body,html').animate({
-				scrollTop: 0
-			}, 400);
-			return false;
-		});
+	$(document).ready(
+			function() {
+				//맨위로 
+				$(window).scroll(function() {
+					if ($(this).scrollTop() > 50) {
+						$('#back-to-top').fadeIn();
+					} else {
+						$('#back-to-top').fadeOut();
+					}
+				});
+				// scroll body to 0px on click
+				$('#back-to-top').click(function() {
+					$('body,html').animate({
+						scrollTop : 0
+					}, 400);
+					return false;
+				});
 				$('#searchBtn').click(
 						function() {
 							self.location = "listTogether"
@@ -47,6 +48,7 @@
 				$("#writeTogether").click(function() {
 					location.href = "writeTogetherView";
 				});
+				
 			});
 </script>
 <style type="text/css">
@@ -149,7 +151,7 @@
 								<!-- 								<a href="#" class="btn btn-primary" id="Application" -->
 								<!-- 									style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청하기</a> -->
 
-									<ul class="clearfix" style="margin-top: 20px;">
+								<ul class="clearfix" style="margin-top: 20px;">
 									<li class="icons dropdown"><a href="javascript:void(0)">
 											<i class="mdi mdi-eye"></i> <span>${c.t_hit }</span>
 									</a></li>

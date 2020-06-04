@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@include file="header.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,266 +15,323 @@
 
 <title>PET WE GO</title>
 <script type="text/javascript">
-$(function(){
-	$("#mypet").click(function(){
-		location.href="/pic_board/list";
+	$(function() {
+		$("#mypet").click(function() {
+			location.href = "/pic_board/list";
+		});
 	});
-});
-$(function(){
-	$("#reservation").click(function(){
-		location.href="/pic_board/list";
+	$(function() {
+		$("#reservation").click(function() {
+			location.href = "/pic_board/list";
+		});
 	});
-});
-$(function(){
-	$("#board").click(function(){
-		location.href="/board/list";
+	$(function() {
+		$("#board").click(function() {
+			location.href = "/board/list";
+		});
 	});
-});
-$(function(){
-	$("#together").click(function(){
-		location.href="/together/listTogether";
+	$(function() {
+		$("#together").click(function() {
+			location.href = "/together/listTogether";
+		});
 	});
-});
-$(function(){
-	$("#admin").click(function(){
-		location.href="/customerservice/index";
+	$(function() {
+		$("#admin").click(function() {
+			location.href = "/customerservice/index";
+		});
 	});
-});
-$(function(){
-	$("#mypage").click(function(){
-		location.href="/mypage/mypage";
+	$(function() {
+		$("#mypage").click(function() {
+			location.href = "/mypage/mypage";
+		});
 	});
-});
 
-$(function(){
-	
-    $("#popbtn").click(function(){
-//    $(".login").click(function(){
-        $('div.modal').modal();
-    })
+	$(function() {
 
-})
+		$("#popbtn").click(function() {
+			//    $(".login").click(function(){
+			$('div.modal').modal();
+		})
+
+	})
 </script>
-
-<!-- <!-- Bootstrap core CSS -->
-<!-- <link href="resources/main/vendor/bootstrap/css/bootstrap.min.css" -->
-<!-- 	rel="stylesheet"> -->
-
-<!-- <!-- Custom fonts for this template -->
-<!-- <link href="resources/main/vendor/fontawesome-free/css/all.min.css" -->
-<!-- 	rel="stylesheet"> -->
-<!-- <link -->
-<!-- 	href="resources/main/vendor/simple-line-icons/css/simple-line-icons.css" -->
-<!-- 	rel="stylesheet" type="text/css"> -->
-<!-- <link -->
-<!-- 	href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" -->
-<!-- 	rel="stylesheet" type="text/css"> -->
-
-<!-- <!-- Custom styles for this template --> 
-<!-- <link href="resources/main/css/landing-page.min.css" rel="stylesheet"> -->
-
 </head>
-
 <body>
-	<%@include file="header.jsp"%>
-	
-<!-- 	<!-- Navigation --> -->
-<!-- 	<nav class="navbar navbar-light bg-light static-top"> -->
-<!-- 		<div class="container"></div> -->
-<!-- 		<!--     <div> --> -->
-<!-- 		<!--     	<a class="btn btn-primary" href="#">Sign In</a> --> -->
-<!-- 		<!--     </div> --> -->
-<!-- 	</nav> -->
+	<div class="container-fluid" style="padding: 0;">
+		<div class="col-lg-12" style="padding: 0;">
+			<div class="card">
+				<div class="card-body" style="padding: 0;">
+					<div class="bootstrap-carousel">
+						<div data-ride="carousel" class="carousel slide"
+							id="carouselExampleCaptions">
+							<ol class="carousel-indicators">
+								<li class="" data-slide-to="0"
+									data-target="#carouselExampleCaptions"></li>
+								<li data-slide-to="1" data-target="#carouselExampleCaptions"
+									class=""></li>
+								<li data-slide-to="2" data-target="#carouselExampleCaptions"
+									class="active"></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="carousel-item">
+									<img class="d-block w-100" src="../img/a-1.jpg" alt=""
+										style="max-width: 100%;">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>First slide label</h5>
+										<p>Nulla vitae elit libero, a pharetra augue mollis
+											interdum.</p>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<img alt="" class="d-block w-100" src="../img/a-2.jpg"
+										style="max-width: 100%;">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>Second slide label</h5>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
+											elit.</p>
+									</div>
+								</div>
+								<div class="carousel-item active">
+									<img alt="" class="d-block w-100" src="../img/a-4.jpg"
+										style="max-width: 100%;">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>Third slide label</h5>
+										<p>Praesent commodo cursus magna, vel scelerisque nisl
+											consectetur.</p>
+									</div>
+								</div>
+							</div>
+							<a data-slide="prev" href="#carouselExampleCaptions"
+								class="carousel-control-prev"><span
+								class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span>
+							</a><a data-slide="next" href="#carouselExampleCaptions"
+								class="carousel-control-next"><span
+								class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<h2 style="text-align: center; font-family: sans-serif; padding-bottom: 30px;">기능
+			소개</h2>
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
 
-<!-- 	<!-- Masthead --> -->
-<!-- 	<header class="masthead text-white text-center"> -->
-<!-- 		<div class="overlay"></div> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-xl-9 mx-auto"> -->
-<!-- 					<h1 class="mb-5">반려동물과 함께 떠나는 신나는 여행</h1> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-md-10 col-lg-8 col-xl-7 mx-auto"> -->
-<!-- 					<form> -->
-<!-- 						<div class="form-row"></div> -->
-<!-- 					</form> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</header> -->
+					<div class="tab-content br-n pn">
+						<div id="navpills-1" class="tab-pane active">
+							<div class="row align-items-center">
+								<div class="col-sm-6 col-md-4 col-xl-3">
+									<img src="../img/a-9.jpg" alt=""
+										class="img-fluid thumbnail m-r-15">
+								</div>
+								<div class="col-sm-6 col-md-8 col-xl-9">
+									<h3>My Pet</h3>
+									<a href="../pic_board/list">바로가기</a>
+									<br> <br>
+									<p>Raw denim you probably haven't heard of them jean shorts
+										Austin. Nesciunt tofu stumptown aliqua, retro synth master
+										cleanse. Mustache cliche tempor, williamsburg carles vegan
+										helvetica.</p>
+									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!-- 	<!-- Icons Grid --> -->
-<!-- 	<section class="features-icons bg-light text-center"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row"> -->
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
 
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div id="mypet" class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3"> -->
-<!-- 						<div class="features-icons-icon d-flex"> -->
-<!-- 							<i class="icon-star m-auto text-info"></i> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-<!-- 						<h3>마이펫</h3> -->
-<!-- 						<p class="lead mb-0">나의 반려동물을 자랑해주세요!</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+					<div class="tab-content br-n pn">
+						<div id="navpills2-1" class="tab-pane active">
+							<div class="row align-items-center text-right">
+								<div class="col-sm-6 col-md-8 col-xl-9">
+									<h3>Go Together</h3>
+									<a href="../together/listTogether">바로가기</a>
+									<br> <br>
+									<p>Lorem, ipsum dolor sit amet consectetur adipisicing
+										elit. Nobis architecto dolor quidem temporibus, itaque
+										aliquid, quasi nulla adipisci laborum quaerat impedit quae,
+										tenetur laudantium tempore deleniti commodi quod praesentium
+										fugiat.</p>
+									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+								</div>
+								<div class="col-sm-6 col-md-4 col-xl-3">
+									<img src="../img/a-8.jpg" alt=""
+										class="img-fluid thumbnail m-r-15">
+								</div>
+							</div>
+						</div>
 
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div id="reservation" class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3"> -->
-<!-- 						<div class="features-icons-icon d-flex"> -->
-<!-- 							<i class="icon-magnifier m-auto text-info"></i> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-<!-- 						<h3>숙소찾기</h3> -->
-<!-- 						<p class="lead mb-0">반려동물과 동반하여 갈 수 있는 숙소를 찾아보세요!</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div id="board" class="features-icons-item mx-auto mb-0 mb-lg-3"> -->
-<!-- 						<div class="features-icons-icon d-flex"> -->
-<!-- 							<i class="icon-bubble m-auto text-info"></i> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-<!-- 						<h3>커뮤니티</h3> -->
-<!-- 						<p class="lead mb-0">궁금한 것, 하고 싶은 말, 다 해보기!</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="tab-content br-n pn">
+						<div id="navpills-1" class="tab-pane active">
+							<div class="row align-items-center">
+								<div class="col-sm-6 col-md-4 col-xl-3">
+									<img src="../img/a-10.jpg" alt=""
+										class="img-fluid thumbnail m-r-15">
+								</div>
+								<div class="col-sm-6 col-md-8 col-xl-9">
+									<h3>Communication</h3>
+									<a href="../board/list">바로가기</a>
+									<br> <br>
+									<p>Raw denim you probably haven't heard of them jean shorts
+										Austin. Nesciunt tofu stumptown aliqua, retro synth master
+										cleanse. Mustache cliche tempor, williamsburg carles vegan
+										helvetica.</p>
+									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div id="together" class="features-icons-item mx-auto mb-0 mb-lg-3"> -->
-<!-- 						<div class="features-icons-icon d-flex"> -->
-<!-- 							<i class="icon-share m-auto text-info"></i> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-<!-- 						<h3>함께가요</h3> -->
-<!-- 						<p class="lead mb-0">내 반려동물의 친구를 만들어 주세요!</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+		<div class="col-md-12">
+			<div class="card">
+				<div class="card-body">
+					<div class="tab-content br-n pn">
+						<div id="navpills2-1" class="tab-pane active">
+							<div class="row align-items-center text-right">
+								<div class="col-sm-6 col-md-8 col-xl-9">
+									<h3>Reservation</h3>
+									<a href="#">바로가기</a>
+									<br> <br>
+									<p>Lorem, ipsum dolor sit amet consectetur adipisicing
+										elit. Nobis architecto dolor quidem temporibus, itaque
+										aliquid, quasi nulla adipisci laborum quaerat impedit quae,
+										tenetur laudantium tempore deleniti commodi quod praesentium
+										fugiat.</p>
+									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
+										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+								</div>
+								<div class="col-sm-6 col-md-4 col-xl-3">
+									<img src="../img/a-11.jpg" alt=""
+										class="img-fluid thumbnail m-r-15">
+								</div>
+							</div>
+						</div>
 
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div id="admin" class="features-icons-item mx-auto mb-0 mb-lg-3"> -->
-<!-- 						<div class="features-icons-icon d-flex"> -->
-<!-- 							<i class="icon-bulb m-auto text-info"></i> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-<!-- 						<h3>고객지원</h3> -->
-<!-- 						<p class="lead mb-0">공지사항, 문의사항은 여기서 확인!</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<h2 style="text-align: center; font-family: sans-serif;">직원을
+			소개합니다.</h2>
+		<div class="row" style="padding: 15px;">
+			<div class="col-md-4 col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center">
+							<img src="../img/wonwoo.jpg" class="rounded-circle" alt=""
+								width="150" height="150">
+							<h5 class="mt-3 mb-1">Won Woo</h5>
+							<p class="m-0">Developer</p>
+							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center">
+							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+								width="150" height="150">
+							<h5 class="mt-3 mb-1">John Abraham</h5>
+							<p class="m-0">Store Manager</p>
+							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center">
+							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+								width="150" height="150">
+							<h5 class="mt-3 mb-1">John Doe</h5>
+							<p class="m-0">Sales Man</p>
+							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
 
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div id="mypage" class="features-icons-item mx-auto mb-0 mb-lg-3"> -->
-<!-- 						<div class="features-icons-icon d-flex"> -->
-<!-- 							<i class="icon-info m-auto text-info"></i> -->
-<!-- 						</div> -->
-<!-- 						<br> -->
-<!-- 						<h3>마이페이지</h3> -->
-<!-- 						<p class="lead mb-0">내 활동 내역, 결제내역 확인!</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
 
-<!-- 	<!-- Image Showcases --> -->
-<!-- 	<section class="showcase"> -->
-<!-- 		<div class="container-fluid p-0"> -->
-<!-- 			<div class="row no-gutters"> -->
+			<div class="col-md-4 col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center">
+							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+								width="150" height="150">
+							<h5 class="mt-3 mb-1">Ana Liem</h5>
+							<p class="m-0">Senior Manager</p>
+							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center">
+							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+								width="150" height="150">
+							<h5 class="mt-3 mb-1">John Abraham</h5>
+							<p class="m-0">Store Manager</p>
+							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<div class="card">
+					<div class="card-body">
+						<div class="text-center">
+							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+								width="150" height="150">
+							<h5 class="mt-3 mb-1">John Doe</h5>
+							<p class="m-0">Sales Man</p>
+							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-12" style="padding: 0;">
+				<div class="card">
+					<div class="card-body" style="padding: 0; position: relative;">
+						<img src="../img/a-12.jpg" alt="" width="100%;">
+						<div
+							style="right: 50px; top: 100px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
+							<h1 style="color: white; font-size: 4rem;">Shall we go?</h1>
+							<br>
+							<h2 style="color: white; font-size: 2.5rem">with your pet</h2>
+						</div>
+					</div>
 
-<!-- 				<div class="col-lg-6 order-lg-2 text-white showcase-img" -->
-<!-- 					style="background-image: url('resources/main/img/bg-pic-03.jpg');"></div> -->
-<!-- 				<div class="col-lg-6 order-lg-1 my-auto showcase-text"> -->
-<!-- 					<h2>내 아이에게 잊지 못할 추억을</h2> -->
-<!-- 					<p class="lead mb-0">하루하루 집에만 있기 답답하거나 혼자 갈 용기가 없다면 함께가요 콘텐츠를 -->
-<!-- 						통하여 마음맞는 친구끼리 함께 여행을 떠나보아요!</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row no-gutters"> -->
-<!-- 				<div class="col-lg-6 text-white showcase-img" -->
-<!-- 					style="background-image: url('resources/main/img/bg-pic-02.jpg');"></div> -->
-<!-- 				<div class="col-lg-6 my-auto showcase-text"> -->
-<!-- 					<h2>Updated For Bootstrap 4</h2> -->
-<!-- 					<p class="lead mb-0">Newly improved, and full of great utility -->
-<!-- 						classes, Bootstrap 4 is leading the way in mobile responsive web -->
-<!-- 						development! All of the themes on Start Bootstrap are now using -->
-<!-- 						Bootstrap 4!</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="row no-gutters"> -->
-<!-- 				<div class="col-lg-6 order-lg-2 text-white showcase-img" -->
-<!-- 					style="background-image: url('resources/main/img/bg-pic-01.jpg');"></div> -->
-<!-- 				<div class="col-lg-6 order-lg-1 my-auto showcase-text"> -->
-<!-- 					<h2>Easy to Use &amp; Customize</h2> -->
-<!-- 					<p class="lead mb-0">Landing Page is just HTML and CSS with a -->
-<!-- 						splash of SCSS for users who demand some deeper customization -->
-<!-- 						options. Out of the box, just add your content and images, and -->
-<!-- 						your new landing page will be ready to go!</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-
-<!-- 	<!-- Testimonials --> -->
-<!-- 	<section class="testimonials text-center bg-light"> -->
-<!-- 		<div class="container"> -->
-<!-- 			<h2 class="mb-5">저희 직원들을 소개합니다.</h2> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div class="testimonial-item mx-auto mb-5 mb-lg-0"> -->
-<!-- 						<img class="img-fluid rounded-circle mb-3" -->
-<!-- 							src="resources/main/img/testimonials-1.jpg" alt=""> -->
-<!-- 						<h5>Margaret E.</h5> -->
-<!-- 						<p class="font-weight-light mb-0">"This is fantastic! Thanks -->
-<!-- 							so much guys!"</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div class="testimonial-item mx-auto mb-5 mb-lg-0"> -->
-<!-- 						<img class="img-fluid rounded-circle mb-3" -->
-<!-- 							src="resources/main/img/testimonials-2.jpg" alt=""> -->
-<!-- 						<h5>Fred S.</h5> -->
-<!-- 						<p class="font-weight-light mb-0">"Bootstrap is amazing. I've -->
-<!-- 							been using it to create lots of super nice landing pages."</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-lg-4"> -->
-<!-- 					<div class="testimonial-item mx-auto mb-5 mb-lg-0"> -->
-<!-- 						<img class="img-fluid rounded-circle mb-3" -->
-<!-- 							src="resources/main/img/testimonials-3.jpg" alt=""> -->
-<!-- 						<h5>Sarah W.</h5> -->
-<!-- 						<p class="font-weight-light mb-0">"Thanks so much for making -->
-<!-- 							these free resources available to us!"</p> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-
-<!-- 	<!-- Call to Action --> -->
-<!-- 	<section class="call-to-action text-white text-center"> -->
-<!-- 		<div class="overlay"></div> -->
-<!-- 		<div class="container"> -->
-<!-- 			<div class="row"> -->
-<!-- 				<div class="col-xl-9 mx-auto"> -->
-<!-- 					<h1 class="mb-4">Shall we go?</h1> -->
-<!-- 					<br> -->
-<!-- 					<h2 class="mb-4">with your pet</h2> -->
-<!-- 				</div> -->
-<!-- 				<div class="col-md-10 col-lg-8 col-xl-7 mx-auto"> -->
-<!-- 					<form> -->
-<!-- 						<div class="form-row"></div> -->
-<!-- 					</form> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</section> -->
-	
-	
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<%@include file="footer.jsp"%>
-
-
 </body>
 
 </html>
