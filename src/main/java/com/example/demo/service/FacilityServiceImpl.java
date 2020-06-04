@@ -121,6 +121,10 @@ public class FacilityServiceImpl implements FacilityService {
 		List<ReservationVo> list = dao.select_reservation_list(user_id);
 		return list;
 	}
+	//리뷰 개수
+	public int countReview(int facility_no) {
+		return dao.countReview(facility_no);
+	}
 	
 
 

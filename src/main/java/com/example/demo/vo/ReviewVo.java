@@ -14,9 +14,9 @@ public class ReviewVo {
 	private int r_no;
 	private String review_content;
 	private int r_grade;
-	private Date insert_date;
-	private Date update_date;
-	private int open_status;
+	private Date r_insert_date;
+	private Date r_update_date;
+	private int r_open_status;
 	private int facility_no;
 	private String user_id;
 }

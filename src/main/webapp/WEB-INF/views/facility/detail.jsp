@@ -663,56 +663,74 @@ $(function(){
 <div class="card mt-5">
     <c:set var="count" value="${countReview}"></c:set>
     <h5 class="font-weight-normal card-title pt-5 pl-4 text-muted">전체 리뷰 (<c:out value="${count}"/>)</h5>
-<c:forEach items="${listReview}" var="l">
-<div class="card-body d-flex justify-content-between">
-                                        <div class="d-flex flex-column mr-5 mt-2">
-                                                  <div class="d-flex align-items-center mb-2 mr-2">
-                                                            <img class="bg-gradient-primary rounded-circle" width="80" height="80"><p class="font-weight-light ml-3">${l.user_id}</p>
-                                                  </div>
-                                                  
+          <c:forEach items="${listReview}" var="l">
+          <div class="row mr-2">
+                    <div class="card-body col-xl-12 d-flex">
+                              <div class="d-flex flex-column mt-2 col-xl-2">
+                                        <div class="d-flex align-items-center mb-2">
+                                                  <c:set var="grade" scope="session" value="${l.r_grade}"></c:set>
+                                                  <c:choose>
+                                                            <c:when test="${grade == 5}">
+                                                                      <i class="ml-1 far fa-smile fa-5x" style="color:#ffcc36;"></i>
+                                                            </c:when>
+                                                            <c:when test="${grade == 4}">
+                                                                      <i class="ml-1 far fa-smile fa-5x" style="color:#ffcc36;"></i>
+                                                            </c:when>
+                                                            <c:when test="${grade == 3}">
+                                                                      <i class="ml-1 far fa-meh fa-5x" style="color:#ffcc36;"></i>
+                                                            </c:when>
+                                                            <c:when test="${grade == 2}">
+                                                                      <i class="ml-1 far fa-frown fa-5x" style="color:#ffcc36;"></i>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                      <i class="ml-1 far fa-frown fa-5x" style="color:#ffcc36;"></i>
+                                                            </c:otherwise>
+                                                  </c:choose>
+                                        		  
+                                                  <%-- <img class="rounded-circle" src="${my.fname}"
+                                                            width="80" height="80"> --%>
+                                                  <p class="font-weight-light ml-4 mt-2">${my.nick_name}</p>
                                         </div>
-                                        <div class="d-flex flex-column">
-                                                  <div class="mb-1 d-flex align-items-baseline pt-3 px-1 justify-content-between">
-    <div class="d-flex align-items-baseline">
-       <h3 class="text-primary">${l.r_grade}</h3>
-       <p class="ml-2 font-weight-light small text-primary">/ 5</p>
-       <c:set var ="grade" scope = "session" value="${l.r_grade}"></c:set>
-       <c:choose>
-	       	<c:when test = "${grade == 5}">
-	       		<span class=" ml-3">좋음</span>
-	       	</c:when>
-	       	<c:when test = "${grade == 4}">
-       			<span class=" ml-3">괜찮음</span>
-       		</c:when>
-       		<c:when test = "${grade == 3}">
-       			<span class=" ml-3">보통</span>
-       		</c:when>
-       	    <c:when test = "${grade == 2}">
-       			<span class=" ml-3">별로</span>
-       		</c:when>
-       	    <c:otherwise>
-       			<span class=" ml-3">나쁨</span>
-       		</c:otherwise>       	
-       </c:choose>
-       
-    
-       
-       
-       
-    </div>
-    <div>
-      <span class="small text-right"><fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd" value="${l.r_update_date}" /><c:out value="${dateTempParse}" /></span>
-    </div>
-</div>
-          
-          <p class="font-weight-light">${l.review_content}</p>
-                                            
-
-</div>
-    
-
                               </div>
-                          </c:forEach>    
+                              <div class="d-flex flex-column col-xl-10 ml-2">
+                                        <div class="mb-1 d-flex align-items-baseline pt-3 px-1 justify-content-between">
+                                                  <div class="d-flex align-items-baseline">
+                                                            <div class="d-flex align-items-baseline">
+                                                                      <h3 class="text-primary">${l.r_grade}</h3>
+                                                                      <p class="ml-2 font-weight-light small text-primary">/ 5</p>
+                                                                      <c:set var="grade" scope="session" value="${l.r_grade}"></c:set>
+                                                                      <c:choose>
+                                                                                <c:when test="${grade == 5}">
+                                                                                          <span class=" ml-3">좋음</span>
+                                                                                </c:when>
+                                                                                <c:when test="${grade == 4}">
+                                                                                          <span class=" ml-3">괜찮음</span>
+                                                                                </c:when>
+                                                                                <c:when test="${grade == 3}">
+                                                                                          <span class=" ml-3">보통</span>
+                                                                                </c:when>
+                                                                                <c:when test="${grade == 2}">
+                                                                                          <span class=" ml-3">별로</span>
+                                                                                </c:when>
+                                                                                <c:otherwise>
+                                                                                          <span class=" ml-3">나쁨</span>
+                                                                                </c:otherwise>
+                                                                      </c:choose>
+                                                            </div>
+                                                  </div>
+                                                  <div>
+                                                            <span class="small text-right"> 
+                                                                      <fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd" value="${l.r_update_date}" />
+                                                                      <c:out value="${dateTempParse}" />
+                                                            </span>
+                                                  </div>
+                                        </div>
+
+                                        <p class="font-weight-light ml-1">${l.review_content}</p>
+                              </div>
+                    </div>
+          </div>
+          </c:forEach>   
                               
     <!-- review modal start -->
           <div class="bootstrap-modal text-center pb-5">
@@ -776,8 +794,8 @@ $(function(){
 <div class="text-message"></div>
 <div class="clearfix"></div>
 </div>
-																				<c:set var="m" value="${pageContext.request.userPrincipal.name}" />
-																				<input name="user_id" type="hidden" value="${fn:substring(m,21,26)}">
+																				
+																				<input name="user_id" type="hidden" value="${my.user_id}">
                                                                                 <input id="ratingValue" name="r_grade" type="hidden" class="form-control input-default">
                                                                                 </div>
                                                                                 <div class="form-group">

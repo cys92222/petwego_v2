@@ -84,11 +84,12 @@ public class FacilityController{
 		model.addAttribute("getFacility",service.getFacility(facilityVo.getFacility_no()));
 		model.addAttribute("listRoom",service.listRoom(roomVo.getFacility_no()));
 		model.addAttribute("listReview",service.listReview(reviewVo.getFacility_no()));
+		//리뷰 카운트
+		model.addAttribute("countReview",service.countReview(facility_no));
 		
 		//버튼에 rm_no붙이려고 씀
 		Gson gson = new Gson();
 		String arr = gson.toJson(service.listRoom(roomVo.getFacility_no()));
-//		List<RoomVo> arr = service.listRoom(roomVo.getFacility_no());
 		model.addAttribute("arr", arr);
 		
 		//회원 정보
