@@ -183,7 +183,7 @@
 
 							<!-- 동물 정보 -->
 							<div class="media media-reply">
-								<c:forEach items="${animal_list }" var="a" begin="0" end="3">
+								<c:forEach items="${animal_list }" var="a" >
 									<img class="mr-3 circle-rounded"
 										src="/img/animalImg/${a.pet_pic }" width="100" height="100"
 										alt="반려동물 사진">
@@ -367,7 +367,8 @@
 			<!-- 				방명록  끝-->
 
 
-		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button>
+			<button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button>
+<!-- 		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
 
 
 		</div>

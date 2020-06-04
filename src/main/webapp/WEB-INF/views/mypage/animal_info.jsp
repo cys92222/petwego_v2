@@ -75,9 +75,10 @@ $(function(){
 							</ul>
 							<a class="btn btn-primary"
 								href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물
-								정보 수정</a> <a class="btn btn-primary"
-								href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물
-								정보 삭제</a>
+								정보 수정</a> 
+								<a href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">
+								<button type="button" class="btn mb-1 btn-danger">반려동물 정보 삭제</button>
+								</a>
 						</div>
 					</div>
 				</div>
@@ -143,7 +144,8 @@ $(function(){
                                     <div class="form-group row">
                                         <div class="col-lg-8 ml-auto">
                                             <button type="submit" class="btn btn-primary" id="submit">등록하기</button>
-                                            <button type="button" class="btn btn-primary" id="cancle">취소하기</button>
+                                            <button type="button" class="btn mb-1 btn-danger" id="cancle">취소하기</button>
+<!--                                             <button type="button" class="btn btn-primary" id="cancle">취소하기</button> -->
                                         </div>
                                     </div>
                                     </form>

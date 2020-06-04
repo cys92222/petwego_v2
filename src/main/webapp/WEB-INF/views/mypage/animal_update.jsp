@@ -10,7 +10,9 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
 <script type="text/javascript">
 $(function(){
-	
+	$("#cancle").click(function(){
+		window.location.href = "/mypage/animal_info_up_form?user_id=${login_id}";
+		});
 });
 </script>
 </head>
@@ -34,8 +36,8 @@ $(function(){
                                             </div>                     
                                         </div>  
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="pet_no"> 반려동물 번호 :  <span class="text-danger">*</span>
-                                            </label>    
+<!--                                             <label class="col-lg-4 col-form-label" for="pet_no"> 반려동물 번호 :  <span class="text-danger">*</span> -->
+<!--                                             </label>     -->
                                             <div class="col-lg-6">
                                                 <input type="hidden" class="form-control" id="pet_no" value="${animal_info.pet_no }" readonly="readonly" name="pet_no"/>
                                             </div>                     
@@ -80,6 +82,7 @@ $(function(){
                                     <div class="form-group row">
                                         <div class="col-lg-8 ml-auto">
                                             <button type="submit" class="btn btn-primary" id="submit">수정하기</button>
+                                            <button type="button" class="btn mb-1 btn-danger" id="cancle">취소하기</button>
                                         </div>
                                     </div>
                                     </form>
