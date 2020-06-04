@@ -229,7 +229,7 @@ $("#btnPwd").on("click", function(){
 })
 		
 $("#cancle").on("click", function(){
-   alert("회원가입 취소");
+   alert("회원수정 취소");
    location.href="/mypage/people_info_up_form?user_id=${login_id}";
 })
       
