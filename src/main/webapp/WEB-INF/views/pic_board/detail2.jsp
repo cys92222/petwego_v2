@@ -88,7 +88,7 @@
                var td2 = $("<td></td>").html( moment(c.photo_comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')   );
                var td3 = $("<td></td>").html(c.user_id);
                if(c.user_id === "${login_id}"){
-                  var delBtn = $("<button class='btn mb-1 btn-danger'></button>").text("댓글삭제").attr("photo_comm_no",c.photo_comm_no);
+                  var delBtn = $("<button></button>").text("댓글삭제").attr("photo_comm_no",c.photo_comm_no);
                }
                var td4 = $("<td></td>");
                td4.append(delBtn);
@@ -112,7 +112,7 @@
       $("#follow").click(function(){
          var follow_user_id = $("#follow_user_id").val();
          var follow_in_user_id = $("#follow_in_user_id").val();
-         $.ajax("/follow/insert_follow",{data:{user_id2:follow_user_id,in_user_id:'${login_id}'},success:function(re){
+         $.ajax("/follow/insert_follow",{data:{user_id2:follow_user_id,in_user_id:follow_in_user_id},success:function(re){
             alert(re);
             window.location.reload(true);
             }});
@@ -134,125 +134,68 @@
 </script>
 </head>
 <body>
-   
-   <div class="row page-titles mx-0">
-		<div class="col p-md-0">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="#">sns | 상세보기</a></li>
-				<li class="breadcrumb-item"><a href="/pic_board/list">sns 목록</a></li>
-				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
-			</ol>
-		</div>
-	</div>
-	<!-- row -->
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">사진 상세보기</h4>
-						<a href="/pic_board/list"><button style="float: left;" class="btn mb-1 btn-primary">목록</button></a>
-						 <br><div class="basic-form">
-							<form id="f">
-								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
-								<input type="hidden" id="photo_no" value="${Board.photo_no }">
-								<div class="table-responsive">
-									<table class="table header-border">
-										<tbody>
-											<tr>
-												<td>사진번호&nbsp;:&nbsp;&nbsp;&nbsp;${Board.photo_no }</td> 
+<input type="text" id="follow_in_user_id" value="${login_id }">
 
-												<td>
-											            <img id="like" src="/img/like.png" width="50" height="50">
-											            <img id="clickLike" src="/img/clickLike.png" width="50" height="50">
-											             <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> 
-											     </td>
-												 <td></td>
-												
-											</tr>
-											<tr>
-												
-												<td>작성자&nbsp;:&nbsp;&nbsp;&nbsp;${Board.user_id} &nbsp;|&nbsp; 팔로워수 : ${search_follow_count } 명</td>
-												<input type="hidden" value="${Board.user_id}" id="follow_user_id" readonly="readonly"/>
-												<td>
-												<c:if test="${follow_chk ==0 }">
-										          <input type="button" class="btn btn-outline-dark btn-sm" value="팔로우하기" id="follow"><br>
-										        </c:if>
-										        <c:if test="${follow_chk !=0 }">
-										          <input type="button" class="btn btn-outline-dark btn-sm" value="팔로우취소하기" id="delete_follow"><br>
-										         	팔로워:
-										         <c:forEach items="${search_follow }" var="search_follow" begin="0" end="5">
-										            ${search_follow.user_id2 }님 
-										         </c:forEach>
-										         <a href="/follow/search_follow?user_id=${Board.user_id }">더보기</a>
-										      </c:if>
-										      </td>
-										      <td></td>
-											</tr>
-											<tr>
-												<td><img width="200" height="200" src="/img/${file.photo_file_name}"/></td>
-												<td></td>
-												<td></td>
-											</tr>
-											<tr>
-												<td>내용&nbsp;:<br><br> <div>${Board.photo_detail }</div></td>
-												<td></td>
-												<td></td>
-											</tr>
-										
-										</tbody>
-									</table>
-								</div>
-							</form>
-							 <hr>
-							<c:if test="${Board.user_id eq login_id}" >
-						   		<button type="button" id="btnDelete" style="float: right" class="btn mb-1 btn-danger">글 삭제</button>
-								<button type="button" id="btnUpdate" style="float: left;" class="btn mb-1 btn-primary">글 수정</button>
-						  		
-						   </c:if>
-						</div>
-					</div>
-				</div>
-			</div>
-  			 <br>
-			<div class="col-lg-12">
-			<div class="card">
-				<div class="card-body">
-					<div class="basic-form">
-						<!-- 댓글입력 -->
-						<form name="pcommentForm" method="post">
-							<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
-							<input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
-<!-- 							<div class="col-lg-3"> -->
-							댓글 작성자 : 
-							<input type="text" name="user_id" readonly="readonly" value="${login_id }" class="form-control input-default"><br>
-<!-- 							</div> -->
-							댓글 내용 : <br>
-							<textarea name="photo_comm_cont" class="form-control h-150px" rows="6"></textarea>
-							<br>
-							
-						</form>
-						<button type="submit" id="pcomment" class="btn mb-1 btn-primary">댓글 등록</button>
-					</div>
-				</div>
-			</div>
-
-			<!-- 댓글 목록-->
-			<div class="card">
-				<div class="card-body">
-				댓글 목록<br>
-				<div class="table-responsive">
-					<table id="pcomm_list" class="table table-striped">
-					</table>
-				</div>
-				</div>
-			</div>
-		</div>
-		</div>
-	</div>
+   <h2>SNS</h2>
+   <hr>
+   <a href="/pic_board/list">SNS 메인</a><br><br>
+   <form id="f">
+   <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+   <input type="text" id="photo_no" value="${Board.photo_no }">
+   <table border="1" width="80%">
+   <tr>
+      <td>아이디 : <input type="text" value="${Board.user_id}" id="follow_user_id" readonly="readonly"> / 팔로잉수 : ${search_follow_count } 명 </td>
+      <c:if test="${follow_chk ==0 }">
+         <input type="button" value="팔로잉하기" id="follow"><br>
+      </c:if>
+      <c:if test="${follow_chk !=0 }">
+         <input type="button" value="팔로잉취소하기" id="delete_follow"><br>
+                팔로잉한 유저 리스트<br>
+         <c:forEach items="${search_follow }" var="search_follow" begin="0" end="5">
+            ${search_follow.user_id2 }님 
+         </c:forEach>
+         <a href="/follow/search_follow?user_id=${Board.user_id }">더보기</a>
+      </c:if>
+   </tr>
+<!--     <tr> -->
+<!--          <td>사진</td> -->
+            <!-- <td>${Board.photo_no}</td> -->       
+<!--    </tr> -->
+   <tr>
+         <td><img width="200" height="200" src="/img/${file.photo_file_name}"/></td>
+   </tr>
+      <tr>
+<!--          <td>글 내용</td> -->
+         <td><div>${Board.photo_detail }</div></td>
+      </tr>
+      <tr>
+         <td>
+            <img id="like" src="/img/like.png" width="50" height="50">
+            <img id="clickLike" src="/img/clickLike.png" width="50" height="50">
+             <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> 
+         </td>
+<%--          <td>좋아요 <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> </td> --%>
+      </tr>
+   </table>
+   </form>
+   <c:if test="${Board.user_id eq login_id}" >
+   <button id="btnUpdate">글 수정</button>
+   <button id="btnDelete">글 삭제</button>
+   <hr>
+   </c:if>
    
-   
-   
+   <!--댓글입력폼-->
+   <form name="pcommentForm" method="post">
+   <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+      <input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
+      댓글 작성자 : <input type="text" name="user_id" value="${login_id }" readonly="readonly"><br>
+      댓글 내용 :<textarea name="photo_comm_cont" rows="5" cols="20"></textarea><br>
+   </form>
+   <button type="submit" id="pcomment">댓글 등록</button>
+   <hr>
+       댓글 목록
+   <table id="pcomm_list" border="1">
+   </table>
 </body>
 <%@include file="../footer.jsp"%> 
 </html>

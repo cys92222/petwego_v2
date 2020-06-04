@@ -174,7 +174,7 @@ public class Pic_BoardController extends HttpServlet {
 //         System.out.println("search_follow" + followService.search_follow(f));
          //팔로잉 확인
          mav.addObject("follow_chk", followService.follow_chk(f));
-//         System.out.println("follow_chk" + followService.follow_chk(f));
+         System.out.println("follow_chk" + followService.follow_chk(f));
          
          mav.addObject("Board", pic_boardService.detailPic_Board(pb));
          mav.addObject("file", pic_boardService.detailFile(pbf));

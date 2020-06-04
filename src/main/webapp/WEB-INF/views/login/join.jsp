@@ -191,8 +191,9 @@
 
     <script src="../resources/quixlab/plugins/validation/jquery.validate.min.js"></script>
     <script src="../resources/quixlab/plugins/validation/jquery.validate-init.js"></script>
-	 <%@include file="../footer.jsp" %>
+	 
 </body>
+<%@include file="../footer.jsp" %>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <!-- <script src="/resources/js/addressapi.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
