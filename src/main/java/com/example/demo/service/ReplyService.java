@@ -23,4 +23,5 @@ public interface ReplyService {
 		 
 		//글삭제시 댓글도 삭제
 		public void deleteAll(TogetherVo togetherVo) throws Exception;
+			
 }

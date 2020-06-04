@@ -154,7 +154,7 @@
 											<i class="mdi mdi-eye"></i> <span>${c.t_hit }</span>
 									</a></li>
 									<li class="icons dropdown"><a href="javascript:void(0)">
-											<i class="mdi mdi-message-reply"></i> <span>${c.t_hit }</span>
+											<i class="mdi mdi-message-reply"></i> <span>${c.reply_cnt }</span>
 									</a></li>
 								</ul>
 

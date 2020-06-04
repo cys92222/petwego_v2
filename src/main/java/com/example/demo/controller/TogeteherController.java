@@ -217,6 +217,7 @@ public class TogeteherController {
 //		System.out.println("썸네일" + service.listThumbnail(scri));
 		
 		model.addAttribute("listTogether",service.listTogether(scri));
+		
 //		System.out.println("함께가요" + service.listTogether(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);

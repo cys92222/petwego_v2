@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.example.demo.dao.ReplyDao;
+import com.example.demo.dao.TogetherDao;
 import com.example.demo.vo.ReplyVo;
 import com.example.demo.vo.TogetherVo;
 
@@ -14,6 +17,7 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		@Autowired
 		private ReplyDao rDao;
+		
 	
 	//함께가요 댓글 조회
 		@Override
@@ -49,7 +53,6 @@ public class ReplyServiceImpl implements ReplyService {
 		public void deleteAll(TogetherVo togetherVo) throws Exception {
 			// TODO Auto-generated method stub
 			rDao.deleteAll(togetherVo);
-		}
+		}	
 		
-
 }

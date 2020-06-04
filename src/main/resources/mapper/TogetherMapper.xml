@@ -5,16 +5,17 @@
 <mapper namespace="com.example.demo.dao.TogetherDao">
  	
  	<select id="listTogether" resultType="com.example.demo.vo.TogetherVo" parameterType="com.example.demo.util.SearchCriteria">
- 		select t_num,
- 		t_title,
- 		t_intro,
- 		user_id,
- 		t_size,
- 		t_attendee_cnt,
- 		t_date,
- 		t_place,
- 		t_hit,
- 		thumbnail
+        select t.t_num,
+ 		t.t_title,
+ 		t.t_intro,
+ 		t.user_id,
+ 		t.t_size,
+ 		t.t_attendee_cnt,
+ 		t.t_date,
+ 		t.t_place,
+ 		t.t_hit,
+ 		t.thumbnail,
+        (select count(*) from together_comment tc where tc.t_num = t.t_num) as reply_cnt
  		from 
  		(
  		select t_num,
@@ -30,8 +31,8 @@
  		row_number() over(order by t_num desc) as rNum
  		from together
  		where 1=1
- 		<include refid="search"></include>
- 		)MP
+        <include refid="search"></include>
+ 		)t
 		where rNum between #{rowStart} and #{rowEnd}
 		order by t_num desc
  	</select>
@@ -199,4 +200,5 @@
 	<select id="select_together_id" resultType="String">
 		select user_id from together where t_num = #{t_num}
 	</select>
+	
 </mapper>

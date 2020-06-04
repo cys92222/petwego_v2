@@ -26,6 +26,10 @@ public class TogetherVo{
 	private int t_hit;
 	private String thumbnail;
 	
+	//댓글 개수 테스트
+	private int reply_cnt;
+	//댓글 개수 테스트
+	
 	private MultipartFile thumbnailFile;
 	
  

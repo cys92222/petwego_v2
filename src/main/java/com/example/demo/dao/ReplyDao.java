@@ -23,4 +23,5 @@ public interface ReplyDao {
 		
 		//게시물삭제시 댓글 삭제
 		public void deleteAll(TogetherVo togetherVo) throws Exception;
+		
 }
