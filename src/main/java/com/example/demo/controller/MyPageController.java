@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,6 +37,7 @@ import com.example.demo.vo.Board_CommentVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
+import com.example.demo.vo.Pic_Board_FileVo;
 import com.example.demo.vo.ReservationVo;
 import com.google.gson.Gson;
 
@@ -91,6 +93,14 @@ public class MyPageController {
 		
 		//내가 작성한 sns글파일
 		mav.addObject("mysnspic", mypageservice.search_my_sns_file(m));
+		
+		
+//		pic_board_file에 user_id없어서 글번호로 조회
+		List<Pic_Board_FileVo> pbf = new ArrayList<Pic_Board_FileVo>();
+		List<Pic_BoardVo> pb = mypageservice.search_my_sns(m);
+		
+		System.out.println(m.getUser_id());
+		System.out.println(mypageservice.search_my_sns_file(m));
 		
 		//내가 쓴 함께가요
 		mav.addObject("mytogether", mypageservice.search_my_together(m));

@@ -15,6 +15,7 @@ public class Pic_Board_FileVo {
 	private int photo_file_no;
 	private String photo_file_name;
 	private int photo_no;
+	private String user_id;
 	
 	private MultipartFile uploadFile;
 }
