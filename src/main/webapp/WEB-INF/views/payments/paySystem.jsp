@@ -120,7 +120,8 @@ $(function(){
 						msg += '자세한 예약(결제) 정보는 마이페이지에서 확인가능합니다.';
 						
 				// 결제성공시 이동할 페이지
-    	       location.href='http://localhost:8088/MainPage';
+    	       location.href='http://localhost:8088/mypage/pay_list';
+    	      
 			    } else {
 			        var msg = '결제에 실패하였습니다.'+"\n";
 			        msg += '에러내용 : '+"\n";	

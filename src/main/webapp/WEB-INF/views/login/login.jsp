@@ -52,10 +52,10 @@
                                 <form class="mt-5 mb-5 login-input" action="/login/login" method="POST">
                                     <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <div class="form-group">
-                                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID" value="user4">
+                                        <input type="text" class="form-control" id="user_id" name="user_id" placeholder="ID" value="manager">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD" value="a123456">
+                                        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD" value="asd1234">
                                     </div>
                                     <button class="btn login-form__btn submit w-100" style="background: #1ce1cf;">로그인</button>
                                 	<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
