@@ -109,6 +109,7 @@ public class TogeteherController {
 		
 		model.addAttribute("updateReply",Rservice.selectReply(rv.getT_r_num()));
 		System.out.println(rv.getT_r_num());
+		System.out.println(rv.getT_r_content());
 		model.addAttribute("scri",scri);
 		
 		return "together/updateReplyView";
@@ -121,6 +122,7 @@ public class TogeteherController {
 		LOGGER.info("writeReply");
 		
 		Rservice.updateReply(rv);
+	
 		
 		rttr.addAttribute("t_num",rv.getT_num());
 		rttr.addAttribute("page", scri.getPage());

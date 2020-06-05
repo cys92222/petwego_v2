@@ -9,6 +9,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PET WE GO</title>
+<style type="text/css">
+.back-to-top {
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+	display: none;
+	z-index: 1;
+}
+</style>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Favicon icon -->
@@ -27,6 +36,21 @@
 		$("#mainPage2").click(function() {
 			location.href = "/MainPage";
 		})
+
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 50) {
+				$('#back-to-top').fadeIn();
+			} else {
+				$('#back-to-top').fadeOut();
+			}
+		});
+		// scroll body to 0px on click
+		$('#back-to-top').click(function() {
+			$('body,html').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
 
 	})
 </script>
@@ -61,10 +85,11 @@
 		<div class="nav-header" style="background-color: #4AD4C7;">
 			<div class="brand-logo">
 				<a href="#" id="mainPage"> <b class="logo-abbr"><img
-						src="/resources/quixlab/images/logo_compact.png" alt="">
-				</b> <span class="brand-title" style="color: white; font-weight: bold;">
-						PET WE GO <img
-						src="/resources/quixlab/images/logo_compact_03.png" alt="" style="width: 80px;"></span>
+						src="/resources/quixlab/images/logo_compact.png" alt=""> </b> <span
+					class="brand-title" style="color: white; font-weight: bold;">
+						PET WE GO <img src="/resources/quixlab/images/logo_compact_03.png"
+						alt="" style="width: 80px;">
+				</span>
 				</a>
 			</div>
 		</div>
@@ -239,3 +264,7 @@
 
 			<!--       여기서부터 코드 긁어오면 됌 -->
 			<!--          <div class="어쩌구저쩌구"> -->
+
+			<a id="back-to-top" href="#" class="btn btn-light btn-lg back-to-top"
+				role="button" style="background-color: #4AD4C7; border: none;"><i
+				class="mdi mdi-format-wrap-top-bottom" style="color: white;"></i></a>

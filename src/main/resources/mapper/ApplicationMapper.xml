@@ -8,7 +8,7 @@
 		insert into together_application values(seq_application_no.nextval,#{user_id},#{t_num})
 	</insert>
 	
-	<!-- 신청하기 delete, 좋아요 눌렀다가 한번 더 누르면 숫자 1빠져야함  -->
+	<!-- 신청하기 delete, 신청하기 눌렀다가 한번 더 누르면 숫자 1빠져야함  -->
 	<delete id="deleteApplication">
 		delete together_application where t_num = #{t_num} and user_id = #{user_id}
 	</delete>

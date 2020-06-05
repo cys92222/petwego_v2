@@ -207,12 +207,13 @@ $(document).ready(function(){
 			<div class="col-lg-12" style="background-color: white;">
 				<div class="read-content">
 					<div class="media pt-5">
-						<img class="mr-3 rounded-circle"
-							src="../img/peopleImg/<sec:authentication property="principal.fname"/>"
-							height="80" width="80" alt="">
+						<img
+							src="../img/crown.png" height="50" width="50" alt="" style="margin-top: 10px; margin-left: 20px;">
 						<div class="media-body" style="float: left;">
 							<h2 class="m-b-3">
-								<div name="t_user_id" style="margin-top: 20px; margin-left: 10px;">${login_id }</div>
+								<div name="t_user_id"
+									style="margin-top: 20px; margin-left: 10px; float: left;">${detailTogether.user_id}</div>
+									<span class="badge badge-pill badge-primary" style="font-size: 15px; margin-top: 25px; margin-left: 10px;">모임장</span>
 							</h2>
 						</div>
 						<div class="col-lg-2" style="float: left;">
@@ -242,7 +243,6 @@ $(document).ready(function(){
 																<tr>
 																	<td>현재 참여자</td>
 																</tr>
-
 																<c:forEach var="userList" items="${userList}"
 																	varStatus="status">
 																	<tr>
@@ -261,13 +261,23 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</div>
-									<button id="Application" class="btn btn-primary" type="button"
-										style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px; float: right;">신청하기</button>
-									<button id="clickApplication" class="btn btn-primary"
-										style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청취소</button>
-									<c:out
-										value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
-										escapeXml="false" />
+									
+									
+									<c:set var="login_id" value="${login_id }" />
+									<!-- 									함께가요 원본글 작성자 -->
+									<c:set var="dt_user_id" value="${detailTogether.user_id }" />
+
+									<c:if
+										test="${user_id ne login_id || login_id ne dt_user_id || user_id ne login_id}">
+										<button id="Application" class="btn btn-primary" type="button"
+											style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px; float: right;">신청하기</button>
+										<button id="clickApplication" class="btn btn-primary"
+											style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청취소</button>
+										<c:out
+											value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
+											escapeXml="false" />
+									</c:if>
+
 								</div>
 							</div>
 						</div>
@@ -301,13 +311,13 @@ $(document).ready(function(){
 				</div>
 			</div>
 			<c:if test="${login_id eq detailTogether.user_id }">
-				<button type="button" id="update_btn" class="btn mb-1 btn-danger"
-					style="background-color: #4AD4C7; border: none;">글 수정</button>
-				<button type="button" id="delete_btn" class="btn mb-1 btn-primary"
-					style="background-color: #4AD4C7; border: none;">글 삭제</button>
+				<button type="button" id="update_btn" class="btn mb-1 btn-primary"
+					style="border: none; width: 150px;">글 수정</button>
+				<button type="button" id="delete_btn" class="btn mb-1 btn-danger"
+					style="border: none; width: 150px;">글 삭제</button>
 			</c:if>
-			<button class="btn mb-1 btn-danger" type="submit" id="list_btn"
-				style="background-color: #4AD4C7; border: none;">목록</button>
+			<button class="btn mb-1 btn-primary" type="submit" id="list_btn"
+				style="border: none; width: 150px;">목록</button>
 		</form>
 
 	</div>

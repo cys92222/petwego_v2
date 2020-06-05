@@ -163,10 +163,10 @@
 								<div class="col-lg-12" style="text-align: center;">
 									<button id="write_btn" type="button"
 										class="btn mb-1 btn-primary btn-lg"
-										style="background-color: #4AD4C7; border: 0; margin-right: 5px;">등록</button>
+										style="border: 0; margin-right: 5px;">등록</button>
 									<button id="cancel_btn" type="button"
-										class="btn mb-1 btn-primary btn-lg"
-										style="background-color: #4AD4C7; border: 0;">취소</button>
+										class="btn mb-1 btn-danger btn-lg"
+										style="border: 0;">취소</button>
 								</div>
 							</form>
 						</div>

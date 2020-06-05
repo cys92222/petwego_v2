@@ -28,7 +28,7 @@
 <body>
 	
 	<form name="updateForm" role="form" method="post"
-		action="/together/updateReply">
+		action="updateReply">
 		<input type="hidden" id="token" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <input type="hidden" id="t_num"
 			name="t_num" value="${updateReply.t_num}" readonly="readonly" /> <input
@@ -52,11 +52,11 @@
 							readonly="readonly" value="${login_id }"
 							style="border: none; border-right: 0px; padding-bottom: 10px; border-top: 0px; boder-left: 0px; boder-bottom: 0px;" />
 						<textarea class="form-control" name="t_r_content" id="t_r_content"
-							cols="30" rows="2" placeholder="댓글을 입력하세요.">${replyUpdate.t_r_content}</textarea>
+							cols="30" rows="2" placeholder="댓글을 입력하세요.">${updateReply.t_r_content}</textarea>
 					</div>
 					<button class="btn btn-primary px-3 ml-4"
 						style="float: right; background-color: #4AD4C7; border: none;"
-						id="replyWriteBtn">수정</button>
+						type="submit">수정</button>
 					<button class="btn btn-primary px-3 ml-4" type="button"
 						id="cancel_btn"
 						style="float: right; background-color: #4AD4C7; border: none;">취소</button>

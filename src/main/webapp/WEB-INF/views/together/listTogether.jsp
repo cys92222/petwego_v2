@@ -48,7 +48,7 @@
 				$("#writeTogether").click(function() {
 					location.href = "writeTogetherView";
 				});
-				
+
 			});
 </script>
 <style type="text/css">
@@ -91,14 +91,24 @@
 					</div>
 				</form>
 			</div>
-			<div id="searchBtn" type="button" class="btn mb-1 btn-primary btn-lg"
-				style="background-color: #4AD4C7; border: 0; float: left; height: 45px; padding-top: 10px; margin-left: 5px;">검색</div>
+						<div id="searchBtn" type="button" class="btn mb-1 btn-primary btn-lg"
+							style="background-color: #4AD4C7; border: 0; float: left; height: 45px; padding-top: 10px; margin-left: 5px;">검색
+						</div>
+
+<!-- 			<button type="button" class="btn mb-1 btn-info" id="searchBtn" style="border: 0; float: left; height: 45px; padding-top: 10px; margin-left: 5px;"> -->
+<!-- 				검색 -->
+<!-- 			</button> -->
+
 		</div>
 		<div class="col-lg-2" style="float: left; text-align: right;">
-			<button id="writeTogether" type="button"
-				class="btn mb-1 btn-primary btn-lg"
-				style="background-color: #4AD4C7; border: 0; height: 45px; padding-bottom: 5px; margin-top: 15px; margin-right: 20px;">모임
-				개설하기</button>
+						<button id="writeTogether" type="button"
+							class="btn mb-1 btn-primary btn-lg"
+							style="background-color: #4AD4C7; border: 0; height: 45px; padding-bottom: 5px; margin-top: 15px; margin-right: 20px;">모임
+							개설하기</button>
+<!-- 			<button type="button" class="btn mb-1 btn-info" id="writeTogether" style="margin-top: 15px;"> -->
+<!-- 				모임 개설하기 <span class="btn-icon-right"><i -->
+<!-- 					class="mdi mdi-message-draw"></i></span> -->
+<!-- 			</button> -->
 		</div>
 
 
@@ -124,7 +134,7 @@
 						<div>
 							<div class="col-lg-2" style="float: left; padding: 0;">
 								<span class="label label-secondary"
-									style="background-color: #4AD4C7; border: 0; font-size: 14px;">모&nbsp;&nbsp;임&nbsp;&nbsp;&nbsp;장</span>
+									style="background-color:#F2CB05; border: 0; font-size: 14px;">모&nbsp;&nbsp;임&nbsp;&nbsp;&nbsp;장</span>
 								<div style="float: right;">&nbsp;&nbsp;${c.user_id }</div>
 								<br>
 							</div>
@@ -132,7 +142,7 @@
 							<div class="col-lg-2"
 								style="float: left; padding: 0; margin-top: 14px;">
 								<span class="label label-secondary"
-									style="background-color: #4AD4C7; border: 0; font-size: 14px;">참여
+									style="border: 0; font-size: 14px; background-color: #4AD4C7;">참여
 									인원</span>
 								<div style="float: right;">&nbsp;&nbsp;${c.t_attendee_cnt }/${c.t_size }</div>
 							</div>
@@ -146,11 +156,11 @@
 																perPageNum=${scri.perPageNum}&
 																searchType=${scri.searchType}&
 																keyword=${scri.keyword}"
-									class="btn btn-primary"
-									style="width: 100%; background-color: #4AD4C7; border: 0;">자세히보기</a>
+									class="btn mb-1 btn-rounded btn-outline-primary"
+									style="width: 100%; border: 0; margin-top: 20px; border: 1px solid;">자세히보기</a>
 								<!-- 								<a href="#" class="btn btn-primary" id="Application" -->
 								<!-- 									style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청하기</a> -->
-
+								
 								<ul class="clearfix" style="margin-top: 20px;">
 									<li class="icons dropdown"><a href="javascript:void(0)">
 											<i class="mdi mdi-eye"></i> <span>${c.t_hit }</span>
@@ -164,7 +174,7 @@
 						</div>
 					</div>
 
-					<div class="card-footer" style="text-align: right;">
+					<div class="card-footer" style="text-align: right; background-color: #f7fafc; border-top:0; ">
 						<small>모임날짜 :${c.t_date }</small>
 					</div>
 					<div style="border-top: 1px; color: gray;"></div>
