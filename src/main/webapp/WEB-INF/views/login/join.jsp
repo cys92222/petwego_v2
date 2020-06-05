@@ -20,7 +20,7 @@
       		padding: 1.2rem;
       }
       .card .card-body {
-      		padding: 5rem 7rem;
+      		padding: 3rem 7rem;
       }
       
       .col-form-label {
@@ -35,18 +35,18 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">회원가입</a></li>
+                        <li class="breadcrumb-item active"><a href="/join/join">회원가입</a></li>
                     </ol>
                 </div>
             </div>
             <!-- row -->
 
             <div class="container-fluid">
-              <h4>회원가입</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+                            	<h4>회원가입</h4><br>
                                 <div class="form-validation"> <!-- form의 action 주소만 복사했음 join.jsp가 고치고 있는 중 / join2 가 원본 / join boot 가 boot 양식만 있는 거 -->
                                     <form class="form-valide" action="/join/insert" method="post" novalidate="novalidate" id="myForm">
                                     <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
