@@ -26,21 +26,53 @@
 			 <!-- Collapsable Card Example -->
               <div class="card-body">
              	<c:forEach var="info" items="${infoRoom }" begin="1" end="1">
-               
-                  <h6 class="m-0 font-weight-bold text-info">숙소명:<c:out value="${info.facility_name }" />&nbsp;&nbsp;||&nbsp;&nbsp;숙소번호:<c:out value="${info.facility_no }" /></h6>
-                    <br>
-                    <br>
-                    <p>숙소주소 : <c:out value="${info.facility_addr }" /></p>
-                    <p>숙소연락처 : <c:out value="${info.f_phone }" /></p>
-                    <p>숙소 최저가 : <c:out value="${info.f_minprice }" /></p>
-                    <p>숙소특징 : <c:out value="${info.f_feature }" /></p>
-                    <p>숙소소개글 : <c:out value="${info.f_intro }" /></p>
-                    <p>체크인시간 : <c:out value="${info.f_checkin }" /></p>
-                    <p>체크아웃시간 : <c:out value="${info.f_checkout }" /></p>
-                    <p><img src="<c:out value="${info.f_pic }" />" width="400px" height="400px"></p>
+
+                    <div class="media media-reply">
+
+                                        <div class="media-body">
+
+
+                                                  <div class="media align-items-center">
+
+
+
+                                                            <div class="col-xl-4">
+                                                                      <img class="rounded" src="${info.f_pic }" width="330" height="330">
+                                                            </div>
+
+
+                                                            <div class="col-xl-5 pt-3 border-right">
+                                                                      <div class="mb-3">
+
+    <div>
+              <h3 class="text-dark mb-4">${info.facility_name }</h3>
+
+              <h6 class="text-muted font-weight-light">
+                         ${info.facility_addr }</h6>
+
+
+    </div>
+</div>
+    <p class="mb-2 pl-2 pb-3 font-weight-light"><i class="fab fa-whatsapp text-primary"></i> ${info.f_phone }</p>                                                                  
+   <h6 class="mb-3 pl-2">${info.f_checkin } | ${info.f_checkout }</h6>
+   <p class="mb-2 p-2 font-weight-light text-muted small">${info.f_feature }</p> 
+    
+                                                            </div>
+
+
+                                                            
+                                                            <div class="col-xl-3 text-center">
+
+                                                                      <h5 class="mb-3">￦${info.f_minprice }~</h5>
+
+
+                                                            </div>
+                                                  </div>
+                                        </div>
+                              </div>
                     </c:forEach>
                   </div> 
-                </div>
+         </div>
 
 
 		<!-- Collapsable Card Example -->
@@ -49,23 +81,76 @@
 				<a href="#go${info.rm_no }" class="d-block card-header py-3"
 					data-toggle="collapse" role="button" aria-expanded="true"
 					aria-controls="${info.rm_no }">
+
 					<h6 class="m-0 font-weight-bold text-primary">
-						방이름:
-						<c:out value="${info.rm_name }" />
-						&nbsp;&nbsp; 방번호:
-						<c:out value="${info.rm_no }" />
+    					<c:out value="${info.rm_no }" /><span class="ml-1 font-weight-light"><c:out value="${info.rm_name }" /></span>
 					</h6>
 				</a>
-				<div class="collapse show" id="go${info.rm_no }">
-					<div class="card-body">
-						<p>최대수용인원 :<c:out value="${info.rm_max }" /> </p>
-						<p>객실1박당 가격 :<c:out value="${info.rm_cost }" /> </p>
-						<p>객실정보 :<c:out value="${info.rm_info }" /> </p>
-						<p>예약가능여부 :<c:out value="${info.rm_ok }" /> </p>
-						<p>숙소별 객실 식별번호 :<c:out value="${info.rm_sn }" /> </p>
-						<p><img src="<c:out value="${info.rm_pic }" />" width="400px" height="400px"></p>
-					</div>
-				</div>
+
+				<div class="align-items-center collapse show" id="go${info.rm_no }">
+                    <div class="card-body">
+
+
+
+                        <div class="media media-reply">
+
+                             <div class="media-body">
+
+
+                                       <div class="media align-items-center">
+
+
+
+                                                 <div class="col-xl-3">
+                                                           <img class="rounded" src="${info.rm_pic }" width="250" height="250">
+                                                 </div>
+
+
+                                                 <div class="col-xl-4 ml-3">
+                                                           <div class="mb-4">
+
+                                                                     <div>
+                                                                               
+                                                                               <h5 class="text-muted font-weight-light">
+                                                                                         <i class="fas fa-user-friends text-primary"></i>
+                                                                                         <c:out value="${info.rm_max }" /></h5>
+
+                                                                     </div>
+                                                           </div>
+                                                           <h6 class="mb-3 font-weight-light">
+                                                                     <c:out value="${info.rm_info }" /></h6>
+
+                                                 </div>
+
+
+                                                 <div class="col-xl-2 text-right">
+                                                     
+	                                                 <c:choose>
+										
+													    <c:when test="${info.rm_ok==1}">
+													        <h5 class="btn btn-danger">예약가능</h5>
+													    </c:when>
+
+													    <c:when test="${info.rm_ok==0}">
+													        <h5 class="btn btn-warning">예약마감</h5>
+													    </c:when>
+																									
+													</c:choose>
+
+                                                 </div>
+                                                 
+                                                 <div class="col-xl-3 text-center">
+
+                                                           <h4 class="mb-3 text-dark">￦${info.f_minprice }</h4>
+
+
+                                                 </div>
+                                       </div>
+                             </div>
+                        </div>
+
+                    </div>
+          </div>
 			</c:forEach>
 		</div>
 		
