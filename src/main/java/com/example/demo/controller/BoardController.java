@@ -87,8 +87,7 @@ public class BoardController {
 		model.addAttribute("listBoard", service.listBoard(scri));
 //		model.addAttribute("a", "admin"); //어드민 로그인
 //		model.addAttribute("a", "user"); //일반유저 로그인
-		
-		
+
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.boardCount(scri));

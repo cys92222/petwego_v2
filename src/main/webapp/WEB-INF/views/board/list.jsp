@@ -79,7 +79,7 @@
 							});
 					</script>
 					<div class="table-responsive">
-						<table class="table table-hover" id="free">
+						<table class="table table-hover" id="free" style="text-align: center;">
 							<thead>
 								<tr>
 									<th>글번호</th>
@@ -96,7 +96,7 @@
 										<td><c:out value="${board.board_no }" /></td>
 										<td><c:out value="${board.category }" /></td>
 										<td><a href="/board/get?board_no=${board.board_no}">
-											<c:out value="${board.board_title }" />
+											<c:out value="${board.board_title }" />&nbsp;<span class="text-danger">(${board.cnt_bc })</span> 
 											</a>
 										</td>
 										<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.board_date }" /></td>
