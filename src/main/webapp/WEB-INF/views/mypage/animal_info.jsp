@@ -106,7 +106,7 @@ $(function(){
 		</li>
 		<li><strong class="text-dark mr-4 ml-4">반려시작일</strong><span>${al.pet_date }</span></li>
 									</ul>
-									<a class="btn btn-primary" href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물
+									<a class="btn btn-primary mr-2" href="/mypage/update_animal_form?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물
 										정보 수정</a> 
 										<a class="btn btn-danger" href="/mypage/delete_animal?user_id=${al.user_id }&pet_no=${al.pet_no}">반려동물 정보 삭제</a>
 										
