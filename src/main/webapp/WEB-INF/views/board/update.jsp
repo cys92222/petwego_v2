@@ -148,7 +148,7 @@
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="#">자유게시판 | 글수정</a></li>
-				<li class="breadcrumb-item"><a href="/board/list">자유게시판</a></li>
+				<li class="breadcrumb-item"><a href="/board/list">자유게시판 | 목록</a></li>
 				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
 			</ol>
 		</div>
