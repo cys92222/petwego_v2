@@ -57,7 +57,7 @@ $(function(){
 		});
 
 	//문의하기 버튼
-	$("#insert_qna").click(function(){
+	$("#insertBtn").click(function(){
 		window.location.href="/customerservice/insertQnAForm";
 		});
 });
@@ -155,7 +155,7 @@ $(function(){
 					</div>
 
 				</div>
-				<button class="btn mb-1 btn-primary" id="insertBtn" type="button" style="float: right">글쓰기</button>	
+				<button class="btn mb-1 btn-primary" id="insertBtn" type="button" style="float: right">문의하기</button>	
 			</div>
 					
 		</div>
