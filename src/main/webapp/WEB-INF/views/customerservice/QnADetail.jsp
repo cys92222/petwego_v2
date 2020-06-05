@@ -101,10 +101,10 @@ $(function(){
 							</div>
 							<hr>
 						</div>
-<%-- 						<c:if test="${login_id eq detail.user_id}"> --%>
+						<c:if test="${login_id eq detail.user_id}">
 							<button class="btn btn-primary" id="up">수정하기</button>
 							<button class="btn btn-primary" id="del">삭제하기</button>
-<%-- 						</c:if>	 --%>
+						</c:if>	
 					</div>
 				</div>
 			</div>
