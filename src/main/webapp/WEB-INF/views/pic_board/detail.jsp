@@ -179,12 +179,59 @@
 										          <input type="button" class="btn btn-outline-dark btn-sm" value="팔로우하기" id="follow"><br>
 										        </c:if>
 										        <c:if test="${follow_chk !=0 }">
-										          <input type="button" class="btn btn-outline-dark btn-sm" value="팔로우취소하기" id="delete_follow"><br>
+										          <input type="button" class="btn btn-outline-dark btn-sm" value="팔로우취소하기"><br>
 										         	팔로워:
 										         <c:forEach items="${search_follow }" var="search_follow" begin="0" end="5">
 										            ${search_follow.user_id2 }님 
 										         </c:forEach>
 										         <a href="/follow/search_follow?user_id=${Board.user_id }">더보기</a>
+										                   <div class="bootstrap-modal">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                              data-target="#basicModal">더보기</button>
+                    <!-- Modal -->
+                    
+                    <div class="modal fade" id="basicModal" style="display: none;" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                        <div class="modal-content p-4 pb-5">
+                                                  <div class="modal-header">
+                                                            <h5 class="modal-title font-weight-light">${followList[0].user_id }님의 팔로워</h5>
+                                                            <button type="button" class="close"
+                                                                      data-dismiss="modal"><span>×</span>
+                                                            </button>
+                                                  </div>
+                                                  <c:forEach items="${followList }" var="followList">
+                                                  <div class="modal-body border-bottom">
+
+                                                            <div
+                                                                      class="row align-items-center justify-content-between d-flex">
+                                                                      <div class="align-items-center d-flex">
+                                                                                <i
+                                                                                          class="fa fa-user-circle text-primary fa-3x ml-3 mr-2"></i>
+                                                                                <div class="d-flex flex-column">
+                                                                                          <span
+                                                                                                    class="text-dark">${followList.user_id2 }</span>
+                                                                                          <span
+                                                                                                    class="text-muted small">dobby
+                                                                                                    is free</span>
+                                                                                </div>
+                                                                      </div>
+                                                                      <button type="button"
+                                                                                class="btn-sm mb-1 btn-danger small mr-2" id="delete_follow"><i
+                                                                                          class="fa fa-times mr-1"></i>언팔로우</button>
+                                                            </div>
+                                                  </div>
+												  </c:forEach>
+
+                                        </div>
+
+                              </div>
+                    </div>
+          </div>
+										         
+										         
+										         
+										         
 										      </c:if>
 										      </td>
 										      <td></td>
