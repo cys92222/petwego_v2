@@ -13,14 +13,20 @@ import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.NoticeVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.QnAVo;
+import com.example.demo.vo.ReviewVo;
 import com.example.demo.vo.RoomVo;
 
 //민아) 5/19, 관리자페이지
 public interface ManagerPageService {
+	// 숙소 리뷰 삭제
+	int deleteReview(ReviewVo re);
+
+	// 숙소 리뷰목록
+	List<ReviewVo> f_review();
 
 	// 방정보
 	List<M_froomVo> infoRoom(int facility_no);
-	
+
 	// 숙소목록
 	List<FacilityVo> listFacility();
 

@@ -23,7 +23,7 @@ public class RoomVo {
 	private int rm_ok;
 	private int rm_sn;
 	
-	private List<RoomVo> listRoom;
+	
 }
 
  

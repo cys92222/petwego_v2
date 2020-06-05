@@ -4,6 +4,15 @@
   <!-- 민아) 5/25, 관리자페이지 이것저것 추가중  -->
 <mapper namespace="com.example.demo.dao.ManagerPageDao">
 	
+	<!-- 숙소 리뷰 / 목록 & 삭제 -->
+	<select id="f_review" resultType="com.example.demo.vo.ReviewVo">
+	 	select * from review order by r_no desc
+	</select>
+	
+	<delete id="deleteReview">
+		delete review where r_no = #{r_no}
+	</delete>
+	
 	<!-- 숙소 목록 -->
 	<select id="listFacility" resultType="com.example.demo.vo.FacilityVo">
 		select * from facility
@@ -12,10 +21,9 @@
 	<!-- 방 정보 -->
 	<select id="infoRoom" resultType="com.example.demo.vo.M_froomVo">
 		select f.facility_no,f.facility_name,f.facility_addr,f.f_phone,f.f_minprice,f.f_feature,f.f_intro,f.f_pic,f.f_checkin,f.f_checkout
-			,r.rm_no,r.rm_name,r.rm_max,r.rm_pic,r.rm_ok,r.rm_sn,r.rm_cost,r.rm_info
-		
-		
-		 from facility f, room r where r.facility_no = f.facility_no and r.facility_no = #{facility_no}
+			,r.rm_no,r.rm_name,r.rm_max,r.rm_pic,r.rm_ok,r.rm_sn,r.rm_cost,r.rm_info	
+			
+				 from facility f, room r where r.facility_no = f.facility_no and r.facility_no = #{facility_no}
 	</select>
 	
 	<!-- 자유게시판, 댓글 목록/삭제 -->

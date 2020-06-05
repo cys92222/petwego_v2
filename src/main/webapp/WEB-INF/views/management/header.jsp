@@ -113,10 +113,8 @@
 				<div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">숙소관리</h6>
-						<a class="collapse-item" href="/management/froom/listFacility">숙소 목록</a>
-						<div class="collapse-divider"></div>
-						<h6 class="collapse-header">Other Pages:</h6>
-						<a class="collapse-item" href="#">Blank Page</a>
+						<a class="collapse-item" href="/management/froom/listFacility">숙소목록</a>
+						<a class="collapse-item" href="/management/froom/review">숙소리뷰</a>
 					</div>
 				</div></li>
 

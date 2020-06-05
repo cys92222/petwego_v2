@@ -11,7 +11,6 @@
 <script type="text/javascript">
 	$(function() {
 
-
 	})
 </script>
 </head>
@@ -37,7 +36,7 @@
 								<th>숙소번호</th>
 								<th>숙소명</th>
 								<th>숙소주소</th>
-								<th>숙소연락처</th>
+								<th>숙소연락처</th>								
 							</tr>
 						</thead>
 						<tfoot>
@@ -45,7 +44,7 @@
 								<th>숙소번호</th>
 								<th>숙소명</th>
 								<th>숙소주소</th>
-								<th>숙소연락처</th>
+								<th>숙소연락처</th>								
 							</tr>
 						</tfoot>
 						<tbody>
@@ -58,7 +57,7 @@
 										</a>
 									</td>
 									<td><c:out value="${listF.facility_addr }" /></td>
-									<td><c:out value="${listF.f_phone }" /></td>
+									<td><c:out value="${listF.f_phone }" /></td>									
 								</tr>
 							</c:forEach>
 						</tbody>
