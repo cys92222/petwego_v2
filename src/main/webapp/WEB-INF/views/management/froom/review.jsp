@@ -16,18 +16,6 @@
 	        "order": [[ 0, "desc" ]]
 	    } );
 
-
-	     
-		
-	    // 리뷰 삭제 alert
-// 	    $("#deleteR").click(function(){
-// 	    	var check = confirm("사용자 리뷰를 삭제하시겠습니까?")
-// 	    	var r_no = $("#r_no").val();
-// 			if(check == true){
-// 				self.location = "/management/froom/deleteReview?r_no="+r_no;
-// 				alert("게시글을 삭제했습니다!");
-// 			}
-// 		 })
 	})
 </script>
 </head>
@@ -75,7 +63,7 @@
 									<td><c:out value="${review.facility_no }" /></td>
 									<td><c:out value="${review.user_id}" /></td>								
 									<td>
-										<a href="/management/froom/deleteReview?r_no=${review.r_no }" class="btn btn-danger btn-circle btn-sm"  onclick="return confirm('리뷰를 삭제할까요 ?');">
+										<a href="/management/froom/deleteReview?r_no=${review.r_no }" onclick="return confirm('리뷰를 삭제할까요 ?');" class="btn btn-danger btn-circle btn-sm" >
                    							<i class="fas fa-trash"></i>
                   						</a>
 									</td>								

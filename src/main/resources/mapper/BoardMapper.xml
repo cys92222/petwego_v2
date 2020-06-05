@@ -13,14 +13,16 @@
 <!-- 	private String user_id; -->
 	<!-- 자유게시판 목록 -->
 	<select id="listBoard" resultType="com.example.demo.vo.BoardVo" parameterType="com.example.demo.util.Criteria">
-		select board_no ,category ,board_title,board_content ,board_date, board_hit, user_id
+		select b.board_no ,b.category ,b.board_title ,b.board_content ,b.board_date, b.board_hit, b.user_id,
+			(select count(*) from board_comment bc where bc.board_no = b.board_no) as cnt_bc
+			
 			from (select board_no, category ,board_title, board_content, board_date, board_hit, user_id
 					,row_number() over(order by board_no desc) as rNum 
 						from board 
 							where 1 = 1
 							<include refid="search"></include>
 						)
-								MP
+								b
 									
 						where rNum between #{rowStart} and #{rowEnd}
 						order by board_no desc
