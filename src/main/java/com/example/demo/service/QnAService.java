@@ -10,7 +10,7 @@ import com.example.demo.vo.QnAVo;
 public interface QnAService {
 
 	//모든 qna리스트
-	public List<QnAVo> allQnAList(SearchCriteria scri);
+	public List<QnAVo> allQnAList();
 		
 	//qna등록
 	public int insertQnA(QnAVo q);

@@ -77,8 +77,10 @@ public class QnAController {
 //		mav.addObject("id", m);
 		
 		Gson gson = new Gson();
-		mav.addObject("list", gson.toJson(service.allQnAList(scri)));
-		mav.addObject("list2", service.allQnAList(scri));
+		mav.addObject("list", gson.toJson(service.allQnAList()));
+		System.out.println("list" + gson.toJson(service.allQnAList()));
+		mav.addObject("list2", service.allQnAList());
+		System.out.println("list2" + service.allQnAList());
 //		System.out.println("list" + service.allQnAList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
@@ -111,7 +113,7 @@ public class QnAController {
 		pageMaker.setTotalCount(service.listCount(scri));
 		mav.addObject("pageMaker", pageMaker);
 		
-		if( service.allQnAList(scri) == null ) {
+		if( service.allQnAList() == null ) {
 			q.setRef(1);
 		}else if(service.lastNo() == -1){
 			q.setRef(1);

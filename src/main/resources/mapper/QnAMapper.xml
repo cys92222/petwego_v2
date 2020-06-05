@@ -6,18 +6,30 @@
 <mapper namespace="com.example.demo.dao.QnADao">
  	
  	<!-- 모든 qna리스트 -->
- 	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo" parameterType="com.example.demo.util.Criteria">
- 		<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 -->
- 		SELECT  inq_no, cs_no, inq_title, inq_content, to_char(inq_date,'yyyy-mm-dd') as inq_date, user_id, inq_file, ref, ref_step, ref_level
+<!--  	<select id="allQnAList" resultType="com.example.demo.vo.QnAVo" parameterType="com.example.demo.util.Criteria"> -->
+		<!-- 글번호, 부모글번호, 들여쓰기, 답변의 답변일 경우 순으로 정렬 --> 
+<!--  		SELECT  inq_no, cs_no, inq_title, inq_content, to_char(inq_date,'yyyy-mm-dd') as inq_date, user_id, inq_file, ref, ref_step, ref_level -->
+<!-- 		 FROM (  -->
+<!-- 		        select inq_no, cs_no, inq_title, inq_content, inq_date, user_id, inq_file, ref, ref_step, ref_level, ROW_NUMBER() OVER(ORDER BY inq_no DESC) AS RNUM -->
+<!-- 		         FROM qna -->
+<!-- 		         WHERE 1=1  -->
+<!-- 		         <include refid="search"></include>           -->
+<!-- 		                       ) q -->
+<!-- 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} -->
+<!-- 		order by ref desc, ref_level, ref_step -->
+<!--  	</select> -->
+
+<!-- 모든 qna리스트 -->
+<select id="allQnAList" resultType="com.example.demo.vo.QnAVo">
+	SELECT  inq_no, cs_no, inq_title, inq_content, to_char(inq_date,'yyyy-mm-dd') as inq_date, user_id, inq_file, ref, ref_step, ref_level
 		 FROM ( 
 		        select inq_no, cs_no, inq_title, inq_content, inq_date, user_id, inq_file, ref, ref_step, ref_level, ROW_NUMBER() OVER(ORDER BY inq_no DESC) AS RNUM
 		         FROM qna
-		         WHERE 1=1 
-		         <include refid="search"></include>          
+		         WHERE 1=1        
 		                       ) q
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		order by ref desc, ref_level, ref_step
- 	</select>
+</select>
+
  
 		<!-- qna등록 시퀀스 이용 -->
 <!-- 	<insert id="insertQnA"> -->

@@ -19,9 +19,9 @@ public class QnAServiceImpl implements QnAService {
 	
 	//모든 qna리스트
 	@Override
-	public List<QnAVo> allQnAList(SearchCriteria scri) {
+	public List<QnAVo> allQnAList() {
 		// TODO Auto-generated method stub
-		List<QnAVo> list = dao.allQnAList(scri);
+		List<QnAVo> list = dao.allQnAList();
 		return list;
 	}
 	 
