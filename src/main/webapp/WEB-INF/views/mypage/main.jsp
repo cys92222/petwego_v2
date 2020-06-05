@@ -32,7 +32,7 @@
 		$("#more").click(function(){
 			window.location.href = "/mypage/animal_info_up_form?user_id=${myinfo.user_id }";
 			});
-
+/*
 		//회원탈퇴
 		$("#widthdraw_btn").click(function() {
 			var ck = confirm("탈퇴하시겠습니까?");
@@ -54,6 +54,32 @@
 
 			}
 		});
+
+*/
+
+		//회원탈퇴 (영구정지/휴면계정)
+		$("#widthdraw_btn").click(function() {
+			var ck = confirm("탈퇴하시겠습니까?");
+			if (ck == true) {
+				var data = {
+					user_id : /*$("#user_id").val()*/'${login_id }'
+				};
+				// 			alert(data);
+//				$.ajax("/mypage/delete_member", {
+				$.ajax("/mypage/update_enabled", {
+					data : data,
+					success : function(re) {
+						// 				alert(re);
+						//				컨트롤러에서 return "/MainPage"; 으로 /MainPage 받아와서 href로 이동
+						window.location.href = "/login/logout";
+					}
+				});
+				// 			alert("탈퇴");
+			} else {
+
+			}
+		});
+		
 
 	});
 </script>

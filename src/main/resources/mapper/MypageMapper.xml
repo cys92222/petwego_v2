@@ -36,6 +36,12 @@
  		delete member_info where user_id = #{user_id}
  	</delete>
  	
+ 	<!-- 휴면계정 -->
+ 	<update id="update_enabled">
+ 		update member_info set enabled=0 where user_id = #{user_id}
+ 	</update>
+ 	
+ 	
 <!--  	내가 쓴 자유게시판 글 -->
 	<select id="search_my_board" resultType="com.example.demo.vo.BoardVo">
 		select * from board where user_id = #{user_id}

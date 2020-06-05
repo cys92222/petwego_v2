@@ -24,6 +24,9 @@ public interface MypageDao {
 	//회원탈퇴
 	public int delete_myinfo(MemberInfoVo m);
 	
+	//영구정지
+	public int update_enabled(MemberInfoVo m);
+	
 	//내가 쓴 자유게시판 글
 	public List<BoardVo> search_my_board(MemberInfoVo m);
 	 

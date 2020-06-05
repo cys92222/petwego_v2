@@ -54,6 +54,16 @@ public class MypageServiceImpl implements MypageService {
 		re = mypagedao.delete_myinfo(m);
 		return re;
 	}
+	
+	//휴면계정(영구정지)
+	@Override
+	public int update_enabled(MemberInfoVo m) {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.update_enabled(m);
+		return re;
+	}
+		
 
 	//내가 쓴 자유게시판 글
 	@Override

@@ -37,6 +37,8 @@ private static final long serialVersionUID = 1L;
 	private String pwd2;
 	private String address2;
 	private String address3;
+	private int enabled;
+	
 	
 	MultipartFile uploadfile;
 	

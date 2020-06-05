@@ -45,7 +45,12 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
         if (null == user) {
            // return null;
         	throw new BadCredentialsException("존재하지 않는 아이디입니다.");
+        } 
+        
+        if(user.getEnabled()==0) {
+            throw new BadCredentialsException("휴면 계정입니다.");
         }
+        
         // 비번 불일치
         if (!pwdEncoder.matches(authentication.getCredentials().toString(), user.getPwd())) {
             throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");

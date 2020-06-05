@@ -476,6 +476,17 @@ public class MyPageController {
 //		return "redirect:/MainPage";
 		return "/MainPage";
 	}
+	
+	//영구정지
+	@NoLogging
+	@RequestMapping("/mypage/update_enabled")
+	@ResponseBody
+	public String delete_member(MemberInfoVo m) {
+		System.out.println("영구정지할  id"+m.getUser_id());
+		mypageservice.update_enabled(m);
+//			return "redirect:/MainPage";
+		return "/MainPage";
+	}
 
 	/* 영수 원본
 	//비밀번호 변경
