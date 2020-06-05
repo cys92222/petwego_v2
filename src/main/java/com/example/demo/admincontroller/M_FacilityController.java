@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.service.ManagerPageService;
 
@@ -24,9 +24,10 @@ public class M_FacilityController {
 	
 	// 숙소 리뷰 삭제 
 	@GetMapping(value = "/froom/deleteReview")
-	public String deleteReview(ReviewVo re) {
+	public ModelAndView deleteReview(ReviewVo re) {
+		ModelAndView mav = new ModelAndView("redirect:/management/froom/review");
 		mp_service.deleteReview(re);
-		return "redirect:/management/froom/review";
+		return mav;
 	}
 	
 	// 숙소 리뷰 목록 
@@ -34,8 +35,11 @@ public class M_FacilityController {
 	public void f_review(Model model) {
 		Gson gson = new Gson();
 		gson.toJson(mp_service.f_review());
+		
+		// 자바스크립트 단에서 받으려고 gson사용
 		model.addAttribute("arr", gson.toJson(mp_service.f_review()));
 		
+		// jstl에서 받으려고 보냄 
 		model.addAttribute("reviewList", mp_service.f_review());
 	}
 	

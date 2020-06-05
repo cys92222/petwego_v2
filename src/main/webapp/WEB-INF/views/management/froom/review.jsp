@@ -19,16 +19,16 @@
 
 	    var list = ${arr};
 	    $.each(list,function(idx,r){
-				
-		    
+	    
 	    // 리뷰 삭제 alert
 	    $("#deleteR"+r.r_no).click(function(){
 	    	var check = confirm("사용자 리뷰를 삭제하시겠습니까?")
-	    	var r_no = $("#r_no"+r.r_no).val();
-	    	alert(r_no);
+	    	
+	    	var r_no = $("#r_no"+r.r_no).val();					
+	    	//alert(r_no);
 			if(check == true){
 				self.location = "/management/froom/deleteReview?r_no="+r_no;
-				alert("게시글을 삭제했습니다!");
+				alert("사용자 리뷰를 삭제했습니다!");
 			}
 		 })
 	    });
@@ -73,7 +73,7 @@
 						</tfoot>
 						<tbody>
 							<c:forEach var="review" items="${reviewList }">
-							<input type="text" id="r_no${review.r_no }" value="${review.r_no }">
+							<input type="hidden" id="r_no${review.r_no }" value="${review.r_no }">
 								<tr>
 									<td><c:out value="${review.r_no }" /></td>
 									<td><c:out value="${review.review_content }" /></td>

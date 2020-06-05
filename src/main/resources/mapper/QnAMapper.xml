@@ -14,7 +14,7 @@
 		         FROM qna
 		         WHERE 1=1 
 		         <include refid="search"></include>          
-		                       ) q
+		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		order by ref desc, ref_level, ref_step
  	</select>
@@ -57,7 +57,7 @@
 	</select>
 	
 	<!-- qna게시물 수 -->
-	<select id="listCount" resultType="int" parameterType="com.example.demo.util.SearchCriteria">
+	<select id="listCount" resultType="int">
 		SELECT COUNT(inq_no)
 		  FROM qna
 		   WHERE 1=1

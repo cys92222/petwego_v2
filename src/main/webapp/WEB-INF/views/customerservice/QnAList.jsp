@@ -63,9 +63,9 @@ $(function(){
 });
 
 
-	$('#list').DataTable({
-		"order" : [ [ 0, "desc" ] ]
-	});
+// 	$('#list').DataTable({
+// 		"order" : [ [ 0, "desc" ] ]
+// 	});
 </script>
 </head>
 <body>
