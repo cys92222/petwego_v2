@@ -40,49 +40,106 @@ $(function(){
 			});
 		});
 
-	 $('#notice_list').DataTable( {
-	        "order": [[ 0, "desc" ]]
-	    } );
+// 	 $('#notice_list').DataTable( {
+// 	        "order": [[ 0, "desc" ]]
+// 	    } );
 });
 </script>
 </head>
 <body>
 <div class="row page-titles mx-0">
-			<div class="col p-md-0">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="javascript:void(0)">공지사항</a></li>
-					<li class="breadcrumb-item active"><a
-						href="javascript:void(0)">메인</a></li>
-				</ol>
-			</div>
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/customerservice/allNotice">공지사항게시판 | 목록</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
 		</div>
-		<!-- row -->
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="card-title">공지사항</h4>
-							<div class="table-responsive">
-								<table
-									class="table table-striped table-bordered zero-configuration" id="notice_list">
-									<thead>
-										<tr><th>번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
-									</thead>
-									
-									<tbody id="listNotie">
-									</tbody>
-									
-									<tfoot>
-										<tr><th>번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th></tr>
-									</tfoot>
-								</table>
-							</div>
-						</div>
-					</div>
+	</div>
+	<!-- row -->
+	<div class="col-12">
+		<div class="card">
+			<div class="card-body">
+				<div class="card-title">
+					<h4>공지사항게시판</h4>
 				</div>
+
+
+				<div class="col-lg-12" style="float: left; margin-top: 15px;">
+					<div class="form-group" style="float: left;">
+						<select class="form-control form-control-sm" name="searchType" style="width: 100px;">
+							<option value="n"
+								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
+							<option value="t"
+								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+							<option value="c"
+								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+							<option value="w"
+								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+							<option value="tc"
+								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+						</select>
+					</div>
+
+					<div class="basic-form" style="float: left;">
+						<form>
+							<div class="form-group">
+								<input type="text" class="form-control input-flat" name="keyword" id="keywordInput" value="${scri.keyword}"
+								 	style="width: 300px; margin-left: 5px;" />
+							</div>
+						</form>
+					</div>
+					<button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
+
+					<script>
+						$(function() {
+							$('#searchBtn').click(function() {
+												self.location = "/customerservice/allNotice" + '${pageMaker.makeQuery(1)}' + "&searchType="
+														+ $("select option:selected").val()
+														+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
+											});
+							});
+					</script>
+					<div class="table-responsive">
+						<table class="table table-hover" id="listNotie">
+						<tr>
+							<th>공지번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th>
+						</tr>
+
+						</table>
+					</div>
+
+					<div class="bootstrap-pagination">
+						<nav>
+							<ul class="pagination justify-content-center">
+								<c:if test="${pageMaker.prev}">
+									<li class="page-item disabled">
+										<a class="page-link" href="/customerservice/allNotice${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a>
+									</li>
+								</c:if>
+
+								<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+									<li class="page-item">
+										<a class="page-link" href="/customerservice/allNotice${pageMaker.makeSearch(idx)}">${idx}</a>
+									</li>
+								</c:forEach>
+
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+									<li class="page-item">
+										<a class="page-link" href="/customerservice/allNotice${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a>
+									</li>
+								</c:if>
+
+							</ul>
+						</nav>
+					</div>
+
+				</div>
+				<button class="btn mb-1 btn-primary" id="insertBtn" type="button" style="float: right">글쓰기</button>	
 			</div>
+					
 		</div>
+		
+	</div>
 <%@ include file="../footer.jsp"%>
 </body>
 </html>
