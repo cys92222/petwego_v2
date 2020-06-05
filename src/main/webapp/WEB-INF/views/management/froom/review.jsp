@@ -28,20 +28,17 @@
 			var del_btn = $("<td></td>").append(btn);
 			
 			var tr = $("<tr></tr>").append(r_no, review_content, facility_no, user_id, del_btn);
-
+			
 			$("#review_list").append(tr);
+
+			
 
 			$(del_btn).on("click",function(){
 				var chk = confirm("리뷰를 삭제할까요?");
-				var data = {r_no:r.r_no};
 				if(chk == true){
-				$.ajax("/management/froom/deleteReview",{data:data,function(){
-					window.location.reload(true)
-
-				}});
+					self.location = "/management/froom/deleteReview?r_no="+r.r_no;
 					}
-			
-			});
+				});
 	    });
 
 				
@@ -56,7 +53,7 @@
 // 				alert("게시글을 삭제했습니다!");
 // 			}
 // 		 })
-	    });
+// 	    });
 		
 	})
 </script>
@@ -77,7 +74,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;">
+					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;" >
 						<thead>
 							<tr>
 								<th>리뷰번호</th>
@@ -87,8 +84,7 @@
 								<th>비고</th>																							
 							</tr>
 						</thead>
-						<tbody id="review_list">
-						</tbody>
+						
 						<tfoot>
 							<tr>
 								<th>리뷰번호</th>
@@ -98,7 +94,8 @@
 								<th>비고</th>								
 							</tr>
 						</tfoot>
-					
+					<tbody id="review_list">
+					</tbody>
 					</table>
 				</div>
 			</div>
