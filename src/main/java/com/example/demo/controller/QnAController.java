@@ -78,6 +78,7 @@ public class QnAController {
 		
 		Gson gson = new Gson();
 		mav.addObject("list", gson.toJson(service.allQnAList(scri)));
+		mav.addObject("list2", service.allQnAList(scri));
 //		System.out.println("list" + service.allQnAList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
