@@ -6,6 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style type="text/css">
+	{ % load static % }
+	.p {
+		text-align: center;
+	}
+
+</style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.25.0/moment.min.js"></script>
@@ -68,7 +75,8 @@
 //             alert("게시글이 삭제되었습니다.")
             }
          });
-         
+
+     
          // 댓글작성버튼을 누르면!
          $("#pcomment").click(function(){
             var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
@@ -78,9 +86,11 @@
                pcommSubmit.submit();
             }
          });   
-               
+
+       
+    	  
          //댓글 목록
-         $.ajax("/pcomment/plistComment",{type:"GET",data:{photo_no:'${file.photo_no}'},success:function(comm){
+         $.ajax("/pcomment/plistComment",{type:"GET",data:data/*, photo_no:'${file.photo_no}'*/,success:function(comm){
             comm = JSON.parse(comm);
             $.each(comm, function(idx,c){                  
                var tr = $("<tr></tr>");
@@ -107,7 +117,7 @@
                })
             })
          }});
-
+       
       //팔로우하기
       $("#follow").click(function(){
          var follow_user_id = $("#follow_user_id").val();
@@ -159,20 +169,23 @@
 								<div class="table-responsive">
 									<table class="table header-border">
 										<tbody>
+										    <tr>
+												<td><img class="p" width="400" height="400" src="/img/${file.photo_file_name}" style="margin-left: auto; margin-right: auto; display: block;"/></td>
+												<td></td>
+												<td></td>
+											</tr>
 											<tr>
-												<td>사진번호&nbsp;:&nbsp;&nbsp;&nbsp;${Board.photo_no }</td> 
-
 												<td>
 											            <img id="like" src="/img/like.png" width="50" height="50">
 											            <img id="clickLike" src="/img/clickLike.png" width="50" height="50">
-											             <c:out value="<p id='cntLike'>${Board.cntLike }</p>" escapeXml="false"/> 
+											             <c:out value="<p id='cntLike'>좋아요&nbsp; ${Board.cntLike }개</p>" escapeXml="false"/>
 											     </td>
-												 <td></td>
+<!-- 												 <td></td> -->
+<!-- 												 <td></td> -->
+<!-- 											</tr> -->
+<!-- 											<tr> -->
 												
-											</tr>
-											<tr>
 												
-												<td>작성자&nbsp;:&nbsp;&nbsp;&nbsp;${Board.user_id} &nbsp;|&nbsp; 팔로워수 : ${search_follow_count } 명</td>
 												<input type="hidden" value="${Board.user_id}" id="follow_user_id" readonly="readonly"/>
 												<td>
 												<c:if test="${follow_chk ==0 }">
@@ -236,17 +249,15 @@
 										      </td>
 										      <td></td>
 											</tr>
+											
 											<tr>
-												<td><img width="200" height="200" src="/img/${file.photo_file_name}"/></td>
+												<td><b>${Board.user_id}</b> &nbsp;&nbsp; (팔로워 : ${search_follow_count } 명)
+												<br><br><div>${Board.photo_detail }</div>
+												</td>
 												<td></td>
 												<td></td>
 											</tr>
-											<tr>
-												<td>내용&nbsp;:<br><br> <div>${Board.photo_detail }</div></td>
-												<td></td>
-												<td></td>
-											</tr>
-										
+											
 										</tbody>
 									</table>
 								</div>
@@ -267,7 +278,7 @@
 				<div class="card-body">
 					<div class="basic-form">
 						<!-- 댓글입력 -->
-						<form name="pcommentForm" method="post">
+						<form name="pcommentForm" method="post" id="pcommentForm">
 							<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 							<input type="hidden" id="photo_no" name="photo_no" value="${Board.photo_no}">
 <!-- 							<div class="col-lg-3"> -->
@@ -292,14 +303,14 @@
 					<table id="pcomm_list" class="table table-striped">
 					</table>
 				</div>
-				</div>
+			  </div>
 			</div>
-		</div>
-		</div>
+		  </div>
+	  </div>
 	</div>
    
    
-   
+   <%@include file="../footer.jsp"%> 
 </body>
-<%@include file="../footer.jsp"%> 
+
 </html>

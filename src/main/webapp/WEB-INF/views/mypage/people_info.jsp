@@ -19,7 +19,7 @@
       		padding: 0.7rem;
       }
       .card .card-body {
-      		padding: 5rem 7rem;
+      		padding: 3rem 7rem;
       }
       
       .col-form-label {
@@ -35,19 +35,19 @@
             <div class="row page-titles mx-0">
                 <div class="col p-md-0">
                     <ol class="breadcrumb">
-                         <li class="breadcrumb-item"><a href="javascript:void(0)">마이페이지</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">수정하기</a></li>
+                         <li class="breadcrumb-item"><a href="/mypage/mypage">마이페이지</a></li>
+                        <li class="breadcrumb-item active"><a href="/mypage/people_info_up_form?user_id=${login_id }">수정하기</a></li>
                     </ol>
                 </div>
             </div>
             <!-- row -->
 			
             <div class="container-fluid">
-              <h4>회원정보 수정</h4>
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+                              <h4>회원정보 수정</h4><br>
                                 <div class="form-validation">
                                     <form class="form-valide" action="/mypage/people_info_up" method="post" novalidate="novalidate" id="updateForm" enctype="multipart/form-data">
                                        <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/> 

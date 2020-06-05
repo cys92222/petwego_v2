@@ -134,6 +134,7 @@
 
 						<!-- 로그인 안했을 때 -->
 						<sec:authorize access="isAnonymous()">
+						<a href="/login/login" style="float: left; padding-top: 12px;">로그인</a>
 							<li class="icons dropdown">
 								<div class="user-img c-pointer position-relative"
 									data-toggle="dropdown">
@@ -156,6 +157,10 @@
 
 						<!-- 로그인 했을 때 -->
 						<sec:authorize access="isAuthenticated()">
+							
+							<p style="float: left; padding-top:12px;"><sec:authentication property="principal.user_id"/></p>
+							<a style="float: left; padding-top:12px;" href="/login/logout">&nbsp;&nbsp;로그아웃</a>&nbsp;
+							
 							<li class="icons dropdown">
 								<div class="user-img c-pointer position-relative"
 									data-toggle="dropdown">
@@ -176,7 +181,7 @@
 
 										</c:otherwise>
 									</c:choose>
-
+								    
 								</div>
 								<div
 									class="drop-down dropdown-profile animated fadeIn dropdown-menu">
