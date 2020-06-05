@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.example.demo.service.ManagerPageService;
 
 import com.example.demo.vo.ReviewVo;
+import com.google.gson.Gson;
 
 
 @Controller
@@ -23,14 +24,18 @@ public class M_FacilityController {
 	
 	// 숙소 리뷰 삭제 
 	@GetMapping(value = "/froom/deleteReview")
-	public String deleteReview(ReviewVo re, int r_no) {
+	public String deleteReview(ReviewVo re) {
 		mp_service.deleteReview(re);
-		return "redirect:/management/froom/review?r_no=" + r_no;
+		return "redirect:/management/froom/review";
 	}
 	
 	// 숙소 리뷰 목록 
 	@GetMapping("/froom/review")
 	public void f_review(Model model) {
+		Gson gson = new Gson();
+		gson.toJson(mp_service.f_review());
+		model.addAttribute("arr", gson.toJson(mp_service.f_review()));
+		
 		model.addAttribute("reviewList", mp_service.f_review());
 	}
 	
