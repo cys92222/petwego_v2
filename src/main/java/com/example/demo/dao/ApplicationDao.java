@@ -12,7 +12,7 @@ public interface ApplicationDao {
 	public int deleteApplication(ApplicationVo av);
 	
 	public int checkApplication(ApplicationVo av);
-	 
+		 
 	//신청자 목록
 	public List<ApplicationVo> userApplication(int t_num) throws Exception;
 }

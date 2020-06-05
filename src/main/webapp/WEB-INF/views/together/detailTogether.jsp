@@ -222,7 +222,7 @@ $(document).ready(function(){
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-primary"
 										data-toggle="modal" data-target="#exampleModalLong"
-										style="background-color: #4AD4C7; border: none; float: right; width: 100%;">참가자
+										style="border: none; float: right; width: 100%;">참가자
 										보기</button>
 									<!-- Modal -->
 									<div class="modal fade" id="exampleModalLong">
@@ -243,8 +243,11 @@ $(document).ready(function(){
 																<tr>
 																	<td>현재 참여자</td>
 																</tr>
+																<tr>
+																	<td>${detailTogether.user_id }</td>
+																</tr>
 																<c:forEach var="userList" items="${userList}"
-																	varStatus="status">
+																	varStatus="status">	
 																	<tr>
 																		<td>${userList.user_id}</td>
 																	</tr>
@@ -263,19 +266,18 @@ $(document).ready(function(){
 									</div>
 									
 									
-									<c:set var="login_id" value="${login_id }" />
-									<!-- 									함께가요 원본글 작성자 -->
+									<c:set var="login_id" value="${login_id }" />								 
 									<c:set var="dt_user_id" value="${detailTogether.user_id }" />
 
 									<c:if
-										test="${user_id ne login_id || login_id ne dt_user_id || user_id ne login_id}">
+ 										test="${login_id ne dt_user_id}">
 										<button id="Application" class="btn btn-primary" type="button"
-											style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px; float: right;">신청하기</button>
-										<button id="clickApplication" class="btn btn-primary"
-											style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청취소</button>
+											style="width: 100%; border: 0; margin-top: 5px; float: right;">신청하기</button>
+ 										<button id="clickApplication" class="btn btn-primary"
+ 											style="width: 100%; border: 0; margin-top: 5px;">신청취소</button>
 										<c:out
 											value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
-											escapeXml="false" />
+ 											escapeXml="false" />
 									</c:if>
 
 								</div>
