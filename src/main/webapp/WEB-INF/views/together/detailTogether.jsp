@@ -243,9 +243,6 @@ $(document).ready(function(){
 																<tr>
 																	<td>현재 참여자</td>
 																</tr>
-																<tr>
-																	<td>${detailTogether.user_id }</td>
-																</tr>
 																<c:forEach var="userList" items="${userList}"
 																	varStatus="status">	
 																	<tr>
