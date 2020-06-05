@@ -9,7 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/mypage/mypage">마이페이지 | 내가 쓴 함께가요 글</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<h4>함께가요 작성글</h4>
 <div class="row">

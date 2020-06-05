@@ -68,6 +68,14 @@ $(function(){
 <title>Insert title here</title>
 </head>
 <body>
+<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/customerservice/List">QnA게시판 | 문의하기</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12">

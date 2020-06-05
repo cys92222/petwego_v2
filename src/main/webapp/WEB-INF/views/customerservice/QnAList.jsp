@@ -63,14 +63,13 @@ $(function(){
 </head>
 <body>
 <div class="row page-titles mx-0">
-			<div class="col p-md-0">
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="javascript:void(0)">QnA게시판</a></li>
-					<li class="breadcrumb-item active"><a
-						href="javascript:void(0)">메인</a></li>
-				</ol>
-			</div>
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/customerservice/List">QnA게시판 | 목록</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
 		</div>
+	</div>
 		<!-- row -->
 		<div class="container-fluid">
 			<div class="row">

@@ -9,6 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/mypage/mypage">마이페이지 | 내가 쓴 SNS 글</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
 <div class="container-fluid">
 <h4>SNS 작성글</h4>
 

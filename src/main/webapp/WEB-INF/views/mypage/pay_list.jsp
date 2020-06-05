@@ -21,7 +21,15 @@ $(function(){
 
 
  </script>
- <body>         
+ <body>        
+ <div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/mypage/mypage">마이페이지 | 나의 결제 내역</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div> 
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">

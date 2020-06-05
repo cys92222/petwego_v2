@@ -59,7 +59,14 @@
 </script>
 </head>
 <body>
-
+<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/mypage/mypage">마이페이지 | 메인</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
 	<div class="card-body">
 	<c:if test="${search_insert_board_alarm_count>0 or search_insert_together_count>0 or search_cancle_together_count>0}">
 		<h4 class="card-title"><span class="label label-success">신규알림</span></h4>
