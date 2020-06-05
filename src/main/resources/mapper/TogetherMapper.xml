@@ -124,7 +124,7 @@
 
 	<insert id="writeTogether">
 		insert into together(t_num,t_title,t_intro,t_detail,t_open_date,t_place,t_date,t_size,t_attendee_cnt,t_fname,user_id,t_hit,thumbnail)
-		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,#{t_place},#{t_date},#{t_size},1,#{t_fname},#{user_id},0,#{thumbnail})
+		values (seq_together.nextval,#{t_title},#{t_intro},#{t_detail},sysdate,#{t_place},#{t_date},#{t_size},0,#{t_fname},#{user_id},0,#{thumbnail})
 	</insert>
 
 	

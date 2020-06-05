@@ -33,4 +33,6 @@ public interface TogetherService {
 	//함께가요 원본글 작성자 id
 	String select_together_id(int t_num);
 	
+	public Integer last_no();
+	
 }

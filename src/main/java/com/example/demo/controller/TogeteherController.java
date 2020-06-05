@@ -205,6 +205,10 @@ public class TogeteherController {
 		}
 		
 	}
+	ApplicationVo av = new ApplicationVo();
+	av.setUser_id(togetherVo.getUser_id());
+	av.setT_num(service.last_no());
+	Aservice.insertApplication(av);
 	
 	return "redirect:/together/listTogether";
 }

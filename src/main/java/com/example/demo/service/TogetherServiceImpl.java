@@ -75,6 +75,13 @@ public class TogetherServiceImpl implements TogetherService {
 		str = dao.select_together_id(t_num);
 		return str;
 	}
+
+	@Override
+	public Integer last_no() {
+		// TODO Auto-generated method stub
+		Integer re = dao.last_no();
+		return re;
+	}
 	
 	
 }
