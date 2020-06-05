@@ -193,9 +193,9 @@ $(function(){
 									<textarea name="board_content" id="summernote" class="form-control h-150px" rows="6"></textarea>
 								</div>
 								<div style="text-align: center;">
-									<button type="submit" id="save" class="btn mb-1 btn-success">등록</button>
+									<button type="submit" id="save" class="btn mb-1 btn-primary">등록</button>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<button type="reset" class="btn mb-1 btn-warning">취소</button>
+									<button type="reset" class="btn mb-1 btn-secondary">취소</button>
 								</div>
 							</form>
 						</div>

@@ -13,9 +13,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="../../summernote/js/summernote-lite.js"></script>
-<script src="../../summernote/js/lang/summernote-ko-KR.js"></script>
-<link rel="stylesheet" href="../../summernote/css/summernote-lite.css">
+<script src="/resources/summernote/js/summernote-lite.js"></script>
+<script src="/resources/summernote/js/lang/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="/resources/summernote/css/summernote-lite.css">
 <script type="text/javascript">
 $(function(){
 

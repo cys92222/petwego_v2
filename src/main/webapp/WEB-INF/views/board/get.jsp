@@ -151,7 +151,7 @@ $(function(){
 							댓글 내용 :
 							<textarea name="comm_cont" class="form-control h-150px" rows="6"></textarea>
 							<br>
-							<button type="submit" id="comment" class="btn mb-1 btn-success">댓글 등록</button>
+							<button type="submit" id="comment" class="btn mb-1 btn-primary">댓글 등록</button>
 							
 						</form>
 					</div>
