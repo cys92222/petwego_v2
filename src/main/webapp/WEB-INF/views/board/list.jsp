@@ -62,7 +62,7 @@
 					<div class="basic-form" style="float: left;">
 						<form>
 							<div class="form-group">
-								<input type="text" class="form-control input-flat" name="keyword" id="keywordInput" value="${scri.keyword}"
+								<input type="text" class="form-control input-flat mr-2" name="keyword" id="keywordInput" value="${scri.keyword}"
 								 	style="width: 300px; margin-left: 5px;" />
 							</div>
 						</form>
@@ -78,7 +78,7 @@
 											});
 							});
 					</script>
-					<div class="table-responsive">
+					<div class="table-responsive mb-3">
 						<table class="table table-hover" id="free" style="text-align: center;">
 							<thead>
 								<tr>
