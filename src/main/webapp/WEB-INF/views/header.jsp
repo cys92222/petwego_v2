@@ -191,7 +191,7 @@
 
 											<sec:authorize access="hasRole('ROLE_ADMIN')">
 												<li><a href="<c:url value='/management/manager_main'/>"><i
-														class="icon-user"></i> <span>관리자페이지</span></a></li>
+														class="fas fa-unlock-alt"></i> <span>관리자페이지</span></a></li>
 											</sec:authorize>
 
 											<li><a href="/login/logout"><i class="icon-key"></i>
