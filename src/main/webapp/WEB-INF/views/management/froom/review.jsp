@@ -17,7 +17,7 @@
 	    } );
 
 
-	    
+	     
 		
 	    // 리뷰 삭제 alert
 // 	    $("#deleteR").click(function(){
