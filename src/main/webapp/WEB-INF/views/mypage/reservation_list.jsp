@@ -78,7 +78,7 @@ $(function(){
                                                 <c:choose>
                                                 
                                                 <c:when test="${rl.rsv_paid eq '결제대기' }">
-										<td>
+										<td style="text-align: center;">
 										<a href="/facility/reservationpay?rsv_no=${rl.rsv_no }&user_id=${rl.user_id }&rsv_price=${rl.rsv_price }&rsv_date=${rl.rsv_date }&check_in=${rl.check_in }&check_out=${rl.check_out }&human_num=${rl.human_num}&pet_num=${rl.pet_num }&rm_no=${rl.rm_no }&rsv_paid=${rl.rsv_paid}&guest_name=${rl.guest_name }&guest_tel=${rl.guest_tel }" class="btn btn-danger btn-circle btn-sm"  onclick="return confirm('결제하겠습니까?');">
                    							결제하기
                   							</a>
@@ -87,7 +87,7 @@ $(function(){
 										
 										
 										<c:otherwise>
-										<td><button type="submit" id="save" class="btn mb-1 btn-primary">결제완료</button></td>
+										<td style="text-align: center;"><button type="submit" id="save" class="btn btn-primary btn-circle btn-sm">결제완료</button></td>
 										</c:otherwise>
 										
 										</c:choose>
