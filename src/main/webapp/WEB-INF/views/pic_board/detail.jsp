@@ -188,11 +188,12 @@
 										   <div class="row align-items-center justify-content-between d-flex">
                                               <div class="align-items-center d-flex">
                                                  <i class="fa fa-user-circle text-primary fa-3x ml-3 mr-2"></i>
-													
-													<sec:authentication property="principal.fname" var="fname" />
+												<!-- fname: 사용자의 프로필사진 -->
+												<sec:authentication property="principal.fname" var="fname" /> 
                                                    <div class="d-flex flex-column">
                                                      <span class="text-dark">${followList.user_id2 }</span>
-                                                       <span class="text-muted small">dobby is free</span>
+                                                      <!-- intro : 사용자의 자기소개 -->
+                                                       <span class="text-muted small"><sec:authentication property="principal.intro"/></span>
                                                          </div>
                                                            </div>
                                                             <button type="button" class="btn-sm mb-1 btn-danger small mr-2" id="delete_follow">
