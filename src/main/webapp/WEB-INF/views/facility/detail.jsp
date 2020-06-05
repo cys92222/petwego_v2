@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@include file="../header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PETWEGO | 숙소</title>
-    <script type="text/javascript"
-                    src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10eed821bdf522662f857166aa9069bc&libraries=services"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<!-- <script src="https://unpkg.com/sweetalert/dis/sweetalert.min.js"></script> -->
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>PETWEGO | 숙소</title>
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10eed821bdf522662f857166aa9069bc&libraries=services"></script>
+<script type="text/javascript"
+	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<!-- <script src="https://unpkg.com/sweetalert/dis/sweetalert.min.js"></script> -->
 <script type="text/javascript">
 // URL paramter 가져오기
 $(function(){
@@ -268,575 +269,517 @@ $(function(){
     
 }); // end-of
 </script>
-    <!--Font awesome CDN-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
-    <style type="text/css">
-                 /* Rating Star Widgets Style */
-               .rating-stars ul {
-                         list-style-type: none;
-                         padding: 0;
+<!--Font awesome CDN-->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<style type="text/css">
+/* Rating Star Widgets Style */
+.rating-stars ul {
+	list-style-type: none;
+	padding: 0;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
 
-                         -moz-user-select: none;
-                         -webkit-user-select: none;
-               }
+.rating-stars ul>li.star {
+	display: inline-block;
+}
 
-               .rating-stars ul>li.star {
-                         display: inline-block;
+/* Idle State of the stars */
+.rating-stars ul>li.star>i.fa {
+	font-size: 2.3em;
+	/* Change the size of the stars */
+	color: #ccc;
+	/* Color on idle state */
+}
 
-               }
+/* Hover state of the stars */
+.rating-stars ul>li.star.hover>i.fa {
+	color: #FFCC36;
+}
 
-               /* Idle State of the stars */
-               .rating-stars ul>li.star>i.fa {
-                         font-size: 2.3em;
-                         /* Change the size of the stars */
-                         color: #ccc;
-                         /* Color on idle state */
-               }
+/* Selected state of the stars */
+.rating-stars ul>li.star.selected>i.fa {
+	color: #FF912C;
+}
 
-               /* Hover state of the stars */
-               .rating-stars ul>li.star.hover>i.fa {
-                         color: #FFCC36;
-               }
-               
-               /* Selected state of the stars */
-               .rating-stars ul>li.star.selected>i.fa {
-                         color: #FF912C;
-               }
-               .success-box {
-				  margin:50px 0;
-				  padding:10px 10px;
-				  border:1px solid #eee;
-				  background:#f9f9f9;
-				}
-				
-				.success-box img {
-				  margin-right:10px;
-				  display:inline-block;
-				  vertical-align:top;
-				}
-				
-				.success-box > div {
-				  vertical-align:top;
-				  display:inline-block;
-				  color:#888;
-				}
-    </style>
+.success-box {
+	margin: 50px 0;
+	padding: 10px 10px;
+	border: 1px solid #eee;
+	background: #f9f9f9;
+}
+
+.success-box img {
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.success-box>div {
+	vertical-align: top;
+	display: inline-block;
+	color: #888;
+}
+</style>
 </head>
 
 <body>
 
 
-          <div class="container-fluid mt-3">
-				<!-- upper form start -->
-<div class="row">
-                        <div class="col-lg-12">
-                            <div class="card">
-                                <div class="card-body">
-          
-                                   <div class="basic-form">
-                                       <form id="searchForm">
-											<div class="form-row">
-											      <div class="col-lg-3 col-md-12 col-sm-12 mb-3">
-											           <input id="facility_addrF" type="text" class="form-control input-default" placeholder="어디로 가시나요?">
-											      </div>
-											      <div class="col-lg-2 col-md-12 col-sm-12 mb-3">
-														<input id="check_inF" type="date" class="form-control input-default">
-											      </div>
-											          <div class="col-lg-2 col-md-12 col-sm-12 mb-3">
-											<input id="check_outF" type="date" class="form-control input-default">
-											      </div>
-                                 
-                                                      <div class="col-lg-2 col-md-12 col-sm-12 mb-3">
-                                                                <!-- <label>State</label> -->
-                                                                <select id="human_numF" class="form-control input-default">
-                                                                          <!-- <option selected="selected">
+	<div class="container-fluid mt-3">
+		<!-- upper form start -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+
+						<div class="basic-form">
+							<form id="searchForm">
+								<div class="form-row">
+									<div class="col-lg-3 col-md-12 col-sm-12 mb-3">
+										<input id="facility_addrF" type="text"
+											class="form-control input-default" placeholder="어디로 가시나요?">
+									</div>
+									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
+										<input id="check_inF" type="date" class="form-control input-default">
+									</div>
+									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
+										<input id="check_outF" type="date" class="form-control input-default">
+									</div>
+
+									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
+										<!-- <label>State</label> -->
+										<select id="human_numF" class="form-control input-default">
+											<!-- <option selected="selected">
                                                                                     인원수
                                                                           </option> -->
-                                                                          <option value="1">1명
-                                                                          </option>
-                                                                          <option value="2">2명
-                                                                          </option>
-                                                                          <option value="3">3명
-                                                                          </option>
-                                                                          <option value="4">4명</option>
-                                                                          <option value="5">5명</option>
-                                                                          <option value="6">6명</option>
-                                                                          <option value="7">7명</option>
-                                                                          <option value="8">8명</option>
-                                                                          <option value="9">9명+</option>
-          
-                                                                </select>
-                                                      </div>
-                                                      <div class="col-lg-2 col-md-12 col-sm-12 mb-3">
-                                                                <!-- <label>State</label> -->
-                                                                <select id="pet_numF" class="form-control input-default">
-                                                                          <!-- <option selected="selected">
+											<option value="1">1명</option>
+											<option value="2">2명</option>
+											<option value="3">3명</option>
+											<option value="4">4명</option>
+											<option value="5">5명</option>
+											<option value="6">6명</option>
+											<option value="7">7명</option>
+											<option value="8">8명</option>
+											<option value="9">9명+</option>
+
+										</select>
+									</div>
+									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
+										<!-- <label>State</label> -->
+										<select id="pet_numF" class="form-control input-default">
+											<!-- <option selected="selected">
                                                                                     동물수
                                                                           </option> -->
-                                                                          <option value="1">1마리
-                                                                          </option>
-                                                                          <option value="2">2마리
-                                                                          </option>
-                                                                          <option value="3">3마리
-                                                                          </option>
-                                                                          <option value="4">4마리
-                                                                          </option>
-                                                                          <option value="5">5마리
-                                                                          </option>
-                                                                          <option value="6">6마리
-                                                                          </option>
-                                                                </select>
-                                                      </div>
-                                                      <button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
-                                            </div>                         
-                                       </form>
-                                   </div>
-                                </div>
-                            </div>
-                        </div><!--  col end -->
-          			</div>
+											<option value="1">1마리</option>
+											<option value="2">2마리</option>
+											<option value="3">3마리</option>
+											<option value="4">4마리</option>
+											<option value="5">5마리</option>
+											<option value="6">6마리</option>
+										</select>
+									</div>
+									<button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--  col end -->
+		</div>
+
+
+		<!-- upper form end  -->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-body">
+						<c:set var="f" value="${getFacility}"></c:set>
+						<div class="d-flex mb-5 justify-content-between">
+							<div class="mb-5 mr-5">
+								<h4 id="facility_area" class="mb-1">${fn:substring(f.facility_addr,0,2)}</h4>
+								<h3 id="facility_name" class="m-0 text-muted font-weight-light">${f.facility_name}</h3>
+
+								<p id="facility_addr" class="mt-3">
+									<i class="fa fa-map-marker-alt text-primary"></i>
+									${f.facility_addr}
+								</p>
 
 
 
+							</div>
+							<div class="row mb-5">
+
+								<div class="col">
+									<div class="card card-profile text-center px-3">
+										<span class="mb-1 text-primary"><i
+											class="far fa-clock-o"></i></span>
+										<h3 class="mb-0">15:00</h3>
+										<p class="text-muted">체크인</p>
+									</div>
+								</div>
+								<div class="col">
+									<div class="card card-profile text-center px-3">
+										<span class="mb-1 text-warning"><i
+											class="far fa-clock-o"></i></span>
+										<h3 class="mb-0">12:00</h3>
+										<p class="text-muted">체크아웃</p>
+									</div>
+								</div>
+
+							</div>
+							<div id="map" class="ml-5" style="width: 500px; height: 200px;"></div>
+						</div>
 
 
+						<div>
+							<div class="table-responsive">
+								<table class="table table-xs mb-0">
+									<thead>
+										<tr>
+											<th>객실정보</th>
 
-				<!-- upper form end  -->
+											<th>조건</th>
 
-                    <div class="row">
-                              <div class="col-lg-12">
-                                        <div class="card">
-                                                  <div class="card-body">
-                                                            <c:set var="f" value="${getFacility}"></c:set>
-                                                            <div class="d-flex mb-5 justify-content-between">
-	                                                            <div class="mb-5 mr-5">
-	                                                                      <h4 id="facility_area" class="mb-1">${fn:substring(f.facility_addr,0,2)}</h4>
-	                                                                      <h3 id="facility_name" class="m-0 text-muted font-weight-light">${f.facility_name}</h3>
-	
-	                                                                      <p id="facility_addr" class="mt-3"><i class="fa fa-map-marker-alt text-primary"></i>
-	                                                                                ${f.facility_addr}</p>
-	                                                                                
-	                                                                      
-	
-	                                                            </div>
-	                                                            <div class="row mb-5">
-								                                  
-								                                     <div class="col">
-								                                        <div class="card card-profile text-center px-3">
-								                                            <span class="mb-1 text-primary"><i class="far fa-clock-o"></i></span>
-								                                            <h3 class="mb-0">15:00</h3>
-								                                            <p class="text-muted">체크인</p>
-								                                        </div>
-								                                    </div>
-								                                    <div class="col">
-								                                        <div class="card card-profile text-center px-3">
-								                                            <span class="mb-1 text-warning"><i class="far fa-clock-o"></i></span>
-								                                            <h3 class="mb-0">12:00</h3>
-								                                            <p class="text-muted">체크아웃</p>
-								                                        </div>
-								                                    </div>
-								                                    
-								                                </div>
-	                                                            <div id="map" class="ml-5" style="width:500px;height:200px;"></div> 
-                                                             </div>
-                                                             
-                                                             
-                                                             
-                                                             
-                                                             
-                                                             
-                                                            <div>
-                                                                      <div class="table-responsive">
-                                                                                <table class="table table-xs mb-0">
-                                                                                          <thead>
-                                                                                                    <tr>
-                                                                                                              <th>객실정보
-                                                                                                              </th>
+											<th>예약가능여부</th>
+											<th class="text-right">1박총요금(부가세/봉사료 포함)</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="r" items="${listRoom}">
+											<tr>
+												<td class="d-flex align-items-center">
+													<input type="hidden" id="rm_no_asd" value="${r.rm_no}"> 
+													<img src="${r.rm_pic}" class="mr-3" height="94" width="168">
+													<div class="media-body">
+														<h5 id="rm_name">${r.rm_name}</h5>
+														<p class="mb-0">${r.rm_info}</p>
+													</div>
+												</td>
 
-                                                                                                              <th>조건
-                                                                                                              </th>
+												<td><span>${r.rm_max}</span></td>
 
-                                                                                                              <th>예약가능여부
-                                                                                                              </th>
-                                                                                                              <th
-                                                                                                                        class="text-right">
-                                                                                                                        1박총요금(부가세/봉사료
-                                                                                                                        포함)
-                                                                                                              </th>
-                                                                                                    </tr>
-                                                                                          </thead>
-                                                                                          <tbody>
-                                                                                                    <c:forEach var="r" items="${listRoom}"> 
-                                                                                                    <tr>
-                                                                                                              <td
-                                                                                                                        class="d-flex align-items-center">
-                                                                                                                        <input type="hidden" id="rm_no_asd" value="${r.rm_no}">
-                                                                                                                        <img src="${r.rm_pic}"
-                                                                                                                                  class="mr-3"
-                                                                                                                                  height="94"
-                                                                                                                                  width="168">
-                                                                                                                        <div
-                                                                                                                                  class="media-body">
-                                                                                                                                  <h5 id="rm_name">${r.rm_name}
-                                                                                                                                  </h5>
-                                                                                                                                  <p
-                                                                                                                                            class="mb-0">
-                                                                                                                                            ${r.rm_info}
-                                                                                                                                  </p>
-                                                                                                                        </div>
-                                                                                                              </td>
+												<td><i class="fa fa-circle text-success  mr-2"></i>예약가능
+												</td>
+												
+												<td class="text-right">
+													<h4 id="rm_cost" class="font-weight-light my-4">
+														<i class="fa fa-won"></i> ${r.rm_cost}
+													</h4> <!-- reserveModal start -->
+													<div class="bootstrap-modal">
+														<a id="reserveBtn${r.rm_no }" href="#"
+															class="label gradient-1 text-white" data-toggle="modal"
+															data-target=".bd-example-modal-lg"><i
+															class="fa fa-check"></i> 지금 바로 예약 </a>
 
-                                                                                                              <td>
-                                                                                                                        <span>${r.rm_max}</span>
-                                                                                                              </td>
+														<div id="reserveModal"
+															class="modal fade bd-example-modal-lg" tabindex="-1"
+															role="dialog" style="display: none;" aria-hidden="true">
+															<div class="modal-dialog modal-lg">
+																<div class="modal-content text-left">
 
-                                                                                                              <td><i class="fa fa-circle text-success  mr-2"></i>예약가능
-                                                                                                              </td>
-                                                                                                              <td
-                                                                                                                        class="text-right">
-                                                                                                                        <h4 id="rm_cost"
-                                                                                                                                  class="font-weight-light my-4">
-                                                                                                                                  <i
-                                                                                                                                            class="fa fa-won"></i>
-                                                                                                                                            ${r.rm_cost}
-                                                                                                                        </h4>
-                                                                                                                       
-<!-- reserveModal start -->
-          <div class="bootstrap-modal">
-                    <a id="reserveBtn${r.rm_no }" href="#" class="label gradient-1 text-white" data-toggle="modal"
-                              data-target=".bd-example-modal-lg"><i class="fa fa-check"></i>
-                              
-                              지금
-                              바로
-                              예약
-                              
-                              </a>
+																	<div class="modal-body my-3">
+																		<div class="col-lg-12">
+																			<div class="card">
+																				<div class="card-body">
+																					<h3 class="mb-4">예약 정보</h3>
+																					<div class="basic-form">
+																						<form name="reserveForm">
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>체크인</label> 
+																									<input name="check_in" type="date" class="form-control">
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>체크아웃</label> 
+																									<input name="check_out" type="date" class="form-control">
+																								</div>
+																							</div>
+																							<div class="form-group">
+																								<label>숙박기간</label> 
+																								<input name="nights" type="number" class="form-control">
+																							</div>
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>호텔/지역</label> 
+																									<input name="facility_info" type="text" class="form-control">
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>객실명</label>
+																									<input name="rm_no" type="hidden"> <input name="rm_name" type="text" class="form-control">
+																								</div>
+																							</div>
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>객실수</label> 
+																									<input name="rm_opt" type="number" class="form-control" readonly="readonly">
 
-                    <div id="reserveModal" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" style="display: none;"
-                              aria-hidden="true">
-                              <div class="modal-dialog modal-lg">
-                                        <div class="modal-content text-left">
-                                                  
-                                                  <div class="modal-body my-3">
-                                                            <div class="col-lg-12">
-                                                                      <div class="card">
-                                                                          <div class="card-body">
-                                                                              <h3 class="mb-4">예약 정보</h3>
-                                                                              <div class="basic-form">
-                                                                                  <form name="reserveForm">
-                                                                                      <div class="form-row">
-                                                                                          <div class="form-group col-md-6">
-                                                                                              <label>체크인</label>
-                                                                                              <input name="check_in" type="date" class="form-control">
-                                                                                          </div>
-                                                                                          <div class="form-group col-md-6">
-                                                                                              <label>체크아웃</label>
-                                                                                              <input name="check_out" type="date" class="form-control">
-                                                                                          </div>
-                                                                                      </div>
-                                                                                      <div class="form-group">
-                                                                                          <label>숙박기간</label>
-                                                                                          <input name="nights" type="number" class="form-control">
-                                                                                      </div>
-                                                                                      <div class="form-row">
-										                                                  <div class="form-group col-md-6">
-										                                                      <label>호텔/지역</label>
-										                                                      <input name="facility_info" type="text" class="form-control">
-										                                                  </div>
-										                                                  <div class="form-group col-md-6">
-										                                                      <label>객실명</label>
-										                                                      <input name="rm_no" type="hidden">
-										                                                      <input name="rm_name" type="text" class="form-control">
-										                                                  </div>
-	                                              </div><div class="form-row">
-	                                                  <div class="form-group col-md-6">
-	                                                      <label>객실수</label>
-	                                                      <input name="rm_opt" type="number" class="form-control" readonly="readonly">
-	                                              
-	                                                  </div>
-                                                  <div class="form-group col-md-6">
-                                                      <label>1박당 가격</label>
-                                                      <input name="rm_cost" type="number" class="form-control" readonly="readonly">
-                                                  </div>
-                                              </div>
-                                              <div class="form-row">
-                                                  <div class="form-group col-md-6">
-                                                      <label>인원수</label>
-                                                      <input name="human_num" type="number" class="form-control">
-                                              
-                                                  </div>
-                                                  <div class="form-group col-md-6">
-                                                      <label>동반 반려동물수</label>
-                                                      <input name="pet_num" type="number" class="form-control">
-                                                  </div>
-                                              </div>                               
-                                              		         
-                                                                                      <div class="form-row">
-                                                                                      
-                                                                                          <div class="form-group col-md-6">
-                                                                                              <label>아이디</label>                                                                                     
-                                                                                              <input name="user_id" type="text" value="${my.user_id}" class="form-control">
-                                                                                          </div>
-                                                                                              <div class="form-group col-md-6">
-                                                                                              <label>예약자 이름</label>
-                                                                                              <input name="name" type="text" value="${my.name }" class="form-control">
-                                                                                          </div>
-                                                                                          
-                                                                                          
-                                                                                      </div>
-                                                  
-                                                  <div class="form-row">
-                                                                                          <div class="form-group col-md-6">
-                                                                                              <label>이메일</label>
-                                                                                              <input name="email" type="text" value="${my.email }" class="form-control">
-                                                                                          </div>
-                                                                                              <div class="form-group col-md-6">
-                                                                                              <label>연락처</label>
-                                                                                              <input name="tel" type="text" value="${my.tel }" class="form-control">
-                                                                                          </div>
-                                                                                          
-                                                                                          
-                                                                                      </div>
-                                                                                      <h3 class="my-4">투숙객 정보</h3>
-                                                                                      <div class="form-row">
-                                                                                          <div class="form-group col-md-6">
-                                                                                              <label>이름</label>
-                                                                                              <input name="guest_name" type="text" class="form-control">
-                                                                                          </div>
-                                                                                              <div class="form-group col-md-6">
-                                                                                              <label>연락처</label>
-                                                                                              <input name="guest_tel" type="text" class="form-control">
-                                                                                          </div>
-                                                                                          
-                                                                                          
-                                                                                      </div>
-                                                                                      <h3 class="my-4">예약내역 확인</h3>
-                                                                                      <div class="form-row">
-                                                                                          <div class="form-group col-md-6">
-                                                                                              <label>총예약금액</label>
-                                                                                              <input name="rsv_price" type="number" class="form-control" readonly="readonly">
-                                                                                          </div>
-                                                                             
-                                                                                          
-                                                                                          
-                                                                                      </div>
-                                                                                      
-                                                                                      
-                                                                                  </form>
-                                                                              </div>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>1박당 가격</label> 
+																									<input name="rm_cost" type="number" class="form-control" readonly="readonly">
+																								</div>
+																							</div>
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>인원수</label> 
+																									<input name="human_num" type="number" class="form-control">
+
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>동반 반려동물수</label> 
+																									<input name="pet_num" type="number" class="form-control">
+																								</div>
+																							</div>
+
+																							<div class="form-row">
+
+																								<div class="form-group col-md-6">
+																									<label>아이디</label> 
+																									<input name="user_id" type="text" value="${my.user_id}" class="form-control">
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>예약자 이름</label> 
+																									<input name="name" type="text" value="${my.name }" class="form-control">
+																								</div>
 
 
+																							</div>
+
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>이메일</label> 
+																									<input name="email" type="text" value="${my.email }" class="form-control">
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>연락처</label> 
+																									<input name="tel" type="text" value="${my.tel }" class="form-control">
+																								</div>
 
 
-                                                  </div>
-                                                  <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                      data-dismiss="modal">취소</button>
-                                                            <button id="reserveSubmit" type="button" class="btn btn-primary">제출</button>
-                                                  </div>
-                                        </div>
-                              </div>
-                    </div>
+																							</div>
+																							<h3 class="my-4">투숙객 정보</h3>
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>이름</label>
+																									 <input name="guest_name" type="text" class="form-control">
+																								</div>
+																								<div class="form-group col-md-6">
+																									<label>연락처</label> 
+																									<input name="guest_tel" type="text" class="form-control">
+																								</div>
 
 
-          </div>
-<!-- reserveModal end -->                                                                                                                                  
-                                                                                                                                  
-                                                                                                                                  
-                                                                                                                                  
-                                                                                                                                  
+																							</div>
+																							<h3 class="my-4">예약내역 확인</h3>
+																							<div class="form-row">
+																								<div class="form-group col-md-6">
+																									<label>총예약금액</label> 
+																									<input name="rsv_price" type="number" class="form-control" readonly="readonly">
+																								</div>
 
-                                                                                                              </td>
-                                                                                                    </tr>
-                                                                                                    </c:forEach>
+																							</div>
+
+																						</form>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
 
 
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-secondary"
+																			data-dismiss="modal">취소</button>
+																		<button id="reserveSubmit" type="button"
+																			class="btn btn-primary">제출</button>
+																	</div>
+																</div>
+															</div>
+														</div>
 
 
-                                                                                          </tbody>
-                                                                                </table>
-                                                                      </div>
-                                                                      <!-- another card start -->
-<div class="card mt-5">
-    <c:set var="count" value="${countReview}"></c:set>
-    <h5 class="font-weight-normal card-title pt-5 pl-4 text-muted">전체 리뷰 (<c:out value="${count}"/>)</h5>
-          <c:forEach items="${listReview}" var="l">
-          <div class="row mr-2">
-                    <div class="card-body col-xl-12 d-flex">
-                              <div class="d-flex flex-column mt-2 col-xl-2">
-                                        <div class="d-flex align-items-center mb-2">
-                                                  <c:set var="grade" scope="session" value="${l.r_grade}"></c:set>
-                                                  <c:choose>
-                                                            <c:when test="${grade == 5}">
-                                                                      <i class="ml-1 far fa-smile fa-5x" style="color:#ffcc36;"></i>
-                                                            </c:when>
-                                                            <c:when test="${grade == 4}">
-                                                                      <i class="ml-1 far fa-smile fa-5x" style="color:#ffcc36;"></i>
-                                                            </c:when>
-                                                            <c:when test="${grade == 3}">
-                                                                      <i class="ml-1 far fa-meh fa-5x" style="color:#ffcc36;"></i>
-                                                            </c:when>
-                                                            <c:when test="${grade == 2}">
-                                                                      <i class="ml-1 far fa-frown fa-5x" style="color:#ffcc36;"></i>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                      <i class="ml-1 far fa-frown fa-5x" style="color:#ffcc36;"></i>
-                                                            </c:otherwise>
-                                                  </c:choose>
-                                        		  
-                                                  <%-- <img class="rounded-circle" src="${my.fname}"
+													</div> <!-- reserveModal end -->
+
+												</td>
+											</tr>
+										</c:forEach>
+
+									</tbody>
+								</table>
+							</div>
+							<!-- another card start -->
+							<div class="card mt-5">
+								<c:set var="count" value="${countReview}"></c:set>
+								<h5 class="font-weight-normal card-title pt-5 pl-4 text-muted">
+									전체 리뷰 (
+									<c:out value="${count}" />
+									)
+								</h5>
+								<c:forEach items="${listReview}" var="l">
+									<div class="row mr-2">
+										<div class="card-body col-xl-12 d-flex">
+											<div class="d-flex flex-column mt-2 col-xl-2">
+												<div class="d-flex align-items-center mb-2">
+													<c:set var="grade" scope="session" value="${l.r_grade}"></c:set>
+													<c:choose>
+														<c:when test="${grade == 5}">
+															<i class="ml-1 far fa-smile fa-5x"
+																style="color: #ffcc36;"></i>
+														</c:when>
+														<c:when test="${grade == 4}">
+															<i class="ml-1 far fa-smile fa-5x"
+																style="color: #ffcc36;"></i>
+														</c:when>
+														<c:when test="${grade == 3}">
+															<i class="ml-1 far fa-meh fa-5x" style="color: #ffcc36;"></i>
+														</c:when>
+														<c:when test="${grade == 2}">
+															<i class="ml-1 far fa-frown fa-5x"
+																style="color: #ffcc36;"></i>
+														</c:when>
+														<c:otherwise>
+															<i class="ml-1 far fa-frown fa-5x"
+																style="color: #ffcc36;"></i>
+														</c:otherwise>
+													</c:choose>
+
+													<%-- <img class="rounded-circle" src="${my.fname}"
                                                             width="80" height="80"> --%>
-                                                  <p class="font-weight-light ml-4 mt-2">${my.nick_name}</p>
-                                        </div>
-                              </div>
-                              <div class="d-flex flex-column col-xl-10 ml-2">
-                                        <div class="mb-1 d-flex align-items-baseline pt-3 px-1 justify-content-between">
-                                                  <div class="d-flex align-items-baseline">
-                                                            <div class="d-flex align-items-baseline">
-                                                                      <h3 class="text-primary">${l.r_grade}</h3>
-                                                                      <p class="ml-2 font-weight-light small text-primary">/ 5</p>
-                                                                      <c:set var="grade" scope="session" value="${l.r_grade}"></c:set>
-                                                                      <c:choose>
-                                                                                <c:when test="${grade == 5}">
-                                                                                          <span class=" ml-3">좋음</span>
-                                                                                </c:when>
-                                                                                <c:when test="${grade == 4}">
-                                                                                          <span class=" ml-3">괜찮음</span>
-                                                                                </c:when>
-                                                                                <c:when test="${grade == 3}">
-                                                                                          <span class=" ml-3">보통</span>
-                                                                                </c:when>
-                                                                                <c:when test="${grade == 2}">
-                                                                                          <span class=" ml-3">별로</span>
-                                                                                </c:when>
-                                                                                <c:otherwise>
-                                                                                          <span class=" ml-3">나쁨</span>
-                                                                                </c:otherwise>
-                                                                      </c:choose>
-                                                            </div>
-                                                  </div>
-                                                  <div>
-                                                            <span class="small text-right"> 
-                                                                      <fmt:formatDate var="dateTempParse" pattern="yyyy-MM-dd" value="${l.r_update_date}" />
-                                                                      <c:out value="${dateTempParse}" />
-                                                            </span>
-                                                  </div>
-                                        </div>
+													<p class="font-weight-light ml-4 mt-2">${my.nick_name}</p>
+												</div>
+											</div>
+											<div class="d-flex flex-column col-xl-10 ml-2">
+												<div
+													class="mb-1 d-flex align-items-baseline pt-3 px-1 justify-content-between">
+													<div class="d-flex align-items-baseline">
+														<div class="d-flex align-items-baseline">
+															<h3 class="text-primary">${l.r_grade}</h3>
+															<p class="ml-2 font-weight-light small text-primary">/
+																5</p>
+															<c:set var="grade" scope="session" value="${l.r_grade}"></c:set>
+															<c:choose>
+																<c:when test="${grade == 5}">
+																	<span class=" ml-3">좋음</span>
+																</c:when>
+																<c:when test="${grade == 4}">
+																	<span class=" ml-3">괜찮음</span>
+																</c:when>
+																<c:when test="${grade == 3}">
+																	<span class=" ml-3">보통</span>
+																</c:when>
+																<c:when test="${grade == 2}">
+																	<span class=" ml-3">별로</span>
+																</c:when>
+																<c:otherwise>
+																	<span class=" ml-3">나쁨</span>
+																</c:otherwise>
+															</c:choose>
+														</div>
+													</div>
+													<div>
+														<span class="small text-right"> 
+														<fmt:formatDate
+																var="dateTempParse" pattern="yyyy-MM-dd"
+																value="${l.r_update_date}" /> 
+															<c:out
+																value="${dateTempParse}" />
+														</span>
+													</div>
+												</div>
 
-                                        <p class="font-weight-light ml-1">${l.review_content}</p>
-                              </div>
-                    </div>
-          </div>
-          </c:forEach>   
-                              
-    <!-- review modal start -->
-          <div class="bootstrap-modal text-center pb-5">
-                    <!-- Modal Trigger -->
-                    <a class="my-4 pb-3" href="#" data-toggle="modal" data-target="#reviewModal" data-placement="top"
-                              title="" data-original-title="리뷰쓰기"><i class="fa fa-paper-plane m-r-5"></i> 리뷰쓰기 </a>
-                    <!-- Modal -->
-                    <div class="modal fade" id="reviewModal" style="display: none;" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                        <div class="modal-content text-left">
-                                                  <!-- <div class="modal-header">
+												<p class="font-weight-light ml-1">${l.review_content}</p>
+											</div>
+										</div>
+									</div>
+								</c:forEach>
+
+								<!-- review modal start -->
+								<div class="bootstrap-modal text-center pb-5">
+									<!-- Modal Trigger -->
+									<a class="my-4 pb-3" href="#" data-toggle="modal"
+										data-target="#reviewModal" data-placement="top" title=""
+										data-original-title="리뷰쓰기">
+										<i class="fa fa-paper-plane m-r-5"></i> 리뷰쓰기 </a>
+									<!-- Modal -->
+									<div class="modal fade" id="reviewModal" style="display: none;" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content text-left">
+												<!-- <div class="modal-header">
                                                             <h5 class="modal-title">Modal title</h5>
                                                             <button type="button" class="close"
                                                                       data-dismiss="modal"><span>×</span>
                                                             </button>
                                                   </div> -->
-                                                  <div class="modal-body">
-                                                            <div class="basic-form p-3">
-                                                                      <form name="reviewForm">
+												<div class="modal-body">
+													<div class="basic-form p-3">
+														<form name="reviewForm">
 
-                                                                                <div class="form-group mb-5">
-                                                                                          <h3 class="mb-4 font-weight-light">숙소에 대한 전반적인 평가</h3>
-                                                                                          <div
-                                                                                                    class='rating-stars'>
-                                                                                                    <ul id='stars'>
-                                                                                                              <li class='star'
-                                                                                                                        title='Poor'
-                                                                                                                        data-value='1'>
-                                                                                                                        <i
-                                                                                                                                  class='fa fa-star fa-fw'></i>
-                                                                                                              </li>
-                                                                                                              <li class='star'
-                                                                                                                        title='Fair'
-                                                                                                                        data-value='2'>
-                                                                                                                        <i
-                                                                                                                                  class='fa fa-star fa-fw'></i>
-                                                                                                              </li>
-                                                                                                              <li class='star'
-                                                                                                                        title='Good'
-                                                                                                                        data-value='3'>
-                                                                                                                        <i
-                                                                                                                                  class='fa fa-star fa-fw'></i>
-                                                                                                              </li>
-                                                                                                              <li class='star'
-                                                                                                                        title='Excellent'
-                                                                                                                        data-value='4'>
-                                                                                                                        <i
-                                                                                                                                  class='fa fa-star fa-fw'></i>
-                                                                                                              </li>
-                                                                                                              <li class='star'
-                                                                                                                        title='WOW!!!'
-                                                                                                                        data-value='5'>
-                                                                                                                        <i
-                                                                                                                                  class='fa fa-star fa-fw'></i>
-                                                                                                              </li>
-                                                                                                    </ul>
-                                                                                          </div>
-                                                                                          <div class="success-box">
-<div class="clearfix"></div>
-<img alt="tick image" width="32" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
-<div class="text-message"></div>
-<div class="clearfix"></div>
-</div>
-																				
-																				<input name="user_id" type="hidden" value="${my.user_id}">
-                                                                                <input id="ratingValue" name="r_grade" type="hidden" class="form-control input-default">
-                                                                                </div>
-                                                                                <div class="form-group">
-                                                                                          <h5 class="font-weight-light mb-3">숙소 서비스에 만족하셨나요?</h5>
-                                                                                          <textarea class="form-control input-default h-150px" rows="6" id="comment" name="review_content"></textarea>
-                                                                                </div>
-                                                                      </form>
-                                                            </div>
+															<div class="form-group mb-5">
+																<h3 class="mb-4 font-weight-light">숙소에 대한 전반적인 평가</h3>
+																<div class='rating-stars'>
+																	<ul id='stars'>
+																		<li class='star' title='Poor' data-value='1'>
+																		<i class='fa fa-star fa-fw'></i></li>
+																		<li class='star' title='Fair' data-value='2'>
+																		<i class='fa fa-star fa-fw'></i></li>
+																		<li class='star' title='Good' data-value='3'>
+																		<i class='fa fa-star fa-fw'></i></li>
+																		<li class='star' title='Excellent' data-value='4'>
+																			<i class='fa fa-star fa-fw'></i>
+																		</li>
+																		<li class='star' title='WOW!!!' data-value='5'>
+																		<i class='fa fa-star fa-fw'></i></li>
+																	</ul>
+																</div>
+																<div class="success-box">
+																	<div class="clearfix"></div>
+																	<img alt="tick image" width="32" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0MjYuNjY3IDQyNi42NjciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQyNi42NjcgNDI2LjY2NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCI+CjxwYXRoIHN0eWxlPSJmaWxsOiM2QUMyNTk7IiBkPSJNMjEzLjMzMywwQzk1LjUxOCwwLDAsOTUuNTE0LDAsMjEzLjMzM3M5NS41MTgsMjEzLjMzMywyMTMuMzMzLDIxMy4zMzMgIGMxMTcuODI4LDAsMjEzLjMzMy05NS41MTQsMjEzLjMzMy0yMTMuMzMzUzMzMS4xNTcsMCwyMTMuMzMzLDB6IE0xNzQuMTk5LDMyMi45MThsLTkzLjkzNS05My45MzFsMzEuMzA5LTMxLjMwOWw2Mi42MjYsNjIuNjIyICBsMTQwLjg5NC0xNDAuODk4bDMxLjMwOSwzMS4zMDlMMTc0LjE5OSwzMjIuOTE4eiIvPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K">
+																	<div class="text-message"></div>
+																	<div class="clearfix"></div>
+																</div>
+
+																<input name="user_id" type="hidden" value="${my.user_id}"> 
+																<input id="ratingValue" name="r_grade" type="hidden" class="form-control input-default">
+															</div>
+															<div class="form-group">
+																<h5 class="font-weight-light mb-3">숙소 서비스에 만족하셨나요?</h5>
+																<textarea class="form-control input-default h-150px" rows="6" id="comment" name="review_content"></textarea>
+															</div>
+														</form>
+													</div>
 
 
-                                                  </div>
-                                                 
-                                                  <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary"
-                                                                      data-dismiss="modal">닫기</button>
-                                                            <button id="reviewSubmit" type="button" class="btn btn-primary">등록</button>
-                                                  </div>
-                                                  
-                                        </div>
-                              </div>
-                    </div>
-          </div>
-<!-- review modal end -->
-</div>
-                                                                      <!-- another card end -->
-                                                            </div>
-                                                  </div>
-                                        </div>
-                              </div>
-                    </div>
+												</div>
 
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-dismiss="modal">닫기</button>
+													<button id="reviewSubmit" type="button"
+														class="btn btn-primary">등록</button>
+												</div>
 
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- review modal end -->
+							</div>
+							<!-- another card end -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
+	</div>
 
-
-
-          </div>	
-		
 </body>
 </html>
-         <script>
+<script>
 
 					var facility_addr = document.getElementById('facility_addr').innerText;
 					var facility_name = document.getElementById('facility_name').innerText;
