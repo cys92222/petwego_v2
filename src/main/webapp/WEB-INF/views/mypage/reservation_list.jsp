@@ -52,6 +52,7 @@ $(function(){
                                                 <th>결제상태</th>
                                                 <th>이름</th>
                                                 <th>전화번호</th>
+                                                <th>결제</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,6 +74,21 @@ $(function(){
                                                 <td>${rl.rsv_paid }</td>
                                                 <td>${rl.guest_name }</td>
                                                 <td>${rl.guest_tel }</td>
+                                                <c:if test="${rl.rsv_paid eq '결제대기' }">
+									<td>
+										<a href="/facility/reservationpay?rsv_no=${rl.rsv_no }&user_id=${rl.user_id }&rsv_price=${rl.rsv_price }&rsv_date=${rl.rsv_date }&check_in=${rl.check_in }&check_out=${rl.check_out }&human_num=${rl.human_num}&pet_num=${rl.pet_num }&rm_no=${rl.rm_no }&rsv_paid=${rl.rsv_paid}&guest_name=${rl.guest_name }&guest_tel=${rl.guest_tel }" class="btn btn-danger btn-circle btn-sm"  onclick="return confirm('결제하겠습니까?');">
+                   							결제하기
+                  						</a>
+<%--                   						<a href="/facility/reserve?rsv_no=${rl.rsv_no }" class="btn btn-danger btn-circle btn-sm"  onclick="return confirm('결제하겠습니까?');"> --%>
+<!--                    							결제하기 -->
+<!--                   						</a> -->
+									</td>
+									
+<!-- 									<td> -->
+<%-- 										<a href="/facility/pay?user_id=${rl.user_id }">결제하기</a> --%>
+<!-- 									</td> -->
+									</c:if>	
+
                                             </tr>
                                         </c:forEach> 
                                         </tbody>
@@ -90,6 +106,7 @@ $(function(){
                                                 <th>결제상태</th>
                                                 <th>이름</th>
                                                 <th>전화번호</th>
+                                                <th>결제</th>
                                             </tr>
                                         </tfoot>
                                     </table>

@@ -58,6 +58,30 @@ public class ReservationController {
 		return str;
 	}
 	
+	@RequestMapping(value = "/facility/reservationpay")
+	public String pay(HttpServletRequest request,ReservationVo r,Model model) throws Exception{
+//		System.out.println("aaaaaasdasdasdasdddddd"+r);
+//		System.out.println();
+		//model.addAttribute("rm_no",rm_no);
+		//@RequestParam int rm_no,@ModelAttribute("reservation") ReservationVo reservation,BindingResult result,Model model
+		System.out.println("예약자 아이디" + r.getUser_id());
+
+		MemberInfoVo m = new MemberInfoVo();
+		m.setUser_id(r.getUser_id());
+		
+		MemberInfoVo mi = my.select_myinfo(m);
+//		System.out.println("예약자 정보" + mi);
+//		model.addAttribute("result", mi);
+		
+//		Gson gson = new Gson();
+//		String str = gson.toJson(mi);
+		
+		String str = mi.getUser_id();
+		
+//		return "/payments/paySystem?user_id="+mi.getUser_id()+"&tel="+mi.getTel()+"&name="+mi.getName()+"&email="+mi.getEmail()+"&address="+mi.getAddress();
+		return "redirect:/facility/pay?str="+str;
+	}
+	
 	//결제창으로 정보 넘기기위한
 	@NoLogging
 	@RequestMapping("/facility/pay")
