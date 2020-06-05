@@ -60,4 +60,5 @@ public class ApplicationServiceImpl implements ApplicationService {
 	public List<ApplicationVo> userApplication(int t_num) throws Exception{
 		return Adao.userApplication(t_num);
 	}
+
 }
