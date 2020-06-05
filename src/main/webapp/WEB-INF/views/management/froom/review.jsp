@@ -17,44 +17,17 @@
 	    } );
 
 
-	    var list = ${arr};
-	    $.each(list,function(idx,r){
-
-			var r_no = $("<td></td>").append(r.r_no);
-			var review_content = $("<td></td>").append(r.review_content);
-			var facility_no = $("<td></td>").append(r.facility_no);
-			var user_id = $("<td></td>").append(r.user_id);
-			var btn = $("<div>리뷰삭제<div>");
-			var del_btn = $("<td></td>").append(btn);
-			
-			var tr = $("<tr></tr>").append(r_no, review_content, facility_no, user_id, del_btn);
-			
-			$("#review_list").append(tr);
-
-			
-
-			$(del_btn).on("click",function(){
-				var chk = confirm("리뷰를 삭제할까요?");
-				if(chk == true){
-					self.location = "/management/froom/deleteReview?r_no="+r.r_no;
-					}
-				});
-	    });
-
-				
-		    
+	    
+		
 	    // 리뷰 삭제 alert
-// 	    $("#deleteR"+r.r_no).click(function(){
+// 	    $("#deleteR").click(function(){
 // 	    	var check = confirm("사용자 리뷰를 삭제하시겠습니까?")
-// 	    	var r_no = $("#r_no"+r.r_no).val();
-// 	    	alert(r_no);
+// 	    	var r_no = $("#r_no").val();
 // 			if(check == true){
 // 				self.location = "/management/froom/deleteReview?r_no="+r_no;
 // 				alert("게시글을 삭제했습니다!");
 // 			}
 // 		 })
-// 	    });
-		
 	})
 </script>
 </head>
@@ -74,7 +47,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;" >
+					<table class="table table-bordered table-hover" id="ok" width="100%" cellspacing="0" style="text-align: center;">
 						<thead>
 							<tr>
 								<th>리뷰번호</th>
@@ -84,7 +57,6 @@
 								<th>비고</th>																							
 							</tr>
 						</thead>
-						
 						<tfoot>
 							<tr>
 								<th>리뷰번호</th>
@@ -94,13 +66,28 @@
 								<th>비고</th>								
 							</tr>
 						</tfoot>
-					<tbody id="review_list">
-					</tbody>
+						<tbody>
+							<c:forEach var="review" items="${reviewList }">
+							<input type="hidden" id="r_no" value="${review.r_no }">
+								<tr>
+									<td><c:out value="${review.r_no }" /></td>
+									<td><c:out value="${review.review_content }" /></td>
+									<td><c:out value="${review.facility_no }" /></td>
+									<td><c:out value="${review.user_id}" /></td>								
+									<td>
+										<a href="/management/froom/deleteReview?r_no=${review.r_no }" class="btn btn-danger btn-circle btn-sm"  onclick="return confirm('리뷰를 삭제할까요 ?');">
+                   							<i class="fas fa-trash"></i>
+                  						</a>
+									</td>								
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
+<!-- /management/froom/deleteReview?r_no=${review.r_no } -->
 </body>
 <%@include file="../footer.jsp"%>
 </html>
