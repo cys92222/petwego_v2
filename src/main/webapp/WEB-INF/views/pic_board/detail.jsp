@@ -36,7 +36,7 @@
                $("#cntLike").html(eval($("#cntLike").html())+1);   // 좋아요 수가 보이는 창의 데이터에 + 1 해줘
             }
          }})
-            
+         window.location.reload(true);
       })
       
       // 좋아요 delete 좋아요를 한번 더 누르면 취소 
@@ -48,6 +48,7 @@
                $("#cntLike").html(eval($("#cntLike").html())-1);   // 좋아요 수가 보이는 창의 데이터에 - 1 해줘
             }
          }})
+         window.location.reload(true);
       })
       
       
