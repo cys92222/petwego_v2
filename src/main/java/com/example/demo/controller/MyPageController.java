@@ -769,5 +769,13 @@ public class MyPageController {
 
 		
 	}
+	
+	//예약 상세
+	@RequestMapping("/mypage/detail_reservation")
+	public String detail_reservation(HttpServletRequest request,int rsv_no,Model model) {
+		model.addAttribute("detail", fs.detail_reservation(rsv_no));
+		
+		return "mypage/detail_reservation";
+	}
 
 }

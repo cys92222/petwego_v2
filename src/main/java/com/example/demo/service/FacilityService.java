@@ -62,4 +62,7 @@ public interface FacilityService {
 	//리뷰 개수
 	public int countReview(int facility_no);
 	
+	//예약 상세
+	public ReservationVo detail_reservation(int rsv_no);
+	
 }

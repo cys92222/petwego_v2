@@ -57,7 +57,7 @@ $(function(){
                                         </thead>
                                         <tbody>
                                         <c:forEach items="${reservation_list }" var="rl">
-                                            <tr>
+                                            <tr onclick="location.href='/mypage/detail_reservation?rsv_no=${rl.rsv_no }'">
                                                 <td>${rl.rsv_no }</td>
                                                 <td>${rl.user_id }</td>
                                                 <td>${rl.rsv_price }</td>
@@ -92,6 +92,7 @@ $(function(){
 										
 										</c:choose>
 										
+                                            
                                             </tr>
                                         </c:forEach> 
                                         </tbody>

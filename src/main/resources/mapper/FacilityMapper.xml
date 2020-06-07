@@ -136,5 +136,29 @@
 	select * from reservation where user_id = #{user_id}
 </select>
 	
-	
+<!-- 	예약 상세 -->
+<select id="detail_reservation" resultType="com.example.demo.vo.ReservationVo">
+	select	reser.rsv_no, reser.user_id, reser.rsv_price, reser.rsv_date, reser.check_in, reser.check_out, reser.human_num, reser.pet_num, reser.rm_no, reser.rsv_paid, reser.guest_name, reser.guest_tel, f.facility_no,
+			(select rm_no from room where rm_no = reser.rm_no) as rm_no,
+		    (select facility_no from room where rm_no = reser.rm_no) as facility_no,
+		    (select rm_name from room where rm_no = reser.rm_no) as rm_name,
+		    (select rm_cost from room where rm_no = reser.rm_no) as rm_cost,
+		    (select rm_max from room where rm_no = reser.rm_no) as rm_max,
+		    (select rm_pic from room where rm_no = reser.rm_no) as rm_pic,
+		    (select rm_info from room where rm_no = reser.rm_no) as rm_info,
+		    (select rm_ok from room where rm_no = reser.rm_no) as rm_ok,
+		    (select rm_sn from room where rm_no = reser.rm_no) as rm_sn,
+		    (select facility_name from facility where facility_no = f.facility_no) as facility_name,
+		    (select facility_addr from facility where facility_no = f.facility_no) as facility_addr,
+		    (select f_phone from facility where facility_no = f.facility_no) as f_phone,
+		    (select f_minprice from facility where facility_no = f.facility_no) as f_minprice,
+		    (select f_feature from facility where facility_no = f.facility_no) as f_feature,
+		    (select f_intro from facility where facility_no = f.facility_no) as f_intro,
+		    (select f_pic from facility where facility_no = f.facility_no) as f_pic,
+		    (select f_checkin from facility where facility_no = f.facility_no) as f_checkin,
+		    (select f_checkout from facility where facility_no = f.facility_no) as f_checkout
+	from	reservation reser, room r, facility f
+	where	reser.rm_no = r.rm_no and r.facility_no = f.facility_no and
+	rsv_no=#{rsv_no}
+</select>
 </mapper>

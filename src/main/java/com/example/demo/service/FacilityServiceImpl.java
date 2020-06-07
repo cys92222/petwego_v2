@@ -126,6 +126,14 @@ public class FacilityServiceImpl implements FacilityService {
 		return dao.countReview(facility_no);
 	}
 	
+	//예약 상세
+	@Override
+	public ReservationVo detail_reservation(int rsv_no) {
+		// TODO Auto-generated method stub
+		ReservationVo rv = dao.detail_reservation(rsv_no);
+		return rv;
+	}
+	
 
 
 
