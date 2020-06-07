@@ -165,6 +165,11 @@
 		delete member_info where user_id = #{user_id}
 	</delete>
 	
+	<!-- 휴면계정 -->
+ 	<update id="update_enabled">
+ 		update member_info set enabled=0 where user_id = #{user_id}
+ 	</update>
+	
 <!-- 	QnA 리스트 -->
 	<select id="listQnA" resultType="com.example.demo.vo.QnAVo">
 		SELECT  *

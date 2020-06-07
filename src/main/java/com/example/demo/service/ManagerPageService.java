@@ -94,6 +94,9 @@ public interface ManagerPageService {
 
 	// 회원삭제(강퇴)
 	int deleteMember(MemberInfoVo m);
+	
+	// 회원 영구정지(휴면계정)
+	int update_enabled(MemberInfoVo m);
 
 	// QnA 리스트
 	List<QnAVo> listQnA();

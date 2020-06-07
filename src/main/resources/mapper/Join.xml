@@ -27,7 +27,8 @@
       email,
       pwd2,
       address2,
-      address3) 
+      address3,
+      enabled) 
    values(#{user_id}, 
          #{pwd},
          #{tel,jdbcType=VARCHAR},
@@ -44,7 +45,8 @@
          #{email,jdbcType=VARCHAR},
          #{pwd2,jdbcType=VARCHAR},
          #{address2,jdbcType=VARCHAR},
-         #{address3,jdbcType=VARCHAR}
+         #{address3,jdbcType=VARCHAR},
+         1
          )
   </insert>
     <!-- 아이디 중복 확인 -->

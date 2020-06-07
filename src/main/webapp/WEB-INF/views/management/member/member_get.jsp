@@ -20,7 +20,7 @@
 			if(check == true){
 				var check2 = confirm("돌이킬 수 없습니다. 정말 강퇴하시겠습니까?")
 				if(check2 == true){
-					self.location = "/management/member/member_delete?user_id="+user_id;
+					self.location = "/management/member/update_enabled?user_id="+user_id;
 					alert("회원을 강퇴시켰습니다!");
 				}
 			}

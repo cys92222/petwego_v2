@@ -45,5 +45,13 @@ public class M_MemberController {
 		mp_service.deleteMember(m);
 		return "redirect:/management/member/member_list";
 	}
+	
+	// 회원 영구정지(휴면계정)
+	@GetMapping("/member/update_enabled")
+	public String update_enabled(MemberInfoVo m) {
+		
+		mp_service.update_enabled(m);
+		return "redirect:/management/member/member_list";
+	}
 
 }

@@ -201,6 +201,12 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 	public int deleteMember(MemberInfoVo m) {
 		return mDao.deleteMember(m);
 	}
+	
+	// 회원 영구정지(휴면계정)
+	@Override
+	public int update_enabled(MemberInfoVo m) {
+		return mDao.update_enabled(m);
+	}
 
 	// QnA 리스트
 	@Override
