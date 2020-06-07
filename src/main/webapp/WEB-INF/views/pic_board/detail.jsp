@@ -161,7 +161,9 @@
 								<input type="hidden" value="${Board.user_id}" id="follow_user_id" readonly="readonly"/>
 								<td>
 								<c:if test="${follow_chk ==0 }">
-						          <input type="button" class="btn btn-outline-dark btn-sm" value="팔로우하기" id="follow"><br>
+								<c:if test="${login_id ne Board.user_id}">
+						          	<input type="button" class="btn btn-outline-dark btn-sm" value="팔로우하기" id="follow"><br>
+						          </c:if>
 						        </c:if>
 						        <c:if test="${follow_chk !=0 }">
 						          
@@ -187,17 +189,19 @@
                                         <div class="modal-body border-bottom">
 										   <div class="row align-items-center justify-content-between d-flex">
                                               <div class="align-items-center d-flex">
-                                                 <i class="fa fa-user-circle text-primary fa-3x ml-3 mr-2"></i>
 												<!-- fname: 사용자의 프로필사진 -->
-												<sec:authentication property="principal.fname" var="fname" /> 
+                                                 <img src="../img/peopleImg/${followList.fname }" width="30" height="30">
+												
                                                    <div class="d-flex flex-column">
                                                      <span class="text-dark">${followList.user_id2 }</span>
                                                       <!-- intro : 사용자의 자기소개 -->
-                                                       <span class="text-muted small"><sec:authentication property="principal.intro"/></span>
+                                                       <span class="text-muted small"><div>${followList.intro }</div></span>
                                                          </div>
                                                            </div>
-                                                            <button type="button" class="btn-sm mb-1 btn-danger small mr-2" id="delete_follow">
-                                                            <i class="fa fa-times mr-1"></i>언팔로우</button>
+                                                           <c:if test="${followList.user_id2 eq login_id }">
+	                                                            <button type="button" class="btn-sm mb-1 btn-danger small mr-2" id="delete_follow">
+	                                                            <i class="fa fa-times mr-1"></i>언팔로우</button>
+                                                            </c:if>
                                                             </div>
 		                                                   </div>
 														  </c:forEach>

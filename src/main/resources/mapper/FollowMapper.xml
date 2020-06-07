@@ -5,8 +5,16 @@
 <mapper namespace="com.example.demo.dao.FollowDao">	
 	
 <!-- 	나를 팔로잉한 회원 조회 -->
+<!-- 	<select id="search_follow" resultType="com.example.demo.vo.FollowVo"> -->
+<!-- 		select user_id2,user_id from follow where user_id=#{user_id} -->
+<!-- 	</select> -->
 	<select id="search_follow" resultType="com.example.demo.vo.FollowVo">
-		select user_id2,user_id from follow where user_id=#{user_id}
+		select f.user_id2, f.user_id,
+			(select intro from member_info where user_id=f.user_id2) as intro, 
+			(select fname from member_info where user_id=f.user_id2) as fname
+		from follow f, member_info m
+		where f.user_id = m.user_id and
+		        f.user_id=#{user_id}
 	</select>
 	
 <!-- 	나를 팔로잉한 회원 수 -->

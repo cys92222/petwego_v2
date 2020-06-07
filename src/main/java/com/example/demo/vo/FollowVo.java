@@ -12,6 +12,8 @@ public class FollowVo {
 	private String f_type;		//팔로잉
 	private String user_id;		//팔로잉 당할 아이디
 	private String user_id2;	//팔로워
+	private String fname;		//프로필 사진
+	private String intro;		//자기소개
 }
 
 
