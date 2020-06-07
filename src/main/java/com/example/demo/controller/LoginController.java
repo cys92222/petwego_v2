@@ -82,7 +82,7 @@ public class LoginController {
    @RequestMapping(value="/join/idCheck", method=RequestMethod.GET, produces="application/text; charset=utf8")
    @ResponseBody
    public String idCheck(HttpServletRequest request) throws Exception{
-      LOGGER.info("post idCheck");
+      LOGGER.info("get idCheck");
       int result = 0;
       String user_id = request.getParameter("user_id");
       int idUseYn = securityService.idCheck(user_id);
@@ -101,10 +101,12 @@ public class LoginController {
    @RequestMapping(value="/join/nickCheck", method=RequestMethod.GET, produces="application/text; charset=utf8")
    @ResponseBody
    public String nickCheck(HttpServletRequest request) throws Exception{
-      LOGGER.info("post nickCheck");
+      LOGGER.info("get nickCheck");
       int result = 0;
       String nick_name = request.getParameter("nick_name");
+      System.out.println(nick_name);
       int nickUseYn = securityService.nickCheck(nick_name);
+      System.out.println(nickUseYn);
       
       if(nickUseYn > 0) {   //아이디 있을 경우
          result = -1;
