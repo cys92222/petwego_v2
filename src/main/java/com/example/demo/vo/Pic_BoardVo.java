@@ -22,6 +22,7 @@ public class Pic_BoardVo {
 	private String photo_detail;
 	private String user_id;
 	private int cntLike; // 좋아요 수
+	private int reply_cnt;//댓글수
 
 }
  
