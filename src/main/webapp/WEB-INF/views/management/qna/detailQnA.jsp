@@ -63,6 +63,10 @@
 								<td>${detailQnA.inq_title }</td>
 							</tr>
 							<tr>
+								<td>작성자</td>
+								<td>${detailQnA.user_id }</td>
+							</tr>
+							<tr>
 								<td>내용</td>
 								<td>${detailQnA.inq_content }</td>
 							</tr>
