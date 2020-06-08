@@ -13,6 +13,8 @@
         <div class="footer">
             <div class="copyright">
                 <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018</p>
+                <p>주식회사 PET WE GO | CEO Young soo Choi</p>
+                <p>사업자등록번호 : 000-00-00000</p>
             </div>
         </div>
         <!--**********************************
