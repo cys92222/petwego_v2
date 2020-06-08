@@ -82,15 +82,15 @@
 		<!--**********************************
             Nav header start
         ***********************************-->
-		<div class="nav-header d-flex justify-content-center" style="background-color: #4AD4C7;">
-					<div class="brand-logo my-auto align-items-center">
-						<a class="d-flex justify-content-center align-items-center d-block" href="#" id="mainPage">  
-		                    <span class="brand-title" style="color: white; font-weight: bold;">
+		<div class="nav-header justify-content-center d-flex align-itmes-center" style="background-color: #4AD4C7;">
+					
+						<a class="d-block d-flex justify-content-center align-items-center" href="MainPage" id="mainPage">  
+		                    <h4 class="brand-title my-auto font-weight-bold text-white">
 								PET WE GO 
-						    </span>
-		                    <img src="/resources/quixlab/images/logo_compact_03.png" alt="" style="width: 80px;">
+						    </h4>
+		                    <img class="d-block" src="/resources/quixlab/images/logo_compact_03.png" alt="" style="width: 80px;">
 						</a>
-					</div>
+
 		</div>	
 		<!--**********************************
             Nav header end
