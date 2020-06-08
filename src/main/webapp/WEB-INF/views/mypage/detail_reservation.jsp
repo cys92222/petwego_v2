@@ -27,7 +27,7 @@
                             <div class="col-md-6 col-lg-6">
                                 <div class="card">
                                     <div class="card-header bg-white">
-                                        <a href="/facility/detail?facility_no=${detail.facility_no }&user_id=${login_id}"><h5 class="card-title">${detail.facility_name }</h5></a>
+                                        <a href="/facility/detail?facility_no=${detail.facility_no }&user_id=${login_id}"><h5 class="card-title">${detail.facility_name } / 구경하기</h5></a>
                                         <h6 class="card-subtitle mb-2 text-muted">${detail.facility_addr }</h6>
                                     </div>
                                     <img class="img-fluid" src="${detail.f_pic }" alt="">
@@ -52,7 +52,7 @@
 <%--                                     <img class="img-fluid" src="${detail.rm_pic }" alt=""> --%>
                                     <div class="card-body">
                                  		 <p class="card-text"> - 사람 수 ${detail.human_num } 명</p>
-                                    	 <p class="card-text"> - 동물 수${detail.pet_num } 마리</p>
+                                    	 <p class="card-text"> - 동물 수 ${detail.pet_num } 마리</p>
                                         <p class="card-text"> - 방소개</p>
                                         <p class="card-text"> -  방번호 (${detail.rm_no }) / 방이름 (${detail.rm_name })</p>
                                         <p class="card-text"> - ${detail.rm_info }</p>
