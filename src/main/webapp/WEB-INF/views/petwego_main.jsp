@@ -77,27 +77,24 @@
 									<img class="d-block w-100" src="../img/mainImg/m_1.jpg" alt=""
 										style="max-width: 100%;">
 									<div class="carousel-caption d-none d-md-block">
-										<h5>First slide label</h5>
-										<p>Nulla vitae elit libero, a pharetra augue mollis
-											interdum.</p>
+										<h5>반려동물과 함께 떠나는 여행</h5>
+										<p>소중한 추억을 만들어보세요. 펫위고가 그 여정을 함께 합니다.</p>
 									</div>
 								</div>
 								<div class="carousel-item">
 									<img alt="" class="d-block w-100" src="../img/mainImg/m_2.jpg"
 										style="max-width: 100%;">
 									<div class="carousel-caption d-none d-md-block">
-										<h5>Second slide label</h5>
-										<p>Lorem ipsum dolor sit amet, consectetur adipiscing
-											elit.</p>
+										<h5>반려동물과 함께 떠나는 여행</h5>
+										<p>소중한 추억을 만들어보세요. 펫위고가 그 여정을 함께 합니다.</p>
 									</div>
 								</div>
 								<div class="carousel-item active">
 									<img alt="" class="d-block w-100" src="../img/mainImg/m_3.jpg"
 										style="max-width: 100%;">
 									<div class="carousel-caption d-none d-md-block">
-										<h5>Third slide label</h5>
-										<p>Praesent commodo cursus magna, vel scelerisque nisl
-											consectetur.</p>
+										<h5>반려동물과 함께 떠나는 여행</h5>
+										<p>소중한 추억을 만들어보세요. 펫위고가 그 여정을 함께 합니다.</p>
 									</div>
 								</div>
 							</div>
@@ -129,12 +126,9 @@
 									<h3>My Pet</h3>
 									<a href="../pic_board/list">바로가기</a>
 									<br> <br>
-									<p>Raw denim you probably haven't heard of them jean shorts
-										Austin. Nesciunt tofu stumptown aliqua, retro synth master
-										cleanse. Mustache cliche tempor, williamsburg carles vegan
-										helvetica.</p>
-									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
-										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+									<p>[마이펫] 사랑스러운 반려동물을 소개해 주세요!</p>
+									<p>나의 반려동물 사진을 뽐내고 다른 회원들과 팔로우하며 서로 소통하는 공간! 
+									반려동물 sns 공간입니다.</p>
 								</div>
 							</div>
 						</div>
@@ -154,13 +148,9 @@
 									<h3>Go Together</h3>
 									<a href="../together/listTogether">바로가기</a>
 									<br> <br>
-									<p>Lorem, ipsum dolor sit amet consectetur adipisicing
-										elit. Nobis architecto dolor quidem temporibus, itaque
-										aliquid, quasi nulla adipisci laborum quaerat impedit quae,
-										tenetur laudantium tempore deleniti commodi quod praesentium
-										fugiat.</p>
-									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
-										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+									<p>[함께가요] 반려동물을 사랑하는 사람들과 친구가 되어 여행을 떠나보세요!</p>
+									<p>내가 가고싶은 장소와 날짜를 정해 함께 여행을 떠날 모임원들을 모집하거나
+									개설되어있는 모임에 참여해보세요. 좋은 사람들도 만나고 반려동물들에게도 친구를 만들어줄 수 있는 기회!</p>
 								</div>
 								<div class="col-sm-6 col-md-4 col-xl-3">
 									<img src="../img/a-8.jpg" alt=""
@@ -188,12 +178,9 @@
 									<h3>Communication</h3>
 									<a href="../board/list">바로가기</a>
 									<br> <br>
-									<p>Raw denim you probably haven't heard of them jean shorts
-										Austin. Nesciunt tofu stumptown aliqua, retro synth master
-										cleanse. Mustache cliche tempor, williamsburg carles vegan
-										helvetica.</p>
-									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
-										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+									<p>[커뮤니티] 반려동물에 대한 정보를 주고받는 자유게시판!</p>
+									<p>반려동물에 대한 사소한 지식, 반려동물을 키우는 꿀팁부터 
+									자유로운 수다까지 주고받는 공간! 다양한 대화를 나눠보세요!</p>
 								</div>
 							</div>
 						</div>
@@ -212,13 +199,9 @@
 									<h3>Reservation</h3>
 									<a href="#">바로가기</a>
 									<br> <br>
-									<p>Lorem, ipsum dolor sit amet consectetur adipisicing
-										elit. Nobis architecto dolor quidem temporibus, itaque
-										aliquid, quasi nulla adipisci laborum quaerat impedit quae,
-										tenetur laudantium tempore deleniti commodi quod praesentium
-										fugiat.</p>
-									<p>Reprehenderit butcher retro keffiyeh dreamcatcher synth.
-										Cosby sweater eu banh mi, qui irure terry richardson ex squid.</p>
+									<p>[예약] 반려동물 동반이 가능한 호텔을 예약해 보세요! </p>
+									<p>일반 호텔이 아닌, 반려동물과 동반 가능한 호텔 목록만 보여드립니다.
+									예약부터 결제까지 편안하게 하실 수 있도록 펫위고가 도와드립니다!</p>
 								</div>
 								<div class="col-sm-6 col-md-4 col-xl-3">
 									<img src="../img/a-11.jpg" alt=""
@@ -279,10 +262,10 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="text-center">
-							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+							<img src="../img/peopleImg/minah.png" class="rounded-circle" alt=""
 								width="150" height="150">
 							<h5 class="mt-3 mb-1">Ana Liem</h5>
-							<p class="m-0">Senior Manager</p>
+							<p class="m-0">Developer</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
 					</div>
