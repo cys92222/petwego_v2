@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!-- 민아) 5/25, 관리자페이지 꾸미기 및 정리 중  -->
 <%@include file="../header.jsp"%>
@@ -9,16 +9,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-$(document).ready(function() {
-	// 테이블 정렬 defalut가 asc라서 가입날짜(4) 기준으로 desc해달라고 함 
-    $('#ok').DataTable( {
-        "order": [[ 4, "desc" ]]
-    } );
-} );
+	$(document).ready(function() {
+		// 테이블 정렬 defalut가 asc라서 가입날짜(4) 기준으로 desc해달라고 함 
+		$('#ok').DataTable({
+			"order" : [ [ 4, "desc" ] ]
+		});
+	});
 </script>
 </head>
 <body>
-<br>
+	<br>
 
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
@@ -43,6 +43,7 @@ $(document).ready(function() {
 								<th>닉네임</th>
 								<th>가입일자</th>
 								<th>정보수정일</th>
+								<th>계정상태</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -53,20 +54,30 @@ $(document).ready(function() {
 								<th>닉네임</th>
 								<th>가입일자</th>
 								<th>정보수정일</th>
+								<th>계정상태</th>
 							</tr>
 						</tfoot>
 						<tbody>
 							<c:forEach var="member" items="${listMember }">
-							<tr>
-								<td><a href="/management/member/member_get?user_id=${member.user_id}">
-									<c:out value="${member.user_id }"/>
-								</a></td>
-								<td><c:out value="${member.tel }"/></td>
-								<td><c:out value="${member.name }"/></td>
-								<td><c:out value="${member.nick_name }"/></td>
-								<td><c:out value="${member.info_create_date }"/></td>
-								<td><c:out value="${member.info_update_date }"/></td>
-							</tr>
+								<tr>
+									<td>
+										<a href="/management/member/member_get?user_id=${member.user_id}">
+										<c:out value="${member.user_id }" /></a>
+									</td>
+									<td><c:out value="${member.tel }" /></td>
+									<td><c:out value="${member.name }" /></td>
+									<td><c:out value="${member.nick_name }" /></td>
+									<td><c:out value="${member.info_create_date }" /></td>
+									<td><c:out value="${member.info_update_date }" /></td>
+									<c:choose>
+										<c:when test="${member.enabled == 0 }">
+											<td style="color: red;">휴면계정</td>
+										</c:when>
+										<c:otherwise>
+											<td>일반계정</td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>

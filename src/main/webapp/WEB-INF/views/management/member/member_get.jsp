@@ -14,17 +14,29 @@
 	$(function(){
 		var user_id = $("#user_id").val();
 		
-		//회원 강퇴를 누르면
+		// 휴면계정으로 전환 
 		$("#btnDelete").click(function(){
-			var check = confirm("회원을 강퇴시키시겠습니까?")
+			var check = confirm("회원을 휴면계정으로 전환 시키시겠습니까?")
 			if(check == true){
-				var check2 = confirm("돌이킬 수 없습니다. 정말 강퇴하시겠습니까?")
+				var check2 = confirm("정말 회원의 계정을 휴면계정으로 바꾸시겠습니까?")
 				if(check2 == true){
 					self.location = "/management/member/update_enabled?user_id="+user_id;
-					alert("회원을 강퇴시켰습니다!");
+					alert("휴면계정으로 전환 완료!");
 				}
 			}
 		});
+
+		// 휴면계정에서 일반계정으로 전환
+		$("#btnRollback").click(function(){
+			var check = confirm("휴면계정을 일반계정으로 전환하시겠습니까?")
+			if(check == true){
+				var check2 = confirm("일반계정으로 전환 합니다?")
+				if(check2 == true){
+					self.location = "/management/member/rollback_enabled?user_id="+user_id;
+					alert("일반계정으로 전환 완료!");
+				}
+			}
+		})
 	})
 
 </script>
@@ -93,13 +105,24 @@
 			<td>${detail_Info.info_update_date }</td>
 		</tr>
 	</table>
-	<!-- 회원 강퇴 버튼 -->
+	<c:if test="${detail_Info.enabled == 1 }">   
+	<!-- 휴면계정으로 전환버튼 -->
 		<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
        	 <span class="icon text-white-50">
         	<i class="fas fa-trash"></i>
          </span>
-        	<span class="text">회원 강퇴 | 관리자</span>
+        	<span class="text">휴면계정전환 | 회원강퇴</span>
         </a>
+        </c:if> 
+  <c:if test="${detail_Info.enabled == 0 }">   
+   <!-- 다시 회원으로 전환버튼 -->
+		<a href="#" class="btn btn-success btn-icon-split" id="btnRollback">
+       	 <span class="icon text-white-50">
+        	<i class="fas fa-undo"></i>
+         </span>
+        	<span class="text">회원전환 | 휴면해제</span>
+        </a>
+   </c:if>  
 	</div>
 </div>
 </div>

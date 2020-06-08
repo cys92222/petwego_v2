@@ -80,11 +80,12 @@ public interface ManagerPageDao {
 	// 회원정보 상세보기
 	MemberInfoVo getMember(MemberInfoVo m);
 
-	// 회원삭제(강퇴)
-	int deleteMember(MemberInfoVo m);
 	
 	// 회원 영구정지(휴면계정)
 	int update_enabled(MemberInfoVo m);
+	
+	// 휴면계정으로 전환한 회원을 다시 회원으로 전환!
+	int rollback_enabled(MemberInfoVo m);
 	
 	//QnA 리스트
 	List<QnAVo> listQnA();

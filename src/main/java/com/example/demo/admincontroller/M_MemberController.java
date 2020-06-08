@@ -21,13 +21,12 @@ public class M_MemberController {
 	// 회원 결제정보
 	@GetMapping("/member/listPay")
 	public void listPay(Model model) {
-		model.addAttribute("listPay",mp_service.listPay());
+		model.addAttribute("listPay", mp_service.listPay());
 	}
-	
-	 
+
 	// 회원 목록
 	@GetMapping("/member/member_list")
-	public void listMember(Model model) {
+	public void listMember(Model model, MemberInfoVo mv) {
 
 		model.addAttribute("listMember", mp_service.listMember());
 	}
@@ -38,19 +37,20 @@ public class M_MemberController {
 		model.addAttribute("detail_Info", mp_service.getMember(m));
 	}
 
-	// 회원정보 삭제(강퇴)
-	@GetMapping("/member/member_delete")
-	public String deleteMember(MemberInfoVo m) {
-
-		mp_service.deleteMember(m);
-		return "redirect:/management/member/member_list";
-	}
-	
 	// 회원 영구정지(휴면계정)
 	@GetMapping("/member/update_enabled")
 	public String update_enabled(MemberInfoVo m) {
-		
+
 		mp_service.update_enabled(m);
+		return "redirect:/management/member/member_list";
+	}
+
+	// 휴면계정으로 전환한 회원을 다시 회원으로 전환!
+	@GetMapping("/member/rollback_enabled")
+	public String rollback_enabled(MemberInfoVo m) {
+		
+		mp_service.rollback_enabled(m);
+		
 		return "redirect:/management/member/member_list";
 	}
 

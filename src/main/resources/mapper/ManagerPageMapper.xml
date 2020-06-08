@@ -151,7 +151,7 @@
 
 	<!-- 회원 목록 -->
 	<select id="listMember" resultType="com.example.demo.vo.MemberInfoVo">
-		select user_id, tel, name, nick_name, info_create_date, info_update_date
+		select user_id, tel, name, nick_name, info_create_date, info_update_date, enabled
 			from member_info order by info_create_date desc						
 	</select>
 	
@@ -159,15 +159,15 @@
 	<select id="getMember" resultType="com.example.demo.vo.MemberInfoVo">
   		select * from member_info where user_id = #{user_id}
   	</select>
-  	
-  	<!-- 회원 삭제(강퇴) //  -->
-	<delete id="deleteMember">
-		delete member_info where user_id = #{user_id}
-	</delete>
-	
-	<!-- 휴면계정 -->
+  	  	
+	<!-- 휴면계정 // 강퇴가 복잡하니 휴면계정으로 전환-->
  	<update id="update_enabled">
  		update member_info set enabled=0 where user_id = #{user_id}
+ 	</update>
+ 	
+ 	<!--  휴면계정이었던 사람을 다시 회원으로 전환시킬때? -->
+ 	 <update id="rollback_enabled">
+ 		update member_info set enabled=1 where user_id = #{user_id}
  	</update>
 	
 <!-- 	QnA 리스트 -->

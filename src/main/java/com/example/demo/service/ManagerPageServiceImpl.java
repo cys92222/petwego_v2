@@ -196,17 +196,18 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		return mDao.getMember(m);
 	}
 
-	// 회원삭제(강퇴)
-	@Override
-	public int deleteMember(MemberInfoVo m) {
-		return mDao.deleteMember(m);
-	}
-	
 	// 회원 영구정지(휴면계정)
 	@Override
 	public int update_enabled(MemberInfoVo m) {
 		return mDao.update_enabled(m);
 	}
+	
+	// 휴면계정으로 전환한 회원을 다시 회원으로 전환!
+	@Override
+	public int rollback_enabled(MemberInfoVo m) {
+		return mDao.rollback_enabled(m);
+	}
+
 
 	// QnA 리스트
 	@Override
