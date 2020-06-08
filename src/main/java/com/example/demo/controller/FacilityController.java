@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
 
-
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -14,26 +11,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import com.example.demo.service.FacilityService;
 import com.example.demo.service.MypageService;
-import com.example.demo.util.AopLog.NoLogging;
+
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 
 import com.example.demo.vo.FacilityVo;
 import com.example.demo.vo.MemberInfoVo;
-import com.example.demo.vo.ReservationVo;
+
 import com.example.demo.vo.ReviewVo;
 import com.example.demo.vo.RoomVo;
 import com.google.gson.Gson;
@@ -49,9 +42,7 @@ public class FacilityController{
 	@Autowired
 	MypageService ms;
 	
-	
-
-	
+		
 	//숙소 목록	
 	@RequestMapping(value="/facility/list",method = RequestMethod.GET)
 	public String listFacility(HttpServletRequest request,Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
@@ -67,11 +58,9 @@ public class FacilityController{
 		LOGGER.info("search");
 		model.addAttribute("listFacility",service.listFacility(scri));
 		PageMaker pageMaker = new PageMaker();
-		//pageMaker.makeKeywordSearch(page);
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
-		model.addAttribute("pageMaker",pageMaker);
-		
+		model.addAttribute("pageMaker",pageMaker);		
 		return "facility/search";
 	}	
 	
@@ -112,27 +101,10 @@ public class FacilityController{
 		m.setUser_id(review.getUser_id());
 		model.addAttribute("my", ms.select_myinfo(m));		
 		service.postReview(review);		
-//		System.out.println(user_id);
-		
 		return "asd";
 	}
 	
-	
-	//(+)
-	//리뷰수정
-	@PutMapping("/facility/detail")
-	public void modify(HttpServletRequest request,ReviewVo review) throws Exception{
-		service.updateReview(review);
-		System.out.println("2");
-	}
-	//리뷰삭제
-	@DeleteMapping("/facility/detail")
-	public void delete(HttpServletRequest request,@RequestParam int r_no,ReviewVo reviewVo, Model model) throws Exception{
-		//model.addAttribute(r_no);
-		System.out.println(r_no);
-		service.deleteReview(r_no);
-		System.out.println("3");
-	}
+
 	
 
 

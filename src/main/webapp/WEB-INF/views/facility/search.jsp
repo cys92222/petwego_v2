@@ -51,7 +51,16 @@
 </head>
 
 <body>
-
+<!-- breadcrumb start -->
+	<div class="row page-titles mx-0">
+		<div class="col p-md-0">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/facility/search">숙소 | 검색</a></li>
+				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+			</ol>
+		</div>
+	</div>
+<!-- breadcrumb end -->
 	<div class="container-fluid mt-2">
 		<div class="row">
 			<div class="col-lg-12">
@@ -157,7 +166,7 @@
 							<div class="card">
 								<div class="mail-list">
 									<a class="area list-group-item border-0 text-primary p-r-0">
-										<b>경기</b> <!-- <span class="badge badge-primary badge-sm float-right m-t-5">198</span> -->
+										<b>경기</b>
 									</a> 
 									<a href="#"
 										class="area list-group-item border-0 text-primary p-r-0"><b>강원</b></a>
@@ -178,47 +187,7 @@
 								</div>
 							</div>
 						</div>
-						<!--  carousel start -->
-						<c:forEach var="c" items="${listFacility}">
-							<div class="bootstrap-carousel">
-								<div data-ride="carousel" class="carousel slide" id="carouselExampleCaptions">
-									<ol class="carousel-indicators">
-										<li class="" data-slide-to="0" data-target="#carouselExampleCaptions"></li>
-										<li data-slide-to="1" data-target="#carouselExampleCaptions" class=""></li>
-										<li data-slide-to="2" data-target="#carouselExampleCaptions" class="active"></li>
-									</ol>
-									<div class="carousel-inner">
-										<div class="carousel-item">
-											<img class="d-block w-100" src="${c.f_pic}" alt="">
-											<div class="carousel-caption d-none d-md-block">
-												<h5>First slide label</h5>
-												<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-											</div>
-										</div>
-										<div class="carousel-item">
-											<img alt="" class="d-block w-100" src="${c.f_pic}">
-											<div class="carousel-caption d-none d-md-block">
-												<h5>Second slide label</h5>
-												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-											</div>
-										</div>
-										<div class="carousel-item active">
-											<img alt="" class="d-block w-100" src="${c.f_pic}">
-											<div class="carousel-caption d-none d-md-block">
-												<h5>Third slide label</h5>
-												<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-											</div>
-										</div>
-									</div>
-									<a data-slide="prev" href="#carouselExampleCaptions" class="carousel-control-prev">
-										<span class="carousel-control-prev-icon"></span> 
-										<span class="sr-only">Previous</span> </a>
-										<a data-slide="next" href="#carouselExampleCaptions" class="carousel-control-next">
-										<span class="carousel-control-next-icon"></span> <span class="sr-only">Next</span></a>
-								</div>
-							</div>
-						</c:forEach>
-						<!-- carousel end -->
+				
 
 					</div>
 
@@ -239,30 +208,20 @@
 										<img class="mr-3 col-3 my-auto" src="${c.f_pic}" alt="hotel image" height="118">
 
 										<div class="media-body col-6">
-											<div class="mb-2">
+											<div class="mb-3">
 												<h4 class="mb-sm-0 mb-lg-2">
-													<c:set var="m" value="${pageContext.request.userPrincipal.name}" />
-													<a
-														href="detail?facility_no=${c.facility_no}&user_id=${fn:substring(m,21,26)}">${c.facility_name}</a><small
+														<a href="detail?facility_no=${c.facility_no}&user_id=${login_id}">${c.facility_name}</a>
+														<small
 														class="text-muted ml-3">${c.facility_addr}</small>
 												</h4>
-												<div class="media-reply__link">
-
-													<button class="btn btn-transparent p-0 mr-3">
-														<i class="fa fa-star"></i><i class="fa fa-star"></i>
-														<i class="fa fa-star"></i><i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-													</button>
-
-												</div>
+						
 											</div>
 											<p>${c.f_intro}</p>
 										</div>
 										<div class="col-3 text-center">
 											<h4 class="mb-3">￦${c.f_minprice}~</h4>
-											<c:set var="m" value="${pageContext.request.userPrincipal.name}" />
 											<a
-												href="detail?facility_no=${c.facility_no}&user_id=${fn:substring(m,21,26)}"
+												href="detail?facility_no=${c.facility_no}&user_id=${login_id}"
 												class="btn mb-1 btn-primary">지금 바로 예약<span
 												class="btn-icon-right"><i class="fa fa-check"></i></span>
 											</a>

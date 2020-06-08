@@ -16,7 +16,6 @@
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=10eed821bdf522662f857166aa9069bc&libraries=services"></script>
 <script type="text/javascript"
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<!-- <script src="https://unpkg.com/sweetalert/dis/sweetalert.min.js"></script> -->
 <script type="text/javascript">
 // URL paramter 가져오기
 $(function(){
@@ -101,19 +100,15 @@ $(function(){
         action = 'create';
         type = 'POST';
 
-		alert("리뷰등록 누름");
-        //facility_no = $.fn.getUrlParameter('facility_no');
-        
+		alert("리뷰를 등록합니다.");
+
         var facility_no = getUrlParameter('facility_no');
-        //url = '/facility/detail?facility_no='+facility_no;
         url = '/facility/detail/review';
-        
-// 		r_no = this.value;
+ 
 		r_grade = $('input[name=r_grade]').val();
 		review_content = $('textarea[name=review_content]').val();
 
 		var data = {
-// 			"r_no" : r_no,
 			"facility_no" : facility_no,
 			"r_grade" : r_grade,
 			"review_content" : review_content,
@@ -125,7 +120,6 @@ $(function(){
 		$.ajax({
 			url : url,
 			type : "POST",
-// 			contentType: 'application/json',
 			data : data,
 			beforeSend: function(xhr){
 				xhr.setRequestHeader(header, token);
@@ -139,20 +133,19 @@ $(function(){
 		
     });
 
+
+
     // ******** 예약 ********
 
     var arr = ${arr};
-//     alert(arr);
-// console.log(arr);
+
     
 	$.each(arr,function(idx,n){
-// 		console.log("bbbbbbbbb"+n.rm_no);
+
     
 	$('#reserveBtn'+n.rm_no).click(function(e){
 		e.preventDefault();
  		action = 'reserve';
-// 		type = 'POST'; 
-
 		// 모달에 넣어줄 정보 담기
 		var check_inF = $('#check_inF').val();
 		var check_outF = $('#check_outF').val();
@@ -160,9 +153,6 @@ $(function(){
 		var human_numF = $('#human_numF option:selected').val();
 		var pet_numF = $('#pet_numF option:selected').val();
 
-// 		alert("reserveBtn 누름");
-// 		alert("check_inF" + check_inF);	
-		
 		// 체크인,체크아웃,인원,동물
 		$('input[name=check_in]').val(check_inF);
 		$('input[name=check_out]').val(check_outF);
@@ -175,9 +165,9 @@ $(function(){
 		var dateObj_in = new Date(check_inArr[0],Number(check_inArr[1])-1,check_inArr[2]);
 		var dateObj_out = new Date(check_outArr[0],Number(check_outArr[1])-1,check_outArr[2]);
 		var nights = (dateObj_out.getTime()-dateObj_in.getTime())/1000/60/60/24;
-/* 		if(nights<0){
-			swal('주의','체크아웃 날짜는 체크인 날짜보다 이른 날짜일 수 없습니다!','warning');
-		} */
+		if(nights<0){
+			alert('체크아웃 날짜는 체크인 날짜보다 이른 날짜일 수 없습니다!');
+		}
 		$('input[name=nights]').val(nights);		
 		$('input[name=rm_opt]').val(1);
 		
@@ -187,10 +177,7 @@ $(function(){
 
 
 
-		// 객실명 수정, 주련 0603
-		//var rm_name = $.trim($(this).parent().siblings('.media-body').find('#rm_name').text());
-
-		//var tempName = $.trim( $(this).parent().parents('td').eq(0).find('.media-body').find('h5').text() );
+		// 객실명
 		var tempName = $(this).parent().parents('td').eq(0).siblings('.d-flex').find('.media-body').find('h5').text();
 		var rm_name = $.trim(tempName);
 
@@ -265,7 +252,22 @@ $(function(){
 			}});
 		
 
-	})
+	});
+
+
+	// 검색창 스크롤 effect  
+    var snOffset = $('.searchNav').offset();
+    $(window).scroll(function(){
+      if ( $( document ).scrollTop() > snOffset.top ) {
+        $( '.searchNav' ).addClass( 'snFixed' );
+      
+       
+      }
+      else {
+        $( '.searchNav' ).removeClass( 'snFixed' );
+
+      }
+    });
     
 }); // end-of
 </script>
@@ -321,25 +323,177 @@ $(function(){
 	display: inline-block;
 	color: #888;
 }
+ .snFixed {
+   position: fixed;
+   top: 0px;
+   z-index:100;
+   right: 30px;
+   left: 275px;
+   
+ }
+ 
+ 
+/* animation */
+
+.scrolldown-container {   
+        width: 80px;
+        height: 50px;
+        position: relative;
+          
+ }
+
+.scrolldown-container .scrolldown-btn {
+        width: 50px;
+        height: 100px;
+        position: absolute;
+        left: 35%;
+		bottom: 10%;
+	      right: auto;
+	      transform: rotate(-90deg);
+	      -webkit-transform: translateX(-50%) translateY(-50%);
+	      -moz-transform: translateX(-50%) translateY(-50%);
+	      -ms-transform: translateX(-50%) translateY(-50%);
+	      -o-transform: translateX(-50%) translateY(-50%);
+	      transform: translateX(-50%) translateY(-50%);
+}
+          
+         
+.scrolldown-container .scrolldown-btn svg {
+          position: absolute;
+          
+          left: 0;
+          width: 100%;
+          height: auto;
+          top:40%;
+}
+
+.scrolldown-container .scrolldown-btn svg path.first-path {
+          animation: scrollanim 1s ease-in-out infinite;
+          animation-delay: 0.8s;
+}
+
+.scrolldown-container .scrolldown-btn svg path.second-path {
+          animation: scrollanim2 1s ease-in-out infinite;
+}
+
+@-webkit-keyframes scrollanim {
+          0% {
+                    -webkit-transform: translate(0, -40px);
+                    opacity: 0;
+          }
+
+          60% {
+                    -webkit-transform: translate(0, 0);
+                    opacity: 0.8;
+          }
+}
+
+@-moz-keyframes scrollanim {
+          0% {
+                    -moz-transform: translate(0, -40px);
+                    opacity: 0;
+          }
+
+          60% {
+                    -moz-transform: translate(0, 0);
+                    opacity: 0.8;
+          }
+}
+
+@keyframes scrollanim {
+          0% {
+                    -webkit-transform: translate(0, -40px);
+                    -moz-transform: translate(0, -40px);
+                    -ms-transform: translate(0, -40px);
+                    -o-transform: translate(0, -40px);
+                    transform: translate(0, -40px);
+                    opacity: 0;
+          }
+
+          60% {
+                    -webkit-transform: translate(0, 0);
+                    -moz-transform: translate(0, 0);
+                    -ms-transform: translate(0, 0);
+                    -o-transform: translate(0, 0);
+                    transform: translate(0, 0);
+                    opacity: 0.8;
+          }
+}
+
+@-webkit-keyframes scrollanim2 {
+          0% {
+                    -webkit-transform: translate(0, -40px);
+                    opacity: 0;
+          }
+
+          60% {
+                    -webkit-transform: translate(0, 0px);
+                    opacity: 0.6;
+          }
+}
+
+@-moz-keyframes scrollanim2 {
+          0% {
+                    -moz-transform: translate(0, -40px);
+                    opacity: 0;
+          }
+
+          60% {
+                    -moz-transform: translate(0, 0px);
+                    opacity: 0.6;
+          }
+}
+
+@keyframes scrollanim2 {
+          0% {
+                    -webkit-transform: translate(0, -40px);
+                    -moz-transform: translate(0, -40px);
+                    -ms-transform: translate(0, -40px);
+                    -o-transform: translate(0, -40px);
+                    transform: translate(0, -40px);
+                    opacity: 0;
+          }
+
+          60% {
+                    -webkit-transform: translate(0, 0px);
+                    -moz-transform: translate(0, 0px);
+                    -ms-transform: translate(0, 0px);
+                    -o-transform: translate(0, 0px);
+                    transform: translate(0, 0px);
+                    opacity: 0.6;
+          }
+}
+ 
+ 
+
 </style>
 </head>
 
 <body>
-
+<div class="row page-titles mx-0">
+	<div class="col p-md-0">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/facility/detail">숙소 | 상세</a></li>
+			<li class="breadcrumb-item"><a href="/facility/search">숙소</a></li>
+			<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
+		</ol>
+	</div>
+</div>
 
 	<div class="container-fluid mt-3">
 		<!-- upper form start -->
-		<div class="row">
+		<div class="row searchNav">
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-body">
-
+        				<c:set var="f" value="${getFacility}"></c:set>
+          				<h5 class="card-title mb-3">${fn:substring(f.facility_addr,0,2)} ${f.facility_name}, 지금 바로 예약하세요 ! </h5>
 						<div class="basic-form">
 							<form id="searchForm">
 								<div class="form-row">
+									<c:set var="f" value="${getFacility}"></c:set>
 									<div class="col-lg-3 col-md-12 col-sm-12 mb-3">
-										<input id="facility_addrF" type="text"
-											class="form-control input-default" placeholder="어디로 가시나요?">
+										<input id="facility_addrF" type="text" class="form-control input-default" placeholder="어디로 가시나요?" value="${fn:substring(f.facility_addr,0,2)} ${f.facility_name}" readonly="readonly" style="background:#fff;">
 									</div>
 									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
 										<input id="check_inF" type="date" class="form-control input-default">
@@ -349,11 +503,9 @@ $(function(){
 									</div>
 
 									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
-										<!-- <label>State</label> -->
+										
 										<select id="human_numF" class="form-control input-default">
-											<!-- <option selected="selected">
-                                                                                    인원수
-                                                                          </option> -->
+				
 											<option value="1">1명</option>
 											<option value="2">2명</option>
 											<option value="3">3명</option>
@@ -367,11 +519,9 @@ $(function(){
 										</select>
 									</div>
 									<div class="col-lg-2 col-md-12 col-sm-12 mb-3">
-										<!-- <label>State</label> -->
+										
 										<select id="pet_numF" class="form-control input-default">
-											<!-- <option selected="selected">
-                                                                                    동물수
-                                                                          </option> -->
+											
 											<option value="1">1마리</option>
 											<option value="2">2마리</option>
 											<option value="3">3마리</option>
@@ -380,7 +530,34 @@ $(function(){
 											<option value="6">6마리</option>
 										</select>
 									</div>
-									<button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
+<!-- animation start -->
+          <div class="scrolldown-container col-lg-1">
+                    <div class="scrolldown-btn" style="
+    trasform: rotate(0deg) !important;
+    -webkit-transform-origin-x: rotate(0deg);
+    transform: rotate(0deg);
+">
+                              <svg version="1.1" id="Слой_1" xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="50px"
+                                        height="80px" viewBox="0 0 90 120" enable-background="new 0 0 90 120"
+                                        xml:space="preserve">
+                                        <path class="first-path" fill="#7571f9"
+                                                  d="M24.752,79.182c-0.397,0-0.752-0.154-1.06-0.463L2.207,57.234c-0.306-0.305-0.458-0.656-0.458-1.057                  s0.152-0.752,0.458-1.059l2.305-2.305c0.309-0.309,0.663-0.461,1.06-0.461c0.398,0,0.752,0.152,1.061,0.461l18.119,18.119                  l18.122-18.119c0.306-0.309,0.657-0.461,1.057-0.461c0.402,0,0.753,0.152,1.059,0.461l2.306,2.305                  c0.308,0.307,0.461,0.658,0.461,1.059s-0.153,0.752-0.461,1.057L25.813,78.719C25.504,79.027,25.15,79.182,24.752,79.182z">
+                                        </path>
+                                        <path class="second-path" fill="#7571f9"
+                                                  d="M24.752,58.25c-0.397,0-0.752-0.154-1.06-0.463L2.207,36.303c-0.306-0.304-0.458-0.655-0.458-1.057                  c0-0.4,0.152-0.752,0.458-1.058l2.305-2.305c0.309-0.308,0.663-0.461,1.06-0.461c0.398,0,0.752,0.153,1.061,0.461l18.119,18.12                  l18.122-18.12c0.306-0.308,0.657-0.461,1.057-0.461c0.402,0,0.753,0.153,1.059,0.461l2.306,2.305                  c0.308,0.306,0.461,0.657,0.461,1.058c0,0.401-0.153,0.753-0.461,1.057L25.813,57.787C25.504,58.096,25.15,58.25,24.752,58.25z">
+                                        </path>
+                              </svg>
+                    </div>
+          </div>
+
+													<!-- animation end -->								
+								
+								
+								
+								
+								
+								
 								</div>
 							</form>
 						</div>
@@ -647,9 +824,7 @@ $(function(){
 														</c:otherwise>
 													</c:choose>
 
-													<%-- <img class="rounded-circle" src="${my.fname}"
-                                                            width="80" height="80"> --%>
-													<p class="font-weight-light ml-4 mt-2">${my.nick_name}</p>
+													<p class="font-weight-light ml-4 mt-2">${l.user_id}</p>
 												</div>
 											</div>
 											<div class="d-flex flex-column col-xl-10 ml-2">
@@ -680,7 +855,8 @@ $(function(){
 															</c:choose>
 														</div>
 													</div>
-													<div>
+													<div class="d-flex flex-column">
+														
 														<span class="small text-right"> 
 														<fmt:formatDate
 																var="dateTempParse" pattern="yyyy-MM-dd"
@@ -708,16 +884,11 @@ $(function(){
 									<div class="modal fade" id="reviewModal" style="display: none;" aria-hidden="true">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content text-left">
-												<!-- <div class="modal-header">
-                                                            <h5 class="modal-title">Modal title</h5>
-                                                            <button type="button" class="close"
-                                                                      data-dismiss="modal"><span>×</span>
-                                                            </button>
-                                                  </div> -->
+												
 												<div class="modal-body">
 													<div class="basic-form p-3">
+													
 														<form name="reviewForm">
-
 															<div class="form-group mb-5">
 																<h3 class="mb-4 font-weight-light">숙소에 대한 전반적인 평가</h3>
 																<div class='rating-stars'>
