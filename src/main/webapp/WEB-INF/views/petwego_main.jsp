@@ -76,11 +76,13 @@
 								<div class="carousel-item">
 									<img class="d-block w-100" src="../img/mainImg/m_1.jpg" alt=""
 										style="max-width: 100%;">
+										
 									<div class="carousel-caption d-none d-md-block">
 										<h5>반려동물과 함께 떠나는 여행</h5>
 										<p>소중한 추억을 만들어보세요. 펫위고가 그 여정을 함께 합니다.</p>
 									</div>
 								</div>
+								
 								<div class="carousel-item">
 									<img alt="" class="d-block w-100" src="../img/mainImg/m_2.jpg"
 										style="max-width: 100%;">
