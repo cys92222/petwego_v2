@@ -101,7 +101,7 @@
 		       					<span class="icon text-white-50">
 		        				<i class="fas fa-trash"></i>
 		         				</span>
-		        				<span class="text">답변삭제 | 관리자</span>
+		        				<span class="text">문의글삭제 | 관리자</span>
 	       					</a>
 						</sec:authorize>
 						
