@@ -206,7 +206,7 @@
 									예약부터 결제까지 편안하게 하실 수 있도록 펫위고가 도와드립니다!</p>
 								</div>
 								<div class="col-sm-6 col-md-4 col-xl-3">
-									<img src="../img/a-11.jpg" alt=""
+									<img src="../img/mainImg/a-11.jpg" alt=""
 										class="img-fluid thumbnail m-r-15">
 								</div>
 							</div>
