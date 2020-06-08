@@ -21,6 +21,13 @@
 		$("#insertBtn").click(function() {
 			window.location.href = "/board/insert";
 		});
+
+		$('#searchBtn').click(function(e){
+			e.preventDefault();
+			self.location = 'list'+'${pageMaker.makeQuery(1)}'+'&searchType='+$('.form-group select option:selected').val()
+			+'&keyword='+encodeURIComponent($('#keywordInput').val());
+		});
+
 	})
 </script>
 <!-- 민아) 5/10, 자유게시판 목록 -->
@@ -35,17 +42,18 @@
 		</div>
 	</div>
 	<!-- row -->
-	<div class="col-12">
+          <div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<div class="card-title">
+				<div class="card-title mb-5 ml-3 mt-3">
 					<h4>자유게시판</h4>
 				</div>
 
 
-				<div class="col-lg-12" style="float: left; margin-top: 15px;">
-					<div class="form-group" style="float: left;">
-						<select class="form-control form-control-sm" name="searchType" style="width: 100px;">
+				<div class="col-lg-12">
+    <div class="row d-flex align-items-center mb-5">
+					<div class="form-group col-lg-1 mr-4">
+						<select class="form-control input-default h-75" name="searchType" style="width: 110px;">
 							<option value="n"
 								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>-----</option>
 							<option value="t"
@@ -56,29 +64,26 @@
 								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 							<option value="tc"
 								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-						</select>
+                                                            </select>
 					</div>
 
-					<div class="basic-form" style="float: left;">
-						<form>
-							<div class="form-group">
-								<input type="text" class="form-control input-flat mr-2" name="keyword" id="keywordInput" value="${scri.keyword}"
-								 	style="width: 300px; margin-left: 5px;" />
+					<div class="basic-form col-lg-5">
+						<form class="d-flex">
+							<div class="form-group mr-2 w-100">
+								<input type="text" class="form-control input-default h-75" name="keyword" id="keywordInput" value="${scri.keyword}">
 							</div>
-						</form>
+                                                            <button class="btn btn-primary h-75 px-4" type="submit" id="searchBtn">검색</button>
+                                                            </form>
 					</div>
-					<button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
+        
+    
+    
+    
+    </div>
 
-					<script>
-						$(function() {
-							$('#searchBtn').click(function() {
-												self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType="
-														+ $("select option:selected").val()
-														+ "&keyword=" + encodeURIComponent($('#keywordInput').val());
-											});
-							});
-					</script>
-					<div class="table-responsive mb-3">
+
+					<div class="table-responsive mb-5">
+						
 						<table class="table table-hover" id="free" style="text-align: center;">
 							<thead>
 								<tr>
@@ -106,10 +111,13 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</div>
 
-					<div class="bootstrap-pagination">
-						<nav>
+                   </div>
+                                                  
+
+					<div class="bootstrap-pagination mb-5">
+                                                            
+                                                            <nav>
 							<ul class="pagination justify-content-center">
 								<c:if test="${pageMaker.prev}">
 									<li class="page-item disabled">
@@ -131,6 +139,9 @@
 
 							</ul>
 						</nav>
+
+
+
 					</div>
 
 				</div>
@@ -139,7 +150,7 @@
 					
 		</div>
 		
-	</div>
+          </div>
 	
 </body>
 <%@include file="../footer.jsp"%>
