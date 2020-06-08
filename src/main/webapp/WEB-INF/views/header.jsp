@@ -84,7 +84,7 @@
         ***********************************-->
 		<div class="nav-header justify-content-center d-flex align-itmes-center" style="background-color: #4AD4C7;">
 					
-						<a class="d-block d-flex justify-content-center align-items-center" href="MainPage" id="mainPage">  
+						<a class="d-block d-flex justify-content-center align-items-center" href="/MainPage" id="mainPage">  
 		                    <h4 class="brand-title my-auto font-weight-bold text-white">
 								PET WE GO 
 						    </h4>

@@ -5,7 +5,10 @@
 <mapper namespace="com.example.demo.dao.Pic_Board_CommentDao">
    <!-- 댓글목록 -->
    <select id="plistComment" resultType="com.example.demo.vo.Pic_Board_CommentVo">
-      select * from Pic_board_comment where photo_no = #{photo_no} order by photo_comm_no desc
+       select pbc.photo_comm_no, pbc.photo_comm_date, pbc.photo_comm_cont, pbc.user_id, pbc.photo_no, 
+    (select fname from member_info where user_id = pbc.user_id) as fname
+      from Pic_board_comment pbc, member_info m 
+      where pbc.user_id = m.user_id and photo_no =#{photo_no} order by photo_comm_no desc
    </select>
 
    <!-- 선택댓글 -->

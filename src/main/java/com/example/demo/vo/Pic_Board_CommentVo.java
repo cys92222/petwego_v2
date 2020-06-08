@@ -16,5 +16,7 @@ public class Pic_Board_CommentVo {
 	private String photo_comm_cont;
 	private String user_id;
 	private int photo_no;
+	
+	private String fname;
 }
  

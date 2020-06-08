@@ -34,6 +34,7 @@ public class FollowController {
 	@RequestMapping("/follow/insert_follow")
 	@ResponseBody
 	public String insert_follow(HttpServletRequest request,FollowVo f,String in_user_id, String user_id2) {
+		System.out.println("팔로우 컨트롤러 동작");
 		f.setUser_id(user_id2);
 		System.out.println("팔로우 컨트로러"+f);
 		System.out.println("팔로우할 아이디 "+f.getUser_id());

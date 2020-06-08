@@ -208,7 +208,7 @@ $(document).ready(function(){
 				<div class="read-content">
 					<div class="media pt-5">
 						<img
-							src="../img/crown.png" height="50" width="50" alt="" style="margin-top: 10px; margin-left: 20px;">
+							src="../img/togetherImg/crown.png" height="50" width="50" alt="" style="margin-top: 10px; margin-left: 20px;">
 						<div class="media-body" style="float: left;">
 							<h2 class="m-b-3">
 								<div name="t_user_id"

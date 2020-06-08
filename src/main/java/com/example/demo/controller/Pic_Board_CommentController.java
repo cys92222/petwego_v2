@@ -40,6 +40,7 @@ public class Pic_Board_CommentController {
    // 댓글작성
    @RequestMapping(value = "/pinsertComment")
    public ModelAndView pinsertComment(HttpServletRequest request,Pic_Board_CommentVo pbc) {
+	  System.out.println("aaaaaaaaaaaaaaa 댓글 작성 컨트롤러");
       ModelAndView mav = new ModelAndView("redirect:/pic_board/detail?photo_no=" + pbc.getPhoto_no()+"&user_id="+pbc.getUser_id()+"&in_user_id="+pbc.getUser_id());
       // System.out.println(pbc.getPhoto_comm_cont() + "\t" + pbc.getUser_id() + "\t"
       // + pbc.getPhoto_no());
