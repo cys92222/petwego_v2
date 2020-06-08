@@ -169,6 +169,11 @@
  	 <update id="rollback_enabled">
  		update member_info set enabled=1 where user_id = #{user_id}
  	</update>
+ 	
+ 	<!-- 회원 삭제(강퇴) //  -->
+	<delete id="deleteMember">
+		delete member_info where user_id = #{user_id}
+	</delete>
 	
 <!-- 	QnA 리스트 -->
 	<select id="listQnA" resultType="com.example.demo.vo.QnAVo">
