@@ -86,6 +86,23 @@ $(function(){
 									<h5 class="m-b-3">${detail.user_id }</h5>
 									<small class="text-muted">${member.email }</small>
 									<p class="m-b-2">${detail.inq_date }</p>
+									<c:choose>
+									<c:when test="${detail.cs_no == 1 }">
+										홈페이지 이용 관련
+									</c:when>
+									
+									<c:when test="${detail.cs_no == 2 }">
+										계정 관련 문의
+									</c:when>
+									
+									<c:when test="${detail.cs_no == 3 }">
+										결제 관련 문의
+									</c:when>
+									
+									<c:otherwise>
+										기타 문의
+									</c:otherwise>
+								</c:choose>
 								</div>
 
 							</div>
