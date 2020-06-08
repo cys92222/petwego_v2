@@ -91,7 +91,7 @@
 		                    <img class="d-block" src="/resources/quixlab/images/logo_compact_03.png" alt="" style="width: 80px;">
 						</a>
 
-		</div>	
+		</div>
 		<!--**********************************
             Nav header end
         ***********************************-->
@@ -108,36 +108,25 @@
 					</div>
 				</div>
 				<div class="header-left">
-					<div class="input-group icons">
-						<div class="input-group-prepend">
-							<span
-								class="input-group-text bg-transparent border-0 pr-2 pr-sm-3"
-								id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-						</div>
-						<input type="search" class="form-control" placeholder="검색"
-							aria-label="Search Dashboard">
-						<div class="drop-down animated flipInX d-md-none">
-							<form action="#">
-								<input type="text" class="form-control" placeholder="Search">
-							</form>
-						</div>
-					</div>
+
 				</div>
 				<div>
 					<a href="#" id="mainPage2"><img
 						src="../resources/quixlab/images/petwego_logo_05.png" alt=""
 						style="float: left; width: 300px; padding-top: 10px; margin-left: 25%;"></a>
 				</div>
-				<div class="header-right">
-					<ul class="clearfix">
-
+				<div class="header-right d-flex align-items-center">
+					<sec:authorize access="isAnonymous()">
+					
+					<ul class="d-flex align-items-center">
 						<!-- 로그인 안했을 때 -->
-						<sec:authorize access="isAnonymous()">
-						<a href="/login/login" style="float: left; padding-top: 12px;">로그인</a>
+						<p class="mr-2 mt-1">펫위고 계정으로 로그인하세요</p>
+						
+						<!-- <a href="/login/login" style="float: left; padding-top: 12px;">로그인</a> -->
 							<li class="icons dropdown">
 								<div class="user-img c-pointer position-relative"
 									data-toggle="dropdown">
-									<img src="../img/peopleImg/profile.jpg" height="40" width="40"
+									<img class="d-block mt-1" src="../img/peopleImg/profile.jpg" height="40" width="40"
 										alt="">
 								</div>
 								<div
@@ -152,13 +141,14 @@
 									</div>
 								</div>
 							</li>
+						</ul>
 						</sec:authorize>
 
 						<!-- 로그인 했을 때 -->
 						<sec:authorize access="isAuthenticated()">
-							
-							<p style="float: left; padding-top:12px;"><sec:authentication property="principal.user_id"/></p>
-							<a style="float: left; padding-top:12px;" href="/login/logout">&nbsp;&nbsp;로그아웃</a>&nbsp;
+							<ul class="d-flex align-items-center">
+							<p class="mr-2 mt-1"><sec:authentication property="principal.user_id"/>님, 반갑습니다!</p>
+							<!-- <a style="float: left; padding-top:12px;" href="/login/logout">&nbsp;&nbsp;로그아웃</a>&nbsp; -->
 							
 							<li class="icons dropdown">
 								<div class="user-img c-pointer position-relative"
@@ -166,13 +156,13 @@
 									<sec:authentication property="principal.fname" var="fname" />
 									<c:choose>
 										<c:when test="${empty fname  }">
-											<img src="../img/peopleImg/profile.jpg" height="40"
+											<img class="d-block mt-1" src="../img/peopleImg/profile.jpg" height="40"
 												width="40" alt="">
 										</c:when>
 
 
 										<c:when test="${not empty fname  }">
-											<img src="../img/peopleImg/${fname }" height="40" width="40"
+											<img class="d-block mt-1" src="../img/peopleImg/${fname }" height="40" width="40"
 												alt="">
 										</c:when>
 
