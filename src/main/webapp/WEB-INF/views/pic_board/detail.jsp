@@ -163,18 +163,24 @@
 // 						});
 		//팔로우하기
 		$("#follow").click(function() {
-			var follow_user_id = $("#follow_user_id").val();
-			var follow_in_user_id = $("#follow_in_user_id").val();
+			var u2 = $("#follow_user_id").val();
+			var id = '${login_id}';
+			alert("팔로우 버튼 누름" + u2 + id);
+			
+// 			var follow_user_id = $("#follow_user_id").val();
+// 			var follow_in_user_id = $("#follow_in_user_id").val();
+// 			alert("팔로우할 아이디"+ ${Board.user_id } + "팔로워아이디"+${login_id});
 			$.ajax("/follow/insert_follow", {
 				data : {
-					user_id2 : follow_user_id,
-					in_user_id : '${login_id}'
+					user_id2 : u2,
+					in_user_id : id
 				},
 				success : function(re) {
 					alert(re);
 					window.location.reload(true);
 				}
 			});
+			
 		});
 
 		//팔로우취소하기
@@ -230,7 +236,7 @@
 									<div class="col-12 text-center">
 										<c:if test="${follow_chk ==0 }">
 											<c:if test="${login_id ne Board.user_id}">
-												<button class="btn btn-danger px-5" id="follow">팔로우하기</button>
+												<button class="btn btn-danger px-5" type="button" id="follow">팔로우하기</button>
 											</c:if>
 										</c:if>
 										<c:if test="${follow_chk !=0 or Board.user_id eq login_id}">
