@@ -74,7 +74,7 @@
 							</ol>
 							<div class="carousel-inner">
 								<div class="carousel-item">
-									<img class="d-block w-100" src="../img/a-1.jpg" alt=""
+									<img class="d-block w-100" src="../img/mainImg/m_1.jpg" alt=""
 										style="max-width: 100%;">
 									<div class="carousel-caption d-none d-md-block">
 										<h5>First slide label</h5>
@@ -83,7 +83,7 @@
 									</div>
 								</div>
 								<div class="carousel-item">
-									<img alt="" class="d-block w-100" src="../img/a-2.jpg"
+									<img alt="" class="d-block w-100" src="../img/mainImg/m_2.jpg"
 										style="max-width: 100%;">
 									<div class="carousel-caption d-none d-md-block">
 										<h5>Second slide label</h5>
@@ -92,7 +92,7 @@
 									</div>
 								</div>
 								<div class="carousel-item active">
-									<img alt="" class="d-block w-100" src="../img/a-4.jpg"
+									<img alt="" class="d-block w-100" src="../img/mainImg/m_3.jpg"
 										style="max-width: 100%;">
 									<div class="carousel-caption d-none d-md-block">
 										<h5>Third slide label</h5>
