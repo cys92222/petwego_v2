@@ -160,10 +160,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-lg-2 col-form-label" for="fname">프로필 사진 <span class="text-danger">*</span>
+                                            <label class="col-lg-2 col-form-label" for="fname">프로필 사진
                                             </label>
                                             <div class="col-lg-10">
-                                                <input type="file" class="form-control" id="fname" name="fname" required="required" aria-required="true">
+                                                <input type="file" class="form-control" id="fname" name="fname" aria-required="true">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -198,8 +198,7 @@
 <!-- <script src="/resources/js/addressapi.js"></script> -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-//아이디 중복체크 등 건너뛰면 가입도 안되게 처리 해야하는데!!!
-//성공적이면 "회원가입 성공!"멘트 뜨게!어떻게 하지?
+
 
 $("#cancle").on("click", function(){
 	alert("회원가입 취소");
@@ -221,14 +220,14 @@ var idx = false;
 	         type: "GET",
 	         data: {user_id:$("#user_id").val()},
 	         success: function(data) {
-	            //사용 가능한 아이디라면
+	         //사용 가능한 아이디라면
 		    if(data==0 && $.trim($('#user_id').val()) != '' ){   
 		       idx=true;
 			   $('#user_id').attr("readonly",true);
 		       $("#overlapErr").hide();
 		       successState("#user_id");
 		       alert("사용가능한 아이디입니다.");
-		    //정규표현식을 통과하지 못하면
+		    //중복된 아이디라면
 		    }else{
 		       $("#overlapErr").show();
 		       errorState("#user_id");
@@ -247,10 +246,10 @@ $("#nickCheck").on("click", function(){
          type: "GET",
          data: {nick_name:$("#nick_name").val()},
          success: function(data) {
-            //사용 가능한 닉네임이라면
+         //사용 가능한 닉네임이라면
 	    if(data==0 && $.trim($('#nick_name').val()) != '' ){   
 	       idx=true;
-		   $('#nick_name').attr("readonly",true);
+//		   $('#nick_name').attr("readonly",true);
 	       $("#overlapNick").hide();
 	       successState("#nick_name");
 	       alert("사용가능한 닉네임입니다.");
@@ -264,7 +263,7 @@ $("#nickCheck").on("click", function(){
  })
 });
 //비밀번호 유효성 검사    
-   $("#pwd").keyup(function(){   //오류 수정 필요! - 1. 비밀번호가 8글자 이하인데 에러메시지가 뜨지 않고 2. 비밀번호가 일치해도 오류 메시지 뜸
+   $("#pwd").keyup(function(){
       var pwd = $('#pwd').val();
       //비밀번호를 검증할 정규 표현식
       var reg = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,10}$/;
@@ -295,7 +294,6 @@ $("#nickCheck").on("click", function(){
        var email=$(this).val();
        // 이메일 검증할 정규 표현식
        var reg=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-//     var reg = /^[0-9a-zA-Z][0-9a-zA-Z\_\-\.\+]+[0-9a-zA-Z]@[0-9a-zA-Z][0-9a-zA-Z\_\-]*[0-9a-zA-Z](\.[a-zA-Z]{2,6}){1,2}$/;
        if(reg.test(email)){//정규표현식을 통과 한다면
                    $("#emailErr").hide();
                    successState("#email");
