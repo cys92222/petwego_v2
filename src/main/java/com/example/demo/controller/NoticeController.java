@@ -27,7 +27,6 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.util.AopLog.NoLogging;
-import com.example.demo.vo.NoticeUpdateVo;
 import com.example.demo.vo.NoticeVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -89,35 +88,7 @@ public class NoticeController {
 	}
 	
 	
-	//공지사항 등록
-	@NoLogging
-	@RequestMapping("/customerservice/insertNotice")
-	@ResponseBody
-	public void insertNotice(NoticeVo n) {
-		service.insertNotice(n);
-	}
-	
-	
-	//공지사항 삭제
-	@NoLogging
-	@RequestMapping("/customerservice/deleteNotice")
-	@ResponseBody
-	public String deleteNotice(NoticeVo n) {
-		service.deleteNotice(n);
-		
-		return "a";
-	}
-	
-	//공지사항 수정
-	@NoLogging
-	@RequestMapping("/customerservice/updateNotice")
-	@ResponseBody
-	public String updateNotice(NoticeUpdateVo nu) {
-		System.out.println(nu);
-		service.updateNotice(nu);
-		
-		return "a";
-	}
+
 	
 	//공지사항 상세보기
 	@RequestMapping(value = "/customerservice/detailNotice", method = RequestMethod.GET)

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dao.NoticeDao;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
-import com.example.demo.vo.NoticeUpdateVo;
+
 import com.example.demo.vo.NoticeVo;
 
 @Service
@@ -25,32 +25,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return list;
 	}
  
-	//공지사항 등록
-	@Override
-	public int insertNotice(NoticeVo n) {
-		// TODO Auto-generated method stub
-		int re = -1;
-		re = dao.insertNotice(n);
-		return re;
-	}
-
-	//공지사항 삭제
-	@Override
-	public int deleteNotice(NoticeVo n) {
-		// TODO Auto-generated method stub
-		int re = -1;
-		re = dao.deleteNotice(n);
-		return re;
-	}
 	
-	//공지사항 수정
-	@Override
-	public int updateNotice(NoticeUpdateVo nu) {
-		// TODO Auto-generated method stub
-		int re = -1;
-		re = dao.updateNotice(nu);
-		return re;
-	}
 	
 	//공지사항 상세보기
 	@Override
