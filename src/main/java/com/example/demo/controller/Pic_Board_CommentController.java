@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +32,7 @@ public class Pic_Board_CommentController {
    @GetMapping(value = "/plistComment", produces = "application/json; charset=utf-8")
    public String plistComment(HttpServletRequest request,Pic_Board_CommentVo pbc) {   
       List<Pic_Board_CommentVo> plistComment = pcomm_service.plistComment(pbc.getPhoto_no());
+      
       Gson gson = new Gson();
       return gson.toJson(plistComment);
    }

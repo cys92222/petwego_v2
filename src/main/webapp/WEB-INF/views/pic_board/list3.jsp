@@ -82,9 +82,13 @@ var temp = function(){
 					<div class="card">
 						<div class="card-body">
 							<div class="text-center">
+								<!-- 								<img id="snsImg" class="img-fluid" style="border-radius: 30px;" -->
+								<%-- 									onclick="location.href='/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }'" --%>
+								<%-- 									src="../img/${file[status.index].photo_file_name}"> --%>
+
 								<img id="snsImg" class="img-fluid" style="border-radius: 30px;"
-									onclick="location.href='/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }'"
-									src="../img/snsImg/${file[status.index].photo_file_name}">
+									data-toggle="modal" data-target="#exampleModalLong"
+									src="../img/${file[status.index].photo_file_name}">
 								<!-- img-fluid   /card-img -->
 
 								<h4 class="card-widget__title text-dark mt-3">${sns.user_id}</h4>
@@ -126,46 +130,47 @@ var temp = function(){
 		<div class="modal fade" id="exampleModalLong">
 			<div class="modal-dialog">
 				<div class="modal-content" style="width: 600px; text-align: center;">
-					<div class="modal-header" style="text-align: center;">
-						<h5 class="modal-title">${detailPic_Board.user_id }</h5>
-						<button type="button" class="close" data-dismiss="modal">
-							<span>&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						<img id="snsImg" class="img-fluid" style="border-radius: 30px;"
-							data-toggle="modal" data-target="#exampleModalLong"
-							src="../img/${file[status.index].photo_file_name}"><br>
-						<p style="margin-top: 30px;">${detailPic_Board.photo_detail }</p>
-						<div class="basic-form">
-							<!-- 댓글입력 -->
-							<form name="pcommentForm" method="post">
-								<button type="submit" id="pcomment" class="btn mb-1 btn-primary"
-									style="float: right;">댓글 등록</button>
-								<input type="hidden" id="token" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden" id="photo_no"
-									name="photo_no" value="${detailPic_Board.photo_no}">
-								<!-- 							<div class="col-lg-3"> -->
-								<input type="text" name="user_id" readonly="readonly"
-									value="${login_id }" class="form-control input-default"
-									style="width: 30%;"><br>
-								<!-- 							</div> -->
+						<div class="modal-header" style="text-align: center;">
+							<h5 class="modal-title">${Board.user_id }</h5>
+							<button type="button" class="close" data-dismiss="modal">
+								<span>&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<img id="snsImg" class="img-fluid" style="border-radius: 30px;"
+								data-toggle="modal" data-target="#exampleModalLong"
+								src="../img/${file[status.index].photo_file_name}"><br>
+							<p style="margin-top: 30px;">${Board.photo_detail }</p>
+							<div class="basic-form">
+								<!-- 댓글입력 -->
+								<form name="pcommentForm" method="post">
+									<button type="submit" id="pcomment"
+										class="btn mb-1 btn-primary" style="float: right;">댓글
+										등록</button>
+									<input type="hidden" id="token" name="${_csrf.parameterName}"
+										value="${_csrf.token}" /> <input type="hidden" id="photo_no"
+										name="photo_no" value="${Board.photo_no}">
+									<!-- 							<div class="col-lg-3"> -->
+									<input type="text" name="user_id" readonly="readonly"
+										value="${login_id }" class="form-control input-default"
+										style="width: 30%;"><br>
+									<!-- 							</div> -->
 
-								<textarea name="photo_comm_cont" class="form-control h-150px"
-									rows="6"></textarea>
-							</form>
-							<c:forEach var="plistComment" items="${plistComment}"
-								varStatus="status">
+									<textarea name="photo_comm_cont" class="form-control h-150px"
+										rows="6"></textarea>
+								</form>
+								<c:forEach var="plistComment" items="${plistComment}"
+									varStatus="status">
 											${plistComment.photo_comm_cont }
 										</c:forEach>
+							</div>
 						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save
-							changes</button>
-					</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save
+								changes</button>
+						</div>
 				</div>
 			</div>
 		</div>
