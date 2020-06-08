@@ -165,7 +165,7 @@
 						          	<input type="button" class="btn btn-outline-dark btn-sm" value="팔로우하기" id="follow"><br>
 						          </c:if>
 						        </c:if>
-						        <c:if test="${follow_chk !=0 }">
+						        <c:if test="${follow_chk !=0 or Board.user_id eq login_id}">
 						          
 						         	팔로워:
 						         <c:forEach items="${search_follow }" var="search_follow" begin="0" end="5">
