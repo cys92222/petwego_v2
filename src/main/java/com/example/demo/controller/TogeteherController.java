@@ -68,22 +68,6 @@ public class TogeteherController {
 	LoginMapperDao loginMapperDao;
 
 	
-//	@RequestMapping(value="/write")
-//	public String boardWrite() {
-//	  return "together/test";
-//	}
-	//댓글삭제 GET
-//	@NoLogging
-//	@RequestMapping(value="/deleteReplyView",method = RequestMethod.GET)
-//	public String replyDeleteView(ReplyVo rv,SearchCriteria scri, Model model) throws Exception {
-//		LOGGER.info("writeReply");
-//		
-//		model.addAttribute("deleteReply",Rservice.selectReply(rv.getT_r_num()));
-//		model.addAttribute("scri",scri);
-//		
-//		return "together/deleteReplyView";
-//	}
-	
 	//댓글삭제 POST
 	@RequestMapping(value="/deleteReply",method = RequestMethod.GET)
 	public String replyDelete(HttpServletRequest request, ReplyVo rv,SearchCriteria scri, RedirectAttributes rttr) throws Exception {
@@ -145,12 +129,6 @@ public class TogeteherController {
 		LOGGER.info("writeReply");
 		rv.setUser_id(c_user_id);
 		
-//		HttpSession session = request.getSession();
-//		Authentication authentication = (Authentication) session.getAttribute("user");
-//		MemberInfoVo user = (MemberInfoVo) authentication.getPrincipal();
-//		MemberInfoVo m = loginMapperDao.getSelectMemberInfo(user.getUser_id());
-
-		
 		System.out.println("댓글작성 rv.setUser_id(c_user_id)" + c_user_id);
 		Rservice.writeReply(rv);
 		rttr.addAttribute("t_num",rv.getT_num());
@@ -173,7 +151,6 @@ public class TogeteherController {
 	
 	//함께가요 등록
 	@RequestMapping(value="/writeTogether",method = RequestMethod.POST)
-//@RequestMapping(value="writeTogether",method = {RequestMethod.GET,RequestMethod.POST})
 	public String write(HttpServletRequest request,TogetherVo togetherVo ,HttpSession session) throws Exception{
 	LOGGER.info("writeTogether");
 	
@@ -217,14 +194,9 @@ public class TogeteherController {
 	@RequestMapping(value="/listTogether", method = RequestMethod.GET)
 	public String listTogether(HttpServletRequest request, Model model,@ModelAttribute("scri") SearchCriteria scri) throws Exception{
 		LOGGER.info("listTogether");
-		//썸네일
-//		model.addAttribute("listTogether", service.listThumbnail(scri));
-//		model.addAttribute("listTogether", service.listThumbnail(scri));
-//		System.out.println("썸네일" + service.listThumbnail(scri));
 		
 		model.addAttribute("listTogether",service.listTogether(scri));
 		
-//		System.out.println("함께가요" + service.listTogether(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(service.listCount(scri));
@@ -236,7 +208,6 @@ public class TogeteherController {
 	
 	
 	   //함께가요 상세
-//  @RequestMapping(value="detailTogether",method = {RequestMethod.GET , RequestMethod.POST})
   @RequestMapping(value="/detailTogether",method = RequestMethod.GET)
   public String detailTogether(HttpServletRequest request, TogetherVo togetherVo,ApplicationVo applicationVo,@ModelAttribute("scri") SearchCriteria scri, Model model) throws Exception{
      LOGGER.info("detailTogether");
@@ -258,7 +229,7 @@ public class TogeteherController {
      
      model.addAttribute("detailTogether",service.detailTogether(togetherVo.getT_num()));
      //값이 안가져와서 테스트해봄
-//     System.out.println(togetherVo.getT_num());
+
      //list에서 가져온 SearchCriteria값을 사용하기 위해 매개변수에 파라미터를 통해 값을 받고 model을 이용하여 scri를 보내준다.
      model.addAttribute("scri",scri);
      
@@ -276,16 +247,11 @@ public class TogeteherController {
      
      //비밀댓글일 경우
      for(ReplyVo rv : replyList) {
-//        System.out.println("비밀댓글 유무"+rv.getSecret_reply());
-        //댓글중에 비밀 댓글이 있다면
-//        if(rv.getSecretReply().equals("y")) {
-//              rv.setT_r_content("비밀 댓글입니다.");
-//        }
+
      }   
 
      
      model.addAttribute("replyList",replyList);
-//     return "together/detailTogether";
      return "together/detailTogether";
   }
 	
@@ -343,10 +309,6 @@ public class TogeteherController {
 			System.out.println("썸네일 수정 안함");
 			service.updateTogether(togetherVo);
 		}
-		
-		
-		
-		
 		
 		
 		rttr.addAttribute("page",scri.getPage());
@@ -445,11 +407,6 @@ public class TogeteherController {
 		
 		int totalCnt = togetherVo.getT_size();
 		int attendeeCnt = togetherVo.getT_attendee_cnt();
-		System.out.println("togetherVo.getT_num() "+togetherVo.getT_num());
-		System.out.println("av.getT_num() " + av.getT_num());
-//		System.out.println(togetherVo.getUser_id());
-//		System.out.println(totalCnt);
-//		System.out.println(attendeeCnt);
 		
 		String str = "";
 		
@@ -489,11 +446,7 @@ public class TogeteherController {
 	public String deleteApplication(HttpServletRequest request,ApplicationVo av,String in_user_id) {
 		System.out.println(in_user_id);
 		String re = "0";
-		System.out.println("신청취소 컨트롤러");
-		//신청,취소 알람 삭제
-//		System.out.println(av.getApplication_no());
-//		System.out.println(av.getT_num());
-		//함께가요 신청자 id
+
 		String str = alarmService.together_id(av);
 		AlarmVo alarm = new AlarmVo();
 		alarm.setUser_id(str);
@@ -506,9 +459,8 @@ public class TogeteherController {
 		if (r > 0) {
 			re = "1";
 		}
-		System.out.println("신청 취소 컨트롤러 끝남");
+
 		return re;
 	}
-	
 	
 }

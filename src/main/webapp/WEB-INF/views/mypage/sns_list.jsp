@@ -32,7 +32,7 @@
 	                                            <div class="carousel-item active">
 	                                            <a href="/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }">
 <%-- 	                                                <img class="d-block w-100" src="/img/${mysnspic[status.index].photo_file_name}" /> --%>
-	                                                <img width="310" height="210" src="/img/${mysnspic[status.index].photo_file_name}" />
+	                                                <img width="310" height="210" src="../img/snsImg/${mysnspic[status.index].photo_file_name}" />
 	                                             </a>   
 	                                            </div>
 	                                        </div>

@@ -208,6 +208,11 @@ public class ManagerPageServiceImpl implements ManagerPageService {
 		return mDao.rollback_enabled(m);
 	}
 
+	// 회원삭제(강퇴)
+	@Override
+	public int deleteMember(MemberInfoVo m) {
+		return mDao.deleteMember(m);
+	}
 
 	// QnA 리스트
 	@Override

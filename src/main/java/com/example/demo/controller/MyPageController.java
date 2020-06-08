@@ -468,6 +468,7 @@ public class MyPageController {
 	}
 	
 	//회원탈퇴
+	@NoLogging
 	@RequestMapping("/mypage/delete_member")
 	@ResponseBody
 	public String delete_member(HttpServletRequest request,MemberInfoVo m) {

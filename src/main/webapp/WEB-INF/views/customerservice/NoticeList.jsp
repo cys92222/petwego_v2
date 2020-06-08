@@ -73,10 +73,6 @@ $(function(){
 								<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 							<option value="c"
 								<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-							<option value="w"
-								<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-							<option value="tc"
-								<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 						</select>
 					</div>
 
@@ -134,7 +130,7 @@ $(function(){
 					</div>
 
 				</div>
-				<button class="btn mb-1 btn-primary" id="insertBtn" type="button" style="float: right">글쓰기</button>	
+<!-- 				<button class="btn mb-1 btn-primary" id="insertBtn" type="button" style="float: right">글쓰기</button>	 -->
 			</div>
 					
 		</div>

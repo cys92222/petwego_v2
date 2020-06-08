@@ -63,6 +63,10 @@
 								<td>${detailQnA.inq_title }</td>
 							</tr>
 							<tr>
+								<td>작성자</td>
+								<td>${detailQnA.user_id }</td>
+							</tr>
+							<tr>
 								<td>내용</td>
 								<td>${detailQnA.inq_content }</td>
 							</tr>
@@ -101,7 +105,7 @@
 		       					<span class="icon text-white-50">
 		        				<i class="fas fa-trash"></i>
 		         				</span>
-		        				<span class="text">답변삭제 | 관리자</span>
+		        				<span class="text">문의글삭제 | 관리자</span>
 	       					</a>
 						</sec:authorize>
 						

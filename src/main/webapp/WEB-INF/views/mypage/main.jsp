@@ -57,30 +57,47 @@
 
 */
 
-		//회원탈퇴 (영구정지/휴면계정)
+		//회원탈퇴
 		$("#widthdraw_btn").click(function() {
 			var ck = confirm("탈퇴하시겠습니까?");
 			if (ck == true) {
 				var data = {
-					user_id : /*$("#user_id").val()*/'${login_id }'
+					user_id : '${login_id }'
 				};
-				// 			alert(data);
-//				$.ajax("/mypage/delete_member", {
-				$.ajax("/mypage/update_enabled", {
+				$.ajax("/mypage/delete_member", {
 					data : data,
 					success : function(re) {
-						// 				alert(re);
-						//				컨트롤러에서 return "/MainPage"; 으로 /MainPage 받아와서 href로 이동
 						window.location.href = "/login/logout";
 					}
 				});
-				// 			alert("탈퇴");
 			} else {
 
 			}
 		});
+
+		//영구정지 , 휴면계정
+		$("#break_btn").click(function() {
+			var ck = confirm("계정을 휴면처리 하시겠습니까?");
+			if (ck == true) {
+				var data = {
+					user_id : '${login_id }'
+				};
+				$.ajax("/mypage/update_enabled", {
+					data : data,
+					success : function(re) {
+						window.location.href = "/login/logout";
+					}
+				});
+			} else {
+
+			}
+		});
+
+
 		
 
+
+		
 	});
 </script>
 </head>
@@ -300,7 +317,7 @@
 							<div class="tab-pane fade" id="pic_board_list">
 								<div class="p-t-15">
 									<c:forEach items="${mysnspic }" var="sns" begin="0" end="6">
-										<img width="80" height="80" src="/img/${sns.photo_file_name}" />
+										<img width="80" height="80" src="../img/snsImg/${sns.photo_file_name}" />
 									</c:forEach>							
 <%-- 									<c:forEach var="sns" items="${mysns }" begin="0" end="4"> --%>
 <%-- 										<h4>글번호 ${sns.photo_no }</h4> --%>
@@ -402,11 +419,12 @@
 <!-- 				</div> -->
 <!-- 			</div> -->
 			<!-- 				방명록  끝-->
-
-
+			
+			<sec:authorize access="hasRole('ROLE_USER')"> 
 			<button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button>
 <!-- 		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
-
+			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button>
+			</sec:authorize>
 
 		</div>
 		<!-- #/ container -->

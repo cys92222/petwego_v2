@@ -82,13 +82,9 @@ var temp = function(){
 					<div class="card">
 						<div class="card-body">
 							<div class="text-center">
-								<!-- 								<img id="snsImg" class="img-fluid" style="border-radius: 30px;" -->
-								<%-- 									onclick="location.href='/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }'" --%>
-								<%-- 									src="../img/${file[status.index].photo_file_name}"> --%>
-
 								<img id="snsImg" class="img-fluid" style="border-radius: 30px;"
-									data-toggle="modal" data-target="#exampleModalLong"
-									src="../img/${file[status.index].photo_file_name}">
+									onclick="location.href='/pic_board/detail?photo_no=${sns.photo_no }&user_id=${sns.user_id }&in_user_id=${login_id }'"
+									src="../img/snsImg/${file[status.index].photo_file_name}">
 								<!-- img-fluid   /card-img -->
 
 								<h4 class="card-widget__title text-dark mt-3">${sns.user_id}</h4>
