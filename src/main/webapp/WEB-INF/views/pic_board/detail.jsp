@@ -86,73 +86,81 @@
 		});
 
 		// 댓글작성버튼을 누르면!
-		$("#pcomment").click(function() {
+		$("#pc_btn").click(function() {
 			var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
 			if (commCheck == true) {
-				var pcommSubmit = $("form[name='pcommentForm']");
-				pcommSubmit.attr("action", "/pcomment/pinsertComment");
-				pcommSubmit.submit();
+// 				var pcommSubmit = $("form[name='pcommentForm']");
+// 				pcommSubmit.attr("action", "/pcomment/pinsertComment");
+// 				pcommSubmit.submit();
+				var id = '${login_id}';
+				var ct = $("#photo_comm_cont").val();
+				var pn = ${file.photo_no};
+				var d = {user_id:id, photo_comm_cont:ct, photo_no:pn};
+				$.ajax("/pcomment/pinsertComment",{data:d,success:function(){
+					window.location.reload(true);
+					}});
 			}
 		});
 
 		//댓글 목록
-		$
-				.ajax(
-						"/pcomment/plistComment",
-						{
-							type : "GET",
-							data : {
-								photo_no : '${file.photo_no}'
-							},
-							success : function(comm) {
-								comm = JSON.parse(comm);
-								$
-										.each(
-												comm,
-												function(idx, c) {
-													var tr = $("<tr></tr>");
-													var td1 = $("<td></td>")
-															.html(
-																	c.photo_comm_cont);
-													var td2 = $("<td></td>")
-															.html(
-																	moment(
-																			c.photo_comm_date)
-																			.format(
-																					'YYYY년 MM월 DD일 HH:mm:ss'));
-													var td3 = $("<td></td>")
-															.html(c.user_id);
-													if (c.user_id === "${login_id}") {
-														var delBtn = $(
-																"<button></button>")
-																.text("댓글삭제")
-																.attr(
-																		"photo_comm_no",
-																		c.photo_comm_no);
-													}
-													var td4 = $("<td></td>");
-													td4.append(delBtn);
-													tr.append(td1, td2, td3,
-															td4);
-													$("#pcomm_list").append(tr);
+		
+// 	$
+// 				.ajax(
+// 						"/pcomment/plistComment",
+// 						{
+// 							type : "GET",
+// 							data : {
+// 								photo_no : '${file.photo_no}'
+// 							},
+// 							success : function(comm) {
+// 								comm = JSON.parse(comm);
+// 								$
+// 										.each(
+// 												comm,
+// 												function(idx, c) {
+// 													var tr = $("<tr></tr>");
+// 													var td1 = $("<td></td>")
+// 															.html(
+// 																	c.photo_comm_cont);
+// 													var td2 = $("<td></td>")
+// 															.html(
+// 																	moment(
+// 																			c.photo_comm_date)
+// 																			.format(
+// 																					'YYYY년 MM월 DD일 HH:mm:ss'));
+// 													var td3 = $("<td></td>")
+// 															.html(c.user_id);
+// 													if (c.user_id === "${login_id}") {
+// 														var delBtn = $(
+// 																"<button></button>")
+// 																.text("댓글삭제")
+// 																.attr(
+// 																		"photo_comm_no",
+// 																		c.photo_comm_no);
+// 													}
+// 													var td4 = $("<td></td>");
+// 													td4.append(delBtn);
+// 													tr.append(td1, td2, td3,
+// 															td4);
+// 													$("#pcomm_list").append(tr);
 
-													//댓글 삭제
-													$(delBtn)
-															.click(
-																	function() {
-																		alert("버튼 누름");
-																		var delCheck = confirm("댓글을 삭제하시겠습니까?");
-																		if (delCheck == true) {
-																			self.location = "/pcomment/pcommDeleteSubmit?photo_comm_no="
-																					+ c.photo_comm_no;
-																			alert("댓글을 삭제했습니다!");
-																			location
-																					.reload();
-																		}
-																	})
-												})
-							}
-						});
+// 													//댓글 삭제
+// 													$(delBtn)
+// 															.click(
+// 																	function() {
+// 																		alert("버튼 누름");
+// 																		var delCheck = confirm("댓글을 삭제하시겠습니까?");
+// 																		if (delCheck == true) {
+// 																			self.location = "/pcomment/pcommDeleteSubmit?photo_comm_no="
+// 																					+ c.photo_comm_no;
+// 																			alert("댓글을 삭제했습니다!");
+// 																			location
+// 																					.reload();
+// 																		}
+// 																	})
+// 												})
+// 							}
+// 						});
 		//팔로우하기
 		$("#follow").click(function() {
 			var follow_user_id = $("#follow_user_id").val();
@@ -207,6 +215,7 @@
 										height="80" alt="">
 									<div class="media-body">
 										<h3 class="mb-0">${Board.user_id }</h3>
+										<input type="hidden" id="follow_user_id" value="${Board.user_id }">
 									</div>
 								</div>
 
@@ -301,7 +310,7 @@
 							</div>
 							<hr>
 							<div class="card-body">
-								<form name="pcommentForm" method="post">
+<!-- 								<form action="/pcomment/pinsertComment" method="post"> -->
 									<input type="hidden" id="token" name="${_csrf.parameterName}"
 										value="${_csrf.token}" /> <input type="hidden" id="photo_no"
 										name="photo_no" value="${Board.photo_no}">
@@ -314,10 +323,10 @@
 											placeholder="댓글을 입력해주세요."></textarea>
 									</div>
 									<div class="d-flex align-items-center">
-										<button class="btn btn-primary px-3 ml-4" id="pcomment">댓글
+										<button class="btn btn-primary px-3 ml-4" type="button" id="pc_btn">댓글
 											달기</button>
 									</div>
-								</form>
+<!-- 								</form> -->
 							</div>
 						</div>
 						<c:forEach var="plistComment" items="${plistComment}"
@@ -325,7 +334,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="media media-reply">
-										<img class="mr-3 circle-rounded" src="images/avatar/2.jpg"
+										<img class="mr-3 circle-rounded" src="../img/peopleImg/${plistComment.fname}"
 											width="50" height="50" alt="Generic placeholder image">
 										<div class="media-body">
 											<div class="d-sm-flex justify-content-between mb-2">

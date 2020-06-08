@@ -179,6 +179,7 @@ public class Pic_BoardController extends HttpServlet {
          
          mav.addObject("Board", pic_boardService.detailPic_Board(pb));
          mav.addObject("file", pic_boardService.detailFile(pbf));
+         mav.addObject("plistComment", pbc.plistComment(pb.getPhoto_no()));
          
          // 주련) 모달 추가 시도
  		List<FollowVo> list = followService.search_follow(f);
