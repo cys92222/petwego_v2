@@ -14,6 +14,7 @@
 	$(function(){
 		var user_id = $("#user_id").val();
 
+		// 회원 진짜 강퇴, 글쓴게 있고 이래도 강퇴가 됨 
 		$("#btnDelete").click(function(){
 			var check = confirm("회원을 강제탈퇴 시키시겠습니까?")
 			if(check == true){
@@ -118,9 +119,9 @@
 	</table>
 	<c:if test="${detail_Info.enabled == 1 }">   
 	<!-- 휴면계정으로 전환버튼 -->
-		<a href="#" class="btn btn-danger btn-icon-split" id="btnBreak">
+		<a href="#" class="btn btn-warning btn-icon-split" id="btnBreak">
        	 <span class="icon text-white-50">
-        	<i class="fas fa-trash"></i>
+        	<i class="far fa-frown"></i>
          </span>
         	<span class="text">휴면계정전환 | 회원정지</span>
         </a>
@@ -134,8 +135,9 @@
         	<span class="text">회원전환 | 휴면해제</span>
         </a>
    </c:if>  
+   
    <!-- 회원강퇴 버튼 -->
-	<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
+	<a style="float: right;" href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
       	 <span class="icon text-white-50">
        	<i class="fas fa-trash"></i>
         </span>
