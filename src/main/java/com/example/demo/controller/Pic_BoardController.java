@@ -215,7 +215,7 @@ public class Pic_BoardController extends HttpServlet {
          re = pic_boardService.insertPic_Board(pb); // sns글등록
          //System.out.println("마지막 글번호:" + pic_boardService.photo_no());
          pbf.setPhoto_no(pic_boardService.photo_no());
-         String path = request.getRealPath("/img");
+         String path = request.getRealPath("/img/snsImg");
          System.out.println(path);
 
          String oldFname = pbf.getPhoto_file_name();
@@ -312,7 +312,7 @@ public class Pic_BoardController extends HttpServlet {
          //업로드파일 이름
          String uploadfile = uploadFile.getOriginalFilename();
          System.out.println("업로드 파일 이름" + uploadfile);
-         String path = request.getRealPath("/img");
+         String path = request.getRealPath("/img/snsImg");
          System.out.println(path);
          //사진 수정을 한다면
          if(uploadfile!=null & !uploadfile.equals("")) {

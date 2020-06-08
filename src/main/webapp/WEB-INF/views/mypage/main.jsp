@@ -300,7 +300,7 @@
 							<div class="tab-pane fade" id="pic_board_list">
 								<div class="p-t-15">
 									<c:forEach items="${mysnspic }" var="sns" begin="0" end="6">
-										<img width="80" height="80" src="/img/${sns.photo_file_name}" />
+										<img width="80" height="80" src="../img/snsImg/${sns.photo_file_name}" />
 									</c:forEach>							
 <%-- 									<c:forEach var="sns" items="${mysns }" begin="0" end="4"> --%>
 <%-- 										<h4>글번호 ${sns.photo_no }</h4> --%>

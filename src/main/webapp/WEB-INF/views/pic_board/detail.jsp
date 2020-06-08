@@ -214,7 +214,7 @@
 										      <td></td>
 											</tr>
 											<tr>
-												<td class="text-center"><img width="200" height="200" src="/img/${file.photo_file_name}"/></td>
+												<td class="text-center"><img width="200" height="200" src="../img/snsImg/${file.photo_file_name}"/></td>
 												<td></td>
 												<td></td>
 											</tr>
