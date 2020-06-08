@@ -61,7 +61,7 @@
                                             <label class="col-lg-2 col-form-label" for="pwd">비밀번호 <span class="text-danger">*</span>
                                             </label>    
                                             <div class="col-lg-10">
-                                                <input type="text" class="form-control" name="pwd" id="pwd" required="required"/>
+                                                <input type="password" class="form-control" name="pwd" id="pwd" required="required"/>
                                             </div>                     
                                         </div>  
                                         <div class="form-group row">

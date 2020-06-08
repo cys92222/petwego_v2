@@ -76,11 +76,13 @@
 								<div class="carousel-item">
 									<img class="d-block w-100" src="../img/mainImg/m_1.jpg" alt=""
 										style="max-width: 100%;">
+										
 									<div class="carousel-caption d-none d-md-block">
 										<h5>반려동물과 함께 떠나는 여행</h5>
 										<p>소중한 추억을 만들어보세요. 펫위고가 그 여정을 함께 합니다.</p>
 									</div>
 								</div>
+								
 								<div class="carousel-item">
 									<img alt="" class="d-block w-100" src="../img/mainImg/m_2.jpg"
 										style="max-width: 100%;">
@@ -119,7 +121,7 @@
 						<div id="navpills-1" class="tab-pane active">
 							<div class="row align-items-center">
 								<div class="col-sm-6 col-md-4 col-xl-3">
-									<img src="../img/a-9.jpg" alt=""
+									<img src="../img/mainImg/a-9.jpg" alt=""
 										class="img-fluid thumbnail m-r-15">
 								</div>
 								<div class="col-sm-6 col-md-8 col-xl-9">
@@ -137,7 +139,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-12">
+		<div class="col-md-12">	
 			<div class="card">
 				<div class="card-body">
 
@@ -153,7 +155,7 @@
 									개설되어있는 모임에 참여해보세요. 좋은 사람들도 만나고 반려동물들에게도 친구를 만들어줄 수 있는 기회!</p>
 								</div>
 								<div class="col-sm-6 col-md-4 col-xl-3">
-									<img src="../img/a-8.jpg" alt=""
+									<img src="../img/mainImg/a-8.jpg" alt=""
 										class="img-fluid thumbnail m-r-15">
 								</div>
 							</div>
@@ -171,7 +173,7 @@
 						<div id="navpills-1" class="tab-pane active">
 							<div class="row align-items-center">
 								<div class="col-sm-6 col-md-4 col-xl-3">
-									<img src="../img/a-10.jpg" alt=""
+									<img src="../img/mainImg/a-10.jpg" alt=""
 										class="img-fluid thumbnail m-r-15">
 								</div>
 								<div class="col-sm-6 col-md-8 col-xl-9">
@@ -204,7 +206,7 @@
 									예약부터 결제까지 편안하게 하실 수 있도록 펫위고가 도와드립니다!</p>
 								</div>
 								<div class="col-sm-6 col-md-4 col-xl-3">
-									<img src="../img/a-11.jpg" alt=""
+									<img src="../img/mainImg/a-11.jpg" alt=""
 										class="img-fluid thumbnail m-r-15">
 								</div>
 							</div>
@@ -221,7 +223,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="text-center">
-							<img src="../img/wonwoo.jpg" class="rounded-circle" alt=""
+							<img src="../img/peopleImg/wonwoo.jpg" class="rounded-circle" alt=""
 								width="150" height="150">
 							<h5 class="mt-3 mb-1">Won Woo</h5>
 							<p class="m-0">Developer</p>
@@ -275,7 +277,7 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="text-center">
-							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
+							<img src="../img/peopleImg/a-3.jpg" class="rounded-circle" alt=""
 								width="150" height="150">
 							<h5 class="mt-3 mb-1">JooRaNo</h5>
 							<p class="m-0">Store Manager</p>
@@ -300,7 +302,7 @@
 			<div class="col-lg-12" style="padding: 0;">
 				<div class="card">
 					<div class="card-body" style="padding: 0; position: relative;">
-						<img src="../img/a-12.jpg" alt="" width="100%;">
+						<img src="../img/mainImg/a-12.jpg" alt="" width="100%;">
 						<div
 							style="right: 50px; top: 100px; width: 450px; bottom: 140px; font-size: 1.8em; font-weight: bold; position: absolute;">
 							<h1 style="color: white; font-size: 4rem;">Shall we go?</h1>
