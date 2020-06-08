@@ -13,9 +13,20 @@
 <script type="text/javascript">
 	$(function(){
 		var user_id = $("#user_id").val();
+
+		$("#btnDelete").click(function(){
+			var check = confirm("회원을 강제탈퇴 시키시겠습니까?")
+			if(check == true){
+				var check2 = confirm("정말 회원의 계정을 탈퇴처리 하시겠습니까?")
+				if(check2 == true){
+					self.location = "/management/member/member_delete?user_id="+user_id;
+					alert("회원 강제탈퇴 완료!");
+				}
+			}
+		});
 		
 		// 휴면계정으로 전환 
-		$("#btnDelete").click(function(){
+		$("#btnBreak").click(function(){
 			var check = confirm("회원을 휴면계정으로 전환 시키시겠습니까?")
 			if(check == true){
 				var check2 = confirm("정말 회원의 계정을 휴면계정으로 바꾸시겠습니까?")
@@ -107,11 +118,11 @@
 	</table>
 	<c:if test="${detail_Info.enabled == 1 }">   
 	<!-- 휴면계정으로 전환버튼 -->
-		<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
+		<a href="#" class="btn btn-danger btn-icon-split" id="btnBreak">
        	 <span class="icon text-white-50">
         	<i class="fas fa-trash"></i>
          </span>
-        	<span class="text">휴면계정전환 | 회원강퇴</span>
+        	<span class="text">휴면계정전환 | 회원정지</span>
         </a>
         </c:if> 
   <c:if test="${detail_Info.enabled == 0 }">   
@@ -123,6 +134,14 @@
         	<span class="text">회원전환 | 휴면해제</span>
         </a>
    </c:if>  
+   <!-- 회원강퇴 버튼 -->
+	<a href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
+      	 <span class="icon text-white-50">
+       	<i class="fas fa-trash"></i>
+        </span>
+       	<span class="text">회원계정삭제 | 강제탈퇴</span>
+       </a>
+   <!-- 회원강퇴 버튼 끝-->
 	</div>
 </div>
 </div>

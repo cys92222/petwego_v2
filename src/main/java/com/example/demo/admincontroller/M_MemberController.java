@@ -54,4 +54,12 @@ public class M_MemberController {
 		return "redirect:/management/member/member_list";
 	}
 
+	// 회원정보 삭제(강퇴)
+	@GetMapping("/member/member_delete")
+	public String deleteMember(MemberInfoVo m) {
+
+		mp_service.deleteMember(m);
+		return "redirect:/management/member/member_list";
+	}
+	
 }

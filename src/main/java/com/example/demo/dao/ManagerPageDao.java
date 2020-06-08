@@ -87,6 +87,9 @@ public interface ManagerPageDao {
 	// 휴면계정으로 전환한 회원을 다시 회원으로 전환!
 	int rollback_enabled(MemberInfoVo m);
 	
+	// 회원삭제(강퇴)
+	int deleteMember(MemberInfoVo m);
+	
 	//QnA 리스트
 	List<QnAVo> listQnA();
 	

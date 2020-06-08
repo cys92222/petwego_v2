@@ -57,30 +57,47 @@
 
 */
 
-		//회원탈퇴 (영구정지/휴면계정)
+		//회원탈퇴
 		$("#widthdraw_btn").click(function() {
 			var ck = confirm("탈퇴하시겠습니까?");
 			if (ck == true) {
 				var data = {
-					user_id : /*$("#user_id").val()*/'${login_id }'
+					user_id : '${login_id }'
 				};
-				// 			alert(data);
-//				$.ajax("/mypage/delete_member", {
-				$.ajax("/mypage/update_enabled", {
+				$.ajax("/mypage/delete_member", {
 					data : data,
 					success : function(re) {
-						// 				alert(re);
-						//				컨트롤러에서 return "/MainPage"; 으로 /MainPage 받아와서 href로 이동
 						window.location.href = "/login/logout";
 					}
 				});
-				// 			alert("탈퇴");
 			} else {
 
 			}
 		});
+
+		//영구정지 , 휴면계정
+		$("#break_btn").click(function() {
+			var ck = confirm("계정을 휴면처리 하시겠습니까?");
+			if (ck == true) {
+				var data = {
+					user_id : '${login_id }'
+				};
+				$.ajax("/mypage/update_enabled", {
+					data : data,
+					success : function(re) {
+						window.location.href = "/login/logout";
+					}
+				});
+			} else {
+
+			}
+		});
+
+
 		
 
+
+		
 	});
 </script>
 </head>
@@ -403,9 +420,9 @@
 <!-- 			</div> -->
 			<!-- 				방명록  끝-->
 
-
 			<button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button>
 <!-- 		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
+			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button>
 
 
 		</div>
