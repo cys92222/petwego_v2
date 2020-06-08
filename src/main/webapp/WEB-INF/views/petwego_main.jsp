@@ -236,7 +236,7 @@
 						<div class="text-center">
 							<img src="../img/peopleImg/ys.png" class="rounded-circle" alt=""
 								width="150" height="150">
-							<h5 class="mt-3 mb-1">0 soo</h5>
+							<h5 class="mt-3 mb-1">YungSoo</h5>
 							<p class="m-0">Store Manager</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
@@ -249,7 +249,7 @@
 						<div class="text-center">
 							<img src="../img/peopleImg/jjack.jpg" class="rounded-circle" alt=""
 								width="150" height="150">
-							<h5 class="mt-3 mb-1">쓔</h5>
+							<h5 class="mt-3 mb-1">SuIn</h5>
 							<p class="m-0">Developer</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
@@ -264,7 +264,7 @@
 						<div class="text-center">
 							<img src="../img/peopleImg/minah.png" class="rounded-circle" alt=""
 								width="150" height="150">
-							<h5 class="mt-3 mb-1">민아</h5>
+							<h5 class="mt-3 mb-1">MinAh</h5>
 							<p class="m-0">Developer</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
@@ -277,7 +277,7 @@
 						<div class="text-center">
 							<img src="../img/a-3.jpg" class="rounded-circle" alt=""
 								width="150" height="150">
-							<h5 class="mt-3 mb-1">John Abraham</h5>
+							<h5 class="mt-3 mb-1">JooRaNo</h5>
 							<p class="m-0">Store Manager</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
@@ -290,7 +290,7 @@
 						<div class="text-center">
 							<img src="../img/peopleImg/hj.png" class="rounded-circle" alt=""
 								width="150" height="150">
-							<h5 class="mt-3 mb-1">John Doe</h5>
+							<h5 class="mt-3 mb-1">HeeJae</h5>
 							<p class="m-0">Sales Man</p>
 							<!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
 						</div>
