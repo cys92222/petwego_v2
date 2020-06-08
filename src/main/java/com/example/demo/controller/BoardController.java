@@ -50,7 +50,6 @@ import com.google.gson.JsonObject;
 public class BoardController {
 	//private static final Logger LOGGER = LoggerFactory.getLogger(BoardController.class);
 
-	// dao대신 서비스와 의존관계 설정, setter를 만들어야 하는건지는 잘 모르겠음.
 	@Autowired
 	private BoardService service;
 
@@ -178,7 +177,7 @@ public class BoardController {
 			if (!board_content.contains(bf1.getUuid())) {
 				// System.out.println("내용: "+board_content);
 				// <p><img src="/summernoteImage/1c2d8936-672f-4fb5-8e6a-f1a91c5e5714.png"
-				// style="width: 20px;"><br></p>
+
 				// System.out.println("uuid: "+bf1.getUuid());
 				// uuid 4d69095d-6ca8-4510-84cb-ca210e12c6c7.png
 				bf_service.delete(bf1.getUuid());
@@ -197,21 +196,18 @@ public class BoardController {
 		AlarmVo alarm = new AlarmVo();
 		alarm.setT_num(bc.getBoard_no());
 		alarmService.delete_board_alarm(alarm);
-//		System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
-		
+
 		// 첨부파일이 있는 글이라면, 첨부파일 먼저 지워줘!
 		bf_service.delbord_no(bf.getBoard_no());
-//		System.out.println("bbbbbbbbbbbbbbbbbbbbb");
 
 		// 댓글달린 글이라면 댓글 먼저 지우고 
 		comm_service.deleteComment(bc); // where comm_num = #{comm_num}
-//		System.out.println("cccccccccccccccccccccccccc");
+
 		comm_service.deleteCommBoard(bc); // where board_no = #{board_no}
-//		System.out.println("dddddddddddddddddddddddddddd");
+
 		// 엮인거 다 지웠으니 이제 게시글을 지워줘! 
-//		System.out.println("b vo" + b);
 		service.deleteBoard(b);
-//		System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeee");
+
 		return mav;
 	}
 
