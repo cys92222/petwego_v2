@@ -105,4 +105,10 @@
 	<select id="detail_pay" resultType="com.example.demo.vo.PaymentVo">
 		select * from payment where user_id = #{user_id} and imp_uid = #{imp_uid}
 	</select>
+	
+<!-- 	예약 리스트중 24시간 지난것은 예약취소 -->
+	<update id="cancle_reservation">
+		update reservation set rsv_paid = '예약취소' where TRUNC(rsv_date-sysdate) <![CDATA[<]]>0 and rsv_paid = '결제대기'
+	</update>
+	
 </mapper>

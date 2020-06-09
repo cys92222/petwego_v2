@@ -67,6 +67,8 @@ public class MyPageController {
 	@Autowired
 	Board_CommentService bc;
 	
+
+	
 	//마이페이지 메인
 	@RequestMapping("/mypage/mypage")
 	public ModelAndView mypage(HttpServletRequest request) {

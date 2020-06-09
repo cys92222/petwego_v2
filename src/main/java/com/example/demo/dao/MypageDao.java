@@ -65,4 +65,8 @@ public interface MypageDao {
 	
 	//결제 상세
 	public PaymentVo detail_pay(PaymentVo p);
+	
+	//예약 리스트중 24시간 지난것은 예약취소
+	public int cancle_reservation();
+	
 }

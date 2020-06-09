@@ -174,5 +174,14 @@ public class MypageServiceImpl implements MypageService {
 		return pv;
 	}
 
+	//예약 리스트중 24시간 지난것은 예약취소
+	@Override
+	public int cancle_reservation() {
+		// TODO Auto-generated method stub
+		int re = -1;
+		re = mypagedao.cancle_reservation();
+		return re;
+	}
+
 
 }

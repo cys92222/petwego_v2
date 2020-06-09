@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.service.MypageService;
 import com.example.demo.service.SecurityService;
 import com.example.demo.util.AopLog.NoLogging;
 //import com.example.demo.util.AopLog.NoLogging;
@@ -35,6 +36,9 @@ public class LoginController {
    @Autowired
    PasswordEncoder passwordEncoder;
    
+   @Autowired
+   MypageService ms;
+   
    private static final Logger LOGGER = LoggerFactory.getLogger(LoginController.class);
 
   
@@ -45,6 +49,10 @@ public class LoginController {
       ModelAndView mav = new ModelAndView();
       mav.addObject("msg", msg);
       mav.setViewName("/login/login");
+	// 예약 내역 24시간 지나면 예약취소로 바꿈
+	ms.cancle_reservation();
+	System.out.println("예약 내역 24시간 지나면 예약취소로 바꿈 컨트롤러 동작");
+      
       return mav;
    }
 

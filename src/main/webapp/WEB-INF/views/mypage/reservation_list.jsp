@@ -87,10 +87,14 @@ $(function(){
                   							</a>
 										</td>
 									</c:when>	
+									
+									<c:when test="${rl.rsv_paid eq '예약취소' }">
+									<td style="text-align: center;"><button type="button" class="btn btn-warning btn-circle btn-sm">예약취소됨</button></td>
+									</c:when>
 										
 										
 										<c:otherwise>
-										<td style="text-align: center;"><button type="submit" id="save" class="btn btn-primary btn-circle btn-sm">결제완료</button></td>
+										<td style="text-align: center;"><button type="submit" class="btn btn-primary btn-circle btn-sm">결제완료</button></td>
 										</c:otherwise>
 										
 										</c:choose>
