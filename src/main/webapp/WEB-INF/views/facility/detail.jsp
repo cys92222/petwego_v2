@@ -19,6 +19,31 @@
 <script type="text/javascript">
 // URL paramter 가져오기
 $(function(){
+	
+	$("#chk_money").click(function(){
+		var chk_check_in = $("#chk_check_in").val();
+		var chk_check_out = $("#chk_check_out").val();
+// 		alert("예약금액 확인 버튼 누름"+chk_check_in+chk_check_out);
+		//참고 사이트
+		//https://mingggu.tistory.com/64
+// 		alert(chk_check_in.replace(/-/gi,""));
+		var cci = Number(chk_check_in.replace(/-/gi,"")); //replaceAll 없어서 정규식으로함
+		var cco = Number(chk_check_out.replace(/-/gi,""));
+// 		alert("날짜 계산" + ccm);
+		var ccm = cco - cci; //숙박 일수 계산
+		$("#chk_nights").val(ccm);
+		var r_cost = $("#chk_rm_cost").val();
+// 		alert("1박당 가격" + r_cost);
+		var last_money = ccm * r_cost //최종 금액
+// 		alert("최종금액"+last_money);
+		$("#chk_rsv_price").val(last_money);
+	});
+
+	$("#same").click(function(){
+			$("#guest_name").val('${my.name}');
+			$("#guest_tel").val('${my.tel}');
+		});
+	
 
 	var getUrlParameter = function getUrlParameter(sParam) {
 	    var sPageURL = window.location.search.substring(1),
@@ -270,6 +295,8 @@ $(function(){
     });
     
 }); // end-of
+
+
 </script>
 <!--Font awesome CDN-->
 <link rel="stylesheet"
@@ -668,16 +695,17 @@ $(function(){
 																							<div class="form-row">
 																								<div class="form-group col-md-6">
 																									<label>체크인</label> 
-																									<input name="check_in" type="date" class="form-control">
+																									<input id="chk_check_in" name="check_in" type="date" class="form-control">
 																								</div>
 																								<div class="form-group col-md-6">
 																									<label>체크아웃</label> 
-																									<input name="check_out" type="date" class="form-control">
+																									<input id="chk_check_out" name="check_out" type="date" class="form-control">
 																								</div>
+																								<div><button type="button" id="chk_money">예약 금액 확인하기</button></div>
 																							</div>
 																							<div class="form-group">
 																								<label>숙박기간</label> 
-																								<input name="nights" type="number" class="form-control">
+																								<input id="chk_nights" name="nights" type="number" class="form-control">
 																							</div>
 																							<div class="form-row">
 																								<div class="form-group col-md-6">
@@ -697,7 +725,7 @@ $(function(){
 																								</div>
 																								<div class="form-group col-md-6">
 																									<label>1박당 가격</label> 
-																									<input name="rm_cost" type="number" class="form-control" readonly="readonly">
+																									<input id="chk_rm_cost" name="rm_cost" type="number" class="form-control" readonly="readonly">
 																								</div>
 																							</div>
 																							<div class="form-row">
@@ -742,12 +770,13 @@ $(function(){
 																							<div class="form-row">
 																								<div class="form-group col-md-6">
 																									<label>이름</label>
-																									 <input name="guest_name" type="text" class="form-control">
+																									 <input id="guest_name" name="guest_name" type="text" class="form-control">
 																								</div>
 																								<div class="form-group col-md-6">
 																									<label>연락처</label> 
-																									<input name="guest_tel" type="text" class="form-control">
+																									<input id="guest_tel" name="guest_tel" type="text" class="form-control">
 																								</div>
+																							<div><button type="button" id="same">가입자와 동일</button></div>
 
 
 																							</div>
@@ -755,7 +784,7 @@ $(function(){
 																							<div class="form-row">
 																								<div class="form-group col-md-6">
 																									<label>총예약금액</label> 
-																									<input name="rsv_price" type="number" class="form-control" readonly="readonly">
+																									<input id="chk_rsv_price" name="rsv_price" type="number" class="form-control" readonly="readonly">
 																								</div>
 
 																							</div>
@@ -947,6 +976,7 @@ $(function(){
 		</div>
 
 	</div>
+	
 
 </body>
 </html>
