@@ -164,6 +164,7 @@
 										<c:when test="${not empty fname  }">
 											<img class="d-block mt-1" src="../img/peopleImg/${fname }" height="40" width="40"
 												alt="">
+<%-- 												src="../img/peopleImg/${fname }"  --%>
 										</c:when>
 
 										<c:otherwise>
