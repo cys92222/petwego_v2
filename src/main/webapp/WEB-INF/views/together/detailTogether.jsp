@@ -44,7 +44,7 @@ $(document).ready(function(){
 // 			$("#m_animal").empty();
 			$("#animalApplication").empty();
 			$("#modal-h").empty();
-			var h4 = $("<h5 class='modal-title'>동물 리스트</h5>");
+			var h4 = $("<h5 class='modal-title'>동물 List</h5>");
 			$("#modal-h").append(h4);
 			
 			var th_animal_pet_name = $("<th>반려동물 이름</th>");
@@ -62,14 +62,15 @@ $(document).ready(function(){
 						$.each(re,function(idx,animal){
 							
 							var animal_pet_name = $("<td></td>").append(animal.pet_name);
+							
 							var animal_pet_date = $("<td></td>").append(animal.pet_date);
-							var animal_pet_pic = $("<img>");
+							var animal_pet_pic = $("<img class='mr-3 circle-rounded'>");
 							animal_pet_pic.attr("src","../img/animalImg/"+animal.pet_pic);
-							animal_pet_pic.attr("width",30);
-							animal_pet_pic.attr("height",30);
+							animal_pet_pic.attr("width",50);
+							animal_pet_pic.attr("height",50);
 							var td_animal_pet_pic = $("<td></td>").append(animal_pet_pic);
 							var animal_pet_intro = $("<td></td>").append(animal.pet_intro);
-							var tr_content = $("<tr></tr>").append(animal_pet_name,animal_pet_date,td_animal_pet_pic);
+							var tr_content = $("<tr style='height: 100px;'></tr>").append(animal_pet_name,animal_pet_date,td_animal_pet_pic);
 							$("#animalApplication").append(tr_content);
 							});
 						
@@ -310,7 +311,7 @@ $(document).ready(function(){
 												</div>
 												
 												<div class="modal-body">
-														<table border="1" id="animalApplication">
+														<table id="animalApplication" style="text-align: center; width: 100%;">
 																											
 														</table>
 												</div>
