@@ -423,7 +423,7 @@
 			<sec:authorize access="hasRole('ROLE_USER')"> 
 			<button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button>
 <!-- 		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
-			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button>
+<!-- 			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button> -->
 			</sec:authorize>
 
 		</div>

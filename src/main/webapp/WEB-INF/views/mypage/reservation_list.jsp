@@ -76,7 +76,8 @@ $(function(){
                                                 <td>${rl.rsv_paid }</td>
                                                 <td>${rl.guest_name }</td>
                                                 <td>${rl.guest_tel }</td>
-                                                <td><a href="/mypage/detail_reservation?rsv_no=${rl.rsv_no }" onclick="return confirm('상세화면으로 이동하시겠습니까 ?');">상세보기</a></td>
+<%--                                                 <td><a href="/mypage/detail_reservation?rsv_no=${rl.rsv_no }" onclick="return confirm('상세화면으로 이동하시겠습니까 ?');">상세보기</a></td> --%>
+                                                <td><a href="/mypage/detail_reservation?rsv_no=${rl.rsv_no }">상세보기</a></td>
                                                 <c:choose>
                                                 
                                                 <c:when test="${rl.rsv_paid eq '결제대기' }">
