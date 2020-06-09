@@ -110,10 +110,10 @@
 			</ol>
 		</div>
 	</div>
-	<div class="card-body">
 	<c:if test="${search_insert_board_alarm_count>0 or search_insert_together_count>0 or search_cancle_together_count>0}">
+	<div class="card-body">
 		<h4 class="card-title"><span class="label label-success">신규알림</span></h4>
-	</c:if>
+	
 	
 		<div id="accordion-three" class="accordion">
 
@@ -186,7 +186,7 @@
 			
 		</div>
 	</div>
-			
+	</c:if>		
 
 
 
