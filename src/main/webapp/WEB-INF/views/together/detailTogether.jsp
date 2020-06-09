@@ -310,19 +310,33 @@ $(document).ready(function(){
 									/ ${detailTogether.t_size }</span><br> <span
 									class="label label-pill label-secondary">모임 날짜</span><span>&nbsp;&nbsp;&nbsp;${detailTogether.t_date }</span>
 							</div>
+							<!-- btn start -->
+							
+					<div class="d-flex justify-content-between pt-3 mt-5 mb-1 border-top">
+						<c:if test="${login_id eq detailTogether.user_id }">
+                    	<div>
+                    		<a id="update_btn" href="#" class="label gradient-1 text-white px-2 mr-1"><i class="fa fa-pencil"></i> 수정</a>
+                    		<a id="delete_btn" href="#" class="label gradient-9 text-white"><i class="fa fa-close"></i> 삭제</a>
+                    	</div>
+                    	</c:if>
+                    	<div>
+                        	<a id="list_btn" href="#" class="label gradient-4 text-white"><i class="fa fa-list"></i> 목록</a>
+                    	</div>
+                    </div>	
+							<!-- btn end -->
 						</div>
 					</div>
-					<hr>
+					
 				</div>
 			</div>
-			<c:if test="${login_id eq detailTogether.user_id }">
+<%-- 			<c:if test="${login_id eq detailTogether.user_id }">
 				<button type="button" id="update_btn" class="btn mb-1 btn-primary"
 					style="border: none; width: 150px;">글 수정</button>
 				<button type="button" id="delete_btn" class="btn mb-1 btn-danger"
 					style="border: none; width: 150px;">글 삭제</button>
 			</c:if>
 			<button class="btn mb-1 btn-primary" type="submit" id="list_btn"
-				style="border: none; width: 150px;">목록</button>
+				style="border: none; width: 150px;">목록</button> --%>
 		</form>
 
 	</div>
