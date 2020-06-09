@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.example.demo.dao.TogetherDao;
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
-
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.ReplyVo;
 import com.example.demo.vo.TogetherVo;
 
@@ -82,6 +82,15 @@ public class TogetherServiceImpl implements TogetherService {
 		Integer re = dao.last_no();
 		return re;
 	}
+
+	@Override
+	public List<Animal_infoVo> chk_animal_list(String user_id) {
+		// TODO Auto-generated method stub
+		List<Animal_infoVo> list = dao.chk_animal_list(user_id);
+		return list;
+	}
+	
+	
 	
 	
 }

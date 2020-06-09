@@ -7,6 +7,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.demo.util.Criteria;
 import com.example.demo.util.SearchCriteria;
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.ReplyVo;
 import com.example.demo.vo.TogetherVo;
 
@@ -34,5 +35,7 @@ public interface TogetherService {
 	String select_together_id(int t_num);
 	
 	public Integer last_no();
+	
+	public List<Animal_infoVo> chk_animal_list(String user_id);
 	
 }

@@ -200,4 +200,8 @@
 		select user_id from together where t_num = #{t_num}
 	</select>
 	
+	<select id="chk_animal_list" resultType="com.example.demo.vo.Animal_infoVo">
+		select * from animal_info where user_id = #{user_id}
+	</select>
+	
 </mapper>

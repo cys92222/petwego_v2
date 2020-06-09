@@ -47,10 +47,9 @@
                         <div class="card">
                             <div class="card-body">
                             	<h4>회원가입</h4><br>
-                                <div class="form-validation"> <!-- form의 action 주소만 복사했음 join.jsp가 고치고 있는 중 / join2 가 원본 / join boot 가 boot 양식만 있는 거 -->
+                                <div class="form-validation">
                                     <form class="form-valide" action="/join/insert" method="post" novalidate="novalidate" id="myForm">
                                     <input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-<!--                                        <input type="hidden" id="token" name="_csrf" value="80e80458-bb33-49b3-bbb0-0dbb0b7eeb3e">  -->
                                         <div class="form-group row">
                                             <label class="col-lg-2 col-form-label" for="user_id">아이디 <span class="text-danger">*</span>
                                             </label>
@@ -58,6 +57,7 @@
                                                 <input type="text" class="form-control mb-1" name="user_id" id="user_id" placeholder="ID" required="required" aria-required="true">
                                                 <button class="btn btn-outline-dark btn-sm" type="button" id="idCheck">아이디 중복 확인</button>
                                            		<span id="overlapErr" class="help-block">사용할 수 없는 아이디 입니다.</span>
+                                           		<span id="overlapSucc" class="help-block">사용 가능한 아이디 입니다.</span>
                                            		<span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>				         
                                         </div>  
@@ -156,6 +156,7 @@
                                                 <input type="text" class="form-control mb-1" id="nick_name" name="nick_name" placeholder="NICKNAME">
                                                 <button type="button" id="nickCheck" class="btn btn-outline-dark btn-sm">닉네임 중복 확인</button> 
 									         	<span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
+									         	<span id="successNick" class="help-block">사용가능한 닉네임입니다.</span>
 									         	<span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -225,11 +226,12 @@ var idx = false;
 		       idx=true;
 			   $('#user_id').attr("readonly",true);
 		       $("#overlapErr").hide();
+		       $("#overlapSucc").show();
 		       successState("#user_id");
-		       alert("사용가능한 아이디입니다.");
 		    //중복된 아이디라면
 		    }else{
 		       $("#overlapErr").show();
+		       $("#overlapSucc").hide();
 		       errorState("#user_id");
 		       return false;
 		    }
@@ -251,11 +253,12 @@ $("#nickCheck").on("click", function(){
 	       idx=true;
 //		   $('#nick_name').attr("readonly",true);
 	       $("#overlapNick").hide();
+	       $("#successNick").show();
 	       successState("#nick_name");
-	       alert("사용가능한 닉네임입니다.");
 	    //정규표현식을 통과하지 못하면
 	    }else{
 	       $("#overlapNick").show();
+	       $("#successNick").hide();
 	       errorState("#nick_name");
 	       return false;
 	    }
@@ -360,14 +363,10 @@ $("#nickCheck").on("click", function(){
               console.log(data.zonecode);
               console.log(fullRoadAddr);
               
-              
-//              $("[name=addrress]").val(data.zonecode);
-//              $("[name=address2]").val(fullRoadAddr);  
            	  // 우편번호와 주소 정보를 해당 필드에 넣는다.
               document.getElementById('address').value = data.zonecode; //5자리 새우편번호 사용
               document.getElementById('address2').value = fullRoadAddr;
 
-              //self.close();
           }
        }).open();
    }

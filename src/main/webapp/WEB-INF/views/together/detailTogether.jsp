@@ -19,15 +19,12 @@
 	background-color: #4AD4C7;
 	border: none;
 }
-
 .label-secondary {
 	background-color: #4AD4C7;
 }
-
 .ml-3 {
 	margin-left: 0;
 }
-
 .back-to-top {
 	position: fixed;
 	bottom: 25px;
@@ -39,7 +36,47 @@
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
+	var g_userList = ${g_userList};
+
+	$.each(g_userList,function(idx,ul){
+		console.log(ul.user_id);
+		$("#"+ul.user_id).click(function(){
+// 			$("#m_animal").empty();
+			$("#animalApplication").empty();
+			$("#modal-h").empty();
+			var h4 = $("<h5 class='modal-title'>동물 List</h5>");
+			$("#modal-h").append(h4);
+			
+			var th_animal_pet_name = $("<th>반려동물 이름</th>");
+			var th_animal_pet_date = $("<th>반려시작일</th>");
+			var th_animal_pet_pic = $("<th>반려동물 사진</th>");
+			var th_animal_pet_intro = $("<th>반려동물소개</th>");
+			var tr_th = $("<tr></tr>").append(th_animal_pet_name,th_animal_pet_date,th_animal_pet_pic);
+			$("#animalApplication").append(tr_th);
+			
+// 				alert(ul.user_id);
+				var chk_id = {user_id:ul.user_id};
+				$.ajax("/together/chk_animal_list",{data:chk_id,success:function(re){
+// 						console.log(re);
+
+						$.each(re,function(idx,animal){
+							
+							var animal_pet_name = $("<td></td>").append(animal.pet_name);
+							
+							var animal_pet_date = $("<td></td>").append(animal.pet_date);
+							var animal_pet_pic = $("<img class='mr-3 circle-rounded'>");
+							animal_pet_pic.attr("src","../img/animalImg/"+animal.pet_pic);
+							animal_pet_pic.attr("width",50);
+							animal_pet_pic.attr("height",50);
+							var td_animal_pet_pic = $("<td></td>").append(animal_pet_pic);
+							var animal_pet_intro = $("<td></td>").append(animal.pet_intro);
+							var tr_content = $("<tr style='height: 100px;'></tr>").append(animal_pet_name,animal_pet_date,td_animal_pet_pic);
+							$("#animalApplication").append(tr_content);
+							});
+						
+					}});
+			});
+		});
 	 
 	//form태그를  변수에 저장
 	 var formObj = $("form[name='detailForm']");
@@ -50,18 +87,21 @@ $(document).ready(function(){
 		formObj.attr("method","get");
 		formObj.submit();
 	});
-
 	//삭제
 	$("#delete_btn").on("click",function(){
-		var deleteYN = confirm("삭제하시겠습니까?");
-		
-		if(deleteYN==true){
-			formObj.attr("action","deleteTogether");
-			formObj.attr("method","post");
-			formObj.submit();
-		}
-	});
-
+      var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
+      if(t_attendee_cnt > 1){
+         alert("참가자가 있는 모임은 취소할수 없습니다.");
+      }else if(t_attendee_cnt == 1){
+         var deleteYN = confirm("삭제하시겠습니까?");
+         
+         if(deleteYN==true){
+            formObj.attr("action","deleteTogether");
+            formObj.attr("method","post");
+            formObj.submit();
+         }
+      }
+   });
 	//검색 유지한 목록으로 돌아가기
 	//5월8일 현재 동작 안되고 있음 주소창에 입력값은 가져와지는데 페이지가 넘어가지지 않음
 	$("#list_btn").on("click", function(){
@@ -91,7 +131,6 @@ $(document).ready(function(){
 // 						+ "&keyword=${scri.keyword}"
 // 						+ "&t_r_num="+$(this).attr("data-t_r_num");
 // 	});
-
 	$(".replyDeleteBtn").on("click",function(){
 		var formObj2 =  $("form[id='replyForm']");
 		var deleteYN2 = confirm("삭제하시겠습니까?");
@@ -107,7 +146,6 @@ $(document).ready(function(){
 						+ "&t_r_num="+$(this).attr("data-t_r_num");
 			}
 	});
-
 	//비밀댓글
    $("#replyWriteBtn").click(function(){
       //비밀댓글 파라미터 추가
@@ -122,7 +160,6 @@ $(document).ready(function(){
          }
       });
    });
-
  	//비밀 체크박스
     $("#secretReply_chk").click(function(){
       if($("#secretReply_chk").is(":checked") == true){
@@ -131,7 +168,6 @@ $(document).ready(function(){
          $("#secretReply").val("n");
       }
     });
-
 	//신청하기
 	var t_num = $("#t_num").val();
 	var user_id = $("#user_id").val();
@@ -152,7 +188,6 @@ $(document).ready(function(){
 			}
 		}})
 	}
-
 	okApplication(user_id, t_num);
 	
 	// 신청하기 insert
@@ -187,7 +222,6 @@ $(document).ready(function(){
 			}
 		}})
 	})
-
 });
 </script>
 </head>
@@ -253,7 +287,7 @@ $(document).ready(function(){
 																<c:forEach var="userList" items="${userList}"
 																	varStatus="status">
 																	<tr>
-																		<td>${userList.user_id}</td>
+																		<td id="${userList.user_id}">${userList.user_id}</td>
 																	</tr>
 																</c:forEach>
 															</table>
@@ -265,6 +299,23 @@ $(document).ready(function(){
 														data-dismiss="modal"
 														style="background-color: #4AD4C7; border: none;">Close</button>
 												</div>
+												
+												 
+												
+												
+												<section id="m_animal">
+												<div class="modal-header"  id="modal-h">
+													<button type="button" class="close" data-dismiss="modal">
+														<span>&times;</span>
+													</button>
+												</div>
+												
+												<div class="modal-body">
+														<table id="animalApplication" style="text-align: center; width: 100%;">
+																											
+														</table>
+												</div>
+												</section>
 											</div>
 										</div>
 									</div>
