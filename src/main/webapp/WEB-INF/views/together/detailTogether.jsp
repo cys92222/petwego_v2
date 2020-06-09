@@ -400,9 +400,9 @@ $(document).ready(function(){
 						<div style="float: right;">
 							<c:if test="${login_id eq replyList.user_id }">
 								<a class="replyUpdateBtn" data-t_r_num="${replyList.t_r_num}"><i
-									class="mdi mdi-message-draw"></i></a>
+									class="mdi mdi-message-draw" style="font-size: xx-large"></i></a>
 								<a class="replyDeleteBtn" data-t_r_num="${replyList.t_r_num}"><i
-									class="mdi mdi-file-excel-box"></i></a>
+									class="mdi mdi-file-excel-box" style="font-size: xx-large"></i></a>
 							</c:if>
 						</div>
 					</div>
