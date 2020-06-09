@@ -62,11 +62,9 @@ $(function(){
 				<div class="card-title">
 					<h4>공지사항게시판</h4>
 				</div>
-
-
-				<div class="col-lg-12" style="float: left; margin-top: 15px;">
+				<div class="col-lg-12 align-items-center" style="float: left; margin-top: 15px;">
 					<div class="form-group" style="float: left;">
-						<select class="form-control form-control-sm" name="searchType" style="width: 100px;">
+						<select class="form-control input-default h-75" name="searchType" style="width: 100px;">
 							<option value="n"
 								<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>카테고리</option>
 							<option value="t"
@@ -79,12 +77,13 @@ $(function(){
 					<div class="basic-form" style="float: left;">
 						<form>
 							<div class="form-group">
-								<input type="text" class="form-control input-flat" name="keyword" id="keywordInput" value="${scri.keyword}"
+								<input type="text" class="form-control input-default h-75 mr-1" name="keyword" id="keywordInput" value="${scri.keyword}"
 								 	style="width: 300px; margin-left: 5px;" />
 							</div>
 						</form>
 					</div>
-					<button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 my-1 h-75">검색</button>
+					<button id="searchBtn" type="submit" class="btn btn-primary col-lg-1 col-md-12 col-sm-12 h-75 align-self-center">검색</button>
+
 
 					<script>
 						$(function() {
@@ -95,7 +94,7 @@ $(function(){
 											});
 							});
 					</script>
-					<div class="table-responsive">
+					<div class="table-responsive mt-5">
 						<table class="table table-hover" id="listNotie">
 						<tr>
 							<th>공지번호</th><th>카테고리</th><th>제목</th><th>조회수</th><th>작성일자</th>
