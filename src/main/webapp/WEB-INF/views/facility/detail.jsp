@@ -23,28 +23,22 @@ $(function(){
 	$("#chk_money").click(function(){
 		var chk_check_in = $("#chk_check_in").val();
 		var chk_check_out = $("#chk_check_out").val();
-// 		alert("예약금액 확인 버튼 누름"+chk_check_in+chk_check_out);
-		//참고 사이트
-		//https://mingggu.tistory.com/64
-// 		alert(chk_check_in.replace(/-/gi,""));
-		var cci = Number(chk_check_in.replace(/-/gi,"")); //replaceAll 없어서 정규식으로함
+		var cci = Number(chk_check_in.replace(/-/gi,"")); 
 		var cco = Number(chk_check_out.replace(/-/gi,""));
-// 		alert("날짜 계산" + ccm);
 		var ccm = cco - cci; //숙박 일수 계산
 		$("#chk_nights").val(ccm);
 		var r_cost = $("#chk_rm_cost").val();
-// 		alert("1박당 가격" + r_cost);
 		var last_money = ccm * r_cost //최종 금액
-// 		alert("최종금액"+last_money);
 		$("#chk_rsv_price").val(last_money);
 	});
 
-	$("#same").click(function(){
+	$("input[name=same]").change(function() {
+	    if(this.checked) {
 			$("#guest_name").val('${my.name}');
 			$("#guest_tel").val('${my.tel}');
-		});
+	    }
+	});
 	
-
 	var getUrlParameter = function getUrlParameter(sParam) {
 	    var sPageURL = window.location.search.substring(1),
 	        sURLVariables = sPageURL.split('&'),
@@ -701,11 +695,15 @@ $(function(){
 																									<label>체크아웃</label> 
 																									<input id="chk_check_out" name="check_out" type="date" class="form-control">
 																								</div>
-																								<div><button type="button" id="chk_money">예약 금액 확인하기</button></div>
+																								
 																							</div>
 																							<div class="form-group">
 																								<label>숙박기간</label> 
 																								<input id="chk_nights" name="nights" type="number" class="form-control">
+																							</div>
+																							<!-- <div><button type="button" id="chk_money">예약 금액 확인하기</button></div> -->
+																							<div class="form-row">
+																							<button id="chk_money" type="button" class="btn-danger p-2 h-50 btn ml-1 mb-5">숙박기간변경</button>
 																							</div>
 																							<div class="form-row">
 																								<div class="form-group col-md-6">
@@ -766,7 +764,17 @@ $(function(){
 
 
 																							</div>
-																							<h3 class="my-4">투숙객 정보</h3>
+																							<!-- 동일인 체크 영역 start -->
+																							<div class="d-flex align-items-center mt-2">
+																							    <div class="mr-3 text-primary">예약자가 투숙객 정보와 동일합니까?</div>
+																							    <div class="form-check form-check-inline">
+													                                                <label class="form-check-label">
+													                                                    <input name="same" type="checkbox" class="form-check-input" value="">예약자 정보와 동일</label>
+													                                            </div>
+																							    
+																							</div>
+																							<!-- 동일인 체크 영역 end -->
+																							<h3 class="mt-5 mb-4 border-top pt-4">투숙객 정보</h3>
 																							<div class="form-row">
 																								<div class="form-group col-md-6">
 																									<label>이름</label>
@@ -776,7 +784,7 @@ $(function(){
 																									<label>연락처</label> 
 																									<input id="guest_tel" name="guest_tel" type="text" class="form-control">
 																								</div>
-																							<div><button type="button" id="same">가입자와 동일</button></div>
+																
 
 
 																							</div>
