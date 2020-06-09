@@ -39,11 +39,13 @@ import com.example.demo.util.Criteria;
 import com.example.demo.util.PageMaker;
 import com.example.demo.util.SearchCriteria;
 import com.example.demo.vo.AlarmVo;
+import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.ApplicationVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.ReplyVo;
 import com.example.demo.vo.ThumbnailVo;
 import com.example.demo.vo.TogetherVo;
+import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 // 민아) 5/21, 로그 처리 
@@ -67,6 +69,17 @@ public class TogeteherController {
 	@Autowired
 	LoginMapperDao loginMapperDao;
 
+	
+	//함께가요 신청자 목록에서 그 사람 반려동물 정보 보기
+	@RequestMapping("chk_animal_list")
+	@ResponseBody
+	@NoLogging
+	public List<Animal_infoVo> chk_animal_list(String user_id,Model model) {
+		System.out.println("chk_animal_list 컨트롤러");
+		List<Animal_infoVo> alist = service.chk_animal_list(user_id);
+		model.addAttribute("alist", alist);
+		return alist;
+	}
 	
 	//댓글삭제 POST
 	@RequestMapping(value="/deleteReply",method = RequestMethod.GET)
@@ -239,6 +252,11 @@ public class TogeteherController {
      for(ApplicationVo av : userList) {
     	 
      }
+     
+     
+     Gson gson = new Gson();
+     String g_userList = gson.toJson(userList);
+     model.addAttribute("g_userList", g_userList);
      
      model.addAttribute("userList",userList);
      
