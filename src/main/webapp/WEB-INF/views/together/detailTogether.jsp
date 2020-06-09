@@ -39,6 +39,8 @@
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	 
 	//form태그를  변수에 저장
 	 var formObj = $("form[name='detailForm']");
  
@@ -111,7 +113,7 @@ $(document).ready(function(){
       //비밀댓글 파라미터 추가
       var param = $("#replyForm").serialize();
       $.ajax({
-         type:"post",
+         type:"get",
          url:"/together/writeReply",
          data:param,
          success:function(){
@@ -152,20 +154,24 @@ $(document).ready(function(){
 	}
 
 	okApplication(user_id, t_num);
-
+	
 	// 신청하기 insert
 	$(document).on("click","#Application",function(){
-		var data = $("#applicationForm").serialize();
-		console.log(user_id,t_num)
-		$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt,in_user_id:in_user_id}, success:function(re){
-			alert(re);
-			if(re === "신청하기 완료"){
-				$("#clickApplication").show();
-				$("#Application").hide();	
-				$("#cntApplication").html(eval($("#cntApplication").html())+1);
-				window.location.reload();
-			}
-		}})
+		var applicationYN = confirm("신청하시겠습니까?");
+		if(applicationYN==true){
+			var data = $("#applicationForm").serialize();
+			console.log(user_id,t_num)
+			$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt,in_user_id:in_user_id}, success:function(re){
+				alert(re);
+				if(re === "신청하기 완료"){
+					$("#clickApplication").show();
+					$("#Application").hide();	
+					$("#cntApplication").html(eval($("#cntApplication").html())+1);
+					window.location.reload();
+				}
+			}})
+		}
+		
 			
 	})
 	
@@ -207,13 +213,14 @@ $(document).ready(function(){
 			<div class="col-lg-12" style="background-color: white;">
 				<div class="read-content">
 					<div class="media pt-5">
-						<img
-							src="../img/togetherImg/crown.png" height="50" width="50" alt="" style="margin-top: 10px; margin-left: 20px;">
+						<img src="../img/togetherImg/crown.png" height="50" width="50"
+							alt="" style="margin-top: 10px; margin-left: 20px;">
 						<div class="media-body" style="float: left;">
 							<h2 class="m-b-3">
 								<div name="t_user_id"
 									style="margin-top: 20px; margin-left: 10px; float: left;">${detailTogether.user_id}</div>
-									<span class="badge badge-pill badge-primary" style="font-size: 15px; margin-top: 25px; margin-left: 10px;">모임장</span>
+								<span class="badge badge-pill badge-primary"
+									style="font-size: 15px; margin-top: 25px; margin-left: 10px;">모임장</span>
 							</h2>
 						</div>
 						<div class="col-lg-2" style="float: left;">
@@ -244,7 +251,7 @@ $(document).ready(function(){
 																	<td>현재 참여자</td>
 																</tr>
 																<c:forEach var="userList" items="${userList}"
-																	varStatus="status">	
+																	varStatus="status">
 																	<tr>
 																		<td>${userList.user_id}</td>
 																	</tr>
@@ -261,20 +268,19 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</div>
-									
-									
-									<c:set var="login_id" value="${login_id }" />								 
+
+
+									<c:set var="login_id" value="${login_id }" />
 									<c:set var="dt_user_id" value="${detailTogether.user_id }" />
 
-									<c:if
- 										test="${login_id ne dt_user_id}">
+									<c:if test="${login_id ne dt_user_id}">
 										<button id="Application" class="btn btn-primary" type="button"
 											style="width: 100%; border: 0; margin-top: 5px; float: right;">신청하기</button>
- 										<button id="clickApplication" class="btn btn-primary"
- 											style="width: 100%; border: 0; margin-top: 5px;">신청취소</button>
+										<button id="clickApplication" class="btn btn-primary"
+											style="width: 100%; border: 0; margin-top: 5px;">신청취소</button>
 										<c:out
 											value="<p id='cntApplication'>${together.t_attendee_cnt }</p>"
- 											escapeXml="false" />
+											escapeXml="false" />
 									</c:if>
 
 								</div>
@@ -321,7 +327,7 @@ $(document).ready(function(){
 
 	</div>
 
-	<form id="replyForm" method="post">
+	<form id="replyForm" method="get">
 		<input type="hidden" id="token" name="${_csrf.parameterName}"
 			value="${_csrf.token}" /> <input type="hidden" id="t_num"
 			name="t_num" value="${detailTogether.t_num }" /> <input
@@ -387,8 +393,8 @@ $(document).ready(function(){
 									test="${user_id eq login_id || login_id eq dt_user_id || user_id eq login_id}">
 										${replyList.t_r_content }
 									</c:if>
-									비밀댓글입니다<input type="image" src="/img/locker.png" width="15"
-									height="15" />
+									비밀댓글입니다<input type="image" src="/img/togetherImg/locker.jpg"
+									width="15" height="15" />
 							</c:if>
 						</p>
 						<div style="float: right;">
