@@ -123,6 +123,15 @@
 							<img src="../t_thumbnailUpload/${c.thumbnail}"
 								style="margin-right: 10px; max-width: 100%; height: 300px;">
 						</div>
+						
+						<c:set var="t_size" value="${c.t_size }" />
+						<c:set var="t_attendee_cnt" value="${c.t_attendee_cnt }" />
+						
+						<c:if test="${t_size == t_attendee_cnt }">
+							<div class="label label-danger" style="float: right; text-align: center; width:16.6%; height: 30px;">신청마감</div>
+<!-- 							<span class="label label-danger">Danger</span> -->
+						</c:if>
+						
 						<div class="col-lg-9" style="float: left;">
 							<h2 class="card-title"
 								style="font-size: 25px; padding-top: 50px;">${c.t_title }</h2>
@@ -158,8 +167,6 @@
 																keyword=${scri.keyword}"
 									class="btn mb-1 btn-rounded btn-outline-primary"
 									style="width: 100%; border: 0; margin-top: 20px; border: 1px solid;">자세히보기</a>
-								<!-- 								<a href="#" class="btn btn-primary" id="Application" -->
-								<!-- 									style="width: 100%; background-color: #4AD4C7; border: 0; margin-top: 5px;">신청하기</a> -->
 								
 								<ul class="clearfix" style="margin-top: 20px;">
 									<li class="icons dropdown"><a href="javascript:void(0)">

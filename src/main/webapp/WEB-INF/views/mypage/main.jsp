@@ -110,10 +110,10 @@
 			</ol>
 		</div>
 	</div>
-	<div class="card-body">
 	<c:if test="${search_insert_board_alarm_count>0 or search_insert_together_count>0 or search_cancle_together_count>0}">
+	<div class="card-body">
 		<h4 class="card-title"><span class="label label-success">신규알림</span></h4>
-	</c:if>
+	
 	
 		<div id="accordion-three" class="accordion">
 
@@ -186,7 +186,7 @@
 			
 		</div>
 	</div>
-			
+	</c:if>		
 
 
 
@@ -423,7 +423,7 @@
 			<sec:authorize access="hasRole('ROLE_USER')"> 
 			<button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button>
 <!-- 		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
-			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button>
+<!-- 			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button> -->
 			</sec:authorize>
 
 		</div>

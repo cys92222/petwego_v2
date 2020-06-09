@@ -118,7 +118,7 @@ public class TogeteherController {
 	}
 	
 
-	@RequestMapping(value="writeReply", method = RequestMethod.POST)
+	@RequestMapping(value="writeReply", method = RequestMethod.GET)
 	@ResponseBody
 	//파라미터로 ReplyVO, SearchCriteria, RedirectAttributes를 넣는다.
 	//ReplyVO는 댓글 작성하기위한 데이터, SearchCriteria는 readView에 있던 page, perPageNum, searchType, keyword값을 받아오기 위한것.
