@@ -299,7 +299,7 @@ $(document).ready(function(){
 														style="background-color: #4AD4C7; border: none;">Close</button>
 												</div>
 												
-												
+												 
 												
 												
 												<section id="m_animal">
