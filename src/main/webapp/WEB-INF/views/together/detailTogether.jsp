@@ -91,9 +91,30 @@ $(document).ready(function(){
 	$("#delete_btn").on("click",function(){
       var t_attendee_cnt = ${detailTogether.t_attendee_cnt };
       if(t_attendee_cnt > 1){
-         alert("참가자가 있는 모임은 취소할수 없습니다.");
+    	  swal("주의!","참가자가 있는 모임은 취소할 수 없습니다.","error");
       }else if(t_attendee_cnt == 1){
-         var deleteYN = confirm("삭제하시겠습니까?");
+//          var deleteYN = confirm("삭제하시겠습니까?");
+         
+//          if(deleteYN==true){
+//             formObj.attr("action","deleteTogether");
+//             formObj.attr("method","post");
+//             formObj.submit();
+//          }
+
+		 var deleteYN = swal({
+				title:"삭제하시겠습니까?",
+				text:"",
+				icon:"info",
+				buttons:["NO","YES"]
+			}).then((YES) => {
+				if(YES){
+		             formObj.attr("action","deleteTogether");
+		             formObj.attr("method","post");
+		             formObj.submit();
+				}
+
+			})
+			 
          
          if(deleteYN==true){
             formObj.attr("action","deleteTogether");
@@ -133,18 +154,37 @@ $(document).ready(function(){
 // 	});
 	$(".replyDeleteBtn").on("click",function(){
 		var formObj2 =  $("form[id='replyForm']");
-		var deleteYN2 = confirm("삭제하시겠습니까?");
-			if(deleteYN2==true){
-// 				formObj2.attr("action","deleteReply");
-// 				formObj2.attr("method","post");
-// 				formObj2.submit();
-		location.href = "/together/deleteReply?t_num=${detailTogether.t_num}"
-						+ "&page=${scri.page}"
-						+ "&perPageNum=${scri.perPageNum}"
-						+ "&searchType=${scri.searchType}"
-						+ "&keyword=${scri.keyword}"
-						+ "&t_r_num="+$(this).attr("data-t_r_num");
+		var deleteReplyYN = swal({
+			title:"삭제하시겠습니까?",
+			text:"",
+			icon:"info",
+			buttons:["NO","YES"]
+		}).then((YES) => {
+			if(YES){
+				location.href = "/together/deleteReply?t_num=${detailTogether.t_num}"
+					+ "&page=${scri.page}"
+					+ "&perPageNum=${scri.perPageNum}"
+					+ "&searchType=${scri.searchType}"
+					+ "&keyword=${scri.keyword}"
+					+ "&t_r_num="+$(this).attr("data-t_r_num");
+
 			}
+		})
+
+// 		var deleteYN2 = confirm("삭제하시겠습니까?");
+// 			if(deleteYN2==true){
+	
+// // 				formObj2.attr("action","deleteReply");
+// // 				formObj2.attr("method","post");
+// // 				formObj2.submit();
+
+// 		location.href = "/together/deleteReply?t_num=${detailTogether.t_num}"
+// 						+ "&page=${scri.page}"
+// 						+ "&perPageNum=${scri.perPageNum}"
+// 						+ "&searchType=${scri.searchType}"
+// 						+ "&keyword=${scri.keyword}"
+// 						+ "&t_r_num="+$(this).attr("data-t_r_num");
+// 			}
 	});
 	//비밀댓글
    $("#replyWriteBtn").click(function(){
@@ -155,7 +195,7 @@ $(document).ready(function(){
          url:"/together/writeReply",
          data:param,
          success:function(){
-            alert("댓글이 등록되었습니다.");
+        	 swal("Good!","댓글이 등록되었습니다.","success");
             window.location.reload(true);
          }
       });
@@ -192,21 +232,44 @@ $(document).ready(function(){
 	
 	// 신청하기 insert
 	$(document).on("click","#Application",function(){
-		var applicationYN = confirm("신청하시겠습니까?");
-		if(applicationYN==true){
-			var data = $("#applicationForm").serialize();
-			console.log(user_id,t_num)
-			$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt,in_user_id:in_user_id}, success:function(re){
-				alert(re);
-				if(re === "신청하기 완료"){
-					$("#clickApplication").show();
-					$("#Application").hide();	
-					$("#cntApplication").html(eval($("#cntApplication").html())+1);
-					window.location.reload();
-				}
-			}})
-		}
+// 		var applicationYN = confirm("신청하시겠습니까?");
+// 		if(applicationYN==true){
+// 			var data = $("#applicationForm").serialize();
+// 			console.log(user_id,t_num)
+// 			$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt,in_user_id:in_user_id}, success:function(re){
+// 				alert(re);
+// 				if(re === "신청하기 완료"){
+// 					$("#clickApplication").show();
+// 					$("#Application").hide();	
+// 					$("#cntApplication").html(eval($("#cntApplication").html())+1);
+// 					window.location.reload();
+// 				}
+// 			}})
+// 		}
+
+
 		
+		var applicationYN = swal({
+			title:"신청하시겠습니까??",
+			text:"",
+			icon:"info",
+			buttons:["NO","YES"]
+		}).then((YES) => {
+			if(YES){
+		 			var data = $("#applicationForm").serialize();
+		 			console.log(user_id,t_num)
+		 			$.ajax("/together/insertApplication",{data:{user_id:user_id, t_num:t_num,t_size:t_size,t_attendee_cnt:t_attendee_cnt,in_user_id:in_user_id}, success:function(re){
+		 				swal(re);
+		 				if(re === "신청하기 완료"){
+		 					$("#clickApplication").show();
+		 					$("#Application").hide();	
+		 					$("#cntApplication").html(eval($("#cntApplication").html())+1);
+		 					window.location.reload();
+		 				}
+		 			}})
+			}
+
+		})
 			
 	})
 	
@@ -220,7 +283,9 @@ $(document).ready(function(){
 				$("#cntApplication").html(eval($("#cntApplication").html())-1);
 				alert("신청취소 완료");
 			}
+			
 		}})
+		
 	})
 });
 </script>

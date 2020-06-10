@@ -22,31 +22,31 @@
 			var t_place = document.getElementById("t_place");
 			var t_date = document.getElementById("t_date");
 			if(thumbnail.value == ""){
-				alert("썸네일을 등록해주세요.");
+				swal("필수!","썸네일을 등록해주세요.","success");
 				return false;
 			}
 			if(t_title.value == ""){
-				alert("제목을 입력해주세요.");
+				swal("필수!","제목을 등록해주세요.","success");
 				return false;
 			}
 			if(t_intro.value == ""){
-				alert("모임소개를 입력해주세요.");
+				swal("필수!","모임소개를 등록해주세요.","success");
 				return false;
 			}
 			if(t_detail.value == ""){
-				alert("내용을 입력해주세요.");
+				swal("필수!","내용을 등록해주세요.","success");
 				return false;
 			}
 			if(t_size.value == ""){
-				alert("총 참가 인원 수를 입력해주세요.");
+				swal("필수!","참가인원 수를 등록해주세요.","success");
 				return false;
 			}
 			if(t_place.value == ""){
-				alert("모임장소를 입력해주세요.");
+				swal("필수!","모임장소를 등록해주세요.","success");
 				return false;
 			}
 			if(t_date.value == ""){
-				alert("모임날짜를 입력해주세요.");
+				swal("필수!","모임날짜를 등록해주세요.","success");
 				return false;
 			}
 			if (fn_valiChk()) {
