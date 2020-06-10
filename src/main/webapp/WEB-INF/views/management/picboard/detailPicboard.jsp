@@ -38,7 +38,7 @@
 					<p class="text-lg">
 					작성자 ${pb.user_id }   작성일 <fmt:formatDate pattern="yyyy-MM-dd" value="${pb.photo_date }" />
 					</p>
-					<p><img src="../../img/${pbf.photo_file_name }" width="300px" height="300px"></p>
+					<p><img src="../../img/snsImg/${pbf.photo_file_name }" width="300px" height="300px"></p>
 					
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<!-- 글 삭제 버튼 -->

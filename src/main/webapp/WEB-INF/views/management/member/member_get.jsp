@@ -133,12 +133,12 @@
    </c:if>  
    
    <!-- 회원강퇴 버튼 -->
-	<a style="float: right;" href="#" class="btn btn-danger btn-icon-split" id="btnDelete">
-      	 <span class="icon text-white-50">
-       	<i class="fas fa-trash"></i>
-        </span>
-       	<span class="text">회원계정삭제 | 강제탈퇴</span>
-       </a>
+<!-- 	<a style="float: right;" href="#" class="btn btn-danger btn-icon-split" id="btnDelete"> -->
+<!--       	 <span class="icon text-white-50"> -->
+<!--        	<i class="fas fa-trash"></i> -->
+<!--         </span> -->
+<!--        	<span class="text">회원계정삭제 | 강제탈퇴</span> -->
+<!--        </a> -->
    <!-- 회원강퇴 버튼 끝-->
 	</div>
 </div>
