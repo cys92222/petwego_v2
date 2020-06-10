@@ -94,15 +94,11 @@
 		</tr>
 		<tr>
 			<td>주소</td>
-			<td>${detail_Info.address }</td>
+			<td>${detail_Info.address }) &nbsp; ${detail_Info.address2 }&nbsp; ${detail_Info.address3 }</td>
 		</tr>
 		<tr>
 			<td>성별</td>
 			<td>${detail_Info.gender }</td>
-		</tr>
-		<tr>
-			<td>프로필 사진</td>
-			<td>굳이 봐야하나?? </td>
 		</tr>
 		<tr>
 			<td>자기소개</td>

@@ -135,7 +135,7 @@ $(function(){
 				</div>
 			</div>
 			<br>
-			<div class="col-lg-12">
+			<div class="col-lg-12 d-flex">
 			<div class="card" style="width: 35%; float: left;">
 				<div class="card-body">
 					<div class="basic-form">
@@ -159,7 +159,7 @@ $(function(){
 			</div>
 
 			<!-- 댓글 목록-->
-			<div class="card" style="float: left; width: 65%;">
+			<div class="card ml-3" style="float: left; width: 65%;">
 				<div class="card-body">
 				<div class="table-responsive">
 					<table id="comm_list" class="table table-striped">
