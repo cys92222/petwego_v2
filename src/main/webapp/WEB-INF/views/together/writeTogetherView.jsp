@@ -6,11 +6,49 @@
 <head>
 <meta charset="UTF-8">
 <title>함께 가요</title>
+<style type="text/css">
+
+</style>
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		var formObj = $("form[name='writeForm']");
 		$("#write_btn").on("click", function() {
+			var thumbnail = document.getElementById("thumbnail");
+			var t_title = document.getElementById("t_title");
+			var t_intro = document.getElementById("comment");
+			var t_detail = document.getElementById("summernote");
+			var t_size = document.getElementById("t_size");
+			var t_place = document.getElementById("t_place");
+			var t_date = document.getElementById("t_date");
+			if(thumbnail.value == ""){
+				alert("썸네일을 등록해주세요.");
+				return false;
+			}
+			if(t_title.value == ""){
+				alert("제목을 입력해주세요.");
+				return false;
+			}
+			if(t_intro.value == ""){
+				alert("모임소개를 입력해주세요.");
+				return false;
+			}
+			if(t_detail.value == ""){
+				alert("내용을 입력해주세요.");
+				return false;
+			}
+			if(t_size.value == ""){
+				alert("총 참가 인원 수를 입력해주세요.");
+				return false;
+			}
+			if(t_place.value == ""){
+				alert("모임장소를 입력해주세요.");
+				return false;
+			}
+			if(t_date.value == ""){
+				alert("모임날짜를 입력해주세요.");
+				return false;
+			}
 			if (fn_valiChk()) {
 				return false;
 			}
@@ -63,10 +101,10 @@
 		}
 	})
 	function fn_valiChk() {
-		var regForm = $("form[name='writeForm'] .chk").length;
+		var regForm = $("form[name='writeForm'] #chk").length;
 		for (var i = 0; i < regForm; i++) {
-			if ($(".chk").eq(i).val() == "" || $(".chk").eq(i).val() == null) {
-				alert($(".chk").eq(i).attr("title"));
+			if ($("#chk").eq(i).val() == "" || $("#chk").eq(i).val() == null) {
+				alert($("#chk").eq(i).attr("title"));
 				return true;
 			}
 		}
@@ -89,15 +127,15 @@
 									<label class="col-sm-2 col-form-label"
 										style="text-align: center;">썸네일</label>
 									<div class="col-sm-10">
-										<input type="file" class="form-control-file" id="t_thumbnail"
+										<input type="file" class="form-control-file" id="thumbnail"
 											name="thumbnailFile">
 									</div>
 
 									<label class="col-sm-2 col-form-label"
 										style="text-align: center; margin-top: 5px;">제목</label>
 									<div class="col-sm-10">
-										<input type="text" name="t_title" id="t_title"
-											class="form-control input-default" placeholder="제목을 입력하세요.">
+										<input type="text" id="t_title" name="t_title"
+											class="form-control input-default">
 									</div>
 
 									<label class="col-sm-2 col-form-label"
@@ -111,7 +149,7 @@
 
 									<label class="col-sm-2 col-form-label"
 										style="text-align: center; margin-top: 5px;">모임소개</label>
-									<div class="col-sm-10"">
+									<div class="col-sm-10">
 										<textarea class="form-control h-150px" rows="6" id="comment"
 											name="t_intro" placeholder="모임의 소개를 입력해주세요. 최대 200자까지 가능합니다."
 											style="margin-top: 10px;"></textarea>
@@ -119,7 +157,7 @@
 
 									<label class="col-sm-2 col-form-label"
 										style="text-align: center; margin-top: 5px;">내용</label>
-									<div class="col-sm-10"">
+									<div class="col-sm-10">
 										<textarea name="t_detail" id="summernote"
 											class="form-control h-150px" rows="6"></textarea>
 									</div>
@@ -136,7 +174,7 @@
 										style="text-align: center; margin-top: 5px;">총인원</label>
 									<div class="col-sm-10">
 										<input type="number" name="t_size" id="t_size"
-											class="form-control input-default"
+											class="form-control input-default" 
 											style="margin-top: 5px; text-align: center; width: 30%;">
 									</div>
 
@@ -155,13 +193,13 @@
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="ex)2017-06-04" id="t_date" name="t_date"
-													style="margin-top: 5px; width: 60%;">
+													style="margin-top: 5px; width: 60%; text-align: center;">
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-12" style="text-align: center;">
-									<button id="write_btn" type="button"
+									<button id="write_btn" type="submit"
 										class="btn mb-1 btn-primary btn-lg"
 										style="border: 0; margin-right: 5px;">등록</button>
 									<button id="cancel_btn" type="button"
