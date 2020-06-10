@@ -134,17 +134,17 @@ $(function(){
 									<table class="table header-border">
 										<tbody>
 											<tr>
-												<td>제목&nbsp;|&nbsp;${detail.board_title }</td>
-												<td>카테고리&nbsp;|&nbsp;${detail.category }</td>
+												<td>제목|${detail.board_title }</td>
+												<td>카테고리|${detail.category }</td>
 												<td></td>
 											</tr>
 											<tr>
-												<td>작성자&nbsp;|&nbsp;${detail.user_id }</td>
-												<td>등록일&nbsp;|&nbsp;<fmt:formatDate pattern="yyyy년 MM월 dd일 EE요일" value="${detail.board_date }" /></td>
-												<td>조회수&nbsp;|&nbsp;${detail.board_hit }</td>
+												<td>작성자|${detail.user_id }</td>
+												<td>등록일|<fmt:formatDate pattern="yyyy년 MM월 dd일 EE요일" value="${detail.board_date }" /></td>
+												<td>조회수|${detail.board_hit }</td>
 											</tr>
 											<tr>
-												<td>내용&nbsp;|<br> <br>${detail.board_content }</td>
+												<td>내용|<br> <br>${detail.board_content }</td>
 												<td></td>
 												<td></td>
 											</tr>
