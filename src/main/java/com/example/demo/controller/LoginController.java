@@ -137,7 +137,7 @@ public class LoginController {
    @NoLogging
    @RequestMapping("/join/insert")
    public String setInertMemberInfo(HttpServletRequest req, HttpServletResponse res, MemberInfoVo member) throws Exception{
-   
+	   System.out.println(member);
       //memberInfo.setPwd(pass);
       //DB에는 Date타입, vo에는 String 타입, 가져올 땐 다시 TO_CHAR
       
