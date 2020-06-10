@@ -18,17 +18,17 @@
 		</div>
 	</div>
 	<div class="container-fluid">
-		<h4>함께가요 작성글</h4>
+		<h4 class="mb-3">함께가요 내가쓴글</h4>
 <div class="row">
                     <div class="col-12 m-b-30">
                         <div class="row">
                         <c:forEach var="to" items="${mytogether }">
                             <div class="col-md-6 col-lg-3">
                             <a href="/together/detailTogether?t_num=${to.t_num}">
-                                <div class="card">
-                                    <img src="../t_thumbnailUpload/${to.thumbnail}">
+                                <div class="card text-center d-flex flex-column py-3">
+                                    <img class="text-center mx-auto rounded" src="../t_thumbnailUpload/${to.thumbnail}" width="230" height="300">
                                     <div class="card-body">
-                                        <h5 class="card-title">제목 : ${to.t_title }</h5>
+                                        <h5 class="card-title mb-4">제목 : ${to.t_title }</h5>
                                         <p class="card-text">신청인원 : ${to.t_attendee_cnt }</p>
                                         <p class="card-text">조회수 : ${to.t_hit }</p>
                                         <p class="card-text"><small class="text-muted">작성일 : ${to.t_date }</small>
