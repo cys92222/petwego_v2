@@ -75,7 +75,8 @@
 						//아니 위에 ext !== 'png' 이런건 왜 안먹히나 모르겠다.... 
 						// 어차피 if 타고 오는게 없는데 왜죠 
 					}else{
-						alert ("이미지 파일만 등록할 수 있습니다! 확장자를 확인해주세요.");
+// 						alert ("이미지 파일만 등록할 수 있습니다! 확장자를 확인해주세요.");
+						swal("확장자 오류", "이미지파일만 등록할 수 있습니다!", "error");
 						return false;
 					}
 			
@@ -131,8 +132,18 @@
 									xhr.setRequestHeader(header, token);
 								},
 								success : function(ok){
-									alert("수정성공")
-									location.href="/board/get?board_no="+postNum;
+									swal({
+										  title: "게시글 수정완료!",
+										  text: "자유게시판 글 수정성공",
+										  icon: "success",
+										  button: {
+												text : "확인",
+												value : true
+											  }
+										}).then((result) =>  {
+											location.href="/board/get?board_no="+postNum;
+										});
+									
 								}
 							})
 						}	

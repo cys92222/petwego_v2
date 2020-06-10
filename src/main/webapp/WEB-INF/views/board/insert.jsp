@@ -145,7 +145,7 @@ $(function(){
 							},
 							success : function(ok){
 								swal({
-									  title: "등록성공!",
+									  title: "게시글 등록성공!",
 									  text: "자유게시판 등록성공",
 									  icon: "success",
 									  button: {

@@ -30,11 +30,32 @@ $(function(){
 	// 삭제버튼 누르면...
 	$("#btnDelete").click(function(){
 		var user_id = "${login_id}";
-		var check = confirm("게시글을 삭제하시겠습니까?");
-		if(check == true){
-			self.location = "/board/delete?board_no="+board_no+"&user_id="+user_id;
-			alert("게시글을 삭제했습니다!");
-		}
+
+		swal({
+			  title: "삭제하시겠습니까?",
+			  text: "복구할 수 없습니다. 게시글을 삭제하시겠습니까?",
+			  icon: "warning",
+			  buttons: true,
+			  dangerMode: true,
+			})
+			.then((willDelete) => {
+			  if (willDelete) {
+			    swal("게시글을 삭제하였습니다!!", {
+			      icon: "success",
+			    }).then((result) =>  {
+					self.location = "/board/delete?board_no="+board_no+"&user_id="+user_id;
+				});
+			  } else {
+			    swal("글 삭제 취소");
+			  }
+			})
+
+		
+// 		var check = confirm("게시글을 삭제하시겠습니까?");
+// 		if(check == true){
+// 			self.location = "/board/delete?board_no="+board_no+"&user_id="+user_id;
+// 			alert("게시글을 삭제했습니다!");
+// 		}
 	});
 
 	
