@@ -83,7 +83,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ,"/login/**", "/join/**", "/MainPage" 
                  , "/board/list", "/comment/listComment",
                 "/customerservice/allNotice", "/customerservice/List", 
-                "/pcomment/plistComment", "/together/listTogether", "/pic_board/list")
+                "/pcomment/plistComment", "/together/listTogether", "/pic_board/list",
+                "/customerservice/detailNotice", "/customerservice/QnADetail")
 			.permitAll()
 			.antMatchers("/management/**").hasRole("ADMIN")
 			.antMatchers("/user/**", "/mypage/**", "/comment/**", "/board/**",

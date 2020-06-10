@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.example.demo.vo.Animal_infoVo;
 import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.FollowVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
@@ -68,5 +69,8 @@ public interface MypageDao {
 	
 	//예약 리스트중 24시간 지난것은 예약취소
 	public int cancle_reservation();
+	
+	//팔로우 리스트
+	public List<FollowVo> followList(String user_id);
 	
 }

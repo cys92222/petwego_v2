@@ -159,6 +159,9 @@ public class MyPageController {
 		//모든 예약 리스트
 		mav.addObject("reservation", fs.select_reservation_list(m.getUser_id()));
 		
+		//팔로우 리스트
+		mav.addObject("followList", mypageservice.followList(m.getUser_id()));
+		
 		return mav;
 		
 	}

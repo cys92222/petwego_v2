@@ -83,7 +83,7 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <input type="email" class="form-control" id="email" name="email" value="${m.email }">
-                                               <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                               <span id="emailErr" class="help-block" style="color:red;">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
                                        <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -135,7 +135,7 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="tel" name="tel" value="${m.tel }">
-                                                 <span id="emailErr" class="help-block">올바른 전화번호 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                                 <span id="emailErr" class="help-block" style="color:red;">올바른 전화번호 형식이 아닙니다. 다시 입력해 주세요.</span>
                                         <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -145,7 +145,8 @@
                                             <div class="col-lg-10">
                                                 <input type="text" class="form-control mb-1" id="nick_name" name="nick_name" value="${m.nick_name }">
                                                 <button class="btn btn-outline-dark btn-sm" type="button"  id="nickCheck">닉네임 중복 확인</button> 
-                                       <span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
+                                       <span id="overlapNick" class="help-block" style="color:red;">이미 존재하는 닉네임입니다.</span>
+                                       <span id="successNick" class="help-block" style="color:blue;">사용가능한 닉네임입니다.</span>
                                        <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -255,31 +256,7 @@ $(document).ready(function(){
    })
 })
 
-//아이디 중복체크
-var idx = false;
-   $("#idCheck").on("click", function(){ 
-      
-       $.ajax({
-            url: "${pageContext.request.contextPath}/join/idCheck",
-            type: "GET",
-            data: {user_id:$("#user_id").val()},
-            success: function(data) {
-               //사용 가능한 아이디라면
-          if(data==0 && $.trim($('#user_id').val()) != '' ){   
-             idx=true;
-            $('#user_id').attr("readonly",true);
-             $("#overlapErr").hide();
-             successState("#user_id");
-             alert("사용가능한 아이디입니다.");
-          //정규표현식을 통과하지 못하면
-          }else{
-             $("#overlapErr").show();
-             errorState("#user_id");
-             return false;
-          }
-       }
-    })
-   });
+
 //닉네임 중복체크
 $("#nickCheck").on("click", function(){ 
    
@@ -288,16 +265,17 @@ $("#nickCheck").on("click", function(){
          type: "GET",
          data: {nick_name:$("#nick_name").val()},
          success: function(data) {
-            //사용 가능한 아이디라면
        if(data==0 && $.trim($('#nick_name').val()) != '' ){   
           idx=true;
          $('#nick_name').attr("readonly",true);
           $("#overlapNick").hide();
+          $("#successNick").show();
           successState("#nick_name");
           alert("사용가능한 닉네임입니다.");
        //정규표현식을 통과하지 못하면
        }else{
           $("#overlapNick").show();
+          $("#successNick").hide();
           errorState("#nick_name");
        }
     }
