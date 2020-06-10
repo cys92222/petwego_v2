@@ -349,14 +349,7 @@
 															value="${plistComment.photo_comm_date }"
 															pattern="yyyy-MM-dd" /></small>
 												</h5>
-												<div class="media-reply__link">
-													<button class="btn btn-transparent p-0 mr-3">
-														<i class="fa fa-thumbs-up"></i>
-													</button>
-													<button class="btn btn-transparent p-0 mr-3">
-														<i class="fa fa-thumbs-down"></i>
-													</button>
-												</div>
+												
 											</div>
 
 											<p>${plistComment.photo_comm_cont }</p>
