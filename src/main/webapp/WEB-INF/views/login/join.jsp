@@ -56,8 +56,8 @@
                                             <div class="col-lg-10">
                                                 <input type="text" class="form-control mb-1" name="user_id" id="user_id" placeholder="ID" required="required" aria-required="true">
                                                 <button class="btn btn-outline-dark btn-sm" type="button" id="idCheck">아이디 중복 확인</button>
-                                           		<span id="overlapErr" class="help-block">사용할 수 없는 아이디 입니다.</span>
-                                           		<span id="overlapSucc" class="help-block">사용 가능한 아이디 입니다.</span>
+                                           		<span id="overlapErr" class="help-block" style="color:red;">사용할 수 없는 아이디 입니다.</span>
+                                           		<span id="overlapSucc" class="help-block" style="color:blue;">사용 가능한 아이디 입니다.</span>
                                            		<span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>				         
                                         </div>  
@@ -73,7 +73,7 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <input type="email" class="form-control" id="email" name="email" placeholder="ex) user@petwego.com">
-                                            	<span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                            	<span id="emailErr" class="help-block" style="color:red;">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
         		 								<span class="form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -82,7 +82,7 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <input type="password" class="form-control" id="pwd" name="pwd" placeholder="PASSWORD">
-                                                 <span id="pwdRegErr" class="help-block">숫자와 글자 조합으로 6글자 이상 10글자 이하를 입력하세요</span>
+                                                 <span id="pwdRegErr" class="help-block" style="color:red;">숫자와 글자 조합으로 6글자 이상 10글자 이하를 입력하세요</span>
          										 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -91,7 +91,7 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <input type="password" class="form-control" id="rePwd" name="rePwd" placeholder="PASSWORD">
-                                                 <span id="rePwdErr" class="help-block">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</span>
+                                                 <span id="rePwdErr" class="help-block" style="color:red;">비밀번호와 일치하지 않습니다. 다시 입력해 주세요.</span>
          										 <span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@
                                             </label>
                                             <div class="col-lg-10">
                                                 <input type="text" class="form-control" id="tel" name="tel" placeholder="ex) 01012345678">
-                                                 <span id="emailErr" class="help-block">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
+                                                 <span id="emailErr" class="help-block" style="color:red;">올바른 이메일 형식이 아닙니다. 다시 입력해 주세요.</span>
          										 <span class="form-control-feedback"></span>
                                             </div>
                                         </div>
@@ -155,8 +155,8 @@
                                             <div class="col-lg-10">
                                                 <input type="text" class="form-control mb-1" id="nick_name" name="nick_name" placeholder="NICKNAME">
                                                 <button type="button" id="nickCheck" class="btn btn-outline-dark btn-sm">닉네임 중복 확인</button> 
-									         	<span id="overlapNick" class="help-block">이미 존재하는 닉네임입니다.</span>
-									         	<span id="successNick" class="help-block">사용가능한 닉네임입니다.</span>
+									         	<span id="overlapNick" class="help-block" style="color:red;">이미 존재하는 닉네임입니다.</span>
+									         	<span id="successNick" class="help-block" style="color:blue;">사용가능한 닉네임입니다.</span>
 									         	<span class="glyphicon glyphicon-ok form-control-feedback"></span>
                                             </div>
                                         </div>
