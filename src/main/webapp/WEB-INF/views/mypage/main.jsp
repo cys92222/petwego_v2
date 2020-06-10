@@ -221,6 +221,11 @@
                                                   <li class="nav-item"><a class="nav-link" data-toggle="tab"
                                                                       href="#mytogether"><span>함께가요 내가쓴글</span></a>
                                                   </li>
+                                                   </li>
+                                                  <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#myfollow"><span>팔로우 리스트</span></a>
+                                                  </li>
+                                                  
                                                   <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab"
                                                                       href="#mysns"><span>SNS 내가쓴글</span></a>
                                                   </li> -->
@@ -483,6 +488,32 @@
                                                                                 </tbody>
                                                                                 <tfoot>
                                                                                 <tr><td><a href="/mypage/together_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a></td></tr>
+                                                                                </tfoot>
+                                                                      </table>
+                                                            </div>
+
+
+                                                  </div>
+                                                  
+                                                   <div class="tab-pane fade" id="myfollow" role="tabpanel">
+
+                                                            <div class="table-responsive mt-4">
+                                                                      <table class="table header-border">
+                                                                                <thead>
+                                                                                          <tr>
+                                                                                                    <th>아이디</th>
+                                                                                          </tr>
+                                                                                </thead>
+                                                                                <tbody>									
+                                                                                <c:forEach var="follow" items="${followList }" begin="0" end="4">
+                                                                                          <tr>
+                                                                                                    <td><a href="javascript:void(0)"># ${follow.user_id2}님</a>
+                                                                                                    </td>
+                                                                                          </tr>
+<%--                                                                                 <tr><td><a href="/mypage/follow_list?user_id=${myinfo.user_id2 }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a></td></tr> --%>
+                                                                                </c:forEach>
+                                                                                </tbody>
+                                                                                <tfoot>
                                                                                 </tfoot>
                                                                       </table>
                                                             </div>

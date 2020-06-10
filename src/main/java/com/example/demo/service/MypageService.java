@@ -72,4 +72,7 @@ public interface MypageService {
 	
 	//팔로우 리스트
 	public List<FollowVo> followList(String user_id);
+	
+	//팔로우 상세
+	public List<MemberInfoVo> detail_follow(String user_id);
 }

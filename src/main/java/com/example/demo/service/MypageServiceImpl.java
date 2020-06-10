@@ -192,5 +192,13 @@ public class MypageServiceImpl implements MypageService {
 		return list;
 	}
 
+	//팔로우 상세
+	@Override
+	public List<MemberInfoVo> detail_follow(String user_id) {
+		// TODO Auto-generated method stub
+		List<MemberInfoVo> list = mypagedao.detail_follow(user_id);
+		return list;
+	}
+
 
 }

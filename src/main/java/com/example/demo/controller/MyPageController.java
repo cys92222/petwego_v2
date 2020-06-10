@@ -783,5 +783,15 @@ public class MyPageController {
 		
 		return "mypage/detail_reservation";
 	}
+	
+	//팔로우 리스트 상세
+	@RequestMapping("/mypage/follow_list")
+	@NoLogging
+	public String detail_follow(String user_id,Model model) {
+		System.out.println("팔로우 리스트 상세" + user_id);
+		model.addAttribute("list", mypageservice.detail_follow(user_id));
+		
+		return "mypage/follow_list";
+	}
 
 }
