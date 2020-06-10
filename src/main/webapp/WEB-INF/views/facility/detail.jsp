@@ -119,8 +119,9 @@ $(function(){
         action = 'create';
         type = 'POST';
 
-		alert("리뷰를 등록합니다.");
+		//alert("리뷰를 등록합니다.");
 
+	
         var facility_no = getUrlParameter('facility_no');
         url = '/facility/detail/review';
  
@@ -144,8 +145,21 @@ $(function(){
 				xhr.setRequestHeader(header, token);
 			},
 			success:function(data){
-				$('#reviewModal').modal('toggle');
-				location.reload(true);
+				swal({
+					  title: "리뷰를 등록합니다!",
+					  text: "리뷰 등록성공",
+					  icon: "success",
+					  button: {
+							text : "확인",
+							value : true
+						  }
+					}).then((result) =>  {
+						$('#reviewModal').modal('toggle');
+						location.reload(true);
+						//location.href="/board/get?board_no="+postNum;
+					});
+				/* $('#reviewModal').modal('toggle');
+				location.reload(true); */
 			}
 		
 		});
@@ -156,6 +170,50 @@ $(function(){
 
     // ******** 예약 ********
 
+    
+    // datepicker alert
+    
+    
+    
+   
+
+	$('#check_inF,#check_outF').change(function(){
+		var check_inF = $('#check_inF').val();
+		var check_outF = $('#check_outF').val();
+		var check_inArr = check_inF.split('-');
+		var check_outArr = check_outF.split('-');
+
+
+		var startDateCompare = new Date(check_inArr[0], parseInt(check_inArr[1])-1, check_inArr[2]);
+		var endDateCompare = new Date(check_outArr[0], parseInt(check_outArr[1])-1, check_outArr[2]);
+
+
+		if(startDateCompare.getTime() > endDateCompare.getTime()) {
+	         
+	        //alert("체크아웃 날짜와 체크인 날짜를 확인해 주세요.");
+	        swal({
+				  title: "날짜 선택 오류",
+				  text: "체크아웃 날짜와 체크인 날짜를 확인해 주세요!",
+				  icon: "warning",
+				  dangerMode: true,
+				  button: {
+						text : "확인",
+						value : true
+					  }
+				})
+			$('#check_inF').val('');
+	        $('#check_outF').val('');	         
+	        return;
+	    }		
+	})
+
+
+	
+   
+     
+    
+    
+    
     var arr = ${arr};
 
     
@@ -184,9 +242,16 @@ $(function(){
 		var dateObj_in = new Date(check_inArr[0],Number(check_inArr[1])-1,check_inArr[2]);
 		var dateObj_out = new Date(check_outArr[0],Number(check_outArr[1])-1,check_outArr[2]);
 		var nights = (dateObj_out.getTime()-dateObj_in.getTime())/1000/60/60/24;
-		if(nights<0){
+		/* if(nights<0){
 			alert('체크아웃 날짜는 체크인 날짜보다 이른 날짜일 수 없습니다!');
 		}
+ */
+
+
+        
+         
+
+		
 		$('input[name=nights]').val(nights);		
 		$('input[name=rm_opt]').val(1);
 		
