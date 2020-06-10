@@ -49,13 +49,6 @@ $(function(){
 			    swal("글 삭제 취소");
 			  }
 			})
-
-		
-// 		var check = confirm("게시글을 삭제하시겠습니까?");
-// 		if(check == true){
-// 			self.location = "/board/delete?board_no="+board_no+"&user_id="+user_id;
-// 			alert("게시글을 삭제했습니다!");
-// 		}
 	});
 
 	
@@ -72,37 +65,46 @@ $(function(){
 	})
 	
 	// 댓글 목록
-	
-	
-	$.ajax("/comment/listComment",{type:"GET",data:{board_no:board_no},success:function(comm){
-		comm = JSON.parse(comm);
-		$.each(comm, function(idx,c){						
-			var tr = $("<tr></tr>");
-			var td1 = $("<td></td>").html(c.comm_cont);
-			var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
-			var td3 = $("<td></td>").html(c.user_id);
-			if(c.user_id === "${login_id}"){
-				var delBtn = $("<button class='badge badge-danger'></button>").text("댓글삭제").attr("comm_num",c.comm_num);
-				}
-			
-			var td4 = $("<td></td>");
-			td4.append(delBtn);
-			tr.append(td1, td2, td3, td4);
-			$("#comm_list").append(tr);
+	// 5초마다 새로고침, 내가 보고있는 화면이 아니라, 다른 사람이 내 포트에 들어와서 댓글을 남겨도 실시간으로 보이도록! 
+	// 이때, 조회수는 증가되지 않고, 댓글목록 부분만 리프레쉬된다.
+	setInterval(listComment, 5000);
 
-			//댓글 삭제
-			$(delBtn).click(function(){
-					
-					var delCheck = confirm("댓글을 삭제하시겠습니까?");
-					if(delCheck == true){
-						self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num+"&user_id=${login_id}";
-						alert("댓글을 삭제했습니다!");
-						location.reload();
+	function listComment(){
+
+		$("#comm_list").empty();
+		
+		$.ajax("/comment/listComment",{type:"GET",data:{board_no:board_no},success:function(comm){
+
+			comm = JSON.parse(comm);
+
+			$.each(comm, function(idx,c){						
+				var tr = $("<tr></tr>");
+				var td1 = $("<td></td>").html(c.comm_cont);
+				var td2 = $("<td></td>").html( moment(c.comm_date).format('YYYY년 MM월 DD일 HH:mm:ss')	);
+				var td3 = $("<td></td>").html(c.user_id);
+				if(c.user_id === "${login_id}"){
+					var delBtn = $("<button class='badge badge-danger'></button>").text("댓글삭제").attr("comm_num",c.comm_num);
 					}
+				
+				var td4 = $("<td></td>");
+				td4.append(delBtn);
+				tr.append(td1, td2, td3, td4);
+				$("#comm_list").append(tr);
+	
+				//댓글 삭제
+				$(delBtn).click(function(){
+						
+						var delCheck = confirm("댓글을 삭제하시겠습니까?");
+						if(delCheck == true){
+							self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num+"&user_id=${login_id}";
+							alert("댓글을 삭제했습니다!");
+							location.reload();
+						}
+				})
 			})
-		})
-	}}) //댓글 ajax통신끝
-
+		}}) //댓글 ajax통신끝
+	}
+	listComment();
 });
 </script>
 </head>
