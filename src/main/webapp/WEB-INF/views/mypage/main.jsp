@@ -32,30 +32,7 @@
 		$("#more").click(function(){
 			window.location.href = "/mypage/animal_info_up_form?user_id=${myinfo.user_id }";
 			});
-/*
-		//회원탈퇴
-		$("#widthdraw_btn").click(function() {
-			var ck = confirm("탈퇴하시겠습니까?");
-			if (ck == true) {
-				var data = {
-					user_id : $("#user_id").val()
-				};
-				// 			alert(data);
-				$.ajax("/mypage/delete_member", {
-					data : data,
-					success : function(re) {
-						// 				alert(re);
-						//				컨트롤러에서 return "/MainPage"; 으로 /MainPage 받아와서 href로 이동
-						window.location.href = re;
-					}
-				});
-				// 			alert("탈퇴");
-			} else {
 
-			}
-		});
-
-*/
 
 		//회원탈퇴
 		$("#widthdraw_btn").click(function() {
@@ -94,7 +71,14 @@
 		});
 
 
-		
+
+
+		//등록 폼
+		$("#form_btn").click(function(){
+				$("#animal_insert").css({"display":"block"});
+				location.href="#animal_insert";
+//	 			$("#animail_list").css({"display":"none"});
+			});
 
 
 		
@@ -102,6 +86,7 @@
 </script>
 </head>
 <body>
+<!-- breadcrumb start -->
 <div class="row page-titles mx-0">
 		<div class="col p-md-0">
 			<ol class="breadcrumb">
@@ -109,134 +94,536 @@
 				<li class="breadcrumb-item active"><a href="/MainPage">메인</a></li>
 			</ol>
 		</div>
-	</div>
-	<c:if test="${search_insert_board_alarm_count>0 or search_insert_together_count>0 or search_cancle_together_count>0}">
-	<div class="card-body">
-		<h4 class="card-title"><span class="label label-success">신규알림</span></h4>
+</div>
+<!-- breadcrumb end -->
+<!-- container start -->
+<div class="container-fluid mt-1">
+<!-- profile start -->
+<div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body d-flex">
+                                
+    <div class="col-3 border-right pr-5 py-4 text-center">
+                                    <img class="rounded-circle mt-4" src="/img/peopleImg/${myinfo.fname }" width="135" height="135">
+                                    <h4 class="card-widget__title text-dark mt-3">마카롱</h4>
+                                    <p class="text-muted font-weight-light">
+	                                    <c:set var="role" value = "${myinfo.user_role}"/>
+										<c:choose>
+											<c:when test="${role eq 'ROLE_ADMIN'}">
+		    									<c:out value="관리자" />
+											</c:when>
+											<c:when test="${role eq 'ROLE_USER'}">
+		    									<c:out value="일반유저" />
+											</c:when>
+										</c:choose>
+                                    </p>
+                                    <a id="people_info_up_btn" class="btn gradient-4  btn-md border-0 btn-rounded px-5" href="javascript:void()">정보수정</a>
+                                </div><div class="col-9 row pl-5 py-4 align-items-center">
+    <div class="row col-12 mb-0 pb-4 border-bottom">
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">성별</h6><h6 class="text-info">${myinfo.gender}</h6>
+    </div>
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">생년월일</h6><h6 class="font-weight-light text-info">${myinfo.birth}</h6>
+    </div>    
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">전화번호</h6><h6 class="font-weight-light text-info">${myinfo.tel}</h6>
+    </div>    
+    </div>
+    <div class="row col-12 mb-0 pb-4 border-bottom">
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">닉네임</h6><h6 class="text-info">${myinfo.nick_name}</h6>
+    </div>
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">이메일</h6><h6 class="font-weight-light text-info">${myinfo.email}</h6>
+    </div>    
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">가입일</h6><h6 class="font-weight-light text-info">${myinfo.info_create_date}</h6>
+    </div>    
+    </div>
+        
+    <div class="row col-12 mb-0 pb-4 border-bottom">
+    <div class="col-4 d-flex align-items-baseline">
+    <h6 class="text-muted mr-3 font-weight-light">우편번호</h6><h6 class="font-weight-light text-info">${myinfo.address}</h6>
+    </div>
+    <div class="col-8 d-flex align-items-baseline">
+    <h6 class="text-muted font-weight-light mr-3">주소</h6><h6 class="text-info">${myinfo.address2}</h6>
+    </div>    
+        
+    </div><div class="row col-12">
+    <div class="col-4 d-flex flex-column">
+    <h6 class="text-muted mb-4 font-weight-light">자기소개</h6><h6 class="text-info">${myinfo.intro}</h6>
+    
+    </div>
+        
+        
+    </div>
+</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    
+
+                    
+                </div>
+
+
+<!-- profile end -->
+<!-- tab start  -->
+<div class="row">
+         <div class="col-md-12">
+                    <div class="card">
+                              <div class="card-body">
+
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-tabs mb-3" role="tablist">
+                                                  
+
+                                                  <li class="nav-item align-items-center"><a
+                                                                      class="nav-link d-flex align-items-center active"
+                                                                      data-toggle="tab"
+                                                                      href="#message"><span>알림</span><span
+                                                                                class="badge badge-warning badge-sm float-right ml-2 text-white align-self-center">47</span></a>
+                                                  </li>
+                                                  <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#booking"><span>나의 예약내역</span></a>
+                                                  </li>
+                                                  <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#pay"><span>나의 결제내역</span></a>
+                                                  </li>
+                                                  <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#inq"><span>나의 문의내역</span></a>
+                                                  </li> -->
+                                                  <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#pet"><span>댕냥이 정보관리</span></a>
+                                                  </li> -->
+                                                  <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#myboard"><span>자유게시판 내가쓴글</span></a>
+                                                  </li>
+                                                  <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#mytogether"><span>함께가요 내가쓴글</span></a>
+                                                  </li>
+                                                  <!-- <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#mysns"><span>SNS 내가쓴글</span></a>
+                                                  </li> -->
+                                                  <sec:authorize access="hasRole('ROLE_USER')"> 
+                                                  <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                                                      href="#withdraw"><span>회원 탈퇴</span></a>
+                                                  </li>
+                                                  </sec:authorize>
+                                        </ul>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content tabcontent-border">
+                                                  
+                                                  <div class="tab-pane fade active show" id="message" role="tabpanel">
+                                                            <div class="p-t-15">
+                                                                      <!--msg start -->
+                                                                      <c:if test="${search_insert_board_alarm_count>0 or search_insert_together_count>0 or search_cancle_together_count>0}">
+                                                                                <div class="card-body">
+                                                                                          <h4 class="card-title"><span class="label label-success">신규알림</span></h4>
+                                                                                
+                                                                                
+                                                                                          <div id="accordion-three" class="accordion">
+                                                                      
+                                                                                          <c:if test="${search_insert_board_alarm_count>0 }">
+                                                                                                    <div class="card">
+                                                                                                              <div class="card-header">
+                                                                                                                        <h5 class="mb-0" data-toggle="collapse" data-target="#board"
+                                                                                                                                  aria-expanded="true" aria-controls="board">
+                                                                                                                                  <i class="fa" aria-hidden="true"></i> 자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
+                                                                                                                        </h5>
+                                                                                                              </div>
+                                                                                                              <div id="board" class="collapse"
+                                                                                                                        data-parent="#accordion-three">
+                                                                                                                        <div class="card-body">
+                                                                                                                                  <c:forEach items="${search_insert_board_alarm }" var="search_insert_board_alarm">
+                                                                                                                                            ${search_insert_board_alarm.in_user_id } 님이 댓글을 등록했습니다 
+                                                                                                                                            <a href="/board/get?board_no=${search_insert_board_alarm.t_num }">/ 게시물로 이동</a> <br>
+                                                                                                                                  </c:forEach>
+                                                                                                                                  <br>
+                                                                                                                        </div>
+                                                                                                              </div>
+                                                                                                    </div>
+                                                                                          </c:if>
+                                                                      
+                                                                                          <c:if test="${search_insert_together_count>0 }">
+                                                                                                    <div class="card">
+                                                                                                              <div class="card-header">
+                                                                                                                        <h5 class="mb-0 collapsed" data-toggle="collapse"
+                                                                                                                                  data-target="#together_in" aria-expanded="false"
+                                                                                                                                  aria-controls="together_in">
+                                                                                                                                  <i class="fa" aria-hidden="true"></i> 함께가요 신규 신청자 수 : ${search_insert_together_count } 명 입니다<br>
+                                                                                                                        </h5>
+                                                                                                              </div>
+                                                                                                              <div id="together_in" class="collapse"
+                                                                                                                        data-parent="#accordion-three">
+                                                                                                                        <div class="card-body">
+                                                                                                                        <c:forEach items="${search_insert_together_alarm }" var="search_insert_together_alarm">
+                                                                                                                                  ${search_insert_together_alarm.in_user_id } 님
+                                                                                                                                   <a href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a>
+                                                                                                                                   <br>
+                                                                                                                        </c:forEach>
+                                                                                                                        <br>
+                                                                                                                        </div>
+                                                                                                              </div>
+                                                                                                    </div>
+                                                                                          </c:if>
+                                                                      
+                                                                                          <c:if test="${search_cancle_together_count>0 }">
+                                                                                                    <div class="card">
+                                                                                                              <div class="card-header">
+                                                                                                                        <h5 class="mb-0 collapsed" data-toggle="collapse"
+                                                                                                                                  data-target="#together_out" aria-expanded="false"
+                                                                                                                                  aria-controls="together_out">
+                                                                                                                                  <i class="fa" aria-hidden="true"></i> 함께가요 신규 취소자 수 : ${search_cancle_together_count } 명 입니다<br>
+                                                                                                                        </h5>
+                                                                                                              </div>
+                                                                                                              <div id="together_out" class="collapse"
+                                                                                                                        data-parent="#accordion-three">
+                                                                                                                        <div class="card-body">
+                                                                                                                        <c:forEach items="${search_cancle_together_alarm }" var="cancle_together_alarm">
+                                                                                                                                  ${cancle_together_alarm.in_user_id } 님
+                                                                                                                                   <a href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a>
+                                                                                                                                   <br>
+                                                                                                                        </c:forEach>
+                                                                                                                        <br>
+                                                                                                                        </div>
+                                                                                                              </div>
+                                                                                                    </div>
+                                                                                          </c:if>
+                                                                                                    
+                                                                                          </div>
+                                                                                </div>
+                                                                                </c:if>		
+                                                                      <!--msg end-->
+                                                            </div>
+                                                  </div>
+
+
+
+
+
+                                                  <div class="tab-pane fade" id="booking" role="tabpanel">
+
+                                                            <div class="table-responsive mt-4">
+                                                                      <table class="table header-border">
+                                                                                <thead>
+                                                                                          <tr>
+                                                                                                    <th>예약번호</th>
+                                                                                                    <th>체크인</th>
+                                                                                                    <th>체크아웃</th>
+                                                                                                    <th>사람수</th>
+                                                                                                    <th>동물수</th>
+                                                                                                    <th>예약상태</th>
+                                                                                                    <th>예약자이름</th>
+                                                                                                    <th>전화번호</th>
+                                                                                          </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                          <c:forEach items="${reservation }" var="rs" begin="0" end="4">
+                                                                                          <tr>
+                                                                                                    <td><a href="javascript:void(0)"># ${rs.rsv_no }</a>
+                                                                                                    </td>
+                                                                                                    <td><fmt:parseDate var="check_in" value="${rs.check_in }" pattern="yyyy-MM-dd"/> 
+                                                                                                              <fmt:formatDate value="${check_in }" pattern="yyyy-MM-dd" /></td>
+                                                                                                    <td><fmt:parseDate var="check_out" value="${rs.check_out }" pattern="yyyy-MM-dd"/> 
+                                                                                                              <fmt:formatDate value="${check_out }" pattern="yyyy-MM-dd" />
+                                                                                                    </td>
+                                                                                                    <td>${rs.human_num }</td>
+                                                                                                    <td>${rs.pet_num }
+                                                                                                    </td>
+                                                                                                    <td><span class="label gradient-2 rounded">${rs.rsv_paid }</span>
+                                                                                                    </td>
+                                                                                                    <td>${rs.guest_name }</td>
+                                                                                                    <td>${rs.guest_tel }
+                                                                                                    </td>
+                                                                                          </tr>
+                                                                                          </c:forEach>
+                                                                                         
+
+
+
+                                                                                </tbody>
+                                                                      </table>
+                                                            </div>
+
+
+                                                  </div>
+                                                  <div class="tab-pane fade" id="pay" role="tabpanel">
+
+                                                            <div class="table-responsive mt-4">
+                                                                      <table class="table header-border">
+                                                                                <thead>
+                                                                                          <tr>
+                                                                                                    <th>고유결제번호</th>
+                                                                                                    <th>결제상태</th>
+                                                                                                    <th>결제수단</th>
+                                                                                                    <th>결제금액</th>
+                                                                                                    <th>결제승인일시</th>
+                                                                                                    <th>예약번호</th>
+                                                                                                    <th>상점거래ID</th>
+                                                                                                    <th>카드승인번호</th>
+                                                                                          </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                          <c:forEach items="${search_pay }" var="search_pay" begin="0" end="4">         
+                                                                                          <tr>
+                                                                                                    <td><a href="javascript:void(0)"># ${search_pay.imp_uid }</a>
+                                                                                                    </td>
+                                                                                                    <td><span class="label gradient-2 rounded">${search_pay.status }</span>
+                                                                                                    </td>
+                                                                                                    <td>${search_pay.pay_method }
+                                                                                                    </td>
+                                                                                                    <td>${search_pay.paid_amount }</td>
+                                                                                                    <td><fmt:formatDate value="${search_pay.paid_time }" pattern="yyyy-MM-dd HH:mm:ss" />
+                                                                                                    </td>
+                                                                                                    <td>${search_pay.rsv_no }
+                                                                                                    </td>
+                                                                                                    <td>${search_pay.merchant_uid }</td>
+                                                                                                    <td>${search_pay.apply_num }
+                                                                                                    </td>
+                                                                                          </tr>
+                                                                                           </c:forEach>
+                                                                                </tbody>
+                                                                      </table>
+                                                            </div>
+
+
+                                                  </div>
+                                
+                                                  
+                                                  <div class="tab-pane fade" id="myboard" role="tabpanel">
+                                                            
+                                                            <div class="table-responsive mt-4">
+                                                                      <table class="table header-border">
+                                                                                <thead>
+                                                                                          <tr>
+                                                                                                    <th>번호</th>
+                                                                                                    <th>카테고리</th>
+                                                                                                    <th>제목</th>
+                                                                                                    <th>날짜</th>
+                                                                                                    <th>조회수</th>
+
+                                                                                          </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                <c:forEach var="b" items="${myboard }" begin="0" end="4">
+                                                                                          <tr>
+                                                                                                    <td><a href="javascript:void(0)"># ${board_no}</a>
+                                                                                                    </td>
+                                                                                                    <td><span class="label gradient-2 rounded">${b.category}</span>
+                                                                                                    </td>
+                                                                                                    <td><a href="/board/get?board_no=${b.board_no}">$(b.board_title }</a></td>
+                                                                                                    <td><fmt:formatDate value="${b.board_date}" pattern="yyyy-MM-dd" /></td>
+                                                                                                    <td>${b.board_hit}</td>
+                                                                                          </tr>
+                                                                                </c:forEach>
+                                                                                </tbody>
+                                                                      </table>
+                                                            </div>
+
+
+                                                  </div>
+                                                  <div class="tab-pane fade" id="mytogether" role="tabpanel">
+
+                                                            <div class="table-responsive mt-4">
+                                                                      <table class="table header-border">
+                                                                                <thead>
+                                                                                          <tr>
+                                                                                                    <th>번호</th>
+                                                                                                    <th>제목</th>
+                                                                                                    <th>날짜</th>
+                                                                                                    <th>소개</th>
+                                                                                                    <th>장소</th>
+
+                                                                                          </tr>
+                                                                                </thead>
+                                                                                <tbody>									
+                                                                                <c:forEach var="to" items="${mytogether }" begin="0" end="4">
+                                                                                          <tr>
+                                                                                                    <td><a href="javascript:void(0)"># ${to.t_num}</a>
+                                                                                                    </td>
+                                                                                                    <td><a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a></td>
+                                                                                                    <td><fmt:formatDate value="${to.t_date}" pattern="yyyy-MM-dd" />
+                                                                                                    </td>
+                                                                                                    <td>${to.t_intro}</td>
+                                                                                                    <td>${to.t_place}</td>
+
+                                                                                          </tr>
+                                                                                </c:forEach>
+                                                                                </tbody>
+                                                                      </table>
+                                                            </div>
+
+
+                                                  </div>
+                                                  <%-- <div class="tab-pane fade" id="mysns" role="tabpanel">
+
+                                                            <div class="table-responsive mt-4">
+                                                                      <table class="table header-border">
+                                                                                <thead>
+                                                                                          <tr>
+                                                                                                    <th>번호</th>
+                                                                                                    <th>이미지</th>
+                                                                                                    <th>날짜</th>
+                                                                                                    <th>좋아요수</th>
+
+                                                                                          </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                          
 	
-	
-		<div id="accordion-three" class="accordion">
+                                                                                          <c:forEach items="${mysnspic }" var="sns" begin="0" end="6">
+                                                                                          <tr>
+                                                                                                    <td><a href="javascript:void(0)"># ${sns.photo_no}</a>
+                                                                                                    </td>
+                                                                                                    <td><img width="50" height="30" src="../img/snsImg/${sns.photo_file_name}" /></td>
+                                                                                                    <td><fmt:formatDate value="${sns.photo_date}" pattern="yyyy-MM-dd" /></td>
+                                                                                                    <td>${sns.cntlike}</td>
+                                                                                          </tr>
+                                                                                          </c:forEach>
+                                                                                </tbody>
+                                                                      </table>
+                                                            </div>
 
-		<c:if test="${search_insert_board_alarm_count>0 }">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="mb-0" data-toggle="collapse" data-target="#board"
-						aria-expanded="true" aria-controls="board">
-						<i class="fa" aria-hidden="true"></i> 자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
-					</h5>
-				</div>
-				<div id="board" class="collapse"
-					data-parent="#accordion-three">
-					<div class="card-body">
-						<c:forEach items="${search_insert_board_alarm }" var="search_insert_board_alarm">
-							${search_insert_board_alarm.in_user_id } 님이 댓글을 등록했습니다 
-							<a href="/board/get?board_no=${search_insert_board_alarm.t_num }">/ 게시물로 이동</a> <br>
-						</c:forEach>
-						<br>
-					</div>
-				</div>
-			</div>
-		</c:if>
 
-		<c:if test="${search_insert_together_count>0 }">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="mb-0 collapsed" data-toggle="collapse"
-						data-target="#together_in" aria-expanded="false"
-						aria-controls="together_in">
-						<i class="fa" aria-hidden="true"></i> 함께가요 신규 신청자 수 : ${search_insert_together_count } 명 입니다<br>
-					</h5>
-				</div>
-				<div id="together_in" class="collapse"
-					data-parent="#accordion-three">
-					<div class="card-body">
-					<c:forEach items="${search_insert_together_alarm }" var="search_insert_together_alarm">
-						${search_insert_together_alarm.in_user_id } 님
-						 <a href="/mypage/check_alarm_in?user_id=${search_insert_together_alarm.user_id }&in_user_id=${search_insert_together_alarm.in_user_id }">확인</a>
-						 <br>
-					</c:forEach>
-					<br>
-					</div>
-				</div>
-			</div>
-		</c:if>
+                                                  </div> --%>
+                                                  <sec:authorize access="hasRole('ROLE_USER')"> 
+                                                  <div class="tab-pane fade" id="withdraw" role="tabpanel">
+                                                            <div class="read-content">
+                                                                      <div class="media pt-3">
 
-		<c:if test="${search_cancle_together_count>0 }">
-			<div class="card">
-				<div class="card-header">
-					<h5 class="mb-0 collapsed" data-toggle="collapse"
-						data-target="#together_out" aria-expanded="false"
-						aria-controls="together_out">
-						<i class="fa" aria-hidden="true"></i> 함께가요 신규 취소자 수 : ${search_cancle_together_count } 명 입니다<br>
-					</h5>
-				</div>
-				<div id="together_out" class="collapse"
-					data-parent="#accordion-three">
-					<div class="card-body">
-					<c:forEach items="${search_cancle_together_alarm }" var="cancle_together_alarm">
-						${cancle_together_alarm.in_user_id } 님
-						 <a href="/mypage/check_alarm_cancle?user_id=${cancle_together_alarm.user_id }&in_user_id=${cancle_together_alarm.in_user_id }">확인</a>
-						 <br>
-					</c:forEach>
-					<br>
-					</div>
-				</div>
-			</div>
-		</c:if>
-			
-		</div>
-	</div>
-	</c:if>		
+                                                                                <div class="media-body">
+                                                                                          
+                                                                                          <h5 class="mb-4 ml-3">탈퇴안내</h5>
+
+                                                                                </div>
+
+                                                                      </div>
+
+                                                                      <div class="card px-3 pt-4 pb-3 mb-4">
+                                                                                <div class="media-body">
+                                                                                          <h6
+                                                                                                    class="mb-1 text-danger font-weight-light">
+                                                                                                    회원탈퇴 시 개인정보 및
+                                                                                                    PETWEGO에서 만들어진 모든
+                                                                                                    데이터는 삭제됩니다.</h6>
+
+                                                                                          <h6
+                                                                                                    class="mb-3 text-danger font-weight-light">
+                                                                                                    (단, 아래 항목은 표기된 법률에
+                                                                                                    따라 특정 기간 동안 보관됩니다.)
+                                                                                          </h6>
+
+                                                                                          <small
+                                                                                                    class="d-block mb-1 text-muted font-weight-light">1.
+                                                                                                    계약 또는 청약철회 등에 관한 기록
+                                                                                                    보존 이유 : 전자상거래 등에서의
+                                                                                                    소비자보호에 관한 법률 / 보존 기간
+                                                                                                    : 5년</small>
+                                                                                          <small
+                                                                                                    class="d-block mb-1 text-muted font-weight-light">2.
+                                                                                                    대금결제 및 재화 등의 공급에 관한
+                                                                                                    기록 보존 이유 : 전자상거래
+                                                                                                    등에서의 소비자 보호에 관한 법률 /
+                                                                                                    보존기간 : 5년</small>
+                                                                                          <small
+                                                                                                    class="d-block mb-1 text-muted font-weight-light">3.
+                                                                                                    전자금융 거래에 관한 기록 보존 이유
+                                                                                                    : 전자금융거래법 보존 기간 /
+                                                                                                    5년</small>
+                                                                                          <small
+                                                                                                    class="d-block mb-1 text-muted font-weight-light">4.
+                                                                                                    소비자의 불만 또는 분쟁처리에 관한
+                                                                                                    기록 보존 이유 : 전자상거래
+                                                                                                    등에서의 소비자보호에 관한 법률
+                                                                                                    보존기간 / 보존 기간 :
+                                                                                                    3년</small>
+                                                                                </div>
+                                                                      </div>
 
 
 
 
-		<div class="container-fluid">
-		<h1>마이페이지</h1>
-			<div class="row">
-				<!-- 반려인 정보 -->
-				<div class="col-lg-4 col-xl-3">
-					<div class="card text-center">
-						<div class="card-body">
-							<div class="media align-items-center justify-content-center mb-4">
-								<div
-									class="text-center d-flex flex-column justify-content-center">
-									<div class="row mb-5 d-flex flex-column align-items-center">
-										<h2>반려인 정보</h2>
-										<img class="rounded-circle" alt="사진이 없습니다"
-											src="/img/peopleImg/${myinfo.fname }" width="100"
-											height="100">
-									</div>
-									<h3 class="mb-0">${myinfo.user_id }</h3>
-									<h3 class="mb-0">(${myinfo.nick_name })</h3>
-									<p class="text-muted mb-0">${myinfo.address }</p>
-								</div>
-							</div>
 
 
-							<h4>자기소개</h4>
-							<p class="text-muted">${myinfo.intro }</p>
-							<ul class="card-profile__info">
-								<li class="mb-1"><strong class="text-dark mr-4">전화번호</strong>
-									<span>${myinfo.tel }</span></li>
-								<li><strong class="text-dark mr-4">이메일</strong> <span>${myinfo.email }</span></li>
-							</ul>
-							<button class="btn btn-primary" id="people_info_up_btn">수정하기</button>
-						</div>
-					</div>
-				</div>
-				<!-- 		반려인 정보 끝	 -->
 
 
-				<div class="col-lg-8 col-xl-9">
+
+
+
+                                                            </div>
+                                                            <div class="read-content mb-5">
+                                                                      <div class="media pt-3">
+
+                                                                                <div class="media-body">
+                                                                                          <h6 class="p-t-15 mb-3 ml-3">
+                                                                                                    유의사항</h6>
+                                                                                </div>
+
+                                                                      </div>
+
+                                                                      <div class="card px-3 py-3 mb-4">
+                                                                                <div class="media-body">
+
+
+
+
+                                                                                          <small
+                                                                                                    class="d-block mb-1 text-muted font-weight-light">회원탈퇴
+                                                                                                    처리 후에는 회원님의 개인정보를
+                                                                                                    복원할 수 없으며, 회원탈퇴 진행 시
+                                                                                                    해당 아이디는 영구적으로 삭제되어
+                                                                                                    재가입이 불가합니다.</small>
+
+
+
+                                                                                </div>
+                                                                      </div>
+
+
+
+
+
+
+
+
+
+
+
+                                                            </div>
+                                                            <div class="d-flex justify-content-end align-items-baseline">
+                                                                      <div>
+                                                                                <input class="mr-2" type="checkbox"
+                                                                                          name="finalConfirm">
+                                                                                <label for="finalConfirm"> 해당 내용을 모두
+                                                                                          확인하였으며, 회원탈퇴에 동의합니다.</label>
+                                                                      </div>
+                                                                      <div>
+                                                                                <button type="button" class="btn mb-1 ml-3 btn-danger" id="widthdraw_btn">회원탈퇴</button>
+                                                                      </div>
+                                                            </div>
+                                                  </div>
+                                                  </sec:authorize>
+                                        </div>
+                              </div>
+                    </div>
+          </div>
+          </div>
+<!-- tab end -->
+<div class="row">
+<div class="col-lg-12">
 
 
 					<div class="card">
 						<div class="card-body">
-							<h2>반려동물 정보 &nbsp;&nbsp;<button type="button" class="btn mb-1 btn-outline-primary" id="more">더보기</button></h2>
+							<h2 class="font-weight-light mb-4 ml-3">반려동물 정보</h2>
 
 							<!-- 동물 정보 -->
-							<div class="media media-reply align-items-center justify-content-center" style="margin-bottom: 0px;">
+							<div class="col-lg-4 media media-reply align-items-center justify-content-center" style="margin-bottom: 0px;">
 								<c:forEach items="${animal_list }" var="a" begin="0" end="3">
 									
 									<div class="media-body align-items-center text-center d-flex flex-column justify-content-center mb-4" style="height: 350px" >
@@ -254,7 +641,7 @@
 							</div>
 							<!-- 동물 정보 끝						 -->
 							
-							<button class="btn btn-primary" id="animal_info_up_btn">반려동물 추가/수정/삭제 하기</button>
+							<button id="animal_info_up_btn" class="ml-3 btn gradient-4 btn-md border-0 btn-rounded">정보관리</button>
 						</div>
 					</div>
 
@@ -265,169 +652,16 @@
 				</div>
 			</div>
 
-			<!-- 내가쓴글 ~ 리스트 -->
+</div>
+</div>
+<!-- animal end -->
 
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">나의 활동 내역</h4>
-					<!-- Nav tabs -->
-					<div class="default-tab">
-						<ul class="nav nav-tabs mb-3" role="tablist">
-							<li class="nav-item"><a class="nav-link active"
-								data-toggle="tab" href="#board_list">자유게시판 작성글</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#together_list">함께가요 작성글</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#pic_board_list">SNS 작성글</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#reservation_list">예약 내역</a></li>
-							<li class="nav-item"><a class="nav-link" data-toggle="tab"
-								href="#payment_list">결제 내역</a></li>
-						</ul>
-						<div class="tab-content">
+<!-- container end -->
 
-							<!-- 					자유게시판 -->
-							<div class="tab-pane fade show active" id="board_list"
-								role="tabpanel">
-								<div class="p-t-15">
-									<c:forEach var="b" items="${myboard }" begin="0" end="4">
-										<h4>
-											<a href="/board/get?board_no=${b.board_no}">${b.board_title }</a>
-										</h4>
-									</c:forEach>
-								</div>
-								<br><a href="/mypage/board_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
-							</div>
-							<!-- 						자유게시판 끝 -->
 
-							<!-- 함께가요 -->
-							<div class="tab-pane fade" id="together_list">
-								<div class="p-t-15">
-									<c:forEach var="to" items="${mytogether }" begin="0" end="4">
-										<h4>
-											<a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a>
-										</h4>
-									</c:forEach>
-								</div>
-								<br><a href="/mypage/together_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
-							</div>
-							<!-- 						함께가요 끝 -->
 
-							<!-- sns  -->
-							<div class="tab-pane fade" id="pic_board_list">
-								<div class="p-t-15">
-									<c:forEach items="${mysnspic }" var="sns" begin="0" end="6">
-										<img width="80" height="80" src="../img/snsImg/${sns.photo_file_name}" />
-									</c:forEach>							
-<%-- 									<c:forEach var="sns" items="${mysns }" begin="0" end="4"> --%>
-<%-- 										<h4>글번호 ${sns.photo_no }</h4> --%>
-<%-- 									</c:forEach> --%>
-								</div>
-								<br><a href="/mypage/sns_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
-							</div>
-							<!-- 						sns 끝 -->
 
-							<!-- 예약 -->
-							<div class="tab-pane fade" id="reservation_list">
-								<div class="p-t-15">
-									<table border="1" width="80%">
-										<tr>
-											<th>예약번호</th>
-											<th>체크인</th>
-											<th>체크아웃</th>
-											<th>사람수</th>
-											<th>동물수</th>
-											<th>예약상태</th>
-											<th>예약자이름</th>
-											<th>예약자전화번호</th>
-										</tr>
-										<c:forEach items="${reservation }" var="rs" begin="0" end="4">
-											<tr>
-												<td>${rs.rsv_no }</td>
-												<td> <fmt:parseDate var="check_in" value="${rs.check_in }" pattern="yyyy-MM-dd"/> 
-													<fmt:formatDate value="${check_in }" pattern="yyyy-MM-dd" />
-												</td>
-												<td> <fmt:parseDate var="check_out" value="${rs.check_out }" pattern="yyyy-MM-dd"/> 
-													<fmt:formatDate value="${check_out }" pattern="yyyy-MM-dd" />
-												</td>
-												<td>${rs.human_num }</td>
-												<td>${rs.pet_num }</td>
-												<td>${rs.rsv_paid }</td>
-												<td>${rs.guest_name }</td>
-												<td>${rs.guest_tel }</td>
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
-								<br><a href="/mypage/reservation_list?user_id=${login_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a>
-							</div>
-							<!-- 						에약 끝 -->
 
-							<!-- 결제 -->
-							<div class="tab-pane fade" id="payment_list">
-								<div class="p-t-15">
-									<table border="1" width="80%">
-										<tr>
-											<th>고유결제번호</th>
-											<th>상점거래id</th>
-											<th>결제금액</th>
-											<th>결제수단</th>
-											<th>카드승인번호</th>
-											<th>결제승인시각</th>
-											<th>결제상태</th>
-											<th>예약번호</th>
-											<th>아이디</th>
-										</tr>
-										<c:forEach items="${search_pay }" var="search_pay" begin="0" end="4">
-											<tr>
-												<td>${search_pay.imp_uid }</td>
-												<td>${search_pay.merchant_uid }</td>
-												<td>${search_pay.paid_amount }</td>
-												<td>${search_pay.pay_method }</td>
-												<td>${search_pay.apply_num }</td>
-												<td><fmt:formatDate value="${search_pay.paid_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-												<td>${search_pay.status }</td>
-												<td>${search_pay.rsv_no }</td>
-												<td>${search_pay.user_id }</td>
-											</tr>
-										</c:forEach>
-									</table>
-								</div>
-								<br><a href="/mypage/pay_list"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a><br>
-							</div>
-							<!-- 						결제끝 -->
-
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 내가쓴글 ~ 리스트 끝 -->
-
-			<!-- 				방명록 -->
-<!-- 			<div class="card"> -->
-<!-- 				<div class="card-body"> -->
-<!-- 					<form action="#" class="form-profile"> -->
-<!-- 						<h2>방명록</h2> -->
-<!-- 						<div class="form-group"> -->
-<!-- 							<textarea class="form-control" name="textarea" id="textarea" -->
-<!-- 								cols="30" rows="2" placeholder="발자취를 남겨주세요 (칼럼추가해야됨)"></textarea> -->
-<!-- 						</div> -->
-<!-- 						<div class="d-flex align-items-center"> -->
-<!-- 							<button class="btn btn-primary px-3 ml-2">등록하기</button> -->
-<!-- 						</div> -->
-<!-- 					</form> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-			<!-- 				방명록  끝-->
-			
-			<sec:authorize access="hasRole('ROLE_USER')"> 
-			<button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button>
-<!-- 		<button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
-<!-- 			<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button> -->
-			</sec:authorize>
-
-		</div>
-		<!-- #/ container -->
 </body>
 </html>
 <%@ include file="../footer.jsp"%>
