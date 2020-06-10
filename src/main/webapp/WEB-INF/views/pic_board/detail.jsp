@@ -122,7 +122,6 @@
 		$("#follow").click(function() {
 			var u2 = $("#follow_user_id").val();
 			var id = '${login_id}';
-			alert("팔로우 버튼 누름" + u2 + id);
 			
 // 			var follow_user_id = $("#follow_user_id").val();
 // 			var follow_in_user_id = $("#follow_in_user_id").val();
@@ -133,7 +132,6 @@
 					in_user_id : id
 				},
 				success : function(re) {
-					alert(re);
 					window.location.reload(true);
 				}
 			});
@@ -150,7 +148,6 @@
 					user_id2 : user_id2
 				},
 				success : function(re) {
-					alert(re);
 					window.location.reload(true);
 				}
 			});
