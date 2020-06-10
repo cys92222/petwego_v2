@@ -119,8 +119,7 @@ $(function(){
                     	msg += '카드 승인번호 : ' + rsp.apply_num+"\n";
 						msg += '자세한 예약(결제) 정보는 마이페이지에서 확인가능합니다.';
 						
-				// 결제성공시 이동할 페이지
-    	       location.href='http://localhost:8088/mypage/pay_list';
+			
     	      
 			    } else {
 			        var msg = '결제에 실패하였습니다.'+"\n";
@@ -129,8 +128,14 @@ $(function(){
 			        // rsp.error_msg 결제처리에 실패한 경우 상세메세지
 			        // 잔액부족이라던지 비밀번호 입력횟수 초과 등등 
 			    }
+			  		swal(msg).then((result) =>  {
+			  			location.href='http://192.168.0.40:8088/mypage/pay_list';
+					});
 
- 			    alert(msg);
+			  		// 결제성공시 이동할 페이지
+// 		    	       location.href='http://192.168.0.40:8088/mypage/pay_list';
+//		     	       location.href='http://localhost:8088/mypage/pay_list';
+
 			});	//function(rsp) 끝
 	})	//결제하기 버튼 동작 끝
 

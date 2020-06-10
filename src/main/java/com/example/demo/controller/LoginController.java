@@ -51,7 +51,7 @@ public class LoginController {
       mav.setViewName("/login/login");
 	// 예약 내역 24시간 지나면 예약취소로 바꿈
 	ms.cancle_reservation();
-	System.out.println("예약 내역 24시간 지나면 예약취소로 바꿈 컨트롤러 동작");
+//	System.out.println("예약 내역 24시간 지나면 예약취소로 바꿈 컨트롤러 동작");
       
       return mav;
    }

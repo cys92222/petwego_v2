@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <!-- 민아) 5/10, 자유게시판 글 등록 -->
 <!-- 민아) 5/11, 서머노트 파일 확장자가 이미지파일인것만 등록되게 & 용량 20mb 제한 -->
 <!-- 민아) 5/31, 자유게시판 부트스트랩적용 -->
@@ -77,7 +78,8 @@ $(function(){
 					//아니 위에 ext !== 'png' 이런건 왜 안먹히나 모르겠다.... 
 					// 어차피 if 타고 오는게 없는데 왜죠 
 				}else{
-					alert ("이미지 파일만 등록할 수 있습니다! 확장자를 확인해주세요.");
+// 					alert ("이미지 파일만 등록할 수 있습니다! 확장자를 확인해주세요.");
+					swal("확장자 오류", "이미지파일만 등록할 수 있습니다!", "error");
 					return false;
 				}
 		
@@ -142,8 +144,19 @@ $(function(){
 								xhr.setRequestHeader(header, token);
 							},
 							success : function(ok){
-								alert("등록성공")
-								location.href="/board/get?board_no="+postNum;
+								swal({
+									  title: "등록성공!",
+									  text: "자유게시판 등록성공",
+									  icon: "success",
+									  button: {
+											text : "확인",
+											value : true
+										  }
+									}).then((result) =>  {
+										location.href="/board/get?board_no="+postNum;
+									});
+// 								alert("등록성공")
+								
 							}
 						})
 					}	
