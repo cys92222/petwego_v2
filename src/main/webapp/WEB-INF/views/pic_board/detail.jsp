@@ -199,6 +199,22 @@
 			});
 		});
 
+var comm_list = ${comm_list};
+
+	$.each(comm_list,function(idx,no){
+		
+		$('#comment_delete'+no.photo_comm_no).click(function(){
+// 		$("#comment_delete"+no.photo_comm_no).click(function(){
+			var comment_no = $("#comment_no").val();
+			var cid1 = $("#comment_id").val();
+			var cid2 ='${login_id}';
+			var data = {photo_comm_no:comment_no,user_id:cid1,user_id2:cid2};
+			$.ajax("/pcomment/pcommDeleteSubmit",{data:data,success:function(){
+				window.location.reload(true);
+				}});
+		});
+	})
+
 	});
 </script>
 </head>
@@ -313,6 +329,12 @@
 									<c:out value="<p id='cntLike'>${Board.cntLike }</p>"
 										escapeXml="false" />
 								</div>
+								<c:if test="${Board.user_id eq login_id }">
+								<div class="general-button">
+									<button type="button" id="btnUpdate" class="btn mb-1 btn-primary">수정</button>
+									<button type="button" id="btnDelete" class="btn mb-1 btn-danger">삭제</button>
+								</div>
+								</c:if>
 							</div>
 							<hr>
 							<div class="card-body">
@@ -338,6 +360,8 @@
 						<c:forEach var="plistComment" items="${plistComment}"
 							varStatus="status">
 							<div class="card">
+							<input type="hidden" id="comment_no" value="${plistComment.photo_comm_no }">
+							<input type="hidden" id="comment_id" value="${plistComment.user_id }">
 								<div class="card-body">
 									<div class="media media-reply">
 										<img class="mr-3 circle-rounded" src="../img/peopleImg/${plistComment.fname}"
@@ -349,7 +373,13 @@
 															value="${plistComment.photo_comm_date }"
 															pattern="yyyy-MM-dd" /></small>
 												</h5>
-												
+												<c:if test="${plistComment.user_id eq login_id }">
+													<div class="general-button">
+														<button type="button" class="btn mb-1 btn-danger" id="comment_delete${plistComment.photo_comm_no }">
+															댓글삭제
+														</button>
+													</div>
+												</c:if>
 											</div>
 
 											<p>${plistComment.photo_comm_cont }</p>

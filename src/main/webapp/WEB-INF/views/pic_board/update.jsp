@@ -38,14 +38,14 @@ $(function(){
 						<div class="basic-form">
 							<form action="/pic_board/update" method="post" enctype="multipart/form-data">
 								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
-								<div class="form-group">
-									사진번호<br>
-									<input type="text" name="photo_no" value="${board.photo_no }" readonly="readonly" class="form-control input-default">
-								</div>
-								<div class="form-group">
-									파일번호<br>
-									<input type="text" name="photo_file_no" value="${pic.photo_file_no }" readonly="readonly" class="form-control input-default">
-								</div>
+<!-- 								<div class="form-group"> -->
+<!-- 									사진번호<br> -->
+<%-- 									<input type="text" name="photo_no" value="${board.photo_no }" readonly="readonly" class="form-control input-default"> --%>
+<!-- 								</div> -->
+<!-- 								<div class="form-group"> -->
+<!-- 									파일번호<br> -->
+<%-- 									<input type="text" name="photo_file_no" value="${pic.photo_file_no }" readonly="readonly" class="form-control input-default"> --%>
+<!-- 								</div> -->
 								<div class="form-group">
 									작성자<br>
 									<input type="text" name="user_id" value="${board.user_id }" readonly="readonly" class="form-control input-default">
@@ -54,9 +54,11 @@ $(function(){
 									내용<br/>
 									<textarea name="photo_detail" id="photo_detail" class="form-control h-150px" rows="6">${board.photo_detail }</textarea>
 								</div>
-									사진<br>
+									기존 사진<br>
 								<div class="form-group">
+									<img src="../img/snsImg/${pic.photo_file_name }" width="300" height="300">
 									<input type="text" name="photo_file_name" value="${pic.photo_file_name }" class="form-control input-default"><br>
+									바꿀사진
 									<input type="file" name="uploadFile" class="form-control input-default">
 								</div>
 								<div style="text-align: center;">

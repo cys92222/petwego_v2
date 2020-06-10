@@ -36,6 +36,7 @@ public class Pic_Board_CommentServiceImlp implements Pic_Board_CommentService {
 	//댓글삭제
 	@Override
 	public int pdeleteComment(Pic_Board_CommentVo pbc) {
+		System.out.println("댓글삭제 서비스"+pbc);
 		System.out.println("댓글삭제aaaaaaaaaaaaaaaaa");
 		return pbcDao.pdeleteComment(pbc);
 	}

@@ -181,14 +181,17 @@ public class Pic_BoardController extends HttpServlet {
          mav.addObject("file", pic_boardService.detailFile(pbf));
          mav.addObject("plistComment", pbc.plistComment(pb.getPhoto_no()));
          
+         
          // 주련) 모달 추가 시도
  		List<FollowVo> list = followService.search_follow(f);
  		System.out.println(list);
  		
  		Gson gson = new Gson();
  		String str = gson.toJson(list);
+ 		String comm_list = gson.toJson(pbc.plistComment(pb.getPhoto_no()));
  		mav.addObject("followList2", str);
  		mav.addObject("followList", list);
+ 		mav.addObject("comm_list", comm_list);
  		
  		f.setUser_id2(f.getUser_id());
  		mav.addObject("count", followService.search_following(f));         

@@ -34,6 +34,7 @@ public class Pic_Board_CommentController {
       List<Pic_Board_CommentVo> plistComment = pcomm_service.plistComment(pbc.getPhoto_no());
       
       Gson gson = new Gson();
+      String comm_list = gson.toJson(plistComment);
       return gson.toJson(plistComment);
    }
  
@@ -51,8 +52,9 @@ public class Pic_Board_CommentController {
 
    // 댓글만 삭제
    @GetMapping(value = "/pcommDeleteSubmit")
-   public String pcommDeleteSubmit(HttpServletRequest request,Pic_Board_CommentVo pbc) {
+   public String pcommDeleteSubmit(HttpServletRequest request,Pic_Board_CommentVo pbc,String user_id2) {
+	   System.out.println("댓글삭제 컨트롤러" + pbc);
       pcomm_service.pdeleteComment(pbc);
-      return "redirect:/pic_board/detail";
+      return "ok";
    }
 }
