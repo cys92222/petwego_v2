@@ -416,7 +416,7 @@
                                                                                                     </td>
                                                                                                     <td><span class="label gradient-2 rounded">${b.category}</span>
                                                                                                     </td>
-                                                                                                    <td><a href="/board/get?board_no=${b.board_no}">$(b.board_title }</a></td>
+                                                                                                    <td><a href="/board/get?board_no=${b.board_no}">${b.board_title }</a></td>
                                                                                                     <td><fmt:formatDate value="${b.board_date}" pattern="yyyy-MM-dd" /></td>
                                                                                                     <td>${b.board_hit}</td>
                                                                                           </tr>
@@ -640,9 +640,15 @@
 								</c:forEach>
 							</div>
 							<!-- 동물 정보 끝						 -->
-							
-							<button id="animal_info_up_btn" class="ml-3 btn gradient-4 btn-md border-0 btn-rounded">정보관리</button>
-						</div>
+						<sec:authorize access="hasRole('ROLE_USER')">
+							<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button>
+							<!--          <button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button> -->
+							<!--       <button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
+							<!--           -->
+						</sec:authorize>
+						<button id="animal_info_up_btn"
+							class="ml-3 btn gradient-4 btn-md border-0 btn-rounded">정보관리</button>
+					</div>
 					</div>
 
 

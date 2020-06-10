@@ -224,7 +224,7 @@ var idx = false;
 	         //사용 가능한 아이디라면
 		    if(data==0 && $.trim($('#user_id').val()) != '' ){   
 		       idx=true;
-			   $('#user_id').attr("readonly",true);
+//			   $('#user_id').attr("readonly",true);
 		       $("#overlapErr").hide();
 		       $("#overlapSucc").show();
 		       successState("#user_id");

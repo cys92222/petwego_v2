@@ -35,7 +35,7 @@
 							</div>
 							<a href="/management/picboard/detailPicboard?photo_no=${pic.photo_no }">
 							<div class="card-body">
-								<img src="../../img/${pic.photo_file_name }" width="200px" height="200px">
+								<img src="../../img/snsImg/${pic.photo_file_name }" width="200px" height="200px">
 							</div>
 							</a>
 						</div>

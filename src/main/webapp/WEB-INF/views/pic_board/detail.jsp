@@ -102,65 +102,6 @@
 			}
 		});
 
-		//댓글 목록
-		
-// 	$
-// 				.ajax(
-// 						"/pcomment/plistComment",
-// 						{
-// 							type : "GET",
-// 							data : {
-// 								photo_no : '${file.photo_no}'
-// 							},
-// 							success : function(comm) {
-// 								comm = JSON.parse(comm);
-// 								$
-// 										.each(
-// 												comm,
-// 												function(idx, c) {
-// 													var tr = $("<tr></tr>");
-// 													var td1 = $("<td></td>")
-// 															.html(
-// 																	c.photo_comm_cont);
-// 													var td2 = $("<td></td>")
-// 															.html(
-// 																	moment(
-// 																			c.photo_comm_date)
-// 																			.format(
-// 																					'YYYY년 MM월 DD일 HH:mm:ss'));
-// 													var td3 = $("<td></td>")
-// 															.html(c.user_id);
-// 													if (c.user_id === "${login_id}") {
-// 														var delBtn = $(
-// 																"<button></button>")
-// 																.text("댓글삭제")
-// 																.attr(
-// 																		"photo_comm_no",
-// 																		c.photo_comm_no);
-// 													}
-// 													var td4 = $("<td></td>");
-// 													td4.append(delBtn);
-// 													tr.append(td1, td2, td3,
-// 															td4);
-// 													$("#pcomm_list").append(tr);
-
-// 													//댓글 삭제
-// 													$(delBtn)
-// 															.click(
-// 																	function() {
-// 																		alert("버튼 누름");
-// 																		var delCheck = confirm("댓글을 삭제하시겠습니까?");
-// 																		if (delCheck == true) {
-// 																			self.location = "/pcomment/pcommDeleteSubmit?photo_comm_no="
-// 																					+ c.photo_comm_no;
-// 																			alert("댓글을 삭제했습니다!");
-// 																			location
-// 																					.reload();
-// 																		}
-// 																	})
-// 												})
-// 							}
-// 						});
 		//팔로우하기
 		$("#follow").click(function() {
 			var u2 = $("#follow_user_id").val();
