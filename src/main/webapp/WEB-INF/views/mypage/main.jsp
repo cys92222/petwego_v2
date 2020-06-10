@@ -186,7 +186,7 @@
                                                                       class="nav-link d-flex align-items-center active"
                                                                       data-toggle="tab"
                                                                       href="#message"><span>알림</span><span
-                                                                                class="badge badge-warning badge-sm float-right ml-2 text-white align-self-center">47</span></a>
+                                                                                class="badge badge-warning badge-sm float-right ml-2 text-white align-self-center">${search_insert_board_alarm_count+search_insert_together_count+search_cancle_together_count}</span></a>
                                                   </li>
                                                   <li class="nav-item"><a class="nav-link" data-toggle="tab"
                                                                       href="#booking"><span>나의 예약내역</span></a>
@@ -231,12 +231,12 @@
                                                                                           <c:if test="${search_insert_board_alarm_count>0 }">
                                                                                                     <div class="card">
                                                                                                               <div class="card-header">
-                                                                                                                        <h5 class="mb-0" data-toggle="collapse" data-target="#board"
-                                                                                                                                  aria-expanded="true" aria-controls="board">
+                                                                                                                        <h5 class="mb-0" data-toggle="collapse" data-target="#boardaa"
+                                                                                                                                  aria-expanded="true" aria-controls="boardaa">
                                                                                                                                   <i class="fa" aria-hidden="true"></i> 자유게시판 신규 댓글 수 : ${search_insert_board_alarm_count } 개 입니다<br>
                                                                                                                         </h5>
                                                                                                               </div>
-                                                                                                              <div id="board" class="collapse"
+                                                                                                              <div id="boardaa" class="collapse"
                                                                                                                         data-parent="#accordion-three">
                                                                                                                         <div class="card-body">
                                                                                                                                   <c:forEach items="${search_insert_board_alarm }" var="search_insert_board_alarm">
