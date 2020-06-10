@@ -105,7 +105,22 @@
                             <div class="card-body d-flex">
                                 
     <div class="col-3 border-right pr-5 py-4 text-center">
-                                    <img class="rounded-circle mt-4" src="/img/peopleImg/${myinfo.fname }" width="135" height="135">
+    									<sec:authentication property="principal.fname" var="fname" />
+	    								<c:choose>
+											<c:when test="${empty fname  }">
+												<img class="d-block mt-1" src="../img/peopleImg/girlwithdog.jpg" height="135"
+													width="135" alt="">
+											</c:when>
+	
+	
+											<c:when test="${not empty fname  }">
+												<img class="rounded-circle mt-4" src="/img/peopleImg/${myinfo.fname }" width="135" height="135">
+											</c:when>
+											
+											<c:otherwise>
+											</c:otherwise>
+										</c:choose>
+           
                                     <h4 class="card-widget__title text-dark mt-3">${myinfo.nick_name }</h4>
                                     <p class="text-muted font-weight-light">
 	                                    <c:set var="role" value = "${myinfo.user_role}"/>
