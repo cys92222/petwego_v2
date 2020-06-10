@@ -13,7 +13,7 @@
 <script type="text/javascript">
 	$(function() {
 
-		// 민아) 5/17, 좋아요기능 추가, user_id 는 임의로 멤버인포에 추가한 user1으로 해둠 
+		// 민아) 5/17, 좋아요기능 추가
 		var photo_no = $("#photo_no").val();
 		var user_id = "${login_id}";
 		$("#clickLike").hide();
@@ -34,6 +34,8 @@
 			})
 		}
 		okLike(user_id, photo_no);
+
+		
 		// 좋아요 insert
 		$(document).on("click", "#like", function() { // 좋아요를 클릭했을때
 			$.ajax("/pic_board/insertLike", {
@@ -78,11 +80,25 @@
 
 		//삭제   
 		$("#btnDelete").click(function() {
-			var check = confirm("게시글을 삭제하시겠습니까?")
-			if (check == true) {
-				self.location = "/pic_board/delete?photo_no=${file.photo_no}";
-				//             alert("게시글이 삭제되었습니다.")
-			}
+
+			swal({
+				  title: "삭제하시겠습니까?",
+				  text: "복구할 수 없습니다. 게시글을 삭제하시겠습니까?",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+				    swal("게시글을 삭제하였습니다!!", {
+				      icon: "success",
+				    }).then((result) =>  {
+				    	self.location = "/pic_board/delete?photo_no=${file.photo_no}";
+					});
+				  } else {
+				    swal("글 삭제 취소");
+				  }
+				})
 		});
 
 		// 댓글작성버튼을 누르면!
