@@ -78,9 +78,9 @@ public class QnAController {
 		
 		Gson gson = new Gson();
 		mav.addObject("list", gson.toJson(service.allQnAList()));
-		System.out.println("list" + gson.toJson(service.allQnAList()));
+//		System.out.println("list" + gson.toJson(service.allQnAList()));
 		mav.addObject("list2", service.allQnAList());
-		System.out.println("list2" + service.allQnAList());
+//		System.out.println("list2" + service.allQnAList());
 //		System.out.println("list" + service.allQnAList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
@@ -235,14 +235,14 @@ public class QnAController {
 	@ResponseBody
 	public String no_delete(QnAVo q) {
 		String str = "";
-		System.out.println("답변유무 :" + service.no_delete(q));
+//		System.out.println("답변유무 :" + service.no_delete(q));
 		//답변이 있는경우
 		if(service.no_delete(q) > 0) {
-			System.out.println("답변 있음");
+//			System.out.println("답변 있음");
 			str = "o";
 		//답변이 없는 경우
 		}else {
-			System.out.println("답변 없음");
+//			System.out.println("답변 없음");
 			str = "x";
 		}
 		return str;
@@ -283,7 +283,7 @@ public class QnAController {
 	//수정
 	@RequestMapping("/customerservice/updateQnA")
 	public String updateQnA(HttpServletRequest request,QnAUpdateVo qu, String up_inq_file) {
-		System.out.println(up_inq_file);
+//		System.out.println(up_inq_file);
 		qu.setUp_inq_file(up_inq_file);
 		service.updateQnA(qu);
 		return "redirect:/customerservice/List";

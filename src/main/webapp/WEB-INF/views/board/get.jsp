@@ -56,6 +56,7 @@ $(function(){
 	$("#comment").click(function(){
 
 		var commCheck = confirm("한번 등록하면 수정할 수 없습니다. 이대로 등록하시겠습니까?");
+
 		if(commCheck == true){
 			var commSubmit = $("form[name='commentForm']");
 			commSubmit.attr("action","/comment/insertComment");
@@ -93,7 +94,6 @@ $(function(){
 	
 				//댓글 삭제
 				$(delBtn).click(function(){
-						
 						var delCheck = confirm("댓글을 삭제하시겠습니까?");
 						if(delCheck == true){
 							self.location = "/comment/commDeleteSubmit?comm_num="+c.comm_num+"&user_id=${login_id}";
@@ -104,6 +104,7 @@ $(function(){
 			})
 		}}) //댓글 ajax통신끝
 	}
+	
 	listComment();
 });
 </script>
