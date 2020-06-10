@@ -38,14 +38,14 @@ $(function(){
 						<div class="basic-form">
 							<form action="/pic_board/update" method="post" enctype="multipart/form-data">
 								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
-<!-- 								<div class="form-group"> -->
-<!-- 									사진번호<br> -->
-<%-- 									<input type="text" name="photo_no" value="${board.photo_no }" readonly="readonly" class="form-control input-default"> --%>
-<!-- 								</div> -->
-<!-- 								<div class="form-group"> -->
-<!-- 									파일번호<br> -->
-<%-- 									<input type="text" name="photo_file_no" value="${pic.photo_file_no }" readonly="readonly" class="form-control input-default"> --%>
-<!-- 								</div> -->
+								<div class="form-group">
+									사진번호<br>
+									<input type="hidden" name="photo_no" value="${board.photo_no }" readonly="readonly" class="form-control input-default">
+								</div>
+								<div class="form-group">
+									파일번호<br>
+									<input type="hidden" name="photo_file_no" value="${pic.photo_file_no }" readonly="readonly" class="form-control input-default">
+								</div>
 								<div class="form-group">
 									작성자<br>
 									<input type="text" name="user_id" value="${board.user_id }" readonly="readonly" class="form-control input-default">
