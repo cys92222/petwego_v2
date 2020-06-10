@@ -9,6 +9,7 @@ import com.example.demo.dao.MypageDao;
 import com.example.demo.vo.Animal_infoVo;
 
 import com.example.demo.vo.BoardVo;
+import com.example.demo.vo.FollowVo;
 import com.example.demo.vo.MemberInfoVo;
 import com.example.demo.vo.PaymentVo;
 import com.example.demo.vo.Pic_BoardVo;
@@ -181,6 +182,14 @@ public class MypageServiceImpl implements MypageService {
 		int re = -1;
 		re = mypagedao.cancle_reservation();
 		return re;
+	}
+	
+	//팔로우 리스트
+	@Override
+	public List<FollowVo> followList(String user_id) {
+		// TODO Auto-generated method stub
+		List<FollowVo> list = mypagedao.followList(user_id);
+		return list;
 	}
 
 

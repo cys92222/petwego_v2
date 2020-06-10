@@ -114,7 +114,7 @@
 	
 	
 											<c:when test="${not empty fname  }">
-												<img class="rounded-circle mt-4" src="/img/peopleImg/${myinfo.fname }" width="135" height="135">
+												<img class="rounded-circle mt-4" src="../img/peopleImg/${myinfo.fname }" width="135" height="135">
 											</c:when>
 											
 											<c:otherwise>
