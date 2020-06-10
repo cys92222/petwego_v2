@@ -36,6 +36,7 @@
 	src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+
 	var g_userList = ${g_userList};
 
 	$.each(g_userList,function(idx,ul){
@@ -123,6 +124,7 @@ $(document).ready(function(){
          }
       }
    });
+	   
 	//검색 유지한 목록으로 돌아가기
 	//5월8일 현재 동작 안되고 있음 주소창에 입력값은 가져와지는데 페이지가 넘어가지지 않음
 	$("#list_btn").on("click", function(){
@@ -134,13 +136,25 @@ $(document).ready(function(){
 	   
 	//댓글 수정 View
 	$(".replyUpdateBtn").on("click", function(){
-		location.href = "/together/updateReplyView?t_num=${detailTogether.t_num}"
-						+ "&page=${scri.page}"
-						+ "&perPageNum=${scri.perPageNum}"
-						+ "&searchType=${scri.searchType}"
-						+ "&keyword=${scri.keyword}"
-						//클릭이벤트가 발생한 수정버튼의 data-t_r_num을 가져오겠다.
-						+ "&t_r_num="+$(this).attr("data-t_r_num");
+
+		var updateYN = swal({
+			title:"수정하시겠습니까?",
+			text:"",
+			icon:"info",
+			buttons:["NO","YES"]
+		}).then((YES) => {
+			if(YES){
+				location.href = "/together/updateReplyView?t_num=${detailTogether.t_num}"
+					+ "&page=${scri.page}"
+					+ "&perPageNum=${scri.perPageNum}"
+					+ "&searchType=${scri.searchType}"
+					+ "&keyword=${scri.keyword}"
+					//클릭이벤트가 발생한 수정버튼의 data-t_r_num을 가져오겠다.
+					+ "&t_r_num="+$(this).attr("data-t_r_num");
+			}
+
+		})
+		
 	});
 			
 	//댓글 삭제 View
@@ -195,8 +209,7 @@ $(document).ready(function(){
          url:"/together/writeReply",
          data:param,
          success:function(){
-        	 swal("Good!","댓글이 등록되었습니다.","success");
-            window.location.reload(true);
+        	 window.location.reload(true);
          }
       });
    });
@@ -218,9 +231,11 @@ $(document).ready(function(){
 	console.log(t_num,user_id,t_size,t_attendee_cnt)
   	
 	$("#clickApplication").hide();
-	
+
+	setInterval(okApplication, 3000);
+
 	//신청하기 체크
-	var okApplication = function(user_id, t_num){
+	var okApplication = function okApplication(user_id, t_num){
 		$.ajax("/together/okApplication",{data: {user_id:in_user_id,t_num:t_num}, success:function(re){
 			if( re == 1 ){				//
 				$("#clickApplication").show();	

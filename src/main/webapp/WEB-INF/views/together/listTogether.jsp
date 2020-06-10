@@ -49,6 +49,9 @@
 					location.href = "writeTogetherView";
 				});
 
+				setTimeout(function(){
+					location.reload();
+				},10000);
 			});
 </script>
 <style type="text/css">
