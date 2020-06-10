@@ -209,7 +209,7 @@
 					<li class="nav-label">Menu</li>
 					<li><a class="has-arrow" href="/pic_board/list"
 						aria-expanded="false"> <i class="fas fa-dog"></i><span
-							class="nav-text" id="myPet">마이펫</span>
+							class="nav-text" id="myPet">펫스타그램</span>
 					</a></li>
 					<li class="mega-menu mega-menu-sm"><a class="has-arrow"
 						href="/facility/search" aria-expanded="false"> <i

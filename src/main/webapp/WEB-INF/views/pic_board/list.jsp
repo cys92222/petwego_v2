@@ -67,7 +67,7 @@ var temp = function(){
 	<!-- container-fluid start -->
 	<div class="container-fluid">
 		<div class="d-flex justify-content-between">
-			<h4 class="d-inline mb-4">마이펫</h4>
+			<h4 class="d-inline mb-4">펫스타그램</h4>
 			<a class="btn btn-primary align-self-center" id="insertbutton"
 				href="/pic_board/insertForm">게시글 등록</a>
 		</div>
