@@ -435,7 +435,7 @@
                                                                                           <tr>
                                                                                                     <th>번호</th>
                                                                                                     <th>제목</th>
-                                                                                                    <th>날짜</th>
+<!--                                                                                                     <th>날짜</th> -->
                                                                                                     <th>소개</th>
                                                                                                     <th>장소</th>
 
@@ -447,8 +447,8 @@
                                                                                                     <td><a href="javascript:void(0)"># ${to.t_num}</a>
                                                                                                     </td>
                                                                                                     <td><a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a></td>
-                                                                                                    <td><fmt:formatDate value="${to.t_date}" pattern="yyyy-MM-dd" />
-                                                                                                    </td>
+<%--                                                                                                     <td><fmt:formatDate value="${to.t_date}" pattern="yyyy-MM-dd" /> --%>
+<!--                                                                                                     </td> -->
                                                                                                     <td>${to.t_intro}</td>
                                                                                                     <td>${to.t_place}</td>
 
@@ -603,7 +603,7 @@
                                                                                           확인하였으며, 회원탈퇴에 동의합니다.</label>
                                                                       </div>
                                                                       <div>
-                                                                                <button type="button" class="btn mb-1 ml-3 btn-danger" id="widthdraw_btn">회원탈퇴</button>
+                                                                                <button type="button" class="btn mb-1 ml-3 btn-danger" id="break_btn">회원탈퇴</button>
                                                                       </div>
                                                             </div>
                                                   </div>
@@ -641,9 +641,9 @@
 							</div>
 							<!-- 동물 정보 끝						 -->
 						<sec:authorize access="hasRole('ROLE_USER')">
-							<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button>
-							<!--          <button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button> -->
-							<!--       <button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
+<!-- 							<button type="button" class="btn mb-1 btn-danger" id="break_btn">계정정지</button> -->
+<!-- 							         <button type="button" class="btn mb-1 btn-danger" id="widthdraw_btn">회원탈퇴</button> -->
+<!-- 							      <button class="btn btn-primary px-3 ml-4 mb-4" id="widthdraw_btn">회원탈퇴</button> -->
 							<!--           -->
 						</sec:authorize>
 						<button id="animal_info_up_btn"

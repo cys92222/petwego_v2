@@ -180,9 +180,9 @@
                   <div class="progress mb-4">
                     <div class="progress-bar bg-danger" role="progressbar" style="width: 99%" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-                  <h4 class="small font-weight-bold">EXAMPLE DATA <span class="float-right">10%</span></h4>
+                  <h4 class="small font-weight-bold">EXAMPLE DATA <span class="float-right">90%</span></h4>
                   <div class="progress mb-4">
-                    <div class="progress-bar bg-warning" role="progressbar" style="width: 10%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                   <h4 class="small font-weight-bold">BootStrap <span class="float-right">80%</span></h4>
                   <div class="progress mb-4">
