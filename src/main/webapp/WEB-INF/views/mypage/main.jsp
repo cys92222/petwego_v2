@@ -106,7 +106,7 @@
                                 
     <div class="col-3 border-right pr-5 py-4 text-center">
                                     <img class="rounded-circle mt-4" src="/img/peopleImg/${myinfo.fname }" width="135" height="135">
-                                    <h4 class="card-widget__title text-dark mt-3">마카롱</h4>
+                                    <h4 class="card-widget__title text-dark mt-3">${myinfo.nick_name }</h4>
                                     <p class="text-muted font-weight-light">
 	                                    <c:set var="role" value = "${myinfo.user_role}"/>
 										<c:choose>
@@ -347,6 +347,9 @@
 
 
                                                                                 </tbody>
+                                                                                <tfoot>
+                                                                                <tr><td><a href="/mypage/reservation_list?user_id=${login_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a></td></tr>
+                                                                                </tfoot>
                                                                       </table>
                                                             </div>
 
@@ -388,6 +391,9 @@
                                                                                           </tr>
                                                                                            </c:forEach>
                                                                                 </tbody>
+                                                                                <tfoot>
+                                                                                <tr><td><a href="/mypage/pay_list"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a></td></tr>
+                                                                                </tfoot>
                                                                       </table>
                                                             </div>
 
@@ -412,7 +418,7 @@
                                                                                 <tbody>
                                                                                 <c:forEach var="b" items="${myboard }" begin="0" end="4">
                                                                                           <tr>
-                                                                                                    <td><a href="javascript:void(0)"># ${board_no}</a>
+                                                                                                    <td><a href="javascript:void(0)"># ${b.board_no}</a>
                                                                                                     </td>
                                                                                                     <td><span class="label gradient-2 rounded">${b.category}</span>
                                                                                                     </td>
@@ -422,6 +428,9 @@
                                                                                           </tr>
                                                                                 </c:forEach>
                                                                                 </tbody>
+                                                                                <tfoot>
+                                                                                <tr><td><a href="/mypage/board_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a></td></tr>
+                                                                                </tfoot>
                                                                       </table>
                                                             </div>
 
@@ -435,7 +444,7 @@
                                                                                           <tr>
                                                                                                     <th>번호</th>
                                                                                                     <th>제목</th>
-<!--                                                                                                     <th>날짜</th> -->
+                                                                                                    <th>날짜</th>
                                                                                                     <th>소개</th>
                                                                                                     <th>장소</th>
 
@@ -447,14 +456,19 @@
                                                                                                     <td><a href="javascript:void(0)"># ${to.t_num}</a>
                                                                                                     </td>
                                                                                                     <td><a href="/together/detailTogether?t_num=${to.t_num}">${to.t_title }</a></td>
-<%--                                                                                                     <td><fmt:formatDate value="${to.t_date}" pattern="yyyy-MM-dd" /> --%>
-<!--                                                                                                     </td> -->
+                                                                                                    <td>
+                                                                                                    <fmt:parseDate var="parsedDate" value="${to.t_date}" pattern="yyyy-MM-dd"/>                                                                                               
+                                                                                                    <fmt:formatDate value="${parsedDate}" pattern="yyyy-MM-dd" />
+                                                                                                    </td>
                                                                                                     <td>${to.t_intro}</td>
                                                                                                     <td>${to.t_place}</td>
 
                                                                                           </tr>
                                                                                 </c:forEach>
                                                                                 </tbody>
+                                                                                <tfoot>
+                                                                                <tr><td><a href="/mypage/together_list?user_id=${myinfo.user_id }"><button type="button" class="btn mb-1 btn-outline-primary">더보기</button></a></td></tr>
+                                                                                </tfoot>
                                                                       </table>
                                                             </div>
 
