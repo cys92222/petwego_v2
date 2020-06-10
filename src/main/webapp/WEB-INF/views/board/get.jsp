@@ -23,12 +23,14 @@ $(function(){
 	var board_no = $("#board_no").val();
 
 	// 수정버튼 누르면...
-	$("#btnUpdate").click(function(){
+	$("#btnUpdate").click(function(e){
+		e.preventDefault();
 		self.location = "/board/update?board_no="+board_no;
 	})
 	
 	// 삭제버튼 누르면...
-	$("#btnDelete").click(function(){
+	$("#btnDelete").click(function(e){
+		e.preventDefault();
 		var user_id = "${login_id}";
 
 		swal({
@@ -125,7 +127,7 @@ $(function(){
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">게시글 상세보기</h4>
+						<h4 class="card-title mb-5 ml-4">게시글 상세보기</h4>
 						<div class="basic-form">
 							<form id="f">
 								<input type="hidden" id="token" name="${_csrf.parameterName}" value="${_csrf.token}" />
@@ -134,28 +136,40 @@ $(function(){
 									<table class="table header-border">
 										<tbody>
 											<tr>
-												<td>제목|${detail.board_title }</td>
-												<td>카테고리|${detail.category }</td>
-												<td></td>
+												<td><span class="col-md-1 text-muted mr-3">제목</span><span class="col-md-1 text-info pl-3">${detail.board_title }</span></td>
+												
+												<td><span class="col-md-1 text-muted mr-3">카테고리</span><span class="col-md-1 text-info pl-3">${detail.category }</span></td>
+												
 											</tr>
 											<tr>
-												<td>작성자|${detail.user_id }</td>
-												<td>등록일|<fmt:formatDate pattern="yyyy년 MM월 dd일 EE요일" value="${detail.board_date }" /></td>
-												<td>조회수|${detail.board_hit }</td>
+												<td><span class="col-md-1 text-muted mr-3">작성자</span><span class="col-md-1 text-info pl-3">${detail.user_id }</span></td>
+												<td><span class="col-md-1 text-muted mr-3">등록일</span><span class="col-md-1 text-info pl-3"><fmt:formatDate pattern="yyyy년 MM월 dd일 EE요일" value="${detail.board_date }" /></span></td>
+												<td><span class="col-md-1 text-muted mr-3">조회수</span><span class="col-md-1 text-info pl-3">${detail.board_hit }</span></td>
 											</tr>
 											<tr>
-												<td>내용|<br> <br>${detail.board_content }</td>
-												<td></td>
-												<td></td>
+												<td class="pl-4"><span class="col-md-12 text-info">${detail.board_content }</span></td>
 											</tr>
+											<%-- <tr class="d-flex flex-column">
+												<td><span class="col-md-1 text-muted mr-3">내용</span></td>
+												<td><span class="col-md-3 text-info">${detail.board_content }</span></td>
+												
+											</tr> --%>
+											
 										</tbody>
 									</table>
+									
 								</div>
+								<c:if test="${login_id eq detail.user_id }">
+								<div class="ml-3 mt-3">
+                    				<a id="btnUpdate" href="#" class="label gradient-1 text-white px-2 mr-1"><i class="fa fa-pencil"></i> 수정</a>
+                    				<a id="btnDelete" href="#" class="label gradient-9 text-white"><i class="fa fa-close"></i> 삭제</a>
+                    			</div>
+                    			</c:if>
 							</form>
-							<c:if test="${login_id eq detail.user_id }">
+<%-- 							<c:if test="${login_id eq detail.user_id }">
 								<button type="button" id="btnDelete" style="float: left" class="btn mb-1 btn-danger">글 삭제</button>
 								<button type="button" id="btnUpdate" style="float: right;" class="btn mb-1 btn-primary">글 수정</button>
-							</c:if>
+							</c:if> --%>
 						</div>
 					</div>
 				</div>
