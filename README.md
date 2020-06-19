@@ -1,4 +1,4 @@
-# Pet We GO   |   bitcamp Project
+# <g-emoji class="g-emoji" alias="smiley_cat" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f63a.png">😺</g-emoji> Pet We GO   |   bitcamp Project <g-emoji class="g-emoji" alias="dog" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f436.png">🐶</g-emoji>
 
 ### 소개&기획의도 
 ![프로젝트명](./1-1.PNG)
