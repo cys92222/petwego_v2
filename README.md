@@ -49,6 +49,7 @@ jsp 뷰페이지 작성 및 css 부트스트랩 적용, 뷰페이지 작성에 �
 + python crawling
 + [summernote](https://github.com/summernote/summernote, "글쓰기에디터")
 + [iamport](https://github.com/iamport/iamport-manual/blob/master/%EC%9D%B8%EC%A6%9D%EA%B2%B0%EC%A0%9C/README.md, "결제api")
++ Github
 ***
 ### 팀원소개(역할분담)
 - [최영수](https://github.com/cys92222)
