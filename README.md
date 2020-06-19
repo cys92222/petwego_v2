@@ -1,4 +1,4 @@
-# Bit_Project Pet We GO
+# Pet We GO   |   bitcamp Project
 
 ### 소개&기획의도 
 ![프로젝트명](./1-1.PNG)
@@ -15,8 +15,40 @@
 ***
 ### 개발일정
 
++ **1주차**
+
+프로젝트 구상 및 IDE설정, 요구사항 명세서, 사용자 흐름도를 기반으로 ERD작성
+
++ **2주차**
+
+Mapper(sql문) 작성과 함께 실제 데이터를 넣어 DB테스트
+
++ **3주차**
+
+BackEnd 개발시작, CRUD, 기타 로직 처리
+
++ **4,5주차**
+
+jsp 뷰페이지 작성 및 css 부트스트랩 적용, 뷰페이지 작성에 따른 로직 처리
+
++ **6,7주차**
+
+디버깅, 보고서 작성, 발표준비
+
 ### 사용기술
 
++ Spring boot
++ myBatis
++ Oracle DB
++ Apache Tomcat
++ Spring security
++ jsp
++ JavaScript/jQuery
++ bootstrap
++ html, css
++ python crawling
++ [summernote](https://github.com/summernote/summernote, "글쓰기에디터")
++ [iamport](https://github.com/iamport/iamport-manual/blob/master/%EC%9D%B8%EC%A6%9D%EA%B2%B0%EC%A0%9C/README.md, "결제api")
 ***
 ### 팀원소개(역할분담)
 
