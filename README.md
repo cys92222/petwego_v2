@@ -51,6 +51,19 @@ jsp 뷰페이지 작성 및 css 부트스트랩 적용, 뷰페이지 작성에 �
 + [iamport](https://github.com/iamport/iamport-manual/blob/master/%EC%9D%B8%EC%A6%9D%EA%B2%B0%EC%A0%9C/README.md, "결제api")
 ***
 ### 팀원소개(역할분담)
+- [최영수](https://github.com/cys92222)
+  - 펫스타그램, 마이페이지, 문의/공지사항
 
+- [현민아](https://github.com/hminah0215)
+  - 결제, 자유게시판, 관리자페이지
+  
+- [이수인](https://github.com/susu04-kor)
+  - 스프링 시큐리티, 회원가입, 로그인
+ 
+- [이원우](https://github.com/sngsw111) 
+  - 함께가요 게시판, 메인페이지, 로고디자인
+  
+- [한주련](https://github.com/joorano)
+  - 파이썬 크롤링, 숙박목록, 예약
 ### 시연영상 
 유튜브에 올려주시면 링크추가예정
