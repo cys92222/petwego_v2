@@ -48,8 +48,8 @@
 + bootstrap
 + html, css
 + python crawling
-+ [summernote](https://github.com/summernote/summernote, "글쓰기에디터")
-+ [iamport](https://github.com/iamport/iamport-manual/blob/master/%EC%9D%B8%EC%A6%9D%EA%B2%B0%EC%A0%9C/README.md, "결제api")
++ [summernote](https://github.com/summernote/summernote/ "글쓰기에디터")
++ [iamport](https://github.com/iamport/iamport-manual/blob/master/%EC%9D%B8%EC%A6%9D%EA%B2%B0%EC%A0%9C/README.md/ "결제api")
 + Github
 ***
 ### 팀원소개(역할분담)
