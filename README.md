@@ -69,3 +69,4 @@
   - 파이썬 크롤링, 숙박목록, 예약
 ### 시연영상 
 - [프로젝트_Pet We Go 발표영상](https://youtu.be/aAY8eJsU2Rg)
+- [웹페이지 동작영상](https://drive.google.com/file/d/1kVVA5dm5Xk5TG2KKklVkyfpgqGwKPQkn/view?usp=sharing)
