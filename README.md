@@ -68,4 +68,4 @@
 - [한주련](https://github.com/joorano)
   - 파이썬 크롤링, 숙박목록, 예약
 ### 시연영상 
-유튜브에 올려주시면 링크추가예정
+- [프로젝트_Pet We Go 발표영상](https://youtu.be/aAY8eJsU2Rg)
